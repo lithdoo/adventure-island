@@ -1,0 +1,3 @@
+environment,os_build,arch,aspinet_load,code_integrity_event,client_window,login_9555,channel_connect,result,notes
+current-windows,26200,x64,blocked,3077 status 0xC0E90008 policy VerifiedAndReputableDesktop,dialog #32770 title MapleStory,not observed,not observed,no game socket,HSUpdate was not launched again; CI log is from 16:33-16:34. Client sample 17:08 had no TCP.
+windows-7-sp1-x86,not run,,,not run,not run,not run,not run,not run,not applicable,no existing VM and no trusted Windows 7 installation media on this machine; no ISO was downloaded

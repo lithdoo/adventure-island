@@ -1,0 +1,13 @@
+time,process,pid,event,local_endpoint,remote_endpoint,image_path,status,notes
+2026-10-09 17:08:28,java,21684,listen,:::9555,,server.Start,listening,bundled server; PID matches java.exe
+2026-10-09 17:08:28,java,21684,listen,:::7575,,server.Start,listening,channels 7575-7578 also listening on the same PID
+2026-10-09 17:08:28,java,21684,listen,:::8600,,server.Start,listening,cash shop
+2026-10-09 17:08:28,mysqld,17936,listen,127.0.0.1:3306,,mysqld,listening,bind-address 127.0.0.1
+2026-10-09 17:08:28,MapleStory.exe,20132,start,,,MapleStory.exe 127.0.0.1 9555,started,no debugger; parent was the observer shell; process exited immediately
+2026-10-09 17:08:33,MapleStory.exe,23452,alive,,,MapleStory.exe,running,parent PID 15492; image name of the parent was not available
+2026-10-09 17:08:33,MapleStory.exe,23452,tcp-sample,,,,,no socket returned by Get-NetTCPConnection
+2026-10-09 17:09:16,MapleStory.exe,23452,tcp-sample,,,,,still alive after about 45 seconds; still no socket to 9555 7575-7578 or 8600
+2026-10-09 17:09:16,HSUpdate.exe,,,not observed,,,,,no HSUpdate process during the client sample
+2026-10-09 17:09:20,MapleStory.exe,23452,window,#32770,,MapleStory,dialog,visible dialog title MapleStory; only child control is an OK button; no other text
+2026-10-09 17:09:20,Dapan.exe,17716,listen,127.0.0.1:17890,,maoxiong-vpn,noise,VPN listener still present; MapleStory had no connection to it in this sample
+2026-10-09 17:09:20,MapleStory.exe,23452,public-connect,,,,,not observed

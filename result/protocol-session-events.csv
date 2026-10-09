@@ -1,0 +1,2 @@
+session,seq,time,direction,endpoint,raw_length,stage,opcode_hex,opcode_name,iv_before,iv_after,verified_against_server,notes
+none,0,, , , ,not observed,,,,,,,MapleStory.exe did not connect to 127.0.0.1:9555 during the passive sample
