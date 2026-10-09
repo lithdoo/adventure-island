@@ -1,5 +1,5 @@
 name,module,va,rva,evidence,callers,callees,protocol_event,confidence,notes
-candidate_CClientSocket_Connect,,,,,,,"connect 127.0.0.1:9555",,"Debugger sessions ended before ws2_32 was loaded or before a 9555 connect. No caller RVA."
+candidate_CClientSocket_Connect,,,,,,,"connect 127.0.0.1:9555",,"Debugger attach shows a dialog that debugging code was detected, then exit 0xFFFF9108. Last in-image exceptions: illegal instruction RVA 0x862E76 and privileged instruction RVA 0x862FB0. ws2_32 was not loaded. No caller RVA."
 candidate_CClientSocket_SendPacket,,,,,,,"C->S after handshake",,"No client send buffer was captured."
 candidate_CClientSocket_OnRead,,,,,,,"S->C handshake and packets",,"No client recv buffer was captured."
 candidate_GetPacketHeader,,,,,,,packet header,,"Not located."

@@ -26,3 +26,14 @@ order	module	base	size	path	notes
 
 ws2_32.dll	not loaded	-	-	-	not present before process exit; connect/send/recv breakpoints were never armed
 HShield / ehsvc	not loaded	-	-	-	not observed in this early module list
+
+# Exceptions before exit 0xFFFF9108
+# Operator saw an error dialog stating that debugging code was detected, then the client exited.
+# 64-bit host, hardware breakpoints only, none armed:
+#   0x4000001F STATUS_WX86_BREAKPOINT at 0x77738B88 in 32-bit ntdll.dll RVA 0x118B88, before user32.dll
+#   0xC000001D STATUS_ILLEGAL_INSTRUCTION at 0x00C62E76 MapleStory.exe RVA 0x862E76
+#   0xC0000096 STATUS_PRIVILEGED_INSTRUCTION at 0x00C62FB0 MapleStory.exe RVA 0x862FB0
+# 32-bit host, Python 3.12.10, hardware breakpoints only, none armed, same exit code:
+#   0xC000001D at 0x00C62E76 first chance, RVA 0x862E76
+#   0xC0000096 at 0x00C62FB0 first chance, RVA 0x862FB0
+#   following modules were winmm.dll then WinTypes.dll, then exit. ws2_32.dll was absent.
