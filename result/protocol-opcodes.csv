@@ -1,0 +1,443 @@
+direction,opcode_hex,opcode_dec,name,handler_or_builder,source_file,source_symbol,notes
+recv,0x0013,19,PONG,switch case with no external call,recvops.properties; handling/RecvPacketOpcode.java,PONG,loaded from properties
+recv,0x0001,1,LOGIN_PASSWORD,CharLoginHandler.login,recvops.properties; handling/RecvPacketOpcode.java,LOGIN_PASSWORD,loaded from properties
+recv,0xFFFE,-2,HELLO_LOGIN,CharLoginHandler.Welcome,recvops.properties; handling/RecvPacketOpcode.java,HELLO_LOGIN,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,HELLO_CHANNEL,CharLoginHandler.Welcome,recvops.properties; handling/RecvPacketOpcode.java,HELLO_CHANNEL,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x0003,3,LICENSE_REQUEST,CharLoginHandler.ServerListRequest,recvops.properties; handling/RecvPacketOpcode.java,LICENSE_REQUEST,loaded from properties
+recv,0x0002,2,SERVERLIST_REQUEST,CharLoginHandler.ServerListRequest,recvops.properties; handling/RecvPacketOpcode.java,SERVERLIST_REQUEST,loaded from properties
+recv,0x0009,9,CHARLIST_REQUEST,CharLoginHandler.CharlistRequest,recvops.properties; handling/RecvPacketOpcode.java,CHARLIST_REQUEST,loaded from properties
+recv,0x0005,5,SERVERSTATUS_REQUEST,CharLoginHandler.ServerStatusRequest,recvops.properties; handling/RecvPacketOpcode.java,SERVERSTATUS_REQUEST,loaded from properties
+recv,0x000C,12,CHECK_CHAR_NAME,CharLoginHandler.CheckCharName,recvops.properties; handling/RecvPacketOpcode.java,CHECK_CHAR_NAME,loaded from properties
+recv,0x0011,17,CREATE_CHAR,CharLoginHandler.CreateChar,recvops.properties; handling/RecvPacketOpcode.java,CREATE_CHAR,loaded from properties
+recv,0x0012,18,DELETE_CHAR,CharLoginHandler.DeleteChar,recvops.properties; handling/RecvPacketOpcode.java,DELETE_CHAR,loaded from properties
+recv,0x0015,21,STRANGE_DATA,switch case with no external call,recvops.properties; handling/RecvPacketOpcode.java,STRANGE_DATA,loaded from properties
+recv,0x000A,10,CHAR_SELECT,CharLoginHandler.Character_WithoutSecondPassword,recvops.properties; handling/RecvPacketOpcode.java,CHAR_SELECT,loaded from properties
+recv,0xFFFE,-2,AUTH_SECOND_PASSWORD,CharLoginHandler.Character_WithSecondPassword,recvops.properties; handling/RecvPacketOpcode.java,AUTH_SECOND_PASSWORD,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x0004,4,SET_GENDER,CharLoginHandler.SetGenderRequest,recvops.properties; handling/RecvPacketOpcode.java,SET_GENDER,loaded from properties
+recv,0xFFFE,-2,RSA_KEY,no case in MapleServerHandler.handlePacket,recvops.properties; handling/RecvPacketOpcode.java,RSA_KEY,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x000B,11,PLAYER_LOGGEDIN,CashShopOperation.EnterCS / InterServerHandler.Loggedin,recvops.properties; handling/RecvPacketOpcode.java,PLAYER_LOGGEDIN,loaded from properties
+recv,0x0021,33,CHANGE_MAP,CashShopOperation.LeaveCS / PlayerHandler.ChangeMap,recvops.properties; handling/RecvPacketOpcode.java,CHANGE_MAP,loaded from properties
+recv,0x0022,34,CHANGE_CHANNEL,InterServerHandler.ChangeChannel,recvops.properties; handling/RecvPacketOpcode.java,CHANGE_CHANNEL,loaded from properties
+recv,0x0023,35,ENTER_CASH_SHOP,InterServerHandler.EnterCS,recvops.properties; handling/RecvPacketOpcode.java,ENTER_CASH_SHOP,loaded from properties
+recv,0x0024,36,MOVE_PLAYER,PlayerHandler.MovePlayer,recvops.properties; handling/RecvPacketOpcode.java,MOVE_PLAYER,loaded from properties
+recv,0x0025,37,CANCEL_CHAIR,PlayerHandler.CancelChair,recvops.properties; handling/RecvPacketOpcode.java,CANCEL_CHAIR,loaded from properties
+recv,0x0026,38,USE_CHAIR,PlayerHandler.UseChair,recvops.properties; handling/RecvPacketOpcode.java,USE_CHAIR,loaded from properties
+recv,0x0028,40,CLOSE_RANGE_ATTACK,PlayerHandler.closeRangeAttack,recvops.properties; handling/RecvPacketOpcode.java,CLOSE_RANGE_ATTACK,loaded from properties
+recv,0x0029,41,RANGED_ATTACK,PlayerHandler.rangedAttack,recvops.properties; handling/RecvPacketOpcode.java,RANGED_ATTACK,loaded from properties
+recv,0x002A,42,MAGIC_ATTACK,PlayerHandler.MagicDamage,recvops.properties; handling/RecvPacketOpcode.java,MAGIC_ATTACK,loaded from properties
+recv,0x002B,43,PASSIVE_ENERGY,PlayerHandler.closeRangeAttack,recvops.properties; handling/RecvPacketOpcode.java,PASSIVE_ENERGY,loaded from properties
+recv,0x002C,44,TAKE_DAMAGE,PlayerHandler.TakeDamage,recvops.properties; handling/RecvPacketOpcode.java,TAKE_DAMAGE,loaded from properties
+recv,0x002D,45,GENERAL_CHAT,ChatHandler.GeneralChat,recvops.properties; handling/RecvPacketOpcode.java,GENERAL_CHAT,loaded from properties
+recv,0x002E,46,CLOSE_CHALKBOARD,switch case with no external call,recvops.properties; handling/RecvPacketOpcode.java,CLOSE_CHALKBOARD,loaded from properties
+recv,0x002F,47,FACE_EXPRESSION,PlayerHandler.ChangeEmotion,recvops.properties; handling/RecvPacketOpcode.java,FACE_EXPRESSION,loaded from properties
+recv,0x0030,48,USE_ITEMEFFECT,PlayerHandler.UseItemEffect,recvops.properties; handling/RecvPacketOpcode.java,USE_ITEMEFFECT,loaded from properties
+recv,0x0031,49,WHEEL_OF_FORTUNE,switch case with no external call,recvops.properties; handling/RecvPacketOpcode.java,WHEEL_OF_FORTUNE,loaded from properties
+recv,0x0035,53,MONSTER_BOOK_COVER,PlayerHandler.ChangeMonsterBookCover,recvops.properties; handling/RecvPacketOpcode.java,MONSTER_BOOK_COVER,loaded from properties
+recv,0x0036,54,NPC_TALK,NPCHandler.NPCTalk,recvops.properties; handling/RecvPacketOpcode.java,NPC_TALK,loaded from properties
+recv,0x0038,56,NPC_TALK_MORE,NPCHandler.NPCMoreTalk,recvops.properties; handling/RecvPacketOpcode.java,NPC_TALK_MORE,loaded from properties
+recv,0x003A,58,NPC_SHOP,NPCHandler.NPCShop,recvops.properties; handling/RecvPacketOpcode.java,NPC_SHOP,loaded from properties
+recv,0x003B,59,STORAGE,NPCHandler.Storage,recvops.properties; handling/RecvPacketOpcode.java,STORAGE,loaded from properties
+recv,0x003C,60,USE_HIRED_MERCHANT,HiredMerchantHandler.UseHiredMerchant,recvops.properties; handling/RecvPacketOpcode.java,USE_HIRED_MERCHANT,loaded from properties
+recv,0x003D,61,MERCH_ITEM_STORE,HiredMerchantHandler.MerchantItemStore,recvops.properties; handling/RecvPacketOpcode.java,MERCH_ITEM_STORE,loaded from properties
+recv,0x003E,62,DUEY_ACTION,DueyHandler.DueyOperation,recvops.properties; handling/RecvPacketOpcode.java,DUEY_ACTION,loaded from properties
+recv,0x0042,66,ITEM_SORT,InventoryHandler.ItemSort,recvops.properties; handling/RecvPacketOpcode.java,ITEM_SORT,loaded from properties
+recv,0x0043,67,ITEM_GATHER,InventoryHandler.ItemGather,recvops.properties; handling/RecvPacketOpcode.java,ITEM_GATHER,loaded from properties
+recv,0x0044,68,ITEM_MOVE,InventoryHandler.ItemMove,recvops.properties; handling/RecvPacketOpcode.java,ITEM_MOVE,loaded from properties
+recv,0x0045,69,USE_ITEM,InventoryHandler.UseItem,recvops.properties; handling/RecvPacketOpcode.java,USE_ITEM,loaded from properties
+recv,0x0046,70,CANCEL_ITEM_EFFECT,PlayerHandler.CancelItemEffect,recvops.properties; handling/RecvPacketOpcode.java,CANCEL_ITEM_EFFECT,loaded from properties
+recv,0x0048,72,USE_SUMMON_BAG,InventoryHandler.UseSummonBag,recvops.properties; handling/RecvPacketOpcode.java,USE_SUMMON_BAG,loaded from properties
+recv,0x00AA,170,PET_EXCEPTIONLIST,PetHandler.PickExceptionList,recvops.properties; handling/RecvPacketOpcode.java,PET_EXCEPTIONLIST,loaded from properties
+recv,0x0049,73,PET_FOOD,PetHandler.PetFood,recvops.properties; handling/RecvPacketOpcode.java,PET_FOOD,loaded from properties
+recv,0x004A,74,USE_MOUNT_FOOD,InventoryHandler.UseMountFood,recvops.properties; handling/RecvPacketOpcode.java,USE_MOUNT_FOOD,loaded from properties
+recv,0xFFFE,-2,USE_SCRIPTED_NPC_ITEM,InventoryHandler.UseScriptedNPCItem,recvops.properties; handling/RecvPacketOpcode.java,USE_SCRIPTED_NPC_ITEM,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x004C,76,USE_CASH_ITEM,InventoryHandler.UseCashItem / InventoryHandler.QuestKJ,recvops.properties; handling/RecvPacketOpcode.java,USE_CASH_ITEM,loaded from properties
+recv,0x004E,78,USE_CATCH_ITEM,InventoryHandler.UseCatchItem,recvops.properties; handling/RecvPacketOpcode.java,USE_CATCH_ITEM,loaded from properties
+recv,0x004F,79,USE_SKILL_BOOK,InventoryHandler.UseSkillBook,recvops.properties; handling/RecvPacketOpcode.java,USE_SKILL_BOOK,loaded from properties
+recv,0x0052,82,USE_RETURN_SCROLL,InventoryHandler.UseReturnScroll,recvops.properties; handling/RecvPacketOpcode.java,USE_RETURN_SCROLL,loaded from properties
+recv,0x0053,83,USE_UPGRADE_SCROLL,InventoryHandler.UseUpgradeScroll,recvops.properties; handling/RecvPacketOpcode.java,USE_UPGRADE_SCROLL,loaded from properties
+recv,0x0054,84,DISTRIBUTE_AP,StatsHandling.DistributeAP,recvops.properties; handling/RecvPacketOpcode.java,DISTRIBUTE_AP,loaded from properties
+recv,0x0055,85,AUTO_ASSIGN_AP,StatsHandling.AutoAssignAP,recvops.properties; handling/RecvPacketOpcode.java,AUTO_ASSIGN_AP,loaded from properties
+recv,0x0056,86,HEAL_OVER_TIME,PlayerHandler.Heal,recvops.properties; handling/RecvPacketOpcode.java,HEAL_OVER_TIME,loaded from properties
+recv,0x0057,87,DISTRIBUTE_SP,StatsHandling.DistributeSP,recvops.properties; handling/RecvPacketOpcode.java,DISTRIBUTE_SP,loaded from properties
+recv,0x0058,88,SPECIAL_MOVE,PlayerHandler.SpecialMove,recvops.properties; handling/RecvPacketOpcode.java,SPECIAL_MOVE,loaded from properties
+recv,0x0059,89,CANCEL_BUFF,PlayerHandler.CancelBuffHandler,recvops.properties; handling/RecvPacketOpcode.java,CANCEL_BUFF,loaded from properties
+recv,0x005A,90,SKILL_EFFECT,PlayerHandler.SkillEffect,recvops.properties; handling/RecvPacketOpcode.java,SKILL_EFFECT,loaded from properties
+recv,0x005B,91,MESO_DROP,PlayerHandler.DropMeso,recvops.properties; handling/RecvPacketOpcode.java,MESO_DROP,loaded from properties
+recv,0x005C,92,GIVE_FAME,PlayersHandler.GiveFame,recvops.properties; handling/RecvPacketOpcode.java,GIVE_FAME,loaded from properties
+recv,0x005E,94,CHAR_INFO_REQUEST,PlayerHandler.CharInfoRequest,recvops.properties; handling/RecvPacketOpcode.java,CHAR_INFO_REQUEST,loaded from properties
+recv,0x005F,95,SPAWN_PET,PetHandler.SpawnPet,recvops.properties; handling/RecvPacketOpcode.java,SPAWN_PET,loaded from properties
+recv,0x0060,96,CANCEL_DEBUFF,switch case with no external call,recvops.properties; handling/RecvPacketOpcode.java,CANCEL_DEBUFF,loaded from properties
+recv,0x0061,97,CHANGE_MAP_SPECIAL,PlayerHandler.ChangeMapSpecial,recvops.properties; handling/RecvPacketOpcode.java,CHANGE_MAP_SPECIAL,loaded from properties
+recv,0x0062,98,USE_INNER_PORTAL,PlayerHandler.InnerPortal,recvops.properties; handling/RecvPacketOpcode.java,USE_INNER_PORTAL,loaded from properties
+recv,0x0063,99,TROCK_ADD_MAP,PlayerHandler.TrockAddMap,recvops.properties; handling/RecvPacketOpcode.java,TROCK_ADD_MAP,loaded from properties
+recv,0x0068,104,QUEST_ACTION,NPCHandler.QuestAction,recvops.properties; handling/RecvPacketOpcode.java,QUEST_ACTION,loaded from properties
+recv,0x0069,105,EFFECT_ON_OFF,switch case with no external call,recvops.properties; handling/RecvPacketOpcode.java,EFFECT_ON_OFF,loaded from properties
+recv,0x006D,109,SKILL_MACRO,PlayerHandler.ChangeSkillMacro,recvops.properties; handling/RecvPacketOpcode.java,SKILL_MACRO,loaded from properties
+recv,0x0070,112,ITEM_BAOWU,InventoryHandler.UsePenguinBox,recvops.properties; handling/RecvPacketOpcode.java,ITEM_BAOWU,loaded from properties
+recv,0x008E,142,ITEM_SUNZI,InventoryHandler.SunziBF,recvops.properties; handling/RecvPacketOpcode.java,ITEM_SUNZI,loaded from properties
+recv,0x0071,113,ITEM_MAKER,ItemMakerHandler.ItemMaker,recvops.properties; handling/RecvPacketOpcode.java,ITEM_MAKER,loaded from properties
+recv,0xFFFE,-2,USE_TREASUER_CHEST,InventoryHandler.UseTreasureChest,recvops.properties; handling/RecvPacketOpcode.java,USE_TREASUER_CHEST,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x0074,116,PARTYCHAT,ChatHandler.Others,recvops.properties; handling/RecvPacketOpcode.java,PARTYCHAT,loaded from properties
+recv,0x00DF,223,PARTY_SS,no case in MapleServerHandler.handlePacket,recvops.properties; handling/RecvPacketOpcode.java,PARTY_SS,loaded from properties
+recv,0x0075,117,WHISPER,ChatHandler.Whisper_Find,recvops.properties; handling/RecvPacketOpcode.java,WHISPER,loaded from properties
+recv,0x0076,118,MESSENGER,ChatHandler.Messenger,recvops.properties; handling/RecvPacketOpcode.java,MESSENGER,loaded from properties
+recv,0x0077,119,PLAYER_INTERACTION,PlayerInteractionHandler.PlayerInteraction,recvops.properties; handling/RecvPacketOpcode.java,PLAYER_INTERACTION,loaded from properties
+recv,0x0078,120,PARTY_OPERATION,PartyHandler.PartyOperatopn,recvops.properties; handling/RecvPacketOpcode.java,PARTY_OPERATION,loaded from properties
+recv,0x0079,121,DENY_PARTY_REQUEST,PartyHandler.DenyPartyRequest,recvops.properties; handling/RecvPacketOpcode.java,DENY_PARTY_REQUEST,loaded from properties
+recv,0x007A,122,GUILD_OPERATION,GuildHandler.Guild,recvops.properties; handling/RecvPacketOpcode.java,GUILD_OPERATION,loaded from properties
+recv,0x007B,123,DENY_GUILD_REQUEST,GuildHandler.DenyGuildRequest,recvops.properties; handling/RecvPacketOpcode.java,DENY_GUILD_REQUEST,loaded from properties
+recv,0x007E,126,BUDDYLIST_MODIFY,BuddyListHandler.BuddyOperation,recvops.properties; handling/RecvPacketOpcode.java,BUDDYLIST_MODIFY,loaded from properties
+recv,0x007F,127,NOTE_ACTION,PlayersHandler.Note,recvops.properties; handling/RecvPacketOpcode.java,NOTE_ACTION,loaded from properties
+recv,0x0081,129,USE_DOOR,PlayersHandler.UseDoor,recvops.properties; handling/RecvPacketOpcode.java,USE_DOOR,loaded from properties
+recv,0x0083,131,CHANGE_KEYMAP,PlayerHandler.ChangeKeymap,recvops.properties; handling/RecvPacketOpcode.java,CHANGE_KEYMAP,loaded from properties
+recv,0xFFFE,-2,UPDATE_CHAR_INFO,PlayersHandler.UpdateCharInfo,recvops.properties; handling/RecvPacketOpcode.java,UPDATE_CHAR_INFO,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x008D,141,ENTER_MTS,InterServerHandler.EnterMTS,recvops.properties; handling/RecvPacketOpcode.java,ENTER_MTS,loaded from properties
+recv,0x008A,138,ALLIANCE_OPERATION,AllianceHandler.HandleAlliance,recvops.properties; handling/RecvPacketOpcode.java,ALLIANCE_OPERATION,loaded from properties
+recv,0x008B,139,DENY_ALLIANCE_REQUEST,AllianceHandler.HandleAlliance,recvops.properties; handling/RecvPacketOpcode.java,DENY_ALLIANCE_REQUEST,loaded from properties
+recv,0x0095,149,REQUEST_FAMILY,FamilyHandler.RequestFamily,recvops.properties; handling/RecvPacketOpcode.java,REQUEST_FAMILY,loaded from properties
+recv,0x0096,150,OPEN_FAMILY,FamilyHandler.OpenFamily,recvops.properties; handling/RecvPacketOpcode.java,OPEN_FAMILY,loaded from properties
+recv,0x0097,151,FAMILY_OPERATION,FamilyHandler.FamilyOperation,recvops.properties; handling/RecvPacketOpcode.java,FAMILY_OPERATION,loaded from properties
+recv,0x0098,152,DELETE_JUNIOR,FamilyHandler.DeleteJunior,recvops.properties; handling/RecvPacketOpcode.java,DELETE_JUNIOR,loaded from properties
+recv,0x0099,153,DELETE_SENIOR,FamilyHandler.DeleteSenior,recvops.properties; handling/RecvPacketOpcode.java,DELETE_SENIOR,loaded from properties
+recv,0x009A,154,ACCEPT_FAMILY,FamilyHandler.AcceptFamily,recvops.properties; handling/RecvPacketOpcode.java,ACCEPT_FAMILY,loaded from properties
+recv,0x009B,155,USE_FAMILY,FamilyHandler.UseFamily,recvops.properties; handling/RecvPacketOpcode.java,USE_FAMILY,loaded from properties
+recv,0x009C,156,FAMILY_PRECEPT,FamilyHandler.FamilyPrecept,recvops.properties; handling/RecvPacketOpcode.java,FAMILY_PRECEPT,loaded from properties
+recv,0x009D,157,FAMILY_SUMMON,FamilyHandler.FamilySummon,recvops.properties; handling/RecvPacketOpcode.java,FAMILY_SUMMON,loaded from properties
+recv,0x009E,158,CYGNUS_SUMMON,UserInterfaceHandler.CygnusSummon_NPCRequest,recvops.properties; handling/RecvPacketOpcode.java,CYGNUS_SUMMON,loaded from properties
+recv,0x009F,159,ARAN_COMBO,PlayerHandler.AranCombo,recvops.properties; handling/RecvPacketOpcode.java,ARAN_COMBO,loaded from properties
+recv,0x008C,140,BBS_OPERATION,BBSHandler.BBSOperatopn,recvops.properties; handling/RecvPacketOpcode.java,BBS_OPERATION,loaded from properties
+recv,0xFFFE,-2,TRANSFORM_PLAYER,PlayersHandler.TransformPlayer,recvops.properties; handling/RecvPacketOpcode.java,TRANSFORM_PLAYER,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x00A5,165,MOVE_PET,PetHandler.MovePet,recvops.properties; handling/RecvPacketOpcode.java,MOVE_PET,loaded from properties
+recv,0x00A6,166,PET_CHAT,PetHandler.PetChat,recvops.properties; handling/RecvPacketOpcode.java,PET_CHAT,loaded from properties
+recv,0x00A7,167,PET_COMMAND,PetHandler.PetCommand,recvops.properties; handling/RecvPacketOpcode.java,PET_COMMAND,loaded from properties
+recv,0x00A8,168,PET_LOOT,InventoryHandler.Pickup_Pet,recvops.properties; handling/RecvPacketOpcode.java,PET_LOOT,loaded from properties
+recv,0x00A9,169,PET_AUTO_POT,PetHandler.Pet_AutoPotion,recvops.properties; handling/RecvPacketOpcode.java,PET_AUTO_POT,loaded from properties
+recv,0x00AD,173,MOVE_SUMMON,SummonHandler.MoveSummon,recvops.properties; handling/RecvPacketOpcode.java,MOVE_SUMMON,loaded from properties
+recv,0x00AE,174,SUMMON_ATTACK,SummonHandler.SummonAttack,recvops.properties; handling/RecvPacketOpcode.java,SUMMON_ATTACK,loaded from properties
+recv,0x00B0,176,DAMAGE_SUMMON,SummonHandler.DamageSummon,recvops.properties; handling/RecvPacketOpcode.java,DAMAGE_SUMMON,loaded from properties
+recv,0x00B7,183,MOVE_LIFE,MobHandler.MoveMonster,recvops.properties; handling/RecvPacketOpcode.java,MOVE_LIFE,loaded from properties
+recv,0x00B8,184,AUTO_AGGRO,MobHandler.AutoAggro,recvops.properties; handling/RecvPacketOpcode.java,AUTO_AGGRO,loaded from properties
+recv,0x00BD,189,FRIENDLY_DAMAGE,MobHandler.FriendlyDamage,recvops.properties; handling/RecvPacketOpcode.java,FRIENDLY_DAMAGE,loaded from properties
+recv,0x00BC,188,MONSTER_BOMB,MobHandler.MonsterBomb,recvops.properties; handling/RecvPacketOpcode.java,MONSTER_BOMB,loaded from properties
+recv,0xFFFE,-2,HYPNOTIZE_DMG,MobHandler.HypnotizeDmg,recvops.properties; handling/RecvPacketOpcode.java,HYPNOTIZE_DMG,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x00C0,192,NPC_ACTION,NPCHandler.NPCAnimation,recvops.properties; handling/RecvPacketOpcode.java,NPC_ACTION,loaded from properties
+recv,0x00C6,198,ITEM_PICKUP,InventoryHandler.Pickup_Player,recvops.properties; handling/RecvPacketOpcode.java,ITEM_PICKUP,loaded from properties
+recv,0x00C9,201,DAMAGE_REACTOR,PlayersHandler.HitReactor,recvops.properties; handling/RecvPacketOpcode.java,DAMAGE_REACTOR,loaded from properties
+recv,0x00CF,207,SNOWBALL,PlayerHandler.snowBall / PlayersHandler.ChatRoomHandler,recvops.properties; handling/RecvPacketOpcode.java,SNOWBALL,loaded from properties
+recv,0x00D0,208,LEFT_KNOCK_BACK,PlayerHandler.leftKnockBack,recvops.properties; handling/RecvPacketOpcode.java,LEFT_KNOCK_BACK,loaded from properties
+recv,0x00D1,209,COCONUT,PlayersHandler.hitCoconut,recvops.properties; handling/RecvPacketOpcode.java,COCONUT,loaded from properties
+recv,0x00D7,215,MONSTER_CARNIVAL,MonsterCarnivalHandler.MonsterCarnival,recvops.properties; handling/RecvPacketOpcode.java,MONSTER_CARNIVAL,loaded from properties
+recv,0x00D9,217,SHIP_OBJECT,UserInterfaceHandler.ShipObjectRequest,recvops.properties; handling/RecvPacketOpcode.java,SHIP_OBJECT,loaded from properties
+recv,0xFFFE,-2,CS_UPDATE,CashShopOperation.CSUpdate,recvops.properties; handling/RecvPacketOpcode.java,CS_UPDATE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x00E9,233,BUY_CS_ITEM,CashShopOperation.BuyCashItem,recvops.properties; handling/RecvPacketOpcode.java,BUY_CS_ITEM,loaded from properties
+recv,0x00E8,232,TOUCHING_CS,CashShopOperation.TouchingCashShop,recvops.properties; handling/RecvPacketOpcode.java,TOUCHING_CS,loaded from properties
+recv,0x00EA,234,COUPON_CODE,CashShopOperation.CouponCode,recvops.properties; handling/RecvPacketOpcode.java,COUPON_CODE,loaded from properties
+recv,0x00F6,246,MAPLETV,no case in MapleServerHandler.handlePacket,recvops.properties; handling/RecvPacketOpcode.java,MAPLETV,loaded from properties
+recv,0xFFFE,-2,MOVE_DRAGON,SummonHandler.MoveDragon,recvops.properties; handling/RecvPacketOpcode.java,MOVE_DRAGON,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,REPAIR,NPCHandler.repair,recvops.properties; handling/RecvPacketOpcode.java,REPAIR,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,REPAIR_ALL,NPCHandler.repairAll,recvops.properties; handling/RecvPacketOpcode.java,REPAIR_ALL,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,TOUCHING_MTS,MTSOperation.MTSUpdate / MTSStorage.getInstance,recvops.properties; handling/RecvPacketOpcode.java,TOUCHING_MTS,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,USE_MAGNIFY_GLASS,InventoryHandler.UseMagnify,recvops.properties; handling/RecvPacketOpcode.java,USE_MAGNIFY_GLASS,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,USE_POTENTIAL_SCROLL,InventoryHandler.UseUpgradeScroll,recvops.properties; handling/RecvPacketOpcode.java,USE_POTENTIAL_SCROLL,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,USE_EQUIP_SCROLL,InventoryHandler.UseUpgradeScroll,recvops.properties; handling/RecvPacketOpcode.java,USE_EQUIP_SCROLL,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,GAME_POLL,UserInterfaceHandler.InGame_Poll,recvops.properties; handling/RecvPacketOpcode.java,GAME_POLL,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,OWL,InventoryHandler.Owl,recvops.properties; handling/RecvPacketOpcode.java,OWL,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,OWL_WARP,InventoryHandler.OwlWarp,recvops.properties; handling/RecvPacketOpcode.java,OWL_WARP,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,USE_OWL_MINERVA,InventoryHandler.OwlMinerva,recvops.properties; handling/RecvPacketOpcode.java,USE_OWL_MINERVA,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x0084,132,RPS_GAME,NPCHandler.RPSGame,recvops.properties; handling/RecvPacketOpcode.java,RPS_GAME,loaded from properties
+recv,0xFFFE,-2,UPDATE_QUEST,NPCHandler.UpdateQuest,recvops.properties; handling/RecvPacketOpcode.java,UPDATE_QUEST,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x00E0,224,PLAYER_UPDATE,PlayerHandler.UpdateHandler,recvops.properties; handling/RecvPacketOpcode.java,PLAYER_UPDATE,loaded from properties
+recv,0xFFFE,-2,USE_ITEM_QUEST,NPCHandler.UseItemQuest,recvops.properties; handling/RecvPacketOpcode.java,USE_ITEM_QUEST,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,FOLLOW_REQUEST,PlayersHandler.FollowRequest,recvops.properties; handling/RecvPacketOpcode.java,FOLLOW_REQUEST,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,FOLLOW_REPLY,PlayersHandler.FollowReply,recvops.properties; handling/RecvPacketOpcode.java,FOLLOW_REPLY,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,MOB_NODE,MobHandler.MobNode,recvops.properties; handling/RecvPacketOpcode.java,MOB_NODE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0xFFFE,-2,DISPLAY_NODE,MobHandler.DisplayNode,recvops.properties; handling/RecvPacketOpcode.java,DISPLAY_NODE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x00CA,202,TOUCH_REACTOR,PlayersHandler.TouchReactor,recvops.properties; handling/RecvPacketOpcode.java,TOUCH_REACTOR,loaded from properties
+recv,0x0085,133,RING_ACTION,PlayersHandler.RingAction,recvops.properties; handling/RecvPacketOpcode.java,RING_ACTION,loaded from properties
+recv,0xFFFE,-2,MTS_TAB,MTSOperation.MTSOperation,recvops.properties; handling/RecvPacketOpcode.java,MTS_TAB,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x00CB,203,NEW_SX,switch case with no external call,recvops.properties; handling/RecvPacketOpcode.java,NEW_SX,loaded from properties
+recv,0xFFFE,-2,BOATS,no case in MapleServerHandler.handlePacket,recvops.properties; handling/RecvPacketOpcode.java,BOATS,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x00E2,226,BEANS_GAME1,BeanGame.BeanGame1,recvops.properties; handling/RecvPacketOpcode.java,BEANS_GAME1,loaded from properties
+recv,0x00E3,227,BEANS_GAME2,BeanGame.BeanGame2,recvops.properties; handling/RecvPacketOpcode.java,BEANS_GAME2,loaded from properties
+recv,0x00BB,187,MOONRABBIT_HP,PlayerHandler.Rabbit / header.toString / MapleServerHandler.reloadLoggedIPs / blocked.addAll / Arrays.asList,recvops.properties; handling/RecvPacketOpcode.java,MOONRABBIT_HP,loaded from properties
+recv,0xFFFE,-2,MARRAGE_RECV,NPCHandler.MarrageNpc,recvops.properties; handling/RecvPacketOpcode.java,MARRAGE_RECV,enum present but absent from properties; ExternalCodeTableGetter default is -2
+recv,0x00FF,255,SERVERLIST_REREQUEST,,recvops.properties,SERVERLIST_REREQUEST,property key is not a member of the enum
+recv,0x00FF,255,AFTER_LOGIN,,recvops.properties,AFTER_LOGIN,property key is not a member of the enum
+recv,0x00FF,255,REGISTER_PIN,,recvops.properties,REGISTER_PIN,property key is not a member of the enum
+recv,0x00FF,255,PLAYER_DC,,recvops.properties,PLAYER_DC,property key is not a member of the enum
+recv,0x00FF,255,VIEW_ALL_CHAR,,recvops.properties,VIEW_ALL_CHAR,property key is not a member of the enum
+recv,0x00FF,255,PICK_ALL_CHAR,,recvops.properties,PICK_ALL_CHAR,property key is not a member of the enum
+recv,0x0014,20,ERROR_LOG,,recvops.properties,ERROR_LOG,property key is not a member of the enum
+recv,0x0019,25,RELOG,,recvops.properties,RELOG,property key is not a member of the enum
+recv,0x0047,71,USE_FISHING_ITEM,,recvops.properties,USE_FISHING_ITEM,property key is not a member of the enum
+recv,0x004B,75,SCRIPTED_ITEM,,recvops.properties,SCRIPTED_ITEM,property key is not a member of the enum
+recv,0x006A,106,quest_KJ,,recvops.properties,quest_KJ,property key is not a member of the enum
+recv,0x7FFE,32766,REPORT_PLAYER,,recvops.properties,REPORT_PLAYER,property key is not a member of the enum
+recv,0x0072,114,ITEM_MZD,,recvops.properties,ITEM_MZD,property key is not a member of the enum
+recv,0x7FFE,32766,SPOUSE_CHAT,,recvops.properties,SPOUSE_CHAT,property key is not a member of the enum
+recv,0x00FB,251,MTS_OP,,recvops.properties,MTS_OP,property key is not a member of the enum
+recv,0x0104,260,ChatRoom_SYSTEM,,recvops.properties,ChatRoom_SYSTEM,property key is not a member of the enum
+send,0x0014,20,PING,MapleClient.sendPing,sendops.properties; handling/SendPacketOpcode.java,PING,loaded from properties
+send,0x0000,0,LOGIN_STATUS,LoginPacket.getLoginFailed / getTempBan / getPermBan,sendops.properties; handling/SendPacketOpcode.java,LOGIN_STATUS,loaded from properties
+send,0x00FF,255,PIN_OPERATION,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,PIN_OPERATION,loaded from properties; sentinel/disabled-style value shared by multiple names; also used by ALL_CHARLIST
+send,0xFFFE,-2,SECONDPW_ERROR,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SECONDPW_ERROR,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0009,9,SERVERLIST,LoginPacket.getServerList / getEndOfServerList,sendops.properties; handling/SendPacketOpcode.java,SERVERLIST,loaded from properties
+send,0x0006,6,SERVERSTATUS,LoginPacket.getServerStatus,sendops.properties; handling/SendPacketOpcode.java,SERVERSTATUS,loaded from properties
+send,0x000B,11,SERVER_IP,MaplePacketCreator.getServerIP,sendops.properties; handling/SendPacketOpcode.java,SERVER_IP,loaded from properties
+send,0x000A,10,CHARLIST,LoginPacket.getCharList,sendops.properties; handling/SendPacketOpcode.java,CHARLIST,loaded from properties
+send,0x000C,12,CHAR_NAME_RESPONSE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHAR_NAME_RESPONSE,loaded from properties
+send,0xFFFE,-2,RELOG_RESPONSE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,RELOG_RESPONSE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0011,17,ADD_NEW_CHAR_ENTRY,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ADD_NEW_CHAR_ENTRY,loaded from properties
+send,0x7FFE,32766,DELETE_CHAR_RESPONSE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DELETE_CHAR_RESPONSE,loaded from properties; sentinel/disabled-style value shared by multiple names
+send,0x0018,24,CHANNEL_SELECTED,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHANNEL_SELECTED,loaded from properties
+send,0x00FF,255,ALL_CHARLIST,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ALL_CHARLIST,loaded from properties; sentinel/disabled-style value shared by multiple names; also used by PIN_OPERATION
+send,0x0004,4,CHOOSE_GENDER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHOOSE_GENDER,loaded from properties
+send,0x0005,5,GENDER_SET,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GENDER_SET,loaded from properties
+send,0x007D,125,CHAR_CASH,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHAR_CASH,loaded from properties
+send,0x0013,19,CHANGE_CHANNEL,InterServerHandler.ChangeChannel,sendops.properties; handling/SendPacketOpcode.java,CHANGE_CHANNEL,loaded from properties
+send,0x0022,34,UPDATE_STATS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_STATS,loaded from properties
+send,0x0029,41,FAME_RESPONSE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAME_RESPONSE,loaded from properties
+send,0x0027,39,UPDATE_SKILLS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_SKILLS,loaded from properties
+send,0x0081,129,WARP_TO_MAP,MaplePacketCreator.getCharInfo (enter) / getWarpToMap (map change),sendops.properties; handling/SendPacketOpcode.java,WARP_TO_MAP,loaded from properties
+send,0x0041,65,SERVERMESSAGE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SERVERMESSAGE,loaded from properties
+send,0x0056,86,AVATAR_MEGA,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,AVATAR_MEGA,loaded from properties
+send,0x0104,260,SPAWN_NPC,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_NPC,loaded from properties
+send,0x0105,261,REMOVE_NPC,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REMOVE_NPC,loaded from properties
+send,0x0106,262,SPAWN_NPC_REQUEST_CONTROLLER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_NPC_REQUEST_CONTROLLER,loaded from properties
+send,0x00EE,238,SPAWN_MONSTER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_MONSTER,loaded from properties
+send,0x00F0,240,SPAWN_MONSTER_CONTROL,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_MONSTER_CONTROL,loaded from properties
+send,0x00F2,242,MOVE_MONSTER_RESPONSE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MOVE_MONSTER_RESPONSE,loaded from properties
+send,0x00A4,164,CHATTEXT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHATTEXT,loaded from properties
+send,0x002A,42,SHOW_STATUS_INFO,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_STATUS_INFO,loaded from properties
+send,0xFFFE,-2,SHOW_MESO_GAIN,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_MESO_GAIN,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0033,51,SHOW_QUEST_COMPLETION,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_QUEST_COMPLETION,loaded from properties
+send,0x008B,139,WHISPER,ChatHandler.Whisper_Find,sendops.properties; handling/SendPacketOpcode.java,WHISPER,loaded from properties
+send,0x00A2,162,SPAWN_PLAYER,MaplePacketCreator.spawnPlayerMapobject,sendops.properties; handling/SendPacketOpcode.java,SPAWN_PLAYER,loaded from properties
+send,0xFFFE,-2,ANNOUNCE_PLAYER_SHOP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ANNOUNCE_PLAYER_SHOP,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x00A9,169,SHOW_SCROLL_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_SCROLL_EFFECT,loaded from properties
+send,0x00D0,208,SHOW_ITEM_GAIN_INCHAT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_ITEM_GAIN_INCHAT,loaded from properties
+send,0x00D1,209,DOJO_WARP_UP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DOJO_WARP_UP,loaded from properties; relative form 'SHOW_ITEM_GAIN_INCHAT 1' resolved by ExternalCodeTableGetter.getValue
+send,0xFFFE,-2,CURRENT_MAP_WARP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CURRENT_MAP_WARP,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x00EF,239,KILL_MONSTER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,KILL_MONSTER,loaded from properties
+send,0x0110,272,DROP_ITEM_FROM_MAPOBJECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DROP_ITEM_FROM_MAPOBJECT,loaded from properties
+send,0x00C3,195,FACIAL_EXPRESSION,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FACIAL_EXPRESSION,loaded from properties
+send,0x00BB,187,MOVE_PLAYER,MaplePacketCreator.movePlayer,sendops.properties; handling/SendPacketOpcode.java,MOVE_PLAYER,loaded from properties
+send,0x00F1,241,MOVE_MONSTER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MOVE_MONSTER,loaded from properties
+send,0x00BC,188,CLOSE_RANGE_ATTACK,PlayerHandler.closeRangeAttack,sendops.properties; handling/SendPacketOpcode.java,CLOSE_RANGE_ATTACK,loaded from properties
+send,0x00BD,189,RANGED_ATTACK,PlayerHandler.rangedAttack,sendops.properties; handling/SendPacketOpcode.java,RANGED_ATTACK,loaded from properties
+send,0x00BE,190,MAGIC_ATTACK,PlayerHandler.MagicDamage,sendops.properties; handling/SendPacketOpcode.java,MAGIC_ATTACK,loaded from properties
+send,0xFFFE,-2,ENERGY_ATTACK,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ENERGY_ATTACK,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0146,326,OPEN_NPC_SHOP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,OPEN_NPC_SHOP,loaded from properties
+send,0x0147,327,CONFIRM_SHOP_TRANSACTION,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CONFIRM_SHOP_TRANSACTION,loaded from properties
+send,0x014A,330,OPEN_STORAGE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,OPEN_STORAGE,loaded from properties
+send,0x0020,32,MODIFY_INVENTORY_ITEM,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MODIFY_INVENTORY_ITEM,loaded from properties
+send,0x00A3,163,REMOVE_PLAYER_FROM_MAP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REMOVE_PLAYER_FROM_MAP,loaded from properties
+send,0x0111,273,REMOVE_ITEM_FROM_MAP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REMOVE_ITEM_FROM_MAP,loaded from properties
+send,0x00C7,199,UPDATE_CHAR_LOOK,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_CHAR_LOOK,loaded from properties
+send,0x00C8,200,SHOW_FOREIGN_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_FOREIGN_EFFECT,loaded from properties
+send,0x00C9,201,GIVE_FOREIGN_BUFF,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GIVE_FOREIGN_BUFF,loaded from properties
+send,0x00CA,202,CANCEL_FOREIGN_BUFF,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CANCEL_FOREIGN_BUFF,loaded from properties
+send,0x00C2,194,DAMAGE_PLAYER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DAMAGE_PLAYER,loaded from properties
+send,0x003A,58,CHAR_INFO,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHAR_INFO,loaded from properties
+send,0x00D6,214,UPDATE_QUEST_INFO,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_QUEST_INFO,loaded from properties
+send,0x0023,35,GIVE_BUFF,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GIVE_BUFF,loaded from properties
+send,0x0024,36,CANCEL_BUFF,PlayerHandler.CancelBuffHandler,sendops.properties; handling/SendPacketOpcode.java,CANCEL_BUFF,loaded from properties
+send,0x014F,335,PLAYER_INTERACTION,PlayerInteractionHandler.PlayerInteraction,sendops.properties; handling/SendPacketOpcode.java,PLAYER_INTERACTION,loaded from properties
+send,0x00A7,167,UPDATE_CHAR_BOX,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_CHAR_BOX,loaded from properties
+send,0x0145,325,NPC_TALK,MaplePacketCreator.getNPCTalk,sendops.properties; handling/SendPacketOpcode.java,NPC_TALK,loaded from properties
+send,0x016F,367,KEYMAP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,KEYMAP,loaded from properties
+send,0x00FC,252,SHOW_MONSTER_HP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_MONSTER_HP,loaded from properties
+send,0x003B,59,PARTY_OPERATION,PartyHandler.PartyOperatopn,sendops.properties; handling/SendPacketOpcode.java,PARTY_OPERATION,loaded from properties
+send,0x00CB,203,UPDATE_PARTYMEMBER_HP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_PARTYMEMBER_HP,loaded from properties
+send,0x008A,138,MULTICHAT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MULTICHAT,loaded from properties
+send,0x00F4,244,APPLY_MONSTER_STATUS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,APPLY_MONSTER_STATUS,loaded from properties
+send,0x00F5,245,CANCEL_MONSTER_STATUS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CANCEL_MONSTER_STATUS,loaded from properties
+send,0x0096,150,CLOCK,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CLOCK,loaded from properties
+send,0x0040,64,SPAWN_PORTAL,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_PORTAL,loaded from properties
+send,0x0117,279,SPAWN_DOOR,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_DOOR,loaded from properties
+send,0x0118,280,REMOVE_DOOR,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REMOVE_DOOR,loaded from properties
+send,0x00B4,180,SPAWN_SUMMON,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_SUMMON,loaded from properties
+send,0x00B5,181,REMOVE_SUMMON,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REMOVE_SUMMON,loaded from properties
+send,0x00B7,183,SUMMON_ATTACK,SummonHandler.SummonAttack,sendops.properties; handling/SendPacketOpcode.java,SUMMON_ATTACK,loaded from properties
+send,0x00B6,182,MOVE_SUMMON,SummonHandler.MoveSummon,sendops.properties; handling/SendPacketOpcode.java,MOVE_SUMMON,loaded from properties
+send,0x0115,277,SPAWN_MIST,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_MIST,loaded from properties
+send,0x0116,278,REMOVE_MIST,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REMOVE_MIST,loaded from properties
+send,0x00B9,185,DAMAGE_SUMMON,SummonHandler.DamageSummon,sendops.properties; handling/SendPacketOpcode.java,DAMAGE_SUMMON,loaded from properties
+send,0x00F8,248,DAMAGE_MONSTER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DAMAGE_MONSTER,loaded from properties
+send,0x003C,60,BUDDYLIST,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,BUDDYLIST,loaded from properties
+send,0x00C5,197,SHOW_ITEM_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_ITEM_EFFECT,loaded from properties
+send,0x00C6,198,SHOW_CHAIR,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_CHAIR,loaded from properties
+send,0x00CF,207,CANCEL_CHAIR,PlayerHandler.CancelChair,sendops.properties; handling/SendPacketOpcode.java,CANCEL_CHAIR,loaded from properties
+send,0x00C0,192,SKILL_EFFECT,PlayerHandler.SkillEffect,sendops.properties; handling/SendPacketOpcode.java,SKILL_EFFECT,loaded from properties
+send,0x00C1,193,CANCEL_SKILL_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CANCEL_SKILL_EFFECT,loaded from properties
+send,0x008D,141,BOSS_ENV,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,BOSS_ENV,loaded from properties
+send,0x011E,286,REACTOR_SPAWN,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REACTOR_SPAWN,loaded from properties
+send,0x011C,284,REACTOR_HIT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REACTOR_HIT,loaded from properties
+send,0x011F,287,REACTOR_DESTROY,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REACTOR_DESTROY,loaded from properties
+send,0x0091,145,MAP_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MAP_EFFECT,loaded from properties
+send,0x003E,62,GUILD_OPERATION,GuildHandler.Guild,sendops.properties; handling/SendPacketOpcode.java,GUILD_OPERATION,loaded from properties
+send,0x003F,63,ALLIANCE_OPERATION,AllianceHandler.HandleAlliance,sendops.properties; handling/SendPacketOpcode.java,ALLIANCE_OPERATION,loaded from properties
+send,0x0074,116,BBS_OPERATION,BBSHandler.BBSOperatopn,sendops.properties; handling/SendPacketOpcode.java,BBS_OPERATION,loaded from properties
+send,0x006A,106,FAMILY,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAMILY,loaded from properties
+send,0xFFFE,-2,EARN_TITLE_MSG,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,EARN_TITLE_MSG,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x00FD,253,SHOW_MAGNET,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_MAGNET,loaded from properties
+send,0x014B,331,MERCH_ITEM_MSG,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MERCH_ITEM_MSG,loaded from properties
+send,0x014C,332,MERCH_ITEM_STORE,HiredMerchantHandler.MerchantItemStore,sendops.properties; handling/SendPacketOpcode.java,MERCH_ITEM_STORE,loaded from properties
+send,0x014E,334,MESSENGER,ChatHandler.Messenger,sendops.properties; handling/SendPacketOpcode.java,MESSENGER,loaded from properties
+send,0x0107,263,NPC_ACTION,NPCHandler.NPCAnimation,sendops.properties; handling/SendPacketOpcode.java,NPC_ACTION,loaded from properties
+send,0x00AD,173,SPAWN_PET,PetHandler.SpawnPet,sendops.properties; handling/SendPacketOpcode.java,SPAWN_PET,loaded from properties
+send,0x00AF,175,MOVE_PET,PetHandler.MovePet,sendops.properties; handling/SendPacketOpcode.java,MOVE_PET,loaded from properties
+send,0x00B0,176,PET_CHAT,PetHandler.PetChat,sendops.properties; handling/SendPacketOpcode.java,PET_CHAT,loaded from properties
+send,0x00B3,179,PET_COMMAND,PetHandler.PetCommand,sendops.properties; handling/SendPacketOpcode.java,PET_COMMAND,loaded from properties
+send,0x00B1,177,PET_NAMECHANGE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,PET_NAMECHANGE,loaded from properties
+send,0x00D8,216,PET_FLAG_CHANGE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,PET_FLAG_CHANGE,loaded from properties
+send,0x00EC,236,COOLDOWN,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,COOLDOWN,loaded from properties
+send,0x00D9,217,PLAYER_HINT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,PLAYER_HINT,loaded from properties
+send,0x00E5,229,SUMMON_HINT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SUMMON_HINT,loaded from properties; also used by TUTORIAL_SUMMON
+send,0xFFFE,-2,SUMMON_HINT_MSG,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SUMMON_HINT_MSG,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x00E3,227,CYGNUS_INTRO_DISABLE_UI,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CYGNUS_INTRO_DISABLE_UI,loaded from properties
+send,0x00E4,228,CYGNUS_INTRO_LOCK,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CYGNUS_INTRO_LOCK,loaded from properties
+send,0x0035,53,USE_SKILL_BOOK,InventoryHandler.UseSkillBook,sendops.properties; handling/SendPacketOpcode.java,USE_SKILL_BOOK,loaded from properties
+send,0xFFFE,-2,SHOW_EQUIP_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_EQUIP_EFFECT,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0080,128,SKILL_MACRO,PlayerHandler.ChangeSkillMacro,sendops.properties; handling/SendPacketOpcode.java,SKILL_MACRO,loaded from properties
+send,0x0083,131,CS_OPEN,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CS_OPEN,loaded from properties
+send,0x0161,353,CS_UPDATE,CashShopOperation.CSUpdate,sendops.properties; handling/SendPacketOpcode.java,CS_UPDATE,loaded from properties
+send,0x0162,354,CS_OPERATION,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CS_OPERATION,loaded from properties
+send,0x0082,130,MTS_OPEN,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MTS_OPEN,loaded from properties
+send,0x005A,90,PLAYER_NPC,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,PLAYER_NPC,loaded from properties
+send,0x002B,43,SHOW_NOTES,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_NOTES,loaded from properties
+send,0x00BA,186,SUMMON_SKILL,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SUMMON_SKILL,loaded from properties
+send,0xFFFE,-2,ARIANT_PQ_START,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ARIANT_PQ_START,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0103,259,CATCH_MONSTER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CATCH_MONSTER,loaded from properties
+send,0x0100,256,CATCH_ARIANT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CATCH_ARIANT,loaded from properties
+send,0x009A,154,ARIANT_SCOREBOARD,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ARIANT_SCOREBOARD,loaded from properties
+send,0x0144,324,ZAKUM_SHRINE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ZAKUM_SHRINE,loaded from properties
+send,0x0098,152,BOAT_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,BOAT_EFFECT,loaded from properties
+send,0x00A6,166,CHALKBOARD,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHALKBOARD,loaded from properties
+send,0x015F,351,DUEY,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DUEY,loaded from properties
+send,0x002C,44,TROCK_LOCATIONS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,TROCK_LOCATIONS,loaded from properties
+send,0x0129,297,MONSTER_CARNIVAL_START,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTER_CARNIVAL_START,loaded from properties
+send,0x012A,298,MONSTER_CARNIVAL_OBTAINED_CP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTER_CARNIVAL_OBTAINED_CP,loaded from properties
+send,0x012B,299,MONSTER_CARNIVAL_PARTY_CP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTER_CARNIVAL_PARTY_CP,loaded from properties
+send,0x012C,300,MONSTER_CARNIVAL_SUMMON,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTER_CARNIVAL_SUMMON,loaded from properties
+send,0xFFFE,-2,MONSTER_CARNIVAL_SUMMON1,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTER_CARNIVAL_SUMMON1,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x012E,302,MONSTER_CARNIVAL_DIED,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTER_CARNIVAL_DIED,loaded from properties
+send,0x010D,269,SPAWN_HIRED_MERCHANT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_HIRED_MERCHANT,loaded from properties
+send,0x010F,271,UPDATE_HIRED_MERCHANT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_HIRED_MERCHANT,loaded from properties
+send,0x0034,52,SEND_TITLE_BOX,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SEND_TITLE_BOX,loaded from properties
+send,0x010E,270,DESTROY_HIRED_MERCHANT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DESTROY_HIRED_MERCHANT,loaded from properties
+send,0x0032,50,UPDATE_MOUNT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_MOUNT,loaded from properties
+send,0x005B,91,MONSTERBOOK_ADD,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTERBOOK_ADD,loaded from properties
+send,0x005C,92,MONSTERBOOK_CHANGE_COVER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTERBOOK_CHANGE_COVER,loaded from properties
+send,0x0060,96,FAIRY_PEND_MSG,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAIRY_PEND_MSG,loaded from properties
+send,0x0182,386,VICIOUS_HAMMER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,VICIOUS_HAMMER,loaded from properties
+send,0x0075,117,FISHING_BOARD_UPDATE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FISHING_BOARD_UPDATE,loaded from properties
+send,0x00AB,171,FISHING_CAUGHT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FISHING_CAUGHT,loaded from properties
+send,0x0094,148,OX_QUIZ,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,OX_QUIZ,loaded from properties
+send,0x0120,288,ROLL_SNOWBALL,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ROLL_SNOWBALL,loaded from properties
+send,0x0121,289,HIT_SNOWBALL,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,HIT_SNOWBALL,loaded from properties
+send,0x0122,290,SNOWBALL_MESSAGE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SNOWBALL_MESSAGE,loaded from properties
+send,0x0123,291,LEFT_KNOCK_BACK,PlayerHandler.leftKnockBack,sendops.properties; handling/SendPacketOpcode.java,LEFT_KNOCK_BACK,loaded from properties
+send,0x0036,54,FINISH_SORT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FINISH_SORT,loaded from properties
+send,0x0037,55,FINISH_GATHER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FINISH_GATHER,loaded from properties
+send,0x0064,100,SEND_PEDIGREE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SEND_PEDIGREE,loaded from properties
+send,0x0065,101,OPEN_FAMILY,FamilyHandler.OpenFamily,sendops.properties; handling/SendPacketOpcode.java,OPEN_FAMILY,loaded from properties
+send,0x0066,102,FAMILY_MESSAGE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAMILY_MESSAGE,loaded from properties
+send,0x0067,103,FAMILY_INVITE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAMILY_INVITE,loaded from properties
+send,0x0068,104,FAMILY_JUNIOR,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAMILY_JUNIOR,loaded from properties
+send,0x0069,105,SENIOR_MESSAGE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SENIOR_MESSAGE,loaded from properties
+send,0x006B,107,REP_INCREASE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REP_INCREASE,loaded from properties
+send,0x006C,108,FAMILY_LOGGEDIN,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAMILY_LOGGEDIN,loaded from properties
+send,0x006D,109,FAMILY_BUFF,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAMILY_BUFF,loaded from properties
+send,0x006E,110,FAMILY_USE_REQUEST,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FAMILY_USE_REQUEST,loaded from properties
+send,0x004E,78,YELLOW_CHAT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,YELLOW_CHAT,loaded from properties
+send,0xFFFE,-2,PIGMI_REWARD,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,PIGMI_REWARD,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0093,147,GM_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GM_EFFECT,loaded from properties
+send,0x0124,292,HIT_COCONUT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,HIT_COCONUT,loaded from properties
+send,0x0125,293,COCONUT_SCORE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,COCONUT_SCORE,loaded from properties
+send,0x006F,111,LEVEL_UPDATE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,LEVEL_UPDATE,loaded from properties
+send,0x0070,112,MARRIAGE_UPDATE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MARRIAGE_UPDATE,loaded from properties
+send,0x0071,113,JOB_UPDATE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,JOB_UPDATE,loaded from properties
+send,0xFFFE,-2,HORNTAIL_SHRINE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,HORNTAIL_SHRINE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x009C,156,STOP_CLOCK,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,STOP_CLOCK,loaded from properties
+send,0xFFFE,-2,MESOBAG_SUCCESS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MESOBAG_SUCCESS,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,MESOBAG_FAILURE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MESOBAG_FAILURE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,SERVER_BLOCKED,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SERVER_BLOCKED,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,DRAGON_MOVE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DRAGON_MOVE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,DRAGON_REMOVE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DRAGON_REMOVE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,DRAGON_SPAWN,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,DRAGON_SPAWN,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x00E7,231,ARAN_COMBO,PlayerHandler.AranCombo,sendops.properties; handling/SendPacketOpcode.java,ARAN_COMBO,loaded from properties
+send,0x0073,115,TOP_MSG,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,TOP_MSG,loaded from properties
+send,0x0025,37,TEMP_STATS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,TEMP_STATS,loaded from properties
+send,0x0026,38,TEMP_STATS_RESET,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,TEMP_STATS_RESET,loaded from properties
+send,0x00E5,229,TUTORIAL_SUMMON,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,TUTORIAL_SUMMON,loaded from properties; also used by SUMMON_HINT
+send,0xFFFE,-2,REPAIR_WINDOW,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REPAIR_WINDOW,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,PYRAMID_UPDATE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,PYRAMID_UPDATE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,PYRAMID_RESULT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,PYRAMID_RESULT,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,ENERGY,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ENERGY,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,GET_MTS_TOKENS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GET_MTS_TOKENS,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x017C,380,MTS_OPERATION,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MTS_OPERATION,loaded from properties
+send,0xFFFE,-2,SHOW_POTENTIAL_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_POTENTIAL_EFFECT,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,SHOW_POTENTIAL_RESET,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_POTENTIAL_RESET,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,CHAOS_ZAKUM_SHRINE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHAOS_ZAKUM_SHRINE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,CHAOS_HORNTAIL_SHRINE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CHAOS_HORNTAIL_SHRINE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,GAME_POLL_QUESTION,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GAME_POLL_QUESTION,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,GAME_POLL_REPLY,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GAME_POLL_REPLY,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0095,149,GMEVENT_INSTRUCTIONS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GMEVENT_INSTRUCTIONS,loaded from properties
+send,0xFFFE,-2,BOAT_EFF,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,BOAT_EFF,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0045,69,OWL_OF_MINERVA,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,OWL_OF_MINERVA,loaded from properties; also used by ENGAGE_REQUEST
+send,0xFFFE,-2,XMAS_SURPRISE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,XMAS_SURPRISE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0092,146,CASH_SONG,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,CASH_SONG,loaded from properties
+send,0x0021,33,UPDATE_INVENTORY_SLOT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_INVENTORY_SLOT,loaded from properties
+send,0xFFFE,-2,FOLLOW_REQUEST,PlayersHandler.FollowRequest,sendops.properties; handling/SendPacketOpcode.java,FOLLOW_REQUEST,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,FOLLOW_EFFECT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FOLLOW_EFFECT,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,FOLLOW_MOVE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FOLLOW_MOVE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,FOLLOW_MSG,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FOLLOW_MSG,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,FOLLOW_MESSAGE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FOLLOW_MESSAGE,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,TALK_MONSTER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,TALK_MONSTER,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,REMOVE_TALK_MONSTER,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REMOVE_TALK_MONSTER,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,MONSTER_PROPERTIES,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MONSTER_PROPERTIES,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x009F,159,MOVE_PLATFORM,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MOVE_PLATFORM,loaded from properties
+send,0xFFFE,-2,MOVE_ENV,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,MOVE_ENV,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,UPDATE_ENV,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_ENV,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0045,69,ENGAGE_REQUEST,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ENGAGE_REQUEST,loaded from properties; also used by OWL_OF_MINERVA
+send,0xFFFE,-2,GHOST_POINT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GHOST_POINT,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0xFFFE,-2,GHOST_STATUS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,GHOST_STATUS,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x0046,70,ENGAGE_RESULT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ENGAGE_RESULT,loaded from properties; also used by SHOW_PREDICT_CARD
+send,0x0130,304,ENGLISH_QUIZ,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ENGLISH_QUIZ,loaded from properties
+send,0x0132,306,ARIANT_SCORE_UPDATE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,ARIANT_SCORE_UPDATE,loaded from properties
+send,0xFFFE,-2,RPS_GAME,NPCHandler.RPSGame,sendops.properties; handling/SendPacketOpcode.java,RPS_GAME,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x015E,350,UPDATE_BEANS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,UPDATE_BEANS,loaded from properties
+send,0x0087,135,BLOCK_MSG,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,BLOCK_MSG,loaded from properties
+send,0x0170,368,AUTO_HP_POT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,AUTO_HP_POT,loaded from properties
+send,0x0171,369,AUTO_MP_POT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,AUTO_MP_POT,loaded from properties
+send,0x0002,2,LICENSE_RESULT,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,LICENSE_RESULT,loaded from properties
+send,0x0113,275,SPAWN_LOVE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SPAWN_LOVE,loaded from properties
+send,0x0114,276,REMOVE_LOVE,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,REMOVE_LOVE,loaded from properties
+send,0x008F,143,FORCED_MAP_EQUIP,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,FORCED_MAP_EQUIP,loaded from properties
+send,0x0046,70,SHOW_PREDICT_CARD,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,SHOW_PREDICT_CARD,loaded from properties; also used by ENGAGE_RESULT
+send,0xFFFE,-2,BEANS_TIPS,SendPacketOpcode value; builder not exhaustively mapped,sendops.properties; handling/SendPacketOpcode.java,BEANS_TIPS,enum present but absent from properties; ExternalCodeTableGetter default is -2
+send,0x015C,348,BEANS_GAME1,BeanGame.BeanGame1,sendops.properties; handling/SendPacketOpcode.java,BEANS_GAME1,loaded from properties
+send,0x015D,349,BEANS_GAME2,BeanGame.BeanGame2,sendops.properties; handling/SendPacketOpcode.java,BEANS_GAME2,loaded from properties
+send,0x00FF,255,SEND_LINK,,sendops.properties,SEND_LINK,"property key is not a member of the enum; also used by PIN_OPERATION, ALL_CHARLIST"
+send,0x00FF,255,PIN_ASSIGNED,,sendops.properties,PIN_ASSIGNED,"property key is not a member of the enum; also used by PIN_OPERATION, ALL_CHARLIST"
+send,0x0028,40,SKILL_USE_RESULT,,sendops.properties,SKILL_USE_RESULT,property key is not a member of the enum
+send,0x002D,45,ANTI_MACRO_RESULT,,sendops.properties,ANTI_MACRO_RESULT,property key is not a member of the enum
+send,0x002F,47,CLAIM_RESULT,,sendops.properties,CLAIM_RESULT,property key is not a member of the enum
+send,0x0030,48,CLAIM_STATUS_CHANGED,,sendops.properties,CLAIM_STATUS_CHANGED,property key is not a member of the enum
+send,0x0031,49,SET_TAMING_MOB_INFO,,sendops.properties,SET_TAMING_MOB_INFO,property key is not a member of the enum
+send,0x0072,114,SET_BUY_EQUIP_EXT,,sendops.properties,SET_BUY_EQUIP_EXT,property key is not a member of the enum
+send,0x0072,114,DATA_CRC_CHECK_FAILED,,sendops.properties,DATA_CRC_CHECK_FAILED,property key is not a member of the enum
+send,0x008C,140,SPOUSE_CHAT,,sendops.properties,SPOUSE_CHAT,property key is not a member of the enum
+send,0x0099,153,BOAT_HIDE,,sendops.properties,BOAT_HIDE,property key is not a member of the enum
+send,0x00CE,206,Animation_EFFECT,,sendops.properties,Animation_EFFECT,property key is not a member of the enum
+send,0x00E3,227,TUTORIAL_DISABLE_UI,,sendops.properties,TUTORIAL_DISABLE_UI,property key is not a member of the enum
+send,0x00E4,228,TUTORIAL_LOCK_UI,,sendops.properties,TUTORIAL_LOCK_UI,property key is not a member of the enum
+send,0x00E6,230,TUTORIAL_GUIDE,,sendops.properties,TUTORIAL_GUIDE,property key is not a member of the enum
+send,0x00F7,247,MOB_TO_MOB_DAMAGE,,sendops.properties,MOB_TO_MOB_DAMAGE,property key is not a member of the enum
+send,0x00FB,251,ARIANT_THING,,sendops.properties,ARIANT_THING,property key is not a member of the enum
+send,0x0175,373,SEND_TV,,sendops.properties,SEND_TV,property key is not a member of the enum
+send,0x0176,374,REMOVE_TV,,sendops.properties,REMOVE_TV,property key is not a member of the enum
+send,0x0177,375,ENABLE_TV,,sendops.properties,ENABLE_TV,property key is not a member of the enum
+send,0x017B,379,MTS_OPERATION2,,sendops.properties,MTS_OPERATION2,property key is not a member of the enum
+send,0x00FF,255,CYGNUS_CHAR_CREATED,,sendops.properties,CYGNUS_CHAR_CREATED,"property key is not a member of the enum; also used by PIN_OPERATION, ALL_CHARLIST"
