@@ -1,0 +1,4 @@
+candidate_id,entry_rva,source_start,source_end,dest_start,dest_end,length_source,transform_summary,callers,callees,confidence
+T1,0x009D8046,0x00912000,0x00913000,0x00912000,0x00913000,immediate 0x1000,in-place dword xor 0x4DDE8746 then add 0x5069D49F,0x009D8037,none,high
+T2,0x0091210A,0x00912259,0x009D634A,0x00819014,0x00911B25,bitstream; output length measured in emulation,aPLib-style depack (bit reader plus match copy; thresholds 0x500 and 0x7D00),0x0091207E,none,high
+T3,0x0081CB1B,0x0081CB21,0x00823B21,0x0081CB21,0x00823B21,immediate ecx 0x7000,post-pass dec byte over already materialized bytes,fall-through after T2,none,high

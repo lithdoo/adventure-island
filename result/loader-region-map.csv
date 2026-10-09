@@ -1,0 +1,10 @@
+region,start_rva,end_rva,section,raw_backing,raw_start,raw_end,permissions,entropy,classification,evidence,confidence
+section1-raw,0x00001000,0x002CE000,(unnamed),yes,0x00001000,0x002CE000,RWX,7.9814,file-backed high-entropy data,raw size ends at 0x2CE000; not referenced by the entry stub,medium
+virtual-tail-A,0x002CE000,0x007EA000,(unnamed),no,,,RWX,7.9814,zero-filled virtual tail,VirtualSize exceeds SizeOfRawData; export slots live here,high
+rsrc,0x007EA000,0x00818000,.rsrc,yes,0x002CE000,0x002DD000,RW-,7.8079,file-backed high-entropy section,section name .rsrc; not a normal resource directory,medium
+idata,0x00818000,0x00819000,.idata,yes,0x002DD000,0x002DE000,RW-,0.1174,import data,only kernel32!GetLocalTime,high
+virtual-tail-B-raw,0x00819000,0x0081A000,(unnamed),yes,0x002DE000,0x002DF000,RWX,0.0422,file-backed low-entropy page,section raw size is 0x1000,high
+virtual-tail-B,0x0081A000,0x00912000,(unnamed),no,,,RWX,0.0422,zero-filled virtual tail,no raw backing; Task 003 exception RVAs sit in this range,high
+tpuaozxc,0x00912000,0x009D8000,tpuaozxc,yes,0x002DF000,0x003A5000,RWX,7.9045,packed source,entry address math lands on 0x912000; first 0x1000 bytes are the transform input,high
+entry,0x009D8000,0x009D9000,jtrppsow,yes,0x003A5000,0x003A6000,RWX,0.2842,loader/protector control code,AddressOfEntryPoint; call/pop plus in-place dword transform,high
+uvrwsdpb,0x009D9000,0x009DA000,uvrwsdpb,yes,0x003A6000,0x003A7000,RWX,2.1550,adjacent loader scratch,not referenced by the entry stub,low

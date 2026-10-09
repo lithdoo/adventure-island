@@ -1,0 +1,19 @@
+instruction_rva,mnemonic,operand,resolved_target_rva,target_region,access_kind,confidence,notes
+0x009D8005,call,+1,0x009D800B,entry,control,high,next instruction is the int3 and is not executed
+0x009D800B,pop,eax,0x009D800A,entry,eip-recover,high,call/pop value is the int3 address
+0x009D8019,add,"eax, 0x5F3566",0x00912000,tpuaozxc,address-calc,high,result of sub 0xC6000 / sub 0x5F3571 / add 0x5F3566
+0x009D801E,cmp,"byte [ebx], 0xCC",0x009D800A,entry,read,high,one-shot flag
+0x009D8023,mov,"byte [ebx], 0",0x009D800A,entry,write,high,clears the flag
+0x009D8026,mov,"ebx, 0x1000",,length,immediate,high,byte length; loop count is 0x400 dwords
+0x009D802B,push,0x5069D49F,,key,immediate,high,addend
+0x009D8030,push,0x4DDE8746,,key,immediate,high,xor key
+0x009D8036,push,eax,0x00912000,tpuaozxc,read-write,high,in-place destination
+0x009D8037,call,0x009D8046,0x009D8046,entry,control,high,dword transform
+0x009D8045,ret,,0x00912000,tpuaozxc,control,high,transfers to the decoded stub
+0x00912008,je,0x00912072,0x00912072,tpuaozxc,control,high,taken because eax is 0
+0x00912072,mov,"eax, 0xC19014",0x00819014,virtual-tail-B,dest,high,preferred image base
+0x00912077,mov,"ecx, 0xD12259",0x00912259,tpuaozxc,source,high,compressed stream
+0x00912062,mov,"eax, 0x819014",0x00819014,virtual-tail-B,dest,medium,RVA form plus edi; not taken on this image base
+0x00912069,mov,"ecx, 0x912259",0x00912259,tpuaozxc,source,medium,RVA form; not taken on this image base
+0x0091207E,call,0x0091210A,0x0091210A,tpuaozxc,control,high,depack
+0x00912254,jmp,0xC19014,0x00819014,virtual-tail-B,control,high,first instruction of the materialized block

@@ -1,0 +1,10 @@
+anchor,rva,region,xref,nearby_function,confidence,notes
+aes-key,,,, ,not observed,absent from the T2 output and from the on-disk image
+iv-table-prefix,,,, ,not observed,absent from the T2 output and from the on-disk image
+iv-seed,,,, ,not observed,absent from the T2 output and from the on-disk image
+List.wz,,,, ,not observed,ASCII and UTF-16; T2 output and on-disk image
+.wz,,,, ,not observed,ASCII; T2 output and on-disk image
+WS2_32,,,, ,not observed,ASCII and UTF-16; T2 output and on-disk image
+connect,,,, ,not observed,ASCII and UTF-16; T2 output and on-disk image
+send,,,, ,not observed,ASCII and UTF-16; T2 output and on-disk image
+recv,,,, ,not observed,ASCII and UTF-16; T2 output and on-disk image

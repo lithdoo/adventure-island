@@ -1,0 +1,10 @@
+region,start_rva,end_rva,writer,length,permissions,entropy,instruction_note,strings,rtti_or_msvc,covers_862e76,covers_862fb0,crypto_anchor,classification,confidence
+entry,0x009D8000,0x009D9000,on disk,0x1000,RWX,0.2842,direct calls and one dword loop,none,no,no,no,no,loader/protector control code,high
+tpuaozxc-stub,0x00912000,0x00913000,T1,0x1000,RWX,decoded loader,depack call and jmp,none,no,no,no,no,loader/protector control code,high
+tpuaozxc-stream,0x00912259,0x009D634A,on disk consumed by T2,0xC40F1,RWX,7.9045 section,compressed source not code,none,no,no,no,no,packed source data,high
+tail-B-generated,0x00819014,0x00911B25,T2,0xF8B11,RWX,7.7122,3 times 55 8B EC in the whole block; starts with jmp 0x0081C6C5,no List.wz / WS2_32 / connect / send / recv,no,yes,yes,no,runtime-generated protector code,high
+tail-B-file-page,0x00819000,0x00819014,on disk,0x14,RWX,0.0422 section,not overwritten,none,no,no,no,no,file-backed low-entropy prefix,high
+tail-A,0x002CE000,0x007EA000,none in this emulation,0,RWX,zero fill,not written,none,no,no,no,no,unknown virtual tail,high
+section1-raw,0x00001000,0x002CE000,on disk,0x2CD000,RWX,7.9814,not read by T1 or T2,none of the searched anchors,no,no,no,no,file-backed high-entropy data,medium
+ztl-slots,0x005FC19F,0x005FC1D2,none,0,RWX,zero,still 00,none,no,no,no,no,unknown,high
+uvrwsdpb,0x009D9000,0x009DA000,on disk,0x1000,RWX,2.1550,not referenced,none,no,no,no,no,unknown,low
