@@ -1,0 +1,73 @@
+# Main client imports
+# File: 冒险岛online/MapleStory.exe
+# SHA-256: 5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d
+# PE: PE32 IMAGE_FILE_MACHINE_I386
+# ImageBase: 0x00400000
+# AddressOfEntryPoint: 0x009D8000 section=jtrppsow
+# Import DLLs: 1  Import symbols: 1
+
+## kernel32.dll (1)
+GetLocalTime
+
+# APIs of interest
+# Status is import-table presence only. Absence does not prove the capability is missing;
+# the client may resolve the API through GetProcAddress or a wrapper.
+## network
+WSAStartup	ABSENT
+socket	ABSENT
+connect	ABSENT
+send	ABSENT
+recv	ABSENT
+WSASend	ABSENT
+WSARecv	ABSENT
+select	ABSENT
+ioctlsocket	ABSENT
+closesocket	ABSENT
+gethostbyname	ABSENT
+getaddrinfo	ABSENT
+
+## file
+CreateFileA	ABSENT
+CreateFileW	ABSENT
+ReadFile	ABSENT
+WriteFile	ABSENT
+CreateFileMappingA	ABSENT
+CreateFileMappingW	ABSENT
+MapViewOfFile	ABSENT
+FindFirstFileA	ABSENT
+FindFirstFileW	ABSENT
+FindNextFileA	ABSENT
+FindNextFileW	ABSENT
+
+## process
+CreateProcessA	ABSENT
+CreateProcessW	ABSENT
+LoadLibraryA	ABSENT
+LoadLibraryW	ABSENT
+GetProcAddress	ABSENT
+GetModuleHandleA	ABSENT
+GetModuleHandleW	ABSENT
+VirtualAlloc	ABSENT
+VirtualProtect	ABSENT
+VirtualQuery	ABSENT
+
+## debug_time
+IsDebuggerPresent	ABSENT
+CheckRemoteDebuggerPresent	ABSENT
+OutputDebugStringA	ABSENT
+OutputDebugStringW	ABSENT
+SetUnhandledExceptionFilter	ABSENT
+QueryPerformanceCounter	ABSENT
+GetTickCount	ABSENT
+
+## registry
+RegOpenKeyA	ABSENT
+RegOpenKeyW	ABSENT
+RegOpenKeyExA	ABSENT
+RegOpenKeyExW	ABSENT
+RegCreateKeyExA	ABSENT
+RegCreateKeyExW	ABSENT
+RegSetValueExA	ABSENT
+RegSetValueExW	ABSENT
+RegQueryValueExA	ABSENT
+RegQueryValueExW	ABSENT

@@ -1,0 +1,1608 @@
+# Interesting strings (filtered)
+# Sources: key PE files (EXE, HackShield/V3, selected game DLLs) plus small text/config files.
+# Certificate CRL/OCSP URLs are retained because they come from Authenticode blobs; they are not game servers.
+# IPv4-like tokens are mostly version numbers. The plaintext host:port string is in 单机登陆器.bat.
+# No network connection was made. Unfiltered string dumps were not retained.
+
+## url
+### 冒险岛online/ASPLnchr.exe
+"http://crl.verisign.com/tss-ca.crl0
+/http://CSC3-2004-crl.verisign.com/CSC3-2004.crl0D
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)041.0,
+3http://CSC3-2004-aia.verisign.com/CSC3-2004-aia.cer0
+Dhttp://crl.microsoft.com/pki/crl/products/MicrosoftCodeVerifRoot.crl0
+http://crl.verisign.com/pca3.crl0
+http://ocsp.verisign.com0
+http://ocsp.verisign.com0?
+https://www.verisign.com/rpa0
+https://www.verisign.com/rpa01
+
+### 冒险岛online/HShield/AhnUpCtl.dll
+"http://crl.verisign.com/tss-ca.crl0
+/http://CSC3-2004-crl.verisign.com/CSC3-2004.crl0D
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)041.0,
+3http://CSC3-2004-aia.verisign.com/CSC3-2004-aia.cer0
+http://crl.verisign.com/pca3.crl0
+http://ocsp.verisign.com0
+http://ocsp.verisign.com0?
+https://www.verisign.com/rpa0
+https://www.verisign.com/rpa01
+
+### 冒险岛online/HShield/HSUpdate.exe
+"http://crl.verisign.com/tss-ca.crl0
+#http://logo.verisign.com/vslogo.gif0
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)09100.
+3http://csc3-2009-2-aia.verisign.com/CSC3-2009-2.cer0
+3http://csc3-2009-2-crl.verisign.com/CSC3-2009-2.crl0D
+Dhttp://crl.microsoft.com/pki/crl/products/MicrosoftCodeVerifRoot.crl0
+http://%s:%d/%s
+http://crl.verisign.com/pca3.crl0)
+http://ocsp.verisign.com0
+http://ocsp.verisign.com01
+http://ocsp.verisign.com0?
+https://www.verisign.com/cps0*
+https://www.verisign.com/rpa0
+
+### 冒险岛online/HShield/Update/ahni2.dll
+"http://crl.verisign.com/tss-ca.crl0
+/http://CSC3-2004-crl.verisign.com/CSC3-2004.crl0D
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)041.0,
+3http://CSC3-2004-aia.verisign.com/CSC3-2004-aia.cer0
+http://crl.verisign.com/pca3.crl0
+http://ocsp.verisign.com0
+http://ocsp.verisign.com0?
+https://www.verisign.com/rpa0
+https://www.verisign.com/rpa01
+
+### 冒险岛online/HShield/Update/ahnupctl.dll
+"http://crl.verisign.com/tss-ca.crl0
+/http://CSC3-2004-crl.verisign.com/CSC3-2004.crl0D
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)041.0,
+3http://CSC3-2004-aia.verisign.com/CSC3-2004-aia.cer0
+http://crl.verisign.com/pca3.crl0
+http://ocsp.verisign.com0
+http://ocsp.verisign.com0?
+https://www.verisign.com/rpa0
+https://www.verisign.com/rpa01
+
+### 冒险岛online/HShield/Update/autoup.exe
+"http://crl.verisign.com/tss-ca.crl0
+/http://CSC3-2004-crl.verisign.com/CSC3-2004.crl0D
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)041.0,
+3http://CSC3-2004-aia.verisign.com/CSC3-2004-aia.cer0
+http://crl.verisign.com/pca3.crl0
+http://ocsp.verisign.com0
+http://ocsp.verisign.com0?
+https://www.verisign.com/rpa0
+https://www.verisign.com/rpa01
+
+### 冒险岛online/HShield/Update/v3bz32.dll
+"http://crl.verisign.com/tss-ca.crl0
+-http://crl.thawte.com/ThawteCodeSigningCA.crl02
+/http://crl.thawte.com/ThawtePremiumServerCA.crl0
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+http://ocsp.thawte.com0
+http://ocsp.verisign.com0
+
+### 冒险岛online/HShield/V3Hunt.dll
+"http://crl.verisign.com/tss-ca.crl0
+/http://CSC3-2004-crl.verisign.com/CSC3-2004.crl0D
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)041.0,
+3http://CSC3-2004-aia.verisign.com/CSC3-2004-aia.cer0
+http://crl.verisign.com/pca3.crl0
+http://ocsp.verisign.com0
+http://ocsp.verisign.com0?
+https://www.verisign.com/rpa0
+https://www.verisign.com/rpa01
+
+### 冒险岛online/HShield/ahnrpt.exe
+"http://crl.verisign.com/tss-ca.crl0
+/http://CSC3-2004-crl.verisign.com/CSC3-2004.crl0D
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)041.0,
+3http://CSC3-2004-aia.verisign.com/CSC3-2004-aia.cer0
+Dhttp://crl.microsoft.com/pki/crl/products/MicrosoftCodeVerifRoot.crl0
+http://crl.verisign.com/pca3.crl0
+http://nsis.sf.net/NSIS_Error
+http://ocsp.verisign.com0
+http://ocsp.verisign.com0?
+https://www.verisign.com/rpa0
+https://www.verisign.com/rpa01
+
+### 冒险岛online/HShield/asc_main.dll
+"http://crl.verisign.com/tss-ca.crl0
+#http://crl.verisign.com/pca3-g5.crl04
+#http://logo.verisign.com/vslogo.gif04
+/http://csc3-2010-aia.verisign.com/CSC3-2010.cer0
+/http://csc3-2010-crl.verisign.com/CSC3-2010.crl0D
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)101.0,
+Dhttp://crl.microsoft.com/pki/crl/products/MicrosoftCodeVerifRoot.crl0
+http://ocsp.verisign.com0
+http://ocsp.verisign.com0;
+https://www.verisign.com/cps0*
+https://www.verisign.com/rpa0
+
+### 冒险岛online/HShield/ehsvc.old
+"http://crl.verisign.com/tss-ca.crl0
+#http://logo.verisign.com/vslogo.gif0
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)09100.
+3http://csc3-2009-2-aia.verisign.com/CSC3-2009-2.cer0
+3http://csc3-2009-2-crl.verisign.com/CSC3-2009-2.crl0D
+Dhttp://crl.microsoft.com/pki/crl/products/MicrosoftCodeVerifRoot.crl0
+http://crl.verisign.com/pca3.crl0)
+http://ocsp.verisign.com0
+http://ocsp.verisign.com01
+http://ocsp.verisign.com0?
+https://www.verisign.com/cps0*
+https://www.verisign.com/rpa0
+
+### 冒险岛online/HShield/hslogmgr.exe
+"http://crl.verisign.com/tss-ca.crl0
+#http://logo.verisign.com/vslogo.gif0
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)09100.
+3http://csc3-2009-2-aia.verisign.com/CSC3-2009-2.cer0
+3http://csc3-2009-2-crl.verisign.com/CSC3-2009-2.crl0D
+<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.hackshields.com/faq/hsfaq_index_e.htm" target="_blank">http://www.hackshields.com/faq/hsfaq_index_e.htm</a>
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.hackshields.com/faq/hsfaq_index.htm" target="_blank">http://www.hackshields.com/faq/hsfaq_index.htm</a>
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://global.ahnlab.com/global/support/support_report.html" target="_blank">AhnReport
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://kr.ahnlab.com/info/customer/html/ahnreport.html" target="_blank">AhnReport
+<font size="2">&nbsp;&nbsp;&nbsp;<a href="http://global.ahnlab.com/global/support/support_report.html" target="_blank">AhnReport
+<font size="2">&nbsp;&nbsp;&nbsp;<a href="http://global.ahnlab.com/global/support/support_report.html" target="_blank">What is AhnReport?</a>
+Dhttp://crl.microsoft.com/pki/crl/products/MicrosoftCodeVerifRoot.crl0
+http://crl.verisign.com/pca3.crl0)
+http://ocsp.verisign.com0
+http://ocsp.verisign.com01
+http://ocsp.verisign.com0?
+https://www.verisign.com/cps0*
+https://www.verisign.com/rpa0
+
+### 冒险岛online/HShield/v3pro32s.dll
+"http://crl.verisign.com/tss-ca.crl0
+#http://logo.verisign.com/vslogo.gif0
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+2Terms of use at https://www.verisign.com/rpa (c)09100.
+3http://csc3-2009-2-aia.verisign.com/CSC3-2009-2.cer0
+3http://csc3-2009-2-crl.verisign.com/CSC3-2009-2.crl0D
+Dhttp://crl.microsoft.com/pki/crl/products/MicrosoftCodeVerifRoot.crl0
+http://crl.verisign.com/pca3.crl0)
+http://ocsp.verisign.com0
+http://ocsp.verisign.com01
+http://ocsp.verisign.com0?
+https://www.verisign.com/cps0*
+https://www.verisign.com/rpa0
+
+### 冒险岛online/MapleStory.exe
+"http://crl.verisign.com/tss-ca.crl0
+-http://crl.thawte.com/ThawteCodeSigningCA.crl02
+/http://crl.thawte.com/ThawtePremiumServerCA.crl0
+0http://crl.verisign.com/ThawteTimestampingCA.crl0
+http://ocsp.thawte.com0
+http://ocsp.verisign.com0
+
+### 冒险岛online/Patcher.exe
+http://act.mxd.sdo.com/project/up/index.html
+http://mxd.autopatch.sdo.com/mxd/patch/notice/
+http://mxd.autopatch.sdo.com/mxd/patch/patchdir/
+http://mxd.sdo.com/homepage.htm
+
+## domain
+### 冒险岛online/HShield/hslogmgr.exe
+no@hshield.com
+
+## ipv4
+### 冒险岛online/ASPLnchr.exe
+<assemblyIdentity version="1.0.0.0"
+
+### 冒险岛online/HShield/AhnUpCtl.dll
+1.0.0.1
+
+### 冒险岛online/HShield/AspINet.dll
+1.1.0.9
+
+### 冒险岛online/HShield/HSUpdate.exe
+<assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="X86" publicKeyToken="6595b64144ccf1df" language="*" />
+<assemblyIdentity version="1.0.0.0" processorArchitecture="X86" name=" " type="win32"/>
+
+### 冒险岛online/HShield/Update/ahni2.dll
+7.1.0.22 (_i386_a_r_)
+
+### 冒险岛online/HShield/Update/ahnupctl.dll
+1.0.0.1
+
+### 冒险岛online/HShield/Update/autoup.exe
+<assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" language="*" processorArchitecture="*" publicKeyToken="6595b64144ccf1df"/>
+<assemblyIdentity type="win32" processorArchitecture="*" version="0.0.0.0" name="Autoup.exe"/>
+
+### 冒险岛online/HShield/ahnrpt.exe
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"><assemblyIdentity version="1.0.0.0" processorArchitecture="X86" name="Nullsoft.NSIS.exehead" type="win32"/><desc
+
+### 冒险岛online/HShield/asc/asc_com.dll
+-$Id: Brahma 2.1.2.1(Build 1943) $
+2.1.2.1(Build 1943)
+
+### 冒险岛online/HShield/asc/asc_dh.dll
+$Id: Brahma 2.1.3.2(Build 2251) $
+2.1.3.2(Build 2251)
+
+### 冒险岛online/HShield/asc/asc_fse.dll
+$Id: Brahma 2.0.0.1(Build 1460) $
+2.0.0.1(Build 1460)
+
+### 冒险岛online/HShield/asc/asc_intg.dll
+$Id: Brahma 2.1.3.1(Build 2148) $
+2.1.3.1(Build 2148)
+
+### 冒险岛online/HShield/asc/asc_mmgr.dll
+$Id: Brahma 2.1.3.2(Build 2251) $
+1.0.0.2
+2.1.3.2(Build 2251)
+
+### 冒险岛online/HShield/asc/asc_unp.dll
+$Id: Brahma 2.1.3.1(Build 2148) $
+2.1.3.1(Build 2148)
+
+### 冒险岛online/HShield/asc/fse_base.dll
+$Id: Brahma 2.0.5.1(Build 1600) $
+2.0.5.1(Build 1600)
+
+### 冒险岛online/HShield/asc/fse_fact.dll
+$Id: Brahma 2.0.0.1(Build 1460) $
+2.0.0.1(Build 1460)
+
+### 冒险岛online/HShield/asc/fse_pe.dll
+$Id: Brahma 2.1.2.1(Build 1948) $
+2.1.2.1(Build 1948)
+
+### 冒险岛online/HShield/asc/gfs_base.dll
+$Id: Brahma 2.0.0.1(Build 1460) $
+2.0.0.1(Build 1460)
+
+### 冒险岛online/HShield/asc/gfs_fact.dll
+$Id: Brahma 2.1.3.1(Build 2148) $
+2.1.3.1(Build 2148)
+
+### 冒险岛online/HShield/asc/gfs_file.dll
+$Id: Brahma 2.0.0.1(Build 1460) $
+2.0.0.1(Build 1460)
+
+### 冒险岛online/HShield/asc/gfs_mem.dll
+$Id: Brahma 2.0.0.1(Build 1460) $
+2.0.0.1(Build 1460)
+
+### 冒险岛online/HShield/asc/gfs_os.dll
+$Id: Brahma 2.1.3.2(Build 2194) $
+2.1.3.2(Build 2194)
+
+### 冒险岛online/HShield/asc/gfs_proc.dll
+$Id: Brahma 2.1.2.1(Build 2120) $
+2.1.2.1(Build 2120)
+
+### 冒险岛online/HShield/asc/gfs_util.dll
+$Id: Brahma 2.1.3.2(Build 2251) $
+2.1.3.2(Build 2251)
+
+### 冒险岛online/HShield/asc_main.dll
+$Id: Brahma 2.14.2.1(Build 6982) $
+2.14.2.1(Build 6982)
+2.14.2.1(Build 6982) multi-byte
+
+### 冒险岛online/HShield/ehsvc.dll
+5.0.0.0
+
+### 冒险岛online/HShield/v3pro32s.dll
+$Id: Brahma 2.1.3.2(Build 2309) $
+2.1.3.2
+
+### 冒险岛online/MapleStory.exe
+<assemblyIdentity version="1.0.0.0"
+
+### 冒险岛online/uninst.exe
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"><assemblyIdentity version="1.0.0.0" processorArchitecture="X86" name="Nullsoft.NSIS.exehead" type="win32"/><desc
+ription>Nullsoft Install System v2.27</description><dependency><dependentAssembly><assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="X86" publicKeyToken="6595b64144ccf1df" langua
+
+## wz
+### 冒险岛online/Canvas.dll
+List.wz
+
+### 冒险岛online/PCOM.dll
+List.wz
+
+## dll
+### 冒险岛online/ASPLnchr.exe
+ADVAPI32.dll
+Advapi32.dll
+Call StartA func on SUiPre.dll - PDCode:%d, HWND:0x%08x, AUTH:%s
+GDI32.dll
+KERNEL32.dll
+Kernel32.DLL
+MSVCP60.dll
+MSVCRT.dll
+SHELL32.dll
+SUiPre.dll
+USER32.dll
+User32.DLL
+
+### 冒险岛online/Canvas.dll
+ADVAPI32.dll
+Canvas.DLL
+GDI32.dll
+IMM32.dll
+KERNEL32.dll
+MSVCRT.dll
+OLEAUT32.dll
+Ole32.dll
+PCOM.DLL
+PKernel32.dll
+SHELL32.dll
+User32.dll
+WINMM.dll
+WS2_32.DLL
+ZLZ.dll
+
+### 冒险岛online/Gr2D_DX8.dll
+&@PWS2_32.DLL
+ADVAPI32.dll
+D3D8.DLL
+GDI32.dll
+Gr2D_DX8.DLL
+IMM32.dll
+KERNEL32.dll
+Kernel32.dll
+MSVCRT.dll
+OLEAUT32.dll
+Ole32.dll
+PCOM.DLL
+SHELL32.dll
+User32.dll
+WINMM.dll
+WzFlashRenderer.dll
+d3d8.dll
+d3d8d.dll
+
+### 冒险岛online/HShield/AhnUpCtl.dll
+ADBDevIO.dll
+ADVAPI32.dll
+AFUsbCt.dll
+ASPSnc.dll
+AhnI2.dll
+AhnInst.dll
+AhnUpCtl.dll
+Ahninst.dll
+KERNEL32.dll
+Kernel32.DLL
+Kernel32.dll
+MFAuth.dll
+MICLogic.dll
+MySfty.dll
+NssAcs.dll
+PaPd.dll
+ScanPort.dll
+TeleGuard.dll
+USER32.dll
+User32.DLL
+V3MainUI.dll
+VERSION.dll
+iagent.dll
+mkd20.dll
+user32.dll
+
+### 冒险岛online/HShield/AhnUpGS.dll
+ADVAPI32.dll
+AhnUpCtl.dll
+AhnUpGS.dll
+AspINet.dll
+Bz32Ex.dll
+KERNEL32.dll
+Kernel32.dll
+USER32.dll
+V3HUNT.dll
+V3INetGS.dll
+kernel32.dll
+mspatcha.dll
+user32.dll
+
+### 冒险岛online/HShield/AspINet.dll
+ADVAPI32.dll
+Advapi32.dll
+AspINet.dll
+COMCTL32.DLL
+COMCTL32.dll
+GDI32.dll
+Gdi32.dll
+KERNEL32.dll
+Kernel32.dll
+Mpr.dll
+OLEAUT32.dll
+SHELL32.dll
+Shell32.dll
+USER32.dll
+User32.dll
+WINMM.dll
+WS2_32.dll
+comdlg32.dll
+ole32.dll
+user32.dll
+
+### 冒险岛online/HShield/Bz32Ex.dll
+Bz32Ex.dll
+MSVCRT.dll
+
+### 冒险岛online/HShield/HSInst.dll
+COMCTL32.dll
+GDI32.dll
+HSInst.dll
+KERNEL32.dll
+OLEAUT32.dll
+USER32.dll
+VERSION.dll
+WINMM.dll
+user32.dll
+
+### 冒险岛online/HShield/HSUpdate.exe
+ADVAPI32.dll
+GDI32.dll
+HSInst.dll
+KERNEL32.dll
+Kernel32.DLL
+Kernel32.dll
+USER32.dll
+User32.DLL
+VERSION.dll
+WINMM.dll
+ahnupgs.dll
+kernel32.dll
+user32.dll
+v3inetgs.dll
+
+### 冒险岛online/HShield/Update/ahni2.dll
+ADVAPI32.dll
+Advapi32.dll
+AhnI2.dll
+KERNEL32.dll
+Kernel32.DLL
+MSVCRT.dll
+USER32.dll
+
+### 冒险岛online/HShield/Update/ahnupctl.dll
+ADBDevIO.dll
+ADVAPI32.dll
+AFUsbCt.dll
+ASPSnc.dll
+AhnI2.dll
+AhnInst.dll
+AhnUpCtl.dll
+Ahninst.dll
+KERNEL32.dll
+Kernel32.DLL
+Kernel32.dll
+MFAuth.dll
+MICLogic.dll
+MySfty.dll
+NssAcs.dll
+PaPd.dll
+ScanPort.dll
+TeleGuard.dll
+USER32.dll
+User32.DLL
+V3MainUI.dll
+VERSION.dll
+iagent.dll
+mkd20.dll
+user32.dll
+
+### 冒险岛online/HShield/Update/autoup.exe
+ADVAPI32.dll
+AhnUpCtl.dll
+COMCTL32.dll
+GDI32.dll
+KERNEL32.DLL
+OLEAUT32.dll
+SHELL32.dll
+USER32.dll
+VERSION.dll
+ole32.dll
+
+### 冒险岛online/HShield/Update/v3bz32.dll
+KERNEL32.dll
+MSVCRT.dll
+V3BZ32.dll
+
+### 冒险岛online/HShield/V3Hunt.dll
+ADVAPI32.dll
+KERNEL32.dll
+Kernel32.DLL
+USER32.dll
+User32.DLL
+V3HUNT.dll
+V3Pro32e.dll
+VERSION.dll
+user32.dll
+v3hunt.dll
+
+### 冒险岛online/HShield/V3InetGS.dll
+ADVAPI32.dll
+KERNEL32.dll
+MSVCRT.dll
+USER32.dll
+V3INetGS.dll
+WININET.dll
+
+### 冒险岛online/HShield/ahnrpt.exe
+ADVAPI32.dll
+COMCTL32.dll
+GDI32.dll
+KERNEL32.dll
+SHELL32.dll
+USER32.dll
+VERSION.dll
+ole32.dll
+
+### 冒险岛online/HShield/asc/asc_com.dll
+KERNEL32.dll
+MSVCRT.dll
+asc_com.dll
+
+### 冒险岛online/HShield/asc/asc_dh.dll
+KERNEL32.dll
+MSVCRT.dll
+asc_dh.dll
+
+### 冒险岛online/HShield/asc/asc_fse.dll
+KERNEL32.dll
+MSVCRT.dll
+asc_fse.dll
+
+### 冒险岛online/HShield/asc/asc_intg.dll
+KERNEL32.dll
+MSVCRT.dll
+asc_intg.dll
+
+### 冒险岛online/HShield/asc/asc_mmgr.dll
+KERNEL32.dll
+MSVCRT.dll
+asc_mmgr.dll
+
+### 冒险岛online/HShield/asc/asc_unp.dll
+KERNEL32.dll
+MSVCRT.dll
+asc_unp.dll
+
+### 冒险岛online/HShield/asc/fse_base.dll
+KERNEL32.dll
+MSVCRT.dll
+fse_base.dll
+
+### 冒险岛online/HShield/asc/fse_fact.dll
+KERNEL32.dll
+MSVCRT.dll
+fse_fact.dll
+
+### 冒险岛online/HShield/asc/fse_pe.dll
+KERNEL32.dll
+MSVCRT.dll
+fse_pe.dll
+
+### 冒险岛online/HShield/asc/gfs_base.dll
+KERNEL32.dll
+MSVCRT.dll
+gfs_base.dll
+
+### 冒险岛online/HShield/asc/gfs_fact.dll
+KERNEL32.dll
+MSVCRT.dll
+gfs_fact.dll
+
+### 冒险岛online/HShield/asc/gfs_file.dll
+KERNEL32.dll
+MSVCRT.dll
+gfs_file.dll
+
+### 冒险岛online/HShield/asc/gfs_mem.dll
+KERNEL32.dll
+MSVCRT.dll
+gfs_mem.dll
+
+### 冒险岛online/HShield/asc/gfs_os.dll
+KERNEL32.dll
+MSVCRT.dll
+gfs_os.dll
+
+### 冒险岛online/HShield/asc/gfs_proc.dll
+KERNEL32.dll
+MSVCRT.dll
+gfs_proc.dll
+
+### 冒险岛online/HShield/asc/gfs_util.dll
+KERNEL32.dll
+MSVCRT.dll
+gfs_util.dll
+
+### 冒险岛online/HShield/asc_main.dll
+ADVAPI32.dll
+KERNEL32.dll
+MSVCRT.dll
+asc_main.dll
+
+### 冒险岛online/HShield/ehsvc.dll
+KERNEL32.dll
+MSVCR100.dll
+USER32.dll
+ehsvc.dll
+imagehlp.dll
+user32.dll
+
+### 冒险岛online/HShield/ehsvc.old
+EHSvc.dll
+comctl32.dll
+kernel32.dll
+
+### 冒险岛online/HShield/hslogmgr.exe
+KERNEL32.dll
+MFC42.DLL
+MSVCRT.dll
+OLEAUT32.dll
+USER32.dll
+
+### 冒险岛online/HShield/mspatcha.dll
+KERNEL32.dll
+NTDLL.DLL
+mspatcha.dll
+
+### 冒险岛online/HShield/psapi.dll
+KERNEL32.dll
+PSAPI.DLL
+imagehlp.dll
+ntdll.dll
+
+### 冒险岛online/HShield/v3pro32s.dll
+KERNEL32.dll
+MSVCRT.dll
+V3Pro32s.dll
+V3pro32s.dll
+
+### 冒险岛online/MapleStory.exe
+kernel32.dll
+
+### 冒险岛online/PCOM.dll
+ADVAPI32.dll
+GDI32.dll
+IMM32.dll
+KERNEL32.dll
+Kernel32.dll
+MSVCRT.dll
+OLEAUT32.dll
+Ole32.dll
+PCOM.DLL
+PWS2_32.DLL
+SHELL32.dll
+User32.dll
+WINMM.dll
+
+### 冒险岛online/Patcher.exe
+ADVAPI32.dll
+COMCTL32.DLL
+COMCTL32.dll
+GDI32.dll
+KERNEL32.DLL
+KERNEL32.dll
+OLEAUT32.dll
+OLEPRO32.DLL
+SHELL32.dll
+USER32.dll
+WININET.DLL
+WININET.dll
+comdlg32.dll
+ole32.dll
+oledlg.dll
+user32.dll
+
+### 冒险岛online/ResMan.dll
+ADVAPI32.dll
+GDI32.dll
+IMM32.dll
+KERNEL32.dll
+Kernel32.dll
+MSVCRT.dll
+OLEAUT32.dll
+Ole32.dll
+PCOM.DLL
+QWS2_32.DLL
+ResMan.DLL
+SHELL32.dll
+User32.dll
+WINMM.dll
+
+### 冒险岛online/Setup.exe
+ADVAPI32.dll
+COMCTL32.DLL
+COMCTL32.dll
+DDRAW.dll
+GDI32.dll
+KERNEL32.dll
+SHELL32.dll
+USER32.dll
+comdlg32.dll
+user32.dll
+
+### 冒险岛online/ZLZ.dll
+ADVAPI32.dll
+GDI32.dll
+IMM32.dll
+KERNEL32.dll
+Kernel32.dll
+MSVCRT.dll
+Ole32.dll
+SHELL32.dll
+User32.dll
+WINMM.dll
+WS2_32.DLL
+ZLZ.dll
+
+### 冒险岛online/aossdk.dll
+ADVAPI32.dll
+Advapi32.dll
+KERNEL32.dll
+Kernel32.DLL
+Kernel32.dll
+MFC42.DLL
+MSVCRT.dll
+OLEACC.dll
+OLEAUT32.dll
+PSAPI.DLL
+SHELL32.dll
+SHFolder.dll
+Shell32.dll
+USER32.DLL
+USER32.dll
+Userenv.dll
+V3HUNT.dll
+WININET.dll
+[CAossdkUpdate::SetAsync] SuiPre.Dll is not Loaded
+[CAossdkUpdate::SetAuthServerA] SuiPre.Dll is not Loaded
+[CAossdkUpdate::SetAuthServerW] SuiPre.Dll is not Loaded
+[CAossdkUpdate::SetModeUI] SuiPre.Dll is not Loaded
+[CAossdkUpdate::StartAosSDKA] SuiPre.Dll is not Loaded
+[CAossdkUpdate::StartAosSDKW] SuiPre.Dll is not Loaded
+[CAossdkUpdate::StartExAosSDKW] SuiPre.Dll is not Loaded
+[CAossdkUpdate::StartExAosSDK] SuiPre.Dll is not Loaded
+[CAossdkUpdate::TerminatePdA] SuiPre.Dll is not Loaded
+[CAossdkUpdate::TerminatePdW] SuiPre.Dll is not Loaded
+\HsbSdk.dll
+\mkd25sdk.dll
+advapi32.dll
+aossdk.DLL
+aossdk.dll
+aspsnc.dll
+helper.dll
+ole32.dll
+suipre.dll
+user32.dll
+
+### 冒险岛online/pg.dll
+KERNEL32.dll
+USER32.dll
+module.dll
+user32.dll
+
+### 冒险岛online/uninst.exe
+ADVAPI32.dll
+COMCTL32.dll
+GDI32.dll
+KERNEL32.dll
+SHELL32.dll
+USER32.dll
+VERSION.dll
+ole32.dll
+
+### 冒险岛online/v3hunt.dll
+ADVAPI32.dll
+KERNEL32.dll
+USER32.dll
+V3HUNT.dll
+V3Pro32e.dll
+VERSION.dll
+user32.dll
+v3hunt.dll
+
+### 冒险岛online/冒险岛HS修正工具.exe
+KERNEL32.dll
+USER32.dll
+user32.dll
+
+## pdb
+### 冒险岛online/ASPLnchr.exe
+D:\Build\Product\ASP\Package\SmartUpdateiSDK\building\Build\AhnLab\Product\ASP\Common\ASPLnchr\Trunk\Src\ASPLnchr\Release\ASPLnchr.pdb
+
+### 冒险岛online/HShield/AhnUpCtl.dll
+D:\Build\Common\AhnUpCtl\building\AhnLab\Common\AhnUpCtl\Trunk\Src\AhnUpCtl\Release\AhnUpCtl.pdb
+
+### 冒险岛online/HShield/AhnUpGS.dll
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Update\AhnUpGS\Release\AhnUpGS.pdb
+
+### 冒险岛online/HShield/Bz32Ex.dll
+D:\Build\Product\ASP\StandAlone\ASPSync\building\Build\AhnLab\Product\ASP\Common\Trunk\Src\Bz32Ex\Bz32Ex\Release\Bz32Ex.pdb
+
+### 冒险岛online/HShield/HSInst.dll
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Update\HSINST\Release\HSInst.pdb
+
+### 冒险岛online/HShield/HSUpdate.exe
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Update\HSUpdate\Release\HSUpdate.pdb
+
+### 冒险岛online/HShield/Update/ahni2.dll
+D:\Build\Install\Common\Plugins\building\build\AhnLab\Common\AhnI2\7.0\Trunk\Build\9X32Release\AhnI2.pdb
+
+### 冒险岛online/HShield/Update/ahnupctl.dll
+D:\Build\Common\AhnUpCtl\building\AhnLab\Common\AhnUpCtl\Trunk\Src\AhnUpCtl\Release\AhnUpCtl.pdb
+
+### 冒险岛online/HShield/Update/v3bz32.dll
+D:\Build\Common\SUpdate\V3BZ\1.0\building\AhnLab\Common\SUpdate\V3BZ\1.0\Trunk\Src\V3BZ32\Release\V3BZ32.pdb
+
+### 冒险岛online/HShield/V3Hunt.dll
+D:\Build\Common\SUpdate\V3Hunt\5.1\building\AhnLab\Common\SUpdate\V3Hunt\5.1\Trunk\Src\V3HUNT\Release\V3HUNT.pdb
+
+### 冒险岛online/HShield/V3InetGS.dll
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Update\V3INETGS\Release\V3INetGS.pdb
+
+### 冒险岛online/HShield/asc/asc_com.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\asc_com.pdb
+
+### 冒险岛online/HShield/asc/asc_dh.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\asc_dh.pdb
+
+### 冒险岛online/HShield/asc/asc_fse.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\asc_fse.pdb
+
+### 冒险岛online/HShield/asc/asc_intg.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\asc_intg.pdb
+
+### 冒险岛online/HShield/asc/asc_mmgr.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\asc_mmgr.pdb
+
+### 冒险岛online/HShield/asc/asc_unp.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\asc_unp.pdb
+
+### 冒险岛online/HShield/asc/fse_base.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\fse_base.pdb
+
+### 冒险岛online/HShield/asc/fse_fact.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\fse_fact.pdb
+
+### 冒险岛online/HShield/asc/fse_pe.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\fse_pe.pdb
+
+### 冒险岛online/HShield/asc/gfs_base.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\gfs_base.pdb
+
+### 冒险岛online/HShield/asc/gfs_fact.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\gfs_fact.pdb
+
+### 冒险岛online/HShield/asc/gfs_file.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\gfs_file.pdb
+
+### 冒险岛online/HShield/asc/gfs_mem.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\gfs_mem.pdb
+
+### 冒险岛online/HShield/asc/gfs_os.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\gfs_os.pdb
+
+### 冒险岛online/HShield/asc/gfs_proc.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\gfs_proc.pdb
+
+### 冒险岛online/HShield/asc/gfs_util.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\Release\asc\gfs_util.pdb
+
+### 冒险岛online/HShield/asc_main.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\trunk\build\msvc6\Release\bin\asc_main.pdb
+
+### 冒险岛online/HShield/ehsvc.dll
+C:\Users\hiro\Documents\Visual Studio 2010\Projects\ehsvc_5_6_28\Release\ehsvc.pdb
+
+### 冒险岛online/HShield/ehsvc.old
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\HShield\EHSvc\Release\EHSvc.pdb
+
+### 冒险岛online/HShield/hslogmgr.exe
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Util\HsLogMgr\Release\HsLogMgr.pdb
+
+### 冒险岛online/HShield/mspatcha.dll
+mspatcha.pdb
+
+### 冒险岛online/HShield/psapi.dll
+psapi.pdb
+
+### 冒险岛online/HShield/v3pro32s.dll
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\asc_intp\v3pro32s_hackshield\Release\v3pro32s.pdb
+
+### 冒险岛online/ZLZ.dll
+D:\ACGAME_CN\ztl\ZLZ\Release\ZLZ.pdb
+
+### 冒险岛online/aossdk.dll
+D:\Build\Product\ASP\Package\Aossdk\building\build\AhnLab\Product\ASP\Common\aossdk\Trunk\Build\Release\aossdk.pdb
+
+### 冒险岛online/v3hunt.dll
+D:\Build\Common\SUpdate\V3Hunt\5.1\building\AhnLab\Common\SUpdate\V3Hunt\5.1\Trunk\Src\V3HUNT\Release\V3HUNT.pdb
+
+## registry
+### 冒险岛online/HShield/Update/autoup.exe
+HKLM\I#
+
+## protection
+### 冒险岛online/ASPLnchr.exe
+>AhnLab Online Security Service
+AhnLab, Inc.
+AhnLab, Inc.0
+AhnLab, Inc.1>0<
+Copyright (C) AhnLab, Inc. 1998-2007, All rights reserved.
+D:\Build\Product\ASP\Package\SmartUpdateiSDK\building\Build\AhnLab\Product\ASP\Common\ASPLnchr\Trunk\Src\ASPLnchr\Release\ASPLnchr.pdb
+Software\AhnLab\ASP
+Software\AhnLab\ASP\ASPLnchr
+\AhnLab\ASP\Components\
+\AppData\LocalLow\AhnLab\ASP\Smart Update i\
+
+### 冒险岛online/HShield/AhnUpCtl.dll
+AhnLab Client Security 1.0
+AhnLab Client Security 2.0
+AhnLab Common Architecture 1.0 for Windows
+AhnLab DataBlock 2.0
+AhnLab DataBlock for APC
+AhnLab Mobile Security for Pocket PC
+AhnLab MyFirewall 2.0
+AhnLab MyKeyDefense 2.0
+AhnLab MyPatch 1.0
+AhnLab MySafety 1.0
+AhnLab MyV3 for GDCT
+AhnLab Outbreak Management Services
+AhnLab Patch Manager
+AhnLab Personal Firewall 1.0
+AhnLab Personal Firewall 2.0
+AhnLab Proactive Defense
+AhnLab Security Pack
+AhnLab SpyZero 2.0
+AhnLab SpyZero 2007
+AhnLab SpyZero 2007 ASP
+AhnLab SpyZero 2007 for Online
+AhnLab TeleGuard 1.0
+AhnLab TrusGuard 3100
+AhnLab TrusGuard 4100
+AhnLab TrusGuard Manager 1.0
+AhnLab V3 Internet Security 2007
+AhnLab V3 Internet Security 2007 Platinum
+AhnLab V3 Internet Security 2007 Platinum for USB
+AhnLab V3 Internet Security 7.0 Enterprise
+AhnLab V3 Internet Security 7.0 Platinum Enterprise
+AhnLab V3 VirusBlock Internet Security 2007
+AhnLab V3 VirusBlock Internet Security 2007 ASP
+AhnLab V3 VirusBlock Internet Security 2007 Platinum
+AhnLab V3 VirusBlock Internet Security 2007 Platinum ASP
+AhnLab V3 VirusBlock Internet Security 2007 Platinum for Online
+AhnLab V3 VirusBlock Internet Security 2007 for Online
+Ahnlab Mobile Security for Symbian60 Version 7.0
+Ahnlab Mobile Security for Symbian60 Version 8.0
+Ahnlab Mobile Security for Symbian60 Version 8.1
+Ahnlab Mobile Security for Symbian60 Version 9.0
+HackShield For Game Service
+SOFTWARE\AhnLab\ADB
+SOFTWARE\AhnLab\APC2\Policy Agent
+SOFTWARE\AhnLab\TeleGuard
+SOFTWARE\AhnLab\V3Email20
+SOFTWARE\AhnLab\V3Smtp
+Software\AhnLab\ACA
+Software\AhnLab\AOMS
+Software\AhnLab\APFW
+Software\AhnLab\APFW\APFWPath
+Software\AhnLab\APM\Server
+Software\AhnLab\ASP\GDCT
+Software\AhnLab\ASP\MyFirewall 2.0
+Software\AhnLab\ASP\MyKeyDefense 2.0
+Software\AhnLab\ASP\MyPatch
+Software\AhnLab\ASP\MySafety
+Software\AhnLab\ASP\MyScanReport
+Software\AhnLab\ASP\MyV3
+Software\AhnLab\ASP\SpeedUp20
+Software\AhnLab\ASP\Spyzero
+Software\AhnLab\ASZ2007
+Software\AhnLab\Acs
+Software\AhnLab\Acs20
+Software\AhnLab\MyFirewall
+Software\AhnLab\SpyZeroEnt
+Software\AhnLab\V3Exchg
+Software\AhnLab\V3IS2007
+Software\AhnLab\V3Mail Filter
+Software\AhnLab\V3Notes
+Software\AhnLab\V3PPC1
+Software\AhnLab\V3PPC2
+Software\AhnLab\V3Palm1
+Software\AhnLab\V3Palm2
+Software\AhnLab\V3Palm2VG
+Software\AhnLab\V3Pro
+Software\AhnLab\V3Report
+Software\AhnLab\VIS20
+Software\AhnLab\WormProtector Manager
+[SecuPack] AhnLab Personal Firewall 2004
+[SecuPack] AhnLab Personal Firewall 2005
+
+### 冒险岛online/HShield/AhnUpGS.dll
+Ahnlab, Inc.
+AhnlabSecretKey
+Copyright (C), AhnLab, Inc. 2002-2008, All rights reserved.
+HackShield
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Update\AhnUpGS\Release\AhnUpGS.pdb
+V3HUNT.dll
+
+### 冒险岛online/HShield/Bz32Ex.dll
+AhnLab, Inc.
+Copyright (C) 1988-2006 AhnLab, Inc.
+D:\Build\Product\ASP\StandAlone\ASPSync\building\Build\AhnLab\Product\ASP\Common\Trunk\Src\Bz32Ex\Bz32Ex\Release\Bz32Ex.pdb
+
+### 冒险岛online/HShield/HSInst.dll
+AhnLab, Inc.
+Copyright (C), AhnLab, Inc. 2002-2008, All rights reserved.
+HackShield
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Update\HSINST\Release\HSInst.pdb
+
+### 冒险岛online/HShield/HSUpdate.exe
+AhnLab, Inc.
+AhnLab, Inc.0
+AhnLab, Inc.1>0<
+Copyright (C), AhnLab, Inc. 2002-2008, All rights reserved.
+HackShield
+SOFTWARE\AHNLAB\IOU\HackShield
+Software\Ahnlab\Autoup
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Update\HSUpdate\Release\HSUpdate.pdb
+
+### 冒险岛online/HShield/Update/ahni2.dll
+AhnLab Inc.0
+AhnLab Inc.1>0<
+AhnLab, Inc.
+AhnlabSecretKey
+Copyright (C) 2006-2007 AhnLab, Inc.
+D:\Build\Install\Common\Plugins\building\build\AhnLab\Common\AhnI2\7.0\Trunk\Build\9X32Release\AhnI2.pdb
+File-CommonFiles-AhnLab
+Reg-HKLM-AhnLab
+Software\Ahnlab
+Software\Ahnlab\AhnInst
+Software\Ahnlab\AhnInst\%d
+Software\Ahnlab\DynaUpdate
+\AhnLab
+
+### 冒险岛online/HShield/Update/ahnupctl.dll
+AhnLab Client Security 1.0
+AhnLab Client Security 2.0
+AhnLab Common Architecture 1.0 for Windows
+AhnLab DataBlock 2.0
+AhnLab DataBlock for APC
+AhnLab Mobile Security for Pocket PC
+AhnLab MyFirewall 2.0
+AhnLab MyKeyDefense 2.0
+AhnLab MyPatch 1.0
+AhnLab MySafety 1.0
+AhnLab MyV3 for GDCT
+AhnLab Outbreak Management Services
+AhnLab Patch Manager
+AhnLab Personal Firewall 1.0
+AhnLab Personal Firewall 2.0
+AhnLab Proactive Defense
+AhnLab Security Pack
+AhnLab SpyZero 2.0
+AhnLab SpyZero 2007
+AhnLab SpyZero 2007 ASP
+AhnLab SpyZero 2007 for Online
+AhnLab TeleGuard 1.0
+AhnLab TrusGuard 3100
+AhnLab TrusGuard 4100
+AhnLab TrusGuard Manager 1.0
+AhnLab V3 Internet Security 2007
+AhnLab V3 Internet Security 2007 Platinum
+AhnLab V3 Internet Security 2007 Platinum for USB
+AhnLab V3 Internet Security 7.0 Enterprise
+AhnLab V3 Internet Security 7.0 Platinum Enterprise
+AhnLab V3 VB 2006 IS(JPN)
+AhnLab V3 VirusBlock 2007 Platinum for ASP
+AhnLab V3 VirusBlock Internet Security 2007
+AhnLab V3 VirusBlock Internet Security 2007 ASP
+AhnLab V3 VirusBlock Internet Security 2007 Platinum
+AhnLab V3 VirusBlock Internet Security 2007 Platinum ASP
+AhnLab V3 VirusBlock Internet Security 2007 Platinum for Online
+AhnLab V3 VirusBlock Internet Security 2007 for Online
+AhnLab V3Net for Windows Server 7.0
+Ahnlab Mobile Security for Symbian60 Version 7.0
+Ahnlab Mobile Security for Symbian60 Version 8.0
+Ahnlab Mobile Security for Symbian60 Version 8.1
+Ahnlab Mobile Security for Symbian60 Version 9.0
+SOFTWARE\AhnLab\ADB
+SOFTWARE\AhnLab\APC2\Policy Agent
+SOFTWARE\AhnLab\TeleGuard
+SOFTWARE\AhnLab\V3Email20
+SOFTWARE\AhnLab\V3Smtp
+SOFTWARE\Ahnlab\V3IS2007
+Software\AhnLab\ACA
+Software\AhnLab\AOMS
+Software\AhnLab\APFW
+Software\AhnLab\APFW\APFWPath
+Software\AhnLab\APM\Server
+Software\AhnLab\ASP\GDCT
+Software\AhnLab\ASP\MyFirewall 2.0
+Software\AhnLab\ASP\MyKeyDefense 2.0
+Software\AhnLab\ASP\MyPatch
+Software\AhnLab\ASP\MySafety
+Software\AhnLab\ASZ2007
+Software\AhnLab\Acs
+Software\AhnLab\Acs20
+Software\AhnLab\MyFirewall
+Software\AhnLab\SpyZeroEnt
+Software\AhnLab\V3Exchg
+Software\AhnLab\V3IS2007
+Software\AhnLab\V3Mail Filter
+Software\AhnLab\V3Notes
+Software\AhnLab\V3PPC1
+Software\AhnLab\V3PPC2
+Software\AhnLab\V3Palm1
+Software\AhnLab\V3Palm2
+Software\AhnLab\V3Palm2VG
+Software\AhnLab\V3Pro
+Software\AhnLab\V3Report
+Software\AhnLab\VIS20
+Software\AhnLab\WormProtector Manager
+Software\Ahnlab\V3Net70
+[SecuPack] AhnLab Personal Firewall 2004
+[V3 VB 2006 IS] AhnLab Personal Firewall 2005
+
+### 冒险岛online/HShield/Update/autoup.exe
+AhnLab Inc.0
+AhnLab Inc.1>0<
+AhnLab, Inc.
+Copyright (C), AhnLab, Inc. 1998-2007, All rights reserved.
+Software\AhnLabutoup
+
+### 冒险岛online/HShield/Update/v3bz32.dll
+AhnLab, Inc.
+AhnLab, Inc.0
+AhnLab, Inc.1
+Copyright (C) 1988-2005 AhnLab, Inc.
+D:\Build\Common\SUpdate\V3BZ\1.0\building\AhnLab\Common\SUpdate\V3BZ\1.0\Trunk\Src\V3BZ32\Release\V3BZ32.pdb
+www.ahnlab.com0>
+
+### 冒险岛online/HShield/V3Hunt.dll
+AhnLab
+AhnLab Inc.0
+AhnLab Inc.1>0<
+AhnLab, Inc.
+Copyright (C), AhnLab, Inc. 1998-2007, All rights reserved.
+D:\Build\Common\SUpdate\V3Hunt\5.1\building\AhnLab\Common\SUpdate\V3Hunt\5.1\Trunk\Src\V3HUNT\Release\V3HUNT.pdb
+V3HUNT.dll
+v3hunt.dll
+
+### 冒险岛online/HShield/V3InetGS.dll
+Ahnlab, Inc.
+Copyright (C), AhnLab, Inc. 2002-2008, All rights reserved.
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Update\V3INETGS\Release\V3INetGS.pdb
+ahnlab V3INetGS
+
+### 冒险岛online/HShield/ahnrpt.exe
+AhnLab Report Tool
+AhnLab, Inc.
+AhnLab, Inc.0
+AhnLab, Inc.1>0<
+Copyright (C), AhnLab, Inc. 2000-2009, All rights reserved.
+
+### 冒险岛online/HShield/asc/asc_com.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/asc_dh.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/asc_fse.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/asc_intg.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/asc_mmgr.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+hackshield
+
+### 冒险岛online/HShield/asc/asc_unp.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/fse_base.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/fse_fact.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/fse_pe.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/gfs_base.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/gfs_fact.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/gfs_file.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/gfs_mem.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/gfs_os.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/gfs_proc.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc/gfs_util.dll
+AhnLab TS Engine (multi-byte)
+AhnLab, Inc.
+Copyright (c) AhnLab, Inc. 1988-2009
+
+### 冒险岛online/HShield/asc_main.dll
+AhnLab TS Engine
+AhnLab, Inc.
+AhnLab, Inc.0
+AhnLab, Inc.1>0<
+Copyright (c) AhnLab, Inc. 1988-2010
+
+### 冒险岛online/HShield/ehsvc.dll
+Bypass for hackshield
+C:\Users\hiro\Documents\Visual Studio 2010\Projects\ehsvc_5_6_28\Release\ehsvc.pdb
+ehsvc.dll
+
+### 冒险岛online/HShield/ehsvc.old
+AhnLab, Inc.
+AhnLab, Inc.0
+AhnLab, Inc.1>0<
+Copyright (C), AhnLab, Inc. 2002-2008, All rights reserved.
+EHSvc.dll
+HackShield
+HackShield Interface DLL
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\HShield\EHSvc\Release\EHSvc.pdb
+
+### 冒险岛online/HShield/hslogmgr.exe
+2009 Ahnlab, Inc.
+<font size="2" face="Arial" color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HackShield
+<font size="2" face="Arial" color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please visit HackShield FAQ site to find out a resolution.</font><br>
+<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.hackshields.com/faq/hsfaq_index_e.htm" target="_blank">http://www.hackshields.com/faq/hsfaq_index_e.htm</a>
+<font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If HackShield FAQ site does not help you to resolve the problem,<br>
+<font size="2" title="AhnLab
+<font size="2" title="Input your right email address. AhnLab can contact you, if AhnLab need to contact you">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email :<br>
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.hackshields.com/faq/hsfaq_index.htm" target="_blank">http://www.hackshields.com/faq/hsfaq_index.htm</a>
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://global.ahnlab.com/global/support/support_report.html" target="_blank">AhnReport
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://kr.ahnlab.com/info/customer/html/ahnreport.html" target="_blank">AhnReport
+<font size="2">&nbsp;&nbsp;&nbsp;<a href="http://global.ahnlab.com/global/support/support_report.html" target="_blank">AhnReport
+<font size="2">&nbsp;&nbsp;&nbsp;<a href="http://global.ahnlab.com/global/support/support_report.html" target="_blank">What is AhnReport?</a>
+AhnLab, Inc.
+AhnLab, Inc.0
+AhnLab, Inc.1>0<
+HackShield FAQ
+HackShield Log Manager
+HackShield Pro 2.0
+T:\AhnLab\Product\HackShield\Messiah\Trunk\Src\Util\HsLogMgr\Release\HsLogMgr.pdb
+\AhnRpt.exe /m "%Temp%\1.cab" /ui /f=8007 /pd=Hackshield
+no@hshield.com
+
+### 冒险岛online/HShield/v3pro32s.dll
+AhnLab TS Engine (V3Pro32s)
+AhnLab TS Engine for HackShield
+AhnLab, Inc.
+AhnLab, Inc.0
+AhnLab, Inc.1>0<
+Copyright (c) AhnLab, Inc. 1988-2009
+D:\Build\_building\build\Engine\EngineNG\brahma\Trunk\build\msvc6\asc_intp\v3pro32s_hackshield\Release\v3pro32s.pdb
+
+### 冒险岛online/aossdk.dll
+AhnLab, Inc.
+Copyright (C) AhnLab, Inc. 2003-2009, All rights reserved.
+D:\Build\Product\ASP\Package\Aossdk\building\build\AhnLab\Product\ASP\Common\aossdk\Trunk\Build\Release\aossdk.pdb
+SOFTWARE\AHNLAB\ASP\Smart Update i
+SOFTWARE\Ahnlab\ASP\MyKeyDefense 2.5
+SOFTWARE\Ahnlab\ASP\SecureBrowser
+V3HUNT.dll
+\AhnLab\ASP\
+\AhnLab\ASP\Smart Update i\
+\AppData\LocalLow\AhnLab\ASP\Smart Update i\
+
+### 冒险岛online/v3hunt.dll
+AhnLab, Inc.
+Copyright (C), AhnLab, Inc. 1998-2005, All rights reserved.
+D:\Build\Common\SUpdate\V3Hunt\5.1\building\AhnLab\Common\SUpdate\V3Hunt\5.1\Trunk\Src\V3HUNT\Release\V3HUNT.pdb
+V3HUNT.dll
+v3hunt.dll
+
+### 冒险岛online/冒险岛HS修正工具.exe
+\HShield\ehsvc.ini
+
+## keyword
+### 冒险岛online/ASPLnchr.exe
+Can't allocate memory for PipeServer
+Can't create PipeServer
+Can't decrpyt packet
+Can't encrypt packet
+Closed pipe server
+Completed pipe server listening
+Failed to destroy Pipe server
+Invalid packet's command - 0x%02x
+Received request packet - Size:%u, HANDLE:0x%08x
+Result packet process:%u
+SUiPre_SetAuthServer
+Sent respone packet - Size:%u, HANDLE:0x%08x
+Terminal Server
+Terminated pipe server thread
+Time out waiting event from pipe server thread
+
+### 冒险岛online/HShield/AhnUpCtl.dll
+CLSID\{5DD731E6-D4F0-11D3-BE3F-00105A6FDA50}\InprocServer32
+CLSID\{9BDBC41E-C335-4263-83C0-ECE78EE28A33}\InprocServer32
+JDServer.exe
+N for Windows Server
+N for Windows Server 6.0
+Software\AhnLab\APM\Server
+V3 VirusBlock for Windows Server
+V3Exch_Server2
+V3Exch_Server3
+V3Net for Windows Server 6.0
+V3Net for Windows Server SE
+V3VirusWall Email(SMTP) for Windows Server
+
+### 冒险岛online/HShield/AhnUpGS.dll
+Advanced Server
+Cluster Server
+DataCenter Server
+Home Server
+SERVERNT
+Server
+Server 4.0
+Server 4.0, Enterprise Edition
+Server for Small Business
+Small Business Server
+Small Business Server Premium
+Storage Server Enterprise
+Storage Server Express
+Storage Server Standard
+Storage Server Workgroup
+Web Server
+Web Server (core)
+Windows Essential Business Server Management Server
+Windows Essential Business Server Messaging Server
+Windows Essential Business Server Security Server
+Windows Server 2003
+Windows Server 2003 R2
+Windows Server 2008
+Windows Server 2008 R2
+
+### 冒险岛online/HShield/AspINet.dll
+CreateDialogIndirectParamA
+DllRegisterServer
+DllUnregisterServer
+invalid with alpha channel
+lost/gained channels
+png_image_read: alpha channel lost
+
+### 冒险岛online/HShield/HSInst.dll
+_SERVER      =
+
+### 冒险岛online/HShield/HSUpdate.exe
+Advanced Server
+Cluster Server
+DataCenter Server
+Home Server
+SERVERNT
+Server
+Server 4.0
+Server 4.0, Enterprise Edition
+Server for Small Business
+Small Business Server
+Small Business Server Premium
+Storage Server Enterprise
+Storage Server Express
+Storage Server Standard
+Storage Server Workgroup
+Web Server
+Web Server (core)
+Windows Essential Business Server Management Server
+Windows Essential Business Server Messaging Server
+Windows Essential Business Server Security Server
+Windows Server 2003
+Windows Server 2003 R2
+Windows Server 2008
+Windows Server 2008 R2
+Your registration has expired. Update will be available only for %1 days, update will not be provided afterward. You should extend your registration before you can get future updates.NAn error occurred while analyzing the dispatch server in
+_SERVER      =
+formation. [Code = %1]AUnable to connect to the dispatch server. Please try again later.*Access has failed. Please try again later.
+
+### 冒险岛online/HShield/Update/ahnupctl.dll
+AhnLab V3Net for Windows Server 7.0
+CLSID\{5DD731E6-D4F0-11D3-BE3F-00105A6FDA50}\InprocServer32
+CLSID\{9BDBC41E-C335-4263-83C0-ECE78EE28A33}\InprocServer32
+JDServer.exe
+N for Windows Server
+N for Windows Server 6.0
+Software\AhnLab\APM\Server
+V3 VirusBlock for Windows Server
+V3Exch_Server2
+V3Exch_Server3
+V3Net for Windows Server 6.0
+V3Net for Windows Server SE
+V3VirusWall Email(SMTP) for Windows Server
+
+### 冒险岛online/HShield/Update/v3bz32.dll
+/http://crl.thawte.com/ThawtePremiumServerCA.crl0
+Thawte Premium Server CA1(0&
+premium-server@thawte.com0
+
+### 冒险岛online/HShield/V3Hunt.dll
+.UPDATESERVER
+Destination file is damaged.@Update server makes no response. Please try again after a while.BAn error has occurred during transferring data from update server."Unable to write destination files.!Unable to open destination files.
+Unable to find update server.
+hupipe.cpp:IsUpdateServer2(%s)=%d
+
+### 冒险岛online/HShield/V3InetGS.dll
+The connection with the server has been reset.
+
+### 冒险岛online/MapleStory.exe
+/http://crl.thawte.com/ThawtePremiumServerCA.crl0
+Thawte Premium Server CA1(0&
+premium-server@thawte.com0
+
+### 冒险岛online/Patcher.exe
+%2\protocol\StdFileEditing\server
+CLSID\%1\InProcServer32
+CLSID\%1\LocalServer32
+CreateDialogIndirectParamA
+SERVERNT
+Server
+
+### 冒险岛online/aossdk.dll
+(Server=%s, FileName=%s, DiskFree=%s)
+Aossdk_SetAuthServerA
+Aossdk_SetAuthServerW
+DllRegisterServer
+DllUnregisterServer
+ProxyServer
+SUiPre_SetAuthServer
+[CAossdkUpdate::SetAuthServerA] SuiPre.Dll is not Loaded
+[CAossdkUpdate::SetAuthServerW] SuiPre.Dll is not Loaded
+
+### 冒险岛online/v3hunt.dll
+.UPDATESERVER
+Destination file is damaged.@Update server makes no response. Please try again after a while.BAn error has occurred during transferring data from update server."Unable to write destination files.!Unable to open destination files.
+Unable to find update server.
+hupipe.cpp:IsUpdateServer2(%s)=%d
+
+## other
+### 冒险岛online/ASPLnchr.exe
+Global\
+
+### 冒险岛online/HShield/AhnUpGS.dll
+Global\FDED97A6-94E8-4b79-B426-1AA03D559CBB
+
+### 冒险岛online/HShield/HSUpdate.exe
+CreateMutexA
+Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+Global\C886B01D-2DDD-466e-B6D7-43E0DC18F895
+Global\F121C66D-CF82-4c4c-88B4-04C28DB40548
+Global\FDED97A6-94E8-4b79-B426-1AA03D559CBB
+
+### 冒险岛online/HShield/Update/ahni2.dll
+Reg-HKLM-AhnInst
+Reg-HKLM64-AhnInst
+
+### 冒险岛online/HShield/asc_main.dll
+HKEY_CLASSES_ROOT
+HKEY_CURRENT_CONFIG
+HKEY_CURRENT_USER
+HKEY_DYN_DATA
+HKEY_LOCAL_MACHINE
+HKEY_PERFORMANCE_DATA
+HKEY_USERS
+
+### 冒险岛online/HShield/hslogmgr.exe
+CreateMutexA
+Global\D16C15F8-4CCC-41e5-9CEE-BC7E2370FD66
+
+### 冒险岛online/HShield/v3pro32s.dll
+CreateMutexWithEnvironment!
+CreateMutexWithFile()!
+Critical error: cannot write data to mutex file %s!
+DestroyMutexWithEnvironment!
+DestroyMutexWithFile!
+
+### 冒险岛online/MapleStory.exe
+<description>MapleStory Program</description>
+MapleStory
+MapleStory Chin
+MapleStory.exe
+Wizet MapleStory
+name="MapleStory"
+
+### 冒险岛online/Patcher.exe
+CreateMutexA
+MapleStoryT.exe
+ReleaseMutex
+WizetPatcherMutex
+http://
+
+### 冒险岛online/Setup.exe
+MapleStory
+MapleStory Setup
+SOFTWARE\Wizet\MapleStory
+
+### 冒险岛online/aossdk.dll
+Global\%s
+http://
+https://
+
+### 冒险岛online/冒险岛HS修正工具.exe
+\MapleStory.exe
+
+## plaintext_config
+冒险岛online/HShield/ahnrpt.ini: [Info]
+冒险岛online/HShield/ahnrpt.ini: UserName=
+冒险岛online/HShield/ahnrpt.ini: UserEMail=
+冒险岛online/HShield/ahnrpt.ini: UserCompany=
+冒险岛online/HShield/ahnrpt.ini: UserTel=
+冒险岛online/HShield/ahnrpt.ini: SupporterName=
+冒险岛online/HShield/ahnrpt.ini: SupporterEMail=hs_log@ahnlab.com
+冒险岛online/HShield/ahnrpt.ini: Comment=
+冒险岛online/HShield/ahnrpt.ini: MailSubject=
+冒险岛online/HShield/ahnrpt.ini: [UserSuspiciousFiles]
+冒险岛online/HShield/ahnrpt.ini: 00=
+冒险岛online/HShield/ahnrpt.ini: 01=
+冒险岛online/HShield/ahnrpt.ini: ...
+冒险岛online/HShield/ahnrpt.ini: [Attach]
+冒险岛online/HShield/ahnrpt.ini: 00=
+冒险岛online/HShield/ahnrpt.ini: 01=
+冒险岛online/HShield/bldinfo.ini: [Build]
+冒险岛online/HShield/bldinfo.ini: BuildNumber=4.3.30.0
+冒险岛online/HShield/bldinfo.ini: State=1
+冒险岛online/HShield/bldinfo.ini: Registry=1
+冒险岛online/HShield/bldinfo.ini: WindowTitle=0
+冒险岛online/HShield/bldinfo.ini: UpdateFlag=1
+冒险岛online/HShield/ehsvc.ini: [Settings]
+冒险岛online/HShield/ehsvc.ini: GamePath=D:\079V2\冒险岛online\MapleStory.exe
+冒险岛online/单机登陆器.bat: MapleStory.exe 127.0.0.1 9555
+冒险岛online/登录器使用说明.txt: 1.管理员身份启动冒险岛HS修正工具  点击一次修正按钮即可
+冒险岛online/登录器使用说明.txt: 2.打开单机登录器.bat
+冒险岛online/登录器使用说明.txt: 单机登录器可以实现一机N开！
+冒险岛online/登录器使用说明.txt: 如需联机请使用单机登录器
+冒险岛online/登录器使用说明.txt: 直接双击打开即可
+冒险岛online/登录器使用说明.txt: BY：江浩   2017年9月23日
