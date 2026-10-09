@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import sys
 
 from Crypto.Cipher import AES
@@ -189,8 +190,10 @@ def check_header(header: bytes, iv: bytes, direction: str) -> bool:
 def crypt(data: bytes, iv: bytes) -> tuple[bytes, bytes]:
     """AES keystream XOR. Same function for both directions. Returns (data, next_iv).
 
-    The loop matches MapleAESOFB.crypt: after each chunk llength becomes 1460,
-    and the for-loop then subtracts that new llength from remaining.
+    Matches the JAR's MapleAESOFB.crypt, not the CFR for-loop shape. The first
+    chunk limit is 1456 and every later chunk limit is 1460. Remaining is reduced
+    by the number of bytes just processed; the limit is raised to 1460 only after
+    that subtraction. Subtracting 1460 first skips 4 bytes per chunk.
     """
     buf = bytearray(data)
     llength = 1456
@@ -198,16 +201,14 @@ def crypt(data: bytes, iv: bytes) -> tuple[bytes, bytes]:
     remaining = len(buf)
     while remaining > 0:
         my_iv = bytearray(iv[index % 4] for index in range(16))
-        chunk = llength
-        if remaining < chunk:
-            chunk = remaining
+        chunk = llength if remaining >= llength else remaining
         for offset in range(chunk):
             if offset % 16 == 0:
                 my_iv = bytearray(aes_block(bytes(my_iv)))
             buf[start + offset] ^= my_iv[offset % 16]
         start += chunk
+        remaining -= chunk
         llength = 1460
-        remaining -= llength
     return bytes(buf), update_iv(iv)
 
 
@@ -273,6 +274,23 @@ def format_result(result: dict) -> str:
 
 
 def selftest() -> None:
+    # JAR cross-check anchor. Lengths above 1456 used to drop 4 bytes per chunk.
+    iv = bytes.fromhex("46727a11")
+    short = bytes.fromhex("01000474657374")
+    packet, next_iv = encrypt_packet(short, iv, "c2s")
+    if packet.hex() != "35113211a28736ed5837d6" or next_iv.hex() != "71b25f7f":
+        raise AssertionError("short packet no longer matches the JAR")
+    expected_body = {
+        1456: "cd723434f09b589193695c108c0f4d68c0d0a691076206a4ca26922a93510532",
+        1457: "0f48ec178bfdcca41d8d28a9f640b28a9445ebf3673ff8f3d47917163f0f0a67",
+        1460: "0d9033c7b4130fedc8e6e7ef5ba80de181fdf675b8abd98db3642cd5d1783cda",
+        3000: "829bda5707b631d3f0ea3d317d5f7015211293dee3f4e294796d0000e8c40cd6",
+    }
+    for length, digest in expected_body.items():
+        plain = bytes(index & 0xFF for index in range(length))
+        body, _ = crypt(custom_encrypt(plain), iv)
+        if hashlib.sha256(body).hexdigest() != digest:
+            raise AssertionError(f"JAR body mismatch at {length}")
     sample = bytes.fromhex("0D004F00000046727A115230787A04")
     parsed = parse_handshake(sample)
     if parsed["version"] != 79 or parsed["locale"] != 4:

@@ -1,0 +1,13 @@
+seq,observer,pid,process,role,local,remote,state,notes
+1,preexisting,17716,Dapan.exe,listen,127.0.0.1:17890,,Listen,maoxiong-vpn mihomo core; already listening before MapleStory
+2,preexisting,17716,Dapan.exe,listen,127.0.0.1:19090,,Listen,peer is flwebsite.exe
+3,preexisting,15876,flwebsite.exe,client,127.0.0.1:1979,127.0.0.1:19090,Established,parent of Dapan; path C:\Program Files\maoxiong-vpn\flwebsite.exe
+4,preexisting,15872,Cursor,client,127.0.0.1:ephemeral,127.0.0.1:17890,Established,same listener as the game sample
+5,preexisting,10016,OneDrive,client,127.0.0.1:ephemeral,127.0.0.1:17890,Established,same listener
+6,preexisting,19988,GitHubDesktop,client,127.0.0.1:ephemeral,127.0.0.1:17890,Established,same listener
+7,preexisting,20476,msedge,client,127.0.0.1:ephemeral,127.0.0.1:17890,CloseWait,same listener
+8,preexisting,17716,Dapan.exe,public,,,Established,non-loopback flows exist; address redacted; ports are not 9555 or 7575-7578 or 8600
+9,undebugged-18s,23452,MapleStory.exe,client,127.0.0.1:5756,127.0.0.1:17890,Established,started with args 127.0.0.1 9555; no debugger
+10,undebugged-18s,23452,MapleStory.exe,client,127.0.0.1:5761,127.0.0.1:17890,Established,MapleStory is the connector
+11,undebugged-18s,23452,MapleStory.exe,client,127.0.0.1:5764,127.0.0.1:17890,Established,no 9555 socket in this window
+12,undebugged-18s,23452,MapleStory.exe,absent,,,,"no socket to 9555, 7575-7578, or 8600"
