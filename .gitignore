@@ -1,0 +1,69 @@
+# Raw MapleStory client files and local research inputs
+.raw/
+
+# Local scratch/workspace directories
+.work/
+.tmp/
+tmp/
+.cache/
+out/
+build/
+dist/
+
+# Client archives / proprietary binaries and resources
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.exe
+*.dll
+*.sys
+*.wz
+
+# Memory dumps / crash dumps
+*.dmp
+*.dump
+*.mdmp
+*.core
+
+# Ghidra local projects
+*.gpr
+*.rep/
+
+# IDA databases and generated files
+*.idb
+*.i64
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+*.asm
+
+# x32dbg / x64dbg local databases and logs
+*.dd32
+*.dd64
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Secrets / environment files
+.env
+.env.*
+!.env.example
