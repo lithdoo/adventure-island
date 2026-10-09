@@ -1,0 +1,28 @@
+order	module	base	size	path	notes
+1	MapleStory.exe	0x400000	10330112	\Device\HarddiskVolume11\Users\lithd\Documents\GitHub\adventure-island\.work\task-001\extracted\冒险岛online\MapleStory.exe	main image; base equals PE ImageBase 0x400000, ASLR did not relocate it; SizeOfImage matches Task 001
+2	ntdll.dll	0x7ffd72220000	2519040	\Device\HarddiskVolume11\Windows\System32\ntdll.dll	64-bit wow64 host ntdll
+3	ntdll.dll	0x77620000	1830912	\Device\HarddiskVolume11\Windows\SysWOW64\ntdll.dll	32-bit ntdll
+4	wow64.dll	0x7ffd70f20000	348160	\Device\HarddiskVolume11\Windows\System32\wow64.dll	
+5	wow64base.dll	0x7ffd70fb0000	49152	\Device\HarddiskVolume11\Windows\System32\wow64base.dll	
+6	wow64win.dll	0x7ffd71780000	565248	\Device\HarddiskVolume11\Windows\System32\wow64win.dll	
+7	wow64con.dll	0x7ffd718c0000	102400	\Device\HarddiskVolume11\Windows\System32\wow64con.dll	
+8	wow64cpu.dll	0x77610000	40960	\Device\HarddiskVolume11\Windows\System32\wow64cpu.dll	
+9	kernel32.dll	0x75bc0000	983040	\Device\HarddiskVolume11\Windows\SysWOW64\kernel32.dll	
+10	KernelBase.dll	0x75ef0000	2990080	\Device\HarddiskVolume11\Windows\SysWOW64\KernelBase.dll	
+11	apphelp.dll	0x70e70000	716800	\Device\HarddiskVolume11\Windows\SysWOW64\apphelp.dll	shim engine
+12	sechost.dll	0x76760000	544768	\Device\HarddiskVolume11\Windows\SysWOW64\sechost.dll	
+13	user32.dll	0x76570000	1994752	\Device\HarddiskVolume11\Windows\SysWOW64\user32.dll	
+14	win32u.dll	0x76aa0000	114688	\Device\HarddiskVolume11\Windows\SysWOW64\win32u.dll	
+15	gdi32.dll	0x75d50000	139264	\Device\HarddiskVolume11\Windows\SysWOW64\gdi32.dll	
+16	gdi32full.dll	0x761e0000	958464	\Device\HarddiskVolume11\Windows\SysWOW64\gdi32full.dll	
+17	msvcp_win.dll	0x75b30000	544768	\Device\HarddiskVolume11\Windows\SysWOW64\msvcp_win.dll	
+18	ucrtbase.dll	0x76ad0000	1114112	\Device\HarddiskVolume11\Windows\SysWOW64\ucrtbase.dll	
+19	imm32.dll	0x752c0000	151552	\Device\HarddiskVolume11\Windows\SysWOW64\imm32.dll	
+20	advapi32.dll	0x768e0000	544768	\Device\HarddiskVolume11\Windows\SysWOW64\advapi32.dll	
+21	msvcrt.dll	0x76ed0000	815104	\Device\HarddiskVolume11\Windows\SysWOW64\msvcrt.dll	
+22	rpcrt4.dll	0x757c0000	770048	\Device\HarddiskVolume11\Windows\SysWOW64\rpcrt4.dll	
+23	winmm.dll	0x71740000	208896	\Device\HarddiskVolume11\Windows\SysWOW64\winmm.dll	
+24	WinTypes.dll	0x742b0000	1019904	\Device\HarddiskVolume11\Windows\SysWOW64\WinTypes.dll	last module observed before the debugged process exited
+
+ws2_32.dll	not loaded	-	-	-	not present before process exit; connect/send/recv breakpoints were never armed
+HShield / ehsvc	not loaded	-	-	-	not observed in this early module list

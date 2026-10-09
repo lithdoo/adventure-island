@@ -1,0 +1,2 @@
+seq,time,socket,direction,api,remote_ip,remote_port,raw_length,protocol_stage,opcode_hex,caller_va,caller_rva,notes
+1,,7368,,Get-NetTCPConnection,127.0.0.1,17890,,other-connect,,,Observed on the undebugged client. Listener PID belonged to Dapan.exe. This is not 9555 and no opcode was decrypted.
