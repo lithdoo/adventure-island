@@ -1,0 +1,195 @@
+# adventure-island
+
+MapleStory（冒险岛）CMS v079 客户端逆向研究仓库。
+
+本仓库用于记录对 **国服 079 客户端** 的静态分析、动态调试、协议梳理、资源格式研究，以及可复现的分析脚本和笔记。
+
+> 本仓库不保存或分发原始游戏客户端、WZ 资源、第三方保护组件或其他受版权保护的二进制文件。请仅对自己合法取得的客户端副本进行研究。
+
+## 目标
+
+当前研究重点：
+
+- 梳理 `MapleStory.exe` 的 PE / x86 基础结构；
+- 定位网络初始化、连接、收发与封包编解码路径；
+- 建立客户端 opcode dispatcher 与 079 服务端协议之间的对应关系；
+- 逐步识别并命名客户端核心模块、类和函数；
+- 记录 WZ 资源加载及相关数据结构；
+- 沉淀可重复执行的 Ghidra / IDA / x32dbg 辅助脚本与分析结果。
+
+## 本地原始文件
+
+将 079 国服客户端压缩包或解压后的原始文件放在仓库根目录的 `.raw/` 中，例如：
+
+```text
+.raw/
+├── CMS079.zip
+└── CMS079/
+    ├── MapleStory.exe
+    ├── Base.wz
+    ├── Character.wz
+    └── ...
+```
+
+`.raw/` 已加入 `.gitignore`，其中内容只作为本地分析输入，不应提交到 Git。
+
+建议始终保留一份未修改的客户端副本，并对关键输入记录哈希，以便后续确认分析基线，例如：
+
+```bash
+sha256sum .raw/CMS079.zip
+sha256sum .raw/CMS079/MapleStory.exe
+```
+
+## 建议的仓库结构
+
+```text
+.
+├── .raw/          # 本地原始客户端与归档，不提交
+├── docs/          # 逆向笔记、协议记录、结构说明
+├── scripts/       # Ghidra/IDA/分析辅助脚本
+├── symbols/       # 函数命名、地址、签名等可复现结果
+├── tools/         # 自编写的小型研究工具
+├── .gitignore
+└── README.md
+```
+
+目录可以随着研究进展逐步建立，不要求一开始全部存在。
+
+## 建议的逆向路线
+
+### 1. 建立客户端基线
+
+首先记录：
+
+- 文件版本与时间戳；
+- PE ImageBase、入口点、节区；
+- Import Table；
+- `MapleStory.exe` 和主要 DLL 的 SHA-256；
+- 是否存在壳、保护或运行时自修改行为。
+
+不要直接修改原始样本。需要 patch 时，应复制到单独的本地工作目录。
+
+### 2. 从网络边界开始
+
+优先定位 WinSock 相关调用：
+
+```text
+WSAStartup
+socket
+connect
+send / WSASend
+recv / WSARecv
+closesocket
+```
+
+沿交叉引用向上寻找客户端自己的 socket wrapper，再继续识别：
+
+```text
+CClientSocket
+CInPacket
+COutPacket
+Decode1 / Decode2 / Decode4 / DecodeStr
+Encode1 / Encode2 / Encode4 / EncodeStr
+Packet Dispatcher
+```
+
+这里的名称可以先作为研究命名，不要求与原始源码符号完全一致。
+
+### 3. 用协议行为辅助定位
+
+建议从容易观察的状态变化开始：
+
+```text
+Login
+  ↓
+World / Channel
+  ↓
+Character Select
+  ↓
+Enter Field
+  ↓
+Movement
+  ↓
+NPC / Mob / Skill
+```
+
+将客户端 handler、opcode、字段顺序和服务端实现相互对照，逐步形成稳定的协议映射。
+
+### 4. 分离 WZ 与 EXE 分析
+
+地图、技能、物品、NPC、UI 等静态资源优先通过已有 WZ 格式资料和工具解析，不必从客户端汇编重新推导所有内容。
+
+EXE 逆向重点放在：
+
+- 资源访问入口；
+- 对象模型；
+- 网络协议；
+- 游戏状态机；
+- 客户端特有逻辑。
+
+## 分析记录约定
+
+为了让地址变化后仍能复用结果，记录一个函数时尽量同时保存：
+
+```text
+Name:       CClientSocket::OnRead
+VA/RVA:     ...
+Caller:     ...
+Callee:     ...
+Strings:    ...
+Imports:    ...
+Signature:  ...
+Evidence:   ...
+Notes:      ...
+```
+
+优先记录 **RVA、调用关系、字符串引用和字节签名**，不要只保存一次运行中的绝对地址。
+
+## 工具
+
+常用工具可以包括：
+
+- Ghidra
+- IDA
+- x32dbg / x64dbg
+- PE-bear / CFF Explorer
+- Wireshark（在自己控制的测试环境中）
+- Python
+
+后续仓库中的自动化脚本应尽量说明所针对的客户端哈希或版本基线。
+
+## 提交原则
+
+适合提交：
+
+- Markdown 分析文档；
+- 自己编写的分析脚本；
+- 函数名、RVA、结构体定义；
+- opcode 表；
+- 不包含原始客户端内容的签名或元数据；
+- 可公开分享的实验结果。
+
+不要提交：
+
+- 原始或修改后的客户端程序；
+- WZ 资源文件；
+- 客户端 ZIP / RAR / 7z；
+- crash dump、完整内存 dump；
+- Ghidra / IDA 的大型本地数据库，除非之后明确决定版本化；
+- 密钥、账号或其他敏感信息。
+
+## Research Log
+
+后续建议将阶段性结果写入 `docs/`，例如：
+
+```text
+docs/
+├── 00-baseline.md
+├── 01-pe-and-imports.md
+├── 02-network-stack.md
+├── 03-packet-codec.md
+├── 04-opcodes.md
+└── 05-field.md
+```
+
+这样可以把“发现过程”和最终符号/脚本分开管理，也方便以后对不同 079 客户端样本做差异比较。
