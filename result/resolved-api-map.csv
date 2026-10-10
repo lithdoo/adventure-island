@@ -1,0 +1,7 @@
+resolved_function,module,va,stored_rva,hash_or_compare,resolver_candidate,confidence
+LoadLibraryA,kernel32.dll,0x76271F70,0x00821478; 0x0081AAA5; 0x0081A81D,string compare,R1,high
+GetLocalTime,kernel32.dll,0x7625D430,0x00821478; 0x0081A81D,string compare,R1,high
+MessageBoxExA,user32.dll,0x76A25100,0x0081A81D,string compare,R1,high
+USER32.dll,user32.dll,0x76980000,0x00821478,LoadLibraryA return,R1,high
+ADVAPI32.dll,advapi32.dll,0x767F0000,0x00821478,LoadLibraryA return,R1,high
+NTDLL.dll,ntdll.dll,0x77080000,0x00821478,LoadLibraryA return,R1,high

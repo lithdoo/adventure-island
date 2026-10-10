@@ -1,0 +1,4 @@
+event,producer_rva,destination_rva,length,region,notes
+cross-tail-B-write,,,,,not observed
+tail-A-write,,,,,not observed
+ztl-write,,,,,not observed

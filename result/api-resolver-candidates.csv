@@ -1,0 +1,2 @@
+candidate_id,entry_rva,kernel32_base_source,pe_field_reads,export_walk,name_hashing,string_compare,output_location,resolved_api,confidence,evidence
+R1,0x0081CF01,0x0081A621 via 0x0082210C,"e_lfanew; DataDirectory[0] at PE+0x78; IMAGE_EXPORT_DIRECTORY; AddressOfNames",yes,no,yes,"0x00821478 0x0081AAA5 0x0081A81D","LoadLibraryA; GetLocalTime; MessageBoxExA",high,"lodsw at kernel32+0x3C; mov eax,[eax+0x78]; lodsd name slots; cmp al,[edi]; scasb"

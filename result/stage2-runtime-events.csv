@@ -1,0 +1,12 @@
+event_id,instruction_count,eip_rva,event_type,source_rva,destination_rva,length,value_or_hash,classification,confidence,notes
+E5-1,1191526,0x0082210C,E5,0x0081A621,0x0081A621,4,0x76240000,slot-read,high,push dword [edx] with edx = slot VA; first consumer
+E6-1,1210872,0x0081CF97,E6,0x0081A621,0x0095FB8,4,export directory,export-walk,high,kernel32 DataDirectory[0] then IMAGE_EXPORT_DIRECTORY
+E7-1,1293368,0x00834871,E7,0x0081CF01,0x00821478,4,LoadLibraryA,api-pointer,high,VA 0x76271F70
+E7-2,1329105,0x00834871,E7,0x0081CF01,0x00821478,4,user32 base,module-base,high,0x76980000
+E7-3,1454813,0x00834871,E7,0x0081CF01,0x00821478,4,advapi32 base,module-base,high,0x767F0000
+E7-4,1501343,0x0081D2A4,E7,0x0081CF01,0x0081AAA5,4,LoadLibraryA,api-pointer,high,VA 0x76271F70
+E7-5,1501362,0x0081D398,E7,0x0081CF01,0x0081A81D,4,LoadLibraryA,api-pointer,high,VA 0x76271F70
+E7-6,1624378,0x00834871,E7,0x0081CF01,0x00821478,4,ntdll base,module-base,high,0x77080000
+E7-7,1930670,0x00834871,E7,0x0081CF01,0x00821478,4,GetLocalTime,api-pointer,high,VA 0x7625D430
+E7-8,2409109,0x0081D398,E7,0x0081CF01,0x0081A81D,4,MessageBoxExA,api-pointer,high,VA 0x76A25100
+E10-1,2409207,0x0001EA00,E10,,,,"\\.\SICE",anti-debug-api,high,CreateFileA VA 0x7625EA00; return value not supplied

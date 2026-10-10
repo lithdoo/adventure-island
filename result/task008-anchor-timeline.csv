@@ -1,0 +1,23 @@
+round_id,region_start,region_end,anchor_type,rva,evidence,first_seen,confidence
+1,0x0081CEB5,0x00824081,aes-key,,,not observed,high
+1,0x0081CEB5,0x00824081,iv-prefix,,,not observed,high
+1,0x0081CEB5,0x00824081,iv-seed,,,not observed,high
+1,0x0081CEB5,0x00824081,List.wz,,,not observed,high
+1,0x0081CEB5,0x00824081,.wz,,,not observed,high
+1,0x0081CEB5,0x00824081,WS2_32,,,not observed,high
+1,0x0081CEB5,0x00824081,WSAStartup,,,not observed,high
+1,0x0081CEB5,0x00824081,connect,,,not observed,high
+1,0x0081CEB5,0x00824081,send,,,not observed,high
+1,0x0081CEB5,0x00824081,recv,,,not observed,high
+1,0x0081CEB5,0x00824081,rtti,.?AV count 0,not observed,high
+2,0x0081D633,0x00824093,aes-key,,,not observed,high
+2,0x0081D633,0x00824093,iv-prefix,,,not observed,high
+2,0x0081D633,0x00824093,iv-seed,,,not observed,high
+2,0x0081D633,0x00824093,List.wz,,,not observed,high
+2,0x0081D633,0x00824093,.wz,,,not observed,high
+2,0x0081D633,0x00824093,WS2_32,,,not observed,high
+2,0x0081D633,0x00824093,WSAStartup,,,not observed,high
+2,0x0081D633,0x00824093,connect,,,not observed,high
+2,0x0081D633,0x00824093,send,,,not observed,high
+2,0x0081D633,0x00824093,recv,,,not observed,high
+2,0x0081D633,0x00824093,msvc-prologue,0x0081D633,count 1,round 2,low
