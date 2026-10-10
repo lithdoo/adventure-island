@@ -1,0 +1,5 @@
+order,module_name,method,caller_rva,base,apis,status
+1,kernel32.dll,already loaded; base found from the GetLocalTime IAT scan,0x0081CCC6,0x76240000,LoadLibraryA; GetLocalTime; CreateFileA,already-loaded
+2,USER32.dll,LoadLibraryA,0x00857E4A,0x76980000,MessageBoxExA,protector-loaded
+3,ADVAPI32.dll,LoadLibraryA,0x00857E54,0x767F0000,,protector-loaded
+4,NTDLL.dll,LoadLibraryA,0x00857E68,0x77080000,,protector-loaded

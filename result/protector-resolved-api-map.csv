@@ -1,0 +1,5 @@
+module,api_name,resolver_callsite_rva,resolved_va,destination_slot_rva,first_consumer_rva,call_count,semantic_category,confidence
+kernel32.dll,LoadLibraryA,0x00857E4A; 0x00857E54; 0x00857E68,0x76271F70,0x00821478; 0x0081AAA5; 0x0081A81D,0x00857E4A,3,module loading,high
+kernel32.dll,GetLocalTime,0x00857E7C,0x7625D430,0x00821478; 0x0081A81D,0x00857E7C,1,system information,high
+user32.dll,MessageBoxExA,0x0081CF01,0x76A25100,0x0081A81D,,0,window/UI,high
+kernel32.dll,CreateFileA,0x00859757,0x7625EA00,,0x00859757,1,anti-debug/environment probe,high

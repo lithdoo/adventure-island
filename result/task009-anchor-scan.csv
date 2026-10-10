@@ -1,0 +1,12 @@
+anchor,region,found,rva,notes
+aes-key,probe-window 0x856000-0x862000 and decode rounds,no,,no post-probe decode that is independent of the handle
+iv-prefix,probe-window and decode rounds,no,,not present
+iv-seed,probe-window and decode rounds,no,,not present
+List.wz,probe-window,no,,not present
+.wz,probe-window,no,,not present
+WS2_32,probe-window,no,,not present
+WSAStartup,probe-window,no,,not present
+connect/send/recv,probe-window,no,,no Winsock names
+MSVC-RTTI,probe-window,no,,no .?AV and no 55 8B EC
+Tail-A,replay,no,,first page still zero; no cross-Tail-B write
+ZtlTaskMem,replay,no,0x005FC19F,three slots still 16 zero bytes

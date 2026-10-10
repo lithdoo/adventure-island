@@ -1,0 +1,6 @@
+probe_id,caller_rva,api_or_primitive,probe_target,return_test,branch_target,downstream,confidence
+P1,0x00859757,kernel32!CreateFileA,\\.\SICE,inc eax; jne at 0x00859779,0x00859780 absent; 0x00859A61 present,absent side contains the next device loads; present side keeps the handle,high
+P2,0x00859882,lea ebx of a device name,\\.\SIWVID,,,"same lea-ebx shape as P1, in the address span after the absent edge",medium
+P3,0x008599BF,lea ebx of a device name,\\.\NTICE,,,"same lea-ebx shape as P1, still before the present-edge target",medium
+P4,0x00859D07,call dword [ebp+0x7480CD1],HKCU\Software\WinLicense,,,"three-argument open shape, hKey immediate 0x80000001",high
+P5,0x00859D26,call dword [ebp+0x7441815],WinLicenseVersion and the sibling value names in the same cluster,,,value-name loads follow the open; no query result was executed,medium

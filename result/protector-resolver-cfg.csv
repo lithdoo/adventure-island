@@ -1,0 +1,23 @@
+rva,role,detail
+0x0081CF01,walker-entry,lodsw of e_lfanew; ESI = module+0x3C
+0x0081CF0A,module-base,"add eax, [esp+0x24]; stack dword is the module base"
+0x0081CF3C,data-directory,"mov eax, [eax+0x78]; export directory RVA"
+0x0081CF97,number-of-names,"mov eax, [eax+0x18]; count stored at slot 0x0081CEB7"
+0x0081D034,address-of-functions,lodsd then stosd to slot 0x0081A331
+0x0081D063,address-of-names,lodsd then stosd to slot 0x0081A7ED
+0x0081D0CF,address-of-name-ordinals,lodsd then stosd to slot 0x00819101
+0x0081D126,name-slot,lodsd of the next AddressOfNames entry
+0x0081D138,first-character,"cmp al, [edi]; AL comes from slot 0x0081A361, 0 skips the test"
+0x0081D13F,length,"scasb walks to the NUL; this is the length, not a full strcmp"
+0x0081D14C,name-checksum,"per-byte mix using xor ax, 0x5041 and xor bx, 0x5449; compared with incoming EDX"
+0x0081D186,match,je 0x0081D197 when the checksum matches
+0x0081D1FF,ordinal,lodsw at AddressOfNameOrdinals + index*2
+0x0081D22F,function-rva,"lodsd at AddressOfFunctions + ordinal*4, then add module base"
+0x0081D272,return-value,"mov [esp+0x1c], eax; popal makes that EAX"
+0x0081D2A4,slot-add,"add dword [slot 0x0081AAA5], esi"
+0x0081D2AA,first-byte-test,lodsb at the resolved VA; rcl tests can skip to the epilogue. No forwarder string walk
+0x0081D115,failure,"mov dword [esp+0x1c], 0 then join the epilogue"
+0x0081D398,slot-write,"mov dword [slot 0x0081A81D], eax"
+0x0081D3A4,return,ret 8
+0x00821750,wrapper,"shared target of push imm; jmp. Relocates one internal table, then lodsb a descriptor"
+0x00834871,pointer-commit,pop dword [edx]; observed destination slot 0x00821478

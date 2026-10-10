@@ -363,6 +363,8 @@ def main(argv: list[str] | None = None) -> int:
     def stdcall_return(nargs: int, value: int) -> None:
         esp = uc.reg_read(UC_X86_REG_ESP)
         ret = dword_at(esp)
+        if state["resolved"]:
+            state["resolved"][-1]["return_rva"] = hex(ret - IMAGE)
         uc.reg_write(UC_X86_REG_EAX, value & 0xFFFFFFFF)
         uc.reg_write(UC_X86_REG_ESP, esp + 4 + 4 * nargs)
         uc.reg_write(UC_X86_REG_EIP, ret)
@@ -510,11 +512,38 @@ def main(argv: list[str] | None = None) -> int:
                 event("E10", detail=f"debugger-sensitive API {called} was not answered")
                 return
             state["missing_module"] = called
+            esp = uc.reg_read(UC_X86_REG_ESP)
             arg_text = ""
             try:
-                arg_text = read_cstr(dword_at(uc.reg_read(UC_X86_REG_ESP) + 4))
+                arg_text = read_cstr(dword_at(esp + 4))
             except Exception:
                 arg_text = ""
+            if called == "CreateFileA":
+                ret = dword_at(esp)
+                args7 = [dword_at(esp + 4 * (index + 1)) for index in range(7)]
+                window = b""
+                region = b""
+                region_rva = None
+                if IMAGE <= ret < IMAGE + image_size:
+                    window = bytes(uc.mem_read(ret - 16, 160))
+                    lo = min(ret, args7[0]) - 0x80
+                    lo = max(lo, IMAGE)
+                    size = min(0x1000, max(ret, args7[0]) + 0x500 - lo)
+                    region = bytes(uc.mem_read(lo, size))
+                    region_rva = lo - IMAGE
+                state["probe"] = {
+                    "eip": uc.reg_read(UC_X86_REG_EIP),
+                    "esp": esp,
+                    "return": ret,
+                    "args": args7,
+                    "arg_text": arg_text,
+                    "eax": uc.reg_read(UC_X86_REG_EAX),
+                    "window_rva": (ret - 16 - IMAGE) if window else None,
+                    "window": window.hex(),
+                    "region_rva": region_rva,
+                    "region": region.hex(),
+                    "insn": state["count"],
+                }
             event("E10", detail=f"no stub for {called} arg={arg_text[:120]!r}")
             return
         if rva == ROUND1_PRODUCER and state.get("round1_sample") is None and state["phase"] == "round1":
@@ -729,6 +758,9 @@ def main(argv: list[str] | None = None) -> int:
     tail_a = bytes(uc.mem_read(IMAGE + TAIL_A[0], 0x1000))
     state["tail_a_nonzero"] = any(tail_a)
 
+    if args.work_dir and state.get("probe"):
+        args.work_dir.mkdir(parents=True, exist_ok=True)
+        (args.work_dir / "probe-window.bin").write_bytes(bytes(uc.mem_read(IMAGE + 0x856000, 0xC000)))
     if args.work_dir and state.get("rounds"):
         args.work_dir.mkdir(parents=True, exist_ok=True)
         # Keep only hashes in the JSON; the slices stay in the work directory.
@@ -767,6 +799,7 @@ def main(argv: list[str] | None = None) -> int:
         "anchors": state["anchors_seen"],
         "resolved": state.get("resolved", []),
         "missing_module": state.get("missing_module"),
+        "probe": state.get("probe"),
         "round2_hits": state.get("round2_hits"),
         "image_size": hex(image_size),
     }

@@ -1,0 +1,6 @@
+from_rva,instruction,condition,target_rva,classification
+0x00859708,"lea ebx, [ebp+0x74804F3]",none,0x00859507,string reference \\.\SICE
+0x00859757,call eax,eax = CreateFileA,0x7625EA00,file/device probe
+0x00859759,call/pop/add/ret gadget,unconditional,0x00859779,continue protector initialization
+0x00859779,inc eax; jne,ZF=1 when the handle was 0xFFFFFFFF,0x00859780,run additional probes
+0x0085977A,jne,ZF=0 when the handle was not INVALID_HANDLE_VALUE,0x00859A61,unknown
