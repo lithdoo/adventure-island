@@ -1,0 +1,19 @@
+reference_version,reference_symbol,reference_address_or_offset,reference_kind,cms079_local_evidence_to_require,priority,status
+GMS95,CClientSocket singleton,0x00C64064,singleton pointer,"CMS079 RTTI/vtable or socket-call cluster plus singleton access pattern",high,unmatched
+GMS95,CWvsContext singleton,0x00C64068,singleton pointer,"CMS079 RTTI/vtable plus world/channel/account state accesses",high,unmatched
+GMS95,CWvsApp singleton,0x00C64314,singleton pointer,"CMS079 RTTI/vtable plus HWND/main-loop ownership",medium,unmatched
+GMS95,CQuestMan singleton,0x00C6AB68,singleton pointer,"CMS079 RTTI/vtable plus quest/WZ references",medium,unmatched
+GMS95,CClientSocket::SendPacket pointer,0x00C687AC,function pointer,"socket send path + Maple packet header/encryption behavior",critical,unmatched
+GMS95,SendLoginPacket,0x005DBEF0,function,"login opcode construction + COutPacket encoding + socket send",critical,unmatched
+GMS95,SetWorldInfo,0x009E02A0,function,"server/world list packet handling + world/channel state writes",high,unmatched
+GMS95,CWvsContext.WorldId,+0x205C,field offset,"candidate object receives world id during login/server-list flow",high,unmatched
+GMS95,CWvsContext.ChannelId,+0x2060,field offset,"candidate object receives channel id before migration",high,unmatched
+GMS95,CWvsContext.CharacterId,+0x20B4,field offset,"candidate object receives selected/active character id",high,unmatched
+GMS95,CLogin.LoginStep,+0x1A4,field offset,"login-stage state machine with server/world/character transitions",high,unmatched
+GMS95,CLogin.WorldItem,+0x1CC,field offset,"world-list parsing and UI population",medium,unmatched
+GMS95,CUIChannelSelect.Select,+0xFC,field offset,"channel-selection UI and CHARLIST/selection flow",medium,unmatched
+GMS95,CWvsApp.TargetVersion,+0x54,field offset,"version/handshake setup or app initialization",medium,unmatched
+Task002,Maple AES key,"13 00 00 00 08 00 00 00 06 00 00 00 B4 00 00 00 1B 00 00 00 0F 00 00 00 33 00 00 00 52 00 00 00",constant,"exact byte match in materialized game code/data",critical,unmatched
+Task002,Maple IV table prefix,"EC 3F 77 A4 45 D0 71 BF B7 98 20 FC 4B E9 B3 E1",constant,"exact byte match in materialized game code/data",critical,unmatched
+Task002,Maple IV seed,"F2 53 50 C6",constant,"match plus nearby IV shuffle/AES use",critical,unmatched
+Task002,CClientSocket send/receive family,,behavior,"4-byte header + MapleCustomEncryption + AES stream + socket IO",critical,unmatched
