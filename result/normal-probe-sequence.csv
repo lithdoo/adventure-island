@@ -1,0 +1,6 @@
+probe_target,callsite,api,return_test,normal_edge,detection_edge,downstream,confidence
+\\.\SICE,0x00859757,call eax / CreateFileA,0x00859779 inc eax; 0x0085977A jne 0x00859A61,0x00859780,0x00859A61,0x00859882 SIWVID,high
+\\.\SIWVID,0x008598B3,call eax / same CreateFileA recipe,0x008598BB inc eax; 0x008598BC jne 0x00859A61,0x008598C2,0x00859A61,0x008599BF NTICE,high
+\\.\NTICE,0x008599FC,call eax / same CreateFileA recipe,0x0085A004 inc eax; 0x0085A005 jne 0x00859A61,0x0085A00B,0x00859A61,0x0085A36E resolver then self-decode,high
+HKCU\Software\WinLicense,,registry cluster not on this edge,,not reached,,jumped over at 0x00859CE9,high
+\\.\oreans32,,string loaded but callsite unresolved,,,,inside second decode at 0x0085ECB8,medium

@@ -1,0 +1,6 @@
+timestamp,kind,detail
+2026-10-10T07:23:37Z,createprocess,"MapleStory.exe 127.0.0.1 9555 failed WinError 740 ERROR_ELEVATION_REQUIRED"
+2026-10-10T07:23:37Z,process-snapshot,no existing MapleStory.exe
+2026-10-10T07:23:37Z,tcp,no client process to observe 9555 or 7575-7578 or 8600
+2026-10-10T07:23:37Z,tail-a,not queried; process was not created
+2026-10-10T07:23:37Z,ztl,not queried; process was not created

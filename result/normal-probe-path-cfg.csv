@@ -1,0 +1,16 @@
+start_rva,end_rva,successor,predecessor,semantic_class,string_or_data,api_or_resolver,confidence
+0x00859780,0x008597B6,0x008597BC;0x008597CC,0x0085977A,device-probe,,fall-through after SICE inc/jne,high
+0x008597CC,0x008598B3,0x008598B5,0x008597BC;0x008597CC,device-probe,\\.\SIWVID,call eax,high
+0x008598B5,0x008598BC,0x008598C2;0x00859A61,0x008598B3,device-probe,,inc eax / jne,high
+0x008598C2,0x008599FC,0x008599FE,0x008598BC,device-probe,\\.\NTICE,call eax,high
+0x008599FE,0x0085A005,0x0085A00B;0x00859A61,0x008599FC,device-probe,,inc eax / jne,high
+0x0085A00B,0x0085A018,0x00859B8C,0x0085A005,protector-state,,,high
+0x00859BC0,0x00859C0B,0x00859C0B,0x00859B8C,protector-state,flag slots 0x0081BAB5 and 0x008191F1,skipped internal calls when both are zero,medium
+0x00859C0B,0x00859C1F,0x00859CE9,0x00859BC0,protector-state,,jmp over the registry call block,high
+0x00859CE9,0x00859CED,0x0085A36E,0x00859C1F,protector-state,Software\WinLicense not reached,jmp 0x0085A36E,high
+0x0085A36E,0x0085A3FE,0x0085A404,0x00859CE9,resolver,,call [slot 0x0081C245] x5,medium
+0x0085A410,0x0085A4E9,0x0085A518;0x0085A4EF,0x0085A404,self-decode,5977 dwords,pop dword ptr [ebx+esi],high
+0x0085A530,0x0085A5D4,0x0085A5D9,0x0085A4EF,protector-state,/getwlstatus /bugcheck /nosplash,decoded command-line table,high
+0x0085A9B6,0x0085AA3F,0x0085AA45,0x0085A986,self-decode,5958 dwords,pop dword ptr [edx],high
+0x0085AA45,0x0085B400,0x0085EBD5,0x0085AA3F,memory-materializer,embedded LE/VxD at 0x0085B405,self-patch then jmp,high
+0x00859A61,0x00859A64,,0x0085977A;0x008598BC;0x0085A005,device-probe,shared detection edge,"mov ebx, eax / dec ebx",high

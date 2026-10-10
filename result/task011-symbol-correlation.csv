@@ -1,0 +1,10 @@
+symbol,cms079_rva,evidence,confidence,note
+CClientSocket,,,unmatched,no game-like block
+CClientSocket::SendPacket,,,unmatched,no game-like block
+CInPacket,,,unmatched,no game-like block
+COutPacket,,,unmatched,no game-like block
+CWvsContext,,,unmatched,no game-like block
+CWvsApp,,,unmatched,no game-like block
+CLogin,,,unmatched,no game-like block
+SendLoginPacket,,,unmatched,no game-like block
+SetWorldInfo,,,unmatched,no game-like block

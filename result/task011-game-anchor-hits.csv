@@ -1,0 +1,9 @@
+first_seen_stage,region,rva,evidence,confidence
+not-reached,none,,AES key absent from probe window and both decoded spans,not-observed
+not-reached,none,,IV prefix absent,not-observed
+not-reached,none,,IV seed F2 53 50 C6 absent,not-observed
+not-reached,none,,List.wz / .wz absent,not-observed
+not-reached,none,,WS2_32 / WSAStartup / socket absent,not-observed
+not-reached,none,,.?AV / .?AU / vtable cluster absent,not-observed
+second-decode,Tail B,0x0085B405,"MZ/LE VxD image, not a game RTTI block",high
+second-decode,Tail B,0x0085ECB8,"\\.\oreans32 string, driver setup, not Winsock",high

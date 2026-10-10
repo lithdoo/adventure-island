@@ -1,0 +1,7 @@
+event,producer_rva,source,destination,length,raw_backing,classification,entropy,buffer_sha256,confidence
+E1,,,,,not observed,Tail A 0x002CE000-0x007EA000,,,high
+E2,,,0x005FC19F;0x005FC1B0;0x005FC1C1,,not observed,ZtlTaskMem slots,,,high
+E3,,,,,not observed,execute outside Tail B,,,high
+E4,,,,,not observed,new executable region,,,high
+E5,0x0085A4C2,in-place Tail B,0x0085A530-0x00860293,0x5D64,captured probe window,self-decode,,4ddbdf0e304328b837c2142b3a49064381491ec3edd20fa544d09ab1c8f4ff47,high
+E5,0x0085AA35,in-place Tail B,0x0085AA4B-0x00860762,0x5D18,output of the first loop plus the bytes above it,self-decode / embedded LE,2.648,d6cfe6b9e933a59ce97291e38325ebd1f75084ba804aaf78682c9220bb0e4172,high
