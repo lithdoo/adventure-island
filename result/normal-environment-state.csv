@@ -1,0 +1,10 @@
+item,kind,present,observation,evidence_class
+\\.\SICE,device,no,CreateFileA returned 0xFFFFFFFF GetLastError 2,observed
+\\.\SIWVID,device,no,CreateFileA returned 0xFFFFFFFF GetLastError 2,observed
+\\.\NTICE,device,no,CreateFileA returned 0xFFFFFFFF GetLastError 2,observed
+Services\SICE,driver-service,no,registry key absent,observed
+Services\NTICE,driver-service,no,registry key absent,observed
+Services\SIWVID,driver-service,no,registry key absent,observed
+HKCU\Software\WinLicense,registry-key,no,reg query found no key,observed
+HKCU\Software\WLkt,registry-key,no,reg query found no key,observed
+host,os,yes,Windows 10 Pro build 26200 25H2,observed

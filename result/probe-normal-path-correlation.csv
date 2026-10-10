@@ -1,0 +1,5 @@
+edge,rva,condition,real_world_condition,evidence_class,role,confidence
+device-absent,0x00859780,inc eax sets ZF because EAX was 0xFFFFFFFF,no \\.\SICE object; CreateFileA fails with ERROR_FILE_NOT_FOUND,observed fact plus documented API plus MeltICE/OpenRCE,normal environment path; next device names sit in this span,high
+device-present,0x00859A61,jne taken because EAX was not 0xFFFFFFFF,a SoftICE device object accepted the open,documented API plus MeltICE/OpenRCE; not observed on this host,historical debugger-present path,high
+SIWVID load,0x00859882,lea ebx of \\.\SIWVID in the absent span,same missing-device result is expected if that open is reached,reference order plus static placement; the call itself was not executed,further probe on the normal path,medium
+NTICE load,0x008599BF,lea ebx of \\.\NTICE before 0x00859A61,same missing-device result is expected if that open is reached,reference order plus static placement; the call itself was not executed,further probe on the normal path,medium

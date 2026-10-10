@@ -1,0 +1,25 @@
+indicator,url,title,date,claimed_family,evidence_class,confidence,note
+\\.\SICE,https://www.accessroot.com/fravia/fp_melti.htm,MeltICE SoftICE 3.xx detection,1997-08-22,NuMega SoftICE,direct,high,CreateFile arguments match this client's SICE call
+\\.\NTICE,https://www.accessroot.com/fravia/fp_melti.htm,MeltICE SoftICE 3.xx detection,1997-08-22,NuMega SoftICE,direct,high,Windows NT device name
+\\.\SICE,https://www.openrce.org/reference_library/anti_reversing_view/3/SoftIce%20Driver%20Detection/,SoftIce Driver Detection,2006-03-11,SoftICE,direct,high,first of three device strings
+\\.\SIWVID,https://www.openrce.org/reference_library/anti_reversing_view/3/SoftIce%20Driver%20Detection/,SoftIce Driver Detection,2006-03-11,SoftICE,direct,high,second device string in the same list
+\\.\NTICE,https://www.openrce.org/reference_library/anti_reversing_view/3/SoftIce%20Driver%20Detection/,SoftIce Driver Detection,2006-03-11,SoftICE,direct,high,third device string in the same list
+SIWVID.SYS,https://doczz.net/doc/2748802/using-softice,Using SoftICE,1999-04,Compuware SoftICE,direct,high,manual names the NT video driver SIWVID.SYS and the debugger driver NTICE.SYS
+NTICE.SYS,https://doczz.net/doc/2748802/using-softice,Using SoftICE,1999-04,Compuware SoftICE,direct,high,NT kernel debugger driver
+Software\WinLicense,https://www.joesandbox.com/joereverser/analysis/download/4b701ba2-fe7f-4826-807c-007de0bf1fd5?type=html,Joe Sandbox reverser report,2025-12-16,Themida/WinLicense,secondary,medium,string IOC only; not a vendor spec
+Software\WLkt,https://www.joesandbox.com/joereverser/analysis/download/4b701ba2-fe7f-4826-807c-007de0bf1fd5?type=html,Joe Sandbox reverser report,2025-12-16,Themida/WinLicense,secondary,medium,called token storage by that report
+HKCU or HKLM license key,https://oreans.com/help/wl/hm_registry-keys.htm,WinLicense registry keys,undated,WinLicense,direct,high,customer license path is configurable; this page does not fix the path to Software\WinLicense
+WinLicenseVersion,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+WinLicenseDriverVersion,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+WinLicenseInstance,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+CheckIN,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+CheckOUT,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+XprotExit,,"not found in fetched sources",,unattributed externally,absent,low,Xprot spelling is a name-level hint only
+ExitOk,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+ProcIN,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+ProcOUT,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+ExitIN,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+ExitOUT,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+ExpInfo,,"not found in fetched sources",,unattributed externally,absent,low,present only in this client's materialized window
+TpIN,,"not found in fetched sources",,unattributed externally,absent,low,extra name in the same string table
+HWIN,,"not found in fetched sources",,unattributed externally,absent,low,extra name in the same string table

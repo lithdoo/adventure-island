@@ -1,0 +1,13 @@
+feature,winlicense,themida,xprotector_oreans,generic_custom,basis
+device names SICE SIWVID NTICE,possible,possible,possible,possible,1997 and 2006 sources tie the names to SoftICE; many protectors copied that check
+registry path Software\WinLicense,probable,possible,possible,contradicted,exact key in a Themida/WinLicense-labeled secondary report; too specific for an unrelated custom stub
+registry path Software\WLkt,probable,possible,possible,contradicted,same secondary report lists this second key
+value names WinLicenseVersion and siblings,probable,possible,possible,unsupported,names are in this sample only; no second source quotes them
+XprotExit token,possible,possible,possible,unsupported,spelling suggests the older XProtector name; no fetched page contains the string
+export walker plus wrapper,possible,possible,unsupported,possible,one checksum walker is consistent with a commercial stub and also with a custom one
+aPLib-style T2,possible,possible,unsupported,possible,Task 006 matched public aPLib thresholds; that does not pick a vendor
+self-modifying rounds,possible,possible,unsupported,possible,two in-place rounds are protector behavior; not vendor-specific
+section layout on disk,unsupported,unsupported,unsupported,possible,Task 001 found no Themida or WinLicense string and no .themida section
+single GetLocalTime import and runtime LoadLibrary,probable,probable,unsupported,possible,matches the thin-import pattern described for this family; also seen in other protectors
+era versus CMS079,probable,probable,possible,possible,SoftICE checks are 1997-2006; WinLicense existed through the 079 client period
+overall,probable,possible,possible,unsupported,the key names carry the attribution; one string would not

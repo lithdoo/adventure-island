@@ -1,0 +1,31 @@
+callsite_rva,root,key_path,value_name,function_slot_rva,argument_shape,intent,confidence
+0x00859D07,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x00859D26,HKEY_CURRENT_USER,Software\WinLicense,WinLicenseVersion,0x0081A829,hkey name reserved=0 type=1 slot cb=0x19,value access; API unresolved,medium
+0x00859D5E,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x00859D7E,HKEY_CURRENT_USER,Software\WinLicense,WinLicenseInstance,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x00859DB6,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x00859DD6,HKEY_CURRENT_USER,Software\WinLicense,WinLicenseDriverVersion,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x00859E0E,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x00859E2E,HKEY_CURRENT_USER,Software\WinLicense,ExitOk,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x00859E66,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x00859E86,HKEY_CURRENT_USER,Software\WinLicense,XprotExit,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x00859F3D,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x00859F5D,HKEY_CURRENT_USER,Software\WinLicense,TpIN,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x00859FA4,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x00859FC4,HKEY_CURRENT_USER,Software\WinLicense,HWIN,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x0085A00B,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x0085A02B,HKEY_CURRENT_USER,Software\WinLicense,ExpInfo,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x0085A059,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x0085A079,HKEY_CURRENT_USER,Software\WinLicense,ProcIN,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x0085A0C0,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x0085A0E0,HKEY_CURRENT_USER,Software\WinLicense,ProcOUT,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x0085A127,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x0085A147,HKEY_CURRENT_USER,Software\WinLicense,ExitIN,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x0085A18E,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x0085A1AE,HKEY_CURRENT_USER,Software\WinLicense,ExitOUT,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x0085A1F9,HKEY_CURRENT_USER,Software\WLkt,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x0085A230,HKEY_CURRENT_USER,Software\WLkt,CheckIN,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x0085A2BA,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x0085A2DA,HKEY_CURRENT_USER,Software\WinLicense,CheckIN,0x0081A829,same six-argument shape,value access; API unresolved,medium
+0x0085A321,HKEY_CURRENT_USER,Software\WinLicense,,0x00859CE5,root subkey phkey,open; API unresolved,high
+0x0085A341,HKEY_CURRENT_USER,Software\WinLicense,CheckOUT,0x0081A829,same six-argument shape,value access; API unresolved,medium
