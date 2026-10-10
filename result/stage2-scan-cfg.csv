@@ -1,0 +1,693 @@
+rva,bytes,mnemonic,operands,edges
+0x0081C6C5,8bc5,mov,"eax, ebp",next:0081C6C7
+0x0081C6C7,8bd4,mov,"edx, esp",next:0081C6C9
+0x0081C6C9,60,pushal,,next:0081C6CA
+0x0081C6CA,e800000000,call,0x81c6cf,call:0081C6CF;return:0081C6CF
+0x0081C6CF,5d,pop,ebp,next:0081C6D0
+0x0081C6D0,81edbb364407,sub,"ebp, 0x74436bb",next:0081C6D6
+0x0081C6D6,8995f9004407,mov,"dword ptr [ebp + 0x74400f9], edx",next:0081C6DC
+0x0081C6DC,89b5f11b4407,mov,"dword ptr [ebp + 0x7441bf1], esi",next:0081C6E2
+0x0081C6E2,89852d2c4407,mov,"dword ptr [ebp + 0x7442c2d], eax",next:0081C6E8
+0x0081C6E8,83bd8d21440700,cmp,"dword ptr [ebp + 0x744218d], 0",next:0081C6EF
+0x0081C6EF,740c,je,0x81c6fd,branch:0081C6FD;fall:0081C6F1
+0x0081C6F1,8be8,mov,"ebp, eax",next:0081C6F3
+0x0081C6F3,8be2,mov,"esp, edx",next:0081C6F5
+0x0081C6F5,b801000000,mov,"eax, 1",next:0081C6FA
+0x0081C6FA,c20c00,ret,0xc,ret
+0x0081C6FD,8b442424,mov,"eax, dword ptr [esp + 0x24]",next:0081C701
+0x0081C701,898549234407,mov,"dword ptr [ebp + 0x7442349], eax",next:0081C707
+0x0081C707,6a45,push,0x45,next:0081C709
+0x0081C709,e8a3000000,call,0x81c7b1,call:0081C7B1;return:0081C70E
+0x0081C70E,689a748307,push,0x783749a,next:0081C713
+0x0081C713,e8df000000,call,0x81c7f7,call:0081C7F7;return:0081C718
+0x0081C718,68254b890a,push,0xa894b25,next:0081C71D
+0x0081C71D,e8d5000000,call,0x81c7f7,call:0081C7F7;return:0081C722
+0x0081C722,e9e9030000,jmp,0x81cb10,jmp:0081CB10
+0x0081C7B1,55,push,ebp,next:0081C7B2
+0x0081C7B2,8bec,mov,"ebp, esp",next:0081C7B4
+0x0081C7B4,83c4d8,add,"esp, -0x28",next:0081C7B7
+0x0081C7B7,60,pushal,,next:0081C7B8
+0x0081C7B8,e800000000,call,0x81c7bd,call:0081C7BD;return:0081C7BD
+0x0081C7BD,5a,pop,edx,next:0081C7BE
+0x0081C7BE,81eaa9374407,sub,"edx, 0x74437a9",next:0081C7C4
+0x0081C7C4,8bda,mov,"ebx, edx",next:0081C7C6
+0x0081C7C6,c745d800000000,mov,"dword ptr [ebp - 0x28], 0",next:0081C7CD
+0x0081C7CD,8b45d8,mov,"eax, dword ptr [ebp - 0x28]",next:0081C7D0
+0x0081C7D0,40,inc,eax,next:0081C7D1
+0x0081C7D1,8945d8,mov,"dword ptr [ebp - 0x28], eax",next:0081C7D4
+0x0081C7D4,817dd880000000,cmp,"dword ptr [ebp - 0x28], 0x80",next:0081C7DB
+0x0081C7DB,740f,je,0x81c7ec,branch:0081C7EC;fall:0081C7DD
+0x0081C7DD,8b4508,mov,"eax, dword ptr [ebp + 8]",next:0081C7E0
+0x0081C7E0,898313374407,mov,"dword ptr [ebx + 0x7443713], eax",next:0081C7E6
+0x0081C7E6,ff4508,inc,dword ptr [ebp + 8],next:0081C7E9
+0x0081C7E9,43,inc,ebx,next:0081C7EA
+0x0081C7EA,ebe1,jmp,0x81c7cd,jmp:0081C7CD
+0x0081C7EC,8945dc,mov,"dword ptr [ebp - 0x24], eax",next:0081C7EF
+0x0081C7EF,61,popal,,next:0081C7F0
+0x0081C7F0,8b45dc,mov,"eax, dword ptr [ebp - 0x24]",next:0081C7F3
+0x0081C7F3,c9,leave,,next:0081C7F4
+0x0081C7F4,c20400,ret,4,ret
+0x0081C7F7,55,push,ebp,next:0081C7F8
+0x0081C7F8,8bec,mov,"ebp, esp",next:0081C7FA
+0x0081C7FA,81c47cffffff,add,"esp, 0xffffff7c",next:0081C800
+0x0081C800,60,pushal,,next:0081C801
+0x0081C801,e800000000,call,0x81c806,call:0081C806;return:0081C806
+0x0081C806,5a,pop,edx,next:0081C807
+0x0081C807,81eaf2374407,sub,"edx, 0x74437f2",next:0081C80D
+0x0081C80D,8d4580,lea,"eax, [ebp - 0x80]",next:0081C810
+0x0081C810,8b5d08,mov,"ebx, dword ptr [ebp + 8]",next:0081C813
+0x0081C813,c7857cffffff00000000,mov,"dword ptr [ebp - 0x84], 0",next:0081C81D
+0x0081C81D,8b8d7cffffff,mov,"ecx, dword ptr [ebp - 0x84]",next:0081C823
+0x0081C823,d1c3,rol,"ebx, 1",next:0081C825
+0x0081C825,8818,mov,"byte ptr [eax], bl",next:0081C827
+0x0081C827,41,inc,ecx,next:0081C828
+0x0081C828,898d7cffffff,mov,"dword ptr [ebp - 0x84], ecx",next:0081C82E
+0x0081C82E,81bd7cffffff80000000,cmp,"dword ptr [ebp - 0x84], 0x80",next:0081C838
+0x0081C838,75e3,jne,0x81c81d,branch:0081C81D;fall:0081C83A
+0x0081C83A,c7857cffffff00000000,mov,"dword ptr [ebp - 0x84], 0",next:0081C844
+0x0081C844,8dba13374407,lea,"edi, [edx + 0x7443713]",next:0081C84A
+0x0081C84A,8d7580,lea,"esi, [ebp - 0x80]",next:0081C84D
+0x0081C84D,8a0e,mov,"cl, byte ptr [esi]",next:0081C84F
+0x0081C84F,bbf4010000,mov,"ebx, 0x1f4",next:0081C854
+0x0081C854,b8ab375478,mov,"eax, 0x785437ab",next:0081C859
+0x0081C859,d3d0,rcl,"eax, cl",next:0081C85B
+0x0081C85B,8a0f,mov,"cl, byte ptr [edi]",next:0081C85D
+0x0081C85D,d3d0,rcl,"eax, cl",next:0081C85F
+0x0081C85F,4b,dec,ebx,next:0081C860
+0x0081C860,75f7,jne,0x81c859,branch:0081C859;fall:0081C862
+0x0081C862,0fafc3,imul,"eax, ebx",next:0081C865
+0x0081C865,47,inc,edi,next:0081C866
+0x0081C866,46,inc,esi,next:0081C867
+0x0081C867,8b8d7cffffff,mov,"ecx, dword ptr [ebp - 0x84]",next:0081C86D
+0x0081C86D,41,inc,ecx,next:0081C86E
+0x0081C86E,898d7cffffff,mov,"dword ptr [ebp - 0x84], ecx",next:0081C874
+0x0081C874,81f980000000,cmp,"ecx, 0x80",next:0081C87A
+0x0081C87A,75d1,jne,0x81c84d,branch:0081C84D;fall:0081C87C
+0x0081C87C,61,popal,,next:0081C87D
+0x0081C87D,c9,leave,,next:0081C87E
+0x0081C87E,c20400,ret,4,ret
+0x0081CB10,b900700000,mov,"ecx, 0x7000",next:0081CB15
+0x0081CB15,8dbd0d3b4407,lea,"edi, [ebp + 0x7443b0d]",next:0081CB1B
+0x0081CB1B,fe0f,dec,byte ptr [edi],next:0081CB1D
+0x0081CB1D,47,inc,edi,next:0081CB1E
+0x0081CB1E,49,dec,ecx,next:0081CB1F
+0x0081CB1F,75fa,jne,0x81cb1b,branch:0081CB1B;fall:0081CB21
+0x0081CB21,b821216948,mov,"eax, 0x48692121",next:0081CB26
+0x0081CB26,ba009081f0,mov,"edx, 0xf0819000",next:0081CB2B
+0x0081CB2B,81ea000000f0,sub,"edx, 0xf0000000",next:0081CB31
+0x0081CB31,8d857c3c4407,lea,"eax, [ebp + 0x7443c7c]",next:0081CB37
+0x0081CB37,50,push,eax,next:0081CB38
+0x0081CB38,64ff3500000000,push,dword ptr fs:[0],next:0081CB3F
+0x0081CB3F,64892500000000,mov,"dword ptr fs:[0], esp",next:0081CB46
+0x0081CB46,e800000000,call,0x81cb4b,call:0081CB4B;return:0081CB4B
+0x0081CB4B,58,pop,eax,next:0081CB4C
+0x0081CB4C,6a00,push,0,next:0081CB4E
+0x0081CB4E,53,push,ebx,next:0081CB4F
+0x0081CB4F,e803000000,call,0x81cb57,gadget:0081CB6F
+0x0081CB6F,0f8416000000,je,0x81cb8b,branch:0081CB8B;fall:0081CB75
+0x0081CB75,e911000000,jmp,0x81cb8b,jmp:0081CB8B
+0x0081CB8B,0f8f03000000,jg,0x81cb94,branch:0081CB94;fall:0081CB91
+0x0081CB91,668bde,mov,"bx, si",next:0081CB94
+0x0081CB94,2bc2,sub,"eax, edx",next:0081CB96
+0x0081CB96,b79e,mov,"bh, 0x9e",next:0081CB98
+0x0081CB98,2500f0ffff,and,"eax, 0xfffff000",next:0081CB9D
+0x0081CB9D,0f870c000000,ja,0x81cbaf,branch:0081CBAF;fall:0081CBA3
+0x0081CBA3,0f8e06000000,jle,0x81cbaf,branch:0081CBAF;fall:0081CBA9
+0x0081CBA9,0f8400000000,je,0x81cbaf,branch:0081CBAF;fall:0081CBAF
+0x0081CBAF,8bca,mov,"ecx, edx",next:0081CBB1
+0x0081CBB1,33ff,xor,"edi, edi",next:0081CBB3
+0x0081CBB3,6681384d5a,cmp,"word ptr [eax], 0x5a4d",next:0081CBB8
+0x0081CBB8,750e,jne,0x81cbc8,branch:0081CBC8;fall:0081CBBA
+0x0081CBBA,0fb7503c,movzx,"edx, word ptr [eax + 0x3c]",next:0081CBBE
+0x0081CBBE,03d0,add,"edx, eax",next:0081CBC0
+0x0081CBC0,813a50450000,cmp,"dword ptr [edx], 0x4550",next:0081CBC6
+0x0081CBC6,7408,je,0x81cbd0,branch:0081CBD0;fall:0081CBC8
+0x0081CBC8,2d00100000,sub,"eax, 0x1000",next:0081CBCD
+0x0081CBCD,47,inc,edi,next:0081CBCE
+0x0081CBCE,ebe3,jmp,0x81cbb3,jmp:0081CBB3
+0x0081CBD0,648f0500000000,pop,dword ptr fs:[0],next:0081CBD7
+0x0081CBD7,83c404,add,"esp, 4",next:0081CBDA
+0x0081CBDA,8d958f3c4407,lea,"edx, [ebp + 0x7443c8f]",next:0081CBE0
+0x0081CBE0,52,push,edx,next:0081CBE1
+0x0081CBE1,64ff3500000000,push,dword ptr fs:[0],next:0081CBE8
+0x0081CBE8,64892500000000,mov,"dword ptr fs:[0], esp",next:0081CBEF
+0x0081CBEF,8bd0,mov,"edx, eax",next:0081CBF1
+0x0081CBF1,03c1,add,"eax, ecx",next:0081CBF3
+0x0081CBF3,2d00100000,sub,"eax, 0x1000",next:0081CBF8
+0x0081CBF8,be01000000,mov,"esi, 1",next:0081CBFD
+0x0081CBFD,0bf6,or,"esi, esi",next:0081CBFF
+0x0081CBFF,7412,je,0x81cc13,branch:0081CC13;fall:0081CC01
+0x0081CC01,be40808100,mov,"esi, 0x818040",next:0081CC06
+0x0081CC06,03f2,add,"esi, edx",next:0081CC08
+0x0081CC08,8b7610,mov,"esi, dword ptr [esi + 0x10]",next:0081CC0B
+0x0081CC0B,03f2,add,"esi, edx",next:0081CC0D
+0x0081CC0D,8b36,mov,"esi, dword ptr [esi]",next:0081CC0F
+0x0081CC0F,8bce,mov,"ecx, esi",next:0081CC11
+0x0081CC11,eb0c,jmp,0x81cc1f,jmp:0081CC1F
+0x0081CC13,8d700c,lea,"esi, [eax + 0xc]",next:0081CC16
+0x0081CC16,89b56d0f4407,mov,"dword ptr [ebp + 0x7440f6d], esi",next:0081CC1C
+0x0081CC1C,8b7004,mov,"esi, dword ptr [eax + 4]",next:0081CC1F
+0x0081CC1F,81e60000ffff,and,"esi, 0xffff0000",next:0081CC25
+0x0081CC25,81fe00000080,cmp,"esi, 0x80000000",next:0081CC2B
+0x0081CC2B,7631,jbe,0x81cc5e,branch:0081CC5E;fall:0081CC2D
+0x0081CC2D,be01000000,mov,"esi, 1",next:0081CC32
+0x0081CC32,0bf6,or,"esi, esi",next:0081CC34
+0x0081CC34,7425,je,0x81cc5b,branch:0081CC5B;fall:0081CC36
+0x0081CC36,8bf1,mov,"esi, ecx",next:0081CC38
+0x0081CC38,81fe0000f0bf,cmp,"esi, 0xbff00000",next:0081CC3E
+0x0081CC3E,7210,jb,0x81cc50,branch:0081CC50;fall:0081CC40
+0x0081CC40,81fe0000ffbf,cmp,"esi, 0xbfff0000",next:0081CC46
+0x0081CC46,7708,ja,0x81cc50,branch:0081CC50;fall:0081CC48
+0x0081CC48,81e60000ffff,and,"esi, 0xffff0000",next:0081CC4E
+0x0081CC4E,eb0e,jmp,0x81cc5e,jmp:0081CC5E
+0x0081CC50,8b7601,mov,"esi, dword ptr [esi + 1]",next:0081CC53
+0x0081CC53,81e60000ffff,and,"esi, 0xffff0000",next:0081CC59
+0x0081CC59,eb03,jmp,0x81cc5e,jmp:0081CC5E
+0x0081CC5B,8b701c,mov,"esi, dword ptr [eax + 0x1c]",next:0081CC5E
+0x0081CC5E,33c0,xor,"eax, eax",next:0081CC60
+0x0081CC60,83f832,cmp,"eax, 0x32",next:0081CC63
+0x0081CC63,741f,je,0x81cc84,branch:0081CC84;fall:0081CC65
+0x0081CC65,66813e4d5a,cmp,"word ptr [esi], 0x5a4d",next:0081CC6A
+0x0081CC6A,7409,je,0x81cc75,branch:0081CC75;fall:0081CC6C
+0x0081CC6C,81ee00000100,sub,"esi, 0x10000",next:0081CC72
+0x0081CC72,40,inc,eax,next:0081CC73
+0x0081CC73,ebeb,jmp,0x81cc60,jmp:0081CC60
+0x0081CC75,8b7e3c,mov,"edi, dword ptr [esi + 0x3c]",next:0081CC78
+0x0081CC78,03fe,add,"edi, esi",next:0081CC7A
+0x0081CC7A,813f50450000,cmp,"dword ptr [edi], 0x4550",next:0081CC80
+0x0081CC80,7444,je,0x81ccc6,branch:0081CCC6;fall:0081CC82
+0x0081CC82,ebe8,jmp,0x81cc6c,jmp:0081CC6C
+0x0081CC84,648f0500000000,pop,dword ptr fs:[0],next:0081CC8B
+0x0081CC8B,83c404,add,"esp, 4",next:0081CC8E
+0x0081CC8E,61,popal,,next:0081CC8F
+0x0081CC8F,c3,ret,,ret
+0x0081CCC6,96,xchg,"esi, eax",next:0081CCC7
+0x0081CCC7,648f0500000000,pop,dword ptr fs:[0],next:0081CCCE
+0x0081CCCE,83c404,add,"esp, 4",next:0081CCD1
+0x0081CCD1,8afa,mov,"bh, dl",next:0081CCD3
+0x0081CCD3,6a00,push,0,next:0081CCD5
+0x0081CCD5,57,push,edi,next:0081CCD6
+0x0081CCD6,e803000000,call,0x81ccde,gadget:0081CCF0
+0x0081CCF0,e90d000000,jmp,0x81cd02,jmp:0081CD02
+0x0081CD02,668cd9,mov,"cx, ds",next:0081CD05
+0x0081CD05,6a00,push,0,next:0081CD07
+0x0081CD07,51,push,ecx,next:0081CD08
+0x0081CD08,e803000000,call,0x81cd10,gadget:0081CD24
+0x0081CD24,6681f373f3,xor,"bx, 0xf373",next:0081CD29
+0x0081CD29,80e104,and,"cl, 4",next:0081CD2C
+0x0081CD2C,e90a000000,jmp,0x81cd3b,jmp:0081CD3B
+0x0081CD3B,f5,cmc,,next:0081CD3C
+0x0081CD3C,0ac9,or,"cl, cl",next:0081CD3E
+0x0081CD3E,0f8539000000,jne,0x81cd7d,branch:0081CD7D;fall:0081CD44
+0x0081CD44,c7858d1b440701000000,mov,"dword ptr [ebp + 0x7441b8d], 1",next:0081CD4E
+0x0081CD4E,bb70e8385a,mov,"ebx, 0x5a38e870",next:0081CD53
+0x0081CD53,e934000000,jmp,0x81cd8c,jmp:0081CD8C
+0x0081CD7D,c7858d1b440700000000,mov,"dword ptr [ebp + 0x7441b8d], 0",next:0081CD87
+0x0081CD87,6681cbd176,or,"bx, 0x76d1",next:0081CD8C
+0x0081CD8C,89850d164407,mov,"dword ptr [ebp + 0x744160d], eax",next:0081CD92
+0x0081CD92,668bd8,mov,"bx, ax",next:0081CD95
+0x0081CD95,898549244407,mov,"dword ptr [ebp + 0x7442449], eax",next:0081CD9B
+0x0081CD98,2444,and,"al, 0x44",next:0081CD9A
+0x0081CD9A,07,pop,es,next:0081CD9B
+0x0081CD9B,e80e000000,call,0x81cdae,call:0081CDAE;return:0081CDA0
+0x0081CDA0,760c,jbe,0x81cdae,branch:0081CDAE;fall:0081CDA2
+0x0081CDA2,dcbd8fb0bfd8,fdivr,qword ptr [ebp - 0x27404f71],next:0081CDA8
+0x0081CDA8,3c0b,cmp,"al, 0xb",next:0081CDAA
+0x0081CDAA,7aec,jp,0x81cd98,branch:0081CD98;fall:0081CDAC
+0x0081CDAC,49,dec,ecx,next:0081CDAD
+0x0081CDAD,d28bf05ae80e,ror,"byte ptr [ebx + 0xee85af0], cl",next:0081CDB3
+0x0081CDAE,8bf0,mov,"esi, eax",next:0081CDB0
+0x0081CDB0,5a,pop,edx,next:0081CDB1
+0x0081CDB1,e80e000000,call,0x81cdc4,call:0081CDC4;return:0081CDB6
+0x0081CDB3,0000,add,"byte ptr [eax], al",next:0081CDB5
+0x0081CDB5,00b20cd88330,add,"byte ptr [edx + 0x3083d80c], dh",next:0081CDBB
+0x0081CDB6,b20c,mov,"dl, 0xc",next:0081CDB8
+0x0081CDB8,d88330d17b14,fadd,dword ptr [ebx + 0x147bd130],next:0081CDBE
+0x0081CDBA,30d1,xor,"cl, dl",next:0081CDBC
+0x0081CDBB,d17b14,sar,"dword ptr [ebx + 0x14], 1",next:0081CDBE
+0x0081CDBC,7b14,jnp,0x81cdd2,branch:0081CDD2;fall:0081CDBE
+0x0081CDBE,dc253485f10a,fsub,qword ptr [0xaf18534],next:0081CDC4
+0x0081CDC4,6681f60ad9,xor,"si, 0xd90a",next:0081CDC9
+0x0081CDC9,5e,pop,esi,next:0081CDCA
+0x0081CDCA,81c2dd720000,add,"edx, 0x72dd",next:0081CDD0
+0x0081CDD0,6800000000,push,0,next:0081CDD5
+0x0081CDD2,0000,add,"byte ptr [eax], al",next:0081CDD4
+0x0081CDD4,008bf35bff34,add,"byte ptr [ebx + 0x34ff5bf3], cl",next:0081CDDA
+0x0081CDD5,8bf3,mov,"esi, ebx",next:0081CDD7
+0x0081CDD7,5b,pop,ebx,next:0081CDD8
+0x0081CDD8,ff3413,push,dword ptr [ebx + edx],next:0081CDDB
+0x0081CDDA,130f,adc,"ecx, dword ptr [edi]",next:0081CDDC
+0x0081CDDB,0f8f03000000,jg,0x81cde4,branch:0081CDE4;fall:0081CDE1
+0x0081CDDC,8f03,pop,dword ptr [ebx],next:0081CDDE
+0x0081CDDE,0000,add,"byte ptr [eax], al",next:0081CDE0
+0x0081CDE0,0080c4e459e8,add,"byte ptr [eax - 0x17a61b3c], al",next:0081CDE6
+0x0081CDE1,80c4e4,add,"ah, 0xe4",next:0081CDE4
+0x0081CDE4,59,pop,ecx,next:0081CDE5
+0x0081CDE5,e810000000,call,0x81cdfa,call:0081CDFA;return:0081CDEA
+0x0081CDE6,1000,adc,"byte ptr [eax], al",next:0081CDE8
+0x0081CDE8,0000,add,"byte ptr [eax], al",next:0081CDEA
+0x0081CDEA,c46be7,les,"ebp, ptr [ebx - 0x19]",next:0081CDED
+0x0081CDED,cc,int3,,next:0081CDEE
+0x0081CDEE,308025501e77,xor,"byte ptr [eax + 0x771e5025], al",next:0081CDF4
+0x0081CDF4,32acde6057e3e8,xor,"ch, byte ptr [esi + ebx*8 - 0x171ca8a0]",next:0081CDFB
+0x0081CDFA,e80b000000,call,0x81ce0a,call:0081CE0A;return:0081CDFF
+0x0081CDFB,0b00,or,"eax, dword ptr [eax]",next:0081CDFD
+0x0081CDFD,0000,add,"byte ptr [eax], al",next:0081CDFF
+0x0081CDFF,09d3,or,"ebx, edx",next:0081CE01
+0x0081CE01,72b7,jb,0x81cdba,branch:0081CDBA;fall:0081CE03
+0x0081CE03,de9903921bba,ficomp,word ptr [ecx - 0x45e46dfd],next:0081CE09
+0x0081CE07,1bba73fc5f5e,sbb,"edi, dword ptr [edx + 0x5e5ffc73]",next:0081CE0D
+0x0081CE09,73fc,jae,0x81ce07,branch:0081CE07;fall:0081CE0B
+0x0081CE0A,fc,cld,,next:0081CE0B
+0x0081CE0B,5f,pop,edi,next:0081CE0C
+0x0081CE0C,5e,pop,esi,next:0081CE0D
+0x0081CE0D,81f1f1418545,xor,"ecx, 0x458541f1",next:0081CE13
+0x0081CE13,e909000000,jmp,0x81ce21,jmp:0081CE21
+0x0081CE21,81c1721e062e,add,"ecx, 0x2e061e72",next:0081CE27
+0x0081CE27,fc,cld,,next:0081CE28
+0x0081CE28,81f1fdb2d027,xor,"ecx, 0x27d0b2fd",next:0081CE2E
+0x0081CE2E,e90e000000,jmp,0x81ce41,jmp:0081CE41
+0x0081CE41,51,push,ecx,next:0081CE42
+0x0081CE42,6681c634ac,add,"si, 0xac34",next:0081CE47
+0x0081CE47,8f041a,pop,dword ptr [edx + ebx],next:0081CE4A
+0x0081CE4A,e907000000,jmp,0x81ce56,jmp:0081CE56
+0x0081CE56,fc,cld,,next:0081CE57
+0x0081CE57,81ebda680125,sub,"ebx, 0x250168da",next:0081CE5D
+0x0081CE5D,668bf1,mov,"si, cx",next:0081CE60
+0x0081CE60,81c3d6680125,add,"ebx, 0x250168d6",next:0081CE66
+0x0081CE66,bf59a3877d,mov,"edi, 0x7d87a359",next:0081CE6B
+0x0081CE6B,81fb348effff,cmp,"ebx, 0xffff8e34",next:0081CE71
+0x0081CE71,0f8527000000,jne,0x81ce9e,branch:0081CE9E;fall:0081CE77
+0x0081CE77,0f8a14000000,jp,0x81ce91,branch:0081CE91;fall:0081CE7D
+0x0081CE7D,e90f000000,jmp,0x81ce91,jmp:0081CE91
+0x0081CE91,e91f000000,jmp,0x81ceb5,jmp:0081CEB5
+0x0081CE94,0000,add,"byte ptr [eax], al",next:0081CE96
+0x0081CE96,12dc,adc,"bl, ah",next:0081CE98
+0x0081CE98,cb,retf,,next:0081CE99
+0x0081CE99,90,nop,,next:0081CE9A
+0x0081CE9A,6c,insb,"byte ptr es:[edi], dx",next:0081CE9B
+0x0081CE9B,4d,dec,ebp,next:0081CE9C
+0x0081CE9C,d423,aam,0x23,next:0081CE9E
+0x0081CE9E,8bfb,mov,"edi, ebx",next:0081CEA0
+0x0081CEA0,e933ffffff,jmp,0x81cdd8,jmp:0081CDD8
+0x0081CEAE,f3664c,dec,sp,next:0081CEB1
+0x0081CEB1,57,push,edi,next:0081CEB2
+0x0081CEB2,2f,das,,next:0081CEB3
+0x0081CEB3,a10d55d64f,mov,"eax, dword ptr [0x4fd6550d]",next:0081CEB8
+0x0081CEB5,55,push,ebp,next:0081CEB6
+0x0081CEB6,d6,salc,,next:0081CEB7
+0x0081CEB7,4f,dec,edi,next:0081CEB8
+0x0081CEB8,bc7ad5b65e,mov,"esp, 0x5eb6d57a",next:0081CEBD
+0x0081CEBD,78d5,js,0x81ce94,branch:0081CE94;fall:0081CEBF
+0x0081CEBF,4f,dec,edi,next:0081CEC0
+0x0081CEC0,c507,lds,"eax, ptr [edi]",next:0081CEC2
+0x0081CEC2,51,push,ecx,next:0081CEC3
+0x0081CEC3,44,inc,esp,next:0081CEC4
+0x0081CEC4,7079,jo,0x81cf3f,branch:0081CF3F;fall:0081CEC6
+0x0081CEC6,6c,insb,"byte ptr es:[edi], dx",next:0081CEC7
+0x0081CEC7,2f,das,,next:0081CEC8
+0x0081CEC8,e873b00f92,call,0x92917f40,call:92917F40;return:0081CECD
+0x0081CECD,b6d6,mov,"dh, 0xd6",next:0081CECF
+0x0081CECF,70fc,jo,0x81cecd,branch:0081CECD;fall:0081CED1
+0x0081CED1,93,xchg,"ebx, eax",next:0081CED2
+0x0081CED2,48,dec,eax,next:0081CED3
+0x0081CED3,2aa1b6d6d000,sub,"ah, byte ptr [ecx + 0xd0d6b6]",next:0081CED9
+0x0081CED9,96,xchg,"esi, eax",next:0081CEDA
+0x0081CEDA,3d7629c3c6,cmp,"eax, 0xc6c32976",next:0081CEDF
+0x0081CEDF,0bb7f3582249,or,"esi, dword ptr [edi + 0x492258f3]",next:0081CEE5
+0x0081CEE5,b6d6,mov,"dh, 0xd6",next:0081CEE7
+0x0081CEE7,76c9,jbe,0x81ceb2,branch:0081CEB2;fall:0081CEE9
+0x0081CEE9,e3c3,jecxz,0x81ceae,branch:0081CEAE;fall:0081CEEB
+0x0081CEEB,0bb7202e4fbc,or,"esi, dword ptr [edi - 0x43b0d1e0]",next:0081CEF1
+0x0081CEF1,7a7c,jp,0x81cf6f,branch:0081CF6F;fall:0081CEF3
+0x0081CEF3,4a,dec,edx,next:0081CEF4
+0x0081CEF4,bc7ad53ada,mov,"esp, 0xda3ad57a",next:0081CEF9
+0x0081CEF9,858383b3e639,test,"dword ptr [ebx + 0x39e6b383], eax",next:0081CEFF
+0x0081CEFF,6be8d8,imul,"ebp, eax, -0x28",next:0081CF02
+0x0081CF02,40,inc,eax,next:0081CF03
+0x0081CF03,5c,pop,esp,next:0081CF04
+0x0081CF04,307bd5,xor,"byte ptr [ebx - 0x2b], bh",next:0081CF07
+0x0081CF07,4f,dec,edi,next:0081CF08
+0x0081CF08,bc62d30b90,mov,"esp, 0x900bd362",next:0081CF0D
+0x0081CF0D,96,xchg,"esi, eax",next:0081CF0E
+0x0081CF0E,5c,pop,esp,next:0081CF0F
+0x0081CF0F,d239,sar,"byte ptr [ecx], cl",next:0081CF11
+0x0081CF11,98,cwde,,next:0081CF12
+0x0081CF12,99,cdq,,next:0081CF13
+0x0081CF13,54,push,esp,next:0081CF14
+0x0081CF14,0ccd,or,"al, 0xcd",next:0081CF16
+0x0081CF16,85f9,test,"ecx, edi",next:0081CF18
+0x0081CF18,02c4,add,"al, ah",next:0081CF1A
+0x0081CF1A,de5e03,ficomp,word ptr [esi + 3],next:0081CF1D
+0x0081CF1D,c58b070bf3d9,lds,"ecx, ptr [ebx - 0x260cf4f9]",next:0081CF23
+0x0081CF23,6bbffce14fbc7a,imul,"edi, dword ptr [edi - 0x43b01e04], 0x7a",next:0081CF2A
+0x0081CF2A,decb,fmulp,st(3),next:0081CF2C
+0x0081CF2C,b67a,mov,"dh, 0x7a",next:0081CF2E
+0x0081CF2E,d54f,aad,0x4f,next:0081CF30
+0x0081CF3F,2f,das,,next:0081CF40
+0x0081CF40,35e2e4cd59,xor,"eax, 0x59cde4e2",next:0081CF45
+0x0081CF45,53,push,ebx,next:0081CF46
+0x0081CF48,bc7a75be92,mov,"esp, 0x92be757a",next:0081CF4D
+0x0081CF56,60,pushal,,next:0081CF57
+0x0081CF57,64cdb1,int,0xb1,next:0081CF5A
+0x0081CF5A,9e,sahf,,next:0081CF5B
+0x0081CF5B,c23399,ret,0x9933,ret
+0x0081CF6F,b740,mov,"bh, 0x40",next:0081CF71
+0x0081CF71,7ad5,jp,0x81cf48,branch:0081CF48;fall:0081CF73
+0x0081CF73,4f,dec,edi,next:0081CF74
+0x0081CF74,85de,test,"esi, ebx",next:0081CF76
+0x0081CF76,4f,dec,edi,next:0081CF77
+0x0081CF77,a6,cmpsb,"byte ptr [esi], byte ptr es:[edi]",next:0081CF78
+0x0081CF78,2406,and,"al, 6",next:0081CF7A
+0x0081CF7A,39a3d4a5b831,cmp,"dword ptr [ebx + 0x31b8a5d4], esp",next:0081CF80
+0x0081CF80,16,push,ss,next:0081CF81
+0x0081CF81,cdc5,int,0xc5,next:0081CF83
+0x0081CF83,9a6c04e7dd5d7d,lcall,"0x7d5d, 0xdde7046c",next:0081CF8A
+0x0081CF8A,50,push,eax,next:0081CF8B
+0x0081CF8B,de9ab6d62ebf,ficomp,word ptr [edx - 0x40d1294a],next:0081CF91
+0x0081CF91,f5,cmc,,next:0081CF92
+0x0081CF92,d44f,aam,0x4f,next:0081CF94
+0x0081CF94,bc7a68d07c,mov,"esp, 0x7cd0687a",next:0081CF99
+0x0081CF99,826c0fe58d,sub,"byte ptr [edi + ecx - 0x1b], 0x8d",next:0081CF9E
+0x0081CF9E,d54f,aad,0x4f,next:0081CFA0
+0x0081CFA0,bc570a092d,mov,"esp, 0x2d090a57",next:0081CFA5
+0x0081CFA5,da350d6e02d1,fidiv,dword ptr [0xd1026e0d],next:0081CFAB
+0x0081CFAB,ba3603cb60,mov,"edx, 0x60cb0336",next:0081CFB0
+0x0081CFB0,0e,push,cs,next:0081CFB1
+0x0081CFB1,59,pop,ecx,next:0081CFB2
+0x0081CFB2,9d,popfd,,next:0081CFB3
+0x0081CFB3,50,push,eax,next:0081CFB4
+0x0081CFB4,c51f,lds,"ebx, ptr [edi]",next:0081CFB6
+0x0081CFB6,a94370795c,test,"eax, 0x5c797043",next:0081CFBB
+0x0081CFBB,ca13a0,retf,0xa013,next:0081CFBE
+0x0081CFBE,99,cdq,,next:0081CFBF
+0x0081CFBF,54,push,esp,next:0081CFC0
+0x0081CFC0,5c,pop,esp,next:0081CFC1
+0x0081CFC1,7155,jno,0x81d018,branch:0081D018;fall:0081CFC3
+0x0081CFC3,55,push,ebp,next:0081CFC4
+0x0081CFC4,bc7ad5d6c9,mov,"esp, 0xc9d6d57a",next:0081CFC9
+0x0081CFC9,63c0,arpl,"ax, ax",next:0081CFCB
+0x0081CFCB,0bb752e14fbc,or,"esi, dword ptr [edi - 0x43b01eae]",next:0081CFD1
+0x0081CFCF,4f,dec,edi,next:0081CFD0
+0x0081CFD0,bc7a83c024,mov,"esp, 0x24c0837a",next:0081CFD5
+0x0081CFD1,7a83,jp,0x81cf56,branch:0081CF56;fall:0081CFD3
+0x0081CFD3,c0244862,shl,"byte ptr [eax + ecx*2], 0x62",next:0081CFD7
+0x0081CFD4,2448,and,"al, 0x48",next:0081CFD6
+0x0081CFD5,48,dec,eax,next:0081CFD6
+0x0081CFD6,62b46bcc714c22,bound,"esi, qword ptr [ebx + ebp*2 + 0x224c71cc]",next:0081CFDD
+0x0081CFD7,b46b,mov,"ah, 0x6b",next:0081CFD9
+0x0081CFD9,cc,int3,,next:0081CFDA
+0x0081CFDA,714c,jno,0x81d028,branch:0081D028;fall:0081CFDC
+0x0081CFDC,222c17,and,"ch, byte ptr [edi + edx]",next:0081CFDF
+0x0081CFDD,2c17,sub,"al, 0x17",next:0081CFDF
+0x0081CFDF,d0c9,ror,"cl, 1",next:0081CFE1
+0x0081CFE1,f3330b,xor,"ecx, dword ptr [ebx]",next:0081CFE4
+0x0081CFE4,b7c1,mov,"bh, 0xc1",next:0081CFE6
+0x0081CFE6,f4,hlt,,next:0081CFE7
+0x0081CFE7,07,pop,es,next:0081CFE8
+0x0081CFE8,f5,cmc,,next:0081CFE9
+0x0081CFE9,f5,cmc,,next:0081CFEA
+0x0081CFEA,e527,in,"eax, 0x27",next:0081CFEC
+0x0081D018,b33f,mov,"bl, 0x3f",next:0081D01A
+0x0081D01A,99,cdq,,next:0081D01B
+0x0081D01B,43,inc,ebx,next:0081D01C
+0x0081D01C,7079,jo,0x81d097,branch:0081D097;fall:0081D01E
+0x0081D01E,7c3f,jl,0x81d05f,branch:0081D05F;fall:0081D020
+0x0081D020,bc7ad57416,mov,"esp, 0x1674d57a",next:0081D025
+0x0081D025,49,dec,ecx,next:0081D026
+0x0081D026,77a7,ja,0x81cfcf,branch:0081CFCF;fall:0081D028
+0x0081D028,d324fb,shl,"dword ptr [ebx + edi*8], cl",next:0081D02B
+0x0081D02B,92,xchg,"edx, eax",next:0081D02C
+0x0081D02C,4a,dec,edx,next:0081D02D
+0x0081D02D,6d,insd,"dword ptr es:[edi], dx",next:0081D02E
+0x0081D02E,d4f6,aam,0xf6,next:0081D030
+0x0081D030,3d4dd82e19,cmp,"eax, 0x192ed84d",next:0081D035
+0x0081D035,7358,jae,0x81d08f,branch:0081D08F;fall:0081D037
+0x0081D037,2647,inc,edi,next:0081D039
+0x0081D039,b6d6,mov,"dh, 0xd6",next:0081D03B
+0x0081D03B,48,dec,eax,next:0081D03C
+0x0081D03C,7096,jo,0x81cfd4,branch:0081CFD4;fall:0081D03E
+0x0081D03E,39b6457ad54f,cmp,"dword ptr [esi + 0x4fd57a45], esi",next:0081D044
+0x0081D044,37,aaa,,next:0081D045
+0x0081D045,6c,insb,"byte ptr es:[edi], dx",next:0081D046
+0x0081D046,80b2575bac3c66,xor,"byte ptr [edx + 0x3cac5b57], 0x66",next:0081D04D
+0x0081D04D,157d56bc7a,adc,"eax, 0x7abc567d",next:0081D052
+0x0081D052,d5eb,aad,0xeb,next:0081D054
+0x0081D054,6f,outsd,"dx, dword ptr [esi]",next:0081D055
+0x0081D055,a9697e6471,test,"eax, 0x71647e69",next:0081D05A
+0x0081D05A,b05c,mov,"al, 0x5c",next:0081D05C
+0x0081D05C,393f,cmp,"dword ptr [edi], edi",next:0081D05E
+0x0081D05E,0d44707968,or,"eax, 0x68797044",next:0081D063
+0x0081D05F,44,inc,esp,next:0081D060
+0x0081D060,7079,jo,0x81d0db,branch:0081D0DB;fall:0081D062
+0x0081D062,68f2ad3f69,push,0x693fadf2,next:0081D067
+0x0081D063,f2ad,repne lodsd,"eax, dword ptr [esi]",next:0081D065
+0x0081D065,3f,aas,,next:0081D066
+0x0081D066,69537079d20b90,imul,"edx, dword ptr [ebx + 0x70], 0x900bd279",next:0081D06D
+0x0081D067,53,push,ebx,next:0081D068
+0x0081D068,7079,jo,0x81d0e3,branch:0081D0E3;fall:0081D06A
+0x0081D06A,d20b,ror,"byte ptr [ebx], cl",next:0081D06C
+0x0081D06C,90,nop,,next:0081D06D
+0x0081D06D,96,xchg,"esi, eax",next:0081D06E
+0x0081D06E,dece,fmulp,st(6),next:0081D070
+0x0081D070,b77a,mov,"bh, 0x7a",next:0081D072
+0x0081D072,d54f,aad,0x4f,next:0081D074
+0x0081D074,bff5d44fbc,mov,"edi, 0xbc4fd4f5",next:0081D079
+0x0081D079,7a6c,jp,0x81d0e7,branch:0081D0E7;fall:0081D07B
+0x0081D07B,ff06,inc,dword ptr [esi],next:0081D07D
+0x0081D07D,c9,leave,,next:0081D07E
+0x0081D097,d7,xlatb,,next:0081D098
+0x0081D098,bd7ad54ff4,mov,"ebp, 0xf44fd57a",next:0081D09D
+0x0081D09D,da7d3b,fidivr,dword ptr [ebp + 0x3b],next:0081D0A0
+0x0081D0A0,bc7ad50625,mov,"esp, 0x2506d57a",next:0081D0A5
+0x0081D0A5,dc9ac6661e76,fcomp,qword ptr [edx + 0x761e66c6],next:0081D0AB
+0x0081D0AB,ad,lodsd,"eax, dword ptr [esi]",next:0081D0AC
+0x0081D0AC,c01d4d8dbb2e35,rcr,"byte ptr [0x2ebb8d4d], 0x35",next:0081D0B3
+0x0081D0B3,2903,sub,"dword ptr [ebx], eax",next:0081D0B5
+0x0081D0B5,2ebd050ac2f4,mov,"ebp, 0xf4c20a05",next:0081D0BB
+0x0081D0BB,d229,shr,"byte ptr [ecx], cl",next:0081D0BD
+0x0081D0BD,6f,outsd,"dx, dword ptr [esi]",next:0081D0BE
+0x0081D0BE,d20b,ror,"byte ptr [ebx], cl",next:0081D0C0
+0x0081D0BF,0bb7da5ad229,or,"esi, dword ptr [edi + 0x29d25ada]",next:0081D0C5
+0x0081D0C0,b7da,mov,"bh, 0xda",next:0081D0C2
+0x0081D0C2,5a,pop,edx,next:0081D0C3
+0x0081D0C3,d229,shr,"byte ptr [ecx], cl",next:0081D0C5
+0x0081D0C5,99,cdq,,next:0081D0C6
+0x0081D0C6,99,cdq,,next:0081D0C7
+0x0081D0C7,54,push,esp,next:0081D0C8
+0x0081D0C8,a5,movsd,"dword ptr es:[edi], dword ptr [esi]",next:0081D0C9
+0x0081D0C9,1f,pop,ds,next:0081D0CA
+0x0081D0CA,214070,and,"dword ptr [eax + 0x70], eax",next:0081D0CD
+0x0081D0CD,79f4,jns,0x81d0c3,branch:0081D0C3;fall:0081D0CF
+0x0081D0CF,f25c,pop,esp,next:0081D0D1
+0x0081D0D1,7160,jno,0x81d133,branch:0081D133;fall:0081D0D3
+0x0081D0D3,4a,dec,edx,next:0081D0D4
+0x0081D0D4,bc7ad5353d,mov,"esp, 0x3d35d57a",next:0081D0D9
+0x0081D0D9,53,push,ebx,next:0081D0DA
+0x0081D0DA,819356fb650979dbd20b,adc,"dword ptr [ebx + 0x965fb56], 0xbd2db79",next:0081D0E4
+0x0081D0DB,93,xchg,"ebx, eax",next:0081D0DC
+0x0081D0DC,56,push,esi,next:0081D0DD
+0x0081D0DD,fb,sti,,next:0081D0DE
+0x0081D0DE,650979db,or,"dword ptr gs:[ecx - 0x25], edi",next:0081D0E2
+0x0081D0E2,d20b,ror,"byte ptr [ebx], cl",next:0081D0E4
+0x0081D0E3,0b90925cc239,or,"edx, dword ptr [eax + 0x39c25c92]",next:0081D0E9
+0x0081D0E4,90,nop,,next:0081D0E5
+0x0081D0E5,92,xchg,"edx, eax",next:0081D0E6
+0x0081D0E6,5c,pop,esp,next:0081D0E7
+0x0081D0E7,c239ab,ret,0xab39,ret
+0x0081D0E9,ab,stosd,"dword ptr es:[edi], eax",next:0081D0EA
+0x0081D0EA,99,cdq,,next:0081D0EB
+0x0081D0EB,54,push,esp,next:0081D0EC
+0x0081D0EC,c507,lds,"eax, ptr [edi]",next:0081D0EE
+0x0081D0EE,41,inc,ecx,next:0081D0EF
+0x0081D0EF,43,inc,ebx,next:0081D0F0
+0x0081D0F0,7079,jo,0x81d16b,branch:0081D16B;fall:0081D0F2
+0x0081D0F2,bad7c147c7,mov,"edx, 0xc747c1d7",next:0081D0F7
+0x0081D0F7,0bb7ab48ca4c,or,"esi, dword ptr [edi + 0x4cca48ab]",next:0081D0FD
+0x0081D0FD,b6d6,mov,"dh, 0xd6",next:0081D0FF
+0x0081D0FF,0da5f76853,or,"eax, 0x5368f7a5",next:0081D104
+0x0081D104,7079,jo,0x81d17f,branch:0081D17F;fall:0081D106
+0x0081D106,6e,outsb,"dx, byte ptr [esi]",next:0081D107
+0x0081D107,d213,rcl,"byte ptr [ebx], cl",next:0081D109
+0x0081D109,a09954333f,mov,"al, byte ptr [0x3f335499]",next:0081D10E
+0x0081D10E,b362,mov,"bl, 0x62",next:0081D110
+0x0081D110,7079,jo,0x81d18b,branch:0081D18B;fall:0081D112
+0x0081D112,d51a,aad,0x1a,next:0081D114
+0x0081D114,4c,dec,esp,next:0081D115
+0x0081D115,39966b487ad5,cmp,"dword ptr [esi - 0x2a85b795], edx",next:0081D11B
+0x0081D11B,4f,dec,edi,next:0081D11C
+0x0081D11C,bc0fa91a73,mov,"esp, 0x731aa90f",next:0081D121
+0x0081D121,b6d6,mov,"dh, 0xd6",next:0081D123
+0x0081D123,ac,lodsb,"al, byte ptr [esi]",next:0081D124
+0x0081D124,d6,salc,,next:0081D125
+0x0081D125,c8404870,enter,"0x4840, 0x70",next:0081D129
+0x0081D129,96,xchg,"esi, eax",next:0081D12A
+0x0081D12A,3dc43b4158,cmp,"eax, 0x58413bc4",next:0081D12F
+0x0081D12F,ca798d,retf,0x8d79,next:0081D132
+0x0081D130,798d,jns,0x81d0bf,branch:0081D0BF;fall:0081D132
+0x0081D132,99,cdq,,next:0081D133
+0x0081D133,54,push,esp,next:0081D134
+0x0081D134,303a,xor,"byte ptr [edx], bh",next:0081D136
+0x0081D136,e64b,out,"0x4b, al",next:0081D138
+0x0081D138,aa,stosb,"byte ptr es:[edi], al",next:0081D139
+0x0081D139,79e8,jns,0x81d123,branch:0081D123;fall:0081D13B
+0x0081D13B,1307,adc,"eax, dword ptr [edi]",next:0081D13D
+0x0081D13D,ac,lodsb,"al, byte ptr [esi]",next:0081D13E
+0x0081D13E,15fd617f8c,adc,"eax, 0x8c7f61fd",next:0081D143
+0x0081D13F,fd,std,,next:0081D140
+0x0081D140,61,popal,,next:0081D141
+0x0081D141,7f8c,jg,0x81d0cf,branch:0081D0CF;fall:0081D143
+0x0081D143,70eb,jo,0x81d130,branch:0081D130;fall:0081D145
+0x0081D145,cc,int3,,next:0081D146
+0x0081D146,7158,jno,0x81d1a0,branch:0081D1A0;fall:0081D148
+0x0081D148,85b35a7ea03a,test,"dword ptr [ebx + 0x3aa07e5a], esi",next:0081D14E
+0x0081D14E,238018ac14d1,and,"eax, dword ptr [eax - 0x2eeb53e8]",next:0081D154
+0x0081D154,f9,stc,,next:0081D155
+0x0081D155,f4,hlt,,next:0081D156
+0x0081D156,7bd1,jnp,0x81d129,branch:0081D129;fall:0081D158
+0x0081D158,8628,xchg,"byte ptr [eax], ch",next:0081D15A
+0x0081D15A,da358d55f47e,fidiv,dword ptr [0x7ef4558d],next:0081D160
+0x0081D160,95,xchg,"ebp, eax",next:0081D161
+0x0081D161,ed,in,"eax, dx",next:0081D162
+0x0081D162,dc35a1bb8535,fdiv,qword ptr [0x3585bba1],next:0081D168
+0x0081D168,3d6d9dfbee,cmp,"eax, 0xeefb9d6d",next:0081D16D
+0x0081D16B,fb,sti,,next:0081D16C
+0x0081D16C,ee,out,"dx, al",next:0081D16D
+0x0081D16D,30e9,xor,"cl, ch",next:0081D16F
+0x0081D16F,b0a3,mov,"al, 0xa3",next:0081D171
+0x0081D171,3223,xor,"ah, byte ptr [ebx]",next:0081D173
+0x0081D173,787c,js,0x81d1f1,branch:0081D1F1;fall:0081D175
+0x0081D175,e708,out,"8, eax",next:0081D177
+0x0081D177,a4,movsb,"byte ptr es:[edi], byte ptr [esi]",next:0081D178
+0x0081D178,826905d0,sub,"byte ptr [ecx + 5], 0xd0",next:0081D17C
+0x0081D17C,f23b12,cmp,"edx, dword ptr [edx]",next:0081D17F
+0x0081D17F,3f,aas,,next:0081D180
+0x0081D180,56,push,esi,next:0081D181
+0x0081D181,f5,cmc,,next:0081D182
+0x0081D182,1401,adc,"al, 1",next:0081D184
+0x0081D184,ab,stosd,"dword ptr es:[edi], eax",next:0081D185
+0x0081D185,4a,dec,edx,next:0081D186
+0x0081D186,e65c,out,"0x5c, al",next:0081D188
+0x0081D188,0e,push,cs,next:0081D189
+0x0081D189,fd,std,,next:0081D18A
+0x0081D18A,17,pop,ss,next:0081D18B
+0x0081D18B,4b,dec,ebx,next:0081D18C
+0x0081D18C,ef,out,"dx, eax",next:0081D18D
+0x0081D18D,f7f0,div,eax,next:0081D18F
+0x0081D18F,42,inc,edx,next:0081D190
+0x0081D190,7079,jo,0x81d20b,branch:0081D20B;fall:0081D192
+0x0081D192,7c3c,jl,0x81d1d0,branch:0081D1D0;fall:0081D194
+0x0081D194,ef,out,"dx, eax",next:0081D195
+0x0081D195,61,popal,,next:0081D196
+0x0081D196,6f,outsd,"dx, dword ptr [esi]",next:0081D197
+0x0081D197,0dbff9d74f,or,"eax, 0x4fd7f9bf",next:0081D19C
+0x0081D19B,4f,dec,edi,next:0081D19C
+0x0081D19C,bc7ad4da75,mov,"esp, 0x75dad47a",next:0081D1A1
+0x0081D1A0,759d,jne,0x81d13f,branch:0081D13F;fall:0081D1A2
+0x0081D1A1,9d,popfd,,next:0081D1A2
+0x0081D1A2,99,cdq,,next:0081D1A3
+0x0081D1A3,54,push,esp,next:0081D1A4
+0x0081D1A4,f4,hlt,,next:0081D1A5
+0x0081D1A5,f5,cmc,,next:0081D1A6
+0x0081D1A6,58,pop,eax,next:0081D1A7
+0x0081D1A7,2249b6,and,"cl, byte ptr [ecx - 0x4a]",next:0081D1AA
+0x0081D1AA,d6,salc,,next:0081D1AB
+0x0081D1AB,56,push,esi,next:0081D1AC
+0x0081D1AC,c1e325,shl,"ebx, 0x25",next:0081D1AF
+0x0081D1AF,0bb74b725c39,or,"esi, dword ptr [edi + 0x395c724b]",next:0081D1B5
+0x0081D1B5,78d5,js,0x81d18c,branch:0081D18C;fall:0081D1B7
+0x0081D1B7,4f,dec,edi,next:0081D1B8
+0x0081D1B8,bc93b07349,mov,"esp, 0x4973b093",next:0081D1BD
+0x0081D1BD,b6d6,mov,"dh, 0xd6",next:0081D1BF
+0x0081D1BF,48,dec,eax,next:0081D1C0
+0x0081D1C0,316fd2,xor,"dword ptr [edi - 0x2e], ebp",next:0081D1C3
+0x0081D1C3,0bb7f3608298,or,"esi, dword ptr [edi - 0x677d9f0d]",next:0081D1C9
+0x0081D1C7,8298b6d67629eb,sbb,"byte ptr [eax + 0x2976d6b6], 0xeb",next:0081D1CE
+0x0081D1C9,b6d6,mov,"dh, 0xd6",next:0081D1CB
+0x0081D1CB,7629,jbe,0x81d1f6,branch:0081D1F6;fall:0081D1CD
+0x0081D1CD,ebcc,jmp,0x81d19b,jmp:0081D19B
+0x0081D1CE,cc,int3,,next:0081D1CF
+0x0081D1CF,0bb720d24fbc,or,"esi, dword ptr [edi - 0x43b02de0]",next:0081D1D5
+0x0081D1D0,b720,mov,"bh, 0x20",next:0081D1D2
+0x0081D1D2,d24fbc,ror,"byte ptr [edi - 0x44], cl",next:0081D1D5
+0x0081D1D5,7a7c,jp,0x81d253,branch:0081D253;fall:0081D1D7
+0x0081D1D7,51,push,ecx,next:0081D1D8
+0x0081D1D8,bc7ad538cc,mov,"esp, 0xcc38d57a",next:0081D1DD
+0x0081D1DD,56,push,esi,next:0081D1DE
+0x0081D1E4,16,push,ss,next:0081D1E5
+0x0081D1E5,7160,jno,0x81d247,branch:0081D247;fall:0081D1E7
+0x0081D1E7,55,push,ebp,next:0081D1E8
+0x0081D1E8,bc7ad5d629,mov,"esp, 0x29d6d57a",next:0081D1ED
+0x0081D1ED,bfda0bb708,mov,"edi, 0x8b70bda",next:0081D1F2
+0x0081D1F1,087d57,or,"byte ptr [ebp + 0x57], bh",next:0081D1F4
+0x0081D1F2,7d57,jge,0x81d24b,branch:0081D24B;fall:0081D1F4
+0x0081D1F4,bc7ad553cb,mov,"esp, 0xcb53d57a",next:0081D1F9
+0x0081D1F6,d553,aad,0x53,next:0081D1F8
+0x0081D1F7,53,push,ebx,next:0081D1F8
+0x0081D1F8,cb,retf,,next:0081D1F9
+0x0081D1F9,0cb3,or,"al, 0xb3",next:0081D1FB
+0x0081D1FB,ad,lodsd,"eax, dword ptr [esi]",next:0081D1FC
+0x0081D1FC,39cf,cmp,"edi, ecx",next:0081D1FE
+0x0081D1FE,9a35196215afb2,lcall,"0xb2af, 0x15621935",next:0081D205
+0x0081D205,715c,jno,0x81d263,branch:0081D263;fall:0081D207
+0x0081D207,55,push,ebp,next:0081D208
+0x0081D208,bc7ad5d631,mov,"esp, 0x31d6d57a",next:0081D20D
+0x0081D20B,d6,salc,,next:0081D20C
+0x0081D20C,319fe00bb77d,xor,"dword ptr [edi + 0x7db70be0], ebx",next:0081D212
+0x0081D20D,9f,lahf,,next:0081D20E
+0x0081D20E,e00b,loopne,0x81d21b,next:0081D210
+0x0081D210,b77d,mov,"bh, 0x7d",next:0081D212
+0x0081D212,58,pop,eax,next:0081D213
+0x0081D213,42,inc,edx,next:0081D214
+0x0081D214,43,inc,ebx,next:0081D215
+0x0081D215,b6d6,mov,"dh, 0xd6",next:0081D217
+0x0081D217,2f,das,,next:0081D218
+0x0081D218,b30f,mov,"bl, 0xf",next:0081D21A
+0x0081D21A,c57370,lds,"esi, ptr [ebx + 0x70]",next:0081D21D
+0x0081D21D,79a8,jns,0x81d1c7,branch:0081D1C7;fall:0081D21F
+0x0081D21F,e45d,in,"al, 0x5d",next:0081D221
+0x0081D221,08df,or,"bh, bl",next:0081D223
+0x0081D223,cb,retf,,next:0081D224
+0x0081D224,b77a,mov,"bh, 0x7a",next:0081D226
+0x0081D226,d54f,aad,0x4f,next:0081D228
+0x0081D228,bff7d44fbc,mov,"edi, 0xbc4fd4f7",next:0081D22D
+0x0081D22C,bc7a6df2e5,mov,"esp, 0xe5f26d7a",next:0081D231
+0x0081D22D,7a6d,jp,0x81d29c,branch:0081D29C;fall:0081D22F
+0x0081D22F,f2e58e,in,"eax, 0x8e",next:0081D232
+0x0081D231,8ed5,mov,"ss, ebp",next:0081D233
+0x0081D232,d54f,aad,0x4f,next:0081D234
+0x0081D233,4f,dec,edi,next:0081D234
+0x0081D234,bcc4e18f04,mov,"esp, 0x48fe1c4",next:0081D239
+0x0081D239,a0fb744fa9,mov,"al, byte ptr [0xa94f74fb]",next:0081D23E
+0x0081D23E,c9,leave,,next:0081D23F
+0x0081D23F,e79f,out,"0x9f, eax",next:0081D241
+0x0081D241,f5,cmc,,next:0081D242
+0x0081D242,a16b9093a8,mov,"eax, dword ptr [0xa893906b]",next:0081D247
+0x0081D247,7f41,jg,0x81d28a,branch:0081D28A;fall:0081D249
+0x0081D249,b6d6,mov,"dh, 0xd6",next:0081D24B
+0x0081D24B,48,dec,eax,next:0081D24C
+0x0081D24C,7096,jo,0x81d1e4,branch:0081D1E4;fall:0081D24E
+0x0081D24E,392f,cmp,"dword ptr [edi], ebp",next:0081D250
+0x0081D250,3a5cdfd0,cmp,"bl, byte ptr [edi + ebx*8 - 0x30]",next:0081D254
+0x0081D253,d0557a,rcl,byte ptr [ebp + 0x7a],next:0081D256
+0x0081D254,55,push,ebp,next:0081D255
+0x0081D255,7ad5,jp,0x81d22c,branch:0081D22C;fall:0081D257
+0x0081D256,d54f,aad,0x4f,next:0081D258
+0x0081D257,4f,dec,edi,next:0081D258
+0x0081D258,e586,in,"eax, 0x86",next:0081D25A
+0x0081D25A,d54f,aad,0x4f,next:0081D25C
+0x0081D25C,bc98fc173d,mov,"esp, 0x3d17fc98",next:0081D261
+0x0081D263,e2ce,loop,0x81d233,next:0081D265
+0x0081D265,d2bde3532567,sar,"byte ptr [ebp + 0x672553e3], cl",next:0081D26B
+0x0081D26B,c519,lds,"ebx, ptr [ecx]",next:0081D26D
+0x0081D26D,7588,jne,0x81d1f7,branch:0081D1F7;fall:0081D26F
+0x0081D26F,23f5,and,"esi, ebp",next:0081D271
+0x0081D271,db5c0b90,fistp,dword ptr [ebx + ecx - 0x70],next:0081D275
+0x0081D275,9e,sahf,,next:0081D276
+0x0081D28A,60,pushal,,next:0081D28B
+0x0081D28B,9f,lahf,,next:0081D28C
+0x0081D28C,5d,pop,ebp,next:0081D28D
+0x0081D28D,087d3e,or,"byte ptr [ebp + 0x3e], bh",next:0081D290
+0x0081D290,bc7ad531f9,mov,"esp, 0xf931d57a",next:0081D295
+0x0081D295,9d,popfd,,next:0081D296
+0x0081D296,238feec25347,and,"ecx, dword ptr [edi + 0x4753c2ee]",next:0081D29C

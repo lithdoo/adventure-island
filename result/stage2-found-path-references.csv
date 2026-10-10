@@ -1,0 +1,10 @@
+rva,kind,target,detail
+0x0081CCC6,register,eax,"xchg esi, eax. EAX becomes the candidate base; ESI becomes the iteration index."
+0x0081CD44,store,0x0081ABA1,Writes 1. Re-entry / found flag.
+0x0081CD8C,store,0x0081A621,Saves the candidate base.
+0x0081CD95,store,0x0081B45D,Saves the candidate base a second time.
+0x0081CDD8,transform-read,edx+ebx,Reads one dword of the stage-2 body. ebx starts at 0 and then steps by -4.
+0x0081CE47,transform-write,edx+ebx,Writes the dword back after xor/add. This is the next in-place materializer.
+0x0081CE6B,loop-end,0xFFFF8E34,Leaves the first transform when ebx reaches this value.
+0x0081D58D,loop-count,0x1A99,Second in-place dword loop. Still inside the stage-2 body.
+0x0081D5F6,stride,eax -= 4,Second loop walks backward four bytes at a time.

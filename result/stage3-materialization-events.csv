@@ -1,0 +1,3 @@
+producer_rva,source,destination_rva,length,entropy,sha256,instruction_density,strings_density,rtti,api_pointer_density,notes
+0x0081CE47,stage-2 dword at edx+ebx,0x0081CEB5,0x71CC,7.2194,26a12b5b48b039ba0ec1518a2580b8c96f870eedc4554b44f9e7d8b60cca0732,0,96 ascii runs >= 6 in the stable prefix,no,0.000161,"First loop completed. SHA and entropy cover only the stable prefix RVA 0x0081CEB5-0x00823000 (0x614B bytes); the top of the 0x71CC span is rewritten by the next loop. Not a new allocation. Tail A and Ztl slots were not written."
+0x0081D594,stage-2 dword at eax,0x0081D633,0x6A64,,,,,,"Second loop, count 0x1A99, stride -4. Still running at stop (EIP 0x0081D622). Destination stays inside the stage-2 body."

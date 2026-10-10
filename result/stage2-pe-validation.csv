@@ -1,0 +1,15 @@
+check_order,instruction_rva,field,offset,comparison,failure_target,meaning,confidence
+1,0x0081CBB3,e_magic,0x00,word == 0x5A4D,0x0081CBC8,"Host walk, 0x1000 stride. Finds the image that contains this code.",confirmed
+2,0x0081CBBA,e_lfanew,0x3C,"word, zero-extended, no range check",,Host walk loads e_lfanew as a 16-bit field.,confirmed
+3,0x0081CBC0,PE signature,e_lfanew,dword == 0x00004550,0x0081CBC8,"Host walk accepts the image. This is MapleStory, not the later scan target.",confirmed
+4,0x0081CC60,iteration,,eax == 0x32,0x0081CC84,Stop before the 51st test. eax starts at 0 and increments after each miss.,confirmed
+5,0x0081CC65,e_magic,0x00,word == 0x5A4D,0x0081CC6C,64 KB scan. Failure subtracts 0x10000 and increments eax.,confirmed
+6,0x0081CC75,e_lfanew,0x3C,"dword, no range check",,Added to ESI to form the PE-header pointer.,confirmed
+7,0x0081CC7A,PE signature,e_lfanew,dword == 0x00004550,0x0081CC6C,Match enters the found path at 0x0081CCC6.,confirmed
+8,,Machine,e_lfanew+4,not checked,,Absent from both walks and from the recovered found-path prefix.,confirmed
+9,,NumberOfSections,e_lfanew+6,not checked,,Absent from both walks and from the recovered found-path prefix.,confirmed
+10,,OptionalHeader.Magic,e_lfanew+24,not checked,,Absent from both walks and from the recovered found-path prefix.,confirmed
+11,,ImageBase,e_lfanew+52,not checked,,Absent from both walks and from the recovered found-path prefix.,confirmed
+12,,SizeOfImage,e_lfanew+80,not checked,,Absent from both walks and from the recovered found-path prefix.,confirmed
+13,,section table,,not checked,,No section walk in the scan or the recovered found-path prefix.,confirmed
+14,,DataDirectory,,not checked,,No data-directory walk in the scan or the recovered found-path prefix.,confirmed
