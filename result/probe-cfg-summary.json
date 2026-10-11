@@ -1,0 +1,625 @@
+{
+  "blocks": 53,
+  "walker_calls": 15,
+  "registry_units": 15,
+  "resolver_fills": [
+    {
+      "gate": "0x85A36E='R'",
+      "imm": "0xADE47B07",
+      "call": "0x85A380",
+      "through_slot": "0x81C245",
+      "stores_eax_to": "0x859CE5"
+    },
+    {
+      "gate": "0x85A38C='R'",
+      "imm": "0x902E00E5",
+      "call": "0x85A39E",
+      "through_slot": "0x81C245",
+      "stores_eax_to": "0x859CE1"
+    },
+    {
+      "gate": "0x85A3AA='R'",
+      "imm": "0xB9BF1235",
+      "call": "0x85A3BC",
+      "through_slot": "0x81C245",
+      "stores_eax_to": "0x81A829"
+    },
+    {
+      "gate": "0x85A3C8='R'",
+      "imm": "0x98781034",
+      "call": "0x85A3DA",
+      "through_slot": "0x81C245",
+      "stores_eax_to": "0x8191E9"
+    },
+    {
+      "gate": "0x85A3E6='R'",
+      "imm": "0xC005DBD4",
+      "call": "0x85A3F8",
+      "through_slot": "0x81C245",
+      "stores_eax_to": "0x819C95"
+    }
+  ],
+  "unit_list": [
+    {
+      "head": "0x859CEE",
+      "open": "0x859D07",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756321,
+        "WinLicenseVersion"
+      ],
+      "root": "0x80000001",
+      "type": 1,
+      "cb": "0x19",
+      "data_form": "slot value (string pointer)",
+      "tests_return": false,
+      "cond_gates": [],
+      "calls": [
+        [
+          "0x859D07",
+          "0x859CE5"
+        ],
+        [
+          "0x859D26",
+          "0x81A829"
+        ],
+        [
+          "0x859D32",
+          "0x859CE1"
+        ],
+        [
+          "0x859D3E",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x859D45",
+      "open": "0x859D5E",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756363,
+        "WinLicenseInstance"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [],
+      "calls": [
+        [
+          "0x859D5E",
+          "0x859CE5"
+        ],
+        [
+          "0x859D7E",
+          "0x81A829"
+        ],
+        [
+          "0x859D8A",
+          "0x859CE1"
+        ],
+        [
+          "0x859D96",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x859D9D",
+      "open": "0x859DB6",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756339,
+        "WinLicenseDriverVersion"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [],
+      "calls": [
+        [
+          "0x859DB6",
+          "0x859CE5"
+        ],
+        [
+          "0x859DD6",
+          "0x81A829"
+        ],
+        [
+          "0x859DE2",
+          "0x859CE1"
+        ],
+        [
+          "0x859DEE",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x859DF5",
+      "open": "0x859E0E",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756382,
+        "ExitOk"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [],
+      "calls": [
+        [
+          "0x859E0E",
+          "0x859CE5"
+        ],
+        [
+          "0x859E2E",
+          "0x81A829"
+        ],
+        [
+          "0x859E3A",
+          "0x859CE1"
+        ],
+        [
+          "0x859E46",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x859E4D",
+      "open": "0x859E66",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756302,
+        "XprotExit"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [],
+      "calls": [
+        [
+          "0x859E66",
+          "0x859CE5"
+        ],
+        [
+          "0x859E86",
+          "0x81A829"
+        ],
+        [
+          "0x859E92",
+          "0x859CE1"
+        ],
+        [
+          "0x859E9E",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x859F24",
+      "open": "0x859F3D",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756419,
+        "TpIN"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [
+        [
+          "0x859F63",
+          "0x81BAB5"
+        ]
+      ],
+      "calls": [
+        [
+          "0x859F3D",
+          "0x859CE5"
+        ],
+        [
+          "0x859F5D",
+          "0x81A829"
+        ],
+        [
+          "0x859F76",
+          "0x859CE1"
+        ],
+        [
+          "0x859F82",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x859F8B",
+      "open": "0x859FA4",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756424,
+        "HWIN"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [
+        [
+          "0x859FCA",
+          "0x81BAB5"
+        ]
+      ],
+      "calls": [
+        [
+          "0x859FA4",
+          "0x859CE5"
+        ],
+        [
+          "0x859FC4",
+          "0x81A829"
+        ],
+        [
+          "0x859FDD",
+          "0x859CE1"
+        ],
+        [
+          "0x859FE9",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x859FF2",
+      "open": "0x85A00B",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756429,
+        "ExpInfo"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [],
+      "calls": [
+        [
+          "0x85A00B",
+          "0x859CE5"
+        ],
+        [
+          "0x85A02B",
+          "0x81A829"
+        ],
+        [
+          "0x85A037",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x85A040",
+      "open": "0x85A059",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756389,
+        "ProcIN"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [
+        [
+          "0x85A07F",
+          "0x81BAB5"
+        ]
+      ],
+      "calls": [
+        [
+          "0x85A059",
+          "0x859CE5"
+        ],
+        [
+          "0x85A079",
+          "0x81A829"
+        ],
+        [
+          "0x85A092",
+          "0x859CE1"
+        ],
+        [
+          "0x85A09E",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x85A0A7",
+      "open": "0x85A0C0",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756396,
+        "ProcOUT"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [
+        [
+          "0x85A0E6",
+          "0x81BAB5"
+        ]
+      ],
+      "calls": [
+        [
+          "0x85A0C0",
+          "0x859CE5"
+        ],
+        [
+          "0x85A0E0",
+          "0x81A829"
+        ],
+        [
+          "0x85A0F9",
+          "0x859CE1"
+        ],
+        [
+          "0x85A105",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x85A10E",
+      "open": "0x85A127",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756404,
+        "ExitIN"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [
+        [
+          "0x85A14D",
+          "0x81BAB5"
+        ]
+      ],
+      "calls": [
+        [
+          "0x85A127",
+          "0x859CE5"
+        ],
+        [
+          "0x85A147",
+          "0x81A829"
+        ],
+        [
+          "0x85A160",
+          "0x859CE1"
+        ],
+        [
+          "0x85A16C",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x85A175",
+      "open": "0x85A18E",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756411,
+        "ExitOUT"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [
+        [
+          "0x85A1B4",
+          "0x81BAB5"
+        ]
+      ],
+      "calls": [
+        [
+          "0x85A18E",
+          "0x859CE5"
+        ],
+        [
+          "0x85A1AE",
+          "0x81A829"
+        ],
+        [
+          "0x85A1C7",
+          "0x859CE1"
+        ],
+        [
+          "0x85A1D3",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x85A1ED",
+      "open": "0x85A1F9",
+      "key": [
+        8756280,
+        "Software\\WLkt"
+      ],
+      "value": [
+        8756294,
+        "CheckIN"
+      ],
+      "root": "0x80000002",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": true,
+      "cond_gates": [
+        [
+          "0x85A263",
+          "0x859CD9"
+        ]
+      ],
+      "calls": [
+        [
+          "0x85A1F9",
+          "0x859CE5"
+        ],
+        [
+          "0x85A230",
+          "0x81A829"
+        ],
+        [
+          "0x85A25D",
+          "0x8191E9"
+        ],
+        [
+          "0x85A282",
+          "0x81C245"
+        ]
+      ]
+    },
+    {
+      "head": "0x85A2A1",
+      "open": "0x85A2BA",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756294,
+        "CheckIN"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [
+        [
+          "0x85A2E0",
+          "0x81BAB5"
+        ]
+      ],
+      "calls": [
+        [
+          "0x85A2BA",
+          "0x859CE5"
+        ],
+        [
+          "0x85A2DA",
+          "0x81A829"
+        ],
+        [
+          "0x85A2F3",
+          "0x859CE1"
+        ],
+        [
+          "0x85A2FF",
+          "0x8191E9"
+        ]
+      ]
+    },
+    {
+      "head": "0x85A308",
+      "open": "0x85A321",
+      "key": [
+        8756260,
+        "Software\\WinLicense"
+      ],
+      "value": [
+        8756312,
+        "CheckOUT"
+      ],
+      "root": "0x80000001",
+      "type": 4,
+      "cb": "0x4",
+      "data_form": "lea &slot (dword pointer)",
+      "tests_return": false,
+      "cond_gates": [
+        [
+          "0x85A347",
+          "0x81BAB5"
+        ]
+      ],
+      "calls": [
+        [
+          "0x85A321",
+          "0x859CE5"
+        ],
+        [
+          "0x85A341",
+          "0x81A829"
+        ],
+        [
+          "0x85A35A",
+          "0x859CE1"
+        ],
+        [
+          "0x85A366",
+          "0x8191E9"
+        ]
+      ]
+    }
+  ]
+}

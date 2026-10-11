@@ -3,6 +3,7 @@
 
 # Local scratch/workspace directories
 .work/
+glm-work/
 .tmp/
 tmp/
 .cache/
