@@ -1,0 +1,17 @@
+file,size_bytes,version,image_count_root,image_count_recursive,subdir_count,subdir_names,sample_images,status
+Base.wz,8885,79,4,4,15,Etc;UI;Character;Effect;Skill;Mob;Morph;Reactor;Map;TamingMob,StandardPDD.img;zmap.img;zmap_cn.img;smap.img,ok
+Character.wz,1238707905,79,27,25565,19,Cap;Glove;Shield;Shoes;Hair;Face;Longcoat;Cape;Afterimage;Pants,00002003.img;00012009.img;00002009.img;00002004.img;00012003.img;00002011.img,ok
+Effect.wz,142666079,79,17,17,0,,BasicEff.img;Direction1.img;SkillName3.img;ItemEff.img;Direction2.img;Direction.img,ok
+Etc.wz,19435393,79,28,28,0,,Swindle.img;Tips.img;MakeCharInfo.img;NpcLocation.img;QuestCategory.img;Curse.img,ok
+Item.wz,139053911,79,0,475,6,Pet;Special;Etc;Cash;Consume;Install,,ok
+Map.wz,835954262,79,3,4614,5,Tile;Back;Obj;WorldMap;Map,MapHelper.img;Effect.img;Physics.img,ok
+Mob.wz,421628507,79,1614,1617,1,QuestCountGroup,9300330.img;2100106.img;9300037.img;9300217.img;9600059.img;8200002.img,ok
+Morph.wz,35707082,79,182,182,0,,0035.img;0019.img;0044.img;0015.img;0022.img;0030.img,ok
+Npc.wz,53772873,79,1608,1608,0,,0002000.img;9220006.img;2112000.img;1011001.img;9330011.img;9310079.img,ok
+Quest.wz,3726297,79,6,6,0,,QuestInfo.img;Say.img;Exclusive.img;PQuest.img;Check.img;Act.img,ok
+Reactor.wz,85233536,79,463,463,0,,9202005.img;2402002.img;1200000.img;2001014.img;9201000.img;2519002.img,ok
+Skill.wz,74821220,79,75,75,0,,230.img;1100.img;400.img;ItemSkill.img;1110.img;510.img,ok
+Sound.wz,366212494,79,48,48,0,,Bgm16.img;Bgm01.img;Bgm04.img;Bgm14.img;Bgm05.img;MiniGame.img,ok
+String.wz,9608592,79,15,15,0,,Consume.img;Item.img;Skill.img;PetDialog.img;EULA.img;Map.img,ok
+TamingMob.wz,1876,79,16,16,0,,0001.img;0005.img;0003.img;0007.img;0006.img;0004.img,ok
+UI.wz,33744089,79,27,27,0,,MapLogin.img;Initials.img;OneADay.img;StatusBar.img;Basic.img;CN_Chat.img,ok

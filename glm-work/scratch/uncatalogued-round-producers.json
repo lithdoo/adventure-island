@@ -1,0 +1,203 @@
+{
+  "total_image_writes": 77531,
+  "top_producers": [
+    {
+      "rva": "0x81cb1b",
+      "writes": 28672
+    },
+    {
+      "rva": "0x81ce47",
+      "writes": 7283
+    },
+    {
+      "rva": "0x81d5d2",
+      "writes": 6809
+    },
+    {
+      "rva": "0x81d5d8",
+      "writes": 6809
+    },
+    {
+      "rva": "0x81d5ee",
+      "writes": 6809
+    },
+    {
+      "rva": "0x81d5f9",
+      "writes": 6809
+    },
+    {
+      "rva": "0x8593e3",
+      "writes": 6537
+    },
+    {
+      "rva": "0x81d106",
+      "writes": 3573
+    },
+    {
+      "rva": "0x81d18c",
+      "writes": 3568
+    },
+    {
+      "rva": "0x821778",
+      "writes": 168
+    },
+    {
+      "rva": "0x81c7e0",
+      "writes": 127
+    },
+    {
+      "rva": "0x834871",
+      "writes": 98
+    },
+    {
+      "rva": "0x82e5e8",
+      "writes": 18
+    },
+    {
+      "rva": "0x821790",
+      "writes": 8
+    },
+    {
+      "rva": "0x82412c",
+      "writes": 8
+    },
+    {
+      "rva": "0x829b4e",
+      "writes": 8
+    },
+    {
+      "rva": "0x81cec9",
+      "writes": 5
+    },
+    {
+      "rva": "0x81ced1",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cedb",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cee1",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cee7",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cf0e",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cf30",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cf36",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cfb4",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cfba",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cfc7",
+      "writes": 5
+    },
+    {
+      "rva": "0x81cfec",
+      "writes": 5
+    },
+    {
+      "rva": "0x81d035",
+      "writes": 5
+    },
+    {
+      "rva": "0x81d04d",
+      "writes": 5
+    }
+  ],
+  "top_pages": [
+    {
+      "page": "0x81a000",
+      "writes": 10483
+    },
+    {
+      "page": "0x81b000",
+      "writes": 6852
+    },
+    {
+      "page": "0x819000",
+      "writes": 6844
+    },
+    {
+      "page": "0x821000",
+      "writes": 6474
+    },
+    {
+      "page": "0x81e000",
+      "writes": 6144
+    },
+    {
+      "page": "0x81f000",
+      "writes": 6144
+    },
+    {
+      "page": "0x820000",
+      "writes": 6144
+    },
+    {
+      "page": "0x822000",
+      "writes": 6144
+    },
+    {
+      "page": "0x81d000",
+      "writes": 5748
+    },
+    {
+      "page": "0x81c000",
+      "writes": 5051
+    },
+    {
+      "page": "0x823000",
+      "writes": 4897
+    },
+    {
+      "page": "0x85e000",
+      "writes": 1024
+    },
+    {
+      "page": "0x85d000",
+      "writes": 1024
+    },
+    {
+      "page": "0x85c000",
+      "writes": 1024
+    },
+    {
+      "page": "0x85b000",
+      "writes": 1024
+    },
+    {
+      "page": "0x85a000",
+      "writes": 1024
+    },
+    {
+      "page": "0x859000",
+      "writes": 762
+    },
+    {
+      "page": "0x85f000",
+      "writes": 655
+    },
+    {
+      "page": "0x824000",
+      "writes": 69
+    }
+  ]
+}

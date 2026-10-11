@@ -1,0 +1,106 @@
+{
+  "span_sha_match": true,
+  "driver_stage": {
+    "blocks": 152,
+    "calls": 68
+  },
+  "formed_hits": 0,
+  "imm_hits": 2746,
+  "selfdecode_candidates": 5,
+  "driver_string_refs": {
+    "oreans32.sys": [
+      "0x861774",
+      "0x8619d7"
+    ],
+    "oreansx64.sys": [
+      "0x86173e"
+    ],
+    "\\\\.\\oreans32": [
+      "0x861a66"
+    ],
+    "\\\\.\\Global\\oreans32": [
+      "0x861b2d"
+    ],
+    "\\\\.\\Global\\oreansx64": [
+      "0x861ad1"
+    ],
+    "\\\\.\\Oreans.vxd": [
+      "0x860d9f",
+      "0x860e7c"
+    ],
+    "OpenSCManagerA": [
+      "0x861347"
+    ],
+    "CreateServiceA": [
+      "0x86154c"
+    ],
+    "StartServiceA": [
+      "0x8615ba"
+    ],
+    "XprotEvent": [
+      "0x861208"
+    ]
+  },
+  "anchors": [
+    {
+      "anchor": "AES key",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": "IV prefix",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": "IV seed",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": "List.wz",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": ".wz",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": "WS2_32",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": "WSAStartup",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": "RTTI .?AV",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": "RTTI .?AU",
+      "found": false,
+      "rva": null
+    },
+    {
+      "anchor": "prologue 55 8B EC density>=12/4KB",
+      "found": false,
+      "rva": []
+    }
+  ],
+  "round3_verify": {
+    "producer_store": "0x8593E3 mov [edi+eax], ebx",
+    "loop_body_entry": "0x8593A1 push [eax+edi] / pop ebx",
+    "ops": "add ebx,0x3DDF4CA1 @0x8593BB; add ebx,0x1C39E09C @0x8593C1; xor ebx,0x61799419 @0x8593DD",
+    "span": "0x85941A-0x85FA3D",
+    "dwords": 6537,
+    "matched": 6537,
+    "first_mismatch": null,
+    "output_sha256": "b66a6d79b90c220085c30222f2bbd80ea5c33060e8fa1afd66a4cd748fc5d315"
+  }
+}

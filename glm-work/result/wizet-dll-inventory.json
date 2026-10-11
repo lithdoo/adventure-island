@@ -1,0 +1,954 @@
+[
+  {
+    "dll": "ResMan.dll",
+    "sha256": "0b68220eea14df49f15f38c1a59fa5695400659a38c1dfd5ff71826015768fdc",
+    "image_base": "0x51000000",
+    "size": 53248,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 7,
+        "notable": []
+      },
+      {
+        "dll": "OLEAUT32.dll",
+        "count": 6,
+        "notable": []
+      },
+      {
+        "dll": "MSVCRT.dll",
+        "count": 18,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "DllCanUnloadNow",
+        "rva": "0x1066",
+        "stdcall_args": null
+      },
+      {
+        "name": "DllGetClassObject",
+        "rva": "0x10a7",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "ResMan.DLL",
+        "rva": "0x8c9c",
+        "va": "0x51008c9c",
+        "refs": []
+      },
+      {
+        "string": "QWS2_32.DLL",
+        "rva": "0xa1e7",
+        "va": "0x5100a1e7",
+        "refs": []
+      },
+      {
+        "string": "PCOM.DLL",
+        "rva": "0xa25c",
+        "va": "0x5100a25c",
+        "refs": [
+          [
+            "0x22d6",
+            "push imm32"
+          ]
+        ]
+      },
+      {
+        "string": "[ResMan] Failed in GetCachedObject : %s",
+        "rva": "0xa30c",
+        "va": "0x5100a30c",
+        "refs": [
+          [
+            "0x38e1",
+            "push imm32"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "dll": "Canvas.dll",
+    "sha256": "1234c6294c7dd09f5b04c3a4be9c5063bf8467715f6c84243e5069886d5ea5ba",
+    "image_base": "0x50000000",
+    "size": 204800,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 9,
+        "notable": []
+      },
+      {
+        "dll": "GDI32.dll",
+        "count": 1,
+        "notable": []
+      },
+      {
+        "dll": "OLEAUT32.dll",
+        "count": 6,
+        "notable": []
+      },
+      {
+        "dll": "ZLZ.dll",
+        "count": 3,
+        "notable": []
+      },
+      {
+        "dll": "MSVCRT.dll",
+        "count": 29,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "DllCanUnloadNow",
+        "rva": "0x5903",
+        "stdcall_args": 0
+      },
+      {
+        "name": "DllGetClassObject",
+        "rva": "0x5924",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "?ZLZCloseFilter@@YAXPAUZIStream@@@Z",
+        "rva": "0x2bd68",
+        "va": "0x5002bd68",
+        "refs": []
+      },
+      {
+        "string": "?ZLZCreateInflator@@YAPAUZIStream@@HPAU1@I@Z",
+        "rva": "0x2bd8e",
+        "va": "0x5002bd8e",
+        "refs": []
+      },
+      {
+        "string": "?ZLZCreateDeflator@@YAPAUZIStream@@HPAU1@H@Z",
+        "rva": "0x2bdbe",
+        "va": "0x5002bdbe",
+        "refs": []
+      },
+      {
+        "string": "ZLZ.dll",
+        "rva": "0x2bdec",
+        "va": "0x5002bdec",
+        "refs": []
+      },
+      {
+        "string": "Canvas.DLL",
+        "rva": "0x2bf9c",
+        "va": "0x5002bf9c",
+        "refs": []
+      },
+      {
+        "string": ".?AVCWzCanvas@@",
+        "rva": "0x2c368",
+        "va": "0x5002c368",
+        "refs": []
+      },
+      {
+        "string": ".?AVCWzDIBRawCanvas@@",
+        "rva": "0x2c3a0",
+        "va": "0x5002c3a0",
+        "refs": []
+      },
+      {
+        "string": "WS2_32.DLL",
+        "rva": "0x2d5c0",
+        "va": "0x5002d5c0",
+        "refs": [
+          [
+            "0x2c478",
+            "dword occurrence (non-exec)"
+          ]
+        ]
+      },
+      {
+        "string": "PCOM.DLL",
+        "rva": "0x2d5cc",
+        "va": "0x5002d5cc",
+        "refs": [
+          [
+            "0x14e34",
+            "push imm32"
+          ]
+        ]
+      },
+      {
+        "string": "List.wz",
+        "rva": "0x2d6f4",
+        "va": "0x5002d6f4",
+        "refs": [
+          [
+            "0x20bc4",
+            "push imm32"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "dll": "PCOM.dll",
+    "sha256": "cf3807f3107152d3b305bfc84be36d58b62306c94f60133c8e80fd17f9d9e54b",
+    "image_base": "0x50c00000",
+    "size": 114688,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 9,
+        "notable": []
+      },
+      {
+        "dll": "OLEAUT32.dll",
+        "count": 7,
+        "notable": []
+      },
+      {
+        "dll": "MSVCRT.dll",
+        "count": 25,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "DllCanUnloadNow",
+        "rva": "0x2b43",
+        "stdcall_args": 0
+      },
+      {
+        "name": "DllGetClassObject",
+        "rva": "0x2b4f",
+        "stdcall_args": null
+      },
+      {
+        "name": "PcCreateObject",
+        "rva": "0x4cd1",
+        "stdcall_args": null
+      },
+      {
+        "name": "PcFreeUnusedLibraries",
+        "rva": "0x10691",
+        "stdcall_args": null
+      },
+      {
+        "name": "PcInitModule",
+        "rva": "0x104ca",
+        "stdcall_args": null
+      },
+      {
+        "name": "PcRootNameSpace",
+        "rva": "0x63bc",
+        "stdcall_args": null
+      },
+      {
+        "name": "PcSerializeObject",
+        "rva": "0x86fa",
+        "stdcall_args": null
+      },
+      {
+        "name": "PcSerializeString",
+        "rva": "0x6411",
+        "stdcall_args": null
+      },
+      {
+        "name": "PcTermModule",
+        "rva": "0x10624",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "PCOM.DLL",
+        "rva": "0x16ce2",
+        "va": "0x50c16ce2",
+        "refs": []
+      },
+      {
+        "string": "List.wz",
+        "rva": "0x174bc",
+        "va": "0x50c174bc",
+        "refs": [
+          [
+            "0x6cc7",
+            "push imm32"
+          ]
+        ]
+      },
+      {
+        "string": "PWS2_32.DLL",
+        "rva": "0x1860b",
+        "va": "0x50c1860b",
+        "refs": []
+      }
+    ]
+  },
+  {
+    "dll": "NameSpace.dll",
+    "sha256": "1c94ca7e6317f46be22b03fe3f706d4907b2cc78d2b1d9364854bfe610eaa7a5",
+    "image_base": "0x50800000",
+    "size": 143360,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 11,
+        "notable": []
+      },
+      {
+        "dll": "USER32.dll",
+        "count": 1,
+        "notable": []
+      },
+      {
+        "dll": "OLEAUT32.dll",
+        "count": 6,
+        "notable": []
+      },
+      {
+        "dll": "MSVCRT.dll",
+        "count": 23,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "DllCanUnloadNow",
+        "rva": "0x1075",
+        "stdcall_args": 0
+      },
+      {
+        "name": "DllGetClassObject",
+        "rva": "0x1081",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "PPKG1",
+        "rva": "0x18c87",
+        "va": "0x50818c87",
+        "refs": []
+      },
+      {
+        "string": "PWS2_32.DLL",
+        "rva": "0x1e477",
+        "va": "0x5081e477",
+        "refs": []
+      },
+      {
+        "string": "PCOM.DLL",
+        "rva": "0x1e4ec",
+        "va": "0x5081e4ec",
+        "refs": [
+          [
+            "0x9a5c",
+            "push imm32"
+          ]
+        ]
+      },
+      {
+        "string": "9=PKG%04x.tmp",
+        "rva": "0x1e61e",
+        "va": "0x5081e61e",
+        "refs": []
+      }
+    ]
+  },
+  {
+    "dll": "Shape2D.dll",
+    "sha256": "9802baccd787543221391b4b902ce199e99fb2cde6a4edadc2f4972490c8111b",
+    "image_base": "0x51400000",
+    "size": 86016,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 7,
+        "notable": []
+      },
+      {
+        "dll": "OLEAUT32.dll",
+        "count": 6,
+        "notable": []
+      },
+      {
+        "dll": "MSVCRT.dll",
+        "count": 23,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "DllCanUnloadNow",
+        "rva": "0x1061",
+        "stdcall_args": 0
+      },
+      {
+        "name": "DllGetClassObject",
+        "rva": "0x106d",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "g@QWS2_32.DLL",
+        "rva": "0x114ed",
+        "va": "0x514114ed",
+        "refs": []
+      },
+      {
+        "string": "PCOM.DLL",
+        "rva": "0x11564",
+        "va": "0x51411564",
+        "refs": [
+          [
+            "0x5dad",
+            "push imm32"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "dll": "Gr2D_DX8.dll",
+    "sha256": "ad67b9a08a0a360e9a31f0274d29b8cb9839d95d691762961454c806ef6a25d1",
+    "image_base": "0x50400000",
+    "size": 258048,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 10,
+        "notable": []
+      },
+      {
+        "dll": "OLEAUT32.dll",
+        "count": 8,
+        "notable": []
+      },
+      {
+        "dll": "WINMM.dll",
+        "count": 2,
+        "notable": []
+      },
+      {
+        "dll": "MSVCRT.dll",
+        "count": 29,
+        "notable": []
+      },
+      {
+        "dll": "ADVAPI32.dll",
+        "count": 3,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "DllCanUnloadNow",
+        "rva": "0x1066",
+        "stdcall_args": 0
+      },
+      {
+        "name": "DllGetClassObject",
+        "rva": "0x1072",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "&@PWS2_32.DLL",
+        "rva": "0x3622d",
+        "va": "0x5043622d",
+        "refs": []
+      },
+      {
+        "string": "PCOM.DLL",
+        "rva": "0x362a4",
+        "va": "0x504362a4",
+        "refs": [
+          [
+            "0x1c71",
+            "push imm32"
+          ]
+        ]
+      },
+      {
+        "string": ".?AVCWzRawCanvas@@",
+        "rva": "0x36528",
+        "va": "0x50436528",
+        "refs": []
+      }
+    ]
+  },
+  {
+    "dll": "Sound_DX8.dll",
+    "sha256": "58598154b76dc5a255d7aae1b100888316e6162218d3e9c3eb62b7ed587bcdbb",
+    "image_base": "0x51800000",
+    "size": 147456,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 12,
+        "notable": []
+      },
+      {
+        "dll": "USER32.dll",
+        "count": 1,
+        "notable": []
+      },
+      {
+        "dll": "OLEAUT32.dll",
+        "count": 6,
+        "notable": []
+      },
+      {
+        "dll": "WINMM.dll",
+        "count": 6,
+        "notable": []
+      },
+      {
+        "dll": "MSACM32.dll",
+        "count": 13,
+        "notable": []
+      },
+      {
+        "dll": "MSVCRT.dll",
+        "count": 21,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "DllCanUnloadNow",
+        "rva": "0x2da8",
+        "stdcall_args": null
+      },
+      {
+        "name": "DllGetClassObject",
+        "rva": "0x2dd5",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "QWS2_32.DLL",
+        "rva": "0x1f4b7",
+        "va": "0x5181f4b7",
+        "refs": []
+      }
+    ]
+  },
+  {
+    "dll": "ZLZ.dll",
+    "sha256": "62fb97d19878190d3074d1d34b42937ac5dd09688bcb10a2b75f0e205b1a3183",
+    "image_base": "0x10000000",
+    "size": 81973,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 6,
+        "notable": []
+      },
+      {
+        "dll": "MSVCRT.dll",
+        "count": 9,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "?ZLZCloseFilter@@YAXPAUZIStream@@@Z",
+        "rva": "0xb830",
+        "stdcall_args": null
+      },
+      {
+        "name": "?ZLZCreateDeflator@@YAPAUZIStream@@HPAU1@H@Z",
+        "rva": "0xac50",
+        "stdcall_args": null
+      },
+      {
+        "name": "?ZLZCreateInflator@@YAPAUZIStream@@HPAU1@I@Z",
+        "rva": "0xb410",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "ZLZ.dll",
+        "rva": "0xf646",
+        "va": "0x1000f646",
+        "refs": []
+      },
+      {
+        "string": "?ZLZCloseFilter@@YAXPAUZIStream@@@Z",
+        "rva": "0xf64e",
+        "va": "0x1000f64e",
+        "refs": []
+      },
+      {
+        "string": "?ZLZCreateDeflator@@YAPAUZIStream@@HPAU1@H@Z",
+        "rva": "0xf672",
+        "va": "0x1000f672",
+        "refs": []
+      },
+      {
+        "string": "?ZLZCreateInflator@@YAPAUZIStream@@HPAU1@I@Z",
+        "rva": "0xf69f",
+        "va": "0x1000f69f",
+        "refs": []
+      },
+      {
+        "string": "WS2_32.DLL",
+        "rva": "0x12644",
+        "va": "0x10012644",
+        "refs": [
+          [
+            "0x11564",
+            "dword occurrence (non-exec)"
+          ]
+        ]
+      },
+      {
+        "string": "D:\\ACGAME_CN\\ztl\\ZLZ\\Release\\ZLZ.pdb",
+        "rva": "0x14010",
+        "va": "0x10014010",
+        "refs": []
+      }
+    ]
+  },
+  {
+    "dll": "WzMss.dll",
+    "sha256": "fb18f661f5ed7edb29e69a0ff7e1ef7c4a1d56c6e6c0b328126e3b21ec0bdc45",
+    "image_base": "0x10000000",
+    "size": 188416,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 78,
+        "notable": []
+      },
+      {
+        "dll": "ole32.dll",
+        "count": 1,
+        "notable": []
+      },
+      {
+        "dll": "OLEAUT32.dll",
+        "count": 5,
+        "notable": []
+      },
+      {
+        "dll": "WS2_32.dll",
+        "count": 24,
+        "notable": [
+          "WSACloseEvent",
+          "WSACleanup",
+          "WSAEnumNetworkEvents",
+          "WSAGetLastError",
+          "WSAConnect",
+          "WSAGetOverlappedResult",
+          "WSASend",
+          "WSARecv",
+          "WSAEventSelect",
+          "WSASetEvent",
+          "WSACreateEvent",
+          "WSAStartup"
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "?WzSoap_CommentArticle@@YAJEHPBGEH00H_NPAG@Z",
+        "rva": "0x12350",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_ConsultCheckAnswer@@YAJHPBGPAG@Z",
+        "rva": "0x12b90",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_ConsultCheckCreate@@YAJPBGPAG@Z",
+        "rva": "0x13020",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_ConsultDelete@@YAJHPBGPAG@Z",
+        "rva": "0x12f40",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_ConsultGetContent@@YAJHPBGPAG@Z",
+        "rva": "0x12d50",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_ConsultGetTitle@@YAJHPBGPAG@Z",
+        "rva": "0x12c70",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_ConsultModify@@YAJPBG0H0PAG@Z",
+        "rva": "0x12e30",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_ConsultWrite@@YAJPBG00PAG@Z",
+        "rva": "0x12a90",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_DeleteArticle@@YAJEH_NPBGPAG@Z",
+        "rva": "0x12260",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_GetArticleContent@@YAJEH_NPBGPAG@Z",
+        "rva": "0x12580",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_GetArticleOwner@@YAJEHPBGEH_NPAH@Z",
+        "rva": "0x12020",
+        "stdcall_args": 0
+      },
+      {
+        "name": "?WzSoap_GetArticleTitle@@YAJEHPBGEH_NPAG@Z",
+        "rva": "0x12480",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_GetTopArticleID@@YAJEHPBGE_NPAH@Z",
+        "rva": "0x12790",
+        "stdcall_args": 0
+      },
+      {
+        "name": "?WzSoap_GetTopArticleTitle@@YAJEHPBGE_NPAG@Z",
+        "rva": "0x12860",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_MapleNoticeBoard_GetList_Num@@YAJPAH@Z",
+        "rva": "0x12950",
+        "stdcall_args": 0
+      },
+      {
+        "name": "?WzSoap_MapleTNoticeBoard_GetList_Num@@YAJPAH@Z",
+        "rva": "0x129f0",
+        "stdcall_args": 0
+      },
+      {
+        "name": "?WzSoap_ModifyArticle@@YAJEHPBG0_N0PAG@Z",
+        "rva": "0x12670",
+        "stdcall_args": null
+      },
+      {
+        "name": "?WzSoap_WriteArticle@@YAJEHPBGE000HPAG1_N1@Z",
+        "rva": "0x12100",
+        "stdcall_args": null
+      }
+    ],
+    "strings": [
+      {
+        "string": "\\ws2_32",
+        "rva": "0x2428c",
+        "va": "0x1002428c",
+        "refs": [
+          [
+            "0x21c0",
+            "dword occurrence"
+          ]
+        ]
+      },
+      {
+        "string": "http://api.maplestory.nexon.com/Soap/ConsultBoard.asmx",
+        "rva": "0x252f0",
+        "va": "0x100252f0",
+        "refs": [
+          [
+            "0xce2b",
+            "push imm32"
+          ]
+        ]
+      },
+      {
+        "string": "d:\\ACGame\\WzLib\\Soap\\Release\\Soap.pdb",
+        "rva": "0x26f08",
+        "va": "0x10026f08",
+        "refs": []
+      },
+      {
+        "string": "WS2_32.dll",
+        "rva": "0x2851c",
+        "va": "0x1002851c",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_CommentArticle@@YAJEHPBGEH00H_NPAG@Z",
+        "rva": "0x28976",
+        "va": "0x10028976",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_ConsultCheckAnswer@@YAJHPBGPAG@Z",
+        "rva": "0x289a3",
+        "va": "0x100289a3",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_ConsultCheckCreate@@YAJPBGPAG@Z",
+        "rva": "0x289cc",
+        "va": "0x100289cc",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_ConsultDelete@@YAJHPBGPAG@Z",
+        "rva": "0x289f4",
+        "va": "0x100289f4",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_ConsultGetContent@@YAJHPBGPAG@Z",
+        "rva": "0x28a18",
+        "va": "0x10028a18",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_ConsultGetTitle@@YAJHPBGPAG@Z",
+        "rva": "0x28a40",
+        "va": "0x10028a40",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_ConsultModify@@YAJPBG0H0PAG@Z",
+        "rva": "0x28a66",
+        "va": "0x10028a66",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_ConsultWrite@@YAJPBG00PAG@Z",
+        "rva": "0x28a8c",
+        "va": "0x10028a8c",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_DeleteArticle@@YAJEH_NPBGPAG@Z",
+        "rva": "0x28ab0",
+        "va": "0x10028ab0",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_GetArticleContent@@YAJEH_NPBGPAG@Z",
+        "rva": "0x28ad7",
+        "va": "0x10028ad7",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_GetArticleOwner@@YAJEHPBGEH_NPAH@Z",
+        "rva": "0x28b02",
+        "va": "0x10028b02",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_GetArticleTitle@@YAJEHPBGEH_NPAG@Z",
+        "rva": "0x28b2d",
+        "va": "0x10028b2d",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_GetTopArticleID@@YAJEHPBGE_NPAH@Z",
+        "rva": "0x28b58",
+        "va": "0x10028b58",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_GetTopArticleTitle@@YAJEHPBGE_NPAG@Z",
+        "rva": "0x28b82",
+        "va": "0x10028b82",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_MapleNoticeBoard_GetList_Num@@YAJPAH@Z",
+        "rva": "0x28baf",
+        "va": "0x10028baf",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_MapleTNoticeBoard_GetList_Num@@YAJPAH@Z",
+        "rva": "0x28bde",
+        "va": "0x10028bde",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_ModifyArticle@@YAJEHPBG0_N0PAG@Z",
+        "rva": "0x28c0e",
+        "va": "0x10028c0e",
+        "refs": []
+      },
+      {
+        "string": "?WzSoap_WriteArticle@@YAJEHPBGE000HPAG1_N1@Z",
+        "rva": "0x28c37",
+        "va": "0x10028c37",
+        "refs": []
+      }
+    ]
+  },
+  {
+    "dll": "ijl15.dll",
+    "sha256": "b1bc97dc2913b8f92eeb9f369570202df0fddabcb0d6cc6609504783ac1df0f2",
+    "image_base": "0x10000000",
+    "size": 8192,
+    "imports": [
+      {
+        "dll": "KERNEL32.dll",
+        "count": 17,
+        "notable": []
+      },
+      {
+        "dll": "USER32.dll",
+        "count": 1,
+        "notable": []
+      },
+      {
+        "dll": "MSVCR90.dll",
+        "count": 17,
+        "notable": []
+      }
+    ],
+    "exports": [
+      {
+        "name": "ijlErrorStr",
+        "rva": "0x10c0",
+        "stdcall_args": null
+      },
+      {
+        "name": "ijlFree",
+        "rva": "0x1090",
+        "stdcall_args": null
+      },
+      {
+        "name": "ijlGetLibVersion",
+        "rva": "0x1070",
+        "stdcall_args": null
+      },
+      {
+        "name": "ijlInit",
+        "rva": "0x1080",
+        "stdcall_args": null
+      },
+      {
+        "name": "ijlRead",
+        "rva": "0x10a0",
+        "stdcall_args": null
+      },
+      {
+        "name": "ijlWrite",
+        "rva": "0x10b0",
+        "stdcall_args": null
+      }
+    ],
+    "strings": []
+  }
+]

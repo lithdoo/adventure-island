@@ -1,0 +1,26 @@
+callsite,imm_checksum,module,api_name,note
+0x85A380,0xADE47B07,advapi32,RegCreateKeyA,"registry fill#1 -> slot 0x859CE5, gate 'R' (3-arg key API)"
+0x85A39E,0x902E00E5,kernel32,RegFlushKey,"registry fill#2 -> slot 0x859CE1, gate 'R' (1-arg key API)"
+0x85A3BC,0xB9BF1235,kernel32,RegSetValueExA,"registry fill#3 -> slot 0x81A829, gate 'R' (6-arg value API)"
+0x85A3DA,0x98781034,kernel32,RegCloseKey,"registry fill#4 -> slot 0x8191E9, gate 'R' (1-arg key API)"
+0x85A3F8,0xC005DBD4,kernel32,RegQueryValueExA,"registry fill#5 -> slot 0x819C95, gate 'R' (6-arg value API)"
+0x85FFE5,0x99395F90,kernel32,SetEvent,driver stage
+0x86003F,0x90045206,kernel32,WaitForSingleObject,driver stage
+0x8600C5,0xBC907028,kernel32,CreateEventA,driver stage
+0x86017C,0xD9DA1CE9,kernel32,LoadLibraryA,driver stage
+0x860203,0xBADE0614,kernel32,FreeLibrary,driver stage
+0x86023B,0x8A0FB5E2,kernel32,GetProcAddress,driver stage
+0x8602D6,0x83D0B5F3,kernel32,GetEnvironmentVariableA,driver stage
+0x860343,0xF397A8A3,user32,wsprintfA,driver stage
+0x8603C3,0x8728FAF6,kernel32,GetVersion,driver stage
+0x860456,0xBC8E6EFC,kernel32,CreateFileA,driver stage
+0x8604E6,0x8E726969,kernel32,ExitProcess,driver stage
+0x86055E,0xB8F2EC64,kernel32,DeviceIoControl,driver stage (DeviceIoControl family)
+0x860594,0xCEE4E7B8,advapi32,RegOpenKeyA,driver stage
+0x860613,0xC0764AA7,kernel32,CloseHandle,driver stage / detection edge
+0x860681,0xFCB148D8,kernel32,Sleep,driver stage
+0x860849,0x93C8F7C1,kernel32,GetVersionExA,driver stage
+0x860B45,0xE3E45B86,kernel32,GetWindowsDirectoryA,driver stage
+0x860CBA,0xC7B15E87,kernel32,GetFileSize,driver stage (after \\.\Oreans.vxd open)
+0x8594FF,0xA43576A8,user32,MessageBoxExA,pre-probe user32 resolution (walker-log run 4; expected MessageBoxExA)
+0x8595E7,0xBC8E6EFC,kernel32,CreateFileA,pre-probe kernel32 resolution for the SICE probe (walker-log run 5)

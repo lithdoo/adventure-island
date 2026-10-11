@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "zai-coding-plan/glm-5.3",
+  "permission": {
+    "edit": {
+      "*": "deny",
+      "glm-work/*": "allow",
+      "*glm-work/*": "allow",
+      "*glm-work\\*": "allow"
+    },
+    "bash": "allow",
+    "external_directory": "allow",
+    "doom_loop": "allow"
+  }
+}
