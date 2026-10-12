@@ -1,0 +1,2 @@
+module,first_seen,pid,path_normalized,confidence,notes
+,not-run,,,unknown,No guest was booted. Module enumeration was not performed. ws2_32.dll load state on Win7 x64 is unknown.
