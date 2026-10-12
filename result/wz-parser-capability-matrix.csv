@@ -1,0 +1,145 @@
+parser,parser_commit,archive,success,reported_version,region_enum_or_key_name,actual_iv_bytes,root_directory_count,root_image_count,recursive_image_count,printable_name_ratio,warnings,error,elapsed_ms
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Base.wz,True,79,BMS,00 00 00 00,15,4,4,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Character.wz,True,79,BMS,00 00 00 00,19,27,25565,0.000000,root names are not printable ASCII,,111
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Effect.wz,True,79,BMS,00 00 00 00,0,17,17,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Etc.wz,True,79,BMS,00 00 00 00,0,28,28,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Item.wz,True,79,BMS,00 00 00 00,6,0,475,0.000000,root names are not printable ASCII,,3
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Map.wz,True,79,BMS,00 00 00 00,5,3,4614,0.000000,root names are not printable ASCII,,17
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Mob.wz,True,79,BMS,00 00 00 00,1,1614,1617,0.000000,root names are not printable ASCII,,6
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Morph.wz,True,79,BMS,00 00 00 00,0,182,182,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Npc.wz,True,79,BMS,00 00 00 00,0,1608,1608,0.000000,root names are not printable ASCII,,10
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Quest.wz,True,79,BMS,00 00 00 00,0,6,6,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Reactor.wz,True,79,BMS,00 00 00 00,0,463,463,0.000000,root names are not printable ASCII,,2
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Skill.wz,True,79,BMS,00 00 00 00,0,75,75,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Sound.wz,True,79,BMS,00 00 00 00,0,48,48,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,String.wz,True,79,BMS,00 00 00 00,0,15,15,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,TamingMob.wz,True,79,BMS,00 00 00 00,0,16,16,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,UI.wz,True,79,BMS,00 00 00 00,0,27,27,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Base.wz,True,79,GMS,4D 23 C7 2B,15,4,4,0.000000,root names are not printable ASCII,,2
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Character.wz,True,79,GMS,4D 23 C7 2B,19,27,25565,0.000000,root names are not printable ASCII,,95
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Effect.wz,True,79,GMS,4D 23 C7 2B,0,17,17,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Etc.wz,True,79,GMS,4D 23 C7 2B,0,28,28,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Item.wz,True,79,GMS,4D 23 C7 2B,6,0,475,0.000000,root names are not printable ASCII,,2
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Map.wz,True,79,GMS,4D 23 C7 2B,5,3,4614,0.000000,root names are not printable ASCII,,17
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Mob.wz,True,79,GMS,4D 23 C7 2B,1,1614,1617,0.000000,root names are not printable ASCII,,7
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Morph.wz,True,79,GMS,4D 23 C7 2B,0,182,182,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Npc.wz,True,79,GMS,4D 23 C7 2B,0,1608,1608,0.000000,root names are not printable ASCII,,6
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Quest.wz,True,79,GMS,4D 23 C7 2B,0,6,6,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Reactor.wz,True,79,GMS,4D 23 C7 2B,0,463,463,0.000000,root names are not printable ASCII,,2
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Skill.wz,True,79,GMS,4D 23 C7 2B,0,75,75,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Sound.wz,True,79,GMS,4D 23 C7 2B,0,48,48,0.000000,root names are not printable ASCII,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,String.wz,True,79,GMS,4D 23 C7 2B,0,15,15,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,TamingMob.wz,True,79,GMS,4D 23 C7 2B,0,16,16,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,UI.wz,True,79,GMS,4D 23 C7 2B,0,27,27,0.000000,root names are not printable ASCII,,0
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Base.wz,True,79,EMS,B9 7D 63 E9,15,4,4,1.000000,,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Character.wz,True,79,EMS,B9 7D 63 E9,19,27,25565,1.000000,,,94
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Effect.wz,True,79,EMS,B9 7D 63 E9,0,17,17,1.000000,,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Etc.wz,True,79,EMS,B9 7D 63 E9,0,28,28,1.000000,,,2
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Item.wz,True,79,EMS,B9 7D 63 E9,6,0,475,1.000000,,,2
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Map.wz,True,79,EMS,B9 7D 63 E9,5,3,4614,1.000000,,,16
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Mob.wz,True,79,EMS,B9 7D 63 E9,1,1614,1617,1.000000,,,7
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Morph.wz,True,79,EMS,B9 7D 63 E9,0,182,182,1.000000,,,2
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Npc.wz,True,79,EMS,B9 7D 63 E9,0,1608,1608,1.000000,,,7
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Quest.wz,True,79,EMS,B9 7D 63 E9,0,6,6,1.000000,,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Reactor.wz,True,79,EMS,B9 7D 63 E9,0,463,463,1.000000,,,3
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Skill.wz,True,79,EMS,B9 7D 63 E9,0,75,75,1.000000,,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,Sound.wz,True,79,EMS,B9 7D 63 E9,0,48,48,1.000000,,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,String.wz,True,79,EMS,B9 7D 63 E9,0,15,15,1.000000,,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,TamingMob.wz,True,79,EMS,B9 7D 63 E9,0,16,16,1.000000,,,1
+wz-python,79344c95774a911adf93a4d43c67e5fc51fa6e76,UI.wz,True,79,EMS,B9 7D 63 E9,0,27,27,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Base.wz,True,79,BMS,00 00 00 00,15,4,4,0.052632,root names are not printable ASCII,,19
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Character.wz,True,79,BMS,00 00 00 00,19,27,25565,0.000000,root names are not printable ASCII,,37
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Effect.wz,True,79,BMS,00 00 00 00,0,17,17,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Etc.wz,True,79,BMS,00 00 00 00,0,28,28,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Item.wz,True,79,BMS,00 00 00 00,6,0,475,0.000000,root names are not printable ASCII,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Map.wz,True,79,BMS,00 00 00 00,5,3,4614,0.000000,root names are not printable ASCII,,4
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Mob.wz,True,79,BMS,00 00 00 00,1,1614,1617,0.000000,root names are not printable ASCII,,2
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Morph.wz,True,79,BMS,00 00 00 00,0,182,182,0.923077,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Npc.wz,True,79,BMS,00 00 00 00,0,1608,1608,0.000000,root names are not printable ASCII,,2
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Quest.wz,True,79,BMS,00 00 00 00,0,6,6,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Reactor.wz,True,79,BMS,00 00 00 00,0,463,463,0.000000,root names are not printable ASCII,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Skill.wz,True,79,BMS,00 00 00 00,0,75,75,0.346667,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Sound.wz,True,79,BMS,00 00 00 00,0,48,48,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,String.wz,True,79,BMS,00 00 00 00,0,15,15,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,TamingMob.wz,True,79,BMS,00 00 00 00,0,16,16,1.000000,,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,UI.wz,True,79,BMS,00 00 00 00,0,27,27,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Base.wz,True,79,GMS,4D 23 C7 2B,15,4,4,0.052632,root names are not printable ASCII,,2
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Character.wz,True,79,GMS,4D 23 C7 2B,19,27,25565,0.000000,root names are not printable ASCII,,22
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Effect.wz,True,79,GMS,4D 23 C7 2B,0,17,17,0.000000,root names are not printable ASCII,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Etc.wz,True,79,GMS,4D 23 C7 2B,0,28,28,0.035714,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Item.wz,True,79,GMS,4D 23 C7 2B,6,0,475,0.000000,root names are not printable ASCII,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Map.wz,True,79,GMS,4D 23 C7 2B,5,3,4614,0.000000,root names are not printable ASCII,,5
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Mob.wz,True,79,GMS,4D 23 C7 2B,1,1614,1617,0.000000,root names are not printable ASCII,,2
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Morph.wz,True,79,GMS,4D 23 C7 2B,0,182,182,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Npc.wz,True,79,GMS,4D 23 C7 2B,0,1608,1608,0.000000,root names are not printable ASCII,,3
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Quest.wz,True,79,GMS,4D 23 C7 2B,0,6,6,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Reactor.wz,True,79,GMS,4D 23 C7 2B,0,463,463,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Skill.wz,True,79,GMS,4D 23 C7 2B,0,75,75,0.013333,root names are not printable ASCII,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Sound.wz,True,79,GMS,4D 23 C7 2B,0,48,48,0.020833,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,String.wz,True,79,GMS,4D 23 C7 2B,0,15,15,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,TamingMob.wz,True,79,GMS,4D 23 C7 2B,0,16,16,0.000000,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,UI.wz,True,79,GMS,4D 23 C7 2B,0,27,27,0.074074,root names are not printable ASCII,,0
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Base.wz,True,79,EMS,B9 7D 63 E9,15,4,4,1.000000,,,32
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Character.wz,True,79,EMS,B9 7D 63 E9,19,27,25565,1.000000,,,23
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Effect.wz,True,79,EMS,B9 7D 63 E9,0,17,17,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Etc.wz,True,79,EMS,B9 7D 63 E9,0,28,28,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Item.wz,True,79,EMS,B9 7D 63 E9,6,0,475,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Map.wz,True,79,EMS,B9 7D 63 E9,5,3,4614,1.000000,,,5
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Mob.wz,True,79,EMS,B9 7D 63 E9,1,1614,1617,1.000000,,,2
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Morph.wz,True,79,EMS,B9 7D 63 E9,0,182,182,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Npc.wz,True,79,EMS,B9 7D 63 E9,0,1608,1608,1.000000,,,2
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Quest.wz,True,79,EMS,B9 7D 63 E9,0,6,6,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Reactor.wz,True,79,EMS,B9 7D 63 E9,0,463,463,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Skill.wz,True,79,EMS,B9 7D 63 E9,0,75,75,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,Sound.wz,True,79,EMS,B9 7D 63 E9,0,48,48,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,String.wz,True,79,EMS,B9 7D 63 E9,0,15,15,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,TamingMob.wz,True,79,EMS,B9 7D 63 E9,0,16,16,1.000000,,,1
+MapleLib,580146f2d7d3fe3d2b0b2e17b9508830c029205b,UI.wz,True,79,EMS,B9 7D 63 E9,0,27,27,1.000000,,,1
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Base.wz,True,79,BMS,00 00 00 00,15,4,4,0.000000,root names are not printable ASCII,,114
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Character.wz,True,79,BMS,00 00 00 00,19,27,25565,0.000000,root names are not printable ASCII,,44
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Effect.wz,True,79,BMS,00 00 00 00,0,17,17,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Etc.wz,True,79,BMS,00 00 00 00,0,28,28,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Item.wz,True,79,BMS,00 00 00 00,6,0,475,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Map.wz,True,79,BMS,00 00 00 00,5,3,4614,0.000000,root names are not printable ASCII,,5
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Mob.wz,True,79,BMS,00 00 00 00,1,1614,1617,0.000000,root names are not printable ASCII,,1
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Morph.wz,True,79,BMS,00 00 00 00,0,182,182,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Npc.wz,True,79,BMS,00 00 00 00,0,1608,1608,0.000000,root names are not printable ASCII,,1
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Quest.wz,True,79,BMS,00 00 00 00,0,6,6,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Reactor.wz,True,79,BMS,00 00 00 00,0,463,463,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Skill.wz,True,79,BMS,00 00 00 00,0,75,75,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Sound.wz,True,79,BMS,00 00 00 00,0,48,48,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,String.wz,True,79,BMS,00 00 00 00,0,15,15,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,TamingMob.wz,True,79,BMS,00 00 00 00,0,16,16,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,UI.wz,True,79,BMS,00 00 00 00,0,27,27,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Base.wz,True,79,GMS,4D 23 C7 2B,15,4,4,0.000000,root names are not printable ASCII,,4
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Character.wz,True,79,GMS,4D 23 C7 2B,19,27,25565,0.000000,root names are not printable ASCII,,30
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Effect.wz,True,79,GMS,4D 23 C7 2B,0,17,17,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Etc.wz,True,79,GMS,4D 23 C7 2B,0,28,28,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Item.wz,True,79,GMS,4D 23 C7 2B,6,0,475,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Map.wz,True,79,GMS,4D 23 C7 2B,5,3,4614,0.000000,root names are not printable ASCII,,4
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Mob.wz,True,79,GMS,4D 23 C7 2B,1,1614,1617,0.000000,root names are not printable ASCII,,1
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Morph.wz,True,79,GMS,4D 23 C7 2B,0,182,182,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Npc.wz,True,79,GMS,4D 23 C7 2B,0,1608,1608,0.000000,root names are not printable ASCII,,1
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Quest.wz,True,79,GMS,4D 23 C7 2B,0,6,6,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Reactor.wz,True,79,GMS,4D 23 C7 2B,0,463,463,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Skill.wz,True,79,GMS,4D 23 C7 2B,0,75,75,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Sound.wz,True,79,GMS,4D 23 C7 2B,0,48,48,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,String.wz,True,79,GMS,4D 23 C7 2B,0,15,15,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,TamingMob.wz,True,79,GMS,4D 23 C7 2B,0,16,16,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,UI.wz,True,79,GMS,4D 23 C7 2B,0,27,27,0.000000,root names are not printable ASCII,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Base.wz,True,79,KMS,B9 7D 63 E9,15,4,4,1.000000,,,26
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Character.wz,True,79,KMS,B9 7D 63 E9,19,27,25565,1.000000,,,28
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Effect.wz,True,79,KMS,B9 7D 63 E9,0,17,17,1.000000,,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Etc.wz,True,79,KMS,B9 7D 63 E9,0,28,28,1.000000,,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Item.wz,True,79,KMS,B9 7D 63 E9,6,0,475,1.000000,,,1
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Map.wz,True,79,KMS,B9 7D 63 E9,5,3,4614,1.000000,,,10
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Mob.wz,True,79,KMS,B9 7D 63 E9,1,1614,1617,1.000000,,,2
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Morph.wz,True,79,KMS,B9 7D 63 E9,0,182,182,1.000000,,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Npc.wz,True,79,KMS,B9 7D 63 E9,0,1608,1608,1.000000,,,3
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Quest.wz,True,79,KMS,B9 7D 63 E9,0,6,6,1.000000,,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Reactor.wz,True,79,KMS,B9 7D 63 E9,0,463,463,1.000000,,,1
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Skill.wz,True,79,KMS,B9 7D 63 E9,0,75,75,1.000000,,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,Sound.wz,True,79,KMS,B9 7D 63 E9,0,48,48,1.000000,,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,String.wz,True,79,KMS,B9 7D 63 E9,0,15,15,1.000000,,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,TamingMob.wz,True,79,KMS,B9 7D 63 E9,0,16,16,1.000000,,,0
+WzComparerR2,621251801cb14a423ad6737d3cdeabb616b1635c,UI.wz,True,79,KMS,B9 7D 63 E9,0,27,27,1.000000,,,0
