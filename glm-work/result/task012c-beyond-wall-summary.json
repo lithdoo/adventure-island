@@ -1,0 +1,2007 @@
+{
+  "gates": {
+    "client_sha": "5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d",
+    "wide_len": "0xf9000",
+    "thunk_training_gate": true
+  },
+  "zone": "0x862000-0x912000",
+  "island_bytes": 74496,
+  "island_ratio": 0.1033,
+  "island_count": 40,
+  "fill_block_bytes": 21248,
+  "thunk_pairs": {
+    "readable": 11,
+    "beyond_wall": 372
+  },
+  "islands": [
+    {
+      "range": "0x862000-0x864000",
+      "size": 8192,
+      "strings": [
+        [
+          "0x86338A",
+          "Exception Information"
+        ],
+        [
+          "0x8633A0",
+          "Please, contact the software developers with the following codes. Thank you."
+        ],
+        [
+          "0x8633F0",
+          "        (press CTRL+C on this window to copy to clipboard)    "
+        ],
+        [
+          "0x863432",
+          "CheckIN  = %d"
+        ],
+        [
+          "0x863441",
+          "CheckOUT = %d"
+        ],
+        [
+          "0x863450",
+          "ProcIN   = %d"
+        ],
+        [
+          "0x86345F",
+          "ProcOUT  = %d"
+        ],
+        [
+          "0x86346E",
+          "ExitIN   = %d"
+        ],
+        [
+          "0x86347D",
+          "ExitOUT  = %d"
+        ],
+        [
+          "0x86348C",
+          "TPin     = %d"
+        ],
+        [
+          "0x86349B",
+          "HWIn     = %d"
+        ],
+        [
+          "0x8634AA",
+          "IntV     = %x, %x, %x, %x"
+        ],
+        [
+          "0x863B4E",
+          "[(DD R#f"
+        ],
+        [
+          "0x863EBB",
+          "h?2dJRU="
+        ],
+        [
+          "0x863F62",
+          "[lnto}7"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 58,
+      "ebp_bases": [
+        [
+          "sub ebp 0x7489F27",
+          "0x862F3C"
+        ],
+        [
+          "sub ebp 0x748A777",
+          "0x86378C"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 456,
+        "other": 17,
+        "readable": 2
+      },
+      "notable": [
+        [
+          "0x8625FA",
+          "jmp",
+          "0x861C16",
+          "readable"
+        ],
+        [
+          "0x862AAF",
+          "jmp",
+          "0x861C16",
+          "readable"
+        ]
+      ],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x865500-0x865700",
+      "size": 512,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 13,
+        "readable": 1,
+        "other": 1
+      },
+      "notable": [
+        [
+          "0x86552B",
+          "jmp",
+          "0x860176",
+          "readable"
+        ]
+      ],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x86AF00-0x86B300",
+      "size": 1024,
+      "strings": [
+        [
+          "0x86B2AD",
+          "[ DqdyBR'"
+        ],
+        [
+          "0x86B2E9",
+          "[ DqdyBR'"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 13,
+        "other": 2
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x86E900-0x86EB00",
+      "size": 512,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 98,
+        "other": 1
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x875600-0x875F00",
+      "size": 2304,
+      "strings": [
+        [
+          "0x8759E8",
+          "1ZXZXZXP"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 39,
+      "ebp_bases": [
+        [
+          "sub ebp 0x749C788",
+          "0x87579D"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 131,
+        "other": 5
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x876000-0x877E00",
+      "size": 7680,
+      "strings": [
+        [
+          "0x8760FF",
+          "1ZXZXaP"
+        ],
+        [
+          "0x87648F",
+          "`aaZXPPR"
+        ],
+        [
+          "0x8764AF",
+          "1ZXYZX"
+        ],
+        [
+          "0x8766D7",
+          "/Med7Ci"
+        ],
+        [
+          "0x877145",
+          "?< Z/j"
+        ],
+        [
+          "0x87739D",
+          "PPRRPR"
+        ],
+        [
+          "0x8773AE",
+          "1ZXYZX"
+        ],
+        [
+          "0x877443",
+          "1V^ZX[PWPRPR"
+        ],
+        [
+          "0x877454",
+          "1`aZX_"
+        ],
+        [
+          "0x877507",
+          "V``aS[a^PWP`aX_"
+        ],
+        [
+          "0x877912",
+          "`W`a_`"
+        ],
+        [
+          "0x87792D",
+          "hh2P@QPRPR"
+        ],
+        [
+          "0x877956",
+          "4$2PAQ"
+        ],
+        [
+          "0x877A0D",
+          "QQYYP`S"
+        ],
+        [
+          "0x877B5A",
+          "<;P`WPR"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 106,
+      "ebp_bases": [
+        [
+          "sub ebp 0x749D239",
+          "0x87624E"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 471,
+        "other": 19
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x877F00-0x878000",
+      "size": 256,
+      "strings": [
+        [
+          "0x877F13",
+          "`aaYHj"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 3,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 16,
+        "other": 1
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x878100-0x878900",
+      "size": 2048,
+      "strings": [
+        [
+          "0x878135",
+          "P`PRW_"
+        ],
+        [
+          "0x87843B",
+          "1ZXZZX"
+        ],
+        [
+          "0x878481",
+          "P`QW_Y"
+        ],
+        [
+          "0x878491",
+          "408i:["
+        ],
+        [
+          "0x878746",
+          "G~kQD~kQ"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 9,
+      "ebp_bases": [
+        [
+          "sub ebp 0x749F2EC",
+          "0x878301"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 198,
+        "other": 5
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x87F600-0x880000",
+      "size": 2560,
+      "strings": [
+        [
+          "0x87F60A",
+          "aPPRV`a^"
+        ],
+        [
+          "0x87F92C",
+          "1`aZXPR`a"
+        ],
+        [
+          "0x87F93A",
+          "1ZXZXaPPRPR"
+        ],
+        [
+          "0x87FB0C",
+          "1ZX[PW"
+        ],
+        [
+          "0x87FCF2",
+          "1ZXXP`P"
+        ],
+        [
+          "0x87FEF0",
+          "PRR`aZ"
+        ],
+        [
+          "0x87FF01",
+          "1ZXZXP"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 35,
+      "ebp_bases": [
+        [
+          "sub ebp 0x74A6F5A",
+          "0x87FF6F"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 153,
+        "other": 11
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x880200-0x881200",
+      "size": 4096,
+      "strings": [
+        [
+          "0x88038D",
+          "+i[0yI%_"
+        ],
+        [
+          "0x8805DF",
+          "RR`a__h"
+        ],
+        [
+          "0x8807C0",
+          "PRQ`aY"
+        ],
+        [
+          "0x8807F7",
+          "PRRW_Z"
+        ],
+        [
+          "0x8807FE",
+          "1``aPR"
+        ],
+        [
+          "0x880805",
+          "1ZXaZXXj"
+        ],
+        [
+          "0x880875",
+          "1``aPR"
+        ],
+        [
+          "0x88087C",
+          "1ZXaZXPSS"
+        ],
+        [
+          "0x880A5A",
+          "PPR`PR"
+        ],
+        [
+          "0x880A61",
+          "1ZXQYa"
+        ],
+        [
+          "0x880AD5",
+          "1Ab3#x}"
+        ],
+        [
+          "0x880F92",
+          "``V^W_a"
+        ],
+        [
+          "0x881091",
+          "}PVPRPR"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 63,
+      "ebp_bases": [
+        [
+          "sub ebp 0x74A80D0",
+          "0x8810E5"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 250,
+        "other": 14
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x881300-0x882400",
+      "size": 4352,
+      "strings": [
+        [
+          "0x881765",
+          "S\\`PPR"
+        ],
+        [
+          "0x88176C",
+          "1ZXX`PX"
+        ],
+        [
+          "0x881978",
+          "ZXaP`R`aZ`PR"
+        ],
+        [
+          "0x881985",
+          "1ZX`aaa"
+        ],
+        [
+          "0x881A5C",
+          "PPRPRPR"
+        ],
+        [
+          "0x881A72",
+          "1VV^^ZX"
+        ],
+        [
+          "0x881E9A",
+          "VS[^PS"
+        ],
+        [
+          "0x881EBC",
+          "WS`a[_"
+        ],
+        [
+          "0x8820BC",
+          "SS[[PV"
+        ],
+        [
+          "0x882145",
+          "1ZXRZaZXP`PR`a"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 59,
+      "ebp_bases": [
+        [
+          "sub ebp 0x74A927E",
+          "0x882293"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 245,
+        "other": 20
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x882500-0x885800",
+      "size": 13056,
+      "strings": [
+        [
+          "0x8828D6",
+          "cPRPR`a"
+        ],
+        [
+          "0x882A9A",
+          "~wVPRS["
+        ],
+        [
+          "0x882AA2",
+          "1S[ZX^"
+        ],
+        [
+          "0x882AD5",
+          "1ZXaYP"
+        ],
+        [
+          "0x88309A",
+          "_PPRPR`a"
+        ],
+        [
+          "0x883145",
+          "1ZXZXPPPR"
+        ],
+        [
+          "0x88315D",
+          "1`aZXX"
+        ],
+        [
+          "0x88397E",
+          "1ZXW_a"
+        ],
+        [
+          "0x883990",
+          "1ZXaZXPPR`PR"
+        ],
+        [
+          "0x88399D",
+          "1ZXS[a"
+        ],
+        [
+          "0x8839A9",
+          "1ZX[ZX"
+        ],
+        [
+          "0x8839E0",
+          "$%`PR`a"
+        ],
+        [
+          "0x883B88",
+          "1`aZXP"
+        ],
+        [
+          "0x883C5E",
+          "ZXPPRPR`a"
+        ],
+        [
+          "0x8843BB",
+          "1ZXZXZX"
+        ],
+        [
+          "0x8845BC",
+          "r:PPRSPR"
+        ],
+        [
+          "0x884B18",
+          "1RZZXPVR"
+        ],
+        [
+          "0x885107",
+          "```aPR"
+        ],
+        [
+          "0x88510E",
+          "1ZXaQQYYaP`PRQY"
+        ],
+        [
+          "0x88511E",
+          "1`aZXPR`a"
+        ],
+        [
+          "0x885128",
+          "1W_ZXa"
+        ],
+        [
+          "0x8853D1",
+          "`aaPR`a"
+        ],
+        [
+          "0x8853D9",
+          "1`aZXa"
+        ],
+        [
+          "0x885461",
+          "PR``aPR"
+        ],
+        [
+          "0x885617",
+          "1`aZXZX"
+        ],
+        [
+          "0x885701",
+          "-P`WPR"
+        ],
+        [
+          "0x885708",
+          "1ZX_PR"
+        ],
+        [
+          "0x88571D",
+          "1W_ZXa"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 185,
+      "ebp_bases": [
+        [
+          "sub ebp 0x74AA2CB",
+          "0x8832E0"
+        ],
+        [
+          "sub ebp 0x74AB54E",
+          "0x884563"
+        ],
+        [
+          "sub ebp 0x74AC66F",
+          "0x885684"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 752,
+        "tpuaozxc": 2,
+        "other": 58
+      },
+      "notable": [
+        [
+          "0x88250A",
+          "jmp",
+          "0x98D0C8",
+          "tpuaozxc"
+        ],
+        [
+          "0x883656",
+          "jmp",
+          "0x971F5D",
+          "tpuaozxc"
+        ]
+      ],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x885900-0x886000",
+      "size": 1792,
+      "strings": [
+        [
+          "0x885924",
+          "DLL_`1"
+        ],
+        [
+          "0x885E48",
+          "[P`PR`a"
+        ],
+        [
+          "0x885EB1",
+          "QcPWPR"
+        ],
+        [
+          "0x885EEB",
+          "1ZXZXY"
+        ],
+        [
+          "0x885F70",
+          "1ZX^P`PRS["
+        ],
+        [
+          "0x885F7B",
+          "1PXZX`"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 21,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 106,
+        "other": 7
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x886100-0x888A00",
+      "size": 10496,
+      "strings": [
+        [
+          "0x88616A",
+          "BZXPPR`RZ"
+        ],
+        [
+          "0x88636D",
+          "1ZXXZX"
+        ],
+        [
+          "0x8863E8",
+          "PRV`a^"
+        ],
+        [
+          "0x8863F6",
+          "RZZXP`"
+        ],
+        [
+          "0x886623",
+          "<`aa^P"
+        ],
+        [
+          "0x886775",
+          "aZXZXP"
+        ],
+        [
+          "0x88685B",
+          "1VV^^ZXPPR`RZPR"
+        ],
+        [
+          "0x886870",
+          "1RPXZZX"
+        ],
+        [
+          "0x886DAB",
+          "mnVS_[_"
+        ],
+        [
+          "0x886FFD",
+          "vPPRSPR"
+        ],
+        [
+          "0x887014",
+          "1ZXZXZX"
+        ],
+        [
+          "0x8874E2",
+          "aZXPQPR"
+        ],
+        [
+          "0x8876E0",
+          "1`aZXP`aXaP"
+        ],
+        [
+          "0x887EF1",
+          "ZXPP`V^`aaX"
+        ],
+        [
+          "0x888078",
+          "1S`a[ZXP"
+        ],
+        [
+          "0x88836E",
+          "PPRP`aX"
+        ],
+        [
+          "0x88838B",
+          "BQZXZX"
+        ],
+        [
+          "0x8888BD",
+          "1`aZXPR"
+        ],
+        [
+          "0x8888CF",
+          "1ZXZXa"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 152,
+      "ebp_bases": [
+        [
+          "sub ebp 0x74AD7B0",
+          "0x8867C5"
+        ],
+        [
+          "sub ebp 0x74AE94A",
+          "0x88795F"
+        ],
+        [
+          "sub ebp 0x74AF8F2",
+          "0x888907"
+        ]
+      ],
+      "transfer_zones": {
+        "beyond-wall": 557,
+        "other": 35
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x888C00-0x889600",
+      "size": 2560,
+      "strings": [
+        [
+          "0x888FDD",
+          "1`aZXZXPQ`"
+        ],
+        [
+          "0x889059",
+          "JSV^[a"
+        ],
+        [
+          "0x88915E",
+          "`aaPP`W_"
+        ],
+        [
+          "0x88919A",
+          "1ZXPXa"
+        ],
+        [
+          "0x8891BA",
+          " JYZXP"
+        ],
+        [
+          "0x88921D",
+          "1`aZXZXX"
+        ],
+        [
+          "0x8893F4",
+          "`W_`aaa"
+        ],
+        [
+          "0x8895F1",
+          "-aZXP`PR"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 33,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 157,
+        "other": 13
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x889700-0x889B00",
+      "size": 1024,
+      "strings": [
+        [
+          "0x889878",
+          "1ZXZZX"
+        ],
+        [
+          "0x8898AB",
+          "%IYs9!_j"
+        ],
+        [
+          "0x8899C2",
+          "1ZXaPPRR"
+        ],
+        [
+          "0x889A7D",
+          "XPPRPRPR"
+        ],
+        [
+          "0x889A99",
+          " tIjZX"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 11,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 72,
+        "other": 1
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x889C00-0x88AA00",
+      "size": 3584,
+      "strings": [
+        [
+          "0x88A0A8",
+          "PQPRPR"
+        ],
+        [
+          "0x88A144",
+          "1ZX`aa`"
+        ],
+        [
+          "0x88A2C7",
+          "`aZXPPRPR"
+        ],
+        [
+          "0x88A309",
+          "PRPRPR"
+        ],
+        [
+          "0x88A39A",
+          "kkPRPR"
+        ],
+        [
+          "0x88A3A7",
+          "1`aZXZ"
+        ],
+        [
+          "0x88A5E1",
+          "1W_ZXZPPR`PR"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 46,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 197,
+        "other": 14
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x88CA00-0x88CB00",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 8
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x890600-0x890800",
+      "size": 512,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 19,
+        "other": 4
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x896600-0x896700",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {},
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x89D400-0x89D500",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 40,
+        "other": 33
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8A3200-0x8A3400",
+      "size": 512,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "other": 2,
+        "beyond-wall": 15
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8A5300-0x8A5500",
+      "size": 512,
+      "strings": [
+        [
+          "0x8A5302",
+          "wg#%;{"
+        ]
+      ],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 87,
+        "other": 1
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8BAD00-0x8BAF00",
+      "size": 512,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 21,
+        "other": 1
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8C0500-0x8C0600",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 19
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8C1000-0x8C1100",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 10,
+        "other": 2
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8C1900-0x8C1A00",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 8
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8C1C00-0x8C1E00",
+      "size": 512,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 29
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8C2000-0x8C2100",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 19,
+        "other": 1
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8C2600-0x8C2700",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 15
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8C3200-0x8C3400",
+      "size": 512,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 28,
+        "other": 2
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8C6900-0x8C6B00",
+      "size": 512,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 13,
+        "other": 3
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8E1600-0x8E1700",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "readable": 23,
+        "beyond-wall": 7
+      },
+      "notable": [
+        [
+          "0x8E1600",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E160A",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1614",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E163C",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E161E",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1628",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1632",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1646",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1650",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E165A",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1664",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1678",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E166E",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1682",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E168C",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E1696",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E16A0",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E16AD",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E16B7",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E16C1",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E16CB",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E16D5",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E16DF",
+          "jmp",
+          "0x821750",
+          "readable"
+        ]
+      ],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8E4D00-0x8E4E00",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "readable": 20,
+        "beyond-wall": 7,
+        "other": 3
+      },
+      "notable": [
+        [
+          "0x8E4D01",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D0B",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D15",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D1F",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D29",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D33",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D3D",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D47",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D51",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D5B",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D65",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D6F",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D79",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D83",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D8D",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4D97",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4DA1",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4DAB",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4DB5",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8E4DBF",
+          "jmp",
+          "0x821750",
+          "readable"
+        ]
+      ],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8EE300-0x8EE400",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 15,
+        "other": 2,
+        "readable": 19
+      },
+      "notable": [
+        [
+          "0x8EE333",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE34B",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE355",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE35F",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE369",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE387",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE373",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE37D",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE39B",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE391",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3A5",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3AF",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3B9",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3C3",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3CD",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3D7",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3E1",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3EB",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8EE3F5",
+          "jmp",
+          "0x821750",
+          "readable"
+        ]
+      ],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8F1300-0x8F1400",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "readable": 22,
+        "beyond-wall": 10
+      },
+      "notable": [
+        [
+          "0x8F1311",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F132F",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F1339",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F1343",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F134D",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F1357",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F1361",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F136B",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F1375",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F137F",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F1389",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13A7",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F1393",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F139D",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13B1",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13BB",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13C5",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13CF",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13D9",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13E3",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13ED",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F13F7",
+          "jmp",
+          "0x821750",
+          "readable"
+        ]
+      ],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x8F4700-0x8F4B00",
+      "size": 1024,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "readable": 78,
+        "beyond-wall": 19,
+        "other": 8
+      },
+      "notable": [
+        [
+          "0x8F4702",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4712",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F471E",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F472E",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4748",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4738",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4758",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4768",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4775",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F477F",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F478F",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4799",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F47A3",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F47B3",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F47C3",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F47CF",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F47DA",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F47EA",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F47FA",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4804",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4814",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4820",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4830",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F483A",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F484A",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F485A",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F486A",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4877",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4881",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4891",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F489B",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F48A5",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F48B5",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F48C5",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F48D1",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F48DC",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F48EC",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F48FC",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4906",
+          "jmp",
+          "0x821750",
+          "readable"
+        ],
+        [
+          "0x8F4916",
+          "jmp",
+          "0x821750",
+          "readable"
+        ]
+      ],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x906A00-0x906B00",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 2,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 14,
+        "other": 1
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x90CB00-0x90CC00",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {
+        "beyond-wall": 2
+      },
+      "notable": [],
+      "push_imm_image": []
+    },
+    {
+      "range": "0x911B00-0x911C00",
+      "size": 256,
+      "strings": [],
+      "prologues": 0,
+      "call5_gadget": 0,
+      "ebp_bases": [],
+      "transfer_zones": {},
+      "notable": [],
+      "push_imm_image": []
+    }
+  ]
+}

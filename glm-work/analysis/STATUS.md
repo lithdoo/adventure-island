@@ -1,15 +1,66 @@
 # glm-work 进度状态
 
-> 更新：2026-10-11（会话 3 续）
+> 更新：2026-10-12（会话 4）
 > 路线图：`glm-work/reverse-engineering-plan.md`（v1.0 + 附录 E）
 > 边界：只创建/修改 `glm-work/` 内文件；产物路径按 prompt.md 映射（`glm-work/result/`、`glm-work/scripts/`、`glm-work/analysis/`）
 > **2026-10-11 边界变更记录**：应用户显式指示，`glm-work/result/` 的 16 个产物已逐字节同步（SHA-256 校验一致）到仓库 `result/`——这是对 prompt.md"只改 glm-work"约束的一次性放宽，仅限此次拷贝；未执行任何 git add/commit/push。脚本仍在 `glm-work/scripts/`（glm-work 被 .gitignore，如需入库需另行同步到 `scripts/`）。
 
 ## 当前状态
 
-**Task 022（WZ 目录级清单）✅（会话 3，采用成熟库 wz-python）**。此前：Task 011/012/012b ✅、轨道 A 两轮 ✅、轨道 B ✅。主线下一推进点=Task 013（VM，阻塞）或 Tail A 物化触发（阶段二）。
+**Task 012c（解码器 C 狩猎 + 墙外静态地图）✅（会话 4）**。此前：Task 011/012/012b ✅、轨道 A 两轮 ✅、轨道 B ✅、Task 022 ✅、Q11 ✅。主线下一推进点不变：Task 013（VM，阻塞）或 Q15 新思路（见下）。
 
-### 会话 3 增量（详见 `glm-work/result/20-wz-inventory.md`）
+### 会话 4 增量（详见 `glm-work/result/10c-decoder-c-hunt.md`）
+
+- **Q15 前提修正（重大）**：`0x862000+` 不是整体编码——**40 个明文岛共 74,496 字节（10.3%）**在探针停点即可读（`beyond-wall-island-map.csv`）。墙根岛 `0x862000–0x864000` 含 WinLicense 检查点统计/异常对话框字符串（`CheckIN/CheckOUT/ProcIN/ProcOUT/ExitIN/ExitOUT = %d`、`Exception Information`）。**Task 012b 全区盲测的方法论缺陷由此定案**（变换会把岛打烂）。
+- **canonical EBP 不变量**：全部墙外模块 `sub ebp, imm32` 均归一化到规范基 **0xF93D9014**（三例字节直算验证）——`formed()` 对整个 Tail B 全局有效。
+- **编码区入口图**：驱动段经槽位门控把控制交给 `0x862D7D`（4 处 jmp）/`0x862D80`（2 处）/`0x8620C6`（7 参 CreateFileA 配方岛）；门控槽写入者定位（`0x86118E`，条件 `word[formed(0x7486BC6)]==9`；`0x8609D1`）。walker 区+岛共 10 处引用编码函数 `0x86B299`（停点仍编码；岛调用者存其返回值后带 4–5 参再调用）。策展表 `task012c-encoded-entry-map.csv`。
+- **解码器 C 生产者：确定性负结果**（high）：模板匹配器地面真值 4/4 命中后，可读面 5 新簇全证伪（字符串扫描循环/slot 操作/常数构造 gadget），岛内 593 imm-op、150 簇、**循环内变换簇 0**。生产者在编码区内（正常路径解开）。
+- **wrapper thunk 全录 383 项**（372 墙外 + 11 可读，`beyond-wall-thunk-tables.csv`）；静态命名 0/383（真 wrapper+真 walker+真导出表离线机制成立；wrapper 停点态早退 eax=0xE，3 个捕获=错误路径内部解析 ExitProcess 的伪捕获）。**精确 blocker 登记**；工具 `maple079_thunk_names.py` 留待 VM 态一次全量。
+- **勘误**：E.6"0x857E4A–0x857E86 五个训练对"提法有误（walker-log ret 地址是 slot-form 调用返回点；相邻 push/jmp 是跳转表条目）。
+- 密钥流排除：最大编码拉伸周期自相关无干净短周期（弱 4 字节族峰）；`0x86B299` 附近周期 8 重复是局部数据现象。
+- Q4：全表面（含岛）对 Tail A/Ztl/packed-raw 引用维持噪声底（0 策展）。
+- 新脚本：`maple079_decoder_hunt.py`（跨界引用+生产者模板）、`maple079_beyond_wall.py`（岛图+普查+thunk 表）、`maple079_thunk_names.py`（thunk 命名器）。第四次 replay 复跑门槛全过（probe window 逐字节一致）。
+
+## 下一步（按优先级）
+
+1. **Task 012d 静态选项**：wrapper `0x821750` 描述符→校验和算法人工逆向（Q19）——wrapper 全程在可读区，若能把"停点缺失的运行态"限定为少数槽，仍可在不伪造状态的前提下判断静态可行性；同时用岛+编码子区的混合区域规则重跑变换盲测（§7.1 方法论）。
+2. **Task 013（VM 自然观测）**：解除后即可 ① 验证 0x862D7D/0x8620C6 入口的真实走向，② 用 VM 停点态跑 `maple079_thunk_names.py` 全量命名 383 项 thunk（Q20），③ 追 0x86B299 函数族（Q18）。
+3. 并行轨道（不阻塞）：ResMan 签名（Task 021 #4 遗留）、Base.wz ↔ List.wz 对应核对（E.7 遗留验证点）。
+
+## 阻塞点
+
+- 静态：解码器 C 生产者与 wrapper 完整语义都在停点不可读/不可满足的运行态之后（本会话已把边界精确化到具体入口与槽）。
+- 环境：Smart App Control 拒 AspINet、无名对话框、无 VM 介质（Task 005/010 记录）不变。
+
+## 未决问题回填（计划 §4.3）
+
+- Q1 探针集群控制流/收敛：✅ Task 011。
+- Q2 注册表集群语义：✅ Task 012b。
+- Q3 探针后新解码轮：✅ round3+decA/decB（Task 012）；`0x862000+` 见 Q15。
+- Q4 Tail A materializer：❌ 全表面零引用（本会话复核到岛）。
+- Q11 List.wz：✅（会话 3）。
+- Q14 task-011 起步脚本：✅。
+- Q15 `0x862000+`：**部分回答**——混合结构（10.3% 岛）、无短周期密钥、生产者不在可读面（定案）；剩余=描述符算法逆向或 VM。
+- Q16 flag 槽写入者：✅（开关解析器）。
+- Q17 resolver 描述符字典：✅ 直接形态；**wrapper 形态 0/383（运行态 blocker，Q19/Q20 拆分）**。
+- Q18（新）岛语义/0x86B299 函数族：❌ 待 VM 或解码器 C。
+- Q19（新）wrapper 描述符算法静态逆向：❌（本会话已证停点态不满足，需人工判依赖）。
+- Q20（新）383 项 thunk 命名：清单就绪，待 VM 态。
+
+## 既有成果索引（按会话）
+
+- 会话 4：`result/10c-decoder-c-hunt.md` + `task012c-*.csv/json` + `beyond-wall-*.csv/json`；scripts：`maple079_decoder_hunt.py`/`maple079_beyond_wall.py`/`maple079_thunk_names.py`。
+- Task 012：`result/10-post-probe-stage.md`（M2=解码器 A/B+驱动段 `0x85FCC0`；round 3 定案；scripts：`maple079_post_probe_scan.py`/`maple079_wide_capture.py`/`maple079_write_logger.py`）。
+- Task 011：`result/09-probe-cluster-full-cfg.md`（探针窗口 CFG/调用点全表 + 勘误；`probe-window-cfg.csv`/`probe-call-sites.csv`/`maple079_probe_cfg.py`）。
+- 会话 2/3 增量见上文历史节（10b/19/20/trackB/listwz 等）。
+
+### 对仓库既有结论的修正登记（仓库文件未动）
+
+- Task 011：NTICE 测试/miss 边 RVA ×5 文件；WLkt 根键；`0x859EBE` 性质；集群值写形状。
+- Task 012：span1 SHA 时点；"driver body 未走"；`\\.\oreans32` 引用点；探针前解码链缺 round3。
+- Task 012b：全区盲测方法论（对混合区域失效——本会话定案）；"0x857E4A–0x857E86 训练对"提法（本会话勘误）。
+
+## 历史会话增量（会话 3 及之前）
 
 - **Q11 收口 ✅**：List.wz 完全解码——无独立头；记录=`[类型前缀][dword 名长][UTF-16LE 路径]`；加密=WZ AES 密钥流（私服 IV）**逐串从 0 连续异或**；**1,258 条外链 img 挂载表**（character 513/map 297/mob 184/…），零间隙覆盖全文件。产物 `listwz-entries.csv` + `scripts/maple079_listwz.py`。破题路径：密钥流相位扫描（16B"常量"在相位 0 解出 `characte`）。
 - **成熟库接入**：wz-python（MIT，`.work/tools/`，commit `79344c9` 记录在案）——16 个 PKG1 归档全部解析、**version=79** 独立复核；内容级解析验证通过（TamingMob/0001.img 属性树）；客户端↔服务端 String.wz 条目集合一致。
@@ -48,35 +99,8 @@
 - **Q15 盲测负结果**：11 个已见变换常数对 `0x862000+`（~700KB）全部无结构涌现；解码器 C 不复用已知常数。
 - **VxD 载荷**：`0x85B405` = 386/VxD LE、~10KB（0x27C0）、单对象、设备名 `XPROTVXD`——写入 `%s\Oreans.vxd` 的本体。
 
-### 既有成果索引
-
-- Task 012：`result/10-post-probe-stage.md`（M2=解码器 A/B+驱动段 `0x85FCC0` 152 块；**round 3 定案** producer `0x8593E3`、`dst=((src+0x3DDF4CA1+0x1C39E09C)&0xFFFFFFFF)^0x61799419`、span `0x85941A–0x85FA3D` 6537 dword 全验证；scripts：`maple079_post_probe_scan.py`/`maple079_wide_capture.py`/`maple079_write_logger.py`）
-- Task 011：`result/09-probe-cluster-full-cfg.md`（探针窗口 CFG/调用点全表 + 勘误；`probe-window-cfg.csv`/`probe-call-sites.csv`/`maple079_probe_cfg.py`；其 §4 已追加 012b 字典更新节）
-
-### 对仓库既有结论的修正登记（仓库文件未动）
-
-- Task 011：NTICE 测试/miss 边 RVA ×5 文件；WLkt 根键；`0x859EBE` 性质；集群值写形状"same shape"说法。
 - Task 012：span1 SHA 时点（解码器 A 后中间态，B 会改写重叠区 `0x85AA4B–0x860293`）；"driver body 未走"；"`\\.\oreans32` callsite unresolved"；探针前解码链缺 round3。
 
-## 下一步（阶段一收尾评估 → G1/G2）
+## 历史会话增量（会话 3 及之前）
 
-1. **G1 判定**：已达成（静态到达非探针阶段——驱动安装段）。按路线图评估阶段二入口；Tail A materializer 未在任何可读区出现。
-2. **Task 013（兼容环境自然观测）**：受轨道 C（Win7 x86 VM 介质）阻塞，维持不可行；本会话不推进。
-3. **建议 Task 012b（低成本静态延伸，下一会话）**：① 对 T2 块 `0x862000–0x912000` 做 round-3 同族常数盲测（add/add/xor、xor/xor/sub 组合）；② walker 描述符立即数字典化——Task 009 已恢复名字校验和（首字符门 + AX/BX 混合 xor 0x5041/0x5449），可枚举候选 API 名静态求解 ~20 个描述符；③ flag 槽 `0x81BAB5`/`0x8191F1` 写入者搜索。
-4. 并行轨道 A（未加壳 Wizet DLL）/轨道 B（reference bundle，v95 材料 6 个 commit 已在库）不阻塞主线，可随时插入。
-
-## 阻塞点
-
-- 无新方法论阻塞；静态路线已达"探针停点捕获 + 离线确定性解码"方法论极限，深入需上述三项静态延伸或 VM 自然观测。
-- 既有环境阻塞不变（Smart App Control 拒 AspINet、无名对话框、无 VM 介质——Task 005/010 记录）。
-
-## 未决问题回填（计划 §4.3）
-
-- Q1 探针集群控制流/收敛：✅ Task 011。
-- Q2 注册表集群语义：✅ **完全解决**（Task 012b 字典：五槽命名 + 预期反转 + 开关激活机制）。
-- Q3 探针后新解码轮：✅ 探针前 round 3 定案（Task 012）；探针后 A/B 已录；`0x862000+` 后续轮盲测排除已见常数（Task 012b 负结果）。
-- Q4 Tail A materializer：❌ 未出现（两次 replay 复核全零；无地址形成）。
-- Q14 task-011 起步脚本：✅。
-- Q15 `0x862000+` 解码轮：❌ 盲测负结果；需运行态（VM）或新思路。
-- Q16 flag 槽写入者：✅ 开关表解析器（`0x85A5E6–0x85A9AA`，mov [slot],1）。
-- Q17（新）resolver 描述符字典：✅ 直接形态 imm=校验和已证；walker 插桩法可即时命名任何未来 imm（工具 `maple079_checksum_table.py`）。遗留：wrapper `0x821750` 形态（描述符游标式，`push imm; jmp`）尚未解码——已知 5 个训练对可后续攻。
+### 会话 3 增量（详见 `glm-work/result/20-wz-inventory.md`）

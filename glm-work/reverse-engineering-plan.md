@@ -768,3 +768,15 @@ symbols/
 - 产物：`glm-work/result/listwz-entries.csv`、`scripts/maple079_listwz.py`、`20-wz-inventory.md` §3.1。
 - **Q11 状态：已解决**（格式+用途+解码器齐备）；G5（WZ 链路）剩余：ResMan 读取签名、Task 022b 对象模型。
 
+### E.9 Task 012c 完成回填（会话 4，2026-10-12）
+
+- 产物：`glm-work/result/10c-decoder-c-hunt.md`、`task012c-cross-boundary-refs.csv`、`task012c-transform-clusters.csv`、`task012c-summary.json`、`task012c-encoded-entry-map.csv`（策展入口表）、`beyond-wall-island-map.csv`、`beyond-wall-thunk-tables.csv`、`beyond-wall-thunk-names.csv`、`task012c-beyond-wall-summary.json`、`task012c-thunk-names-summary.json`；scripts：`maple079_decoder_hunt.py`、`maple079_beyond_wall.py`、`maple079_thunk_names.py`（第四次 replay 宽捕获重生成，全部复现门槛通过）。
+- **Q15 前提修正（本会话核心）**：`0x862000–0x911B25` 在探针停点为**明文岛+编码区混合**（40 岛 / 74,496B / 10.3%）——Task 012b 的全区盲测方法论对混合区域失效（定案）。墙根岛 `0x862000–0x864000` 含 WinLicense 检查点统计/异常 UI 字符串（CheckIN/CheckOUT/ProcIN/ProcOUT/ExitIN/ExitOUT = %d 等，与 Task 011 注册表集群值名对应）。
+- **canonical EBP 不变量**：全部墙外模块的 `sub ebp, imm32` 归一化到规范基 `0xF93D9014`（三例字节直算验证）→ `formed()` 全 Tail B 有效。
+- **编码区入口图**：`0x862D7D`（4 jmp，门控槽 `0x81C1A5`≠0，写入者 `0x86118E`，条件 `word[formed(0x7486BC6)]==9`）、`0x862D80`（2 jmp）、`0x8620C6`（门控槽 `0x81B96D`==0，写入者 `0x8609D1`；目标岛含 7 参 CreateFileA 配方）；编码函数 `0x86B299`（walker 区 5 处 + 岛 3 处引用，岛调用者存返回值后带 4–5 参再调用）。
+- **解码器 C 生产者负结果定案**（high）：匹配器地面真值 4/4（round1/round3/decA/decB）；可读面 5 新簇全证伪（真身=字符串扫描循环/slot 操作/常数构造 gadget）；岛内 593 imm-op、150 簇、循环内变换簇 0。生产者在编码区内，静态不可达（不伪造运行态的前提下）。
+- **wrapper thunk 全录 383 项**（372 墙外）；静态命名 0/383——真 wrapper+真 walker+真导出表离线机制成立，但 wrapper 停点态早退（eax=0xE）；3 个捕获为错误路径内部解析 ExitProcess 的伪捕获。blocker 精确登记；`maple079_thunk_names.py` 待 VM 态全量复用。
+- **勘误**：E.6 的"5 个训练对（0x857E4A–0x857E86）"提法有误——walker-log ret 地址是 slot-form 调用返回点，相邻 `push imm; jmp wrapper` 是跳转表条目（wrapper 管线证实结论本身不受影响）。
+- 未决问题清单更新：Q15 部分回答（混合结构+密钥流排除+生产者定案）；Q4 全表面维持零引用；新增 Q18（岛语义/0x86B299 函数族）、Q19（wrapper 描述符算法静态逆向）、Q20（383 项 thunk 命名，VM 态）。
+- 下一步建议：Task 012d（wrapper 描述符算法人工逆向 + 混合区域盲测重跑）或 Task 013（VM，阻塞不变）。
+

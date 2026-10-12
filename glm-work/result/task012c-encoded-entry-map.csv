@@ -1,0 +1,13 @@
+entry_target,kind,source_sites,gating_or_usage,evidence,confidence
+0x00862D7D,jmp-convergence,"0x00861BDD,0x008611F0,0x008616C9,0x0086174A","arm 0x00861B95: cmp [slot 0x81C1A5],0 / jne 0x00861BDD; slot written at 0x0086118E (mov dword [slot],1) when word at formed(0x7486BC6)==9 (after a call skipped when eax==0xC00B0744)","4 jmp rel32 to identical target; bytes at target: c3 (ret) with 0x00862D80 continuation",high
+0x00862D80,jmp,"0x00860FF8,0x00861146","unconditional (xchg ecx,eax; jmp / pop es; jmp)","2 jmp rel32; target = lea eax,[ebp+0x7489F05] island code",high
+0x008620C6,jmp,"0x00861C0B","cmp [slot 0x81B96D],0 / je 0x00861C0B at 0x00861BA8; slot written at 0x008609D1 (mov dword [slot],1)","target island = 7-arg CreateFileA-shape recipe (push 0xC0000000 visible at 0x008620F1 area; slot arg formed(0x7485CE4))",high
+0x0086B299,call-or-arg-target,"readable: 0x0081E962,0x0081EFDB,0x0081FE58,0x0081FED5 (call eax); arg-form: 0x0081EA58,0x0081EE94,0x0081F364; islands: 0x008776DC,0x008785CC,0x0087860B (call eax)","island callers store result to slots formed(0x74411E1)/formed(0x7440195) then call through them with 4-5 args (e.g. (0x1000D, esi>>12, 2, 0, 0x20040000))","disp 0x7492285 appears 10x under canonical ebp 0xF93D9014; target bytes still encoded at stop (11 b6 5b repeats)",high
+0x0086379B,stub-target-readable,"0x0081FD93,0x0081FE58,0x0081FED5","pushal; popal; ret 8 - no-op stdcall thunk","bytes 60 61 C2 08 00 at target; same family 0x008637A5/0x008637AF/0x008637B9",high
+0x008637A5,stub-target-readable,"0x0081FFB9","pushal; popal; ret 8","",high
+0x008637AF,stub-target-readable,"0x0082004A","pushal; popal; ret 8","",high
+0x00875BEC,single-call,"0x0081CC83","-","no repetition; junk-decode context (add [esp+eax*2-0x15],dh before)",low-junk
+0x00874B4B,single-jmp,"0x00825EC5","-","no repetition; junk context",low-junk
+0x00899C83,single-jmp,"0x0082B4DD","-","preceded by loope - junk chain",low-junk
+0x0086EBC3,single-call,"0x0082E661","-","preceded by fstp qword - junk chain",low-junk
+0x00869184,single-call,"0x00848C22","-","junk context",low-junk

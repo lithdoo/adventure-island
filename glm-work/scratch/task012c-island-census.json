@@ -1,0 +1,3672 @@
+[
+ {
+  "range": "0x862000-0x864000",
+  "size": 8192,
+  "strings": [
+   [
+    8791877,
+    "`89h}"
+   ],
+   [
+    8793147,
+    "Oha&/"
+   ],
+   [
+    8794035,
+    "hXMVu"
+   ],
+   [
+    8795018,
+    "Exception Information"
+   ],
+   [
+    8795040,
+    "Please, contact the software developers with the following codes. Thank you."
+   ],
+   [
+    8795120,
+    "        (press CTRL+C on this window to copy to clipboard)    "
+   ],
+   [
+    8795186,
+    "CheckIN  = %d"
+   ],
+   [
+    8795201,
+    "CheckOUT = %d"
+   ],
+   [
+    8795216,
+    "ProcIN   = %d"
+   ],
+   [
+    8795231,
+    "ProcOUT  = %d"
+   ],
+   [
+    8795246,
+    "ExitIN   = %d"
+   ],
+   [
+    8795261,
+    "ExitOUT  = %d"
+   ],
+   [
+    8795276,
+    "TPin     = %d"
+   ],
+   [
+    8795291,
+    "HWIn     = %d"
+   ],
+   [
+    8795306,
+    "IntV     = %x, %x, %x, %x"
+   ],
+   [
+    8797006,
+    "[(DD R#f"
+   ],
+   [
+    8797883,
+    "h?2dJRU="
+   ],
+   [
+    8798050,
+    "[lnto}7"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 58,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x7489F27",
+    "0x862F3C"
+   ],
+   [
+    "sub ebp",
+    "0x748A777",
+    "0x86378C"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x74401DD",
+    "0x8191F1",
+    14
+   ],
+   [
+    "0x7485C6C",
+    "0x85EC80",
+    10
+   ],
+   [
+    "0x74411D1",
+    "0x81A1E5",
+    10
+   ],
+   [
+    "0x7480CC1",
+    "0x859CD5",
+    10
+   ],
+   [
+    "0x7440969",
+    "0x81997D",
+    10
+   ],
+   [
+    "0x55",
+    "0xF93D9069",
+    8
+   ],
+   [
+    "0x748A342",
+    "0x863356",
+    8
+   ],
+   [
+    "0x7440C81",
+    "0x819C95",
+    8
+   ],
+   [
+    "0x7442AA1",
+    "0x81BAB5",
+    7
+   ],
+   [
+    "0x744134D",
+    "0x81A361",
+    6
+   ],
+   [
+    "0x7443EB3",
+    "0x81CEC7",
+    6
+   ],
+   [
+    "0x74867BD",
+    "0x85F7D1",
+    6
+   ],
+   [
+    "0x7442B71",
+    "0x81BB85",
+    6
+   ],
+   [
+    "0x13",
+    "0xF93D9027",
+    6
+   ],
+   [
+    "0x748128C",
+    "0x85A2A0",
+    5
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 456,
+   "other": 17,
+   "readable": 2
+  },
+  "transfers_notable": [
+   [
+    "0x8625FA",
+    "jmp",
+    "0x861C16",
+    "readable"
+   ],
+   [
+    "0x862AAF",
+    "jmp",
+    "0x861C16",
+    "readable"
+   ]
+  ],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x865500-0x865700",
+  "size": 512,
+  "strings": [
+   [
+    8803886,
+    ".~;ZJ"
+   ],
+   [
+    8803946,
+    ".@,ZJ"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "beyond-wall": 13,
+   "readable": 1,
+   "other": 1
+  },
+  "transfers_notable": [
+   [
+    "0x86552B",
+    "jmp",
+    "0x860176",
+    "readable"
+   ]
+  ],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x86AF00-0x86B300",
+  "size": 1024,
+  "strings": [
+   [
+    8827565,
+    "[ DqdyBR'"
+   ],
+   [
+    8827625,
+    "[ DqdyBR'"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x52",
+    "0xF93D9066",
+    2
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 13,
+   "other": 2
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x86E900-0x86EB00",
+  "size": 512,
+  "strings": [
+   [
+    8841534,
+    "kK8Rx"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x2A7B6EF2",
+    "0x23B8FF06",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 98,
+   "other": 1
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x875600-0x875F00",
+  "size": 2304,
+  "strings": [
+   [
+    8870376,
+    "1ZXZXZXP"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 39,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x749C788",
+    "0x87579D"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x55",
+    "0xF93D9069",
+    7
+   ],
+   [
+    "0x7442A59",
+    "0x81BA6D",
+    6
+   ],
+   [
+    "0x749C590",
+    "0x8755A4",
+    3
+   ],
+   [
+    "0x74405D9",
+    "0x8195ED",
+    2
+   ],
+   [
+    "0x7441599",
+    "0x81A5AD",
+    2
+   ],
+   [
+    "0x744368D",
+    "0x81C6A1",
+    2
+   ],
+   [
+    "0x7442529",
+    "0x81B53D",
+    1
+   ],
+   [
+    "0x749C77E",
+    "0x875792",
+    1
+   ],
+   [
+    "0x7440DD1",
+    "0x819DE5",
+    1
+   ],
+   [
+    "0x7440421",
+    "0x819435",
+    1
+   ],
+   [
+    "0x63",
+    "0xF93D9077",
+    1
+   ],
+   [
+    "0x74423DD",
+    "0x81B3F1",
+    1
+   ],
+   [
+    "0x74421BD",
+    "0x81B1D1",
+    1
+   ],
+   [
+    "0x744083D",
+    "0x819851",
+    1
+   ],
+   [
+    "0x74405C5",
+    "0x8195D9",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 131,
+   "other": 5
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x876000-0x877E00",
+  "size": 7680,
+  "strings": [
+   [
+    8872181,
+    "_PRW_"
+   ],
+   [
+    8872191,
+    "1ZXZXaP"
+   ],
+   [
+    8873103,
+    "`aaZXPPR"
+   ],
+   [
+    8873135,
+    "1ZXYZX"
+   ],
+   [
+    8873687,
+    "/Med7Ci"
+   ],
+   [
+    8875844,
+    "(VSXX"
+   ],
+   [
+    8876357,
+    "?< Z/j"
+   ],
+   [
+    8876560,
+    "f`O$P"
+   ],
+   [
+    8876957,
+    "PPRRPR"
+   ],
+   [
+    8876974,
+    "1ZXYZX"
+   ],
+   [
+    8877117,
+    "SPRRZ"
+   ],
+   [
+    8877123,
+    "1V^ZX[PWPRPR"
+   ],
+   [
+    8877140,
+    "1`aZX_"
+   ],
+   [
+    8877319,
+    "V``aS[a^PWP`aX_"
+   ],
+   [
+    8878354,
+    "`W`a_`"
+   ],
+   [
+    8878381,
+    "hh2P@QPRPR"
+   ],
+   [
+    8878404,
+    "1S[ZX"
+   ],
+   [
+    8878422,
+    "4$2PAQ"
+   ],
+   [
+    8878605,
+    "QQYYP`S"
+   ],
+   [
+    8878938,
+    "<;P`WPR"
+   ],
+   [
+    8879061,
+    "P`aYZ"
+   ],
+   [
+    8879108,
+    "q>QRZ"
+   ],
+   [
+    8879555,
+    "1ZXZX"
+   ],
+   [
+    8879588,
+    "pe)UB"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 106,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x749D239",
+    "0x87624E"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x55",
+    "0xF93D9069",
+    11
+   ],
+   [
+    "0x7442A59",
+    "0x81BA6D",
+    7
+   ],
+   [
+    "0x744134D",
+    "0x81A361",
+    5
+   ],
+   [
+    "0x13",
+    "0xF93D9027",
+    5
+   ],
+   [
+    "0x7442985",
+    "0x81B999",
+    4
+   ],
+   [
+    "0x749CFBF",
+    "0x875FD3",
+    3
+   ],
+   [
+    "0x744368D",
+    "0x81C6A1",
+    3
+   ],
+   [
+    "0x74405D9",
+    "0x8195ED",
+    3
+   ],
+   [
+    "0x7440AC9",
+    "0x819ADD",
+    3
+   ],
+   [
+    "0x7442C69",
+    "0x81BC7D",
+    3
+   ],
+   [
+    "0x7442449",
+    "0x81B45D",
+    3
+   ],
+   [
+    "0x7492285",
+    "0x86B299",
+    3
+   ],
+   [
+    "0x74435E9",
+    "0x81C5FD",
+    3
+   ],
+   [
+    "0x749E0BC",
+    "0x8770D0",
+    3
+   ],
+   [
+    "0x20",
+    "0xF93D9034",
+    2
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 471,
+   "other": 19
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x877F00-0x878000",
+  "size": 256,
+  "strings": [
+   [
+    8879891,
+    "`aaYHj"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 3,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x749E0B0",
+    "0x8770C4",
+    2
+   ],
+   [
+    "0x744135D",
+    "0x81A371",
+    1
+   ],
+   [
+    "0x749E0A8",
+    "0x8770BC",
+    1
+   ],
+   [
+    "0x74421C5",
+    "0x81B1D9",
+    1
+   ],
+   [
+    "0x7440DC9",
+    "0x819DDD",
+    1
+   ],
+   [
+    "0x7441115",
+    "0x81A129",
+    1
+   ],
+   [
+    "0x74411F1",
+    "0x81A205",
+    1
+   ],
+   [
+    "0x7442AFD",
+    "0x81BB11",
+    1
+   ],
+   [
+    "0x7442C55",
+    "0x81BC69",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 16,
+   "other": 1
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x878100-0x878900",
+  "size": 2048,
+  "strings": [
+   [
+    8880437,
+    "P`PRW_"
+   ],
+   [
+    8880448,
+    "1ZXZX"
+   ],
+   [
+    8881118,
+    "1ZXZX"
+   ],
+   [
+    8881211,
+    "1ZXZZX"
+   ],
+   [
+    8881281,
+    "P`QW_Y"
+   ],
+   [
+    8881297,
+    "408i:["
+   ],
+   [
+    8881755,
+    ">~a_f"
+   ],
+   [
+    8881778,
+    "4YSa3"
+   ],
+   [
+    8881990,
+    "G~kQD~kQ"
+   ],
+   [
+    8882045,
+    "&D~kQ"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 9,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x749F2EC",
+    "0x878301"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x55",
+    "0xF93D9069",
+    2
+   ],
+   [
+    "0x749E0A4",
+    "0x8770B8",
+    2
+   ],
+   [
+    "0x74401DD",
+    "0x8191F1",
+    2
+   ],
+   [
+    "0x7492285",
+    "0x86B299",
+    2
+   ],
+   [
+    "0x74411E1",
+    "0x81A1F5",
+    2
+   ],
+   [
+    "0x7440195",
+    "0x8191A9",
+    2
+   ],
+   [
+    "0x749E0BC",
+    "0x8770D0",
+    1
+   ],
+   [
+    "0x74427D1",
+    "0x81B7E5",
+    1
+   ],
+   [
+    "0x7440A09",
+    "0x819A1D",
+    1
+   ],
+   [
+    "0x749E0AC",
+    "0x8770C0",
+    1
+   ],
+   [
+    "0x7440DED",
+    "0x819E01",
+    1
+   ],
+   [
+    "0x74411E9",
+    "0x81A1FD",
+    1
+   ],
+   [
+    "0x7442BED",
+    "0x81BC01",
+    1
+   ],
+   [
+    "0x7440AE1",
+    "0x819AF5",
+    1
+   ],
+   [
+    "0x74426D1",
+    "0x81B6E5",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 198,
+   "other": 5
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x87F600-0x880000",
+  "size": 2560,
+  "strings": [
+   [
+    8910346,
+    "aPPRV`a^"
+   ],
+   [
+    8911138,
+    "`PRPR"
+   ],
+   [
+    8911148,
+    "1`aZXPR`a"
+   ],
+   [
+    8911162,
+    "1ZXZXaPPRPR"
+   ],
+   [
+    8911198,
+    "1QYZX"
+   ],
+   [
+    8911204,
+    "1PRS["
+   ],
+   [
+    8911628,
+    "1ZX[PW"
+   ],
+   [
+    8911734,
+    "%GT#+"
+   ],
+   [
+    8911849,
+    ":MBT|"
+   ],
+   [
+    8912114,
+    "1ZXXP`P"
+   ],
+   [
+    8912624,
+    "PRR`aZ"
+   ],
+   [
+    8912641,
+    "1ZXZXP"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 35,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x74A6F5A",
+    "0x87FF6F"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x7495B9D",
+    "0x86EBB1",
+    9
+   ],
+   [
+    "0x55",
+    "0xF93D9069",
+    5
+   ],
+   [
+    "0x7441341",
+    "0x81A355",
+    2
+   ],
+   [
+    "0x7495B91",
+    "0x86EBA5",
+    2
+   ],
+   [
+    "0x744211D",
+    "0x81B131",
+    2
+   ],
+   [
+    "0x7441D99",
+    "0x81ADAD",
+    1
+   ],
+   [
+    "0x7495B95",
+    "0x86EBA9",
+    1
+   ],
+   [
+    "0x63C8685E",
+    "0x5D05F872",
+    1
+   ],
+   [
+    "0x6A07495B",
+    "0x6344D96F",
+    1
+   ],
+   [
+    "0xB",
+    "0xF93D901F",
+    1
+   ],
+   [
+    "0x74429D5",
+    "0x81B9E9",
+    1
+   ],
+   [
+    "0x7442681",
+    "0x81B695",
+    1
+   ],
+   [
+    "0x74414C5",
+    "0x81A4D9",
+    1
+   ],
+   [
+    "0x74411B9",
+    "0x81A1CD",
+    1
+   ],
+   [
+    "0x7442385",
+    "0x81B399",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 153,
+   "other": 11
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x880200-0x881200",
+  "size": 4096,
+  "strings": [
+   [
+    8913805,
+    "+i[0yI%_"
+   ],
+   [
+    8914381,
+    "`S[PR"
+   ],
+   [
+    8914399,
+    "RR`a__h"
+   ],
+   [
+    8914758,
+    "nqsQJ"
+   ],
+   [
+    8914853,
+    "EaPR`"
+   ],
+   [
+    8914880,
+    "PRQ`aY"
+   ],
+   [
+    8914887,
+    "1PRPR"
+   ],
+   [
+    8914935,
+    "PRRW_Z"
+   ],
+   [
+    8914942,
+    "1``aPR"
+   ],
+   [
+    8914949,
+    "1ZXaZXXj"
+   ],
+   [
+    8915061,
+    "1``aPR"
+   ],
+   [
+    8915068,
+    "1ZXaZXPSS"
+   ],
+   [
+    8915546,
+    "PPR`PR"
+   ],
+   [
+    8915553,
+    "1ZXQYa"
+   ],
+   [
+    8915602,
+    "IZXZX"
+   ],
+   [
+    8915669,
+    "1Ab3#x}"
+   ],
+   [
+    8915908,
+    "3]gQ6"
+   ],
+   [
+    8916663,
+    "aaPRQ"
+   ],
+   [
+    8916882,
+    "``V^W_a"
+   ],
+   [
+    8917062,
+    "Q7&1S"
+   ],
+   [
+    8917137,
+    "}PVPRPR"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 63,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x74A80D0",
+    "0x8810E5"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x7495B9D",
+    "0x86EBB1",
+    11
+   ],
+   [
+    "0x55",
+    "0xF93D9069",
+    8
+   ],
+   [
+    "0x7441341",
+    "0x81A355",
+    5
+   ],
+   [
+    "0x74416DD",
+    "0x81A6F1",
+    2
+   ],
+   [
+    "0x7440831",
+    "0x819845",
+    2
+   ],
+   [
+    "0x7442681",
+    "0x81B695",
+    2
+   ],
+   [
+    "0x6A07495B",
+    "0x6344D96F",
+    2
+   ],
+   [
+    "0x7495B95",
+    "0x86EBA9",
+    2
+   ],
+   [
+    "0x74419F5",
+    "0x81AA09",
+    2
+   ],
+   [
+    "0x744123D",
+    "0x81A251",
+    2
+   ],
+   [
+    "0x7495B91",
+    "0x86EBA5",
+    2
+   ],
+   [
+    "0x744211D",
+    "0x81B131",
+    2
+   ],
+   [
+    "0x7440691",
+    "0x8196A5",
+    1
+   ],
+   [
+    "0x7442559",
+    "0x81B56D",
+    1
+   ],
+   [
+    "0x7441C39",
+    "0x81AC4D",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 250,
+   "other": 14
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x881300-0x882400",
+  "size": 4352,
+  "strings": [
+   [
+    8918807,
+    "aXPRP"
+   ],
+   [
+    8918885,
+    "S\\`PPR"
+   ],
+   [
+    8918892,
+    "1ZXX`PX"
+   ],
+   [
+    8919416,
+    "ZXaP`R`aZ`PR"
+   ],
+   [
+    8919429,
+    "1ZX`aaa"
+   ],
+   [
+    8919440,
+    "PRRPR"
+   ],
+   [
+    8919523,
+    "IZ^Xj"
+   ],
+   [
+    8919644,
+    "PPRPRPR"
+   ],
+   [
+    8919666,
+    "1VV^^ZX"
+   ],
+   [
+    8920730,
+    "VS[^PS"
+   ],
+   [
+    8920764,
+    "WS`a[_"
+   ],
+   [
+    8921276,
+    "SS[[PV"
+   ],
+   [
+    8921413,
+    "1ZXRZaZXP`PR`a"
+   ],
+   [
+    8921432,
+    "1ZXZX"
+   ],
+   [
+    8921652,
+    "1V^ZX"
+   ],
+   [
+    8921848,
+    "\"i`aa"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 59,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x74A927E",
+    "0x882293"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x7495B9D",
+    "0x86EBB1",
+    10
+   ],
+   [
+    "0x7441341",
+    "0x81A355",
+    5
+   ],
+   [
+    "0x55",
+    "0xF93D9069",
+    5
+   ],
+   [
+    "0x74405D9",
+    "0x8195ED",
+    2
+   ],
+   [
+    "0x74416DD",
+    "0x81A6F1",
+    2
+   ],
+   [
+    "0x7440689",
+    "0x81969D",
+    2
+   ],
+   [
+    "0x7440785",
+    "0x819799",
+    2
+   ],
+   [
+    "0x7440831",
+    "0x819845",
+    2
+   ],
+   [
+    "0x7442681",
+    "0x81B695",
+    2
+   ],
+   [
+    "0x6A07495B",
+    "0x6344D96F",
+    2
+   ],
+   [
+    "0x7495B95",
+    "0x86EBA9",
+    2
+   ],
+   [
+    "0x7442529",
+    "0x81B53D",
+    2
+   ],
+   [
+    "0x7495B91",
+    "0x86EBA5",
+    2
+   ],
+   [
+    "0x744211D",
+    "0x81B131",
+    2
+   ],
+   [
+    "0x74435CD",
+    "0x81C5E1",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 245,
+   "other": 20
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x882500-0x885800",
+  "size": 13056,
+  "strings": [
+   [
+    8923350,
+    "cPRPR`a"
+   ],
+   [
+    8923358,
+    "1`aZX"
+   ],
+   [
+    8923802,
+    "~wVPRS["
+   ],
+   [
+    8923810,
+    "1S[ZX^"
+   ],
+   [
+    8923855,
+    "1ZXPR"
+   ],
+   [
+    8923861,
+    "1ZXaYP"
+   ],
+   [
+    8924548,
+    "Fm\"@<"
+   ],
+   [
+    8925338,
+    "_PPRPR`a"
+   ],
+   [
+    8925351,
+    "1ZXZX"
+   ],
+   [
+    8925367,
+    "1ZXZX"
+   ],
+   [
+    8925509,
+    "1ZXZXPPPR"
+   ],
+   [
+    8925533,
+    "1`aZXX"
+   ],
+   [
+    8927608,
+    "PR`PR"
+   ],
+   [
+    8927614,
+    "1ZXW_a"
+   ],
+   [
+    8927632,
+    "1ZXaZXPPR`PR"
+   ],
+   [
+    8927645,
+    "1ZXS[a"
+   ],
+   [
+    8927657,
+    "1ZX[ZX"
+   ],
+   [
+    8927712,
+    "$%`PR`a"
+   ],
+   [
+    8927739,
+    "ZX`RZ"
+   ],
+   [
+    8928136,
+    "1`aZXP"
+   ],
+   [
+    8928207,
+    "W_aZX"
+   ],
+   [
+    8928350,
+    "ZXPPRPR`a"
+   ],
+   [
+    8928360,
+    "1`aZX"
+   ],
+   [
+    8929382,
+    "KOYIE"
+   ],
+   [
+    8929963,
+    "`aaaP"
+   ],
+   [
+    8930212,
+    "ZPPRV"
+   ],
+   [
+    8930225,
+    "1PRRZ"
+   ],
+   [
+    8930235,
+    "1ZXZXZX"
+   ],
+   [
+    8930748,
+    "r:PPRSPR"
+   ],
+   [
+    8932097,
+    "Z:.B7"
+   ],
+   [
+    8932120,
+    "1RZZXPVR"
+   ],
+   [
+    8933204,
+    "PV`QY"
+   ],
+   [
+    8933639,
+    "```aPR"
+   ],
+   [
+    8933646,
+    "1ZXaQQYYaP`PRQY"
+   ],
+   [
+    8933662,
+    "1`aZXPR`a"
+   ],
+   [
+    8933672,
+    "1W_ZXa"
+   ],
+   [
+    8933787,
+    "SPRV^"
+   ],
+   [
+    8934130,
+    "s8Rke"
+   ],
+   [
+    8934353,
+    "`aaPR`a"
+   ],
+   [
+    8934361,
+    "1`aZXa"
+   ],
+   [
+    8934497,
+    "PR``aPR"
+   ],
+   [
+    8934510,
+    "1PRQY"
+   ],
+   [
+    8934523,
+    "ZXZXP"
+   ],
+   [
+    8934543,
+    "1ZXZX"
+   ],
+   [
+    8934925,
+    "1PRPR"
+   ],
+   [
+    8934935,
+    "1`aZXZX"
+   ],
+   [
+    8935169,
+    "-P`WPR"
+   ],
+   [
+    8935176,
+    "1ZX_PR"
+   ],
+   [
+    8935197,
+    "1W_ZXa"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 185,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x74AA2CB",
+    "0x8832E0"
+   ],
+   [
+    "sub ebp",
+    "0x74AB54E",
+    "0x884563"
+   ],
+   [
+    "sub ebp",
+    "0x74AC66F",
+    "0x885684"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x7495B9D",
+    "0x86EBB1",
+    30
+   ],
+   [
+    "0x55",
+    "0xF93D9069",
+    21
+   ],
+   [
+    "0x7441341",
+    "0x81A355",
+    15
+   ],
+   [
+    "0x7495B91",
+    "0x86EBA5",
+    7
+   ],
+   [
+    "0x74416DD",
+    "0x81A6F1",
+    6
+   ],
+   [
+    "0x7440831",
+    "0x819845",
+    6
+   ],
+   [
+    "0x7442681",
+    "0x81B695",
+    6
+   ],
+   [
+    "0x7495B95",
+    "0x86EBA9",
+    6
+   ],
+   [
+    "0x744211D",
+    "0x81B131",
+    6
+   ],
+   [
+    "0x7440B49",
+    "0x819B5D",
+    3
+   ],
+   [
+    "0x74413E9",
+    "0x81A3FD",
+    3
+   ],
+   [
+    "0x7445356",
+    "0x81E36A",
+    3
+   ],
+   [
+    "0x7442441",
+    "0x81B455",
+    3
+   ],
+   [
+    "0x6A07495B",
+    "0x6344D96F",
+    3
+   ],
+   [
+    "0x7495B99",
+    "0x86EBAD",
+    3
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 752,
+   "tpuaozxc": 2,
+   "other": 58
+  },
+  "transfers_notable": [
+   [
+    "0x88250A",
+    "jmp",
+    "0x98D0C8",
+    "tpuaozxc"
+   ],
+   [
+    "0x883656",
+    "jmp",
+    "0x971F5D",
+    "tpuaozxc"
+   ]
+  ],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x885900-0x886000",
+  "size": 1792,
+  "strings": [
+   [
+    8935716,
+    "DLL_`1"
+   ],
+   [
+    8936680,
+    "1PRS["
+   ],
+   [
+    8936716,
+    "1ZXXj"
+   ],
+   [
+    8937032,
+    "[P`PR`a"
+   ],
+   [
+    8937040,
+    "1`aZX"
+   ],
+   [
+    8937137,
+    "QcPWPR"
+   ],
+   [
+    8937195,
+    "1ZXZXY"
+   ],
+   [
+    8937328,
+    "1ZX^P`PRS["
+   ],
+   [
+    8937339,
+    "1PXZX`"
+   ],
+   [
+    8937365,
+    "Q`aaa"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 21,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x7441341",
+    "0x81A355",
+    4
+   ],
+   [
+    "0x7440831",
+    "0x819845",
+    4
+   ],
+   [
+    "0x7495B9D",
+    "0x86EBB1",
+    3
+   ],
+   [
+    "0x55",
+    "0xF93D9069",
+    2
+   ],
+   [
+    "0x7442681",
+    "0x81B695",
+    2
+   ],
+   [
+    "0x7495B95",
+    "0x86EBA9",
+    2
+   ],
+   [
+    "0x5F4C4C44",
+    "0x5889DC58",
+    1
+   ],
+   [
+    "0x74415BD",
+    "0x81A5D1",
+    1
+   ],
+   [
+    "0x74A3904",
+    "0x87C918",
+    1
+   ],
+   [
+    "0x7442655",
+    "0x81B669",
+    1
+   ],
+   [
+    "0x66074415",
+    "0x5F44D429",
+    1
+   ],
+   [
+    "0x4A3904B5",
+    "0x437694C9",
+    1
+   ],
+   [
+    "0x744368D",
+    "0x81C6A1",
+    1
+   ],
+   [
+    "0x744198D",
+    "0x81A9A1",
+    1
+   ],
+   [
+    "0x2C",
+    "0xF93D9040",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 106,
+   "other": 7
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x886100-0x888A00",
+  "size": 10496,
+  "strings": [
+   [
+    8937834,
+    "BZXPPR`RZ"
+   ],
+   [
+    8937859,
+    "PXaZX"
+   ],
+   [
+    8938349,
+    "1ZXXZX"
+   ],
+   [
+    8938472,
+    "PRV`a^"
+   ],
+   [
+    8938486,
+    "RZZXP`"
+   ],
+   [
+    8939043,
+    "<`aa^P"
+   ],
+   [
+    8939381,
+    "aZXZXP"
+   ],
+   [
+    8939611,
+    "1VV^^ZXPPR`RZPR"
+   ],
+   [
+    8939632,
+    "1RPXZZX"
+   ],
+   [
+    8940971,
+    "mnVS_[_"
+   ],
+   [
+    8941317,
+    "U8TRO"
+   ],
+   [
+    8941565,
+    "vPPRSPR"
+   ],
+   [
+    8941578,
+    "1PRQY"
+   ],
+   [
+    8941588,
+    "1ZXZXZX"
+   ],
+   [
+    8941637,
+    "4$J4\""
+   ],
+   [
+    8942787,
+    "PRWPR"
+   ],
+   [
+    8942818,
+    "aZXPQPR"
+   ],
+   [
+    8942998,
+    "o\\Dxd"
+   ],
+   [
+    8943015,
+    "1ZXZX"
+   ],
+   [
+    8943318,
+    "`PRPR"
+   ],
+   [
+    8943328,
+    "1`aZXP`aXaP"
+   ],
+   [
+    8943504,
+    "q;lN("
+   ],
+   [
+    8945393,
+    "ZXPP`V^`aaX"
+   ],
+   [
+    8945544,
+    "f@P#_"
+   ],
+   [
+    8945610,
+    "Z`39a"
+   ],
+   [
+    8945784,
+    "1S`a[ZXP"
+   ],
+   [
+    8946542,
+    "PPRP`aX"
+   ],
+   [
+    8946550,
+    "1PRV^"
+   ],
+   [
+    8946571,
+    "BQZXZX"
+   ],
+   [
+    8947620,
+    "DEx?a"
+   ],
+   [
+    8947901,
+    "1`aZXPR"
+   ],
+   [
+    8947919,
+    "1ZXZXa"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 152,
+  "ebp_bases": [
+   [
+    "sub ebp",
+    "0x74AD7B0",
+    "0x8867C5"
+   ],
+   [
+    "sub ebp",
+    "0x74AE94A",
+    "0x88795F"
+   ],
+   [
+    "sub ebp",
+    "0x74AF8F2",
+    "0x888907"
+   ]
+  ],
+  "disp_census_top": [
+   [
+    "0x7495B9D",
+    "0x86EBB1",
+    26
+   ],
+   [
+    "0x55",
+    "0xF93D9069",
+    26
+   ],
+   [
+    "0x7441341",
+    "0x81A355",
+    10
+   ],
+   [
+    "0x744211D",
+    "0x81B131",
+    7
+   ],
+   [
+    "0x7495B91",
+    "0x86EBA5",
+    6
+   ],
+   [
+    "0x74416DD",
+    "0x81A6F1",
+    5
+   ],
+   [
+    "0x7442365",
+    "0x81B379",
+    4
+   ],
+   [
+    "0x7440831",
+    "0x819845",
+    4
+   ],
+   [
+    "0x7442681",
+    "0x81B695",
+    4
+   ],
+   [
+    "0x7495B95",
+    "0x86EBA9",
+    4
+   ],
+   [
+    "0x74417C1",
+    "0x81A7D5",
+    3
+   ],
+   [
+    "0x7440749",
+    "0x81975D",
+    3
+   ],
+   [
+    "0x7497129",
+    "0x87013D",
+    3
+   ],
+   [
+    "0x7443685",
+    "0x81C699",
+    3
+   ],
+   [
+    "0x74405F5",
+    "0x819609",
+    3
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 557,
+   "other": 35
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x888C00-0x889600",
+  "size": 2560,
+  "strings": [
+   [
+    8949719,
+    "1PRPX"
+   ],
+   [
+    8949725,
+    "1`aZXZXPQ`"
+   ],
+   [
+    8949849,
+    "JSV^[a"
+   ],
+   [
+    8950099,
+    "`S`a["
+   ],
+   [
+    8950110,
+    "`aaPP`W_"
+   ],
+   [
+    8950164,
+    "PR`PR"
+   ],
+   [
+    8950170,
+    "1ZXPXa"
+   ],
+   [
+    8950202,
+    " JYZXP"
+   ],
+   [
+    8950295,
+    "1PR`a"
+   ],
+   [
+    8950301,
+    "1`aZXZXX"
+   ],
+   [
+    8950374,
+    "XPWPR"
+   ],
+   [
+    8950739,
+    "`R`aZ"
+   ],
+   [
+    8950750,
+    "`aaP`"
+   ],
+   [
+    8950772,
+    "`W_`aaa"
+   ],
+   [
+    8951281,
+    "-aZXP`PR"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 33,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x55",
+    "0xF93D9069",
+    9
+   ],
+   [
+    "0x7495B9D",
+    "0x86EBB1",
+    7
+   ],
+   [
+    "0x7441341",
+    "0x81A355",
+    5
+   ],
+   [
+    "0x74416DD",
+    "0x81A6F1",
+    2
+   ],
+   [
+    "0x7440831",
+    "0x819845",
+    2
+   ],
+   [
+    "0x7442681",
+    "0x81B695",
+    2
+   ],
+   [
+    "0x7441E21",
+    "0x81AE35",
+    2
+   ],
+   [
+    "0x7495B95",
+    "0x86EBA9",
+    2
+   ],
+   [
+    "0x7495B91",
+    "0x86EBA5",
+    2
+   ],
+   [
+    "0x744358D",
+    "0x81C5A1",
+    2
+   ],
+   [
+    "0x7441509",
+    "0x81A51D",
+    1
+   ],
+   [
+    "0x75",
+    "0xF93D9089",
+    1
+   ],
+   [
+    "0x5166AEA9",
+    "0x4AA43EBD",
+    1
+   ],
+   [
+    "0x7441379",
+    "0x81A38D",
+    1
+   ],
+   [
+    "0x6F",
+    "0xF93D9083",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 157,
+   "other": 13
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x889700-0x889B00",
+  "size": 1024,
+  "strings": [
+   [
+    8951725,
+    "n6cjj"
+   ],
+   [
+    8951928,
+    "1ZXZZX"
+   ],
+   [
+    8951979,
+    "%IYs9!_j"
+   ],
+   [
+    8952258,
+    "1ZXaPPRR"
+   ],
+   [
+    8952445,
+    "XPPRPRPR"
+   ],
+   [
+    8952473,
+    " tIjZX"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 11,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x7442429",
+    "0x81B43D",
+    2
+   ],
+   [
+    "0x7493B24",
+    "0x86CB38",
+    2
+   ],
+   [
+    "0x7440099",
+    "0x8190AD",
+    1
+   ],
+   [
+    "0x7441C85",
+    "0x81AC99",
+    1
+   ],
+   [
+    "0x7442AE1",
+    "0x81BAF5",
+    1
+   ],
+   [
+    "0x7441DB9",
+    "0x81ADCD",
+    1
+   ],
+   [
+    "0x744129D",
+    "0x81A2B1",
+    1
+   ],
+   [
+    "0x7441075",
+    "0x81A089",
+    1
+   ],
+   [
+    "0x10",
+    "0xF93D9024",
+    1
+   ],
+   [
+    "0x7440825",
+    "0x819839",
+    1
+   ],
+   [
+    "0x74B09F8",
+    "0x889A0C",
+    1
+   ],
+   [
+    "0x7440A81",
+    "0x819A95",
+    1
+   ],
+   [
+    "0x7441231",
+    "0x81A245",
+    1
+   ],
+   [
+    "0x74400E1",
+    "0x8190F5",
+    1
+   ],
+   [
+    "0x744083D",
+    "0x819851",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 72,
+   "other": 1
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x889C00-0x88AA00",
+  "size": 3584,
+  "strings": [
+   [
+    8954024,
+    "PQPRPR"
+   ],
+   [
+    8954180,
+    "1ZX`aa`"
+   ],
+   [
+    8954510,
+    "?FDJ2"
+   ],
+   [
+    8954567,
+    "`aZXPPRPR"
+   ],
+   [
+    8954587,
+    "1ZXZX"
+   ],
+   [
+    8954633,
+    "PRPRPR"
+   ],
+   [
+    8954644,
+    "1V^ZX"
+   ],
+   [
+    8954778,
+    "kkPRPR"
+   ],
+   [
+    8954791,
+    "1`aZXZ"
+   ],
+   [
+    8955351,
+    "RPRPR"
+   ],
+   [
+    8955361,
+    "1W_ZXZPPR`PR"
+   ],
+   [
+    8955404,
+    "1PR`a"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 46,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x55",
+    "0xF93D9069",
+    10
+   ],
+   [
+    "0x7495B9D",
+    "0x86EBB1",
+    10
+   ],
+   [
+    "0x7441341",
+    "0x81A355",
+    6
+   ],
+   [
+    "0x74416DD",
+    "0x81A6F1",
+    3
+   ],
+   [
+    "0x7440B49",
+    "0x819B5D",
+    2
+   ],
+   [
+    "0x7440831",
+    "0x819845",
+    2
+   ],
+   [
+    "0x7442681",
+    "0x81B695",
+    2
+   ],
+   [
+    "0x6A07495B",
+    "0x6344D96F",
+    2
+   ],
+   [
+    "0x7495B95",
+    "0x86EBA9",
+    2
+   ],
+   [
+    "0x7495B91",
+    "0x86EBA5",
+    2
+   ],
+   [
+    "0x74417C1",
+    "0x81A7D5",
+    2
+   ],
+   [
+    "0x45646165",
+    "0x3EA1F179",
+    1
+   ],
+   [
+    "0x74A7E6A",
+    "0x880E7E",
+    1
+   ],
+   [
+    "0x744231D",
+    "0x81B331",
+    1
+   ],
+   [
+    "0x4A7E6AB5",
+    "0x43BBFAC9",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 197,
+   "other": 14
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x88CA00-0x88CB00",
+  "size": 256,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x453EB9CE",
+    "0x3E7C49E2",
+    1
+   ],
+   [
+    "0x2EF9C47E",
+    "0x28375492",
+    1
+   ],
+   [
+    "0x30",
+    "0xF93D9044",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 8
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x890600-0x890800",
+  "size": 512,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x5A",
+    "0xF93D906E",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 19,
+   "other": 4
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x896600-0x896700",
+  "size": 256,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {},
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x89D400-0x89D500",
+  "size": 256,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "beyond-wall": 40,
+   "other": 33
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8A3200-0x8A3400",
+  "size": 512,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x44",
+    "0xF93D9058",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "other": 2,
+   "beyond-wall": 15
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8A5300-0x8A5500",
+  "size": 512,
+  "strings": [
+   [
+    9065218,
+    "wg#%;{"
+   ],
+   [
+    9065260,
+    "._\".B"
+   ],
+   [
+    9065316,
+    " Z5__"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x12",
+    "0xF93D9026",
+    66
+   ],
+   [
+    "0x74",
+    "0xF93D9088",
+    1
+   ],
+   [
+    "0x51",
+    "0xF93D9065",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 87,
+   "other": 1
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8BAD00-0x8BAF00",
+  "size": 512,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x5C",
+    "0xF93D9070",
+    6
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 21,
+   "other": 1
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8C0500-0x8C0600",
+  "size": 256,
+  "strings": [
+   [
+    9176501,
+    "+s\"#O"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "beyond-wall": 19
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8C1000-0x8C1100",
+  "size": 256,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x4D4104E2",
+    "0x467E94F6",
+    1
+   ],
+   [
+    "0x25",
+    "0xF93D9039",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 10,
+   "other": 2
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8C1900-0x8C1A00",
+  "size": 256,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x1829451",
+    "0xFAC02465",
+    1
+   ],
+   [
+    "0x5D",
+    "0xF93D9071",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 8
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8C1C00-0x8C1E00",
+  "size": 512,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x2E",
+    "0xF93D9042",
+    2
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 29
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8C2000-0x8C2100",
+  "size": 256,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x43",
+    "0xF93D9057",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 19,
+   "other": 1
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8C2600-0x8C2700",
+  "size": 256,
+  "strings": [
+   [
+    9184769,
+    ";+SJZ"
+   ],
+   [
+    9184801,
+    ";+SJZ"
+   ],
+   [
+    9184829,
+    ";+SJZ"
+   ],
+   [
+    9184839,
+    "?{0:/"
+   ],
+   [
+    9184861,
+    ";+SJZ"
+   ],
+   [
+    9184893,
+    ";+SJZ"
+   ],
+   [
+    9184905,
+    "1:/'\\"
+   ],
+   [
+    9184921,
+    ";+SJZ"
+   ],
+   [
+    9184933,
+    "0:/G@"
+   ],
+   [
+    9184949,
+    ";+SJZ"
+   ],
+   [
+    9184961,
+    "1:/g8"
+   ],
+   [
+    9184977,
+    ";+SJZ"
+   ],
+   [
+    9185005,
+    ";+SJZ"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x310BEF12",
+    "0x2A497F26",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 15
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8C3200-0x8C3400",
+  "size": 512,
+  "strings": [
+   [
+    9188304,
+    "7%,<K"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "beyond-wall": 28,
+   "other": 2
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8C6900-0x8C6B00",
+  "size": 512,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "beyond-wall": 13,
+   "other": 3
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8E1600-0x8E1700",
+  "size": 256,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x7603BE8B",
+    "0x6F414E9F",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "readable": 23,
+   "beyond-wall": 7
+  },
+  "transfers_notable": [
+   [
+    "0x8E1600",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E160A",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1614",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E161E",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1628",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1632",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E163C",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1646",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1650",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E165A",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1664",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E166E",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1678",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1682",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E168C",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E1696",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E16A0",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E16AD",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E16B7",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E16C1",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E16CB",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E16D5",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E16DF",
+    "jmp",
+    "0x821750",
+    "readable"
+   ]
+  ],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8E4D00-0x8E4E00",
+  "size": 256,
+  "strings": [
+   [
+    9326068,
+    "' &XO"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "readable": 20,
+   "beyond-wall": 7,
+   "other": 3
+  },
+  "transfers_notable": [
+   [
+    "0x8E4D01",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D0B",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D15",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D1F",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D29",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D33",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D3D",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D47",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D51",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D5B",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D65",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D6F",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D79",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D83",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D8D",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4D97",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4DA1",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4DAB",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4DB5",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8E4DBF",
+    "jmp",
+    "0x821750",
+    "readable"
+   ]
+  ],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8EE300-0x8EE400",
+  "size": 256,
+  "strings": [
+   [
+    9364241,
+    "B=;Pq"
+   ],
+   [
+    9364249,
+    "4<2Ih"
+   ],
+   [
+    9364269,
+    "|h\\*Q"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "beyond-wall": 15,
+   "other": 2,
+   "readable": 19
+  },
+  "transfers_notable": [
+   [
+    "0x8EE333",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE34B",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE355",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE35F",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE369",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE373",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE37D",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE387",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE391",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE39B",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3A5",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3AF",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3B9",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3C3",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3CD",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3D7",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3E1",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3EB",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8EE3F5",
+    "jmp",
+    "0x821750",
+    "readable"
+   ]
+  ],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8F1300-0x8F1400",
+  "size": 256,
+  "strings": [
+   [
+    9376523,
+    "|h,TQ"
+   ]
+  ],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "readable": 22,
+   "beyond-wall": 10
+  },
+  "transfers_notable": [
+   [
+    "0x8F1311",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F132F",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F1339",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F1343",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F134D",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F1357",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F1361",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F136B",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F1375",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F137F",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F1389",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F1393",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F139D",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13A7",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13B1",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13BB",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13C5",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13CF",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13D9",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13E3",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13ED",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F13F7",
+    "jmp",
+    "0x821750",
+    "readable"
+   ]
+  ],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x8F4700-0x8F4B00",
+  "size": 1024,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "readable": 78,
+   "beyond-wall": 19,
+   "other": 8
+  },
+  "transfers_notable": [
+   [
+    "0x8F4702",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4712",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F471E",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F472E",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4748",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4738",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4758",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4768",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4775",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F477F",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F478F",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4799",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F47A3",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F47B3",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F47C3",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F47CF",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F47DA",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F47EA",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F47FA",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4804",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4814",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4820",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4830",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F483A",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F484A",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F485A",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F486A",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4877",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4881",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4891",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F489B",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F48A5",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F48B5",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F48C5",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F48D1",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F48DC",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F48EC",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F48FC",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4906",
+    "jmp",
+    "0x821750",
+    "readable"
+   ],
+   [
+    "0x8F4916",
+    "jmp",
+    "0x821750",
+    "readable"
+   ]
+  ],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x906A00-0x906B00",
+  "size": 256,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 2,
+  "ebp_bases": [],
+  "disp_census_top": [
+   [
+    "0x7440B49",
+    "0x819B5D",
+    1
+   ],
+   [
+    "0x7441341",
+    "0x81A355",
+    1
+   ],
+   [
+    "0x55",
+    "0xF93D9069",
+    1
+   ],
+   [
+    "0x744118D",
+    "0x81A1A1",
+    1
+   ],
+   [
+    "0x74424C9",
+    "0x81B4DD",
+    1
+   ],
+   [
+    "0x7441C9D",
+    "0x81ACB1",
+    1
+   ],
+   [
+    "0x7440DE1",
+    "0x819DF5",
+    1
+   ],
+   [
+    "0x744368D",
+    "0x81C6A1",
+    1
+   ]
+  ],
+  "transfer_zones": {
+   "beyond-wall": 14,
+   "other": 1
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ },
+ {
+  "range": "0x90CB00-0x912000",
+  "size": 21760,
+  "strings": [],
+  "prologues": 0,
+  "call5_gadget": 0,
+  "ebp_bases": [],
+  "disp_census_top": [],
+  "transfer_zones": {
+   "beyond-wall": 2
+  },
+  "transfers_notable": [],
+  "push_imm_image": []
+ }
+]

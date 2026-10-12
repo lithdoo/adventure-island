@@ -1,0 +1,227 @@
+{
+  "gates": {
+    "client_sha": "5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d",
+    "mechanism_gate": false,
+    "captured": 3
+  },
+  "total": 383,
+  "named": 3,
+  "by_module": {
+    "kernel32": 3
+  },
+  "failures": [
+    {
+      "site": "0x857E4A",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x857E68",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x857E7C",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x857E86",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x857E90",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x857E9A",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x857EA4",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x857EAE",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8D7B5C",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8D7B7D",
+      "end": [
+        "FAULT",
+        "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8D7B87",
+      "end": [
+        "FAULT",
+        "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB3A1",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB3BC",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB3C6",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB3D0",
+      "end": [
+        "FAULT",
+        "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB3DA",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB3E4",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB3EE",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB3F8",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB402",
+      "end": [
+        "FAULT",
+        "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB40C",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB416",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB420",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB42A",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB434",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB43E",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DB448",
+      "end": [
+        "FAULT",
+        "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DC6DA",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DC6F2",
+      "end": [
+        "FAULT",
+        "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+      ]
+    },
+    {
+      "site": "0x8DDA35",
+      "end": [
+        "FAULT",
+        "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+      ]
+    }
+  ],
+  "names": [
+    "kernel32!ExitProcess"
+  ]
+}

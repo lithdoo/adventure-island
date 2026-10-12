@@ -1,0 +1,415 @@
+{
+  "gates": {
+    "client_sha": "5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d",
+    "span1_sha_match": true,
+    "span2_sha_match": true,
+    "round3": "6537/6537"
+  },
+  "chain_instructions": 288403,
+  "validated_addresses": 1372,
+  "boundary_refs": {
+    "total": 1438,
+    "per_zone": {
+      "packed-raw": 1389,
+      "tailb-encoded": 23,
+      "tpuaozxc": 3,
+      "tailA": 23
+    },
+    "tailb_encoded_validated": [],
+    "tailb_encoded_unvalidated": 23
+  },
+  "data_pointer_candidates": 6850,
+  "transform_clusters": {
+    "total": 1192,
+    "with_loop": 9,
+    "ground_truth_refound": [
+      "decA",
+      "decB",
+      "round1",
+      "round3"
+    ],
+    "new_loop_clusters": [
+      "0x81CDC4 ops=xor 0xd90a; add 0x72dd loop=0x81CE01->0x81CDBA",
+      "0x81D163 ops=xor 0x5041; xor 0x5449 loop=0x81D16E->0x81D15B",
+      "0x81EB43 ops=add 0xe9146a99; add 0xa3000000 loop=0x81EB4D->0x81EAD6",
+      "0x8203AB ops=add 0x66000000; add 0xf2f8 loop=0x8203E5->0x820381",
+      "0x857916 ops=xor 0xc581f501; xor 0x4ed815e loop=0x85792F->0x8578E5",
+      "0x858219 ops=sub 0xd41aeb63; add 0xffffff8c loop=0x858230->0x8581B7",
+      "0x8589DA ops=xor 0x7e32fef9; xor 0xec22ec9d loop=0x858A22->0x8589CF",
+      "0x85AB6D ops=xor 0x55cf4a65; sub 0xc3ca32f5; add 0x5433c197 loop=0x85AB99->0x85AB66"
+    ]
+  },
+  "small_producers": {
+    "0x834871": "0x83486e: ret 0xffff | 0x834871: pop dword ptr [edx] | 0x834873: jmp 0x821797 | 0x834878: mov ax, word ptr [esp] | 0x83487c: push ebp | 0x83487d: jmp 0x8322b6 | 0x834882: mov dword ptr [esp], ebx | 0x834885: push 4 | 0x83488a: jmp 0x831103 | 0x83488f: xchg dword ptr [esp], ebx | 0x834892: mov esp, dword ptr [esp] | 0x834895: jmp 0x82324c",
+    "0x82E5E8": "0x82e5e6: add byte ptr [eax], al | 0x82e5e8: pop dword ptr [edi + eax*4] | 0x82e5eb: jmp 0x821797 | 0x82e5f0: push 0x7d8371c2 | 0x82e5f5: pop eax | 0x82e5f6: not eax | 0x82e5f8: jmp 0x824bea | 0x82e5fd: inc esi | 0x82e5fe: inc esi | 0x82e5ff: jmp 0x8285e3 | 0x82e604: pop esi | 0x82e605: push esi",
+    "0x821790": "0x82178e: xor eax, eax | 0x821790: lock cmpxchg dword ptr [edi + 0x30], ecx | 0x821795: jne 0x82178e | 0x821797: lodsb al, byte ptr [esi] | 0x821798: jmp 0x82c708 | 0x82179d: push esp | 0x82179e: pop ecx | 0x82179f: add ecx, 4 | 0x8217a5: add ecx, 4 | 0x8217a8: xchg dword ptr [esp], ecx | 0x8217ab: pop esp | 0x8217ac: xchg dword ptr [esp], edx",
+    "0x82412C": "0x82412b: in al, dx | 0x82412c: mov byte ptr [edx], ah | 0x82412e: pop eax | 0x82412f: jmp 0x82f3a5 | 0x824134: pop edi | 0x824135: push esi | 0x824136: mov esi, 0x49216e41 | 0x82413b: neg esi | 0x82413d: add esi, 0x203535fb | 0x824143: jmp 0x82830c | 0x824148: sub al, 0xcf | 0x82414a: sub al, dl",
+    "0x829B4E": "0x829b4c: add byte ptr [eax], al | 0x829b4e: mov dword ptr [edx + 0x30], edi | 0x829b51: jmp 0x829216 | 0x829b56: mov edi, 0x60881c82 | 0x829b5b: sub ebp, edi | 0x829b5d: jmp 0x82d49b | 0x829b62: add esi, 0x9cebce2 | 0x829b68: jmp 0x8354bb | 0x829b6d: pop edx | 0x829b6e: pop dword ptr [esp] | 0x829b71: mov esp, dword ptr [esp] | 0x829b74: shl byte ptr [esp], cl"
+  },
+  "readability_profile_nontrivial": [
+    {
+      "rva": "0x819000",
+      "entropy_stop": 0.256,
+      "entropy_final": 0.256,
+      "prologues": 0,
+      "printable_ratio": 0.013
+    },
+    {
+      "rva": "0x81A000",
+      "entropy_stop": 0.275,
+      "entropy_final": 0.275,
+      "prologues": 0,
+      "printable_ratio": 0.007
+    },
+    {
+      "rva": "0x81B000",
+      "entropy_stop": 0.312,
+      "entropy_final": 0.312,
+      "prologues": 0,
+      "printable_ratio": 0.018
+    },
+    {
+      "rva": "0x81C000",
+      "entropy_stop": 4.615,
+      "entropy_final": 4.615,
+      "prologues": 3,
+      "printable_ratio": 0.171
+    },
+    {
+      "rva": "0x81D000",
+      "entropy_stop": 5.408,
+      "entropy_final": 5.408,
+      "prologues": 0,
+      "printable_ratio": 0.205
+    },
+    {
+      "rva": "0x81E000",
+      "entropy_stop": 5.697,
+      "entropy_final": 5.697,
+      "prologues": 0,
+      "printable_ratio": 0.288
+    },
+    {
+      "rva": "0x820000",
+      "entropy_stop": 6.346,
+      "entropy_final": 6.346,
+      "prologues": 0,
+      "printable_ratio": 0.312
+    },
+    {
+      "rva": "0x822000",
+      "entropy_stop": 6.477,
+      "entropy_final": 6.477,
+      "prologues": 0,
+      "printable_ratio": 0.314
+    },
+    {
+      "rva": "0x823000",
+      "entropy_stop": 6.439,
+      "entropy_final": 6.439,
+      "prologues": 0,
+      "printable_ratio": 0.296
+    },
+    {
+      "rva": "0x824000",
+      "entropy_stop": 6.454,
+      "entropy_final": 6.454,
+      "prologues": 0,
+      "printable_ratio": 0.301
+    },
+    {
+      "rva": "0x826000",
+      "entropy_stop": 6.466,
+      "entropy_final": 6.466,
+      "prologues": 0,
+      "printable_ratio": 0.297
+    },
+    {
+      "rva": "0x828000",
+      "entropy_stop": 6.438,
+      "entropy_final": 6.438,
+      "prologues": 0,
+      "printable_ratio": 0.285
+    },
+    {
+      "rva": "0x82B000",
+      "entropy_stop": 6.456,
+      "entropy_final": 6.456,
+      "prologues": 0,
+      "printable_ratio": 0.32
+    },
+    {
+      "rva": "0x82D000",
+      "entropy_stop": 6.492,
+      "entropy_final": 6.492,
+      "prologues": 0,
+      "printable_ratio": 0.326
+    },
+    {
+      "rva": "0x834000",
+      "entropy_stop": 6.439,
+      "entropy_final": 6.439,
+      "prologues": 0,
+      "printable_ratio": 0.299
+    },
+    {
+      "rva": "0x838000",
+      "entropy_stop": 6.402,
+      "entropy_final": 6.402,
+      "prologues": 0,
+      "printable_ratio": 0.317
+    },
+    {
+      "rva": "0x839000",
+      "entropy_stop": 6.478,
+      "entropy_final": 6.478,
+      "prologues": 0,
+      "printable_ratio": 0.31
+    },
+    {
+      "rva": "0x83C000",
+      "entropy_stop": 6.427,
+      "entropy_final": 6.427,
+      "prologues": 0,
+      "printable_ratio": 0.293
+    },
+    {
+      "rva": "0x83E000",
+      "entropy_stop": 6.403,
+      "entropy_final": 6.403,
+      "prologues": 0,
+      "printable_ratio": 0.29
+    },
+    {
+      "rva": "0x840000",
+      "entropy_stop": 6.447,
+      "entropy_final": 6.447,
+      "prologues": 0,
+      "printable_ratio": 0.311
+    },
+    {
+      "rva": "0x842000",
+      "entropy_stop": 6.453,
+      "entropy_final": 6.453,
+      "prologues": 0,
+      "printable_ratio": 0.319
+    },
+    {
+      "rva": "0x844000",
+      "entropy_stop": 6.45,
+      "entropy_final": 6.45,
+      "prologues": 0,
+      "printable_ratio": 0.31
+    },
+    {
+      "rva": "0x845000",
+      "entropy_stop": 6.456,
+      "entropy_final": 6.456,
+      "prologues": 0,
+      "printable_ratio": 0.308
+    },
+    {
+      "rva": "0x846000",
+      "entropy_stop": 6.474,
+      "entropy_final": 6.474,
+      "prologues": 0,
+      "printable_ratio": 0.308
+    },
+    {
+      "rva": "0x84C000",
+      "entropy_stop": 6.438,
+      "entropy_final": 6.438,
+      "prologues": 0,
+      "printable_ratio": 0.308
+    },
+    {
+      "rva": "0x84E000",
+      "entropy_stop": 6.486,
+      "entropy_final": 6.486,
+      "prologues": 0,
+      "printable_ratio": 0.303
+    },
+    {
+      "rva": "0x84F000",
+      "entropy_stop": 6.433,
+      "entropy_final": 6.433,
+      "prologues": 0,
+      "printable_ratio": 0.309
+    },
+    {
+      "rva": "0x850000",
+      "entropy_stop": 6.49,
+      "entropy_final": 6.49,
+      "prologues": 0,
+      "printable_ratio": 0.303
+    },
+    {
+      "rva": "0x855000",
+      "entropy_stop": 6.419,
+      "entropy_final": 6.419,
+      "prologues": 0,
+      "printable_ratio": 0.31
+    },
+    {
+      "rva": "0x85B000",
+      "entropy_stop": 3.761,
+      "entropy_final": 2.03,
+      "prologues": 0,
+      "printable_ratio": 0.47
+    },
+    {
+      "rva": "0x85C000",
+      "entropy_stop": 2.079,
+      "entropy_final": 0.085,
+      "prologues": 0,
+      "printable_ratio": 0.498
+    },
+    {
+      "rva": "0x85D000",
+      "entropy_stop": 2.0,
+      "entropy_final": 0.0,
+      "prologues": 0,
+      "printable_ratio": 0.5
+    },
+    {
+      "rva": "0x85E000",
+      "entropy_stop": 3.119,
+      "entropy_final": 1.193,
+      "prologues": 0,
+      "printable_ratio": 0.462
+    },
+    {
+      "rva": "0x85F000",
+      "entropy_stop": 5.03,
+      "entropy_final": 3.424,
+      "prologues": 0,
+      "printable_ratio": 0.397
+    },
+    {
+      "rva": "0x861000",
+      "entropy_stop": 6.49,
+      "entropy_final": 6.49,
+      "prologues": 0,
+      "printable_ratio": 0.336
+    },
+    {
+      "rva": "0x876000",
+      "entropy_stop": 6.362,
+      "entropy_final": 6.362,
+      "prologues": 0,
+      "printable_ratio": 0.339
+    },
+    {
+      "rva": "0x880000",
+      "entropy_stop": 6.408,
+      "entropy_final": 6.408,
+      "prologues": 0,
+      "printable_ratio": 0.352
+    },
+    {
+      "rva": "0x881000",
+      "entropy_stop": 6.403,
+      "entropy_final": 6.403,
+      "prologues": 0,
+      "printable_ratio": 0.344
+    },
+    {
+      "rva": "0x882000",
+      "entropy_stop": 6.445,
+      "entropy_final": 6.445,
+      "prologues": 0,
+      "printable_ratio": 0.344
+    },
+    {
+      "rva": "0x883000",
+      "entropy_stop": 6.339,
+      "entropy_final": 6.339,
+      "prologues": 0,
+      "printable_ratio": 0.345
+    },
+    {
+      "rva": "0x884000",
+      "entropy_stop": 6.43,
+      "entropy_final": 6.43,
+      "prologues": 0,
+      "printable_ratio": 0.339
+    },
+    {
+      "rva": "0x885000",
+      "entropy_stop": 6.379,
+      "entropy_final": 6.379,
+      "prologues": 0,
+      "printable_ratio": 0.354
+    },
+    {
+      "rva": "0x886000",
+      "entropy_stop": 6.41,
+      "entropy_final": 6.41,
+      "prologues": 0,
+      "printable_ratio": 0.349
+    },
+    {
+      "rva": "0x887000",
+      "entropy_stop": 6.43,
+      "entropy_final": 6.43,
+      "prologues": 0,
+      "printable_ratio": 0.353
+    },
+    {
+      "rva": "0x888000",
+      "entropy_stop": 6.413,
+      "entropy_final": 6.413,
+      "prologues": 0,
+      "printable_ratio": 0.349
+    },
+    {
+      "rva": "0x889000",
+      "entropy_stop": 6.491,
+      "entropy_final": 6.491,
+      "prologues": 0,
+      "printable_ratio": 0.346
+    },
+    {
+      "rva": "0x90C000",
+      "entropy_stop": 6.049,
+      "entropy_final": 6.049,
+      "prologues": 0,
+      "printable_ratio": 0.248
+    },
+    {
+      "rva": "0x90D000",
+      "entropy_stop": 0.0,
+      "entropy_final": 0.0,
+      "prologues": 0,
+      "printable_ratio": 0.0
+    },
+    {
+      "rva": "0x90E000",
+      "entropy_stop": 0.0,
+      "entropy_final": 0.0,
+      "prologues": 0,
+      "printable_ratio": 0.0
+    },
+    {
+      "rva": "0x90F000",
+      "entropy_stop": 0.0,
+      "entropy_final": 0.0,
+      "prologues": 0,
+      "printable_ratio": 0.0
+    },
+    {
+      "rva": "0x910000",
+      "entropy_stop": 0.0,
+      "entropy_final": 0.0,
+      "prologues": 0,
+      "printable_ratio": 0.0
+    },
+    {
+      "rva": "0x911000",
+      "entropy_stop": 0.885,
+      "entropy_final": 0.885,
+      "prologues": 0,
+      "printable_ratio": 0.0
+    }
+  ]
+}

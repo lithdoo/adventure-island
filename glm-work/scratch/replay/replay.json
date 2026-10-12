@@ -1,0 +1,1207 @@
+{
+  "client_sha256": "5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d",
+  "kernel32_sha256": "bafd9e061964642802d62f1eb694e7e4af60de739a8df1a492f90006dc5680f3",
+  "kernel32_base": "0x76240000",
+  "kernel32_size": "0xf0000",
+  "getlocaltime_rva": "0x1d430",
+  "getlocaltime_va": "0x7625d430",
+  "t2_block_sha256": "5529577eec208295e36d61dc11aee42ebe45f7ffb511691f5679676b2330c865",
+  "export": {
+    "export_rva": "0x95fa0",
+    "export_size": "0xea30",
+    "functions_rva": "0x95fc8",
+    "names_rva": "0x979dc",
+    "ordinals_rva": "0x993f0",
+    "n_functions": "0x685",
+    "n_names": "0x685"
+  },
+  "found_at": {
+    "insn": 760723,
+    "eax": 1,
+    "esi": 1982070784,
+    "edi": 1982071016,
+    "ecx": 1982190640,
+    "edx": 4194304
+  },
+  "scan_hits": [
+    "0x76250000",
+    "0x76240000"
+  ],
+  "why": "E10",
+  "instructions": 2409207,
+  "final_eip": "0x7625ea00",
+  "phase": "explore",
+  "rounds": [
+    {
+      "round_id": "1",
+      "producer_rva": 8506951,
+      "start_rva": 8507061,
+      "end_rva": 8536193,
+      "length": 29132,
+      "pre_sha256": "87cdd98ebb20e29bfcb4b6d56f51a33392535a9502c0350e3f7573def6db75e5",
+      "post_sha256": "872a1b40ccc1a5d95b7dc9637979df511c1573908a9227d7ad643eb21c1fe2f2",
+      "entropy_before": 7.2851,
+      "entropy_after": 7.2532,
+      "density_before": 0.015,
+      "density_after": 0.0353,
+      "new_control_targets": [
+        "jmp:0081CEBB",
+        "jmp:0081D52E",
+        "jmp:0081CEFC",
+        "je:0081CF0A",
+        "jb:0081CF36",
+        "je:0081CF36",
+        "jmp:0081CF5E",
+        "jmp:0081CF6F",
+        "jmp:0081CF88",
+        "ja:0081CF16",
+        "jnp:0081CF97",
+        "jmp:0081CFB4",
+        "jo:0081CFCD",
+        "call:0081CFDF"
+      ],
+      "new_absolute": [
+        "0081D07D->008F0F57",
+        "0081D3F1->0066591D",
+        "0081D509->00D90000",
+        "0081DF25->0057E42D",
+        "0081DF45->0042C93C",
+        "0081E361->0095FF93",
+        "0081E3D5->00C648A2",
+        "0081E535->00B08836",
+        "0081E75D->006448A2",
+        "0081E81D->006C99CF",
+        "0081E871->00C29BA9",
+        "0081E8C1->763948A2",
+        "0081E96D->006219A1",
+        "0081EA15->007911ED",
+        "0081EB55->00C44FE6",
+        "0081EC15->00C448A2",
+        "0081ECA5->00C4F14F",
+        "0081ECAD->0044A8FC",
+        "0081F105->0062C0B2",
+        "0081F291->0042575A",
+        "0081F4ED->00C248A2",
+        "0081F71D->005C48A2",
+        "0081F845->00C24FE6",
+        "0081F989->00C64FE6",
+        "0081FA91->00C4274E",
+        "0081FB75->762CE62F",
+        "00820135->00C248A2",
+        "008201DD->00642836",
+        "0082044D->00C24FE6",
+        "00820515->00C4A908"
+      ],
+      "anchors": [
+        {
+          "anchor_type": "msvc-prologue-count",
+          "rva": 8507061,
+          "evidence": "0",
+          "round_id": "1",
+          "region_start": 8507061,
+          "region_end": 8536193
+        }
+      ],
+      "iteration_count": 7283,
+      "word_size": 4,
+      "direction": "backward",
+      "transform": "xor/add/xor in place",
+      "sample": {
+        "ebx": "0x0",
+        "edx": "0xc2407d",
+        "dest": "0xc2407d"
+      }
+    },
+    {
+      "round_id": "2",
+      "producer_rva": 8508882,
+      "start_rva": 8508979,
+      "end_rva": 8536211,
+      "length": 27232,
+      "pre_sha256": "8f4bbde65d5116f6bebe8384584e43e13346f381ca567ef3ea48ee459116d6f9",
+      "post_sha256": "da19930f683a38c3f439e209957913929eb7b1824b3b800abdbe84cf2214a734",
+      "entropy_before": 7.1785,
+      "entropy_after": 6.3819,
+      "density_before": 0.0071,
+      "density_after": 0.4119,
+      "new_control_targets": [
+        "jmp:0081D649",
+        "je:0081D7B0",
+        "call:0081D6BB",
+        "jmp:0081D7B0",
+        "jne:0081D70E",
+        "jmp:0081D735",
+        "jb:0081D72A",
+        "jne:0081D750",
+        "jne:0081D785",
+        "jmp:0081D7AB",
+        "call:0081D78E",
+        "jmp:0081D758",
+        "jmp:0081D963",
+        "jne:0081D7DA",
+        "jae:0081D7C2",
+        "jne:0081D7ED",
+        "jae:0081D85D",
+        "jne:0081D802",
+        "jae:0081D932",
+        "jne:0081D815",
+        "jne:0081D824",
+        "jne:0081D833",
+        "jne:0081D842",
+        "je:0081D850",
+        "jmp:0081D7CD",
+        "jne:0081D86F",
+        "jne:0081D87E",
+        "jb:0081D862",
+        "jne:0081D8C5",
+        "jne:0081D8A3"
+      ],
+      "new_absolute": [
+        "0081D643->00DC0000",
+        "0081DD67->009903BD",
+        "0081E2FF->00746F72",
+        "0081E343->006A0000",
+        "0081E3DF->006A585B",
+        "0081E5A3->006A90E2",
+        "0081E7BB->00C1958B",
+        "0081E7E3->00B80744",
+        "0081E833->006A02C0",
+        "0081E90B->006A5859",
+        "0081EA3B->00A8D5DC",
+        "0081EA8F->006A2E6E",
+        "0081EADB->0088E907",
+        "0081EAF7->76330000",
+        "0081EB1B->006A90E3",
+        "0081F023->006A0000",
+        "0081F0D3->763E3CBD",
+        "0081F0E3->00BCE9F5",
+        "0081F0E7->006A0000",
+        "0081F123->006A146A",
+        "0081F207->004AE95B",
+        "0081F337->006A0744",
+        "0081F5A7->004E850F",
+        "0081F62F->006A0000",
+        "0081F74F->0067850F",
+        "0081F753->006A0000",
+        "0081F7DF->006A0000",
+        "0081F99F->006A0744",
+        "0081FA9F->00840F00",
+        "0081FBCB->0052840F"
+      ],
+      "anchors": [
+        {
+          "anchor_type": "msvc-prologue-count",
+          "rva": 8508979,
+          "evidence": "1",
+          "round_id": "2",
+          "region_start": 8508979,
+          "region_end": 8536211
+        }
+      ],
+      "iteration_count": 6809,
+      "word_size": 4,
+      "direction": "backward",
+      "transform": "in-place dword loop",
+      "edge": {
+        "at": "0x81d622",
+        "size": "0x5",
+        "target": "0x81d594",
+        "mnemonic": "jmp"
+      },
+      "regs": {
+        "eax": "0xc24093",
+        "ebx": "0x1a99",
+        "edx": "0xc29159",
+        "sample_in": "0xc9efb89f"
+      }
+    }
+  ],
+  "events": [
+    {
+      "event_type": "E7",
+      "instruction_count": 766080,
+      "eip": 12701255,
+      "detail": "stored 0x762fc3da (module-pointer) at 0x823d6d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 968094,
+      "eip": 12703186,
+      "detail": "stored 0x7660ba78 (module-pointer) at 0x81999d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 997769,
+      "eip": 12703186,
+      "detail": "stored 0x76534370 (module-pointer) at 0x81999d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1027447,
+      "eip": 12703186,
+      "detail": "stored 0x7645cc68 (module-pointer) at 0x81999d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1057125,
+      "eip": 12703186,
+      "detail": "stored 0x76385560 (module-pointer) at 0x81999d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1086800,
+      "eip": 12703186,
+      "detail": "stored 0x762ade58 (module-pointer) at 0x81999d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1125535,
+      "eip": 12703186,
+      "detail": "stored 0x765ca5e8 (module-pointer) at 0x81999d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1155213,
+      "eip": 12703186,
+      "detail": "stored 0x764f2ee0 (module-pointer) at 0x81999d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1163539,
+      "eip": 12703192,
+      "detail": "stored 0x765fe639 (module-pointer) at 0x81d6ff"
+    },
+    {
+      "detail": "read slot 0x81a621",
+      "event_type": "E5",
+      "instruction_count": 1191526,
+      "eip": 12722444
+    },
+    {
+      "event_type": "E6",
+      "instruction_count": 1210872,
+      "eip": 12701591,
+      "detail": "export-directory at 0x762d5fb8"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1293368,
+      "eip": 12798065,
+      "detail": "stored 0x76271f70 (LoadLibraryA) at 0x821478"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1329105,
+      "eip": 12798065,
+      "detail": "stored 0x76980000 (module-pointer) at 0x821478"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1370429,
+      "eip": 12798065,
+      "detail": "stored 0x76271f70 (LoadLibraryA) at 0x821478"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1454813,
+      "eip": 12798065,
+      "detail": "stored 0x767f0000 (module-pointer) at 0x821478"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1467268,
+      "eip": 12701488,
+      "detail": "stored 0x762400e8 (module-pointer) at 0x81b129"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1467301,
+      "eip": 12701676,
+      "detail": "stored 0x762400e8 (module-pointer) at 0x819e91"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1467315,
+      "eip": 12701773,
+      "detail": "stored 0x762d5fc8 (module-pointer) at 0x81a331"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1467331,
+      "eip": 12701839,
+      "detail": "stored 0x762d79dc (module-pointer) at 0x81a7ed"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1467352,
+      "eip": 12701938,
+      "detail": "stored 0x762d93f0 (module-pointer) at 0x819101"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1501304,
+      "eip": 12702110,
+      "detail": "stored 0x762d89b4 (module-pointer) at 0x81b38d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1501343,
+      "eip": 12702372,
+      "detail": "stored 0x76271f70 (LoadLibraryA) at 0x81aaa5"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1501362,
+      "eip": 12702616,
+      "detail": "stored 0x76271f70 (LoadLibraryA) at 0x81a81d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1540268,
+      "eip": 12798065,
+      "detail": "stored 0x76271f70 (LoadLibraryA) at 0x821478"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1624378,
+      "eip": 12798065,
+      "detail": "stored 0x77080000 (module-pointer) at 0x821478"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1635646,
+      "eip": 12701488,
+      "detail": "stored 0x762400e8 (module-pointer) at 0x81b129"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1635679,
+      "eip": 12701676,
+      "detail": "stored 0x762400e8 (module-pointer) at 0x819e91"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1635693,
+      "eip": 12701773,
+      "detail": "stored 0x762d5fc8 (module-pointer) at 0x81a331"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1635709,
+      "eip": 12701839,
+      "detail": "stored 0x762d79dc (module-pointer) at 0x81a7ed"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1635730,
+      "eip": 12701938,
+      "detail": "stored 0x762d93f0 (module-pointer) at 0x819101"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1890289,
+      "eip": 12702616,
+      "detail": "stored 0x76271f70 (LoadLibraryA) at 0x81a81d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 1930670,
+      "eip": 12798065,
+      "detail": "stored 0x7625d430 (GetLocalTime) at 0x821478"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2231613,
+      "eip": 12948451,
+      "detail": "stored 0x764b3a44 (module-pointer) at 0x85ae92"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2242575,
+      "eip": 12948451,
+      "detail": "stored 0x77357271 (module-pointer) at 0x85a50e"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2262156,
+      "eip": 12701488,
+      "detail": "stored 0x762400e8 (module-pointer) at 0x81b129"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2262188,
+      "eip": 12701676,
+      "detail": "stored 0x762400e8 (module-pointer) at 0x819e91"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2262202,
+      "eip": 12701773,
+      "detail": "stored 0x762d5fc8 (module-pointer) at 0x81a331"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2262218,
+      "eip": 12701839,
+      "detail": "stored 0x762d79dc (module-pointer) at 0x81a7ed"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2262240,
+      "eip": 12701938,
+      "detail": "stored 0x762d93f0 (module-pointer) at 0x819101"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2296813,
+      "eip": 12702616,
+      "detail": "stored 0x7625d430 (GetLocalTime) at 0x81a81d"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2296892,
+      "eip": 12701488,
+      "detail": "stored 0x769800f8 (module-pointer) at 0x81b129"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2296924,
+      "eip": 12701676,
+      "detail": "stored 0x769800f8 (module-pointer) at 0x819e91"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2296938,
+      "eip": 12701773,
+      "detail": "stored 0x76a565d8 (module-pointer) at 0x81a331"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2296954,
+      "eip": 12701839,
+      "detail": "stored 0x76a57a70 (module-pointer) at 0x81a7ed"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2296976,
+      "eip": 12701938,
+      "detail": "stored 0x76a58abc (module-pointer) at 0x819101"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2409097,
+      "eip": 12702432,
+      "detail": "stored 0x7625d431 (module-pointer) at 0x81bc11"
+    },
+    {
+      "event_type": "E7",
+      "instruction_count": 2409109,
+      "eip": 12702616,
+      "detail": "stored 0x76a25100 (MessageBoxExA) at 0x81a81d"
+    },
+    {
+      "detail": "no stub for CreateFileA arg='\\\\\\\\.\\\\SICE'",
+      "event_type": "E10",
+      "instruction_count": 2409207,
+      "eip": 1982196224
+    }
+  ],
+  "slot_reads": [
+    {
+      "insn": 1191526,
+      "eip": 12722444,
+      "slot": "0x81a621",
+      "address": "0xc1a621",
+      "size": 4,
+      "eax": 23,
+      "ebx": 3898767367,
+      "ecx": 1,
+      "edx": 12690977,
+      "esi": 12943173,
+      "edi": 12719204
+    },
+    {
+      "insn": 1446323,
+      "eip": 12722444,
+      "slot": "0x81a621",
+      "address": "0xc1a621",
+      "size": 4,
+      "eax": 23,
+      "ebx": 3898834092,
+      "ecx": 1,
+      "edx": 12690977,
+      "esi": 12944503,
+      "edi": 12719204
+    },
+    {
+      "insn": 1606093,
+      "eip": 12722444,
+      "slot": "0x81a621",
+      "address": "0xc1a621",
+      "size": 4,
+      "eax": 23,
+      "ebx": 3063969326,
+      "ecx": 1,
+      "edx": 12690977,
+      "esi": 12945106,
+      "edi": 12719204
+    },
+    {
+      "insn": 2296854,
+      "eip": 12948941,
+      "slot": "0x81a621",
+      "address": "0xc1a621",
+      "size": 4,
+      "eax": 1990349056,
+      "ebx": 49129,
+      "ecx": 12757446,
+      "edx": 4571113,
+      "esi": 1433394002,
+      "edi": 12974650
+    }
+  ],
+  "k32_reads": [
+    {
+      "insn": 1210835,
+      "eip": "0xc1cf01",
+      "address": "0x7624003c",
+      "size": 2,
+      "kind": "kernel32"
+    },
+    {
+      "insn": 1210857,
+      "eip": "0xc1cf3c",
+      "address": "0x76240160",
+      "size": 4,
+      "kind": "kernel32"
+    },
+    {
+      "insn": 1210872,
+      "eip": "0xc1cf97",
+      "address": "0x762d5fb8",
+      "size": 4,
+      "kind": "export-directory"
+    },
+    {
+      "insn": 1210887,
+      "eip": "0xc1cfe9",
+      "address": "0x76240160",
+      "size": 4,
+      "kind": "kernel32"
+    },
+    {
+      "insn": 1210898,
+      "eip": "0xc1d034",
+      "address": "0x762d5fbc",
+      "size": 4,
+      "kind": "export-directory"
+    },
+    {
+      "insn": 1210906,
+      "eip": "0xc1d063",
+      "address": "0x762d5fc0",
+      "size": 4,
+      "kind": "export-directory"
+    },
+    {
+      "insn": 1210931,
+      "eip": "0xc1d0cf",
+      "address": "0x762d5fc4",
+      "size": 4,
+      "kind": "export-directory"
+    },
+    {
+      "insn": 1210948,
+      "eip": "0xc1d126",
+      "address": "0x762d79dc",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1210955,
+      "eip": "0xc1d138",
+      "address": "0x762da166",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1210965,
+      "eip": "0xc1d126",
+      "address": "0x762d79e0",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1210972,
+      "eip": "0xc1d138",
+      "address": "0x762da19f",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1210982,
+      "eip": "0xc1d126",
+      "address": "0x762d79e4",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1210989,
+      "eip": "0xc1d138",
+      "address": "0x762da1d2",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1210999,
+      "eip": "0xc1d126",
+      "address": "0x762d79e8",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211006,
+      "eip": "0xc1d138",
+      "address": "0x762da1e1",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211016,
+      "eip": "0xc1d126",
+      "address": "0x762d79ec",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211023,
+      "eip": "0xc1d138",
+      "address": "0x762da1f6",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211033,
+      "eip": "0xc1d126",
+      "address": "0x762d79f0",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211040,
+      "eip": "0xc1d138",
+      "address": "0x762da21b",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211050,
+      "eip": "0xc1d126",
+      "address": "0x762d79f4",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211057,
+      "eip": "0xc1d138",
+      "address": "0x762da224",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211067,
+      "eip": "0xc1d126",
+      "address": "0x762d79f8",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211074,
+      "eip": "0xc1d138",
+      "address": "0x762da22d",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211084,
+      "eip": "0xc1d126",
+      "address": "0x762d79fc",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211091,
+      "eip": "0xc1d138",
+      "address": "0x762da23e",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211101,
+      "eip": "0xc1d126",
+      "address": "0x762d7a00",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211108,
+      "eip": "0xc1d138",
+      "address": "0x762da24f",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211118,
+      "eip": "0xc1d126",
+      "address": "0x762d7a04",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211125,
+      "eip": "0xc1d138",
+      "address": "0x762da294",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211135,
+      "eip": "0xc1d126",
+      "address": "0x762d7a08",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211142,
+      "eip": "0xc1d138",
+      "address": "0x762da2ba",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211152,
+      "eip": "0xc1d126",
+      "address": "0x762d7a0c",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211159,
+      "eip": "0xc1d138",
+      "address": "0x762da2d9",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211169,
+      "eip": "0xc1d126",
+      "address": "0x762d7a10",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211176,
+      "eip": "0xc1d138",
+      "address": "0x762da2f8",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211186,
+      "eip": "0xc1d126",
+      "address": "0x762d7a14",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211193,
+      "eip": "0xc1d138",
+      "address": "0x762da305",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211203,
+      "eip": "0xc1d126",
+      "address": "0x762d7a18",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211210,
+      "eip": "0xc1d138",
+      "address": "0x762da318",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211220,
+      "eip": "0xc1d126",
+      "address": "0x762d7a1c",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211227,
+      "eip": "0xc1d138",
+      "address": "0x762da330",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211237,
+      "eip": "0xc1d126",
+      "address": "0x762d7a20",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211244,
+      "eip": "0xc1d138",
+      "address": "0x762da34b",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211254,
+      "eip": "0xc1d126",
+      "address": "0x762d7a24",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211261,
+      "eip": "0xc1d138",
+      "address": "0x762da360",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211271,
+      "eip": "0xc1d126",
+      "address": "0x762d7a28",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211278,
+      "eip": "0xc1d138",
+      "address": "0x762da37d",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211288,
+      "eip": "0xc1d126",
+      "address": "0x762d7a2c",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211295,
+      "eip": "0xc1d138",
+      "address": "0x762da3bc",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211305,
+      "eip": "0xc1d126",
+      "address": "0x762d7a30",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211312,
+      "eip": "0xc1d138",
+      "address": "0x762da3fd",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211322,
+      "eip": "0xc1d126",
+      "address": "0x762d7a34",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211329,
+      "eip": "0xc1d138",
+      "address": "0x762da410",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211339,
+      "eip": "0xc1d126",
+      "address": "0x762d7a38",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211346,
+      "eip": "0xc1d138",
+      "address": "0x762da41d",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211356,
+      "eip": "0xc1d126",
+      "address": "0x762d7a3c",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211363,
+      "eip": "0xc1d138",
+      "address": "0x762da435",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211373,
+      "eip": "0xc1d126",
+      "address": "0x762d7a40",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211380,
+      "eip": "0xc1d138",
+      "address": "0x762da44f",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211390,
+      "eip": "0xc1d126",
+      "address": "0x762d7a44",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211397,
+      "eip": "0xc1d138",
+      "address": "0x762da46d",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211407,
+      "eip": "0xc1d126",
+      "address": "0x762d7a48",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211414,
+      "eip": "0xc1d138",
+      "address": "0x762da4a4",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211424,
+      "eip": "0xc1d126",
+      "address": "0x762d7a4c",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211431,
+      "eip": "0xc1d138",
+      "address": "0x762da4e9",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211441,
+      "eip": "0xc1d126",
+      "address": "0x762d7a50",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211448,
+      "eip": "0xc1d138",
+      "address": "0x762da534",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211458,
+      "eip": "0xc1d126",
+      "address": "0x762d7a54",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211465,
+      "eip": "0xc1d138",
+      "address": "0x762da58f",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211475,
+      "eip": "0xc1d126",
+      "address": "0x762d7a58",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211482,
+      "eip": "0xc1d138",
+      "address": "0x762da5e4",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211492,
+      "eip": "0xc1d126",
+      "address": "0x762d7a5c",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211499,
+      "eip": "0xc1d138",
+      "address": "0x762da637",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211509,
+      "eip": "0xc1d126",
+      "address": "0x762d7a60",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211516,
+      "eip": "0xc1d138",
+      "address": "0x762da68c",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211526,
+      "eip": "0xc1d126",
+      "address": "0x762d7a64",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211533,
+      "eip": "0xc1d138",
+      "address": "0x762da6cd",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211543,
+      "eip": "0xc1d126",
+      "address": "0x762d7a68",
+      "size": 4,
+      "kind": "names"
+    },
+    {
+      "insn": 1211550,
+      "eip": "0xc1d138",
+      "address": "0x762da70c",
+      "size": 1,
+      "kind": "ordinals"
+    },
+    {
+      "insn": 1211560,
+      "eip": "0xc1d126",
+      "address": "0x762d7a6c",
+      "size": 4,
+      "kind": "names"
+    }
+  ],
+  "cross_writes": [],
+  "ztl_writes": [],
+  "ztl": {
+    "0x5fc19f": "00000000000000000000000000000000",
+    "0x5fc1b0": "00000000000000000000000000000000",
+    "0x5fc1c1": "00000000000000000000000000000000"
+  },
+  "slots": {
+    "0x81a621": "00002476",
+    "0x81b45d": "00002476"
+  },
+  "tail_a_nonzero": false,
+  "fault": null,
+  "error": null,
+  "anchors": [
+    {
+      "anchor_type": "msvc-prologue-count",
+      "rva": 8507061,
+      "evidence": "0",
+      "round_id": "1",
+      "region_start": 8507061,
+      "region_end": 8536193
+    },
+    {
+      "anchor_type": "msvc-prologue-count",
+      "rva": 8508979,
+      "evidence": "1",
+      "round_id": "2",
+      "region_start": 8508979,
+      "region_end": 8536211
+    }
+  ],
+  "resolved": [
+    {
+      "api": "LoadLibraryA",
+      "name": "USER32.dll",
+      "found": true,
+      "return_rva": "0x857e54"
+    },
+    {
+      "api": "LoadLibraryA",
+      "name": "ADVAPI32.dll",
+      "found": true,
+      "return_rva": "0x857e5e"
+    },
+    {
+      "api": "LoadLibraryA",
+      "name": "NTDLL.dll",
+      "found": true,
+      "return_rva": "0x857e72"
+    },
+    {
+      "api": "GetLocalTime",
+      "name": "2010-01-31",
+      "va": "0xc57e1c",
+      "return_rva": "0x857e86"
+    }
+  ],
+  "missing_module": "CreateFileA",
+  "probe": {
+    "eip": 1982196224,
+    "esp": 3145404,
+    "return": 12949337,
+    "args": [
+      12948743,
+      3221225472,
+      3,
+      0,
+      3,
+      128,
+      0
+    ],
+    "arg_text": "\\\\.\\SICE",
+    "eax": 1982196224,
+    "window_rva": 8755017,
+    "window": "55c35c6681c628098bbded1b4407ffd06a0051e8030000002059c359894c240481442404180000004151c3b9b57713fa400f85e10200006a0053e803000000205bc35b895c240481442404170000004353c3ca4bc18558f550525052535b0f31565e5a585a8904240fb7f66a000f8110000000e808000000861f5c949929914960615e68456e81bee90a000000e95f7112c201e40d23f28104243b927e41668b",
+    "region_rva": 8754311,
+    "region": "0f85080000006a3046e913000000803e350f85080000006a4046e9020000006a00803e200f8512000000807e01000f850800000083c408e9190000008d85dd08440790509050893424ffb541294407ff95a916440761c3c6854d1344074d68da55e8ae8134247223dd0affb5250f44078d85b33e4407ffd08985a9164407eb1e5c5c2e5c53494345005c5c2e5c534957564944005c5c2e5c4e54494345008bc083bda12a440700750983bddd01440700741950538bc0b80f0400008985d11144078d9d8c124807ffd35b5883bddd0144070074175053b80f0400008985d11144078d9d910e4807ffd35b5866be52db89956d2644076681e149e88bc066b9c6a9c6854d1344074301bd6129440768fd355fed6060606150520f315a586160e90e000000fa51d35a507d62d70370f8f22dfd50520f315a586161813424015bd15189b589064407ffb50d16440789854d2144078d85b33e4407898dfd164407ffd0600f8c060000008b9dd52944078bc6619050520f8c060000000f86000000000f310f8a0200000060615a5850600f890c000000e9070000005f60ce4b2509605052525a0f3150585a586190e90b000000056a1c69d6871488faba3c6a006a0050e8030000002058c35889442404814424041b0000004050c32eb5c6c1fa89999468594eaacd0f830e000000505260610f3150520f315a585a5881042427b2553209bd212144076a0360339da52c440781cbf3514527616a008bb5a10844076a030b95e922440768ac99b0bf0f84250000005052e914000000e8f2bd752ab59a3a6e5aeddfa33afd66a6608f3d0f310f80000000005a5881042454664f006a0056e803000000205ec35e89742404814424041b0000004656c3c5957e05f258c6cef98d9df30448078bb5f90e440750e913000000827ed41a149d8a0871c535d90151c8284bef1b891c246a0055e803000000205dc35d896c240481442404140000004555c35c6681c628098bbded1b4407ffd06a0051e8030000002059c359894c240481442404180000004151c3b9b57713fa400f85e10200006a0053e803000000205bc35b895c240481442404170000004353c3ca4bc18558f550525052535b0f31565e5a585a8904240fb7f66a000f8110000000e808000000861f5c949929914960615e68456e81bee90a000000e95f7112c201e40d23f28104243b927e41668bf76a03e808000000a4fc69f6f26bc55752e9120000002f970167c56b8607166f0fa5b7eb5ed70f1d5f5a6a00e913000000c40c8a812e9f850af1814bf63c0929619ee4a06a03fc680355e1e660e90a00000030338980445c8b2bf786606061e90f000000e936845dc21235c01bf072e6d361a061618134240355e126e81300000095a936443a6864081bb81c1757d0e352d4de1866b9cb965e8d9dfc0448070f840a0000000f810400000066b96fda50e90b000000a70864a8590c0959b39671891c24b64bba6981a64fffd081f6d2a6a57b400f859f0100006a0053e803000000205bc35b895c240481442404140000004353c3cc0f850600000089bd5d16440758905052e90e000000bc75b3f2064aacd6ec250448d2890f310f8202000000575f5a5850e911000000cc373bfa6b8d81cf6d517cd5c8cc838448900f8a1d000000e81100000051dd9e08854d53e1720df102a9a5a1abeb89bda90144075e6a00608bb5c1074407608b9d150044070fbfcb616168c77565e5536050520f315a586061615b810424b98a9a1a6681d751596a03668bf96a008995791c4407b6af6a03898d492c440768fbc1e0de50520f8602000000525a0f31505250520f315a580f3160615a585a58813424fbc1e01e899d151644078d9d070548072395d1164407500f8e0a000000e90500000080c51ed28f891c246681eae361e9130000009a55b5bb914be69a0d0998be89a5c1dfd7167fffd03195c5084407400f855600000089bdc1134407588bb5892a4407e96f0100006a0056e803000000205ec35e89742404814424041d0000004656c3f92bdd203556f4a6d6368985511b4407e9140000000579944470b31fe31306c9b5870d34ad31e8f4408bd8f84b8bfe586a0056e803000000205ec35e8974240481442404140000004656c39681dec15b2950c6854d134407436681ee4d336872c932a260e91200000021811b83c5ff7f383e5a5d48b530338980445250520f315a585a61813424d5834462e81000000076ae35748c643c177705a10be93555c60f8d0600000089b55d2a440759ffb50d16440766be8b8a8d85b33e44070f89020000008bf7019595194407ffd066b9412a93535150520f315a58595b5060605058e90b000000964e325dd0292a71f7fc72615052e910000000d818f5e89857cbcd7a5e90993d9892120f3160615a586193ba8648de08ffd0600f8b0e000000e909000000f201b4102c656dbfff618d9d227a440789bdb9214407b801000000e9080000003136dccf9e4a5424ffe38bbde91144078bc151e90e000000bc354ab99b49a725ed309b763e885989b57d1144078bc0e9100000006a122d1d58db265d3c5e22536cc66adf83bda12a440700750983bddd01440700741950538bc0b80f04000089851d3344078d9df3124807ffd35b5883bddd0144070074175053b80f04000089851d3344078d9daa0e4807ffd35b580f820a0000000f890400000066b9cead8bcf8bc0e9c5000000536f6674776172655c57696e4c6963656e736500536f6674776172655c574c6b7400436865636b494e005870726f74457869740043",
+    "insn": 2409207
+  },
+  "round2_hits": 6809,
+  "image_size": "0x9da000"
+}
