@@ -20,18 +20,112 @@ This task does **not** modify any WZ resource and does not require reverse engin
 
 ---
 
+## 0.1 Repository synchronization gate
+
+Task 023 must start from the latest clean `origin/main`, following the same execution discipline as the previous tasks.
+
+From the repository root, first record:
+
+```text
+git status --short
+git branch --show-current
+git remote -v
+git rev-parse HEAD
+```
+
+Then fetch the remote state:
+
+```text
+git fetch origin
+```
+
+If the checkout has tracked/uncommitted changes, **do not** stash, reset, discard, overwrite, rebase, or otherwise hide them. Stop before synchronization and report the blocker.
+
+If the working tree is clean but the current branch is not `main`, switch to `main`.
+
+Then update only by fast-forward:
+
+```text
+git pull --ff-only origin main
+```
+
+Record the resulting starting commit:
+
+```text
+git rev-parse HEAD
+```
+
+The final Task 023 report must include this **starting HEAD** so that all test results can be tied to an exact repository baseline.
+
+If `origin/main` cannot be fast-forwarded cleanly, stop and report the repository-state blocker. Do not force, reset, or silently resolve history.
+
+Only after this synchronization gate should the task read existing results and begin WZ validation.
+
+---
+
+## 0.2 Directory and artifact contract
+
+Run all commands from the repository root unless a third-party build explicitly requires another working directory.
+
+The directory roles for Task 023 are fixed:
+
+```text
+.raw/
+    proprietary/raw inputs; read-only
+
+task/
+    task specifications; do not rewrite Task 023 during execution unless explicitly required
+
+.work/task-023/
+    all scratch data, third-party repositories, harness-only code, build outputs,
+    parser raw exports, temporary images/audio, logs and large intermediate files
+
+result/
+    ALL permanent Task 023 findings that should be committed
+
+scripts/
+    only reusable, project-owned generic orchestration/cross-check scripts
+
+glm-work/
+    may be READ as prior research evidence, but Task 023 must not place new final
+    deliverables here; formal Task 023 outputs belong in result/ and scripts/
+```
+
+Recommended scratch layout:
+
+```text
+.work/task-023/
+├── tools/
+│   ├── wz-python/
+│   ├── MapleLib/
+│   ├── Harepacker-resurrected/
+│   └── WzComparerR2/
+├── harness/
+├── build/
+├── output/
+├── samples/
+└── logs/
+```
+
+Permanent findings must be written directly under `result/`; do not leave the only copy of an important conclusion in `.work/` or `glm-work/`.
+
+Third-party source trees and one-off harnesses remain under `.work/task-023/` and must not be committed.
+
+---
+
 ## 1. Existing evidence to preserve
 
-Read before starting:
+Read after the repository synchronization gate:
 
 - `README.md`
+- `task/023-third-party-wz-parser-cross-validation.md`
 - `result/20-wz-inventory.md`
 - `result/19-wizet-dlls.md`
 - `result/listwz-entries.csv`
 - `result/wz-directory-index.csv`
 - `result/file-manifest.csv`
 
-If present in the current checkout, also inspect:
+If present in the synchronized checkout, also inspect:
 
 - `glm-work/scripts/maple079_wz_dir.py`
 - `glm-work/scripts/maple079_listwz.py`
@@ -51,7 +145,7 @@ These are hypotheses/baselines for this task. A third-party disagreement must be
 
 ## 2. Candidate third-party libraries
 
-At minimum evaluate the following three independent toolchains/implementations:
+At minimum evaluate the following three toolchains/implementations.
 
 ### 2.1 `Leonana69/wz-python`
 
@@ -63,7 +157,7 @@ Role:
 
 - preferred Python automation candidate;
 - convenient for scripted tree/property extraction;
-- already demonstrated basic compatibility with the current WZ set, but this task must pin a specific commit and reproduce the result cleanly.
+- already demonstrated basic compatibility with the current WZ set, but Task 023 must pin a specific commit and reproduce the result cleanly.
 
 ### 2.2 `lastbattle/MapleLib` / `Harepacker-resurrected`
 
@@ -74,7 +168,7 @@ Repositories:
 
 Role:
 
-- primary correctness oracle for legacy/pre-Big-Bang MapleStory WZ behavior;
+- primary correctness oracle candidate for legacy/pre-Big-Bang MapleStory WZ behavior;
 - especially valuable for `List.wz`, links, Canvas and old-client compatibility;
 - if MapleLib alone is inconvenient to invoke, use HaRepacker as the host application/library caller while recording the exact MapleLib commit used by that checkout.
 
@@ -86,7 +180,7 @@ Repository:
 
 Role:
 
-- secondary oracle;
+- secondary oracle candidate;
 - use `WzLib`/library code or a small non-interactive harness if practical;
 - GUI spot-checks are acceptable for a few nodes, but final comparisons must be machine-readable when possible.
 
@@ -101,41 +195,36 @@ An optional oracle is useful but must not block completion of the minimum three-
 
 ---
 
-## 3. Dependency hygiene
+## 3. Dependency provenance and hygiene
 
-All third-party source checkouts and build outputs must stay under:
-
-```text
-.work/task-023/
-```
-
-Recommended layout:
+All third-party repositories must be cloned under:
 
 ```text
-.work/task-023/
-├── tools/
-│   ├── wz-python/
-│   ├── MapleLib/
-│   ├── Harepacker-resurrected/
-│   └── WzComparerR2/
-├── build/
-├── output/
-├── samples/
-└── logs/
+.work/task-023/tools/
 ```
 
-For every dependency record:
+For every dependency record in the permanent Task 023 results:
 
 - repository URL;
 - exact commit SHA;
-- license;
+- license/SPDX or license filename;
 - runtime/compiler version;
-- build/run command;
-- any local patch applied only to the test harness.
+- build command;
+- run command;
+- whether an adapter or harness was needed;
+- any local harness-only patch.
+
+Recommended permanent provenance file:
+
+```text
+result/wz-third-party-sources.csv
+```
 
 Do not vendor third-party repositories into this repository.
 
 Do not commit third-party binaries or generated resource dumps.
+
+Do not modify third-party parser core logic merely to force agreement with the existing local result. If a minimal API adapter is needed, keep it separate from parser semantics.
 
 ---
 
@@ -213,7 +302,7 @@ Expected negative control:
 - wrong IV should fail parsing, produce invalid directory names, or otherwise score clearly worse than the correct IV;
 - do not modify the parser core merely to make the expected IV win.
 
-Output:
+Permanent output:
 
 `result/wz-parser-capability-matrix.csv`
 
@@ -223,7 +312,7 @@ Output:
 
 Do not compare counts alone.
 
-For each parser, export all directory and image paths from each archive.
+For each parser, export all directory and image paths from each archive into `.work/task-023/output/`, then write only the normalized comparisons/digests to `result/`.
 
 Canonical path rules:
 
@@ -258,7 +347,7 @@ Any mismatch must be classified as one of:
 - parser error;
 - unexplained.
 
-Outputs:
+Permanent outputs:
 
 - `result/wz-tree-crosscheck.csv`
 - `result/wz-tree-digests.csv`
@@ -284,7 +373,7 @@ files-not-links = []
 
 If a parser represents Base links as a special node rather than a directory, record that representation explicitly.
 
-Include the result in `result/wz-tree-crosscheck.csv` and summarize it in the final report.
+Include the permanent result in `result/wz-tree-crosscheck.csv` and summarize it in the final report.
 
 ---
 
@@ -355,7 +444,7 @@ Rules:
 - normalize vectors to `x,y`;
 - do not compare library class names.
 
-Output:
+Permanent output:
 
 `result/wz-property-crosscheck.csv`
 
@@ -393,7 +482,9 @@ If a parser yields BGRA/ARGB, convert before hashing.
 
 For mismatches, record the first differing pixel coordinate and both RGBA values when practical.
 
-Output:
+Raw pixel/PNG samples belong in `.work/task-023/samples/`; only hashes and mismatch metadata belong in `result/`.
+
+Permanent output:
 
 `result/wz-canvas-crosscheck.csv`
 
@@ -428,7 +519,7 @@ ambiguous
 
 Do not count `unsupported` as a wrong resolved value, but report support coverage separately.
 
-Output:
+Permanent output:
 
 `result/wz-link-crosscheck.csv`
 
@@ -460,7 +551,7 @@ Optional additional oracle:
 
 - `wzlib-rs` if its List.wz API is straightforward.
 
-For every implementation export:
+For every implementation export raw per-entry data to `.work/task-023/output/`:
 
 ```text
 index
@@ -490,7 +581,7 @@ The comparison must include:
 
 If a third-party parser normalizes paths internally, distinguish raw vs normalized output rather than silently changing the local baseline.
 
-Output:
+Permanent output:
 
 `result/listwz-library-crosscheck.csv`
 
@@ -514,6 +605,8 @@ raw compressed payload SHA-256
 
 Prefer raw compressed payload comparison over decode/re-encode comparison.
 
+Raw audio/payload material remains in `.work/task-023/` and is never committed.
+
 This test is optional and must not block task completion.
 
 ---
@@ -534,7 +627,7 @@ Its responsibility is orchestration/canonicalization only:
 
 Do **not** copy a third-party WZ parser implementation into this script.
 
-Small one-off C#/C++/Rust harnesses used solely to invoke third-party libraries should live in `.work/task-023/` unless they are generic and clearly worth preserving.
+Small one-off C#/C++/Rust harnesses used solely to invoke third-party libraries must remain under `.work/task-023/harness/` unless they are generic, project-owned, and clearly worth preserving.
 
 ---
 
@@ -556,12 +649,15 @@ Do not reject an otherwise correct oracle because it is slower.
 
 ---
 
-## 15. Required outputs
+## 15. Required permanent outputs
+
+Task 023 formal deliverables belong in `result/` and `scripts/`, not `.work/` or `glm-work/`.
 
 Produce as many of the following as applicable:
 
 ```text
 result/23-wz-library-cross-validation.md
+result/wz-third-party-sources.csv
 result/wz-parser-capability-matrix.csv
 result/wz-tree-crosscheck.csv
 result/wz-tree-digests.csv
@@ -571,13 +667,19 @@ result/wz-link-crosscheck.csv
 result/listwz-library-crosscheck.csv
 ```
 
-Optional:
+Optional reusable project script:
 
 ```text
 scripts/maple079_wz_crosscheck.py
 ```
 
-Large raw parser exports remain in `.work/task-023/output/`.
+Large raw parser exports remain in:
+
+```text
+.work/task-023/output/
+```
+
+Do not commit duplicate copies of the same Task 023 results under `glm-work/`.
 
 ---
 
@@ -626,18 +728,20 @@ Also state explicitly that multiple MapleStory community libraries may share his
 
 Task 023 is complete when all of the following are true:
 
-1. Exact commits and licenses are recorded for at least three candidate libraries.
-2. Sample hashes are revalidated.
-3. The 16 WZ archives are tested by all practical candidate parsers.
-4. Version and actual IV/key selection are compared across implementations.
-5. Full normalized image-path sets are compared, not only counts.
-6. Base.wz 15-link correspondence is independently checked.
-7. A deterministic property sample is compared.
-8. Canvas pixels are compared by normalized RGBA bytes, not PNG file bytes.
-9. Link/UOL support is compared.
-10. `List.wz` gets an independent mature-library validation attempt, with exact 1,258-entry comparison if supported.
-11. Every unexplained mismatch is recorded.
-12. A primary automation library and correctness oracle are chosen, or the reasons for declining are stated.
+1. The task started from a recorded, synchronized `origin/main` commit.
+2. Exact commits and licenses are recorded for at least three candidate libraries.
+3. Sample hashes are revalidated.
+4. The 16 WZ archives are tested by all practical candidate parsers.
+5. Version and actual IV/key selection are compared across implementations.
+6. Full normalized image-path sets are compared, not only counts.
+7. Base.wz 15-link correspondence is independently checked.
+8. A deterministic property sample is compared.
+9. Canvas pixels are compared by normalized RGBA bytes, not PNG file bytes.
+10. Link/UOL support is compared.
+11. `List.wz` gets an independent mature-library validation attempt, with exact 1,258-entry comparison if supported.
+12. Every unexplained mismatch is recorded.
+13. A primary automation library and correctness oracle are chosen, or the reasons for declining are stated.
+14. Permanent findings exist under `result/`, not only in `.work/` or `glm-work/`.
 
 A library failing to build is a valid result only after reasonable environment/setup attempts are documented.
 
@@ -660,16 +764,25 @@ Do not commit:
 - third-party repositories;
 - third-party build artifacts;
 - large JSON/tree dumps;
-- `.work/` contents.
+- `.work/` contents;
+- machine-specific caches or local toolchains.
 
 Before commit run:
 
 ```text
-git status
+git status --short
 git diff
+git diff --cached
 ```
 
-Verify that only task results and generic local orchestration code are staged.
+Verify that staged files are limited to expected Task 023 outputs under:
+
+```text
+result/
+scripts/
+```
+
+Do not commit new Task 023 artifacts under `glm-work/`.
 
 Suggested completion commit:
 
@@ -677,7 +790,15 @@ Suggested completion commit:
 Complete Task 023 third-party WZ parser cross-validation
 ```
 
-Push normally. Do not force push.
+Push normally:
+
+```text
+git push origin main
+```
+
+Do not force push.
+
+If push is rejected because `origin/main` advanced during execution, do not force it. Fetch and report the divergence/blocker before modifying history.
 
 ---
 
@@ -686,24 +807,26 @@ Push normally. Do not force push.
 The final execution report must state:
 
 - Task 023 completion status;
+- synchronized starting HEAD;
+- final local commit SHA;
+- push status;
 - all tested libraries and exact commit SHAs;
-- build/runtime environment for each library;
+- license and build/runtime environment for each library;
 - successful WZ count per parser;
 - whether all parsers agree on version 79;
 - whether `B9 7D 63 E9` is independently confirmed;
+- wrong-IV negative-control outcome;
 - exact tree-digest agreement/disagreement;
 - total `.img` counts;
 - Base.wz link-set result;
 - property-sample agreement rate;
 - Canvas normalized RGBA agreement count;
 - link/UOL agreement and unsupported counts;
-- List.wz exact ordered match count;
+- List.wz exact ordered match count and ordered digests;
 - any actual bug found in the existing local parser/results;
 - selected Primary automation library;
 - selected Correctness oracle;
 - selected Secondary oracle;
 - features still requiring custom code;
-- generated result/script files;
-- commit SHA;
-- push status;
+- generated permanent `result/` and `scripts/` files;
 - blockers/unexplained mismatches.
