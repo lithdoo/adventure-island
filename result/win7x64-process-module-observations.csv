@@ -1,2 +1,28 @@
 module,first_seen,pid,path_normalized,confidence,notes
-,not-run,,,unknown,No guest was booted. Module enumeration was not performed. ws2_32.dll load state on Win7 x64 is unknown.
+MapleStory.exe,2026-10-12T17:45:00+08:00,272,F:\MapleStory.exe,observed,32-bit PowerShell Get-Process.Modules after the compatibility assistant. Image mapped. No game window title.
+ntdll.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+kernel32.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+KERNELBASE.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+apphelp.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,Application compatibility engine is in the process
+USER32.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+GDI32.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+LPK.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+USP10.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+msvcrt.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+ADVAPI32.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+sechost.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+RPCRT4.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+SspiCli.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+CRYPTBASE.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+IMM32.DLL,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+MSCTF.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+winmm.dll,2026-10-12T17:45:00+08:00,272,SysWOW64,observed,32-bit module list
+ws2_32.dll,not loaded,272,,observed,Absent from the 32-bit module list for the whole sample
+wininet.dll,not loaded,272,,observed,Absent from the 32-bit module list
+ehsvc.dll,not loaded,272,,observed,Absent from the 32-bit module list. HSUpdate.exe was not running
+AspINet.dll,not loaded,272,,observed,Absent from the 32-bit module list
+PCOM.dll,not loaded,272,,observed,Absent from the 32-bit module list
+NameSpace.dll,not loaded,272,,observed,Absent from the 32-bit module list
+Canvas.dll,not loaded,272,,observed,Absent from the 32-bit module list
+ZLZ.dll,not loaded,272,,observed,Absent from the 32-bit module list
+wow64.dll,2026-10-12T17:39:00+08:00,272,System32,observed,64-bit tasklist /m shows only the WOW64 host side: ntdll wow64 wow64win wow64cpu

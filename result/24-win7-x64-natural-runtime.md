@@ -1,6 +1,8 @@
 # Task 024 — Win7 x64 自然运行观察
 
-结论是 **Route D**。Windows 7 x64 安装介质已经识别，客户机没有启动。没有调试器、没有补丁、没有伪造 SoftICE 或 Oreans 的返回值，也没有打开测试签名或关掉驱动签名强制。
+结论是 **Route C**。Windows 7 专业版 x64 RTM（6.1.7600，无 Service Pack）可以启动，客户端哈希与既有记录一致，但无调试器的第一次运行没有比现代宿主走得更远。最早的可见边界是程序兼容性助手，不是 `0xC0E90008`，也不是 Oreans 驱动。
+
+没有调试器，没有 Procmon，没有补丁，没有伪造 `\\.\SICE`、`\\.\SIWVID`、`\\.\NTICE` 或 Oreans 设备，没有打开测试签名，没有关闭驱动签名或防火墙，没有改系统日期。`.raw/` 没有写入。
 
 ## 1. 起点
 
@@ -8,102 +10,100 @@
 | --- | --- |
 | 分支 | `main` |
 | STARTING_HEAD | `cbcee5e084763751b4f4f36c5492f84d7a2eaaba` |
-| 与上次成功同步的 `origin/main` | 相同 |
-| 本次 `git fetch` | 失败，`github.com:443` 连接不上 |
-| 任务书文件 | 该 HEAD 上没有 `task/024-win7-x64-natural-runtime-observation.md`。步骤按本次请求里的任务书执行 |
+| 介质 | `.raw/cn_windows_7_professional_x64_dvd_x15-65791.iso` |
+| 介质 SHA-256 | `f94a0db93bc29cbd1cabb91d2f3d2ead7020c030171a0b14c22b6c879e784aba` |
+| Service Pack | 不是 SP1。`BuildLabEx` 为 `7600.16385.amd64fre.win7_rtm.090713-1255` |
 
-跟踪文件没有未提交修改。仓库里原先就有四个未跟踪的 `glm-work/scratch/*.bin`，没有纳入本次结果，也没有删除。
+先前一份结果把同一任务记成 Route D，因为当时还没有客户机。本文件用这次已经启动的客户机替换那份结论。
 
-`.raw/` 只读。ISO 曾以只读方式挂载来读取 `install.wim` 的 XML，读完已卸载。没有改包内文件。
+## 2. 客户机
 
-## 2. 安装介质
+QEMU 7.2.22 跑在已经存在的 Docker 容器 `task024-qemu` 里，`-machine pc,accel=tcg`，2 vCPU，2048 MB，`-nic none`。没有安装新的 Hyper-V 角色，没有桥接，没有客户机代理。系统盘是 `.work/task-024/vm/win7x64.qcow2`。安装后的桌面快照名是 `win7x64-clean`。这次观察是同一系统盘的一次冷启动，并额外挂了两块 USB 磁盘：一块 FAT32 用来把文本结果拷出来，一块 NTFS 用来放客户端。
 
-唯一的操作系统映像候选是：
-
-`.raw/cn_windows_7_professional_x64_dvd_x15-65791.iso`
+`systeminfo` 与 WMI：
 
 | 项 | 值 |
 | --- | --- |
-| 类型 | 可引导 UDF 安装 ISO，不是现成 VHD |
-| 大小 | 3,341,268,992 字节 |
-| SHA-256 | `f94a0db93bc29cbd1cabb91d2f3d2ead7020c030171a0b14c22b6c879e784aba` |
-| 文件系统修改时间 | 2026-10-11T20:47:49+08:00 |
-| 映像内时间 | 2009-07-14 20:41:43 |
-| 卷标 | `GRMCPRXFRER_CN_DVD` |
-| `ei.cfg` | EditionID `Professional`，Channel `Retail`，VL `0` |
-| `idwbinfo.txt` | `BuildBranch=win7_rtm`，`BuildArch=amd64`，`OfficialBuild=TRUE` |
-| `install.wim` | 4 个映像，全部 **6.1.7600.16385，SPLEVEL 0** |
-| 会被 `ei.cfg` 选中的映像 | index 3，`Windows 7 PROFESSIONAL`，显示名「Windows 7 专业版」，语言 `zh-CN` |
-| Service Pack | **不是 SP1** |
+| 计算机名 | `WIN7X64LAB` |
+| 名称 | Microsoft Windows 7 专业版 |
+| 版本 | 6.1.7600，Build 7600 |
+| Service Pack | `ServicePackMajorVersion` 0。`systeminfo` 的修补程序栏是「暂缺」 |
+| 系统类型 | x64-based PC |
+| `PROCESSOR_ARCHITECTURE` | `AMD64` |
+| WOW64 | `C:\Windows\SysWOW64` 存在。客户端是 PE32，由 WOW64 承载 |
+| PowerShell | 2.0，CLR 2.0.50727.4927 |
+| 防火墙 | 域、专用、公用三个配置文件都是打开，策略 `BlockInbound,AllowOutbound` |
+| 网卡 | 无。QEMU 使用 `-nic none` |
+| 时区 | UTC+08:00 |
 
-同目录里的两个 `.rar` 是既有客户端和服务端包，不是 Windows 安装映像，没有当作 Win7 候选。
+安装前和这次运行之后，只读查询都找不到这些项：`HKCU\Software\WinLicense`、`HKCU\Software\WLkt`、`HKLM\SOFTWARE\WLkt`、`HKCU\Software\Wine`，以及服务 `SICE`、`SIWVID`、`NTICE`、`oreans32`、`oreansx64`、`ehsvc`。驱动列表里也没有这些名字。
 
-## 3. 为什么没有建虚拟机
+## 3. 客户端哈希
 
-宿主是 Windows 10 Pro，构建 26200，64 位，12 逻辑处理器，约 32 GB 内存。
+客户端从既有解压目录复制到一块新的 NTFS 虚拟磁盘，再作为 USB 磁盘交给客户机，盘符 `F:`。没有改 `.raw/`。客户机内 `certutil -hashfile` 的 SHA-256：
 
-已经在运行的是 Virtual Machine Platform：`vmcompute` 处于 Running，WSL2 里有 `docker-desktop`。这不是 Hyper-V 虚拟机管理器。
+| 文件 | 客户机 SHA-256 | 与既有记录 |
+| --- | --- | --- |
+| `MapleStory.exe` | `5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d` | 一致，既有 RVA 仍可用 |
+| `HShield\HSUpdate.exe` | `daf95bde2293271f59df320e5d934bd47e0e5b14da1d47536ef25596c9db1393` | 一致 |
+| `HShield\AspINet.dll` | `21f8027c6be26c3957640c4c8862cb7a23b0b904af8c42f2b70961f414a5d17e` | 一致 |
+| `HShield\ehsvc.dll` | `12bdbe8b2b64fbcb34913407722fc0e1d6bb1332e5b269355d77b63c42d7ff06` | 一致 |
+| `HShield\ehsvc.old` | `78d47f032d493ce5fb59eecaa31aa2be047386ee0416780df19fb62db4d35272` | 一致 |
 
-| 组件 | 状态 |
-| --- | --- |
-| Microsoft-Hyper-V-All 及其子功能 | InstallState 2，禁用 |
-| `vmms.exe` | 不存在 |
-| `Get-VM` | 不可用 |
-| VirtualBox / VMware / QEMU | 没有安装 |
-| Windows Sandbox | 功能禁用 |
+## 4. 无调试器启动
 
-任务书禁止为了完成本项去安装新的 hypervisor、内核驱动或虚拟化平台。因此没有启用 Hyper-V 角色，没有安装 VirtualBox、VMware 或 QEMU，没有建虚拟交换机，没有虚拟磁盘，没有 `win7x64-clean` 快照。
+命令行是 `F:\MapleStory.exe`，没有服务器参数。客户机时钟 2026-10-12 17:34:16。父进程是观察脚本所在的 `cmd.exe`，PID 1936。游戏进程 PID 272，用户 `WIN7X64LAB\research`。
 
-网络保持未创建。没有桥接，也没有为了测试去放行防火墙。
+启动后先出现用户帐户控制。程序名称 `MapleStory China`，已验证的发布者 `NEXON Corp.`，文件源是本机硬盘。这是可执行文件自己的管理员清单，不是后来加的兼容性设置。同意之后，程序兼容性助手（`#32770`，PID 592）显示：
 
-## 4. 没有做的客户机步骤
+> 此程序存在已知的兼容性问题。程序 Maple story，发布者 Wizet，位置 `F:\MapleStory.exe`。Maple story 与此版本的 Windows 不兼容。有关详细信息，请联系 Wizet。
 
-以下各项都是 **unknown / not observed**，不是“失败”或“成功”：
+按钮是「联机检查解决方案」「运行程序」「取消」。应用程序日志同一时刻有对应事件：来源 `Microsoft-Windows-ApplicationExperienceInfrastructure`，事件 ID 1，级别警告，正文与上面这句话相同。
 
-- 客户机版本、Service Pack、WOW64、防火墙、Oreans / HackShield / SoftICE 服务的只读查询
-- `MapleStory.exe` 在客户机内的 SHA-256。宿主上既有结论仍是 `5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d`，但本任务没有把客户端复制进 Win7，所以没有在客户机里复核
-- 无调试器启动、PID、窗口、对话框正文
-- 模块清单，包括 `ws2_32.dll`
-- `HSUpdate.exe` / `AspINet.dll` 是否加载，以及 Win7 上有没有 `0xC0E90008`
-- `\\.\SICE`、`\\.\SIWVID`、`\\.\NTICE` 的自然返回
-- `Oreans.vxd`、`oreans32.sys`、`oreansx64.sys` 的服务或驱动尝试
-- `HKCU\Software\Wine` 和 WinLicense 键。没有创建这些键
-- 私有网络上的 9555 / 7575–7578 / 8600
+选择「运行程序」之后，PID 272 仍在。到 17:36 的 `tasklist`，工作集约 5,948 KB，CPU 时间约 1 分 25 秒，状态是 Unknown，窗口标题是「暂缺」。`EnumWindows` 没有看到标题为 `MapleStory` 的游戏窗口。`HSUpdate.exe` 和 `ASPLnchr.exe` 六次采样都不在。没有子进程。
 
-没有内存转储，没有关闭签名验证，没有把系统日期改到 2010 年。
+## 5. 模块
 
-## 5. 和现代宿主的关系
+64 位 `tasklist /m` 对 PID 272 只列出 WOW64 宿主侧：`ntdll.dll`、`wow64.dll`、`wow64win.dll`、`wow64cpu.dll`。32 位 PowerShell `Get-Process.Modules` 看到的是进程内的 32 位模块：
 
-现代宿主上已经记录的边界仍然有效，但它们不能外推到 Win7：
+`MapleStory.exe`、`ntdll.dll`、`kernel32.dll`、`KERNELBASE.dll`、`apphelp.dll`、`USER32.dll`、`GDI32.dll`、`LPK.dll`、`USP10.dll`、`msvcrt.dll`、`ADVAPI32.dll`、`sechost.dll`、`RPCRT4.dll`、`SspiCli.dll`、`CRYPTBASE.dll`、`IMM32.DLL`、`MSCTF.dll`、`winmm.dll`。
 
-- `HSUpdate.exe` 加载未签名 `AspINet.dll` 时，Code Integrity 以 `0xC0E90008` / `VerifiedAndReputableDesktop` 拒绝，并带有 Smart App Control 记录。
-- 无调试器启动要么在 `CreateProcess` 就返回 740，要么出现标题为 `MapleStory` 的 `#32770` 对话框，采样窗口内没有 9555 连接。
-- SoftICE 三个设备名在这台现代宿主上 `CreateFileA` 失败，错误 2。那是设备不存在时的自然返回。
+`MapleStory.exe` 模块大小约 10,088 KB，与映像 `SizeOfImage` 同量级，说明主映像已经映射。`apphelp.dll` 说明兼容性引擎已经进入这个进程。
 
-Win7 x64 是否能越过其中任何一条，这次没有证据。逐项对照在 `result/win7x64-compatibility-delta.md`。
+下面这些在这次采样里没有出现：`ws2_32.dll`、`wininet.dll`、`ehsvc.dll`、`AspINet.dll`、`PCOM.dll`、`NameSpace.dll`、`Canvas.dll`、`ZLZ.dll`。
 
-## 6. 里程碑和路线
+## 6. HackShield、SoftICE、Oreans
+
+`HSUpdate.exe` 没有运行，`AspINet.dll` 没有进入 `MapleStory.exe` 的模块列表。`wevtutil` 查询 `Microsoft-Windows-CodeIntegrity/Operational` 得到空结果。这次没有 `0xC0E90008`，也没有 Smart App Control。Win7 RTM 本来就没有现代宿主那套 `VerifiedAndReputableDesktop` 策略；这里的事实是客户端还没走到 `HSUpdate.exe` 加载 `AspINet.dll` 那一步。
+
+SoftICE 与 Oreans 的设备名没有被调试器跟踪。运行前后的服务、驱动和注册表查询都没有 `SICE`、`SIWVID`、`NTICE`、`oreans32`、`oreansx64` 或 `ehsvc`。游戏目录和 `system32\drivers` 下也没有新的 `oreans*` 或 `.sys`。因此没有进入驱动或服务阶段。静态字符串里的 `oreansx64.sys` 仍然只是静态证据。
+
+## 7. 网络
+
+第一阶段网卡保持断开。`netstat -ano` 只有系统 RPC 监听，没有到 9555、7575–7578 或 8600 的连接，也没有 `ESTABLISHED`。`ws2_32.dll` 没有加载，所以客户端还没有走到套接字阶段。因此没有再做私网 9555 测试。
+
+## 8. 对八个问题的回答
+
+1. Win7 x64 没有比现代宿主走得更远。现代宿主上至少出现过标题为 `MapleStory` 的对话框；这里停在兼容性助手，没有游戏窗口。
+2. SoftICE 设备在运行前后都不存在。客户端自己的 `CreateFile` 没有跟踪。可以确认的是没有设备、没有驱动、没有服务被创建。
+3. Oreans / WinLicense 没有进入驱动或服务阶段。
+4. `HSUpdate.exe` / `AspINet.dll` 没有撞上 `0xC0E90008`，因为它们没有运行到加载那一步。
+5. `ws2_32.dll` 没有加载。
+6. 客户端没有连接 9555。
+7. 最早的自然边界是程序兼容性助手：「Maple story 与此版本的 Windows 不兼容」。其后进程仍在，但没有游戏窗口、没有 HackShield、没有 `ws2_32.dll`。
+8. 这次没有启动 Win7 x86，不能证明 x86 一定能过这个兼容性条目。能证明的是：这块 x64 RTM 客户机还不是可用的兼容性基线。
+
+## 9. 里程碑
 
 | 里程碑 | 状态 |
 | --- | --- |
-| M0 识别 Win7 x64 包 | 达到。专业版 x64 RTM，build 7600，**non-SP1** |
-| M1 客户机启动并确认 edition/SP/build | 未达到 |
-| M2–M9 | 未达到 |
+| M0 介质识别 | 完成 |
+| M1 客户机版本 | 完成。专业版 x64，6.1.7600，无 SP |
+| M2 客户机内哈希 | 完成，与规范哈希一致 |
+| M3 无调试器启动 | 完成 |
+| M4 设备探测后果 | 完成。服务、驱动、注册表在运行后仍为空 |
+| M5 Oreans 驱动阶段 | 未到达 |
+| M6 `ws2_32.dll` | 未加载 |
+| M7–M9 9555 / 频道 / 商城 | 未到达 |
 
-**Route D。** 最早的阻断在环境：没有可用的 Windows 客户机管理器。这不是客户端、HackShield 或 Oreans 的自然阻断点。
-
-Win7 x86 是否仍要作为兼容性基准：**unknown**。x64 客户机没有跑起来，不能判断 x64 架构本身是不是阻断点。
-
-## 7. 产物
-
-```text
-result/24-win7-x64-natural-runtime.md
-result/win7x64-image-baseline.csv
-result/win7x64-vm-environment.csv
-result/win7x64-process-module-observations.csv
-result/win7x64-protection-events.csv
-result/win7x64-network-observations.csv
-result/win7x64-compatibility-delta.md
-```
-
-没有新增 `scripts/`。没有客户机可验证的观测脚本。临时的 `ei.cfg` 副本在 `.work/task-024/image/`，不提交。
+Route C。下一步应回到静态与参照对照，而不是绕过保护。

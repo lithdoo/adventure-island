@@ -1,2 +1,2 @@
 time,process,pid,module,remote_port,state,server_accept,interpretation,confidence
-,not-run,,,,,"Private-network 9555 test was not started. Baseline launch does not exist, so the server was not brought up for this task.",unknown
+2026-10-12T17:34:16,MapleStory.exe,272,ws2_32.dll not loaded,9555,no socket,not tested,Guest NIC was disconnected. netstat showed only system RPC listeners. No 9555 7575-7578 or 8600 socket. Private-network server test was not started because ws2_32.dll never loaded.,observed

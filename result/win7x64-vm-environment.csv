@@ -1,27 +1,27 @@
 item,value,evidence
 host_os,Windows 10 Pro version 2009 build 26200,Get-ComputerInfo
 host_architecture,x64,OsArchitecture
-host_cpu,12th Gen Intel Core i5-12490F,CsProcessors
-host_logical_processors,12,CsNumberOfLogicalProcessors
-host_ram_bytes,34188304384,CsTotalPhysicalMemory
 virtual_machine_platform,enabled,Win32_OptionalFeature VirtualMachinePlatform InstallState=1
-vmcompute_service,running,Get-Service vmcompute
-wsl_distro,docker-desktop version 2 running,wsl -l -v
 microsoft_hyper_v_all,disabled,Win32_OptionalFeature InstallState=2
-microsoft_hyper_v_hypervisor,disabled,Win32_OptionalFeature InstallState=2
-microsoft_hyper_v_services,disabled,Win32_OptionalFeature InstallState=2
-microsoft_hyper_v_management_powershell,disabled,Win32_OptionalFeature InstallState=2
-vmms_exe,absent,Test-Path System32\vmms.exe = False
-get_vm_cmdlet,unavailable,Get-Command Get-VM returned nothing
-virtualbox,not installed,VBoxManage.exe absent
-vmware,not installed,vmware.exe absent
-qemu,not installed,qemu-system-x86_64 absent
-windows_sandbox,disabled,Containers-DisposableClientVM InstallState=2
-vm_firmware,not created,no VM
-vcpu,not created,no VM
-ram,not created,no VM
-virtual_disk,not created,no VM
-network_mode,not created,no bridged switch was added
-guest_tools,not installed,no guest
-snapshot_win7x64_clean,not created,no guest
-decision,route-d,usable Windows VM manager is not installed; Hyper-V role was not enabled
+qemu,7.2.22 inside container task024-qemu,qemu-system-x86_64 -version
+accel,tcg,command line accel=tcg
+machine,pc i440fx,command line -machine pc
+vcpu,2,command line -smp 2
+ram_mib,2048,command line -m 2048
+virtual_disk,win7x64.qcow2 IDE,guest systeminfo system model QEMU Standard PC
+network_mode,disconnected nic none,command line -nic none
+guest_tools,not installed,no qemu-ga
+snapshot_win7x64_clean,saved before client copy,qemu savevm win7x64-clean
+guest_caption,Microsoft Windows 7 Professional,systeminfo and WMI Caption
+guest_version,6.1.7600,systeminfo OS version
+guest_build,7600,CurrentBuildNumber
+guest_buildlab,7600.16385.amd64fre.win7_rtm.090713-1255,BuildLabEx
+guest_service_pack,0,WMI ServicePackMajorVersion
+guest_architecture,x64-based PC,systeminfo system type
+guest_wow64,SysWOW64 present,dir SystemRoot\SysWOW64
+guest_powershell,2.0,PSVersionTable
+guest_firewall,on BlockInbound AllowOutbound all profiles,netsh advfirewall show allprofiles
+guest_nic,none,systeminfo network cards N/A
+guest_computer,WIN7X64LAB,systeminfo
+baseline_oreans_sice,absent,reg query and sc query before launch
+decision,route-c,guest booted; client stopped at Program Compatibility Assistant

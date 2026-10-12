@@ -1,2 +1,6 @@
 time,log,event_id,process,status,policy,object,interpretation,confidence
-,not-run,,,,,,"Application, System, and Code Integrity logs were not collected. Win7 has no guest, so 0xC0E90008 / VerifiedAndReputableDesktop / Smart App Control were not compared at runtime.",unknown
+2026-10-12T17:34:59,Application,1,MapleStory.exe,,Application Experience,F:\MapleStory.exe,Program Compatibility Assistant: Maple story from Wizet is incompatible with this version of Windows. Dialog buttons were check-online run-program and cancel.,observed
+2026-10-12T17:34:16,UAC dialog,,MapleStory.exe,,consent,MapleStory China,Publisher NEXON Corp. verified. File origin local hard disk. Elevation was requested by the executable manifest and then allowed.,observed
+,Microsoft-Windows-CodeIntegrity/Operational,,,,,,"wevtutil returned an empty result. No 0xC0E90008 and no VerifiedAndReputableDesktop event. HSUpdate.exe did not run and AspINet.dll did not load.",observed
+,services-and-drivers,,,,,SICE SIWVID NTICE oreans32 oreansx64 ehsvc,Absent before the launch and still absent after. No new oreans sys file.,observed
+,registry,,,,,HKCU\Software\WinLicense HKCU\Software\WLkt HKLM\SOFTWARE\WLkt HKCU\Software\Wine,reg query reported the keys missing before and after the launch.,observed
