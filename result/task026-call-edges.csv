@@ -1,0 +1,24 @@
+edge_id,caller,callee,edge_evidence,module,callee_rva_or_target,runtime_milestone,confidence
+E01,ijl15.dll!CRT __DllMainCRTStartup,ijl15.dll!RepackDllMain,call at 0x148c on DLL_PROCESS_ATTACH,ijl15.dll(stub),0x10e0,iloveaki gate reached,confirmed-static
+E02,ijl15.dll!RepackDllMain,ijl15.dll!RepackLoadRealIjl,call at 0x1101,ijl15.dll(stub),0x1000,iloveaki.dat mapped @0x60000000,confirmed-static
+E03,ijl15.dll!RepackLoadRealIjl,KERNEL32!LoadLibraryW(L"iloveaki.dat"),push 0x100020d8 call [0x2004],ijl15.dll(stub),KERNEL32!LoadLibraryW,iloveaki.dat mapped,confirmed-static
+E04,ijl15.dll!RepackLoadRealIjl,KERNEL32!GetProcAddress x6,slots 0x20f4-0x212c loop 0x101d-0x1064,ijl15.dll(stub),KERNEL32!GetProcAddress,export forwarding slots 0x3348-0x335c,confirmed-static
+E05,ijl15.dll!RepackDllMain,KERNEL32!GetModuleHandleW(L"ntdll.dll"),push 0x10002148 call [0x2000],ijl15.dll(stub),KERNEL32!GetModuleHandleW,pre-modal,confirmed-static
+E06,ijl15.dll!RepackDllMain,KERNEL32!GetProcAddress("ZwCreateMutant"),push eax call [0x2008] at 0x111b,ijl15.dll(stub),KERNEL32!GetProcAddress,pre-modal,confirmed-static
+E07,ijl15.dll!RepackDllMain,ntdll!ZwCreateMutant+0x12 (E5 hook),VirtualProtect RW + mov byte e9 + rel32 + restore,ijl15.dll(stub),ntdll+0x4565a,pre-modal (inert on Win7),confirmed-static
+E08,ijl15.dll!RepackDllMain,USER32!MessageBoxW(L"iloveaki success."),push 0x40/0x215c/0x2194/0 call [0x2090],ijl15.dll(stub),USER32!MessageBoxW,iloveaki modal gate (loader lock),confirmed-runtime
+E09,MapleStory.exe!protector import reconstruction,ijl15.dll (stub) load,runtime module first-seen (Task 025 A1R2/A2R1/A3R1: ijl15.dll + iloveaki.dat + MSVCR90.dll),MapleStory.exe,ijl15.dll,iloveaki gate,confirmed-runtime
+E10,game code,ijl15.dll!ijlInit (forwarded),export thunk 0x1080 -> [0x1000334c] -> iloveaki.dat!ijlInit,ijl15.dll(stub),0x1080,post-modal JPEG init (expected),confirmed-static
+E11,PCOM.dll!PcSerializeString,PCOM.dll!0x64e3 SerializeEntity,call 0x64e3 at 0x6450,PCOM.dll,0x64e5,WZ property serialization,confirmed-static
+E12,PCOM.dll!PcSerializeString,PCOM.dll!0x6da7 / 0x85f5,low-word path calls at 0x6470/0x647e,PCOM.dll,0x6da7;0x85f5,WZ string table,confirmed-static
+E13,PCOM.dll!0x64e3 SerializeEntity,PCOM.dll!0x6653 RootNamespaceObj,call 0x6653 at 0x652a,PCOM.dll,0x6653,root namespace serialization,confirmed-static
+E14,NameSpace.dll!WzArchiveOpen 0x13729,PCOM.dll!PcSerializeString,LoadLibraryA(PCOM.DLL)+GetProcAddress x5 -> globals 0x1EC28-38 then call,NameSpace.dll,PcSerializeString,WZ archive open,confirmed-static
+E15,NameSpace.dll!WzPackageMount 0x13070,NameSpace.dll!WzArchiveOpen 0x13729,mount->open chain (header check via stream vmethod ref 0x137BA),NameSpace.dll,0x13729,WZ package mount,confirmed-static
+E16,Canvas.dll!CWzZlzStream::dtor 0x22910,ZLZ.dll!ZLZCloseFilter,call [0x500270cc] at 0x2294c,Canvas.dll,ZLZ!ZLZCloseFilter,WZ stream close,confirmed-static
+E17,Canvas.dll!CWzZlzStream::init 0x22980,ZLZ.dll!ZLZCreateInflator,call [IAT] at 0x22a35,Canvas.dll,ZLZ!ZLZCreateInflator,WZ decompress init,confirmed-static
+E18,Canvas.dll!CWzZlzStream::init 0x22980,ZLZ.dll!ZLZCreateDeflator,call [IAT] at 0x22a1b,Canvas.dll,ZLZ!ZLZCreateDeflator,WZ compress init,confirmed-static
+E19,Canvas.dll!CWzZlzStream family,base vft 0x285e0 (suffix slot 61 = 0x286d4),mov [eax],0x500286d4 in dtor/init,Canvas.dll,0x285e0,WZ stream wrapper class,confirmed-static
+E20,PCOM.dll!PcomListWzPathInit 0x6cc7,KERNEL32!GetModuleFileNameA + dir concat + existence check,refs 0x50C1301C/0x50C10340/0x50C13070 + List.wz string 0x174BC,PCOM.dll,0x6cc7,List.wz bootstrap,confirmed-static
+E21,game startup (expected),PCOM.dll!PcInitModule,COM factory + self/PCOM name-table entries per DLL data section,PCOM.dll,0x104ca,game runtime init (pending runtime),high
+E22,PCOM.dll!PcCreateObject,per-DLL DllGetClassObject factories,COM class factory + CLSID + PcCreateObject export,PCOM.dll,0x4cd1,game object creation (pending runtime),high
+E23,Sound_DX8.dll!CWzSound family,winmm/msacm audio stack,vft 0x183e8 64 slots + CStreamSource/Filter + CAcmStream/CPcmStream RTTI,Sound_DX8.dll,0x183e8,audio runtime (pending),medium

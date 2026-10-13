@@ -1,0 +1,89 @@
+class_name_or_provisional,module,rtti_type_name,vtable_candidate,constructor_candidates,important_virtuals,member_patterns,reference_version,reference_correlation,confidence,notes
+.?AVCAcmStream@@,Sound_DX8,TD rva 0x1f818,0x19ae4,0xcbcd;0xcbd3;0xcc20;0xcc26;0xcc56;0xcc66,"95 slots, slot0=0xeaf2",,,,medium,throw-site proximity + ctor-store
+.?AVCArchiveSource@@,NameSpace,TD rva 0x1e598,0x18940,0xa727;0xa754;0xa75b;0xa762;0xa769;0xb07c,"59 slots, slot0=0xbd04",,,,high,throw-site proximity + ctor-store
+.?AVCAtlException@ATL@@,WzMss,TD rva 0x290c8,,,,,,,low,RTTI TD only; vtable not linked
+.?AVCDACommon@@,Sound_DX8,TD rva 0x1f800,0x19ae4,0xcbcd;0xcbd3;0xcc20;0xcc26;0xcc56;0xcc66,"95 slots, slot0=0xeaf2",,,,medium,throw-site proximity + ctor-store
+.?AVCEnumMediaTypes@@,Sound_DX8,TD rva 0x1f5c8,0x19738,0x5be9;0x60d3;0x60e7;0x610e;0x6114;0x611b,"225 slots, slot0=0x13f75",,,,medium,throw-site proximity + ctor-store
+.?AVCEnumPins@@,Sound_DX8,TD rva 0x1f5b0,0x19738,0x5be9;0x60d3;0x60e7;0x610e;0x6114;0x611b,"225 slots, slot0=0x13f75",,,,medium,throw-site proximity + ctor-store
+.?AVCPcmStream@@,Sound_DX8,TD rva 0x1f838,0x19ae4,0xcbcd;0xcbd3;0xcc20;0xcc26;0xcc56;0xcc66,"95 slots, slot0=0xeaf2",,,,medium,throw-site proximity + ctor-store
+.?AVCStreamFilter@@,Sound_DX8,TD rva 0x1f590,0x19738,0x5be9;0x60d3;0x60e7;0x610e;0x6114;0x611b,"225 slots, slot0=0x13f75",,,,medium,throw-site proximity + ctor-store
+.?AVCStreamSource@@,Sound_DX8,TD rva 0x1f570,0x19738,0x5be9;0x60d3;0x60e7;0x610e;0x6114;0x611b,"225 slots, slot0=0x13f75",,,,medium,throw-site proximity + ctor-store
+.?AVCVectorAux@@,Shape2D,TD rva 0x115f8,0xd9c0,0xa32b;0xa36a;0xa3a9;0xa3e8;0xa427;0xa466,"15 slots, slot0=0x2b11",,,,high,throw-site proximity + ctor-store
+.?AVCWzArchive@@,NameSpace,TD rva 0x1e5b8,0x13440,0x3b4c;0x3b52;0x3b59;0x3b68;0x3b83;0x436e,"67 slots, slot0=0x3c7e",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzArchiveContext@@,PCOM,TD rva 0x174d8,0x13440,0x3b4c;0x3b52;0x3b59;0x3b68;0x3b83;0x436e,"67 slots, slot0=0x3c7e",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzCanvas@@,Canvas,TD rva 0x2c360,0x27364,0x7fe8;0x803f;0x83f2;0x83fb;0x8405;0x84f2,"68 slots, slot0=0x8100",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzClipToken@@,Canvas,TD rva 0x2c378,0x27364,0x7fe8;0x803f;0x83f2;0x83fb;0x8405;0x84f2,"68 slots, slot0=0x8100",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzDIBRawCanvas@@,Canvas,TD rva 0x2c398,0x27364,0x7fe8;0x803f;0x83f2;0x83fb;0x8405;0x84f2,"68 slots, slot0=0x8100",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzFileSystem@@,NameSpace,TD rva 0x1d310,0x1775c,0x47d8;0x47f5;0x480d;0x4838;0x4855;0x4877,"58 slots, slot0=0xb7a1",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzFont@@,Canvas,TD rva 0x2c3b8,0x27364,0x7fe8;0x803f;0x83f2;0x83fb;0x8405;0x84f2,"68 slots, slot0=0x8100",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzGr2DLayer@@,Gr2D_DX8,TD rva 0x36500,0x2e2c4,0x2874;0x287a;0x2a30;0x2ba4;0x2bb3;0x3640,"151 slots, slot0=0x2b84",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzList@@,PCOM,TD rva 0x173e0,0x13440,0x3b4c;0x3b52;0x3b59;0x3b68;0x3b83;0x436e,"67 slots, slot0=0x3c7e",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzNameSpace@@,NameSpace,TD rva 0x1d2f0,0x1775c,0x47d8;0x47f5;0x480d;0x4838;0x4855;0x4877,"58 slots, slot0=0xb7a1",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzNameSpaceProperty@@,NameSpace,TD rva 0x1d2c8,0x1775c,0x47d8;0x47f5;0x480d;0x4838;0x4855;0x4877,"58 slots, slot0=0xb7a1",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzPackage@@,NameSpace,TD rva 0x1d330,0x1775c,0x47d8;0x47f5;0x480d;0x4838;0x4855;0x4877,"58 slots, slot0=0xb7a1",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzProperty@@,PCOM,TD rva 0x173c0,0x13440,0x3b4c;0x3b52;0x3b59;0x3b68;0x3b83;0x436e,"67 slots, slot0=0x3c7e",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzRawArchive@@,NameSpace,TD rva 0x1e578,0x18940,0xa727;0xa754;0xa75b;0xa762;0xa769;0xb07c,"59 slots, slot0=0xbd04",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzRawCanvas@@,Gr2D_DX8,TD rva 0x36520,0x2e2c4,0x2874;0x287a;0x2a30;0x2ba4;0x2bb3;0x3640,"151 slots, slot0=0x2b84",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzSound@@,Sound_DX8,TD rva 0x1e200,0x19ae4,0xcbcd;0xcbd3;0xcc20;0xcc26;0xcc56;0xcc66,"95 slots, slot0=0xeaf2",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzSoundStateDA@@,Sound_DX8,TD rva 0x1f858,0x19ae4,0xcbcd;0xcbd3;0xcc20;0xcc26;0xcc56;0xcc66,"95 slots, slot0=0xeaf2",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzSoundStateDS@@,Sound_DX8,TD rva 0x1f8c0,,,,,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),low,RTTI TD only; vtable not linked
+.?AVCWzSoundStateMute@@,Sound_DX8,TD rva 0x1f910,0x19c90,0xdecf;0xdee5;0xdeeb;0xdf34;0xdf3a;0xdf40,"28 slots, slot0=0xe939",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzStream@@,PCOM,TD rva 0x17230,0x270e8,0x5195;0x51da;0x520a;0x52d5;0x5455;0x6199,"104 slots, slot0=0x5300",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzStream@@,NameSpace,TD rva 0x1d2b0,0x270e8,0x5195;0x51da;0x520a;0x52d5;0x5455;0x6199,"104 slots, slot0=0x5300",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzStream@@,Canvas,TD rva 0x2c230,0x270e8,0x5195;0x51da;0x520a;0x52d5;0x5455;0x6199,"104 slots, slot0=0x5300",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzStream@@,Sound_DX8,TD rva 0x1e0f0,0x270e8,0x5195;0x51da;0x520a;0x52d5;0x5455;0x6199,"104 slots, slot0=0x5300",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzStream@@,Shape2D,TD rva 0x103b8,0x270e8,0x5195;0x51da;0x520a;0x52d5;0x5455;0x6199,"104 slots, slot0=0x5300",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzUOL@@,PCOM,TD rva 0x173f8,0x13440,0x3b4c;0x3b52;0x3b59;0x3b68;0x3b83;0x436e,"67 slots, slot0=0x3c7e",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVCWzVector2D@@,Shape2D,TD rva 0x10240,0xc5b8,0x1ec6;0x1ecc;0x1ed3;0x1eda;0x1ee9;0x1f04,"65 slots, slot0=0x203d",,v95-family,WzObject family (v95 has CWvsContext/CWvsApp; CMS079 uses CWz* prefixes),high,throw-site proximity + ctor-store
+.?AVZException@@,PCOM,TD rva 0x17478,,,,,,,low,RTTI TD only; vtable not linked
+.?AVZException@@,NameSpace,TD rva 0x1e558,,,,,,,low,RTTI TD only; vtable not linked
+.?AVZException@@,Canvas,TD rva 0x2d6c8,,,,,,,low,RTTI TD only; vtable not linked
+.?AVZException@@,ResMan,TD rva 0xa2c8,,,,,,,low,RTTI TD only; vtable not linked
+.?AVZException@@,ZLZ,TD rva 0x12700,,,,,,,low,RTTI TD only; vtable not linked
+.?AVZException@@,Sound_DX8,TD rva 0x1f5e8,,,,,,,low,RTTI TD only; vtable not linked
+.?AVZException@@,Shape2D,TD rva 0x10358,,,,,,,low,RTTI TD only; vtable not linked
+.?AV_com_error@@,PCOM,TD rva 0x17410,,,,,,,low,RTTI TD only; vtable not linked
+.?AV_com_error@@,NameSpace,TD rva 0x1d1d0,,,,,,,low,RTTI TD only; vtable not linked
+.?AV_com_error@@,Canvas,TD rva 0x2c330,,,,,,,low,RTTI TD only; vtable not linked
+.?AV_com_error@@,ResMan,TD rva 0xa2e8,,,,,,,low,RTTI TD only; vtable not linked
+.?AV_com_error@@,Gr2D_DX8,TD rva 0x363f8,,,,,,,low,RTTI TD only; vtable not linked
+.?AV_com_error@@,Sound_DX8,TD rva 0x1e118,,,,,,,low,RTTI TD only; vtable not linked
+.?AV_com_error@@,Shape2D,TD rva 0x10378,,,,,,,low,RTTI TD only; vtable not linked
+Unknown_PCOM_0x13110,PCOM,,0x13110,0x2feb;0x2ff1;0x2ff8;0x306e;0x30c2;0x30c8,"79 slots, slot0=0x30a7",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_PCOM_0x13568,PCOM,,0x13568,0x8cfc;0x8d10;0x8d37;0x8d3d;0x8d44;0x8d4a,"69 slots, slot0=0x94b8",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_PCOM_0x13440,PCOM,,0x13440,0x3b4c;0x3b52;0x3b59;0x3b68;0x3b83;0x436e,"67 slots, slot0=0x3c7e",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_PCOM_0x1328c,PCOM,,0x1328c,0x3529;0x352f;0x3536;0x353d;0x354c;0x3567,"59 slots, slot0=0x361a",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_PCOM_0x146c0,PCOM,,0x146c0,0xbf3c;0xbf58;0xbfa4;0xc00e;0xc08a;0xc4f8,"52 slots, slot0=0xbf9c",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_PCOM_0x147a8,PCOM,,0x147a8,0xe264;0xe280;0xe2cc;0xe336;0xe399;0xe63b,"42 slots, slot0=0xe2c4",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_NameSpace_0x17548,NameSpace,,0x17548,0x320f;0x321d;0x3238;0x3628;0x362e;0x3635,"124 slots, slot0=0x330b",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_NameSpace_0x18a54,NameSpace,,0x18a54,0xc137;0xc146;0xc171;0xc31e;0xc330;0xc371,"124 slots, slot0=0xe6a0",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_NameSpace_0x17258,NameSpace,,0x17258,0x2219;0x22b0;0x22cf;0x2382;0x2388;0x238e,"80 slots, slot0=0xe0b0",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_NameSpace_0x170f8,NameSpace,,0x170f8,0x1683;0x16e1;0x1770;0x1776;0x177d;0x1784,"69 slots, slot0=0x31e0",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_NameSpace_0x18940,NameSpace,,0x18940,0xa727;0xa754;0xa75b;0xa762;0xa769;0xb07c,"59 slots, slot0=0xbd04",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_NameSpace_0x1775c,NameSpace,,0x1775c,0x47d8;0x47f5;0x480d;0x4838;0x4855;0x4877,"58 slots, slot0=0xb7a1",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_NameSpace_0x173ec,NameSpace,,0x173ec,0x2ac2;0x2ae9;0x2c82;0x2c88;0x2c8f;0x2c96,"52 slots, slot0=0x2c18",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_NameSpace_0x17878,NameSpace,,0x17878,0x641d;0x6423;0x643a;0x6440;0x84d6;0x84f4,"32 slots, slot0=0xe0b0",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Canvas_0x285e0,Canvas,,0x285e0,0x1d21a;0x1d258;0x1d2aa;0x1d2e8;0x1da65;0x1dae5,"124 slots, slot0=0x1d300",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Canvas_0x270e8,Canvas,,0x270e8,0x5195;0x51da;0x520a;0x52d5;0x5455;0x6199,"104 slots, slot0=0x5300",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Canvas_0x27364,Canvas,,0x27364,0x7fe8;0x803f;0x83f2;0x83fb;0x8405;0x84f2,"68 slots, slot0=0x8100",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Canvas_0x27490,Canvas,,0x27490,0xa2fb;0xa304;0xa344;0xa34d;0xbaaa;0xbb1f,"41 slots, slot0=0xbad0",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Canvas_0x272b8,Canvas,,0x272b8,0x7108;0x718f;0x72be;0x72c7;0x72d1;0x7a22,"34 slots, slot0=0x7230",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_ResMan_0x70d0,ResMan,,0x70d0,0x139a;0x140a;0x1452;0x14ae;0x1516;0x153e,"45 slots, slot0=0x1835",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Gr2D_DX8_0x2e2c4,Gr2D_DX8,,0x2e2c4,0x2874;0x287a;0x2a30;0x2ba4;0x2bb3;0x3640,"151 slots, slot0=0x2b84",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Gr2D_DX8_0x2e8b4,Gr2D_DX8,,0x2e8b4,0x9651;0x965c;0x96bc;0x9700;0x97dd;0x9824,"95 slots, slot0=0xc286",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Gr2D_DX8_0x2d204,Gr2D_DX8,,0x2d204,0x13f9;0x13ff;0x140e;0x1430;0x179e;0x17bb,"47 slots, slot0=0x14a5",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Gr2D_DX8_0x2d140,Gr2D_DX8,,0x2d140,0x1295;0x129b;0x158f;0x1595,"40 slots, slot0=0x186c",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Gr2D_DX8_0x2e568,Gr2D_DX8,,0x2e568,0x6b98;0x6b9e;0x6ba5;0x6bac;0x6bb3;0x6be6,"38 slots, slot0=0x6c50",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Sound_DX8_0x19738,Sound_DX8,,0x19738,0x5be9;0x60d3;0x60e7;0x610e;0x6114;0x611b,"225 slots, slot0=0x13f75",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Sound_DX8_0x19ae4,Sound_DX8,,0x19ae4,0xcbcd;0xcbd3;0xcc20;0xcc26;0xcc56;0xcc66,"95 slots, slot0=0xeaf2",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Sound_DX8_0x19590,Sound_DX8,,0x19590,0x6162;0x7b60;0x8423;0xc98a;0xca95;0xcbc7,"72 slots, slot0=0x11f9f",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Sound_DX8_0x183e8,Sound_DX8,,0x183e8,0x3199;0x319f;0x31a6;0x31b5;0x31d0;0x34cb,"64 slots, slot0=0x3231",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Shape2D_0xc0e0,Shape2D,,0xc0e0,0x1613;0x1619;0x1620;0x1627;0x165a;0x1666,"104 slots, slot0=0x168b",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Shape2D_0xc2c8,Shape2D,,0xc2c8,0x18ed;0x18f3;0x18fa;0x1901;0x1910;0x192b,"85 slots, slot0=0x198c",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Shape2D_0xc6d0,Shape2D,,0xc6d0,0x3306;0x331a;0x3341;0x3347;0x334e;0x3354,"79 slots, slot0=0x3373",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Shape2D_0xc468,Shape2D,,0xc468,0x1b8f;0x1b95;0x1b9c;0x1ba3;0x1bb2;0x1bcd,"66 slots, slot0=0x1d32",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Shape2D_0xc5b8,Shape2D,,0xc5b8,0x1ec6;0x1ecc;0x1ed3;0x1eda;0x1ee9;0x1f04,"65 slots, slot0=0x203d",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Shape2D_0xc828,Shape2D,,0xc828,0x4bac;0x4bc8;0x4c14;0x4ce9;0x4d4c;0x4e79,"36 slots, slot0=0x4c0c",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_Shape2D_0xd8e8,Shape2D,,0xd8e8,0x738b;0x73ae;0x73b4;0x73bd;0x745d;0x7463,"36 slots, slot0=0xab2f",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_WzMss_0x243d4,WzMss,,0x243d4,0x4d63;0x4ed9;0x4f09;0x4f39;0x571f;0x5848,"33 slots, slot0=0x5760",,,,low,structural only; class unnamed (no RTTI proximity)
+Unknown_WzMss_0x2445c,WzMss,,0x2445c,0x56c6;0x5717;0x5830;0x5875;0x604b;0x6062,"33 slots, slot0=0x6330",,,,low,structural only; class unnamed (no RTTI proximity)

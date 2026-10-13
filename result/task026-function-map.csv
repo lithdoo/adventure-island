@@ -1,0 +1,116 @@
+function_id,module,RVA_or_static_offset,provisional_name,confidence,source_kind,reference_name,reference_version,reference_match_basis,strings,imports_called,exports_called,known_callers,known_callees,class_candidate,subsystem,notes
+F001,PCOM.dll,0x2b43,DllCanUnloadNow,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,PCOM,
+F002,PCOM.dll,0x2b4f,DllGetClassObject,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,PCOM,
+F003,PCOM.dll,0x4cd1,PcCreateObject,confirmed,export,PcCreateObject,v95-family,PCOM object factory,,,,,,,PCOM,PcCreateObject
+F004,PCOM.dll,0x10691,PcFreeUnusedLibraries,confirmed,export,PcFreeUnusedLibraries,v95-family,export table name,,,,,,,PCOM,PcFreeUnusedLibraries
+F005,PCOM.dll,0x104ca,PcInitModule,confirmed,export,PcInitModule,v95-family,module init cross-load,,,,,,,PCOM,PcInitModule
+F006,PCOM.dll,0x63bc,PcRootNameSpace,confirmed,export,PcRootNameSpace,v95-family,root namespace obj,,,,,0x6653,,PCOM,PcRootNameSpace
+F007,PCOM.dll,0x86fa,PcSerializeObject,confirmed,export,PcSerializeObject,v95-family,export table name,,,,,0x64e3,,PCOM,PcSerializeObject
+F008,PCOM.dll,0x6411,PcSerializeString,confirmed,export,PcSerializeString,v95-family,key-dword route; low word=mode,,,,,0x64e3;0x6da7;0x85f5,,PCOM,PcSerializeString
+F009,PCOM.dll,0x10624,PcTermModule,confirmed,export,PcTermModule,v95-family,export table name,,,,,,,PCOM,PcTermModule
+F010,ZLZ.dll,0xb830,?ZLZCloseFilter@@YAXPAUZIStream@@@Z,confirmed,export,ZLZCloseFilter,v95-family,export table name,,,,,,,ZLZ,ZLZCloseFilter
+F011,ZLZ.dll,0xac50,?ZLZCreateDeflator@@YAPAUZIStream@@HPAU1@H@Z,confirmed,export,ZLZCreateDeflator,v95-family,export table name,,,,,,,ZLZ,ZLZCreateDeflator
+F012,ZLZ.dll,0xb410,?ZLZCreateInflator@@YAPAUZIStream@@HPAU1@I@Z,confirmed,export,ZLZCreateInflator,v95-family,"ZIStream*(int,ZIStream*,uint)",,,,,ztl PDB,,ZLZ,ZLZCreateInflator
+F013,NameSpace.dll,0x1075,DllCanUnloadNow,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,NameSpace,
+F014,NameSpace.dll,0x1081,DllGetClassObject,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,NameSpace,
+F015,Canvas.dll,0x5903,DllCanUnloadNow,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,Canvas,
+F016,Canvas.dll,0x5924,DllGetClassObject,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,Canvas,
+F017,ResMan.dll,0x1066,DllCanUnloadNow,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,ResMan,
+F018,ResMan.dll,0x10a7,DllGetClassObject,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,ResMan,
+F019,Gr2D_DX8.dll,0x1066,DllCanUnloadNow,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,Gr2D_DX8,
+F020,Gr2D_DX8.dll,0x1072,DllGetClassObject,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,Gr2D_DX8,
+F021,Sound_DX8.dll,0x2da8,DllCanUnloadNow,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,Sound_DX8,
+F022,Sound_DX8.dll,0x2dd5,DllGetClassObject,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,Sound_DX8,
+F023,Shape2D.dll,0x1061,DllCanUnloadNow,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,Shape2D,
+F024,Shape2D.dll,0x106d,DllGetClassObject,confirmed,export+COM-factory,,v95-family,export table name,,,,,,,Shape2D,
+F025,PCOM.dll,0x64e3,PcSerializeObjectEntity,high,static-disasm+prior-task,PcSerializeObject,v95-family,callee of PcSerializeString 0x6411; HRESULT/SEH COM error paths (0x80070057/5); key route,,,PcSerializeString,0x6653,0x6653;0x61b4;0x102f0,,PCOM,briefing anchor; disasm verified this task
+F026,PCOM.dll,0x6653,PcRootNameSpaceObj,high,static-disasm+prior-task,PcRootNameSpace,v95-family,called from 0x64e3 with push 1; namespace object,,,PcSerializeObjectEntity,,,,PCOM,
+F027,PCOM.dll,0x74fc,WzSerializeWrite,high,prior-task+disasm,,,per-byte transform write side of serialize chain,,,,,0x7575,,PCOM,
+F028,PCOM.dll,0x7575,WzSerializeRead,high,prior-task+disasm,,,per-byte transform read side,,,,0x74fc,,,PCOM,final byte transform of WZ property stream
+F029,PCOM.dll,0x6cc7,PcomListWzPathInit,medium,prior-task,,,List.wz string @0x174BC; GetModuleFileNameA via [0x50C1301C]; dir concat 0x50C10340; existence check [0x50C13070],List.wz,GetModuleFileNameA,,,,,PCOM,
+F030,NameSpace.dll,0x13070,WzPackageMount,high,prior-task+disasm,,,PKG1 header check via stream vmethod [eax+0x18] (ref 0x137BA); GetTickCount temp PKG%04x.tmp; CreateFileA 0xC0000000/0x4000080; retry on 0xB7/0x50,Package file v1;PKG%04x.tmp,CreateFileA,,0x13729,,CWzPackage,NameSpace,thiscall HRESULT
+F031,NameSpace.dll,0x13729,WzArchiveOpen,high,prior-task+disasm,,,wide-name hash h=h*32+c+1; 4-vtable stream wrapper 0x5080D5BB; key fold NOT; LoadLibraryA(PCOM.DLL)+GetProcAddress x5 -> 0x1EC28-38; PcSerializeString,,LoadLibraryA;GetProcAddress,,0x13070,PcSerializeString,CWzArchive,NameSpace,circular-import late binding
+F032,NameSpace.dll,0x18c60,WzNameSpaceVft?,medium,vtable-collapse,,,10-slot vtable @0x18c60 ctors 0x1209e/0x120b7/0x128c4,,,,,,CWzNameSpace,NameSpace,needs slot naming
+F033,NameSpace.dll,0x17548,NameSpaceBigVft,low,vtable-collapse,,,124-slot vtable ctors 0x320f..0x363e,,,,,,?,NameSpace,suffix views collapsed
+F034,ijl15.dll(stub),0x1000,RepackLoadRealIjl,confirmed,this-task-disasm,,,LoadLibraryW(iloveaki.dat)+GetProcAddress x6 -> slots 0x3348-0x335c,iloveaki.dat;ijlInit;ijlRead,LoadLibraryW;GetProcAddress,,RepackDllMain,,,repack,
+F035,ijl15.dll(stub),0x10d0,RepackAntiMutexHookStub,confirmed,this-task-disasm,,,"add esp,4; xor eax,eax; ret 0x10 - intended ZwCreateMutant neuter",,,,,,,repack,misaligned +0x12 on Win7; inert
+F036,ijl15.dll(stub),0x10e0,RepackDllMain,confirmed,this-task-disasm,,,ATTACH path: load+forward+patch ZwCreateMutant+0x12+MessageBoxW(iloveaki success.),iloveaki success.;ntdll.dll;ZwCreateMutant,GetModuleHandleW;GetProcAddress;VirtualProtect;MessageBoxW,,CRT _DllMainCRTStartup,RepackLoadRealIjl,,repack,modal gate; loader lock
+F037,MapleStory.exe,0x5fc19f,ZtlTaskMemAllocImp,confirmed,export,ztl allocator,v95-family,export name,,,,,,ztl,exe,
+F038,MapleStory.exe,0x5fc1b0,ZtlTaskMemFreeImp,confirmed,export,ztl allocator,v95-family,export name,,,,,,ztl,exe,
+F039,MapleStory.exe,0x5fc1c1,ZtlTaskMemReallocImp,confirmed,export,ztl allocator,v95-family,export name,,,,,,ztl,exe,
+F040,PCOM.dll,0x13110,Vft<CWzStream>_0x13110,medium,vtable-collapse+ctor-store,CWzStream,v95-family,throw-site proximity to RTTI TD,,,,0x2feb;0x2ff1;0x2ff8,,CWzStream,PCOM,79 slots; slot0=0x30a7
+F041,PCOM.dll,0x13568,Vft<Unknown>_0x13568,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x8cfc;0x8d10;0x8d37,,?,PCOM,69 slots; slot0=0x94b8
+F042,PCOM.dll,0x13440,Vft<CWzList>_0x13440,medium,vtable-collapse+ctor-store,CWzList,v95-family,throw-site proximity to RTTI TD,,,,0x3b4c;0x3b52;0x3b59,,CWzList,PCOM,67 slots; slot0=0x3c7e
+F043,PCOM.dll,0x1328c,Vft<Unknown>_0x1328c,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x3529;0x352f;0x3536,,?,PCOM,59 slots; slot0=0x361a
+F044,PCOM.dll,0x146c0,Vft<Unknown>_0x146c0,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0xbf3c;0xbf58;0xbfa4,,?,PCOM,52 slots; slot0=0xbf9c
+F045,PCOM.dll,0x147a8,Vft<Unknown>_0x147a8,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0xe264;0xe280;0xe2cc,,?,PCOM,42 slots; slot0=0xe2c4
+F046,PCOM.dll,0x133b4,Vft<Unknown>_0x133b4,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x3977;0x397d;0x3984,,?,PCOM,23 slots; slot0=0x3a64
+F047,PCOM.dll,0x130c0,Vft<CWzStream>_0x130c0,medium,vtable-collapse+ctor-store,CWzStream,v95-family,throw-site proximity to RTTI TD,,,,0x285e;0x287b;0x2893,,CWzStream,PCOM,14 slots; slot0=0x7c6b
+F048,PCOM.dll,0x1467c,Vft<Unknown>_0x1467c,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0xbceb;0xbcf1;0xbf19,,?,PCOM,10 slots; slot0=0xcb44
+F049,NameSpace.dll,0x17548,Vft<Unknown>_0x17548,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x320f;0x321d;0x3238,,?,NameSpace,124 slots; slot0=0x330b
+F050,NameSpace.dll,0x18a54,Vft<Unknown>_0x18a54,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0xc137;0xc146;0xc171,,?,NameSpace,124 slots; slot0=0xe6a0
+F051,NameSpace.dll,0x17258,Vft<Unknown>_0x17258,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x2219;0x22b0;0x22cf,,?,NameSpace,80 slots; slot0=0xe0b0
+F052,NameSpace.dll,0x170f8,Vft<Unknown>_0x170f8,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1683;0x16e1;0x1770,,?,NameSpace,69 slots; slot0=0x31e0
+F053,NameSpace.dll,0x18940,Vft<CWzRawArchive>_0x18940,medium,vtable-collapse+ctor-store,CWzRawArchive,v95-family,throw-site proximity to RTTI TD,,,,0xa727;0xa754;0xa75b,,CWzRawArchive,NameSpace,59 slots; slot0=0xbd04
+F054,NameSpace.dll,0x1775c,Vft<CWzPackage>_0x1775c,medium,vtable-collapse+ctor-store,CWzPackage,v95-family,throw-site proximity to RTTI TD,,,,0x47d8;0x47f5;0x480d,,CWzPackage,NameSpace,58 slots; slot0=0xb7a1
+F055,NameSpace.dll,0x173ec,Vft<Unknown>_0x173ec,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x2ac2;0x2ae9;0x2c82,,?,NameSpace,52 slots; slot0=0x2c18
+F056,NameSpace.dll,0x17878,Vft<Unknown>_0x17878,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x641d;0x6423;0x643a,,?,NameSpace,32 slots; slot0=0xe0b0
+F057,NameSpace.dll,0x18cc4,Vft<Unknown>_0x18cc4,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x13c15;0x13c23;0x141c4,,?,NameSpace,18 slots; slot0=0x13c20
+F058,NameSpace.dll,0x17910,Vft<Unknown>_0x17910,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x9491;0x9566;0x979f,,?,NameSpace,12 slots; slot0=0xe0b0
+F059,NameSpace.dll,0x170b8,Vft<Unknown>_0x170b8,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1223;0x122d;0x1240,,?,NameSpace,10 slots; slot0=0x131f
+F060,NameSpace.dll,0x18c60,Vft<Unknown>_0x18c60,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1209e;0x120b7;0x120e0,,?,NameSpace,10 slots; slot0=0x12ae1
+F061,NameSpace.dll,0x17508,Vft<Unknown>_0x17508,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x2fbf;0x2fe6,,?,NameSpace,3 slots; slot0=0x3159
+F062,Canvas.dll,0x285e0,Vft<Unknown>_0x285e0,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1d21a;0x1d258;0x1d2aa,,?,Canvas,124 slots; slot0=0x1d300
+F063,Canvas.dll,0x270e8,Vft<CWzStream>_0x270e8,medium,vtable-collapse+ctor-store,CWzStream,v95-family,throw-site proximity to RTTI TD,,,,0x5195;0x51da;0x520a,,CWzStream,Canvas,104 slots; slot0=0x5300
+F064,Canvas.dll,0x27364,Vft<CWzCanvas>_0x27364,medium,vtable-collapse+ctor-store,CWzCanvas,v95-family,throw-site proximity to RTTI TD,,,,0x7fe8;0x803f;0x83f2,,CWzCanvas,Canvas,68 slots; slot0=0x8100
+F065,Canvas.dll,0x27490,Vft<Unknown>_0x27490,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0xa2fb;0xa304;0xa344,,?,Canvas,41 slots; slot0=0xbad0
+F066,Canvas.dll,0x272b8,Vft<Unknown>_0x272b8,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x7108;0x718f;0x72be,,?,Canvas,34 slots; slot0=0x7230
+F067,Canvas.dll,0x28598,Vft<Unknown>_0x28598,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1918e;0x1920f;0x19759,,?,Canvas,15 slots; slot0=0xe560
+F068,Canvas.dll,0x2855c,Vft<Unknown>_0x2855c,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x188ae;0x188b7;0x188c1,,?,Canvas,9 slots; slot0=0x18a10
+F069,Canvas.dll,0x27550,Vft<Unknown>_0x27550,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0xe929;0xe932,,?,Canvas,3 slots; slot0=0xec40
+F070,ResMan.dll,0x70d0,Vft<Unknown>_0x70d0,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x139a;0x140a;0x1452,,?,ResMan,45 slots; slot0=0x1835
+F071,ResMan.dll,0x71ac,Vft<Unknown>_0x71ac,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1864;0x1872;0x1894,,?,ResMan,24 slots; slot0=0x1991
+F072,ResMan.dll,0x7088,Vft<Unknown>_0x7088,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1199;0x11a3;0x16c0,,?,ResMan,12 slots; slot0=0x125e
+F073,ResMan.dll,0x820c,Vft<Unknown>_0x820c,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x4103;0x411c;0x4145,,?,ResMan,6 slots; slot0=0x46ef
+F074,ZLZ.dll,0xd07c,Vft<Unknown>_0xd07c,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x40a3;0x40c0;0x4188,,?,ZLZ,3 slots; slot0=0x4210
+F075,Gr2D_DX8.dll,0x2e2c4,Vft<CWzRawCanvas>_0x2e2c4,medium,vtable-collapse+ctor-store,CWzRawCanvas,v95-family,throw-site proximity to RTTI TD,,,,0x2874;0x287a;0x2a30,,CWzRawCanvas,Gr2D_DX8,151 slots; slot0=0x2b84
+F076,Gr2D_DX8.dll,0x2e8b4,Vft<Unknown>_0x2e8b4,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x9651;0x965c;0x96bc,,?,Gr2D_DX8,95 slots; slot0=0xc286
+F077,Gr2D_DX8.dll,0x2d204,Vft<Unknown>_0x2d204,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x13f9;0x13ff;0x140e,,?,Gr2D_DX8,47 slots; slot0=0x14a5
+F078,Gr2D_DX8.dll,0x2d140,Vft<Unknown>_0x2d140,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1295;0x129b;0x158f,,?,Gr2D_DX8,40 slots; slot0=0x186c
+F079,Gr2D_DX8.dll,0x2e568,Vft<Unknown>_0x2e568,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x6b98;0x6b9e;0x6ba5,,?,Gr2D_DX8,38 slots; slot0=0x6c50
+F080,Gr2D_DX8.dll,0x2ea90,Vft<Unknown>_0x2ea90,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x107ad;0x107ba;0x107f4,,?,Gr2D_DX8,23 slots; slot0=0x107f1
+F081,Gr2D_DX8.dll,0x2d100,Vft<Unknown>_0x2d100,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1162;0x116c;0x117f,,?,Gr2D_DX8,10 slots; slot0=0x1239
+F082,Gr2D_DX8.dll,0x2e630,Vft<Unknown>_0x2e630,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x758a;0x7594;0x759a,,?,Gr2D_DX8,9 slots; slot0=0x7895
+F083,Gr2D_DX8.dll,0x2ea54,Vft<Unknown>_0x2ea54,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x10585;0x10783,,?,Gr2D_DX8,9 slots; slot0=0x108d9
+F084,Sound_DX8.dll,0x19738,Vft<CEnumMediaTypes>_0x19738,medium,vtable-collapse+ctor-store,CEnumMediaTypes,v95-family,throw-site proximity to RTTI TD,,,,0x5be9;0x60d3;0x60e7,,CEnumMediaTypes,Sound_DX8,225 slots; slot0=0x13f75
+F085,Sound_DX8.dll,0x19ae4,Vft<CWzSound>_0x19ae4,medium,vtable-collapse+ctor-store,CWzSound,v95-family,throw-site proximity to RTTI TD,,,,0xcbcd;0xcbd3;0xcc20,,CWzSound,Sound_DX8,95 slots; slot0=0xeaf2
+F086,Sound_DX8.dll,0x19590,Vft<CStreamSource>_0x19590,medium,vtable-collapse+ctor-store,CStreamSource,v95-family,throw-site proximity to RTTI TD,,,,0x6162;0x7b60;0x8423,,CStreamSource,Sound_DX8,72 slots; slot0=0x11f9f
+F087,Sound_DX8.dll,0x183e8,Vft<CWzSound>_0x183e8,medium,vtable-collapse+ctor-store,CWzSound,v95-family,throw-site proximity to RTTI TD,,,,0x3199;0x319f;0x31a6,,CWzSound,Sound_DX8,64 slots; slot0=0x3231
+F088,Sound_DX8.dll,0x19c90,Vft<CWzSound>_0x19c90,medium,vtable-collapse+ctor-store,CWzSound,v95-family,throw-site proximity to RTTI TD,,,,0xdecf;0xdee5;0xdeeb,,CWzSound,Sound_DX8,28 slots; slot0=0xe939
+F089,Sound_DX8.dll,0x18500,Vft<Unknown>_0x18500,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x90b7;0x90f6;0x9135,,?,Sound_DX8,27 slots; slot0=0x1146e
+F090,Sound_DX8.dll,0x18108,Vft<CWzStream>_0x18108,medium,vtable-collapse+ctor-store,CWzStream,v95-family,throw-site proximity to RTTI TD,,,,0x1027;0x1045;0x1056,,CWzStream,Sound_DX8,22 slots; slot0=0x105d
+F091,Sound_DX8.dll,0x196c8,Vft<CEnumMediaTypes>_0x196c8,medium,vtable-collapse+ctor-store,CEnumMediaTypes,v95-family,throw-site proximity to RTTI TD,,,,0x134fc;0x13502;0x13509,,CEnumMediaTypes,Sound_DX8,21 slots; slot0=0x135a0
+F092,Sound_DX8.dll,0x18368,Vft<CWzSound>_0x18368,medium,vtable-collapse+ctor-store,CWzSound,v95-family,throw-site proximity to RTTI TD,,,,0x3000;0x3006;0x300d,,CWzSound,Sound_DX8,19 slots; slot0=0x3053
+F093,Sound_DX8.dll,0x18320,Vft<CWzSound>_0x18320,medium,vtable-collapse+ctor-store,CWzSound,v95-family,throw-site proximity to RTTI TD,,,,0x2d26;0x2eda;0x2ee4,,CWzSound,Sound_DX8,11 slots; slot0=0x383b
+F094,Shape2D.dll,0xc0e0,Vft<Unknown>_0xc0e0,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1613;0x1619;0x1620,,?,Shape2D,104 slots; slot0=0x168b
+F095,Shape2D.dll,0xc2c8,Vft<Unknown>_0xc2c8,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x18ed;0x18f3;0x18fa,,?,Shape2D,85 slots; slot0=0x198c
+F096,Shape2D.dll,0xc6d0,Vft<CWzStream>_0xc6d0,medium,vtable-collapse+ctor-store,CWzStream,v95-family,throw-site proximity to RTTI TD,,,,0x3306;0x331a;0x3341,,CWzStream,Shape2D,79 slots; slot0=0x3373
+F097,Shape2D.dll,0xc468,Vft<Unknown>_0xc468,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1b8f;0x1b95;0x1b9c,,?,Shape2D,66 slots; slot0=0x1d32
+F098,Shape2D.dll,0xc5b8,Vft<CWzVector2D>_0xc5b8,medium,vtable-collapse+ctor-store,CWzVector2D,v95-family,throw-site proximity to RTTI TD,,,,0x1ec6;0x1ecc;0x1ed3,,CWzVector2D,Shape2D,65 slots; slot0=0x203d
+F099,Shape2D.dll,0xc828,Vft<CWzStream>_0xc828,medium,vtable-collapse+ctor-store,CWzStream,v95-family,throw-site proximity to RTTI TD,,,,0x4bac;0x4bc8;0x4c14,,CWzStream,Shape2D,36 slots; slot0=0x4c0c
+F100,Shape2D.dll,0xd8e8,Vft<Unknown>_0xd8e8,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x738b;0x73ae;0x73b4,,?,Shape2D,36 slots; slot0=0xab2f
+F101,Shape2D.dll,0xd9c0,Vft<CVectorAux>_0xd9c0,medium,vtable-collapse+ctor-store,CVectorAux,v95-family,throw-site proximity to RTTI TD,,,,0xa32b;0xa36a;0xa3a9,,CVectorAux,Shape2D,15 slots; slot0=0x2b11
+F102,Shape2D.dll,0xc0a0,Vft<Unknown>_0xc0a0,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x11ec;0x11f6;0x1209,,?,Shape2D,10 slots; slot0=0x12e8
+F103,Shape2D.dll,0xd980,Vft<Unknown>_0xd980,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x8eb2;0x8ee0;0x927b,,?,Shape2D,7 slots; slot0=0x9b39
+F104,Shape2D.dll,0xd9a8,Vft<Unknown>_0xd9a8,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x9946;0x995d;0x9a02,,?,Shape2D,4 slots; slot0=0x9b7d
+F105,WzMss.dll,0x243d4,Vft<Unknown>_0x243d4,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x4d63;0x4ed9;0x4f09,,?,WzMss,33 slots; slot0=0x5760
+F106,WzMss.dll,0x2445c,Vft<Unknown>_0x2445c,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x56c6;0x5717;0x5830,,?,WzMss,33 slots; slot0=0x6330
+F107,WzMss.dll,0x24718,Vft<Unknown>_0x24718,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x7eee,,?,WzMss,28 slots; slot0=0x150a6
+F108,WzMss.dll,0x24894,Vft<Unknown>_0x24894,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x8d19;0x8d21;0x8d29,,?,WzMss,12 slots; slot0=0x8dd0
+F109,WzMss.dll,0x24258,Vft<Unknown>_0x24258,low,vtable-collapse+ctor-store,,v95-family,ctor store + pointer run,,,,0x1380;0x13b0;0x1548,,?,WzMss,6 slots; slot0=0x13c0
+F110,Sound_DX8.dll,0x31ed,CWzSound::AddRef,confirmed,vtable-slot+disasm,IUnknown::AddRef,v95-family,vft 0x183e8 slot1; body = InterlockedIncrement(&this+4) via IAT 0x18000,,InterlockedIncrement,,,,CWzSound,Sound_DX8,COM base slot
+F111,Sound_DX8.dll,0x31fe,CWzSound::Release,confirmed,vtable-slot+disasm,IUnknown::Release,v95-family,vft 0x183e8 slot2; body = InterlockedDecrement(&this+4) + conditional destroy 0x31c8,,InterlockedDecrement,,,0x31c8,CWzSound,Sound_DX8,COM base slot
+F112,Sound_DX8.dll,0x3231,CWzSound::IsFormatSupported,high,vtable-slot+disasm,,v95-family,"vft 0x183e8 slot0; compares fmt->+0/+4==0, +8==0xC0, +0xC==0x46000000",,,,,,CWzSound,Sound_DX8,
+F113,Sound_DX8.dll,0x3341,CWzSound::dtor,high,vtable-slot+disasm,,v95-family,vft 0x183e8 slot4; test flag -> shared-free helper 0x2901 (ecx=0x51820028 cookie table),,,,,0x2901,CWzSound,Sound_DX8,
+F114,Canvas.dll,0x22910,CWzZlzStream::dtor,confirmed,this-task-disasm,,v95-family,if(this->stream) ZLZCloseFilter(this->stream) at 0x2294c; then base dtor 0x213a0; stores vft 0x286d4,,,,,0x213a0,CWzZlzStream,Canvas,WZ decompress bridge
+F115,Canvas.dll,0x22980,CWzZlzStream::init,confirmed,this-task-disasm,,v95-family,base init 0x21350; dispatches ZLZCreateInflator(0x22a35)/ZLZCreateDeflator(0x22a1b),,,,,ZLZ!ZLZCreateInflator;ZLZCreateDeflator,CWzZlzStream,Canvas,4-arg wrapper init

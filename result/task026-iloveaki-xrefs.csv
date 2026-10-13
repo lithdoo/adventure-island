@@ -1,0 +1,37 @@
+xref_id,module,kind,symbol_or_value,rva_or_va,referenced_from_rva,referenced_from_va,api_or_instruction,evidence,notes
+X01,ijl15.dll(stub),string,L"iloveaki.dat",0x20d8,0x1001,0x10001001,push,confirmed-static,LoadLibraryW argument in LoadRealIjl15
+X02,ijl15.dll(stub),string,ijlGetLibVersion,0x20f4,0x101d,0x1000101d,push,confirmed-static,GetProcAddress name ASCII
+X03,ijl15.dll(stub),string,ijlInit,0x2108,0x1025,0x10001025,push,confirmed-static,GetProcAddress name ASCII
+X04,ijl15.dll(stub),string,ijlFree,0x2110,0x1032,0x10001032,push,confirmed-static,GetProcAddress name ASCII
+X05,ijl15.dll(stub),string,ijlRead,0x2118,0x103f,0x1000103f,push,confirmed-static,GetProcAddress name ASCII
+X06,ijl15.dll(stub),string,ijlWrite,0x2120,0x104c,0x1000104c,push,confirmed-static,GetProcAddress name ASCII
+X07,ijl15.dll(stub),string,ijlErrorStr,0x212c,0x1059,0x10001059,push,confirmed-static,GetProcAddress name ASCII
+X08,ijl15.dll(stub),string,ZwCreateMutant,0x2138,0x110a,0x1000110a,push,confirmed-static,GetProcAddress name; consumed by call at 0x1000111b
+X09,ijl15.dll(stub),string,L"ntdll.dll",0x2148,0x110f,0x1000110f,push,confirmed-static,GetModuleHandleW argument
+X10,ijl15.dll(stub),string,L"iloveaki",0x215c,0x1129,0x10001129,push,confirmed-static,MessageBoxW title (failed path)
+X11,ijl15.dll(stub),string,L"iloveaki",0x215c,0x117a,0x1000117a,push,confirmed-static,MessageBoxW title (success path)
+X12,ijl15.dll(stub),string,L"iloveaki failed.",0x2170,0x112e,0x1000112e,push,confirmed-static,MessageBoxW body MB_ICONHAND(0x10)
+X13,ijl15.dll(stub),string,L"iloveaki success.",0x2194,0x117f,0x1000117f,push,confirmed-static,MessageBoxW body MB_ICONINFORMATION(0x40) - the Task025 modal gate
+X14,ijl15.dll(stub),iat,KERNEL32!GetModuleHandleW,0x2000,0x1106,0x10001106,call dword ptr,confirmed-static,resolves ntdll handle
+X15,ijl15.dll(stub),iat,KERNEL32!LoadLibraryW,0x2004,0x1006,0x10001006,call dword ptr,confirmed-static,loads iloveaki.dat
+X16,ijl15.dll(stub),iat,KERNEL32!GetProcAddress,0x2008,0x1023,0x10001023,call edi,confirmed-static,first of 6 uses in LoadRealIjl15
+X17,ijl15.dll(stub),iat,KERNEL32!GetProcAddress,0x2008,0x111b,0x1000111b,call dword ptr,confirmed-static,resolves ZwCreateMutant
+X18,ijl15.dll(stub),iat,KERNEL32!VirtualProtect,0x200c,0x1157,0x10001157,call edi,confirmed-static,make ZwCreateMutant+0x12 writable
+X19,ijl15.dll(stub),iat,KERNEL32!VirtualProtect,0x200c,0x1176,0x10001176,call edi,confirmed-static,restore protection after E9 write
+X20,ijl15.dll(stub),iat,USER32!MessageBoxW,0x2090,0x1134,0x10001134,call dword ptr,confirmed-static,failed dialog
+X21,ijl15.dll(stub),iat,USER32!MessageBoxW,0x2090,0x1186,0x10001186,call dword ptr,confirmed-static,success dialog - held inside DllMain (loader lock)
+X22,ijl15.dll(stub),export,ijlGetLibVersion,0x1070,0x3348,0x10003348,jmp dword ptr [slot],confirmed-static,slot filled from iloveaki.dat
+X23,ijl15.dll(stub),export,ijlInit,0x1080,0x334c,0x1000334c,jmp dword ptr [slot],confirmed-static,slot filled from iloveaki.dat
+X24,ijl15.dll(stub),export,ijlFree,0x1090,0x3350,0x10003350,jmp dword ptr [slot],confirmed-static,slot filled from iloveaki.dat
+X25,ijl15.dll(stub),export,ijlRead,0x10a0,0x3354,0x1000354,jmp dword ptr [slot],confirmed-static,slot filled from iloveaki.dat
+X26,ijl15.dll(stub),export,ijlWrite,0x10b0,0x3358,0x10003358,jmp dword ptr [slot],confirmed-static,slot filled from iloveaki.dat
+X27,ijl15.dll(stub),export,ijlErrorStr,0x10c0,0x335c,0x1000335c,jmp dword ptr [slot],confirmed-static,slot filled from iloveaki.dat
+X28,ijl15.dll(stub),code,LoadRealIjl15,0x1000,0x1101,0x10001101,call,confirmed-static,called from RepackDllMain DLL_PROCESS_ATTACH path
+X29,ijl15.dll(stub),code,AntiMutexHookStub,0x10d0,0x115e,0x1000115e,rel32 target,confirmed-static,E9 destination; add esp4/xor eax/ret 0x10
+X30,ijl15.dll(stub),code,RepackDllMain,0x10e0,0x148c,0x1000148c,call,confirmed-static,invoked by CRT _DllMainCRTStartup on DLL_PROCESS_ATTACH
+X31,ntdll.dll(Win7SP1-x86-guest),code,ZwCreateMutant,0x45648,0x4565a,0x77f0565a,patch target,confirmed-static,+0x12 = inside FOLLOWING stub ZwCreateNamedPipeFile (+0x10); misaligned on this OS
+X32,MapleStory.exe,export,ZtlTaskMemAllocImp,0x5fc19f,,,export,confirmed-static,ztl allocator export 1/3
+X33,MapleStory.exe,export,ZtlTaskMemFreeImp,0x5fc1b0,,,export,confirmed-static,ztl allocator export 2/3 (0x11 spacing)
+X34,MapleStory.exe,export,ZtlTaskMemReallocImp,0x5fc1c1,,,export,confirmed-static,ztl allocator export 3/3 (0x11 spacing)
+X35,iloveaki.dat,string,iloveaki success.,ABSENT,,,none,confirmed-static,no iloveaki/MapleStory strings in Intel library (603 strings inventoried)
+X36,ijl15.dll(stub),pdb,C:\Users\UFO\Documents\Visual Studio 2008\Projects\IJL15\Release\IJL15.pdb,0x220c,,,debug dir,confirmed-static,codeview RSDS GUID 4f3e018b-...; author alias UFO

@@ -1,0 +1,19 @@
+cms079_candidate,reference_version,reference_symbol,match_features,conflicting_features,confidence,accepted_name
+PCOM.dll!0x6411 (export),v95-family (struct),CClientSocket-independent object serialization,export name PcSerializeString; key-dword high/low routing; COM HRESULT error paths,none observed,confirmed,PcSerializeString
+PCOM.dll!0x64e3,v95-family,object serialize entity,callee of PcSerializeString; E_INVALIDARG/E_ACCESSDENIED paths; namespace object handoff,none,high,PcSerializeObjectEntity
+PCOM.dll!0x6653,v95-family,root namespace serializer,called from 0x64e3 with mode arg; namespace root semantics,none,high,PcRootNameSpaceObj
+PCOM.dll!0x74fc/0x7575,v95-family,byte transform pair,write/read symmetry in serialize chain,none,high,WzSerializeWrite/WzSerializeRead
+PCOM.dll!0x6cc7,v95-family,WZ path bootstrap,List.wz string @0x174BC; GetModuleFileNameA->dir->existence,none,medium,PcomListWzPathInit
+NameSpace.dll!0x13070,v95-family,WZ package mount,PKG1 header via stream vmethod; PKG%04x.tmp; CreateFileA attrs; retry 0xB7/0x50,none,high,WzPackageMount
+NameSpace.dll!0x13729,v95-family,WZ archive open,wide-name hash; vft 0x5080D5BB stream; PCOM late-binding loop,PcSerializeString circular import resolves,high,WzArchiveOpen
+Canvas.dll!0x22910/0x22980,v95-family,WZ decompress stream wrapper,ZLZCloseFilter in dtor; Inflator/Deflator dispatch in init; vft suffix slot of 0x285e0,none,high,CWzZlzStream dtor/init
+ZLZ.dll!0xb410/0xac50/0xb830,v95-family,ztl filter factory,mangled export names + signatures; ztl PDB lineage,none,confirmed,ZLZCreateInflator/Deflator/CloseFilter
+MapleStory.exe!0x5fc19f/0x5fc1b0/0x5fc1c1,v95-family,ztl task allocator,export names ZtlTaskMem*Imp; 0x11 spacing,none,confirmed,ZtlTaskMemAlloc/Free/ReallocImp
+CWzStream/CWzProperty/CWzList/CWzUOL (PCOM RTTI),v95-family,WzObject hierarchy,type descriptors + throw-site clusters + vft 0x13110 79-slot/0x13440 67-slot,v95 uses CWvs* prefix for app-layer not Wz-layer,high (class existence) / medium (per-vtable link),CWzStream/CWzProperty/CWzList/CWzUOL
+CWzNameSpace/CWzFileSystem/CWzPackage/CWzArchive/CWzRawArchive/CArchiveSource (NameSpace RTTI),v95-family,WzNameSpace layer,type descriptors + vft 0x1775c 58-slot + 0x18940 59-slot,same,high (existence) / medium (vtable link),as named
+CWzCanvas/CWzDIBRawCanvas/CWzFont/CWzClipToken (Canvas RTTI),v95-family,WzCanvas layer,type descriptors + vft 0x27364 68-slot + ZLZ import usage,same,high (existence) / medium (vtable link),as named
+CWzGr2DLayer/CWzRawCanvas (Gr2D_DX8 RTTI),v95-family,D3D8 canvas layer,type descriptors + vft 0x2e2c4 151-slot,same,high (existence) / medium (vtable link),as named
+CWzSound + CWzSoundStateDA/DS/Mute + CStream* (Sound_DX8 RTTI),v95-family,WzSound layer,type descriptors + vft 0x183e8 64-slot / 0x19738 225-slot / 0x19ae4 95-slot; ACM/PCM classes,same,high (existence) / medium (vtable link),as named
+CWvsApp/CClientSocket/CLogin/CWvsContext singletons,GMS95,v95 seeds (19 rows),CMS079-local evidence still absent (exe interior encoded),all seeds status=unmatched,not-applicable-yet,none (blocked - see blocker B05)
+Maple AES key/IV/seed anchors,Task002 server constants,crypto constants,not found in any decoded client buffer (0x862000+ unresolved),anchors absent so far,not-applicable-yet,none (blocked - B05)
+ijl15.dll(stub) repack layer,none (no v95 counterpart),-,repack-added code absent from v95,-,confirmed (CMS079-local static),RepackDllMain/LoadRealIjl/AntiMutexHookStub

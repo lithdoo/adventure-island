@@ -1,0 +1,13 @@
+run_id,stack,attach_order,client_letter,xfer_letter,gate_touches,xfer_state,outcome,evidence,notes
+T26F1,T026,usb-attach(2s),F:,G:,full (iloveaki hash + dir walk),Procmon+T025OUT present,game ran; observer crashed 1.3s post-PCA; game outcome unrecorded,ps-stdout stops at PCA click,v1 observer bug
+T26F2,T026,usb-attach(2s),G:,F:,full,Procmon+T025OUT present,clean G:-spin 480s; observer OK,ps-stdout; DONE 02:01,v2 observer validated
+T26F3,T026,clientwait(45s),F:,G:,full,Procmon+T025OUT present,F:-SPIN (letter counterexample),proc/threads CSV (47%/53% init-thread),falsifies Task025 letter determinism
+T26F4,T026,usb-attach(2s; Task025-exact),F:,G:,full,Procmon+T025OUT present,F:-SPIN with Task025-exact attach,proc CSV; identical window set to A1R2,enumeration-wave theory falsified
+T26F5,T026,usb-attach(2s),-,-,-,-,LAUNCH FAILED (OCR false positive on typed command text),no ALIVE/DONE at all,flaky UAC approval
+T26F6,T026,usb-attach(2s),G:,F:,none (NoTouchGate),cleaned (no Procmon),G:-spin (uninformative re: hypothesis),observer log xfer=F: game=G:,mount race flipped; letter rule predicts spin anyway
+T26F7,T026,clientwait(45s),F:,G:,none (NoTouchGate),cleaned (no Procmon),F:-SPIN with clean xfer + no-touch,proc CSV linear CPU,Procmon/observer-touch theory falsified
+C1,T025-exact,usb-attach(2s),-,-,-,-,LAUNCH FAILED (no T025GO ALIVE entries),ALIVE contains only T26F7 leftovers,~30% launch flakiness
+C2,T025-exact CONTROL,usb-attach(2s),F:,-,none,T025 re-staged files,F:-SPIN — ENVIRONMENT REGRESSION CONFIRMED,proc.csv CPU 0.062->15.6s linear; WS 5104 const; no window; .work/task-025/runs/C2,"the exact stack that gated 6/6 at 01:53 now spins -> gate closed for all safe stacks; Stop C"
+A1R2/A2R1/A3R1/A2E,T025,usb-attach(2s),F:,-,none,Task024 dumps only,iloveaki gate 6/6 (historical),result/25-*,reference successes
+A1R1/A1R3/A1P/A1P2/A1E,T025,usb-attach-xferfirst,G:,-,none,A1P/A1P2 additionally staged Procmon,spin 5/5 (historical),result/25-*,A1P/A1P2 spin had TWO stacked factors (G: + Procmon)
+Task024,T024,bare (no observer),F:,-,-,no xfer attached,spin (historical),result/24-*,separate parent/elevation switch
