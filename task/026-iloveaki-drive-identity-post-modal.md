@@ -1,39 +1,157 @@
-# Task 026 — iloveaki Repack Layer / Drive-Identity Isolation / Post-Modal Progression
+# Task 026 — Game Runtime Recovery Campaign
 
-## 0. Purpose
-
-Continue from Task 025 and close the three largest remaining uncertainties before returning to the deeper MapleStory game-runtime boundary.
-
-Task 025 established several high-confidence facts:
-
-- Program Compatibility Assistant is a message-only `MINORPROBLEM` path and is not the post-click blocker.
-- Bare launch, `MapleStory.exe 127.0.0.1 9555`, and the original launcher batch behave equivalently when the surrounding environment is held constant.
-- One controlled runtime outcome is a long single-threaded CPU-active spin with no continuing target-PID-attributed file/registry activity and no game-side modules.
-- Another controlled runtime outcome loads the repack-side `iloveaki.dat`, `ijl15.dll`, `MSVCR90.dll`, and related Windows libraries, then stops at the repack-owned modal dialog `iloveaki` / `iloveaki success.`.
-- In the Task 025 matrix, those two outcomes correlate perfectly with the client volume appearing as `G:` versus `F:`.
-- However, Task 025 changed USB attach/mount ordering to obtain the two letters, so drive letter was not isolated from volume enumeration/device-order state.
-- A historical Task 024 run also produced the spin while the client was on `F:`, under a different parent/elevation path. That means at least one second variable may exist.
-- The success dialog was intentionally not dismissed, so the post-`iloveaki` path into PCOM/NameSpace/Winsock remains unknown.
-- `result/task025-launch-matrix.csv` has a schema/data ordering defect that must be repaired before using it as machine-readable input.
-
-This task therefore has four primary goals:
-
-1. **Repair Task 025 data quality** without inventing values.
-2. **Isolate drive letter from volume/device identity** using the same client virtual disk, the same VM device topology, the same launch command, and ordinary Windows volume-letter assignment only.
-3. **Isolate the historical elevation/parent-process exception** using a controlled drive-letter × launch-parent matrix.
-4. **Characterize the on-disk `iloveaki.dat` repack layer and observe what naturally happens after clicking its own `确定` button exactly once.**
-
-If the post-modal path naturally reaches PCOM/NameSpace/Winsock, the task may proceed into a private-network 9555 observation phase. If it does not, stop at the next naturally visible boundary.
-
-This is a compatibility / reverse-engineering characterization task. It is **not** a protection-bypass task. Do not patch branches, spoof environment-query return values, hide instrumentation, disable security enforcement, inject code, or dump protected process memory.
+> This task **supersedes the earlier fine-grained Task 026 plan** while keeping the same task number and file path for continuity.
+>
+> The goal is no longer to spend an entire task proving one environmental variable at a time. Drive-letter, UAC/parent-path, `iloveaki`, PCA, and Win7 compatibility questions are now **subproblems**. The campaign objective is to cross the remaining loader/repack boundary and begin sustained recovery of MapleStory game-runtime code, classes, functions, and startup/login logic.
 
 ---
 
-## 0.1 Repository synchronization gate
+## 0. Mission
+
+Task 026 is a **long-running exploratory reverse-engineering campaign**.
+
+The primary question is:
+
+> Can we get from the currently observed `iloveaki`/protector/repack boundary into the real Wizet/MapleStory runtime, and once there, recover enough stable function/class/call-chain anchors that code-logic reconstruction becomes a continuous process rather than isolated loader research?
+
+The task is successful if it materially advances toward that goal, even if individual hypotheses such as `F:` vs `G:` turn out to be wrong.
+
+The local AI is expected to work autonomously for a multi-hour session, branch into sub-experiments when useful, abandon low-value branches quickly, preserve evidence, and continuously update a single coherent recovery picture.
+
+Do **not** stop after one interesting observation and do **not** turn every small uncertainty into a new task.
+
+---
+
+## 0.1 Current starting point
+
+Treat the following as the current evidence baseline, not as assumptions that must be defended:
+
+- canonical `MapleStory.exe` SHA-256:
+
+```text
+5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d
+```
+
+- Task 024 established that both Win7 x64 RTM and Win7 x86 SP1 can start the client naturally but do not reach game runtime in the original baseline runs.
+- Task 025 established that Program Compatibility Assistant is a message-only `MINORPROBLEM` path and is not the dominant post-click blocker.
+- Bare launch, `MapleStory.exe 127.0.0.1 9555`, and the original launcher batch were equivalent under the same controlled environment.
+- Task 025 found two stable post-PCA outcomes:
+  - a CPU-active spin with only early system modules;
+  - a loader-success path that maps `iloveaki.dat`, `ijl15.dll`, `MSVCR90.dll`, related Windows libraries, and then shows `iloveaki` / `iloveaki success.`.
+- In Task 025, those outcomes correlated with client-volume/mount conditions that presented as `G:` vs `F:`, but the exact causal variable is not yet proven.
+- Task 024 contains an historical `F:` spin under a different parent/elevation path, so drive letter alone must not be assumed causal.
+- Neither Task 024 nor Task 025 naturally reached:
+
+```text
+PCOM.dll
+NameSpace.dll
+Canvas.dll
+ResMan.dll
+ZLZ.dll
+Gr2D_DX8.dll
+Sound_DX8.dll
+ws2_32.dll
+9555
+```
+
+- Existing static work has already recovered a substantial protector chain including T1/T2/T3, round1/round2/round3 producers, resolver logic, SoftICE probes, command-line decoders, Oreans/WinLicense-related strings/logic, and the unresolved `0x862000+` mixed encoded/plaintext region.
+- Existing WZ/resource work is mature enough that WZ format research is no longer the main blocker.
+- Existing server/protocol work already identifies login/channel/cashshop ports and the CMS079 handshake/encryption model.
+
+Task 026 must build on this state rather than repeat it.
+
+---
+
+## 0.2 Campaign philosophy
+
+This task uses **hard milestones**, not micro-task completion.
+
+The local AI may choose whatever sequence of safe static and passive dynamic techniques gives the best information gain.
+
+Do not spend hours proving an environmental variable if the real game runtime can already be reached another way.
+
+Do not continue an experiment merely because it was planned if evidence shows it is low value.
+
+Prefer:
+
+```text
+cross boundary
+→ identify stable anchors
+→ recover functions/classes
+→ reconstruct startup/login logic
+```
+
+over:
+
+```text
+perfectly characterize every compatibility quirk
+→ still no game code
+```
+
+---
+
+## 0.3 Exploration time budget
+
+Target one sustained exploration session of approximately **4–8 hours** if the environment remains usable.
+
+Use the budget roughly as follows, but adapt when evidence warrants:
+
+```text
+<= 10%   repository/data hygiene
+<= 15%   environment/drive/UAC causal cleanup
+20–30%   iloveaki/repack boundary + post-modal progression
+40–60%   game-runtime/code recovery once a useful boundary is crossed
+```
+
+If a game-runtime milestone is reached early, immediately shift the majority of time into code recovery.
+
+Do not spend more than ~60 minutes total on `F:`/`G:`/UAC mechanics unless that work is directly required to reproduce the only known progression path.
+
+---
+
+## 0.4 Safety / research boundary
+
+This is an authorized local compatibility/reverse-engineering task on the user's own sample.
+
+Allowed:
+
+- offline PE/static analysis;
+- disassembly/decompilation of local on-disk files;
+- static transformation/replay of already-understood decode algorithms against the original local sample;
+- string/xref/RTTI/vtable/import/export analysis;
+- ordinary process/module/thread/window enumeration;
+- passive ETW/event/file/registry/network observation;
+- normal application UI actions such as clicking `Run program` or the application's own `确定` button;
+- controlled private-network testing against the user's local CMS079 server;
+- cross-version/reference correlation using repository-provided symbols and references;
+- building project-owned scripts that normalize or correlate findings.
+
+Forbidden:
+
+- patching `MapleStory.exe`, `iloveaki.dat`, or protection logic;
+- flipping branches/NOPing checks;
+- anti-debug bypass;
+- debugger concealment;
+- fake SoftICE/Oreans devices;
+- spoofing API/environment return values;
+- DLL injection;
+- runtime API hooks used to alter behavior;
+- kernel patches;
+- driver-signature bypass/test-signing for the purpose of forcing old drivers;
+- VM/hypervisor concealment;
+- process-memory dumps of decrypted/protected executable code;
+- extracting protected code through `ReadProcessMemory`;
+- force-writing environment values solely to make a protection check pass.
+
+If progress requires one of these prohibited techniques, stop that branch and record the boundary.
+
+---
+
+# 1. Repository synchronization gate
 
 Start from a clean, current `origin/main`.
 
-From the repository root:
+From repository root:
 
 ```text
 git status --short
@@ -42,7 +160,17 @@ git remote -v
 git rev-parse HEAD
 ```
 
-If tracked/uncommitted changes exist, stop and report the blocker. Do not stash, reset, restore, rebase, or overwrite user changes.
+If tracked/uncommitted changes exist, stop and report the blocker.
+
+Do not automatically:
+
+```text
+git stash
+git reset
+git restore
+git checkout -- .
+git rebase
+```
 
 Then:
 
@@ -50,20 +178,30 @@ Then:
 git fetch origin
 ```
 
-If clean and not on `main`, switch to `main`, then:
+If clean and not on `main`:
+
+```text
+git switch main
+```
+
+Then:
 
 ```text
 git pull --ff-only origin main
 git rev-parse HEAD
 ```
 
-Record the resulting SHA as `STARTING_HEAD`.
+Record this as:
 
-If a clean fast-forward is not possible, stop. Do not rewrite history.
+```text
+STARTING_HEAD
+```
+
+If clean fast-forward is impossible, stop rather than rewriting history.
 
 ---
 
-## 0.2 Directory and artifact contract
+# 2. Directory / artifact contract
 
 ```text
 .raw/
@@ -73,18 +211,18 @@ task/
     task specifications
 
 .work/task-026/
-    all VM-side raw logs, ETW/EVT/PML traces, screenshots, temporary exports,
-    static-analysis databases, third-party tool copies, one-off harnesses,
-    mount/volume experiments, and large intermediate data
+    all scratch analysis, VM raw logs, decompiler databases, ETW/EVTX/PCAP,
+    copied third-party tools, temporary extracted metadata, static-analysis output,
+    one-off scripts, experiment traces, and large intermediate datasets
 
 result/
-    permanent Task 026 findings and compact normalized CSV/Markdown outputs
+    compact permanent findings, normalized CSV, Markdown, function/class maps
 
 scripts/
-    only reusable project-owned observation/static-analysis helpers
+    reusable project-owned tooling only
 
 glm-work/
-    prior-research reference only; do not place Task 026 final outputs here
+    prior research reference; do not use as the final Task 026 result directory
 ```
 
 Recommended scratch layout:
@@ -93,28 +231,35 @@ Recommended scratch layout:
 .work/task-026/
 ├── preflight/
 ├── task025-repair/
-├── static-iloveaki/
-├── volume-identity/
-├── matrix/
-│   ├── F-elevated/
-│   ├── G-elevated/
-│   ├── F-normal-parent/
-│   └── G-normal-parent/
-├── post-modal/
-├── events/
-├── modules/
-├── threads/
+├── iloveaki/
+├── runtime/
+├── static-main/
+├── reference-correlation/
+├── functions/
+├── classes/
+├── callgraphs/
 ├── network/
+├── traces/
 └── logs/
 ```
 
-Never commit VM disks, snapshots, EXE/DLL/SYS/VXD/DAT binaries, raw PML/ETL/EVTX/PCAP, debugger databases, screenshots containing private host details, or third-party binaries.
+Never commit:
+
+- original EXE/DLL/SYS/VXD/DAT/WZ files;
+- VM images/snapshots;
+- process dumps;
+- decrypted executable/code blobs;
+- raw PML/ETL/EVTX/PCAP;
+- debugger/decompiler databases;
+- third-party binaries/source trees;
+- large raw JSON/tree dumps;
+- screenshots containing private host/environment details.
 
 ---
 
-## 1. Mandatory reading
+# 3. Mandatory reading
 
-After synchronization, read at least:
+After synchronization, read the latest versions of at least:
 
 ```text
 README.md
@@ -124,17 +269,18 @@ result/25-win7-post-pca-runtime-localization.md
 result/task025-launch-matrix.csv
 result/task025-appcompat-evidence.md
 result/task025-thread-summary.md
-result/task025-repeated-operations.csv
-result/task025-static-runtime-correlation.md
 result/task025-module-timeline.csv
 result/task025-event-timeline.csv
+result/task025-repeated-operations.csv
+result/task025-static-runtime-correlation.md
 scripts/maple079_runtime_observe.ps1
 ```
 
-Also read the relevant static chain:
+Static/protector chain:
 
 ```text
 result/04-static-loader-dataflow.md
+result/05-stage2-pe-scan-correlation.md
 result/06-stage2-inplace-decode.md
 result/07-protector-resolver-antidebug.md
 result/08-winlicense-reference-normal-path.md
@@ -144,494 +290,329 @@ result/10-post-probe-stage.md
 result/10b-static-extension.md
 ```
 
-And the latest Task 012/012c material about the `0x862000+` mixed encoded/plaintext region.
-
-Canonical `MapleStory.exe` SHA-256 remains:
+Also read the latest Task 012/012c findings concerning:
 
 ```text
-5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d
+0x862000+
+mixed plaintext/encoded islands
+decoder-C search boundary
 ```
 
-Do not reuse prior RVA or runtime conclusions if the guest copy differs.
+Resource/runtime references:
+
+```text
+result/19-wizet-dlls.md
+result/20-wz-inventory.md
+result/23-wz-library-cross-validation.md
+```
+
+Server/network baseline:
+
+```text
+result/01-server-baseline.md
+result/02-runtime-network-bootstrap.md
+result/03-compatibility-passive-capture.md
+```
+
+Read any repository-provided v95/reference symbol/function-family seed material that is intended for CMS079 correlation.
+
+Do not copy reference addresses into CMS079. Use reference material only for names, signatures, class/function relationships, strings, and structural hypotheses.
 
 ---
 
-## 2. Phase 0 — Repair Task 025 machine-readable artifacts
+# 4. Phase 0 — Fast hygiene only
 
-Before new experiments, repair the known Task 025 CSV defect.
+Task 025 contains a known `task025-launch-matrix.csv` schema/data ordering defect.
 
-### 2.1 `task025-launch-matrix.csv`
+Repair it early, but **time-box this work to ~30 minutes**.
 
-The current header interleaves fields as:
-
-```text
-cpu_s_at_10
-ws_kb_at_10
-threads_at_10
-cpu_s_at_30
-...
-```
-
-but the current rows appear to contain grouped blocks:
-
-```text
-cpu10,cpu30,cpu60,cpu120,
-ws10,ws30,ws60,ws120,
-threads10,threads30,threads60,threads120
-```
-
-Do not repair by visual guess alone.
-
-Use the preserved raw Task 025 run outputs under `.work/task-025/` if available and/or regenerate values from `task025-thread-activity.csv`, process/window records, and the observer's source logic.
+Use preserved raw evidence where available. Do not invent values.
 
 Requirements:
 
-- determine the intended canonical schema;
-- verify at least three representative runs manually against raw evidence;
-- repair `result/task025-launch-matrix.csv` in place if the intended values can be proven;
-- check the A3 working-directory corruption/truncation (`Ma\\ ...`) and repair only if supported by raw evidence;
-- add a short correction note to `result/25-win7-post-pca-runtime-localization.md` rather than rewriting the historical narrative;
-- if a value cannot be proven, write blank/unknown rather than inventing it.
-
-Generate a short audit note:
+- correct the CPU/WS/thread field ordering if proven;
+- correct the A3 working-directory field if proven;
+- verify at least one spin run and one `iloveaki` run against raw evidence;
+- append a short correction/refinement note to the Task 025 report rather than rewriting its historical observations;
+- create:
 
 ```text
 result/task026-task025-data-repair.md
 ```
 
-It must state exactly what was wrong, what evidence was used, and which rows/columns changed.
+If raw evidence is insufficient, mark uncertain fields `unknown` and move on.
+
+This repair is housekeeping, not the campaign goal.
 
 ---
 
-## 3. Primary experimental environment
+# 5. Milestone model
 
-Use the existing Windows 7 Professional SP1 x86 guest as the main environment:
+Track progress using the following hard milestones.
+
+## M0 — Reproducible known baseline
+
+At least one known Task 025 outcome can be reproduced on the current Win7 x86 SP1 VM with the canonical executable hash.
+
+## M1 — Reproducible `iloveaki` success gate
+
+The client reliably reaches:
 
 ```text
-6.1.7601
-x86
+iloveaki.dat loaded
+→ iloveaki success.
 ```
 
-Use the existing clean snapshot if still intact. Do not reinstall the OS unless the VM is no longer reproducible.
+under a documented environment.
 
-For all causal-isolation runs:
+## M2 — Post-modal boundary crossed
 
-- same VM image;
-- same QEMU version;
-- same machine/cpu/memory options;
-- same client virtual disk image;
-- same client-disk device/controller slot;
-- same USB/device attach order;
-- same transfer/logging mechanism;
-- same client files and hashes;
-- same launch command;
-- same working directory;
-- same observer build/version;
-- same PCA interaction;
-- same network state.
+After clicking the application-owned `确定` button once, the process naturally progresses to a new stable state.
 
-Only the variable explicitly named by the experiment may change.
+This can be:
+
+- a new module set;
+- a new dialog/error;
+- another loader stage;
+- game-runtime initialization;
+- a process transition;
+- Winsock/network initialization.
+
+## M3 — First real Wizet/MapleStory runtime anchor
+
+At least one of the following becomes confirmed-runtime or is otherwise reached through a defensible static/runtime boundary:
+
+```text
+PCOM.dll
+NameSpace.dll
+Canvas.dll
+ResMan.dll
+ZLZ.dll
+Gr2D_DX8.dll
+Sound_DX8.dll
+```
+
+or an equivalent clearly game-side code boundary is identified.
+
+## M4 — Network runtime reached
+
+At least one of:
+
+```text
+ws2_32.dll loaded
+socket/connect attempt
+9555 connection attempt
+server accept
+```
+
+is observed naturally.
+
+## M5 — Function/class recovery baseline
+
+At least **20 high-confidence game-side function/class anchors** are recovered with evidence and placed in a reusable symbol/function map.
+
+## M6 — Startup/login logic chain
+
+A defensible high-level chain is reconstructed from game startup toward login/network handling, with named or provisionally named functions/classes and evidence links.
+
+The campaign should keep moving toward the highest reachable milestone.
 
 ---
 
-## 4. Sample identity gate — client volume and repack files
+# 6. Priority rule: cross the `iloveaki` gate first
 
-Before experiments, hash inside the guest or from the same attached client volume:
+The highest immediate-value experiment is no longer another long PCA study.
+
+Use the shortest reproducible route from Task 025 to reach:
 
 ```text
-MapleStory.exe
-iloveaki.dat
-ijl15.dll
-单机登陆器.bat
+iloveaki success.
 ```
 
-Also hash any repack-side DLL or data file that static analysis later identifies as directly imported/loaded by `iloveaki.dat`.
+If the previous `F:`/mount/elevated-parent configuration still reproduces it, use that as the working path.
+
+Do not spend the entire task proving why that environment works before observing what happens next.
+
+Once the `iloveaki` dialog is stable:
+
+1. capture pre-click module/process/thread/window state;
+2. click the application's own `确定` button **exactly once**;
+3. do not automatically dismiss subsequent dialogs;
+4. observe for at least 120 seconds or until a clear new stable boundary appears;
+5. repeat at least once if the outcome is important and reproducible.
+
+Allowed because this is a normal application UI action, not a patched/bypassed branch.
+
+Generate a time-normalized post-modal timeline.
+
+---
+
+# 7. Environmental causal cleanup is subordinate
+
+The `F:`/`G:` and parent/elevation questions remain useful, but they are no longer the main deliverable.
+
+Spend at most ~60 minutes total unless they are necessary to obtain M1/M2 reproducibly.
+
+If useful, perform a compact controlled matrix:
+
+```text
+same client volume/device topology
+same launch command
+same observer
+same network state
+only logical drive letter changed
+```
+
+and/or:
+
+```text
+same client volume/letter
+same command
+same observer
+only parent/elevation launch path changed
+```
+
+Record enough to classify the Task 025 correlation as:
+
+```text
+letter-causal
+mount/device-causal
+parent/elevation-causal
+co-causal
+still-unknown
+```
+
+Do not continue beyond what is needed to make the runtime path reproducible.
+
+Output, if actually executed:
+
+```text
+result/task026-environment-matrix.csv
+```
+
+The absence of perfect causal isolation does not block later campaign phases if a stable progression path is available.
+
+---
+
+# 8. Offline `iloveaki.dat` analysis
+
+Analyze the unchanged local on-disk `iloveaki.dat` as a PE/module.
 
 Record:
-
-```text
-relative_path
-size
-sha256
-PE/non-PE
-```
-
-Output:
-
-```text
-result/task026-repack-file-manifest.csv
-```
-
-`MapleStory.exe` must match the canonical SHA above.
-
-Do not commit the binaries.
-
----
-
-## 5. Volume/device identity baseline
-
-Task 025 correlated outcome with `F:` versus `G:` but changed attach order. Task 026 must measure and hold all non-letter volume identity fields constant.
-
-For the client volume record, where ordinary Windows tools expose them:
-
-```text
-volume GUID path
-filesystem
-volume label
-volume serial number
-logical drive letter
-disk index
-partition index / offset
-filesystem size
-free space
-PnP/device identity
-controller/device slot visible to the guest
-mount-manager mappings
-```
-
-Use built-in read-only tools where practical (`mountvol`, WMI/WMIC, `fsutil fsinfo`, registry reads of MountedDevices if needed).
-
-Do not modify:
-
-- partition contents;
-- filesystem serial number;
-- volume label;
-- disk signature;
-- client files.
-
-The only intended state change in the drive-letter experiment is the ordinary Windows logical-drive-letter assignment.
-
-Output:
-
-```text
-result/task026-volume-identity.csv
-```
-
----
-
-## 6. Phase A — True single-variable drive-letter A/B/A/B test
-
-Use the **same client virtual disk attached in the same device position and order** for every run.
-
-Do not obtain F:/G: by swapping USB attach order.
-
-Instead, after restoring the same clean snapshot and attaching the client disk identically, use ordinary Windows volume-management functionality to assign that same volume the required logical letter.
-
-Do not spoof API returns. Do not patch the client. Do not alter the filesystem.
-
-Preferred launch command for all Phase-A runs:
-
-```text
-MapleStory.exe 127.0.0.1 9555
-```
-
-Working directory: client root.
-
-Guest network remains disconnected.
-
-Use the same elevated-observer launch model that produced the controlled Task 025 success path.
-
-Minimum sequence:
-
-```text
-A-F1  -> same volume assigned F:
-A-G1  -> same volume assigned G:
-A-F2  -> same volume assigned F:
-A-G2  -> same volume assigned G:
-```
-
-Prefer a third repeat pair if time is reasonable:
-
-```text
-A-F3 / A-G3
-```
-
-For each run:
-
-- restore the same clean snapshot;
-- attach devices identically;
-- verify the client volume's GUID/serial/device identity;
-- assign only the logical drive letter;
-- re-hash MapleStory.exe and iloveaki.dat;
-- launch with the exact same command/working directory;
-- dismiss PCA using the ordinary `Run program` action exactly once;
-- observe for at least 60 seconds or until the `iloveaki` dialog is stable.
-
-Record:
-
-```text
-PCA timing
-CPU curve
-thread curve
-module timeline
-window timeline
-iloveaki.dat loaded?
-iloveaki success dialog?
-ws2_32?
-PCOM?
-NameSpace?
-process exit?
-```
-
-Output:
-
-```text
-result/task026-drive-letter-ab.csv
-```
-
-### Phase-A interpretation
-
-Only call **drive letter itself causal** if:
-
-- client volume GUID/serial/device identity remain identical;
-- QEMU/device topology remains identical;
-- parent/elevation path remains identical;
-- F and G outcomes alternate reproducibly with letter assignment alone.
-
-If outcomes do not track the letter under these controls, Task 025's result must be reclassified as a broader mount/enumeration correlation.
-
----
-
-## 7. Phase B — Parent/elevation-path matrix
-
-Task 024 contains a historical exception: client on F: but spin outcome under a non-elevated parent followed by UAC elevation. Task 025's F: success came from the controlled elevated-observer launch path.
-
-Test that second variable directly.
-
-Use the same client disk/device identity and a fixed drive letter, preferably F: first.
-
-Two launch models:
-
-### B-E — elevated-parent/direct launch
-
-The already-proven Task 025 model: observer/launcher is already elevated and directly creates MapleStory.
-
-### B-U — ordinary-parent / natural UAC launch
-
-Start MapleStory from an ordinary non-elevated shell or equivalent user launch so its normal `requireAdministrator` behavior invokes UAC.
-
-The passive observer may already be elevated and running separately, but in B-U it must **not be MapleStory's parent** and must not alter the target.
-
-Record:
-
-```text
-actual parent PID/image
-parent integrity/elevation state where ordinary APIs expose it
-whether consent/UAC appears
-MapleStory PID
-post-elevation parent relationship
-PCA timing
-runtime outcome
-```
-
-Do not suppress UAC or modify the executable manifest.
-
-Minimum controlled matrix:
-
-```text
-F + elevated parent      >= 2 runs
-F + ordinary parent/UAC  >= 2 runs
-```
-
-If Phase A confirms a true F/G letter effect and time permits, complete the 2×2 matrix:
-
-```text
-G + elevated parent
-G + ordinary parent/UAC
-```
-
-Output:
-
-```text
-result/task026-parent-elevation-matrix.csv
-```
-
-Goal: explain the Task 024 F:-spin historical exception or explicitly leave it unresolved.
-
----
-
-## 8. Phase C — Offline static characterization of `iloveaki.dat`
-
-`iloveaki.dat` is an on-disk local sample loaded as a PE module in the Task 025 success path. Analyze the file **offline**.
-
-Do not use process-memory dumping or runtime unpacking.
-
-Record at minimum:
 
 ```text
 size
-sha256
-PE machine/type
-image base
+SHA-256
+machine/type
+preferred image base
 entry point RVA
-section table
-section permissions
-section entropy
+sections
+permissions
+entropy
 imports
 exports
 resources
-TLS callbacks if any
-load config / relocations
-PDB/debug path if present
+TLS callbacks
+relocations
+load config
+debug/PDB path
 version info
-Authenticode status
+signature status
 compiler/runtime hints
 ```
 
-Identify whether it is:
-
-- ordinary DLL renamed `.dat`;
-- statically linked wrapper;
-- packed/obfuscated wrapper;
-- mixed data/code container.
-
-If the file is packed/protected, characterize that fact and the visible surface. Do not escalate into protection bypass, runtime dumping, or patching.
-
-Output:
-
-```text
-result/task026-iloveaki-static.md
-result/task026-iloveaki-pe.csv
-result/task026-iloveaki-imports.csv
-```
-
-A reusable metadata/xref helper may be added under `scripts/` if it contains only project-owned static-analysis logic.
-
----
-
-## 9. Phase D — `iloveaki` strings and call-site mapping
-
-Search the on-disk `iloveaki.dat` for ASCII/UTF-16 strings and relevant references.
-
-Mandatory strings/semantic anchors:
+Search/xref:
 
 ```text
 iloveaki
 success
 success.
 MapleStory
-F:\
-G:\
-volume
-logical drive
-mount
-serial
 ```
 
-Also inspect references to ordinary environment/volume APIs if present, such as families equivalent to:
+and any actual path/volume/environment-related strings or APIs present.
+
+Map the `iloveaki success.` call site if possible:
 
 ```text
-GetModuleFileName*
-GetCurrentDirectory*
-GetFullPathName*
-GetLogicalDriveStrings*
-GetLogicalDrives
-GetDriveType*
-GetVolumeInformation*
-GetVolumeNameForVolumeMountPoint*
-QueryDosDevice*
-GetDiskFreeSpace*
-RegOpen*/RegQuery*/RegEnum*
-CreateFile*
-DeviceIoControl
+string RVA
+referencing function
+message/dialog API or wrapper
+nearby condition(s)
+callers/callees
+return path after dialog dismissal
 ```
 
-The exact import names may differ or be dynamically resolved. Record only what the file actually contains.
+Use static disassembly/decompilation of the disk file only.
 
-For the `iloveaki success.` message, locate the static reference/call site if possible and map:
+Do not patch branches or produce a bypass binary.
 
-```text
-function containing the message reference
-callers/callees at a high level
-nearby condition checks
-nearby environment/volume queries
-message-box API or wrapper
-what return path follows after dialog dismissal
-```
-
-Allowed: static disassembly/decompilation of the on-disk module.
-
-Forbidden: patching the condition, forcing the success branch, modifying the module, or providing a binary bypass.
-
-Output:
+Outputs:
 
 ```text
+result/task026-iloveaki-static.md
 result/task026-iloveaki-xrefs.csv
 result/task026-iloveaki-controlflow.md
 ```
 
-If static tooling cannot resolve a branch confidently, label it `unknown` rather than guessing.
+This track should run in parallel with post-modal runtime observation rather than delaying it.
 
 ---
 
-## 10. Phase E — Correlate static `iloveaki` findings with Phase A/B
+# 9. Post-modal runtime campaign
 
-Build a correlation table:
-
-```text
-static API/string/check candidate
-static function/RVA
-what environment property it appears to query
-Phase-A F result
-Phase-A G result
-Phase-B elevation result
-runtime evidence supporting/refuting relevance
-confidence
-```
-
-Do not claim that a branch is the runtime cause solely because its strings look relevant.
-
-A strong causal claim requires both:
-
-- a static check whose semantics match the changing variable; and
-- a controlled runtime A/B result that changes only that variable.
-
-Output:
+For every successful M1 run, record before and after the single `确定` click:
 
 ```text
-result/task026-iloveaki-runtime-correlation.csv
-```
-
----
-
-## 11. Phase F — Post-modal progression: click `iloveaki` OK exactly once
-
-This phase is allowed only after reproducing the normal F-like loader-success path from a clean snapshot.
-
-Use the most controlled successful environment established by Phase A/B.
-
-Sequence:
-
-1. launch the canonical client with the fixed chosen command;
-2. dismiss PCA with ordinary `Run program`;
-3. wait until the repack-owned `iloveaki` dialog is confirmed with body `iloveaki success.`;
-4. record a pre-click process/module/thread/window snapshot;
-5. click its ordinary `确定` button **once**;
-6. perform no further automatic UI actions for at least the next 120 seconds;
-7. observe the next natural boundary.
-
-Clicking this application-owned confirmation button is ordinary UI progression, not a patch/bypass. Do not auto-dismiss any later error/protection dialog without first recording it and deciding whether it is within task scope.
-
-Collect a high-resolution timeline around the click:
-
-```text
-t_iloveaki_shown
-t_ok_clicked
-CPU/thread changes
-module first-seen events
-window creation/destruction
-child processes
-HSUpdate/ASPLnchr
-PCOM/NameSpace/Canvas/ResMan/ZLZ
-Gr2D_DX8/Sound_DX8
-ws2_32/wininet
+relative time
+PID/parent/children
+CPU
+thread count/states
+window class/title
+module first-seen times
 service/driver side effects
-process exit or next modal boundary
+network socket state
+process exit
+next dialog/error
 ```
 
-Repeat the post-modal run at least twice if the first result is stable and reproducible.
+Mandatory module watch list:
 
-Output:
+```text
+iloveaki.dat
+ijl15.dll
+MSVCR90.dll
+PCOM.dll
+NameSpace.dll
+Canvas.dll
+ResMan.dll
+ZLZ.dll
+Gr2D_DX8.dll
+Sound_DX8.dll
+ehsvc.dll
+AspINet.dll
+ws2_32.dll
+wininet.dll
+```
+
+Also record every newly loaded non-system module.
+
+Classify the post-modal result:
+
+```text
+P0  cannot reproduce iloveaki gate
+P1  process exits
+P2  returns to CPU spin
+P3  new modal/error boundary
+P4  HackShield/update stage starts
+P5  Wizet resource/game runtime starts
+P6  Winsock/socket stage starts
+P7  private-server login connection observed
+```
+
+Do not treat one module as proof of later stages.
+
+Outputs:
 
 ```text
 result/task026-post-modal-timeline.csv
@@ -640,150 +621,486 @@ result/task026-post-modal-observation.md
 
 ---
 
-## 12. Post-modal outcome classes
+# 10. If a new boundary appears, continue within Task 026
 
-Classify each controlled run into one of these evidence outcomes:
+Do not stop and propose a new task merely because a new dialog/module appears.
 
-```text
-P0  iloveaki dialog cannot be reproduced
-P1  dialog closes and process exits
-P2  dialog closes and process returns to CPU spin
-P3  another modal/error boundary appears
-P4  HShield/update layer starts
-P5  Wizet runtime modules begin loading (PCOM/NameSpace/etc.)
-P6  Winsock loads / socket activity begins
-P7  private-server login connection is observed
-```
+Investigate the new boundary immediately using the same allowed techniques.
 
-Do not skip classes or call P7 if only `ws2_32.dll` appears.
+Examples:
+
+- new dialog → capture exact title/body/process/module state; trace its static string/xref if available;
+- new DLL → perform quick PE/import/export/string/RTTI analysis;
+- new child process → record command line/module set/lifetime;
+- new file/registry dependency → determine whether it is missing, optional, or normal startup state;
+- new game DLLs → begin function/class mapping immediately;
+- Winsock → move into the controlled network phase.
+
+Continue until:
+
+- progress reaches a major stable runtime milestone;
+- the exploration budget is exhausted;
+- or continuing would require a prohibited bypass technique.
 
 ---
 
-## 13. Phase G — Conditional private-network observation
+# 11. Controlled private-network phase
 
-Only enter this phase if Phase F naturally reaches either:
+Only enable networking after a natural runtime signal justifies it, such as:
 
-- `ws2_32.dll`/socket activity; or
-- clear PCOM/NameSpace/game-runtime initialization showing the client has crossed the previous gate.
+```text
+ws2_32.dll
+socket/connect activity
+game runtime initialization
+```
 
-Do not configure private networking merely to satisfy the task checklist.
+Use only:
 
-If the gate is reached:
+```text
+host-only
+internal/private
+```
 
-- restore a clean snapshot;
-- reproduce the same successful drive-letter/elevation conditions;
-- use an isolated host-only/internal network, never bridged/public Internet;
-- run the known CMS079 server or a project-owned minimal compatible listener on the private side;
-- because guest `127.0.0.1` is the guest itself, use a private host IP if the server is outside the guest;
-- keep firewall changes minimal and scoped to the isolated interface/required ports;
-- record exact server-side listen/accept evidence.
+Do not bridge the Win7 guest to the public Internet.
 
-Observe:
+Use the existing CMS079 server baseline:
+
+```text
+login      9555
+channels   7575–7578
+cash shop  8600
+```
+
+If the server runs on the host/private side, remember that guest `127.0.0.1` is the guest itself. Use the private host address when appropriate.
+
+Record:
 
 ```text
 ws2_32 first seen
-first SYN/connect attempt
-9555 connect/ESTABLISHED
+connect target
+SYN
+ESTABLISHED
 server accept
-15-byte CMS079 handshake delivery if applicable
-client close/continue behavior
-7575–7578 transition
-8600 transition
+15-byte handshake observed?
+client response?
+subsequent channel/cashshop attempts?
 ```
 
-Raw PCAP/ETL stays in `.work/task-026/network/`.
+The task does not require full packet reverse engineering if that is already covered elsewhere.
 
-Output only if the gate is reached:
+Raw captures stay in `.work/task-026/network/`.
+
+Output if reached:
 
 ```text
-result/task026-network-observations.csv
+result/task026-network-bootstrap.md
+result/task026-network-events.csv
 ```
 
 ---
 
-## 14. Phase H — Validate or revise the Task 025 interpretation
+# 12. Transition immediately into code recovery once game runtime appears
 
-At task end, explicitly revisit these Task 025 statements:
+The moment M3 is reached, change strategy.
 
-1. `F:` vs `G:` was the discriminating variable.
-2. the spin is an internal loader/protector loop rather than external dependency retry.
-3. Task 024's F:-spin historical run is explained by parent/elevation differences or remains anomalous.
-4. the `iloveaki` modal gate is before Wizet runtime/network transition.
+Do **not** keep spending the majority of time on compatibility observations.
 
-Use one of:
+Start constructing a reusable code-recovery dataset.
+
+Primary sources:
+
+1. canonical CMS079 on-disk binaries and already-understood decoded/static regions;
+2. unpacked Wizet runtime DLLs already present in the client;
+3. repository-provided v95/reference symbol/function-family seeds;
+4. CMS079 server protocol/opcode knowledge;
+5. WZ/resource object model knowledge;
+6. RTTI/vtables/type names if present;
+7. imports/exports and cross-module calls;
+8. strings and format strings;
+9. class-factory/PCOM object names;
+10. deterministic static signatures and call-graph relationships.
+
+Do not copy v95 addresses into CMS079.
+
+---
+
+# 13. Function recovery methodology
+
+Create a canonical function map with one row per candidate function.
+
+Suggested fields:
+
+```text
+function_id
+module
+RVA_or_static_offset
+provisional_name
+confidence
+source_kind
+reference_name_if_any
+reference_version
+reference_match_basis
+strings
+imports_called
+exports_called
+known_callers
+known_callees
+class_candidate
+subsystem
+notes
+```
+
+Confidence levels:
 
 ```text
 confirmed
-refined
-rejected
-still-unknown
+high
+medium
+low
+unknown
 ```
 
-If Task 026 materially changes the Task 025 interpretation, add a short clearly dated refinement note to `result/25-win7-post-pca-runtime-localization.md`; do not erase the original Task 025 observations.
-
----
-
-## 15. Observation tooling and non-interference checks
-
-Reuse `scripts/maple079_runtime_observe.ps1` where possible.
-
-Any script modification must remain:
-
-- normal user/process APIs only;
-- no debugger attach;
-- no ReadProcessMemory;
-- no thread context reads;
-- no suspension;
-- no injection/hooking;
-- no environment-return spoofing.
-
-For new Phase-A/B/F runs, retain at least one low-instrumentation baseline and compare it with ETW/observer-assisted runs if behavior unexpectedly changes.
-
-If instrumentation changes the outcome, label the run `observer-affected`; do not attempt to conceal the observer.
-
----
-
-## 16. Explicit safety / research boundaries
-
-Do not:
+A high-confidence name should have at least two independent supporting signals where practical, for example:
 
 ```text
-patch MapleStory.exe
-patch iloveaki.dat
-NOP/flip conditional branches
-modify message-box return flow
-fake drive-query API results
-fake registry/device/service objects
-hide debugger/VM/observer presence
-disable driver-signature enforcement
-enable test-signing for the target
-dump decrypted/protected process memory
-inject DLL/code
-set hardware breakpoints
-modify PEB/debug flags
-force Oreans/SoftICE probe returns
+reference structural match + unique string
+RTTI/class relationship + call graph
+known protocol opcode + packet layout
+PCOM object name + imported factory call
+vtable position + multiple call sites
 ```
 
-If progress would require those actions, stop that path and report the boundary.
+Avoid mass-renaming based on weak byte similarity alone.
 
-Allowed within this task:
+Output:
 
-- ordinary drive-letter assignment for controlled compatibility testing;
-- offline static analysis of the unchanged local `iloveaki.dat` file;
-- ordinary UI clicks on PCA `Run program` and `iloveaki` `确定` exactly as specified;
-- passive process/module/thread/window/ETW observation;
-- isolated private-network testing after the runtime gate is naturally reached.
+```text
+result/task026-function-map.csv
+```
+
+Target for M5:
+
+```text
+>= 20 high-confidence game-side anchors
+```
+
+If enough material exists, aim for 50+ total candidates across confidence levels.
 
 ---
 
-## 17. Evidence labels
+# 14. Class / vtable recovery
 
-Use the same evidence taxonomy:
+Build a class-oriented map where evidence allows.
+
+Candidate targets include families such as:
+
+```text
+CWvsApp
+CClientSocket
+CLogin
+CUI*
+CField*
+CUser*
+CMapLoadable
+CWnd
+CStage
+CAnimationDisplayer
+```
+
+These are examples/reference targets, not assumed CMS079 symbols.
+
+For each candidate class record:
+
+```text
+class_name_or_provisional_name
+module
+RTTI/type-name evidence
+vtable candidate
+constructor/destructor candidates
+important virtuals
+member-access patterns
+reference-version correlation
+confidence
+```
+
+Use reference symbols structurally, not as address truth.
+
+Output:
+
+```text
+result/task026-class-map.csv
+```
+
+---
+
+# 15. Recover startup/application initialization logic
+
+The first major logic-reconstruction target is the startup chain.
+
+Attempt to build a chain conceptually resembling:
+
+```text
+PE/protector/repack completion
+→ application/runtime initialization
+→ PCOM/resource initialization
+→ graphics/sound/window startup
+→ network/client-socket initialization
+→ login-stage creation
+```
+
+Do not force this exact architecture if CMS079 evidence differs.
+
+For every link record:
+
+```text
+caller
+callee
+why the edge is believed
+module
+RVA/offset if statically known
+runtime milestone if observed
+confidence
+```
+
+Output:
+
+```text
+result/task026-startup-callchain.md
+result/task026-call-edges.csv
+```
+
+M6 requires a defensible chain, not necessarily a complete original source reconstruction.
+
+---
+
+# 16. Recover network/login anchors when available
+
+Use the server/protocol knowledge already established to search for code-side anchors associated with:
+
+```text
+login server connection
+9555
+handshake/version 79
+send/receive initialization
+packet encryption/decryption
+login request/response handling
+channel selection
+channel transition
+```
+
+Possible evidence sources:
+
+- port constants;
+- packet/opcode constants;
+- handshake version values;
+- IV/key constants;
+- socket API call graph;
+- reference `CClientSocket`/packet functions;
+- server-side packet layouts already documented.
+
+Do not assume all crypto/network functions live in one class.
+
+Output network-related candidates into the same canonical function map and summarize in:
+
+```text
+result/task026-login-network-logic.md
+```
+
+---
+
+# 17. Reference-version correlation campaign
+
+Use the existing reference/symbol bundle aggressively once game-side code is accessible.
+
+For each reference candidate, compare structural features such as:
+
+```text
+callee family
+string anchors
+RTTI/class relationship
+vtable slot
+switch/branch shape
+import usage
+constant sets
+packet/opcode behavior
+resource-object interactions
+```
+
+Never treat matching ordinal/address/absolute RVA as evidence by itself.
+
+Record correlation seeds and outcomes in:
+
+```text
+result/task026-reference-correlation.csv
+```
+
+Suggested fields:
+
+```text
+cms079_candidate
+reference_version
+reference_symbol
+match_features
+conflicting_features
+confidence
+accepted_name
+```
+
+---
+
+# 18. Continue static decoding work only when it serves game-code recovery
+
+The unresolved `0x862000+` encoded/mixed region remains important, but Task 026 should not repeat broad blind decoder searches with no new evidence.
+
+Resume decode work only when one of the following occurs:
+
+- runtime progression identifies a boundary/module/region that points back into `0x862000+`;
+- `iloveaki` static analysis reveals a producer/consumer relation;
+- a reference signature/function family gives a plausible target inside the region;
+- a concrete game-runtime anchor is found adjacent to a decoded/plaintext island.
+
+Then perform targeted offline/static analysis against the canonical on-disk sample.
+
+Allowed:
+
+- emulate/replay already-understood transforms;
+- derive candidate transforms from static code;
+- validate against structural expectations;
+- produce compact derived metadata/digests.
+
+Do not commit reconstructed executable blobs.
+
+---
+
+# 19. Create a living milestone ledger
+
+Create:
+
+```text
+result/task026-milestones.csv
+```
+
+Fields:
+
+```text
+milestone
+status
+time_reached
+evidence
+primary_artifact
+confidence
+notes
+```
+
+Statuses:
+
+```text
+not-started
+in-progress
+reached
+blocked
+not-applicable
+```
+
+Update it as the campaign proceeds.
+
+This lets the final result show actual forward progress rather than a long narrative of experiments.
+
+---
+
+# 20. Create a compact blocker ledger
+
+When a branch stops making progress, record the blocker once and move on.
+
+Create:
+
+```text
+result/task026-blockers.csv
+```
+
+Fields:
+
+```text
+blocker_id
+stage
+symptom
+evidence
+attempted_non-invasive_methods
+why_not_resolved
+would_require_prohibited_technique?
+next_safe_option
+```
+
+Do not spend the session rediscovering the same blocker.
+
+---
+
+# 21. Autonomy rules for the local AI
+
+The local AI is explicitly authorized to:
+
+- create additional `.work/task-026/` scratch scripts;
+- run multiple safe experiments without asking for approval each time;
+- choose alternative static-analysis tools already installed;
+- use Ghidra/IDA/radare2/objdump/capstone/pefile or equivalent offline tools if available;
+- compare multiple repository reference datasets;
+- restructure its analysis approach when evidence changes;
+- repeat promising experiments;
+- abandon low-information experiments early;
+- create reusable project-owned scripts under `scripts/` when justified.
+
+The AI should **not** stop to ask the user about ordinary analytical choices.
+
+Stop/ask only if:
+
+- repository state is unsafe to modify;
+- required local files are missing;
+- the VM is irrecoverably broken;
+- continuing requires a prohibited bypass technique;
+- an action would install a privileged system component or materially modify the host.
+
+---
+
+# 22. Avoid analysis traps
+
+Do not let the campaign get stuck in any of these patterns:
+
+### Trap A — endless compatibility micro-tests
+
+If a reproducible M1 path exists, use it and move forward.
+
+### Trap B — treating every mismatch as a new task
+
+Keep it inside Task 026 unless it becomes a separate major research domain.
+
+### Trap C — chasing protector branding instead of game code
+
+Knowing another Oreans/WinLicense detail has low value unless it helps cross the game-runtime boundary.
+
+### Trap D — copying v95 names too aggressively
+
+Reference material is a naming/correlation aid, not CMS079 ground truth.
+
+### Trap E — counting functions without semantic recovery
+
+The goal is meaningful anchors and call chains, not arbitrary disassembly coverage.
+
+### Trap F — stopping at first network activity
+
+If `ws2_32` or 9555 appears, continue into startup/login logic recovery if time remains.
+
+---
+
+# 23. Evidence labels
+
+Use:
 
 ```text
 confirmed-runtime
-observed-side-effect
-static-only
+confirmed-static
+controlled-causal
+controlled-correlation
+reference-supported
 probable
 possible
 not-observed
@@ -791,213 +1108,218 @@ unknown
 observer-affected
 ```
 
-For causal claims, additionally label:
+For code names additionally use confidence:
 
 ```text
-controlled-causal
-controlled-correlation
-uncontrolled-historical
+confirmed
+high
+medium
+low
 ```
 
-Examples:
-
-- same disk/device, only drive letter changed, repeated F/G/F/G with matching outcomes -> `controlled-causal` candidate;
-- F/G outcome from USB attach-order changes -> `controlled-correlation` only;
-- Task 024 F:-spin -> `uncontrolled-historical` relative to Task 026 matrix.
+Do not collapse `reference-supported` into `confirmed` without CMS079-local evidence.
 
 ---
 
-## 18. Formal outputs
+# 24. Desired permanent outputs
 
-Required if the relevant phase is executable:
+The campaign should produce the smallest useful set of durable artifacts.
+
+Core outputs:
 
 ```text
-result/26-iloveaki-drive-identity-post-modal.md
+result/26-game-runtime-recovery-campaign.md
+result/task026-milestones.csv
+result/task026-blockers.csv
 result/task026-task025-data-repair.md
-result/task026-repack-file-manifest.csv
-result/task026-volume-identity.csv
-result/task026-drive-letter-ab.csv
-result/task026-parent-elevation-matrix.csv
+result/task026-post-modal-observation.md
+result/task026-post-modal-timeline.csv
+result/task026-function-map.csv
+result/task026-class-map.csv
+result/task026-call-edges.csv
+result/task026-startup-callchain.md
+result/task026-reference-correlation.csv
+```
+
+When applicable:
+
+```text
+result/task026-environment-matrix.csv
 result/task026-iloveaki-static.md
-result/task026-iloveaki-pe.csv
-result/task026-iloveaki-imports.csv
 result/task026-iloveaki-xrefs.csv
 result/task026-iloveaki-controlflow.md
-result/task026-iloveaki-runtime-correlation.csv
-result/task026-post-modal-timeline.csv
-result/task026-post-modal-observation.md
+result/task026-module-transition.csv
+result/task026-login-network-logic.md
+result/task026-network-bootstrap.md
+result/task026-network-events.csv
 ```
 
-Conditional:
+Do not create empty placeholder files for phases that were never reached.
+
+Reusable scripts may be added under `scripts/`.
+
+---
+
+# 25. Minimum success criteria
+
+Task 026 should not be judged by whether every planned sub-experiment was performed.
+
+Minimum acceptable campaign completion requires:
+
+1. repository sync and `STARTING_HEAD` recorded;
+2. canonical sample identity revalidated;
+3. Task 025 machine-readable defect repaired or explicitly marked unrepairable;
+4. at least one reproducible `iloveaki` success path attempted;
+5. the `iloveaki` modal `确定` button clicked once in a controlled run and the post-modal outcome recorded, unless M1 itself becomes unreproducible;
+6. `iloveaki.dat` receives offline static characterization;
+7. milestone ledger and blocker ledger are maintained;
+8. if game runtime is reached, function/class recovery begins in the same task;
+9. if network runtime is reached, private-server observation begins in the same task;
+10. final report identifies the highest milestone actually reached and the single most important remaining blocker.
+
+A strong completion should reach M3 or higher.
+
+An excellent completion should reach M5/M6 and leave a reusable function/class/call-chain dataset.
+
+---
+
+# 26. Campaign stop conditions
+
+End the campaign only when one of these is true:
+
+### Stop A — major recovery baseline achieved
+
+M5/M6 achieved and enough artifacts exist for systematic follow-on code reconstruction.
+
+### Stop B — hard natural boundary
+
+The highest safe/non-invasive runtime boundary is sharply localized and further progress would require prohibited bypass/patch/dump techniques.
+
+### Stop C — environment failure
+
+The VM/sample/repository environment can no longer produce reproducible evidence.
+
+### Stop D — exploration budget exhausted
+
+After ~4–8 hours, the campaign has exhausted high-value safe branches. Record the strongest blocker and next safe direction.
+
+Do not stop merely because one hypothesis failed.
+
+---
+
+# 27. Final report structure
+
+Create:
 
 ```text
-result/task026-network-observations.csv
+result/26-game-runtime-recovery-campaign.md
 ```
 
-Potential reusable scripts:
-
-```text
-scripts/maple079_runtime_observe.ps1      # update only if needed
-scripts/maple079_iloveaki_static.py       # optional, project-owned helper
-```
-
-Do not create empty placeholder result files just to satisfy the list. If a phase is blocked, document the blocker in the main report.
-
----
-
-## 19. Minimum success criteria
-
-Task 026 is successful if it completes all of the following that are technically available:
-
-1. clean/current `origin/main` start and `STARTING_HEAD` recorded;
-2. Task 025 launch-matrix CSV defect audited and repaired or formally marked unrepairable;
-3. MapleStory/iloveaki/launcher file hashes recorded;
-4. same-volume identity captured sufficiently to prove whether only drive letter changes;
-5. at least F/G/F/G true single-variable drive-letter sequence completed;
-6. at least two controlled elevated-parent vs ordinary-parent/UAC comparisons completed on fixed F:;
-7. Task 024 historical F:-spin exception explained or explicitly retained as unresolved;
-8. `iloveaki.dat` PE/static metadata documented;
-9. `iloveaki success.` call site/control-flow context mapped as far as static evidence allows;
-10. likely volume/environment-query code identified or honestly marked unknown;
-11. successful `iloveaki` modal path reproduced from clean state;
-12. `iloveaki` `确定` clicked exactly once in a controlled run and the subsequent natural boundary recorded;
-13. post-modal result repeated if reproducible;
-14. PCOM/NameSpace/Winsock/network gate status stated explicitly;
-15. Task 025 interpretation classified as confirmed/refined/rejected/still-unknown;
-16. a single final Route selected.
-
----
-
-## 20. Final Route
-
-Select exactly one primary route.
-
-### Route A — Drive letter is independently causal
-
-Same volume/device/topology, letter-only F/G assignment reproduces the fork. Static `iloveaki` analysis also exposes a compatible path/volume check or at least a strong candidate.
-
-Next work: characterize the check's purpose/history and continue only on the naturally successful environment; do not patch it.
-
-### Route B — Mount/device identity, not letter alone
-
-True letter-only A/B does not reproduce Task 025. Some broader volume enumeration/device-order property explains the correlation.
-
-Next work: isolate that ordinary environment property using further non-spoofed compatibility tests.
-
-### Route C — Elevation/parent path is causal or co-causal
-
-The Task 024 exception is reproduced and parent/UAC launch path changes the outcome under fixed volume identity.
-
-Next work: characterize the launch-token/parent/environment difference without bypassing UAC/protection.
-
-### Route D — `iloveaki` static layer explains the fork but runtime remains pre-game
-
-Static analysis identifies the controlling check and post-modal progression still fails before PCOM/NameSpace/Winsock.
-
-Next work: focus on the next visible wrapper/game-runtime transition.
-
-### Route E — Post-modal Wizet runtime reached
-
-After ordinary `确定`, PCOM/NameSpace/Canvas/ZLZ or equivalent game runtime loads, but Winsock/login is not yet reached.
-
-Next work: resource/runtime initialization timeline.
-
-### Route F — Network bootstrap reached
-
-Post-modal execution naturally loads Winsock and makes a private 9555 attempt/connection.
-
-Next work: protocol handshake and login bootstrap validation.
-
-### Route G — No reliable causal isolation
-
-Drive-letter/parent results are unstable or observer-sensitive, and static evidence does not resolve the fork.
-
-Next work: return to offline static/reference correlation rather than escalating to invasive protection bypass.
-
----
-
-## 21. Final report requirements
-
-`result/26-iloveaki-drive-identity-post-modal.md` must include:
+The report must answer, concisely but concretely:
 
 ```text
 Task 026 complete?
 STARTING_HEAD
 FINAL_COMMIT
 push status
-
-Task 025 data repair:
-what was wrong
-what changed
-verification source
-
-sample identities:
-MapleStory.exe SHA256
-iloveaki.dat SHA256/size
-ijl15.dll SHA256/size
-launcher SHA256/content confirmation
-
-volume identity:
-GUID
-serial
-label
-device identity/topology
-drive-letter assignment method
-proof that non-letter identity stayed constant
-
-Phase A:
-F/G/F/G runs
-outcome per run
-whether letter alone is causal
-
-Phase B:
-elevated-parent vs ordinary-parent/UAC
-actual parent chain
-outcome per run
-Task 024 exception explained?
-
-iloveaki static:
-PE type
-image base
-entry point
-sections/imports/exports
-packing/obfuscation status
-success-string call site
-volume/path/environment APIs/checks
-confidence
-
-post-modal:
-pre-click state
-OK click time
-next modules/windows/children
-PCOM?
-NameSpace?
-Canvas/ResMan/ZLZ?
-HShield?
-ws2_32?
-process exit/error/next modal?
-repeatability
-
-network gate:
-reached/skipped
-if reached: 9555 SYN/connect/ESTABLISHED/server accept/handshake/channel/cashshop
-
-Task 025 interpretation:
-confirmed/refined/rejected/still-unknown
-
-strongest new finding
-strongest remaining uncertainty
-final Route A–G
-recommended next task
-
-generated result files
-generated scripts
-blockers
 ```
+
+Then:
+
+## Highest milestone
+
+```text
+highest M0–M6 reached
+why it qualifies
+primary evidence
+```
+
+## Runtime progression
+
+```text
+PCA
+→ iloveaki
+→ post-modal result
+→ first game module (if any)
+→ Winsock/network (if any)
+```
+
+## Environment findings
+
+Only summarize environment variables that materially affected progression.
+
+State whether F/G/UAC is:
+
+```text
+causal
+co-causal
+correlated
+unresolved
+irrelevant to current progression path
+```
+
+## iloveaki
+
+```text
+SHA-256
+PE summary
+success-dialog call-site status
+important imports/strings
+what happens after OK
+```
+
+## Game runtime
+
+List all confirmed game-side modules reached.
+
+## Function recovery
+
+```text
+total function candidates
+high-confidence count
+confirmed count
+important recovered functions
+```
+
+## Class recovery
+
+```text
+class candidates
+high-confidence classes
+important vtables/constructors if known
+```
+
+## Startup/login chain
+
+Present the best reconstructed chain with confidence annotations.
+
+## Network
+
+If reached:
+
+```text
+ws2_32
+9555 attempt
+server accept
+handshake
+channel/cashshop progression
+```
+
+## Static unresolved boundary
+
+Explain whether `0x862000+` is still blocking and how current runtime findings relate to it.
+
+## Remaining blocker
+
+Name **one primary blocker** and secondary blockers separately.
+
+## Next research direction
+
+Recommend a broad next phase, not a dozen micro-tasks.
 
 ---
 
-## 22. Commit and push
+# 28. Pre-commit audit
 
 Before commit:
 
@@ -1007,35 +1329,71 @@ git diff
 git diff --cached
 ```
 
-Check carefully that only safe permanent artifacts are staged.
+Verify no prohibited artifacts are staged.
 
-Allowed primary commit paths:
+Allowed permanent areas:
 
 ```text
 result/
 scripts/
 ```
 
-A Task 025 result file may be updated only for the documented CSV/data-quality correction or a clearly marked Task 026 refinement note.
+and verified repairs/refinement notes to existing tracked research documents.
 
-Do not commit `.work/`, binaries, VM artifacts, traces, screenshots, or third-party tools.
+Do not commit `.work/` or proprietary/raw binaries.
 
-Recommended commit message:
+---
+
+# 29. Commit and push
+
+Suggested completion commit:
 
 ```text
-Complete Task 026 iloveaki drive-identity and post-modal exploration
+Complete Task 026 game runtime recovery campaign
 ```
 
-Then record:
+Then:
 
 ```text
 git rev-parse HEAD
 ```
 
-as `FINAL_COMMIT`, and:
+Record as:
+
+```text
+FINAL_COMMIT
+```
+
+Push normally:
 
 ```text
 git push origin main
 ```
 
-Never force-push. If the remote advanced, fetch and report the divergence rather than rewriting history.
+Never force-push.
+
+If `origin/main` moved during the campaign, fetch and report the divergence. Do not automatically rewrite history.
+
+---
+
+# 30. Final instruction to the executor
+
+Do not treat this task as a checklist that must be completed linearly.
+
+The campaign order is:
+
+```text
+get reproducible progression
+→ cross iloveaki
+→ follow the next natural boundary
+→ enter game runtime
+→ immediately start recovering code semantics
+→ build function/class/call-chain maps
+→ use network/runtime evidence to validate names
+```
+
+Environmental questions are only important insofar as they help that progression.
+
+The desired outcome is not another compatibility report.
+
+The desired outcome is the beginning of a **systematic CMS079 game-code recovery pipeline**.
