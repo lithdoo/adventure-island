@@ -1,0 +1,31 @@
+run_id,object_class,object,status,evidence,label
+A1R1,service,SICE,not observed,svc-gate-before/after absent both,not-observed
+A1R1,service,SIWVID,not observed,svc-gate-before/after absent both,not-observed
+A1R1,service,NTICE,not observed,svc-gate-before/after absent both,not-observed
+A1R1,service,oreans32,not observed,svc-gate-before/after absent both,not-observed
+A1R1,service,oreansx64,not observed,svc-gate-before/after absent both,not-observed
+A1R1,service,ehsvc,not observed,svc-gate-before/after absent both,not-observed
+A1R1,registry,HKCU\Software\WinLicense,not observed,reg-gate-before/after absent both,not-observed
+A1R1,registry,HKCU\Software\WLkt,not observed,reg-gate-before/after absent both,not-observed
+A1R1,registry,HKLM\SOFTWARE\WLkt,not observed,reg-gate-before/after absent both,not-observed
+A1R1,registry,HKCU\Software\Wine,not observed,reg-gate-before/after absent both,not-observed
+A1R1,file,oreans* in client dir or system32\drivers,not observed,new-files.txt empty every run,not-observed
+A1R1,process,HSUpdate.exe,not observed,procs.csv never contains it,not-observed
+A1R1,process,ASPLnchr.exe,not observed,procs.csv never contains it,not-observed
+A1R1,module,ehsvc.dll,not observed,modules-final.txt every run,not-observed
+A1R1,module,AspINet.dll,not observed,modules-final.txt every run,not-observed
+A1R2,service,SICE|SIWVID|NTICE|oreans32|oreansx64|ehsvc,not observed,same negative pattern as A1R1,not-observed
+A1R2,registry,WinLicense|WLkt|Wine keys,not observed,same negative pattern as A1R1,not-observed
+A1R2,module,ehsvc/AspINet,not observed,modules-final.txt,not-observed
+A1R3,service,SICE|SIWVID|NTICE|oreans32|oreansx64|ehsvc,not observed,same negative pattern as A1R1,not-observed
+A1R3,registry,WinLicense|WLkt|Wine keys,not observed,same negative pattern as A1R1,not-observed
+A2R1,service,SICE|SIWVID|NTICE|oreans32|oreansx64|ehsvc,not observed,same negative pattern as A1R1,not-observed
+A2R1,registry,WinLicense|WLkt|Wine keys,not observed,same negative pattern as A1R1,not-observed
+A2R1,module,ehsvc/AspINet,not observed,modules-final.txt,not-observed
+A3R1,service,SICE|SIWVID|NTICE|oreans32|oreansx64|ehsvc,not observed,same negative pattern as A1R1,not-observed
+A3R1,registry,WinLicense|WLkt|Wine keys,not observed,same negative pattern as A1R1,not-observed
+A1E,device-or-file,any FileIo by MapleStory.exe (incl. \\.\SICE family),not observed,ETW kernel trace: 0 FileIo events attributed to game PID in 150 s,not-observed
+A1E,registry,Registry/Open+QueryValue by MapleStory.exe,46 Open + 21 QueryValue all within process start then silence,ETW kernel trace kernel-dump.csv,observed-side-effect
+A1E,driver,new driver loaded for game,not observed,driverquery identical + no image loads beyond system DLLs,not-observed
+A1P2,tool,Procmon v4.11 capture on Win7 x86 SP1,GUI runs + driver loads but produces header-only PML (976 bytes),.work/task-025/runs/A1P2/trace.CPL.PML,observer-affected
+ALL,module,apphelp.dll,present from first sample in every run stays loaded,modules-raw.csv every run,confirmed-runtime

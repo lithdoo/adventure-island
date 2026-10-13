@@ -1,0 +1,1327 @@
+run_id,kind,t_rel_s,name_or_class,pid,parent_pid,title,visible,command_line
+A1E,process,1.92,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,5.44,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,8.75,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,12.21,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,15.55,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,18.91,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,22.36,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,25.69,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,29.33,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,32.76,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,36.25,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,39.67,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,43.04,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,46.52,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,49.78,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,53.21,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,56.5,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,59.78,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,63.48,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,66.75,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,70.2,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,73.52,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,76.97,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,80.2,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,83.52,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,86.97,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,90.4,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,94.25,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,98.03,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,101.65,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,104.96,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,108.44,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,111.74,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,115.05,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,118.47,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,121.71,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,process,125.28,MapleStory.exe,2176,3616,,,"G:\MapleStory.exe"" "
+A1E,window,1.92,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,1.92,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,1.92,#32770,860,,自动播放,True,
+A1E,window,5.44,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,5.44,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,5.44,#32770,860,,自动播放,True,
+A1E,window,8.75,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,8.75,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,8.75,#32770,860,,自动播放,True,
+A1E,window,12.21,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,12.21,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,12.21,#32770,860,,自动播放,True,
+A1E,window,15.55,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,15.55,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,15.55,#32770,860,,自动播放,True,
+A1E,window,18.91,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,18.91,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,18.91,#32770,860,,自动播放,True,
+A1E,window,22.36,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,22.36,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,22.36,#32770,860,,自动播放,True,
+A1E,window,25.69,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,25.69,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,25.69,#32770,860,,自动播放,True,
+A1E,window,29.33,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,29.33,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,29.33,#32770,860,,自动播放,True,
+A1E,window,32.76,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,32.76,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,32.76,#32770,860,,自动播放,True,
+A1E,window,36.25,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,36.25,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,36.25,#32770,860,,自动播放,True,
+A1E,window,39.67,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,39.67,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,39.67,#32770,860,,自动播放,True,
+A1E,window,43.04,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,43.04,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,43.04,#32770,860,,自动播放,True,
+A1E,window,46.52,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,46.52,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,46.52,#32770,860,,自动播放,True,
+A1E,window,49.78,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,49.78,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,49.78,#32770,860,,自动播放,True,
+A1E,window,53.21,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,53.21,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,53.21,#32770,860,,自动播放,True,
+A1E,window,56.5,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,56.5,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,56.5,#32770,860,,自动播放,True,
+A1E,window,59.78,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,59.78,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,59.78,#32770,860,,自动播放,True,
+A1E,window,63.48,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,63.48,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,63.48,#32770,860,,自动播放,True,
+A1E,window,66.75,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,66.75,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,66.75,#32770,860,,自动播放,True,
+A1E,window,70.2,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,70.2,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,70.2,#32770,860,,自动播放,True,
+A1E,window,73.52,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,73.52,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,73.52,#32770,860,,自动播放,True,
+A1E,window,76.97,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,76.97,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,76.97,#32770,860,,自动播放,True,
+A1E,window,80.2,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,80.2,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,80.2,#32770,860,,自动播放,True,
+A1E,window,83.52,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,83.52,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,83.52,#32770,860,,自动播放,True,
+A1E,window,86.97,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,86.97,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,86.97,#32770,860,,自动播放,True,
+A1E,window,90.4,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,90.4,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,90.4,#32770,860,,自动播放,True,
+A1E,window,94.25,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,94.25,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,94.25,#32770,860,,自动播放,True,
+A1E,window,98.03,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,98.03,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,98.03,#32770,860,,自动播放,True,
+A1E,window,101.65,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,101.65,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,101.65,#32770,860,,自动播放,True,
+A1E,window,104.96,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,104.96,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,104.96,#32770,860,,自动播放,True,
+A1E,window,108.44,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,108.44,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,108.44,#32770,860,,自动播放,True,
+A1E,window,111.74,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,111.74,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,111.74,#32770,860,,自动播放,True,
+A1E,window,115.05,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,115.05,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,115.05,#32770,860,,自动播放,True,
+A1E,window,118.47,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,118.47,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,118.47,#32770,860,,自动播放,True,
+A1E,window,121.71,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,121.71,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,121.71,#32770,860,,自动播放,True,
+A1E,window,125.28,ConsoleWindowClass,3584,,管理员: C:\Windows\system32\cmd.exe,True,
+A1E,window,125.28,ConsoleWindowClass,3340,,C:\Windows\system32\cmd.exe,True,
+A1E,window,125.28,#32770,860,,自动播放,True,
+A1P,process,4.1,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,4.1,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,10.27,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,10.27,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,15.38,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,15.38,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,19.94,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,19.94,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,24.77,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,24.77,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,29.36,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,29.36,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,34.49,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,34.49,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,39.81,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,39.81,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,44.59,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,44.59,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,49.36,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,49.36,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,53.87,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,53.87,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,58.11,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,58.11,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,62.71,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,62.71,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,67.36,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,67.36,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,72.31,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,72.31,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,77.19,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,77.19,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,81.53,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,81.53,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,86.3,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,86.3,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,91.34,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,91.34,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,96.3,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,96.3,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,101.53,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,101.53,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P,process,106.36,Procmon.exe,292,3628,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P\trace.CPL "
+A1P,process,106.36,MapleStory.exe,2088,3628,,,"G:\MapleStory.exe"" "
+A1P2,process,3.81,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,3.81,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,9.06,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,9.06,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,13.54,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,13.54,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,18.59,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,18.59,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,23.46,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,23.46,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,27.92,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,27.92,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,31.81,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,31.81,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,35.4,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,35.4,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,40.42,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,40.42,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,44.13,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,44.13,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,47.91,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,47.91,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,51.57,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,51.57,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,55.05,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,55.05,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,59.27,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,59.27,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,62.74,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,62.74,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,66.5,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,66.5,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,69.94,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,69.94,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,73.46,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,73.46,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,77.14,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,77.14,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,80.59,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,80.59,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,84.35,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,84.35,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,process,87.8,Procmon.exe,2216,3784,,,"F:\Procmon.exe"" /AcceptEula /Quiet /Minimized /BackingFile C:\t025\A1P2\trace.CPL "
+A1P2,process,87.8,MapleStory.exe,2276,3784,,,"G:\MapleStory.exe"" "
+A1P2,window,3.81,#32770,2216,,Process Monitor,True,
+A1P2,window,3.81,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,3.81,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,3.81,#32770,3460,,Windows Media Center,True,
+A1P2,window,3.81,#32770,860,,自动播放,True,
+A1P2,window,9.06,#32770,2216,,Process Monitor,True,
+A1P2,window,9.06,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,9.06,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,9.06,#32770,3460,,Windows Media Center,True,
+A1P2,window,9.06,#32770,860,,自动播放,True,
+A1P2,window,13.54,#32770,2216,,Process Monitor,True,
+A1P2,window,13.54,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,13.54,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,13.54,#32770,3460,,Windows Media Center,True,
+A1P2,window,13.54,#32770,860,,自动播放,True,
+A1P2,window,18.59,#32770,2216,,Process Monitor,True,
+A1P2,window,18.59,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,18.59,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,18.59,#32770,3460,,Windows Media Center,True,
+A1P2,window,18.59,#32770,860,,自动播放,True,
+A1P2,window,23.46,#32770,2216,,Process Monitor,True,
+A1P2,window,23.46,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,23.46,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,23.46,#32770,3460,,Windows Media Center,True,
+A1P2,window,23.46,#32770,860,,自动播放,True,
+A1P2,window,27.92,#32770,2216,,Process Monitor,True,
+A1P2,window,27.92,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,27.92,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,27.92,#32770,3460,,Windows Media Center,True,
+A1P2,window,27.92,#32770,860,,自动播放,True,
+A1P2,window,31.81,#32770,2216,,Process Monitor,True,
+A1P2,window,31.81,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,31.81,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,31.81,#32770,3460,,Windows Media Center,True,
+A1P2,window,31.81,#32770,860,,自动播放,True,
+A1P2,window,35.4,#32770,2216,,Process Monitor,True,
+A1P2,window,35.4,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,35.4,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,35.4,#32770,3460,,Windows Media Center,True,
+A1P2,window,35.4,#32770,860,,自动播放,True,
+A1P2,window,40.42,#32770,2216,,Process Monitor,True,
+A1P2,window,40.42,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,40.42,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,40.42,#32770,3460,,Windows Media Center,True,
+A1P2,window,40.42,#32770,860,,自动播放,True,
+A1P2,window,44.13,#32770,2216,,Process Monitor,True,
+A1P2,window,44.13,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,44.13,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,44.13,#32770,3460,,Windows Media Center,True,
+A1P2,window,44.13,#32770,860,,自动播放,True,
+A1P2,window,47.91,#32770,2216,,Process Monitor,True,
+A1P2,window,47.91,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,47.91,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,47.91,#32770,3460,,Windows Media Center,True,
+A1P2,window,47.91,#32770,860,,自动播放,True,
+A1P2,window,51.57,#32770,2216,,Process Monitor,True,
+A1P2,window,51.57,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,51.57,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,51.57,#32770,3460,,Windows Media Center,True,
+A1P2,window,51.57,#32770,860,,自动播放,True,
+A1P2,window,55.05,#32770,2216,,Process Monitor,True,
+A1P2,window,55.05,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,55.05,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,55.05,#32770,3460,,Windows Media Center,True,
+A1P2,window,55.05,#32770,860,,自动播放,True,
+A1P2,window,59.27,#32770,2216,,Process Monitor,True,
+A1P2,window,59.27,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,59.27,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,59.27,#32770,3460,,Windows Media Center,True,
+A1P2,window,59.27,#32770,860,,自动播放,True,
+A1P2,window,62.74,#32770,2216,,Process Monitor,True,
+A1P2,window,62.74,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,62.74,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,62.74,#32770,3460,,Windows Media Center,True,
+A1P2,window,62.74,#32770,860,,自动播放,True,
+A1P2,window,66.5,#32770,2216,,Process Monitor,True,
+A1P2,window,66.5,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,66.5,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,66.5,#32770,3460,,Windows Media Center,True,
+A1P2,window,66.5,#32770,860,,自动播放,True,
+A1P2,window,69.94,#32770,2216,,Process Monitor,True,
+A1P2,window,69.94,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,69.94,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,69.94,#32770,3460,,Windows Media Center,True,
+A1P2,window,69.94,#32770,860,,自动播放,True,
+A1P2,window,73.46,#32770,2216,,Process Monitor,True,
+A1P2,window,73.46,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,73.46,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,73.46,#32770,3460,,Windows Media Center,True,
+A1P2,window,73.46,#32770,860,,自动播放,True,
+A1P2,window,77.14,#32770,2216,,Process Monitor,True,
+A1P2,window,77.14,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,77.14,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,77.14,#32770,3460,,Windows Media Center,True,
+A1P2,window,77.14,#32770,860,,自动播放,True,
+A1P2,window,80.59,#32770,2216,,Process Monitor,True,
+A1P2,window,80.59,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,80.59,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,80.59,#32770,3460,,Windows Media Center,True,
+A1P2,window,80.59,#32770,860,,自动播放,True,
+A1P2,window,84.35,#32770,2216,,Process Monitor,True,
+A1P2,window,84.35,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,84.35,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,84.35,#32770,3460,,Windows Media Center,True,
+A1P2,window,84.35,#32770,860,,自动播放,True,
+A1P2,window,87.8,#32770,2216,,Process Monitor,True,
+A1P2,window,87.8,ConsoleWindowClass,3752,,管理员: C:\Windows\system32\cmd.exe,True,
+A1P2,window,87.8,ConsoleWindowClass,3512,,C:\Windows\system32\cmd.exe,True,
+A1P2,window,87.8,#32770,3460,,Windows Media Center,True,
+A1P2,window,87.8,#32770,860,,自动播放,True,
+A1R1,process,1.86,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,5.02,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,7.86,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,10.64,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,13.56,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,16.38,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,19.13,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,22.14,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,25.04,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,28.02,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,31.04,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,34.01,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,36.89,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,39.64,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,42.53,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,45.29,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,48.06,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,51.01,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,53.71,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,56.44,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,59.45,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,62.21,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,65.08,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,67.86,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,70.59,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,73.44,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,76.16,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,process,78.86,MapleStory.exe,2496,4044,,,"G:\MapleStory.exe"" "
+A1R1,window,1.86,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,1.86,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,5.02,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,5.02,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,7.86,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,7.86,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,10.64,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,10.64,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,13.56,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,13.56,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,16.38,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,16.38,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,19.13,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,19.13,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,22.14,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,22.14,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,25.04,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,25.04,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,28.02,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,28.02,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,31.04,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,31.04,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,34.01,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,34.01,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,36.89,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,36.89,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,39.64,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,39.64,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,42.53,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,42.53,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,45.29,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,45.29,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,48.06,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,48.06,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,51.01,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,51.01,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,53.71,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,53.71,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,56.44,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,56.44,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,59.45,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,59.45,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,62.21,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,62.21,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,65.08,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,65.08,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,67.86,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,67.86,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,70.59,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,70.59,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,73.44,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,73.44,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,76.16,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,76.16,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R1,window,78.86,ConsoleWindowClass,4012,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R1,window,78.86,ConsoleWindowClass,3644,,C:\Windows\system32\cmd.exe,True,
+A1R2,process,3.43,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,8.89,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,14.09,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,18.95,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,23.96,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,28.58,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,33.18,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,37.92,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,43.04,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,49.03,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,54.12,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,59.09,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,64.57,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,69.3,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,74.44,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,79.61,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,84.3,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,89.34,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,93.99,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,98.84,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,103.68,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,108.58,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,113.63,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,118.59,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,process,123.63,MapleStory.exe,4044,3504,,,"F:\MapleStory.exe"" "
+A1R2,window,3.43,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,3.43,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,3.43,#32770,860,,自动播放,True,
+A1R2,window,8.89,#32770,4044,,iloveaki,True,
+A1R2,window,8.89,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,8.89,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,8.89,#32770,860,,自动播放,True,
+A1R2,window,8.89,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,8.89,IME,4044,,Default IME,False,
+A1R2,window,14.09,#32770,4044,,iloveaki,True,
+A1R2,window,14.09,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,14.09,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,14.09,#32770,860,,自动播放,True,
+A1R2,window,14.09,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,14.09,IME,4044,,Default IME,False,
+A1R2,window,18.95,#32770,4044,,iloveaki,True,
+A1R2,window,18.95,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,18.95,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,18.95,#32770,860,,自动播放,True,
+A1R2,window,18.95,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,18.95,IME,4044,,Default IME,False,
+A1R2,window,23.96,#32770,4044,,iloveaki,True,
+A1R2,window,23.96,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,23.96,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,23.96,#32770,860,,自动播放,True,
+A1R2,window,23.96,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,23.96,IME,4044,,Default IME,False,
+A1R2,window,28.58,#32770,4044,,iloveaki,True,
+A1R2,window,28.58,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,28.58,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,28.58,#32770,860,,自动播放,True,
+A1R2,window,28.58,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,28.58,IME,4044,,Default IME,False,
+A1R2,window,33.18,#32770,4044,,iloveaki,True,
+A1R2,window,33.18,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,33.18,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,33.18,#32770,860,,自动播放,True,
+A1R2,window,33.18,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,33.18,IME,4044,,Default IME,False,
+A1R2,window,37.92,#32770,4044,,iloveaki,True,
+A1R2,window,37.92,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,37.92,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,37.92,#32770,860,,自动播放,True,
+A1R2,window,37.92,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,37.92,IME,4044,,Default IME,False,
+A1R2,window,43.04,#32770,4044,,iloveaki,True,
+A1R2,window,43.04,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,43.04,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,43.04,#32770,860,,自动播放,True,
+A1R2,window,43.04,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,43.04,IME,4044,,Default IME,False,
+A1R2,window,49.03,#32770,4044,,iloveaki,True,
+A1R2,window,49.03,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,49.03,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,49.03,#32770,860,,自动播放,True,
+A1R2,window,49.03,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,49.03,IME,4044,,Default IME,False,
+A1R2,window,54.12,#32770,4044,,iloveaki,True,
+A1R2,window,54.12,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,54.12,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,54.12,#32770,860,,自动播放,True,
+A1R2,window,54.12,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,54.12,IME,4044,,Default IME,False,
+A1R2,window,59.09,#32770,4044,,iloveaki,True,
+A1R2,window,59.09,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,59.09,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,59.09,#32770,860,,自动播放,True,
+A1R2,window,59.09,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,59.09,IME,4044,,Default IME,False,
+A1R2,window,64.57,#32770,4044,,iloveaki,True,
+A1R2,window,64.57,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,64.57,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,64.57,#32770,860,,自动播放,True,
+A1R2,window,64.57,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,64.57,IME,4044,,Default IME,False,
+A1R2,window,69.3,#32770,4044,,iloveaki,True,
+A1R2,window,69.3,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,69.3,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,69.3,#32770,860,,自动播放,True,
+A1R2,window,69.3,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,69.3,IME,4044,,Default IME,False,
+A1R2,window,74.44,#32770,4044,,iloveaki,True,
+A1R2,window,74.44,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,74.44,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,74.44,#32770,860,,自动播放,True,
+A1R2,window,74.44,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,74.44,IME,4044,,Default IME,False,
+A1R2,window,79.61,#32770,4044,,iloveaki,True,
+A1R2,window,79.61,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,79.61,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,79.61,#32770,860,,自动播放,True,
+A1R2,window,79.61,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,79.61,IME,4044,,Default IME,False,
+A1R2,window,84.3,#32770,4044,,iloveaki,True,
+A1R2,window,84.3,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,84.3,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,84.3,#32770,860,,自动播放,True,
+A1R2,window,84.3,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,84.3,IME,4044,,Default IME,False,
+A1R2,window,89.34,#32770,4044,,iloveaki,True,
+A1R2,window,89.34,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,89.34,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,89.34,#32770,860,,自动播放,True,
+A1R2,window,89.34,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,89.34,IME,4044,,Default IME,False,
+A1R2,window,93.99,#32770,4044,,iloveaki,True,
+A1R2,window,93.99,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,93.99,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,93.99,#32770,860,,自动播放,True,
+A1R2,window,93.99,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,93.99,IME,4044,,Default IME,False,
+A1R2,window,98.84,#32770,4044,,iloveaki,True,
+A1R2,window,98.84,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,98.84,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,98.84,#32770,860,,自动播放,True,
+A1R2,window,98.84,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,98.84,IME,4044,,Default IME,False,
+A1R2,window,103.68,#32770,4044,,iloveaki,True,
+A1R2,window,103.68,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,103.68,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,103.68,#32770,860,,自动播放,True,
+A1R2,window,103.68,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,103.68,IME,4044,,Default IME,False,
+A1R2,window,108.58,#32770,4044,,iloveaki,True,
+A1R2,window,108.58,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,108.58,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,108.58,#32770,860,,自动播放,True,
+A1R2,window,108.58,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,108.58,IME,4044,,Default IME,False,
+A1R2,window,113.63,#32770,4044,,iloveaki,True,
+A1R2,window,113.63,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,113.63,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,113.63,#32770,860,,自动播放,True,
+A1R2,window,113.63,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,113.63,IME,4044,,Default IME,False,
+A1R2,window,118.59,#32770,4044,,iloveaki,True,
+A1R2,window,118.59,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,118.59,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,118.59,#32770,860,,自动播放,True,
+A1R2,window,118.59,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,118.59,IME,4044,,Default IME,False,
+A1R2,window,123.63,#32770,4044,,iloveaki,True,
+A1R2,window,123.63,ConsoleWindowClass,3472,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R2,window,123.63,ConsoleWindowClass,3216,,C:\Windows\system32\cmd.exe,True,
+A1R2,window,123.63,#32770,860,,自动播放,True,
+A1R2,window,123.63,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A1R2,window,123.63,IME,4044,,Default IME,False,
+A1R3,process,3.29,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,7.57,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,11.78,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,15.97,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,19.69,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,24.4,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,28.05,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,31.78,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,35.41,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,39.39,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,43.34,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,47.91,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,51.45,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,55.44,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,59.34,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,62.52,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,65.71,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,69.15,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,72.42,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,76.05,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,79.75,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,83.43,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,86.97,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,90.62,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,94.27,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,97.56,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,101.1,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,104.29,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,process,107.59,MapleStory.exe,2200,3788,,,"G:\MapleStory.exe"" "
+A1R3,window,3.29,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,3.29,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,3.29,#32770,3472,,Windows Media Center,True,
+A1R3,window,3.29,#32770,860,,自动播放,True,
+A1R3,window,7.57,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,7.57,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,7.57,#32770,3472,,Windows Media Center,True,
+A1R3,window,7.57,#32770,860,,自动播放,True,
+A1R3,window,11.78,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,11.78,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,11.78,#32770,3472,,Windows Media Center,True,
+A1R3,window,11.78,#32770,860,,自动播放,True,
+A1R3,window,15.97,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,15.97,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,15.97,#32770,3472,,Windows Media Center,True,
+A1R3,window,15.97,#32770,860,,自动播放,True,
+A1R3,window,19.69,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,19.69,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,19.69,#32770,3472,,Windows Media Center,True,
+A1R3,window,19.69,#32770,860,,自动播放,True,
+A1R3,window,24.4,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,24.4,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,24.4,#32770,3472,,Windows Media Center,True,
+A1R3,window,24.4,#32770,860,,自动播放,True,
+A1R3,window,28.05,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,28.05,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,28.05,#32770,3472,,Windows Media Center,True,
+A1R3,window,28.05,#32770,860,,自动播放,True,
+A1R3,window,31.78,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,31.78,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,31.78,#32770,3472,,Windows Media Center,True,
+A1R3,window,31.78,#32770,860,,自动播放,True,
+A1R3,window,35.41,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,35.41,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,35.41,#32770,3472,,Windows Media Center,True,
+A1R3,window,35.41,#32770,860,,自动播放,True,
+A1R3,window,39.39,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,39.39,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,39.39,#32770,3472,,Windows Media Center,True,
+A1R3,window,39.39,#32770,860,,自动播放,True,
+A1R3,window,43.34,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,43.34,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,43.34,#32770,3472,,Windows Media Center,True,
+A1R3,window,43.34,#32770,860,,自动播放,True,
+A1R3,window,47.91,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,47.91,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,47.91,#32770,3472,,Windows Media Center,True,
+A1R3,window,47.91,#32770,860,,自动播放,True,
+A1R3,window,51.45,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,51.45,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,51.45,#32770,3472,,Windows Media Center,True,
+A1R3,window,51.45,#32770,860,,自动播放,True,
+A1R3,window,55.44,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,55.44,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,55.44,#32770,3472,,Windows Media Center,True,
+A1R3,window,55.44,#32770,860,,自动播放,True,
+A1R3,window,59.34,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,59.34,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,59.34,#32770,3472,,Windows Media Center,True,
+A1R3,window,59.34,#32770,860,,自动播放,True,
+A1R3,window,62.52,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,62.52,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,62.52,#32770,3472,,Windows Media Center,True,
+A1R3,window,62.52,#32770,860,,自动播放,True,
+A1R3,window,65.71,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,65.71,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,65.71,#32770,3472,,Windows Media Center,True,
+A1R3,window,65.71,#32770,860,,自动播放,True,
+A1R3,window,69.15,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,69.15,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,69.15,#32770,3472,,Windows Media Center,True,
+A1R3,window,69.15,#32770,860,,自动播放,True,
+A1R3,window,72.42,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,72.42,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,72.42,#32770,3472,,Windows Media Center,True,
+A1R3,window,72.42,#32770,860,,自动播放,True,
+A1R3,window,76.05,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,76.05,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,76.05,#32770,3472,,Windows Media Center,True,
+A1R3,window,76.05,#32770,860,,自动播放,True,
+A1R3,window,79.75,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,79.75,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,79.75,#32770,3472,,Windows Media Center,True,
+A1R3,window,79.75,#32770,860,,自动播放,True,
+A1R3,window,83.43,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,83.43,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,83.43,#32770,3472,,Windows Media Center,True,
+A1R3,window,83.43,#32770,860,,自动播放,True,
+A1R3,window,86.97,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,86.97,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,86.97,#32770,3472,,Windows Media Center,True,
+A1R3,window,86.97,#32770,860,,自动播放,True,
+A1R3,window,90.62,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,90.62,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,90.62,#32770,3472,,Windows Media Center,True,
+A1R3,window,90.62,#32770,860,,自动播放,True,
+A1R3,window,94.27,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,94.27,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,94.27,#32770,3472,,Windows Media Center,True,
+A1R3,window,94.27,#32770,860,,自动播放,True,
+A1R3,window,97.56,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,97.56,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,97.56,#32770,3472,,Windows Media Center,True,
+A1R3,window,97.56,#32770,860,,自动播放,True,
+A1R3,window,101.1,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,101.1,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,101.1,#32770,3472,,Windows Media Center,True,
+A1R3,window,101.1,#32770,860,,自动播放,True,
+A1R3,window,104.29,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,104.29,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,104.29,#32770,3472,,Windows Media Center,True,
+A1R3,window,104.29,#32770,860,,自动播放,True,
+A1R3,window,107.59,ConsoleWindowClass,3756,,管理员: C:\Windows\system32\cmd.exe,True,
+A1R3,window,107.59,ConsoleWindowClass,3524,,C:\Windows\system32\cmd.exe,True,
+A1R3,window,107.59,#32770,3472,,Windows Media Center,True,
+A1R3,window,107.59,#32770,860,,自动播放,True,
+A2E,process,2.46,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,7.5,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,11.04,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,14.71,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,18.28,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,22.42,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,26.24,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,30.22,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,33.98,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,38.0,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,41.79,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,45.41,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,48.83,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,52.31,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,56.11,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,59.55,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,63.1,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,66.55,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,70.23,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,73.69,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,77.31,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,80.71,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,84.13,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,87.8,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,91.54,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,95.24,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,98.67,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,102.41,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,105.92,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,109.56,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,112.97,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,116.36,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,120.03,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,process,123.71,MapleStory.exe,2136,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2E,window,2.46,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,2.46,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,2.46,#32770,860,,自动播放,True,
+A2E,window,7.5,#32770,2136,,iloveaki,True,
+A2E,window,7.5,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,7.5,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,7.5,#32770,860,,自动播放,True,
+A2E,window,7.5,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,7.5,IME,2136,,Default IME,False,
+A2E,window,11.04,#32770,2136,,iloveaki,True,
+A2E,window,11.04,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,11.04,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,11.04,#32770,860,,自动播放,True,
+A2E,window,11.04,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,11.04,IME,2136,,Default IME,False,
+A2E,window,14.71,#32770,2136,,iloveaki,True,
+A2E,window,14.71,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,14.71,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,14.71,#32770,860,,自动播放,True,
+A2E,window,14.71,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,14.71,IME,2136,,Default IME,False,
+A2E,window,18.28,#32770,2136,,iloveaki,True,
+A2E,window,18.28,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,18.28,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,18.28,#32770,860,,自动播放,True,
+A2E,window,18.28,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,18.28,IME,2136,,Default IME,False,
+A2E,window,22.42,#32770,2136,,iloveaki,True,
+A2E,window,22.42,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,22.42,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,22.42,#32770,860,,自动播放,True,
+A2E,window,22.42,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,22.42,IME,2136,,Default IME,False,
+A2E,window,26.24,#32770,2136,,iloveaki,True,
+A2E,window,26.24,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,26.24,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,26.24,#32770,860,,自动播放,True,
+A2E,window,26.24,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,26.24,IME,2136,,Default IME,False,
+A2E,window,30.22,#32770,2136,,iloveaki,True,
+A2E,window,30.22,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,30.22,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,30.22,#32770,860,,自动播放,True,
+A2E,window,30.22,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,30.22,IME,2136,,Default IME,False,
+A2E,window,33.98,#32770,2136,,iloveaki,True,
+A2E,window,33.98,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,33.98,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,33.98,#32770,860,,自动播放,True,
+A2E,window,33.98,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,33.98,IME,2136,,Default IME,False,
+A2E,window,38.0,#32770,2136,,iloveaki,True,
+A2E,window,38.0,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,38.0,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,38.0,#32770,860,,自动播放,True,
+A2E,window,38.0,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,38.0,IME,2136,,Default IME,False,
+A2E,window,41.79,#32770,2136,,iloveaki,True,
+A2E,window,41.79,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,41.79,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,41.79,#32770,860,,自动播放,True,
+A2E,window,41.79,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,41.79,IME,2136,,Default IME,False,
+A2E,window,45.41,#32770,2136,,iloveaki,True,
+A2E,window,45.41,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,45.41,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,45.41,#32770,860,,自动播放,True,
+A2E,window,45.41,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,45.41,IME,2136,,Default IME,False,
+A2E,window,48.83,#32770,2136,,iloveaki,True,
+A2E,window,48.83,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,48.83,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,48.83,#32770,860,,自动播放,True,
+A2E,window,48.83,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,48.83,IME,2136,,Default IME,False,
+A2E,window,52.31,#32770,2136,,iloveaki,True,
+A2E,window,52.31,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,52.31,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,52.31,#32770,860,,自动播放,True,
+A2E,window,52.31,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,52.31,IME,2136,,Default IME,False,
+A2E,window,56.11,#32770,2136,,iloveaki,True,
+A2E,window,56.11,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,56.11,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,56.11,#32770,860,,自动播放,True,
+A2E,window,56.11,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,56.11,IME,2136,,Default IME,False,
+A2E,window,59.55,#32770,2136,,iloveaki,True,
+A2E,window,59.55,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,59.55,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,59.55,#32770,860,,自动播放,True,
+A2E,window,59.55,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,59.55,IME,2136,,Default IME,False,
+A2E,window,63.1,#32770,2136,,iloveaki,True,
+A2E,window,63.1,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,63.1,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,63.1,#32770,860,,自动播放,True,
+A2E,window,63.1,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,63.1,IME,2136,,Default IME,False,
+A2E,window,66.55,#32770,2136,,iloveaki,True,
+A2E,window,66.55,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,66.55,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,66.55,#32770,860,,自动播放,True,
+A2E,window,66.55,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,66.55,IME,2136,,Default IME,False,
+A2E,window,70.23,#32770,2136,,iloveaki,True,
+A2E,window,70.23,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,70.23,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,70.23,#32770,860,,自动播放,True,
+A2E,window,70.23,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,70.23,IME,2136,,Default IME,False,
+A2E,window,73.69,#32770,2136,,iloveaki,True,
+A2E,window,73.69,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,73.69,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,73.69,#32770,860,,自动播放,True,
+A2E,window,73.69,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,73.69,IME,2136,,Default IME,False,
+A2E,window,77.31,#32770,2136,,iloveaki,True,
+A2E,window,77.31,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,77.31,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,77.31,#32770,860,,自动播放,True,
+A2E,window,77.31,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,77.31,IME,2136,,Default IME,False,
+A2E,window,80.71,#32770,2136,,iloveaki,True,
+A2E,window,80.71,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,80.71,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,80.71,#32770,860,,自动播放,True,
+A2E,window,80.71,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,80.71,IME,2136,,Default IME,False,
+A2E,window,84.13,#32770,2136,,iloveaki,True,
+A2E,window,84.13,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,84.13,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,84.13,#32770,860,,自动播放,True,
+A2E,window,84.13,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,84.13,IME,2136,,Default IME,False,
+A2E,window,87.8,#32770,2136,,iloveaki,True,
+A2E,window,87.8,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,87.8,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,87.8,#32770,860,,自动播放,True,
+A2E,window,87.8,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,87.8,IME,2136,,Default IME,False,
+A2E,window,91.54,#32770,2136,,iloveaki,True,
+A2E,window,91.54,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,91.54,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,91.54,#32770,860,,自动播放,True,
+A2E,window,91.54,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,91.54,IME,2136,,Default IME,False,
+A2E,window,95.24,#32770,2136,,iloveaki,True,
+A2E,window,95.24,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,95.24,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,95.24,#32770,860,,自动播放,True,
+A2E,window,95.24,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,95.24,IME,2136,,Default IME,False,
+A2E,window,98.67,#32770,2136,,iloveaki,True,
+A2E,window,98.67,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,98.67,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,98.67,#32770,860,,自动播放,True,
+A2E,window,98.67,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,98.67,IME,2136,,Default IME,False,
+A2E,window,102.41,#32770,2136,,iloveaki,True,
+A2E,window,102.41,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,102.41,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,102.41,#32770,860,,自动播放,True,
+A2E,window,102.41,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,102.41,IME,2136,,Default IME,False,
+A2E,window,105.92,#32770,2136,,iloveaki,True,
+A2E,window,105.92,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,105.92,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,105.92,#32770,860,,自动播放,True,
+A2E,window,105.92,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,105.92,IME,2136,,Default IME,False,
+A2E,window,109.56,#32770,2136,,iloveaki,True,
+A2E,window,109.56,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,109.56,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,109.56,#32770,860,,自动播放,True,
+A2E,window,109.56,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,109.56,IME,2136,,Default IME,False,
+A2E,window,112.97,#32770,2136,,iloveaki,True,
+A2E,window,112.97,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,112.97,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,112.97,#32770,860,,自动播放,True,
+A2E,window,112.97,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,112.97,IME,2136,,Default IME,False,
+A2E,window,116.36,#32770,2136,,iloveaki,True,
+A2E,window,116.36,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,116.36,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,116.36,#32770,860,,自动播放,True,
+A2E,window,116.36,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,116.36,IME,2136,,Default IME,False,
+A2E,window,120.03,#32770,2136,,iloveaki,True,
+A2E,window,120.03,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,120.03,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,120.03,#32770,860,,自动播放,True,
+A2E,window,120.03,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,120.03,IME,2136,,Default IME,False,
+A2E,window,123.71,#32770,2136,,iloveaki,True,
+A2E,window,123.71,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2E,window,123.71,ConsoleWindowClass,3212,,C:\Windows\system32\cmd.exe,True,
+A2E,window,123.71,#32770,860,,自动播放,True,
+A2E,window,123.71,MSCTFIME UI,2136,,MSCTFIME UI,False,
+A2E,window,123.71,IME,2136,,Default IME,False,
+A2R1,process,3.6,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,9.17,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,14.9,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,19.83,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,24.51,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,29.06,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,33.9,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,38.34,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,43.76,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,48.95,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,53.74,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,58.72,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,63.32,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,67.95,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,72.66,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,77.75,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,82.29,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,86.81,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,90.99,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,95.41,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,99.79,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,104.18,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,109.59,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,114.53,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,119.43,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,process,123.33,MapleStory.exe,4044,3508,,,"F:\MapleStory.exe"" 127.0.0.1 9555 "
+A2R1,window,3.6,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,3.6,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,3.6,#32770,860,,自动播放,True,
+A2R1,window,9.17,#32770,4044,,iloveaki,True,
+A2R1,window,9.17,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,9.17,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,9.17,#32770,860,,自动播放,True,
+A2R1,window,9.17,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,9.17,IME,4044,,Default IME,False,
+A2R1,window,14.9,#32770,4044,,iloveaki,True,
+A2R1,window,14.9,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,14.9,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,14.9,#32770,860,,自动播放,True,
+A2R1,window,14.9,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,14.9,IME,4044,,Default IME,False,
+A2R1,window,19.83,#32770,4044,,iloveaki,True,
+A2R1,window,19.83,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,19.83,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,19.83,#32770,860,,自动播放,True,
+A2R1,window,19.83,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,19.83,IME,4044,,Default IME,False,
+A2R1,window,24.51,#32770,4044,,iloveaki,True,
+A2R1,window,24.51,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,24.51,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,24.51,#32770,860,,自动播放,True,
+A2R1,window,24.51,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,24.51,IME,4044,,Default IME,False,
+A2R1,window,29.06,#32770,4044,,iloveaki,True,
+A2R1,window,29.06,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,29.06,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,29.06,#32770,860,,自动播放,True,
+A2R1,window,29.06,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,29.06,IME,4044,,Default IME,False,
+A2R1,window,33.9,#32770,4044,,iloveaki,True,
+A2R1,window,33.9,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,33.9,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,33.9,#32770,860,,自动播放,True,
+A2R1,window,33.9,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,33.9,IME,4044,,Default IME,False,
+A2R1,window,38.34,#32770,4044,,iloveaki,True,
+A2R1,window,38.34,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,38.34,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,38.34,#32770,860,,自动播放,True,
+A2R1,window,38.34,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,38.34,IME,4044,,Default IME,False,
+A2R1,window,43.76,#32770,4044,,iloveaki,True,
+A2R1,window,43.76,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,43.76,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,43.76,#32770,860,,自动播放,True,
+A2R1,window,43.76,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,43.76,IME,4044,,Default IME,False,
+A2R1,window,48.95,#32770,4044,,iloveaki,True,
+A2R1,window,48.95,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,48.95,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,48.95,#32770,860,,自动播放,True,
+A2R1,window,48.95,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,48.95,IME,4044,,Default IME,False,
+A2R1,window,53.74,#32770,4044,,iloveaki,True,
+A2R1,window,53.74,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,53.74,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,53.74,#32770,860,,自动播放,True,
+A2R1,window,53.74,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,53.74,IME,4044,,Default IME,False,
+A2R1,window,58.72,#32770,4044,,iloveaki,True,
+A2R1,window,58.72,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,58.72,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,58.72,#32770,860,,自动播放,True,
+A2R1,window,58.72,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,58.72,IME,4044,,Default IME,False,
+A2R1,window,63.32,#32770,4044,,iloveaki,True,
+A2R1,window,63.32,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,63.32,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,63.32,#32770,860,,自动播放,True,
+A2R1,window,63.32,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,63.32,IME,4044,,Default IME,False,
+A2R1,window,67.95,#32770,4044,,iloveaki,True,
+A2R1,window,67.95,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,67.95,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,67.95,#32770,860,,自动播放,True,
+A2R1,window,67.95,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,67.95,IME,4044,,Default IME,False,
+A2R1,window,72.66,#32770,4044,,iloveaki,True,
+A2R1,window,72.66,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,72.66,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,72.66,#32770,860,,自动播放,True,
+A2R1,window,72.66,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,72.66,IME,4044,,Default IME,False,
+A2R1,window,77.75,#32770,4044,,iloveaki,True,
+A2R1,window,77.75,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,77.75,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,77.75,#32770,860,,自动播放,True,
+A2R1,window,77.75,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,77.75,IME,4044,,Default IME,False,
+A2R1,window,82.29,#32770,4044,,iloveaki,True,
+A2R1,window,82.29,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,82.29,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,82.29,#32770,860,,自动播放,True,
+A2R1,window,82.29,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,82.29,IME,4044,,Default IME,False,
+A2R1,window,86.81,#32770,4044,,iloveaki,True,
+A2R1,window,86.81,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,86.81,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,86.81,#32770,860,,自动播放,True,
+A2R1,window,86.81,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,86.81,IME,4044,,Default IME,False,
+A2R1,window,90.99,#32770,4044,,iloveaki,True,
+A2R1,window,90.99,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,90.99,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,90.99,#32770,860,,自动播放,True,
+A2R1,window,90.99,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,90.99,IME,4044,,Default IME,False,
+A2R1,window,95.41,#32770,4044,,iloveaki,True,
+A2R1,window,95.41,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,95.41,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,95.41,#32770,860,,自动播放,True,
+A2R1,window,95.41,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,95.41,IME,4044,,Default IME,False,
+A2R1,window,99.79,#32770,4044,,iloveaki,True,
+A2R1,window,99.79,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,99.79,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,99.79,#32770,860,,自动播放,True,
+A2R1,window,99.79,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,99.79,IME,4044,,Default IME,False,
+A2R1,window,104.18,#32770,4044,,iloveaki,True,
+A2R1,window,104.18,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,104.18,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,104.18,#32770,860,,自动播放,True,
+A2R1,window,104.18,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,104.18,IME,4044,,Default IME,False,
+A2R1,window,109.59,#32770,4044,,iloveaki,True,
+A2R1,window,109.59,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,109.59,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,109.59,#32770,860,,自动播放,True,
+A2R1,window,109.59,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,109.59,IME,4044,,Default IME,False,
+A2R1,window,114.53,#32770,4044,,iloveaki,True,
+A2R1,window,114.53,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,114.53,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,114.53,#32770,860,,自动播放,True,
+A2R1,window,114.53,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,114.53,IME,4044,,Default IME,False,
+A2R1,window,119.43,#32770,4044,,iloveaki,True,
+A2R1,window,119.43,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,119.43,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,119.43,#32770,860,,自动播放,True,
+A2R1,window,119.43,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,119.43,IME,4044,,Default IME,False,
+A2R1,window,123.33,#32770,4044,,iloveaki,True,
+A2R1,window,123.33,ConsoleWindowClass,3476,,管理员: C:\Windows\system32\cmd.exe,True,
+A2R1,window,123.33,ConsoleWindowClass,3208,,C:\Windows\system32\cmd.exe,True,
+A2R1,window,123.33,#32770,860,,自动播放,True,
+A2R1,window,123.33,MSCTFIME UI,4044,,MSCTFIME UI,False,
+A2R1,window,123.33,IME,4044,,Default IME,False,
+A3R1,process,3.43,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,9.27,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,14.59,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,19.98,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,25.83,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,31.06,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,35.99,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,41.28,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,47.13,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,52.2,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,57.22,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,61.82,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,66.91,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,71.85,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,76.99,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,82.13,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,87.16,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,92.52,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,97.23,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,102.38,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,process,107.17,MapleStory.exe,4076,4052,,,MapleStory.exe  127.0.0.1 9555
+A3R1,window,3.43,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,3.43,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,3.43,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,3.43,#32770,860,,自动播放,True,
+A3R1,window,9.27,#32770,4076,,iloveaki,True,
+A3R1,window,9.27,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,9.27,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,9.27,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,9.27,#32770,860,,自动播放,True,
+A3R1,window,9.27,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,9.27,IME,4076,,Default IME,False,
+A3R1,window,14.59,#32770,4076,,iloveaki,True,
+A3R1,window,14.59,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,14.59,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,14.59,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,14.59,#32770,860,,自动播放,True,
+A3R1,window,14.59,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,14.59,IME,4076,,Default IME,False,
+A3R1,window,19.98,#32770,4076,,iloveaki,True,
+A3R1,window,19.98,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,19.98,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,19.98,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,19.98,#32770,860,,自动播放,True,
+A3R1,window,19.98,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,19.98,IME,4076,,Default IME,False,
+A3R1,window,25.83,#32770,4076,,iloveaki,True,
+A3R1,window,25.83,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,25.83,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,25.83,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,25.83,#32770,860,,自动播放,True,
+A3R1,window,25.83,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,25.83,IME,4076,,Default IME,False,
+A3R1,window,31.06,#32770,4076,,iloveaki,True,
+A3R1,window,31.06,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,31.06,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,31.06,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,31.06,#32770,860,,自动播放,True,
+A3R1,window,31.06,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,31.06,IME,4076,,Default IME,False,
+A3R1,window,35.99,#32770,4076,,iloveaki,True,
+A3R1,window,35.99,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,35.99,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,35.99,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,35.99,#32770,860,,自动播放,True,
+A3R1,window,35.99,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,35.99,IME,4076,,Default IME,False,
+A3R1,window,41.28,#32770,4076,,iloveaki,True,
+A3R1,window,41.28,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,41.28,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,41.28,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,41.28,#32770,860,,自动播放,True,
+A3R1,window,41.28,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,41.28,IME,4076,,Default IME,False,
+A3R1,window,47.13,#32770,4076,,iloveaki,True,
+A3R1,window,47.13,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,47.13,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,47.13,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,47.13,#32770,860,,自动播放,True,
+A3R1,window,47.13,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,47.13,IME,4076,,Default IME,False,
+A3R1,window,52.2,#32770,4076,,iloveaki,True,
+A3R1,window,52.2,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,52.2,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,52.2,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,52.2,#32770,860,,自动播放,True,
+A3R1,window,52.2,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,52.2,IME,4076,,Default IME,False,
+A3R1,window,57.22,#32770,4076,,iloveaki,True,
+A3R1,window,57.22,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,57.22,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,57.22,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,57.22,#32770,860,,自动播放,True,
+A3R1,window,57.22,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,57.22,IME,4076,,Default IME,False,
+A3R1,window,61.82,#32770,4076,,iloveaki,True,
+A3R1,window,61.82,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,61.82,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,61.82,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,61.82,#32770,860,,自动播放,True,
+A3R1,window,61.82,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,61.82,IME,4076,,Default IME,False,
+A3R1,window,66.91,#32770,4076,,iloveaki,True,
+A3R1,window,66.91,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,66.91,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,66.91,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,66.91,#32770,860,,自动播放,True,
+A3R1,window,66.91,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,66.91,IME,4076,,Default IME,False,
+A3R1,window,71.85,#32770,4076,,iloveaki,True,
+A3R1,window,71.85,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,71.85,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,71.85,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,71.85,#32770,860,,自动播放,True,
+A3R1,window,71.85,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,71.85,IME,4076,,Default IME,False,
+A3R1,window,76.99,#32770,4076,,iloveaki,True,
+A3R1,window,76.99,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,76.99,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,76.99,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,76.99,#32770,860,,自动播放,True,
+A3R1,window,76.99,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,76.99,IME,4076,,Default IME,False,
+A3R1,window,82.13,#32770,4076,,iloveaki,True,
+A3R1,window,82.13,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,82.13,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,82.13,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,82.13,#32770,860,,自动播放,True,
+A3R1,window,82.13,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,82.13,IME,4076,,Default IME,False,
+A3R1,window,87.16,#32770,4076,,iloveaki,True,
+A3R1,window,87.16,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,87.16,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,87.16,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,87.16,#32770,860,,自动播放,True,
+A3R1,window,87.16,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,87.16,IME,4076,,Default IME,False,
+A3R1,window,92.52,#32770,4076,,iloveaki,True,
+A3R1,window,92.52,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,92.52,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,92.52,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,92.52,#32770,860,,自动播放,True,
+A3R1,window,92.52,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,92.52,IME,4076,,Default IME,False,
+A3R1,window,97.23,#32770,4076,,iloveaki,True,
+A3R1,window,97.23,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,97.23,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,97.23,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,97.23,#32770,860,,自动播放,True,
+A3R1,window,97.23,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,97.23,IME,4076,,Default IME,False,
+A3R1,window,102.38,#32770,4076,,iloveaki,True,
+A3R1,window,102.38,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,102.38,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,102.38,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,102.38,#32770,860,,自动播放,True,
+A3R1,window,102.38,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,102.38,IME,4076,,Default IME,False,
+A3R1,window,107.17,#32770,4076,,iloveaki,True,
+A3R1,window,107.17,ConsoleWindowClass,4052,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,107.17,ConsoleWindowClass,3500,,管理员: C:\Windows\system32\cmd.exe,True,
+A3R1,window,107.17,ConsoleWindowClass,3248,,C:\Windows\system32\cmd.exe,True,
+A3R1,window,107.17,#32770,860,,自动播放,True,
+A3R1,window,107.17,MSCTFIME UI,4076,,MSCTFIME UI,False,
+A3R1,window,107.17,IME,4076,,Default IME,False,

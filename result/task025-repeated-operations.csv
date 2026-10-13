@@ -1,0 +1,15 @@
+source,run_id,process,operation,total_count,distinct_objects_known,first_seen_rel,last_seen_rel,rate_per_sec_sustained,interpretation,label
+ETW-kernel-trace,A1E,MapleStory.exe (spin),FileIo (any Create/Read/Write/QueryInfo/FSControl attributed to game PID),0,n/a,n/a,n/a,0,spin performs no file system IO at all during 150 s,confirmed-runtime
+ETW-kernel-trace,A1E,MapleStory.exe (spin),Registry/Open,46,unknown names,process start,process start +~1s,burst only,all at startup; silence afterwards,observed-side-effect
+ETW-kernel-trace,A1E,MapleStory.exe (spin),Registry/QueryValue,21,unknown names,process start,process start +~1s,burst only,no polling loop,observed-side-effect
+ETW-kernel-trace,A1E,MapleStory.exe (spin),Registry/EnumerateValueKey,1,unknown,process start,start,burst only,no enumeration loop,observed-side-effect
+ETW-kernel-trace,A1E,MapleStory.exe (spin),Thread/Start,25,n/a,t0+1..5s,t0+5s,burst only,24 protector worker threads spawned once after PCA click; no further spawns,confirmed-runtime
+ETW-kernel-trace,A1E,MapleStory.exe (spin),Image/Load,18,n/a,t0,t0+~5s,burst only,system bootstrap DLLs only; nothing further,confirmed-runtime
+ETW-kernel-trace,A2E,MapleStory.exe (dialog),FileIo (any attributed to game PID),0,n/a,n/a,n/a,0,game-side image loads happen without game-PID-attributed FileIo events; no retries,confirmed-runtime
+ETW-kernel-trace,A2E,MapleStory.exe (dialog),Registry/Open,63,unknown names,process start,+~30s,burst only,loader config reads incl. larger enumeration phase,observed-side-effect
+ETW-kernel-trace,A2E,MapleStory.exe (dialog),Registry/QueryValue,48,unknown names,process start,+~30s,burst only,no polling loop,observed-side-effect
+ETW-kernel-trace,A2E,MapleStory.exe (dialog),Registry/EnumerateValueKey,67,unknown names,process start,+~30s,burst only,notable vs 1 in spin run; consistent with environment/drive enumeration before loader success,observed-side-effect
+ETW-kernel-trace,A2E,MapleStory.exe (dialog),Image/Load,27,n/a,t0,+~30s,burst only,adds iloveaki.dat/ijl15.dll/MSVCR90/ole32 etc,confirmed-runtime
+netstat-poll,all runs,MapleStory.exe,TCP rows (any port),0,n/a,n/a,n/a,0,no sockets ever in any outcome window,confirmed-runtime
+regquery-diff,all runs,MapleStory.exe,AppCompatFlags store/Layers writes,0,n/a,n/a,n/a,0,registry byte-identical before/after every run,confirmed-runtime
+driverquery-diff,all runs,system,new drivers/services,0,n/a,n/a,n/a,0,driver list identical before/after every run,confirmed-runtime

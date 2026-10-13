@@ -1,0 +1,55 @@
+run_id,event,t_rel_s,detail
+A1E,t0_process_created,0.0,"pid=2176 ppid=3616 cmd=""G:\MapleStory.exe"""
+A1E,launch_invoked,0.11,Start-Process by observer
+A1E,pca_dialog_shown,1.75,class #32770 with 运行程序 button
+A1E,run_program_clicked,1.81,BM_CLICK via observer
+A1E,first_cpu_sample,1.92,cpu_total=0.172 ws=3932KB threads=1
+A1E,sample_cutoff,125.28,last CPU sample
+A1P,t0_process_created,0.0,"pid=2088 ppid=3628 cmd=""G:\MapleStory.exe"""
+A1P,launch_invoked,0.05,Start-Process by observer
+A1P,pca_dialog_shown,3.68,class #32770 with 运行程序 button
+A1P,run_program_clicked,3.84,BM_CLICK via observer
+A1P,first_cpu_sample,4.1,cpu_total=0.406 ws=4056KB threads=1
+A1P,sample_cutoff,106.36,last CPU sample
+A1P2,t0_process_created,0.0,"pid=2276 ppid=3784 cmd=""G:\MapleStory.exe"""
+A1P2,launch_invoked,0.09,Start-Process by observer
+A1P2,pca_dialog_shown,3.4,class #32770 with 运行程序 button
+A1P2,run_program_clicked,3.46,BM_CLICK via observer
+A1P2,first_cpu_sample,3.81,cpu_total=0.218 ws=3996KB threads=1
+A1P2,sample_cutoff,87.8,last CPU sample
+A1R1,t0_process_created,0.0,"pid=2496 ppid=4044 cmd=""G:\MapleStory.exe"""
+A1R1,launch_invoked,0.09,Start-Process by observer
+A1R1,pca_dialog_shown,1.69,class #32770 with 运行程序 button
+A1R1,run_program_clicked,1.75,BM_CLICK via observer
+A1R1,first_cpu_sample,1.86,cpu_total=0.203 ws=3988KB threads=1
+A1R1,sample_cutoff,78.86,last CPU sample
+A1R2,t0_process_created,0.0,"pid=4044 ppid=3504 cmd=""F:\MapleStory.exe"""
+A1R2,launch_invoked,0.11,Start-Process by observer
+A1R2,pca_dialog_shown,3.2,class #32770 with 运行程序 button
+A1R2,run_program_clicked,3.32,BM_CLICK via observer
+A1R2,first_cpu_sample,3.43,cpu_total=0.047 ws=1576KB threads=1
+A1R2,sample_cutoff,123.63,last CPU sample
+A1R3,t0_process_created,0.0,"pid=2200 ppid=3788 cmd=""G:\MapleStory.exe"""
+A1R3,launch_invoked,0.11,Start-Process by observer
+A1R3,pca_dialog_shown,3.12,class #32770 with 运行程序 button
+A1R3,run_program_clicked,3.2,BM_CLICK via observer
+A1R3,first_cpu_sample,3.29,cpu_total=0.094 ws=1468KB threads=1
+A1R3,sample_cutoff,107.59,last CPU sample
+A2E,t0_process_created,0.0,"pid=2136 ppid=3508 cmd=""F:\MapleStory.exe"" 127.0.0.1 9555"
+A2E,launch_invoked,0.09,Start-Process by observer
+A2E,pca_dialog_shown,2.28,class #32770 with 运行程序 button
+A2E,run_program_clicked,2.35,BM_CLICK via observer
+A2E,first_cpu_sample,2.46,cpu_total=0.140 ws=3628KB threads=1
+A2E,sample_cutoff,123.71,last CPU sample
+A2R1,t0_process_created,0.0,"pid=4044 ppid=3508 cmd=""F:\MapleStory.exe"" 127.0.0.1 9555"
+A2R1,launch_invoked,0.12,Start-Process by observer
+A2R1,pca_dialog_shown,3.4,class #32770 with 运行程序 button
+A2R1,run_program_clicked,3.48,BM_CLICK via observer
+A2R1,first_cpu_sample,3.6,cpu_total=0.078 ws=1568KB threads=1
+A2R1,sample_cutoff,123.33,last CPU sample
+A3R1,t0_process_created,0.0,pid=4076 ppid=4052 cmd=MapleStory.exe  127.0.0.1 9555
+A3R1,launch_invoked,0.62,Start-Process by observer
+A3R1,pca_dialog_shown,3.18,class #32770 with 运行程序 button
+A3R1,run_program_clicked,3.29,BM_CLICK via observer
+A3R1,first_cpu_sample,3.43,cpu_total=0.094 ws=1568KB threads=1
+A3R1,sample_cutoff,107.17,last CPU sample
