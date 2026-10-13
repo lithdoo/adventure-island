@@ -1,0 +1,13 @@
+structure,arch,field_offset,read_by,replay_value,real_win7_meaning,realistic_value_this_process,slice_relevance,status,evidence
+TEB,x86,+0x00 SEH chain head,ntdll SEH dispatch + protector push fs:[0],frame chain ending 0xFFFFFFFF,per-frame EXCEPTION_REGISTRATION list,same shape,load-bearing (exception-driven control flow),faithful,confirmed-replay + real ntdll code executes
+TEB,x86,+0x04 StackBase,fs event n=18865023-class,0x300000,real stack base,~0x300000,gadget-spare only,faithful-in-shape,confirmed-replay
+TEB,x86,+0x08 StackLimit,fs events,0x100000,real stack limit,~0x100000,gadget-spare only,faithful-in-shape,confirmed-replay
+TEB,x86,+0x18 self,ntdll mov eax fs:[0x18] (0x7767E88A-class),0x7FFDE000,TEB self pointer,TEB addr,SEH validation path,faithful,confirmed-replay
+TEB,x86,+0xFCA SameTebFlags word,ntdll test word [ecx+0xFCA] 0x200 (0x7767E896),0x0000,0 when no ActivationContextStack active in thread,0,SEH validation path,faithful,confirmed-replay
+TEB,x86,+0x30 PEB pointer,fs events (value never dereferenced),0x7FFDD000,PEB address,PEB addr,never used,faithful-in-shape,confirmed-replay
+PEB,x86,+0x02 BeingDebugged,never executed,n/a,debugger flag,0,not-read,on-path never touched,not-relevant-to-slice,whole-run read-page map
+PEB,x86,+0x68 NtGlobalFlag,never executed,n/a,FLG_* heap flags,0,not-read,on-path never touched,not-relevant-to-slice,whole-run read-page map
+PEB,x86,+0x08 ImageBaseAddress,never executed,n/a,main image base,0x400000,not-read,on-path never touched,not-relevant-to-slice,whole-run read-page map
+PEB,x86,+0x0C Ldr / +0x10 ProcessParameters / +0x18 ProcessHeap,never executed,n/a,loader data / params / heap,rich structures,not-read,on-path never touched,not-relevant-to-slice,whole-run read-page map shows zero PEB pages read
+CONTEXT,x86,full CONTEXT via KiUserExceptionDispatcher,real ntdll,CONTEXT_FULL laid out by replay,real layout,identical,load-bearing (#UD trap choreography),faithful,confirmed-replay (Task 027 mechanism re-verified)
+KUSER_SHARED_DATA,x86,0x7FFE0000,never read directly,timeGetTime stubbed at export,n/a (real APIs read it),n/a,not-read,not-relevant-to-slice,read-page map

@@ -1,0 +1,12 @@
+run_id,full_or_checkpoint,instruction_count_to_corridor,normalized_block_trace_sha256,error_decision_rva,error_path_reached,TailA_write_count,notes
+base1,full,18865228,(eip-history + messageboxes identical; sig formalized in base3),0x84E638 (VM continuation store; box at 0x85941F),yes,0,untraced reference run (pre-fidelity-fixes)
+base2,full,18865228,(identical to base1 on all summary fields),0x84E638,yes,0,untraced reference run (pre-fidelity-fixes)
+base3,full,18865228,apilog a9357b2b472d71d6…,0x84E638,yes,0,traced; corridor 1346545 insns / 843 blocks / 77 branch sites
+base4,full,18865228,apilog a9357b2b472d71d6… (== base3),0x84E638,yes,0,traced; full signature equality with base3
+ckrun2,checkpoint,18865229 (resume),stream == full suffix (1428634 events identical),0x84E638,yes,0,equivalence verification #1
+ckrun4,checkpoint,18865229 (resume),stream == full suffix (1428634 events identical),0x84E638,yes,0,equivalence verification #2 (after save/resume bug fixes)
+ckrun5,checkpoint,18865229 (resume),final-state hashes identical,0x84E638,yes,0,read-hook regression (identical signature)
+ckrun6,checkpoint,18865229 (resume),final-state hashes identical,0x84E638,yes,0,kernel32 read-log added (identical signature)
+ckrun7,checkpoint,18865229 (resume),final-state hashes identical,0x84E638,yes,0,per-instruction read logging (identical signature)
+final-default,full,18865228,post-fix canonical baseline (count 20211772),0x84E638,yes,0,after F1-F4: GetVersionEx strict+no-OOB quoted cmdline registry handle
+upt60K..300K,full,18865228,outcome identical across the measured uptime range,0x84E638,yes,0,evidence-anchored vclock-base sweep (falsifies absolute-uptime causation)

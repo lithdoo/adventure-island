@@ -40,12 +40,14 @@ import time
 from pathlib import Path
 
 import pefile
+import unicorn.x86_const as unicorn_x86_const
 from capstone import CS_ARCH_X86, CS_MODE_32, Cs
 from unicorn import (Uc, UC_ARCH_X86, UC_MODE_32, UC_HOOK_CODE,
                      UC_HOOK_MEM_INVALID, UC_HOOK_MEM_WRITE, UC_HOOK_MEM_READ)
 from unicorn.x86_const import (UC_X86_REG_EAX, UC_X86_REG_EBP, UC_X86_REG_EBX,
                                UC_X86_REG_ECX, UC_X86_REG_EDI, UC_X86_REG_EDX,
-                               UC_X86_REG_EIP, UC_X86_REG_ESI, UC_X86_REG_ESP,
+                               UC_X86_REG_EIP, UC_X86_REG_EFLAGS,
+                               UC_X86_REG_ESI, UC_X86_REG_ESP,
                                UC_X86_REG_FS_BASE)
 
 IMAGE = 0x400000
@@ -114,6 +116,24 @@ class Replay:
             "region1_done": False,
         }
         self.md = Cs(CS_ARCH_X86, CS_MODE_32)
+        self.md.detail = False
+        # ---- Task 028 additions ----
+        self.apilog = []          # uncapped compact API/env event stream
+        self.tracer = None        # selective corridor tracer (opt-in)
+        self.tracer_closed = False
+        self.corridor_n = None    # instruction count at corridor start
+        self.ck2_dir = None       # checkpoint v2 target dir
+        self.ck2_tag = None       # marker tag for checkpoint v2
+        self.ck2_saved = False
+        self.ck2_save_mode = False
+        self.resume_ckpt = None   # tag to resume from (v2)
+        self.trace_dir = None     # opt-in trace output dir
+        self.trace_from = "corridor"
+        self.trace_max = 4_000_000
+        self.trace_log_reads = False
+        REGNAMES = ("eax", "ebx", "ecx", "edx", "esi", "edi", "ebp", "esp")
+        self.REGCONSTS = {n: getattr(unicorn_x86_const,
+                                     f"UC_X86_REG_{n.upper()}") for n in REGNAMES}
 
     # ---------- memory ----------
     def map_pe(self, path: Path, base: int) -> int:
@@ -211,6 +231,14 @@ class Replay:
         self.log.append({"kind": kind, **fields})
         if len(self.log) > 20000:
             self.log = self.log[-10000:]
+        # uncapped compact stream for signature / fidelity audit
+        keep = []
+        for k in ("name", "key", "value", "t", "ms", "ret", "code", "eip",
+                  "resume_eip", "exists", "base", "device"):
+            if k in fields:
+                v = fields[k]
+                keep.append((k, v if isinstance(v, (int, bool)) else str(v)))
+        self.apilog.append((kind, self.state["count"], tuple(keep)))
 
     # ---------- API implementation (truthful guest answers) ----------
     def resolve_module_file(self, name: str) -> Path | None:
@@ -381,16 +409,44 @@ class Replay:
         esp = self.uc.reg_read(UC_X86_REG_ESP)
         info = self.dword(esp + 4)
         size = self.dword(info)
-        fields = [size, 6, 1, 7601, 1, "Service Pack 1", 0x40,
-                  0, 0, 0x1DB9, 1]
-        blob = b"".join(x.to_bytes(4, "little") if isinstance(x, int)
-                        else x.encode("ascii") + b"\x00" * (128 - len(x))
-                        for x in fields[:5]) + fields[4 + 1].encode() + b"\x00" * (128 - 12)
-        blob = b"".join(x.to_bytes(4, "little") if isinstance(x, int)
-                        else (x.encode("ascii").ljust(128, b"\x00"))
-                        for x in fields)
-        self.uc.mem_write(info, blob)
+        # OSVERSIONINFOA(W) exact layout (MSDN):
+        #   DWORD dwOSVersionInfoSize, dwMajorVersion, dwMinorVersion,
+        #         dwBuildNumber, dwPlatformId;
+        #   TCHAR szCSDVersion[128];
+        #   WORD  wServicePackMajor, wServicePackMinor, wSuiteMask;
+        #   BYTE  wProductType, wReserved;
+        # Guest truth (result/24-win7-x86-sp1-natural-runtime.md):
+        #   Win7 Professional SP1 6.1.7601, ServicePackMajorVersion=1.
+        csd = "Service Pack 1"
+        wide = getattr(self, "_gvx_wide", False)
+        csd_raw = (csd.encode("utf-16le") + b"\x00\x00" if wide
+                   else csd.encode("ascii") + b"\x00")
+        # strict: the real API writes exactly the caller-declared struct size
+        # (148 = OSVERSIONINFOA; 156+ = OSVERSIONINFOEXA adds the SP fields)
+        blob = bytearray(min(size, 156))
+        def put32(off, v):
+            if off + 4 <= len(blob):
+                blob[off:off + 4] = (v & 0xFFFFFFFF).to_bytes(4, "little")
+        put32(0, size)
+        put32(4, 6)          # dwMajorVersion
+        put32(8, 1)          # dwMinorVersion
+        put32(12, 7601)      # dwBuildNumber
+        put32(16, 1)         # dwPlatformId = VER_PLATFORM_WIN32_NT
+        if len(blob) >= 148:
+            blob[20:148] = csd_raw.ljust(128, b"\x00")[:128]
+        if size >= 156:
+            blob[148:150] = (1).to_bytes(2, "little")     # wServicePackMajor
+            blob[150:152] = (0).to_bytes(2, "little")     # wServicePackMinor
+            blob[152:154] = (0x0100).to_bytes(2, "little")  # wSuiteMask (Pro:
+            # VER_SUITE_SINGLEUSERUI; guest-truth probe pending for exact bits)
+            blob[154] = 1        # wProductType = VER_NT_WORKSTATION
+            blob[155] = 0        # wReserved
+        self.uc.mem_write(info, bytes(blob))
         self.stdcall(1, 1)
+
+    def stub_GetVersionEx_W(self):
+        self._gvx_wide = True
+        return self.stub_GetVersionEx()
 
     def stub_RegOpenKey(self, wide, nargs=3):
         esp = self.uc.reg_read(UC_X86_REG_ESP)
@@ -398,9 +454,11 @@ class Replay:
         name = self.read_wstr(sub) if wide else self.read_cstr(sub)
         if name == "":
             # empty subkey = open the root hive itself: succeeds on Windows
+            # (returns a DUPLICATE handle). Real duplicates are ordinary small
+            # kernel handles, NOT predefined-hive constants (>= 0x80000000).
             out = self.dword(esp + 8 + 4) if nargs == 3 else self.dword(esp + 16)
-            h = 0x80000000 + (self.state["next_handle"] & 0xFFFF)
-            self.state["next_handle"] += 4
+            self.state["reg_handle_seq"] = self.state.get("reg_handle_seq", 0) + 1
+            h = 0x000000A8 + 4 * self.state["reg_handle_seq"]
             try:
                 self.uc.mem_write(out, h.to_bytes(4, "little"))
             except Exception:
@@ -480,7 +538,11 @@ class Replay:
         self.stdcall(2, len(path))
 
     def stub_GetCommandLine(self, wide=False):
-        path = '"F:\\MapleStory.exe"'  # CreateProcess-style quoted image path
+        # Real guest launch (T025OBS.PS1 -> Start-Process): the WMI-captured
+        # exact command line of the gate-bearing runs (result/task025-launch-
+        # matrix.csv, A1R2) is the QUOTED form "F:\MapleStory.exe".
+        variants = getattr(self, "cmdline_variants", None) or ['"F:\\MapleStory.exe"']
+        path = variants[self.state.get("cmdline_idx", 0) % len(variants)]
         if not hasattr(self, "_cmdline_buf"):
             self._cmdline_buf = 0x003F0000
             try:
@@ -688,13 +750,27 @@ class Replay:
         self.uc.reg_write(UC_X86_REG_ESP, new_esp)
 
     def vclock_ms(self) -> int:
-        # calibrated to the observed guest TCG throughput: the client does
-        # ~11.4M instructions in ~2.6 CPU-s pre-modal. Scale configurable.
-        return (1_200_000 + int(self.state["count"] * self.clock_scale / 1_000_000)
+        # virtual uptime model: base (ms since boot at emulation start) +
+        # instruction-scaled time + slept time. The default base 1_200_000 is
+        # the Task 027 calibration; --vclock-base overrides it with a measured
+        # value (e.g. the guest boot->launch delta captured in Task 025 runs).
+        return (int(self.state.get("vclock_base", 1_200_000))
+                + int(self.state["count"] * self.clock_scale / 1_000_000)
                 + self.state.get("sleep_ms", 0))
 
-    def stub_timeGetTime(self):
+    def tgt_quantized(self) -> int:
+        """Faithful winmm!timeGetTime: Win7 default system timer resolution
+        is 15.625 ms (64 Hz) when timeBeginPeriod has not been called (it has
+        not, per the replay API log). The tick count therefore only changes
+        every 15.625 ms of virtual time."""
         t = self.vclock_ms()
+        return int(t * 64 // 1000) * 1000 // 64
+
+    def stub_timeGetTime(self):
+        if self.state.get("tgt_faithful_resolution"):
+            t = self.tgt_quantized()
+        else:
+            t = self.vclock_ms()
         self.note("timeGetTime", t=t)
         self.stdcall(0, t)
 
@@ -746,8 +822,8 @@ class Replay:
             "IsDebuggerPresent": self.stub_IsDebuggerPresent,
             "GetLocalTime": self.stub_GetLocalTime,
             "GetVersion": self.stub_GetVersion,
-            "GetVersionExA": self.stub_GetVersionEx,
-            "GetVersionExW": self.stub_GetVersionEx,
+                       "GetVersionExA": self.stub_GetVersionEx,
+            "GetVersionExW": self.stub_GetVersionEx_W,
             "MessageBoxA": lambda: self.stub_MessageBox(False),
             "MessageBoxW": lambda: self.stub_MessageBox(True),
             "MessageBoxExA": lambda: self.stub_MessageBox(False),
@@ -828,7 +904,251 @@ class Replay:
             if va:
                 self.api_stubs[va] = handler
 
-    # ---------- SEH ----------
+    # ---------- Task 028: selective tracer + checkpoint v2 ----------
+    def api_name_at(self, address: int):
+        for _b, _i in self.modules.items():
+            nm = _i["va2name"].get(address)
+            if nm:
+                return nm
+        return None
+
+    def save_checkpoint_v2(self, tag: str):
+        """Full-fidelity scratch checkpoint: memory regions + complete CPU and
+        replay state, taken at a stable post-API-return point."""
+        import zlib
+        uc = self.uc
+        regions = []
+        for begin, end, perms in sorted(uc.mem_regions()):
+            base, size = int(begin), int(end) - int(begin) + 1
+            if 0 < size <= 0x4000000:
+                regions.append((base, size))
+        blob = bytearray()
+        offsets = {}
+        for base, size in regions:
+            offsets[str(base)] = len(blob)
+            blob += bytes(uc.mem_read(base, size))
+        regs = {n: uc.reg_read(c) for n, c in self.REGCONSTS.items()}
+        meta = {
+            "version": 2, "tag": tag, "count": self.state["count"],
+            "clock_scale": self.clock_scale,
+            "arena": self.state["arena"],
+            "sleep_ms": self.state.get("sleep_ms", 0),
+            "next_handle": self.state["next_handle"],
+            "seh_head": self.seh_head[0],
+            "seh_dispatches": self.state.get("seh_dispatches", 0),
+            "corridor_n": self.corridor_n,
+            "eip": uc.reg_read(UC_X86_REG_EIP),
+            "eflags": uc.reg_read(UC_X86_REG_EFLAGS),
+            "regs": regs,
+            "handles": self.state["handles"],
+            "files": self.state["files"],
+            "reg_ops": self.state["reg"],
+            "probes": self.state["probes"],
+            "modules": [[b, i["label"], i["path"]] for b, i in
+                        self.modules.items()],
+            "regions": regions, "offsets": offsets,
+        }
+        self.ck2_dir.mkdir(parents=True, exist_ok=True)
+        (self.ck2_dir / f"{tag}.json").write_text(json.dumps(meta))
+        (self.ck2_dir / f"{tag}.bin.z").write_bytes(
+            zlib.compress(bytes(blob), 1))
+        print(f"[ck2] saved '{tag}' at n={self.state['count']} "
+              f"eip={hex(meta['eip'])} regions={len(regions)}")
+
+    def load_checkpoint_v2(self, tag: str):
+        import zlib
+        uc = self.uc
+        meta = json.loads((self.ck2_dir / f"{tag}.json").read_text())
+        blob = zlib.decompress((self.ck2_dir / f"{tag}.bin.z").read_bytes())
+        for base, size in meta["regions"]:
+            off = meta["offsets"][str(base)]
+            try:
+                uc.mem_map(base, size)
+            except Exception:
+                pass
+            uc.mem_write(base, blob[off:off + size])
+        self.state["count"] = meta["count"]
+        self.state["arena"] = meta["arena"]
+        self.state["sleep_ms"] = meta["sleep_ms"]
+        self.state["next_handle"] = meta["next_handle"]
+        self.state["handles"] = meta["handles"]
+        self.state["files"] = meta["files"]
+        self.state["reg"] = meta["reg_ops"]
+        self.state["probes"] = meta["probes"]
+        self.seh_head = [meta["seh_head"]]
+        self.state["seh_dispatches"] = meta["seh_dispatches"]
+        self.corridor_n = meta["corridor_n"]
+        self.clock_scale = meta["clock_scale"]
+        for b, label, path in meta["modules"]:
+            self.remember_module(b, Path(path), label)
+            self.register_apis(b)
+        for n, c in self.REGCONSTS.items():
+            uc.reg_write(c, meta["regs"][n])
+        uc.reg_write(UC_X86_REG_EFLAGS, meta["eflags"])
+        uc.reg_write(UC_X86_REG_EIP, meta["eip"])
+        print(f"[ck2] resumed '{tag}' at n={meta['count']} "
+              f"eip={hex(meta['eip'])}")
+        return meta["eip"]
+
+    def write_signature(self, path: Path):
+        """Normalized control-flow signature of the whole run."""
+        api_seq = json.dumps(self.apilog, default=str)
+        regs = {n: self.uc.reg_read(c) for n, c in self.REGCONSTS.items()}
+        regs["eflags"] = self.uc.reg_read(UC_X86_REG_EFLAGS)
+        try:
+            img = bytes(self.uc.mem_read(IMAGE, self.image_size))
+        except Exception:
+            img = b""
+        sig = {
+            "count": self.state["count"],
+            "why": self.state["why"],
+            "eip": self.state["eip"],
+            "apilog_len": len(self.apilog),
+            "apilog_sha256": sha256(api_seq.encode()),
+            "regs_sha256": sha256(json.dumps(regs).encode()),
+            "image_sha256": sha256(img),
+            "tail_a_writes": self.state["tail_a_writes"],
+            "tail_b_writes": self.state["tail_b_writes"],
+            "seh_dispatches": self.state.get("seh_dispatches", 0),
+            "messageboxes": self.state["messageboxes"],
+        }
+        path.write_text(json.dumps(sig, indent=1, default=str))
+
+    class _Tracer:
+        """Selective dynamic tracer: Tier-1 branch/API events + Tier-2
+        per-instruction detail (regs/flags/writes) as one ordered stream."""
+
+        def __init__(self, rp, out_path: Path, max_insns: int):
+            self.rp = rp
+            self.fh = out_path.open("w", encoding="utf-8")
+            self.max_insns = max_insns
+            self.count = 0
+            self.prev = None          # (addr, size, is_cflow, rec)
+            self.writes = []          # memory writes of current instruction
+            self.reads = []           # memory reads of current instruction
+            self.read_map = {}        # (addr, value) -> read count
+            self.log_reads = bool(getattr(rp, "trace_log_reads", False))
+            self.blocks = {}          # block-start RVA (or VA) -> hits
+            self.branch_stats = {}    # branch VA -> executions
+            self.cflow_cache = {}     # (addr, bytes8) -> (size, kind)
+            self.pending_branch = None
+
+        # -- helpers --
+        def _decode(self, addr):
+            raw = bytes(self.rp.uc.mem_read(addr, 16))
+            key = (addr, raw[:8])
+            hit = self.cflow_cache.get(key)
+            if hit is not None:
+                return hit
+            try:
+                insn = next(self.rp.md.disasm(raw, addr))
+                kind = None
+                m = insn.mnemonic
+                if m.startswith("j"):
+                    kind = "jcc" if m != "jmp" else (
+                        "ijmp" if "dword ptr" in insn.op_str or
+                        "[" in insn.op_str or insn.op_str.strip() in
+                        [r for r in ("eax", "ebx", "ecx", "edx", "esi",
+                                     "edi", "ebp", "esp")] else "jmp")
+                elif m == "call":
+                    kind = "call" if "[" not in insn.op_str else "icall"
+                elif m == "ret" or m.startswith("ret"):
+                    kind = "ret"
+                elif m == "loop" or m.startswith("loop"):
+                    kind = "jcc"
+                hit = (insn.size, kind, insn.mnemonic + " " + insn.op_str)
+            except StopIteration:
+                hit = (1, None, "?")
+            self.cflow_cache[key] = hit
+            return hit
+
+        def _regs(self):
+            uc = self.rp.uc
+            return [uc.reg_read(c) for c in self.rp.REGCONSTS.values()]
+
+        # -- called from on_code for every executed instruction --
+        def step(self, addr: int):
+            uc = self.rp.uc
+            if self.prev is not None:
+                paddr, psize, pkind, prec = self.prev
+                succ = addr
+                # block start detection
+                if addr != paddr + psize or pkind is not None:
+                    self.blocks[addr] = self.blocks.get(addr, 0) + 1
+                if pkind in ("jcc", "jmp", "ijmp", "ret"):
+                    taken = addr != paddr + psize
+                    if pkind == "jcc":
+                        self.branch_stats[paddr] = \
+                            self.branch_stats.get(paddr, 0) + 1
+                        self.fh.write(json.dumps({
+                            "t": "b", "n": prec["n"], "e": paddr,
+                            "d": prec["d"], "f": prec["f"],
+                            "taken": taken,
+                            "to": succ if taken else paddr + psize}) + "\n")
+                # finalize previous instruction record
+                prec["w"] = self.writes
+                if self.log_reads and self.reads:
+                    prec["rd"] = [(a, v) for a, s, v in self.reads]
+                for ra, rs, rv in self.reads:
+                    key = (ra, rv)
+                    self.read_map[key] = self.read_map.get(key, 0) + 1
+                self.reads = []
+                self.writes = []
+                self.fh.write(json.dumps(prec) + "\n")
+                self.writes = []
+            # start new record
+            size, kind, disasm = self._decode(addr)
+            rec = {"t": "i", "n": self.rp.state["count"], "e": addr,
+                   "d": disasm, "r": self._regs(),
+                   "f": uc.reg_read(UC_X86_REG_EFLAGS)}
+            self.prev = (addr, size, kind, rec)
+            self.count += 1
+            if self.count > self.max_insns:
+                self.fh.write(json.dumps({"t": "cap", "n": self.count}) + "\n")
+                self.fh.close()
+                self.rp.tracer_closed = True
+                self.rp.tracer = None
+                self.rp.state["why"] = "trace-cap"
+                self.rp.state["eip"] = addr
+                uc.emu_stop()
+                return
+
+        def event(self, kind: str, data: dict):
+            data = {"t": kind, "n": self.rp.state["count"], **data}
+            self.fh.write(json.dumps(data, default=str) + "\n")
+
+        def api_event(self, name, ret):
+            self.event("api", {"name": name, "ret": ret})
+
+        def finalize(self):
+            if self.prev is not None and not self.fh.closed:
+                paddr, psize, pkind, prec = self.prev
+                prec["w"] = self.writes
+                self.fh.write(json.dumps(prec) + "\n")
+                self.prev = None
+            if not self.fh.closed:
+                self.fh.write(json.dumps({"t": "end",
+                                          "why": self.rp.state["why"]}) + "\n")
+                self.fh.close()
+
+    def tracer_maybe_start(self, addr: int):
+        """Activate tracing at the corridor entry or a given count."""
+        if self.tracer is not None:
+            return
+        mode = self.trace_from
+        start = False
+        if mode == "corridor" and self.corridor_n is not None:
+            start = self.state["count"] >= self.corridor_n
+        elif isinstance(mode, int):
+            start = self.state["count"] >= mode
+        if not start:
+            return
+        out = Path(self.trace_dir) / "corridor-trace.jsonl"
+        self.tracer = self._Tracer(self, out, self.trace_max)
+        print(f"[trace] start at n={self.state['count']} "
+              f"addr={hex(addr)} -> {out}")
+
+
     def skip_seh(self, address: int) -> bool:
         raw = bytes(self.uc.mem_read(address, 8))
         if raw[0] != 0x64:
@@ -909,6 +1229,9 @@ class Replay:
         uc.reg_write(UC_X86_REG_ESP, esp)
         uc.reg_write(UC_X86_REG_EIP, kued)
         self.state["seh_dispatches"] = self.state.get("seh_dispatches", 0) + 1
+        if self.tracer is not None:
+            self.tracer.event("seh", {"fault_eip": hex(eip), "code": hex(code),
+                                      "kued": hex(kued)})
         head = self.dword(self.teb)
         try:
             self.note("seh-dispatch", eip=hex(eip), code=hex(code), via="ntdll",
@@ -1036,7 +1359,10 @@ class Replay:
         ck_path = Path(".work/task-027/static-main/probe-checkpoint.bin")
         ck_meta = Path(".work/task-027/static-main/probe-checkpoint.json")
         start_at_probe = False
-        if getattr(self, "resume_mode", False) and ck_path.exists() and ck_meta.exists():
+        if getattr(self, "resume_ckpt", None):
+            entry = self.load_checkpoint_v2(self.resume_ckpt)
+            start_at_probe = True  # suppress the task027 probe checkpoint
+        elif getattr(self, "resume_mode", False) and ck_path.exists() and ck_meta.exists():
             meta = json.loads(ck_meta.read_text())
             blob = ck_path.read_bytes()
             for region in meta["regions"]:
@@ -1112,6 +1438,11 @@ class Replay:
                 self.state["eip"] = address
                 _uc.emu_stop()
                 return
+            # ---- Task 028 selective tracing ----
+            if self.tracer is None and self.trace_dir:
+                self.tracer_maybe_start(address)
+            if self.tracer is not None:
+                self.tracer.step(address)
             raw0 = bytes(_uc.mem_read(address, 1))
             if raw0[0] == 0x64:
                 if self.emulate_fs_insn(address):
@@ -1122,12 +1453,12 @@ class Replay:
                 return
             if address in self.api_stubs:
                 handler = self.api_stubs[address]
-                name = None
-                for _b, _i in self.modules.items():
-                    name = _i["va2name"].get(address)
-                    if name:
-                        break
+                name = self.api_name_at(address)
                 self.note("api", name=name or hex(address))
+                # Task 028 corridor marker: first timeGetTime call
+                if name == "timeGetTime" and self.corridor_n is None:
+                    self.corridor_n = self.state["count"]
+                    print(f"[corridor] first timeGetTime at n={self.corridor_n}")
                 if name == "CreateFileA" and not start_at_probe and not self.state.get("ck_saved"):
                     # checkpoint right before the first probe is answered
                     try:
@@ -1138,6 +1469,21 @@ class Replay:
                     except Exception as exc:
                         print("checkpoint failed:", exc)
                 handler()
+                if self.tracer is not None and name:
+                    try:
+                        ret = _uc.reg_read(UC_X86_REG_EAX)
+                    except Exception:
+                        ret = None
+                    self.tracer.api_event(name, ret)
+                # Task 028 corridor checkpoint: after the first timeGetTime
+                # stub has fully returned (stable post-API point)
+                if (name == "timeGetTime" and self.ck2_save_mode
+                        and not self.ck2_saved):
+                    self.ck2_saved = True
+                    try:
+                        self.save_checkpoint_v2(self.ck2_tag or "corridor")
+                    except Exception as exc:
+                        print("[ck2] save failed:", exc)
                 return
             # entering real system DLL code: intercept only at export entry
             # points; internal code (e.g. ntdll SEH dispatcher) runs for real
@@ -1159,15 +1505,33 @@ class Replay:
             if 0 <= rva < self.image_size:
                 self.state["exec_pages"].add(rva & ~0xFFF)
 
-        def on_write(_uc, _a, address, s, _v, _u):
+        def on_write(_uc, _a, address, s, value, _u):
+            if self.tracer is not None:
+                self.tracer.writes.append((address, s, value))
             rva = address - IMAGE
             if TAIL_A[0] <= rva < TAIL_A[1]:
                 if self.state["tail_a_first"] is None:
                     self.state["tail_a_first"] = {"rva": rva, "n": self.state["count"]}
                 self.state["tail_a_writes"] += 1
                 self.state["tail_a_spans"].append((rva, s))
+                if len(self.state.get("tail_a_prov", [])) < 8192:
+                    try:
+                        eip = _uc.reg_read(UC_X86_REG_EIP)
+                    except Exception:
+                        eip = None
+                    self.state.setdefault("tail_a_prov", []).append({
+                        "rva": rva, "size": s, "value": value,
+                        "producer_eip": eip, "n": self.state["count"]})
             elif TAIL_B[0] <= rva < TAIL_B[1]:
                 self.state["tail_b_writes"] += 1
+                if len(self.state.get("tail_b_prov", [])) < 4096:
+                    try:
+                        eip = _uc.reg_read(UC_X86_REG_EIP)
+                    except Exception:
+                        eip = None
+                    self.state.setdefault("tail_b_prov", []).append(
+                        {"rva": rva, "size": s, "producer_eip": eip,
+                         "n": self.state["count"]})
             elif rva in ZTL:
                 self.state["ztl_writes"].append({"rva": rva, "n": self.state["count"]})
             elif not (0 <= rva < self.image_size):
@@ -1205,21 +1569,33 @@ class Replay:
             self.note("insn-invalid", eip=hex(eip), seh=True)
             return self.dispatch_seh_exception(eip, 0xC000001D)  # STATUS_ILLEGAL_INSTRUCTION
 
+        def on_read(_uc, _a, address, s, value, _u):
+            rd = self.state.setdefault("read_pages", {})
+            rd[(address >> 12) << 12] = rd.get((address >> 12) << 12, 0) + 1
+            if self.tracer is not None:
+                self.tracer.reads.append((address, s, value))
+            # targeted external-read log (kernel32 range) for slice analysis
+            if GUEST_BASES["kernel32.dll"] <= address < GUEST_BASES["kernel32.dll"] + 0x200000:
+                self.state.setdefault("k32_reads", []).append(
+                    (self.state["count"], address, s))
+
         uc.hook_add(UC_HOOK_CODE, on_code)
         uc.hook_add(UC_HOOK_MEM_WRITE, on_write)
+        uc.hook_add(UC_HOOK_MEM_READ, on_read)
         uc.hook_add(UC_HOOK_MEM_INVALID, on_invalid)
         try:
             from unicorn import UC_HOOK_INSN_INVALID
             uc.hook_add(UC_HOOK_INSN_INVALID, on_insn_invalid)
         except Exception:
             pass
-        uc.reg_write(UC_X86_REG_ESP, STACK + STACK_SIZE - 0x1000)
-        uc.reg_write(UC_X86_REG_EBP, 0)
-        for r in (UC_X86_REG_EAX, UC_X86_REG_EBX, UC_X86_REG_ECX, UC_X86_REG_EDX,
-                  UC_X86_REG_ESI, UC_X86_REG_EDI):
-            uc.reg_write(r, 0)
+        if not start_at_probe:
+            uc.reg_write(UC_X86_REG_ESP, STACK + STACK_SIZE - 0x1000)
+            uc.reg_write(UC_X86_REG_EBP, 0)
+            for r in (UC_X86_REG_EAX, UC_X86_REG_EBX, UC_X86_REG_ECX, UC_X86_REG_EDX,
+                      UC_X86_REG_ESI, UC_X86_REG_EDI):
+                uc.reg_write(r, 0)
         try:
-            uc.emu_start(entry, 0, count=budget)
+            uc.emu_start(entry, 0, count=budget - self.state["count"] if start_at_probe else budget)
             if not self.state["why"]:
                 self.state["why"] = "emu-return"
                 self.state["eip"] = uc.reg_read(UC_X86_REG_EIP)
@@ -1247,6 +1623,9 @@ class Replay:
                     self.state["eip"] = uc.reg_read(UC_X86_REG_EIP)
                 except Exception:
                     pass
+        finally:
+            if self.tracer is not None:
+                self.tracer.finalize()
 
     def summary(self) -> dict:
         st = dict(self.state)
@@ -1254,6 +1633,10 @@ class Replay:
         st["exec_pages"] = len(st.pop("exec_pages"))
         st["tail_a_spans"] = len(st["tail_a_spans"])
         st.pop("handles", None)
+        rp = st.pop("read_pages", {})
+        st["read_pages_count"] = len(rp)
+        st["read_pages_detail"] = {hex(k): v for k, v in
+                                   sorted(rp.items(), key=lambda x: -x[1])[:64]}
         ta = bytes(self.uc.mem_read(IMAGE + TAIL_A[0], min(0x10000, TAIL_A[1] - TAIL_A[0])))
         st["tail_a_first_page_nonzero"] = any(ta)
         ztl = {hex(z): bytes(self.uc.mem_read(IMAGE + z, 16)).hex() for z in ZTL}
@@ -1263,6 +1646,8 @@ class Replay:
         for entry in self.log:
             k = entry["kind"]
             st["apis_used"][k] = st["apis_used"].get(k, 0) + 1
+        st["apilog_len"] = len(self.apilog)
+        st["corridor_n"] = self.corridor_n
         st["probes"] = self.state["probes"]
         st["messageboxes"] = self.state["messageboxes"]
         st["files"] = self.state["files"]
@@ -1271,8 +1656,13 @@ class Replay:
         st["seh_trace"] = self.state.get("seh_trace")
         st["log_tail"] = self.log[-60:]
         st["eip_history_tail"] = [hex(a) for a in self.state["recent"][-400:]]
+        if self.tracer is not None:
+            st["tracer_blocks"] = len(self.tracer.blocks)
+            st["tracer_branch_sites"] = len(self.tracer.branch_stats)
+            st["tracer_insns"] = self.tracer.count
+            st["tracer_read_sites"] = len(self.tracer.read_map)
+        st["read_pages"] = len(self.state.get("read_pages", {}))
         return st
-
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser()
@@ -1287,15 +1677,72 @@ def main(argv=None) -> int:
     p.add_argument("--clock-scale", type=float, default=227.0,
                    help="virtual ms per 1M instructions (default 227 = TCG-calibrated)")
     p.add_argument("--json-out", type=Path)
+    # ---- Task 028 ----
+    p.add_argument("--sig-out", type=Path, default=None,
+                   help="write normalized run signature (hashes) to this file")
+    p.add_argument("--apilog-out", type=Path, default=None,
+                   help="write the full uncapped API event log to this file")
+    p.add_argument("--save-ck", type=Path, default=None, metavar="DIR",
+                   help="save a v2 scratch checkpoint into DIR at --ck-at")
+    p.add_argument("--ck-at", default="corridor",
+                   choices=["corridor"],
+                   help="checkpoint marker (corridor = after first timeGetTime)")
+    p.add_argument("--resume-ck", type=Path, default=None, metavar="DIR",
+                   help="resume from a v2 checkpoint dir (uses corridor tag)")
+    p.add_argument("--trace-dir", type=Path, default=None,
+                   help="enable selective tracing, JSONL written into this dir")
+    p.add_argument("--trace-from", default="corridor",
+                   help="'corridor' or an instruction count N")
+    p.add_argument("--trace-max", type=int, default=4_000_000,
+                   help="max traced instructions (fail-safe cap)")
+    p.add_argument("--trace-log-reads", action="store_true",
+                   help="persist per-instruction memory reads in the trace")
+    p.add_argument("--tgt-15ms", action="store_true",
+                   help="faithful timeGetTime 15.625ms quantization (Win7 default)")
+    p.add_argument("--cmdline", default='"F:\\MapleStory.exe"',
+                   help="command line returned by GetCommandLineA/W "
+                        "(default: WMI-captured exact form of run A1R2)")
+    p.add_argument("--vclock-base", type=int, default=1_200_000,
+                   help="virtual uptime (ms) at emulation start; override "
+                        "with measured boot->launch deltas for fidelity tests")
     args = p.parse_args(argv)
 
     rp = Replay(args.exe, args.guest_dir, args.client_dir)
     rp.clock_scale = args.clock_scale
+    rp.cmdline_variants = [args.cmdline]
+    rp.state.setdefault("vclock_base", args.vclock_base)
+    if args.tgt_15ms:
+        rp.state["tgt_faithful_resolution"] = True
     if args.resume:
         rp.resume_mode = True
+    if args.save_ck:
+        rp.ck2_dir = args.save_ck
+        rp.ck2_tag = args.ck_at
+        rp.ck2_save_mode = True
+    if args.resume_ck:
+        rp.resume_ckpt = "corridor"
+        rp.ck2_dir = args.resume_ck
+    if args.trace_dir:
+        args.trace_dir.mkdir(parents=True, exist_ok=True)
+        rp.trace_dir = args.trace_dir
+        tf = args.trace_from
+        rp.trace_from = tf if tf == "corridor" else int(tf)
+        rp.trace_max = args.trace_max
+        rp.trace_log_reads = args.trace_log_reads
     rp.setup()
+    if args.resume_ck:
+        # memory already restored by load_checkpoint_v2 during run(); setup()
+        # re-mapped DLLs first, which is harmless (same bases, then overwritten)
+        pass
     t0 = time.time()
     rp.run(args.budget)
+    if args.trace_dir and rp.tracer is not None:
+        (args.trace_dir / "readmap.json").write_text(json.dumps(
+            {f"{a:08x}={v:08x}" if isinstance(v, int) else f"{a:08x}":
+             c for (a, v), c in rp.tracer.read_map.items()}, default=str))
+    if args.trace_dir and rp.state.get("k32_reads"):
+        (args.trace_dir / "k32_reads.json").write_text(json.dumps(
+            rp.state["k32_reads"]))
     if args.dump_image:
         data = bytes(rp.uc.mem_read(IMAGE, rp.image_size))
         args.dump_image.write_bytes(data)
@@ -1306,6 +1753,12 @@ def main(argv=None) -> int:
     print(text[:8000])
     if args.json_out:
         args.json_out.write_text(text, encoding="utf-8")
+    if args.sig_out:
+        rp.write_signature(args.sig_out)
+        print(f"signature written to {args.sig_out}")
+    if args.apilog_out:
+        args.apilog_out.write_text(json.dumps(rp.apilog, default=str))
+        print(f"apilog ({len(rp.apilog)} events) written to {args.apilog_out}")
     return 0
 
 

@@ -1,0 +1,8 @@
+probe_id,question,method,source,measured_value,status,notes
+GT1,What is the guest OS version/edition/SP?,prior guest capture,result/24-win7-x86-sp1-natural-runtime.md: Microsoft Windows 7 专业版 6.1.7601 SP1 Build 7601; BuildLabEx 7601.17514.x86fre.win7sp1_rtm.101119-1850; WMI ServicePackMajorVersion=1,confirmed-historical-runtime,feeds F1 (GetVersionEx fields)
+GT2,How was the client launched in the real guest?,prior guest capture,T025OBS.PS1: Start-Process -FilePath "$Game\MapleStory.exe" -WorkingDirectory $Game (no arguments; space-free path),confirmed-historical-runtime,feeds F3 (unquoted command line)
+GT3,Is timeBeginPeriod called before the corridor?,replay apilog,absent (0 calls),confirmed-replay,justifies 15.625ms default-resolution model for timeGetTime
+GT4,Which ZwQueryInformationProcess class runs in the SEH window?,instruction trace at n=18864834,ProcessInformationClass=0x22 (ProcessExecuteFlags) pushed at RVA 0x7767F8DF,confirmed-replay,ntdll-internal RtlIsValidHandler chain; return 0x36 faithful per Task 027 disassembly
+GT5,Do protector checks read PEB/TEB debug fields?,whole-run read-page map + 25 fs events,no PEB page reads; fs events touch SEH-head/self/stack fields only,confirmed-replay,falsifies the synthetic-PEB hypothesis for this path
+GT6,What does the walk hash?,per-instruction read logging + disasm of 0x81D14C-0x81D197,custom CRC-32 poly 0x54495041 over kernel32 export names; 154 S-block names 3229 bytes; 1 match = "Sleep",confirmed-replay,manual GetProcAddress-by-hash verified end-to-end
+GT7,Win7 Pro exact wSuiteMask bits,needs standalone guest probe (or registry capture),pending,unknown,planned probe P1 (see blockers); 0x0100 used provisionally (F1) — not consumed on the executed path (size=148 caller struct)

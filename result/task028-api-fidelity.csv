@@ -1,0 +1,19 @@
+module,name,call_count,args_observed,replay_return,replay_lasterror,replay_outbuf_writes,replay_side_effects,real_semantics_source,status,confidence,notes
+user32.dll,MessageBoxExA,1,hwnd=0 text=ebp-rel garbage title=Themida - http://www.oreans.com uType=[0xC1C955],IDOK(1),not modeled,n/a,box recorded in state,not-relevant-to-slice (post-D1),not-relevant,high,called at n=20211769 via [ebp+0x74416a9] slot RVA 0x81A6BD
+winmm.dll,timeGetTime,2022,none,virtual ms (vclock; optional 15.625ms quantization),not modeled,n/a,clock only,MSDN + Win7 default timer resolution,incomplete,high,2008 spin samples + 13 walk samples + 1 resolve-adjacent; scale-invariance proven (Task 027); granularity test changed flow not outcome
+kernel32.dll,Sleep,1,ms=50,0,not modeled,n/a,+50ms virtual clock,MSDN,faithful,high,timer-tick rounding not modeled (would add 0-15.6ms)
+kernel32.dll,GetLocalTime,1,SYSTEMTIME*,void(0),not modeled,fixed (2026-10-2 13:01:51),none,MSDN,incomplete,medium,fixed snapshot time; any-value tolerance expected; single call at n=13260355
+kernel32.dll,GetCommandLineA,1,none,ptr to 'F:\MapleStory.exe' (unquoted),not modeled,static buffers,none,T025OBS.PS1 launch method (Start-Process no args),faithful,high,Task 027 quoted form corrected this task
+kernel32.dll,GetVersionExA,1,OSVERSIONINFOA* size=148,TRUE(1),not modeled,strict 148 bytes 6.1.7601 SP1,none,MSDN layout + result/24 guest truth,faithful,high,Task 028 fixed WORD/BYTE layout + removed 16-byte OOB write
+kernel32.dll,GetVersion,0,-,0x1DB10106,not modeled,n/a,n/a,documented Win7SP1 constant,faithful,high,not called this run (kept for completeness)
+advapi32.dll,RegOpenKeyA,1,hKey=root lpSubKey='' phkResult,ERROR_SUCCESS(0),not modeled,HKEY=0xAC (small ordinary handle),none,MSDN (empty subkey = duplicate),faithful,high,Task 028 fixed handle value out of predefined-hive range
+kernel32.dll,LoadLibraryA,4,USER32/ADVAPI32/NTDLL/winmm,module base,not modeled,n/a,modules mapped from guest files,loader semantics,faithful,high,bases = guest-observed GUEST_BASES
+kernel32.dll,GetProcAddress,1,winmm!timeGetTime,export VA,not modeled,n/a,none,export table,faithful,high,winmm stub registration
+kernel32.dll,CreateFileA,3,'\\.\SICE' '\\.\SIWVID' '\\.\NTICE',INVALID_HANDLE_VALUE,not modeled,n/a,device-absent (truthful),real guest (devices absent),faithful,high,probe cluster answered truthfully
+ntdll.dll,KiUserExceptionDispatcher,1,#UD at 0x862E76,dispatch,not modeled,CONTEXT+EXCEPTION_RECORD,real ntdll code runs,real DLL execution,faithful,high,Task 027 mechanism re-verified
+ntdll.dll,ZwQueryInformationProcess,1,ProcessInformationClass=0x22 (ExecuteFlags),STATUS_SUCCESS(0),not modeled,0x36 (DEP-off + dispatch bits),none,ntdll disasm (Task 027 RtlIsValidHandler chain),faithful,high,called from ntdll SEH validation not the protector
+ntdll.dll,ZwContinue,1,CONTEXT (resume 0x862E7A),-,not modeled,n/a,registers restored,real semantics,faithful,high,handler 0x862F19 choreography
+ntdll.dll,RtlAcquireSRWLockShared,1,lock ptr,0,not modeled,n/a,none,stub-zero (inside ntdll SEH),not-relevant,medium,ntll-internal during dispatch
+ntdll.dll,RtlReleaseSRWLockShared,1,lock ptr,0,not modeled,n/a,none,stub-zero (inside ntdll SEH),not-relevant,medium,same
+kernel32.dll,GetModuleFileNameA/GetDriveTypeA/GetVolumeInformationA,0,-,-,-,-,-,-,not-relevant,high,not called in this run path (stubs kept from Task 027)
+kernel32.dll,IsDebuggerPresent/NtQueryInformationProcess(DebugPort etc.),0,-,-,-,-,-,-,not-relevant,high,never called on the executed path

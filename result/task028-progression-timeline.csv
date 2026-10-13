@@ -1,0 +1,12 @@
+seq,n_start,n_end,stage,first_rva,control_transfer,new_modules,new_decoded_regions,tailA_writes,api_events,evidence
+1,18865228,19070999,post-#UD corridor entry / wait phase,0x863286 (EIP-obfuscation trampoline),ZwContinue resume 0x862E7A -> trampoline,winmm (4th module) + timeGetTime resolved,none,0,timeGetTime x2008 (spin, t 0x12603A->0x126044 +10ms),confirmed-replay
+2,19071005,19071141,manual API resolution prep,0x86417E lea edx [ebp+0x7441f69],call eax -> resolver 0xC1CEC7,none,none,0,none,confirmed-replay
+3,19071027,19071150,kernel32 export-header walk,0x81D106 dec [ebp+0x7443ea3],reads 0x3C 0x168 0xB4FDC..0xB4FE8,none,none,0,none,confirmed-replay
+4,19088948,19294559,name scan + custom CRC (poly 0x54495041),0x81D12E mov al [ebp+0x744134d] ('S') / 0x81D150 lodsb,none,none,0,none,confirmed-replay
+5,19294559,19294561,"hash match (""Sleep"")",0x81D184 cmp edx eax / 0x81D186 je,1 of 154 S-block names matched,none,none,0,Sleep resolved,confirmed-replay
+6,19315277,20184351,verification walk 26 items,0x84B6C7 je (walk head),VM checks X/Z families + 13 timeGetTime samples,none,none,0,timeGetTime x13 Sleep(50) x1,confirmed-replay
+7,20184352,20196835,last item + post-walk script,0x84B6C7 je taken (ebx=0x801 ecx=0),fresh bytecode esi=0xC661D1,none,none,0,none,confirmed-replay
+8,20196836,20204446,error continuation computed+installed,0x8563A7 add [esp+4] 0x2E3D5322 -> 0xC5941F; 0x84E638 pop [edx],D1 node: VM cell [0x84B1E0] = 0xC5941F,none,none,0,none,confirmed-replay
+9,20204447,20211743,VM winds down; error continuation pushed,0x85694F push [edx] (table[0]),none,none,0,none,confirmed-replay
+10,20211744,20211769,reporter entry + box,0x85941F pushal; cmp [ebp+0x7442795] 0,ret 0x857108 -> 0x85941F,none,none,0,MessageBoxExA (title 'Themida - http://www.oreans.com'),confirmed-replay
+11,20211770,20211773,post-box wild jump,eip 0xC5B5E0 reads unmapped 0x80a7c4d,run terminates,none,none,0,none,confirmed-replay

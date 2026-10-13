@@ -1,0 +1,9 @@
+candidate_id,rva,node_kind,instruction,executions,error_successor,alternate_successor,differentiating,status,confidence,notes
+C1,0x85941F,reporter-entry,pushal; cmp [ebp+0x7442795],0,1,MessageBoxExA path,0x8594DC (no box) if [0x81B7A9]!=0,no (inside reporter),rejected,high,formatting-level option cells both zero in replay
+C2,0x84E638,VM-continuation-store,pop dword ptr [edx] -> [0x84B1E0]=0xC5941F,1,0x85941F continuation,any other continuation value,YES — installs the error target as the VM continuation,ACCEPTED AS D1,high,n=20204446; consumed by 0x85694F push [edx] and final ret 0x857108
+C3,0x85694F,VM-opcode-handler,push dword ptr [edx] (pushes table[0]),1,0x85941F pushed,handler-specific,partial (mechanism not selection),rejected-as-D1,high,opcode 0x99 handler; the table[0] value was already installed by C2
+C4,0x84F6A9,walk-check-je,je 0xC4E2CF (cmp [edi+0x20],0),26,Z-item taken at item 25,Z-item not-taken (items 4-24),no — item-25 flip is the planned boundary phase,rejected,high,accumulator timeline shows 0x46 boundary state at items 25-26
+C5,0x84B6C7,walk-head-je,je 0xC52708 (or eaxeax),26,Z-family continue,X-family continue,no (family selector),rejected,high,eax=0x200 vs 0 alternates by design
+C6,0x8632E6,spin-exit-je,je 0xC63350,2009,exit wait loop,keep polling,no (wait phase only),rejected,high,t delta 10ms wait; walk identical afterwards
+C7,0x84E2E7,dispatch-guard-je,je 0xC4D3AC (or ecxecx),15,gadget chain A,gadget chain B,no (always taken),rejected,high,ecx=0 in all executions
+C8,0x8574D9,VM-dispatch,jmp dword ptr [edi+eax*4],~40k+,per-opcode handlers,other opcodes,YES at VM level (index carries walk state),noted-as-VM-mechanism,high,the native-level selector; D1 expressed at VM level via C2

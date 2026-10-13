@@ -1,0 +1,15 @@
+edge_id,dst,src,operation,rva,seq,confidence,evidence_kind
+E1,VM cell [0x84B1E0]=0xC5941F (D1 continuation store),stack slot 0x2FEFE0,value pop dword ptr [edx],0x84E638,n=20204446,proven-control-dependency,confirmed-replay
+E2,stack slot 0x2FEFE0,constant arithmetic add [esp+4] 0x2E3D5322,0x8563A7,n=20196836,proven-control-dependency,confirmed-replay
+E3,error-target script selection,VM dispatch index al (xor bl al; jmp [edi+eax*4]),0x8574D4-0x8574D9,n=20196836+,proven-control-dependency,confirmed-replay
+E4,VM dispatch index bl,walk accumulator byte (ecx at 0x84B6B7 and ecx edi),0x84B6B7,26 walk heads,supported-correlation,confirmed-replay
+E5,walk accumulator,item check results via pop [edi+0x20] xor 0x6A745268 (value 2 normal / 0 boundary),0x852D70-0x852D7A,per item,supported-correlation,confirmed-replay
+E6,item check results,VM cells 0x84B364 0x84B3B4 0x84B404 0x84B478 0x84B480 (staged pre-walk),reads,0x84Bxxx,per item,supported-correlation,confirmed-replay
+E7,VM staged cells,custom CRC-32 (poly 0x54495041) hash/search machinery 0x81D14C-0x81D197,staged-data buildout,0x81D14C,n=19088948..19294559,supported-correlation,confirmed-replay
+E8,hash inputs,kernel32 export name bytes (esi=0x7623D5F7+),lodsb,0x81D150,n=19089048+,proven-root-input,confirmed-replay
+E9,kernel32 export walk,DD[0]->export dir->name-ptr table (0x168 0xB4FC4 0xB6528),header walk,0x81D106+,n=19071027,proven-root-input,confirmed-replay
+E10,'S' first-char filter,[0xC1A361]=0x53 staged,cmp al [edi],0x81D12E/0x81D138,n=19071009,proven-root-input,confirmed-replay
+E11,timeGetTime samples in VM cell [0x84B1E0],winmm!timeGetTime returns (13 walk samples 0x1260AB..0x126189),pop [edx] value staging,0x84E638,n=19580625..20127697,proven-root-input,confirmed-replay
+E12,Sleep(50),kernel32!Sleep resolved via manual export walk,call,0xC57108 ret,n=19389422,proven-root-input,confirmed-replay
+E13,SEH handler validation,ntdll RtlIsValidHandler -> ZwQueryInformationProcess(ProcessExecuteFlags=0x22)=0x36,ntdll chain,0x7767F8xx,n=18864839,proven-root-input,confirmed-replay
+E14,reporter option cells [0x81B7A9]/[0x819BF1],(never written in run — zero),cmp,0x859420/0x859432,n=20211745-48,proven-root-input,confirmed-replay
