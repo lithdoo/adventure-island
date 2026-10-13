@@ -14,7 +14,10 @@ observed at runtime (blocked at the modal gate / post-modal depth).
       -> SICE/SIWVID/NTICE probe cluster -> decoders A/B
       -> driver-install block (skipped: no cmdline switches)
       -> 0x862000+ encoded region (pre-game protector stage)
-            |  fork on client drive letter (F: -> continue; G: -> spin)
+            |  fork input UNKNOWN (correlates that co-varied with it:
+            |  client drive letter F:/G:, enumeration waves, timing -
+            |  all falsified as necessary/sufficient by T26F3/F4/F7/C2;
+            |  one branch -> continue (loads ijl15.dll), other -> spin)
             v
 [2] protector reconstructs imports; loads ijl15.dll
       = repack stub (8,192 B; VC9 "UFO" 2012)
@@ -29,7 +32,7 @@ observed at runtime (blocked at the modal gate / post-modal depth).
       -> MessageBoxW "iloveaki success."          [E08]
             |  = THE MODAL GATE (loader lock held; whole process idle
             |    at 2.6-2.7 CPU-s / 25 threads - Task 025 confirmed)
-            v  user clicks 确定 ONCE  [T26F3 in flight]
+            v  user clicks 确定 ONCE  [T26F3 in flight -> T027 audit: NEVER EXECUTED; 0/8 T26 runs reached the modal]
 [4] DllMain returns TRUE; ijl15.dll load completes
       -> game calls ijlInit/ijlRead... (forwarded to Intel lib)  [E10]
             v  [projected]
@@ -79,11 +82,13 @@ confirmed-runtime, 3 high/medium projected).
 
 ## 3. Where the chain is currently cut
 
-- **Cut point A (runtime)**: step [3]->[4] — the modal. T26F3 carries the
-  authorized single OK click + 300 s post-modal window; its dialogs.csv /
-  module-first-seen.csv decide whether [5]+ happen naturally.
+- **Cut point A (runtime)**: step [3]->[4] — the modal. No Task 026 run
+  reached it (B06 environment regression); the authorized single OK click +
+  300 s post-modal window live in the observer (Check-Aki) awaiting the
+  first gating run.
 - **Cut point B (static)**: the exe-interior steps between [1] and [2]
-  (the `0x862000+` encoded region incl. the drive-letter check). No safe
+  (the `0x862000+` encoded region incl. the unknown fork check; the
+  F:/G: letter reading was falsified by T26F3/F4/F7/C2). No safe
   static channel exists yet (decoder-C producer inside the region itself).
 - **Cut point C (semantics)**: steps [5]-[8] ordering is inferred from
   import/export/structural evidence only; runtime module first-seen order

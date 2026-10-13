@@ -17,7 +17,7 @@ E15,NameSpace.dll!WzPackageMount 0x13070,NameSpace.dll!WzArchiveOpen 0x13729,mou
 E16,Canvas.dll!CWzZlzStream::dtor 0x22910,ZLZ.dll!ZLZCloseFilter,call [0x500270cc] at 0x2294c,Canvas.dll,ZLZ!ZLZCloseFilter,WZ stream close,confirmed-static
 E17,Canvas.dll!CWzZlzStream::init 0x22980,ZLZ.dll!ZLZCreateInflator,call [IAT] at 0x22a35,Canvas.dll,ZLZ!ZLZCreateInflator,WZ decompress init,confirmed-static
 E18,Canvas.dll!CWzZlzStream::init 0x22980,ZLZ.dll!ZLZCreateDeflator,call [IAT] at 0x22a1b,Canvas.dll,ZLZ!ZLZCreateDeflator,WZ compress init,confirmed-static
-E19,Canvas.dll!CWzZlzStream family,base vft 0x285e0 (suffix slot 61 = 0x286d4),mov [eax],0x500286d4 in dtor/init,Canvas.dll,0x285e0,WZ stream wrapper class,confirmed-static
+E19,Canvas.dll!CWzZlzStream family,base vft 0x285e0 (suffix slot 61 = 0x286d4),"mov [eax],0x500286d4 in dtor/init",Canvas.dll,0x285e0,WZ stream wrapper class,confirmed-static
 E20,PCOM.dll!PcomListWzPathInit 0x6cc7,KERNEL32!GetModuleFileNameA + dir concat + existence check,refs 0x50C1301C/0x50C10340/0x50C13070 + List.wz string 0x174BC,PCOM.dll,0x6cc7,List.wz bootstrap,confirmed-static
 E21,game startup (expected),PCOM.dll!PcInitModule,COM factory + self/PCOM name-table entries per DLL data section,PCOM.dll,0x104ca,game runtime init (pending runtime),high
 E22,PCOM.dll!PcCreateObject,per-DLL DllGetClassObject factories,COM class factory + CLSID + PcCreateObject export,PCOM.dll,0x4cd1,game object creation (pending runtime),high

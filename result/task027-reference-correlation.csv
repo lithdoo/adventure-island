@@ -1,0 +1,13 @@
+reference_id,reference_symbol,reference_version,reference_kind,cms079_local_evidence,status,match_features,verdict_reason
+RC-001,CClientSocket singleton,GMS95,singleton pointer,no socket code visible anywhere,unmatched,,"game code unreached; ws2_32 never loaded in any run; no send/recv family found in decoded states"
+RC-002,CWvsContext singleton,GMS95,singleton pointer,no world/channel state code visible,unmatched,,"same"
+RC-003,CWvsApp singleton,GMS95,singleton pointer,no app/main-loop code visible,unmatched,,"same"
+RC-004,SendLoginPacket 0x005DBEF0,GMS95,function,no login opcode construction visible,unmatched,,"same"
+RC-005,CClientSocket::SendPacket ptr,GMS95,function pointer,no send path,unmatched,,"same"
+RC-006,Maple AES key 13000000…52000000,Task002 server,constant,absent from all decoded buffers,unmatched,,"checked in every replay state incl. the new post-probe depth"
+RC-007,IV table prefix EC3F77A4…,Task002 server,constant,absent,unmatched,,
+RC-008,IV seed F25350C6,Task002 server,constant,absent,unmatched,,
+RC-009,ZtlTaskMem*Imp exports,CMS079 local,PE exports,slots exist on disk; bodies zero,accepted (as anchors),"these are the only confirmed main-EXE game-side *names*; they anchor the Tail A materialization watch but reveal no logic yet"
+RC-010,XPROTVXD / Oreans.vxd driver family,WinLicense attribution,embedded payload + strings,fully located (0x85B405 VxD LE image; \\\\.oreans32 paths; Wine probe),accepted (protector attribution),"protector-side correlation, not game code; reinforces Themida/WinLicense attribution now confirmed further by the on-box title 'Themida - http://www.oreans.com'"
+RC-011,SICE/SIWVID/NTICE probe family,known SoftICE artifacts,strings + callsites,0x859507 string table + 0x8595E7 resolver,accepted (protector attribution),"string spelled \\\\.SIWID in the binary (not SIWVID) - recorded exactly"
+RC-012,v95 structural families for CWz* support classes,GMS95,vtables/slots,support-DLL side matched in Task 026,support-side only,"explicitly NOT counted toward main-EXE R4/R5"

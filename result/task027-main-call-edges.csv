@@ -1,0 +1,17 @@
+edge_id,caller,callee,edge_rva_or_span,edge_evidence,runtime_milestone,reference_correlation,confidence
+CE-T27-1,OS loader,MapleStory PE entry 0x9D8000,0x9D8000,static import GetLocalTime only; process start,confirmed-runtime (every run),,confirmed-static
+CE-T27-2,PE entry,T1 decoder 0x9D8046,0x9D8046,replay,--,,confirmed-static
+CE-T27-3,T1 stub,inline aPLib depacker 0x912116,0x912116-0x912227,T027 dynamic trace; output SHA validated,--,,confirmed-static
+CE-T27-4,depacker,Tail B 0x819014-0x911B25,0x819014..,replay write log,--,,confirmed-static
+CE-T27-5,post-depack jmp,0x81C6C5 MZ/PE scan,0x819014 first instruction jmp,disasm,replay,--,,confirmed-static
+CE-T27-6,MZ/PE scan,round1 0x81CE47,found-path,Task 008 replay,replay,--,,confirmed-static
+CE-T27-7,round1/2,walker helper 0x81CEC7,0x81CEB5-0x824093,replay + walker log,--,,confirmed-static
+CE-T27-8,resolver,SICE/SIWVID/NTICE probes 0x8595E7,0x8595E7/0x859757,walker log (5 pre-probe resolutions),runtime: probes fail (absent),,confirmed-static + confirmed-runtime
+CE-T27-9,probes (miss),post-probe phase: GetCommandLine/GetVersionEx/RegOpenKey,--,T027 replay n=14.2M/17.3M/18.0M,runtime module timeline,,confirmed-static (replay)
+CE-T27-10,post-probe phase,SEH frame + #UD trap 0x862E76,0x862D92-0x862E76,T027 replay; handler 0x862F19; ZwContinue 0x862E7A,runtime: Task 003 exception RVA match,,confirmed-static + static-runtime-correlation
+CE-T27-11,trap handler 0x862F19,winmm import + timeGetTime timing loop,--,T027 replay n=18.87M-20.2M,runtime: winmm = last module before freeze,,confirmed-static (replay)
+CE-T27-12,timing phase,ijl15.dll import reconstruction,--,-,runtime: T025 F: runs reach the repack stub; replay diverges before,projected (real-runtime evidence; replay not yet faithful)
+CE-T27-13,ijl15 stub DllMain,iloveaki.dat load + modal,0x10e0 stub,Task 026 static decode,runtime: T025 historical gate,,confirmed-static + historical-runtime
+CE-T27-14,post-modal DllMain return,PCOM/Wizet runtime bootstrap,--,-,projected,,projected
+CE-T27-15,PCOM bootstrap,WZ namespace/Canvas/ZLZ/Gr2D/Sound,--,-,projected (support-side statics from Task 026),,projected
+CE-T27-16,Wizet runtime,ws2_32 / CClientSocket / login,--,-,not reached,,not-started

@@ -13,7 +13,11 @@ Campaign runs T26F1–T26F4 (QEMU TCG, Win7 Pro SP1 x86, snapshot
 | T26F1 | usb-attach (2 s) | F: | G: | v1 | game reached loader stage; observer died 1.3 s after PCA click (v1 callback bug, fixed); game's final state unrecorded |
 | T26F2 | usb-attach (2 s) | G: | F: | v2 | **clean G:-client spin**, full 480 s window, observer completed; validates v2 stability |
 | T26F3 | usb-attach-clientwait (45 s) | F: | G: | v2 | **F:-client SPIN — the letter counterexample** (see §2) |
-| T26F4 | usb-attach (Task-025 exact, 2 s) | TBD | TBD | v2 | discriminator in flight |
+| T26F4 | usb-attach (Task-025 exact, 2 s) | F: | G: | v2 | **F:-SPIN with Task-025-exact attach** (wave-timing + letter theories falsified; see §2/§7) |
+| T26F5 | usb-attach (2 s) | - | - | v2 | launch flaked (no ALIVE markers; B07) |
+| T26F6 | usb-attach (2 s) | G: | F: | v2 (-NoTouchGate, clean xfer) | clean G:-spin (letter rule predicts spin anyway; uninformative) |
+| T26F7 | clientwait (45 s) | F: | G: | v2 (-NoTouchGate, clean xfer) | **F:-SPIN with clean xfer + no observer touches** (Procmon/observer-touch theories falsified) |
+| C2 | Task-025-exact stack | F: | - | T025 observer | **F:-SPIN — environment regression confirmed** (§7) |
 
 ## 2. Headline: the drive-letter hypothesis is falsified (T26F3)
 
@@ -45,9 +49,11 @@ the variable.
    (`certutil -hashfile iloveaki.dat`, `dir /a /s /b F:\` walk) than the
    Task 025 observer did.
 
-T26F4 (Task-025 attach order + full Task-026 observer) discriminates:
-gate → wave-timing causal; spin → observer-gate-touch causal (bisect
-with `-NoTouchGate` variant, already implemented).
+T26F4 (Task-025 attach order + full Task-026 observer) was the planned
+discriminator (gate → wave-timing causal; spin → observer-gate-touch
+causal, to be bisected with `-NoTouchGate`). It **spun**; T26F7 then
+falsified the observer-touch/Procmon reading too (§1). Final verdict:
+§7 (environment regression).
 
 ### Refined causality model
 

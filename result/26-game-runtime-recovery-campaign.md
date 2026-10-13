@@ -149,7 +149,9 @@ step of the follow-up campaign.
 ## 6. Function recovery
 
 - **115 function candidates** (task026-function-map.csv):
-  - confirmed: 36 (exports incl. PcCreateObject/PcInitModule/
+  - confirmed: 34 (T027 audit: recomputed from the CSV; the 36 in an
+    earlier draft of this report was a transcription error) — exports
+    incl. PcCreateObject/PcInitModule/
     PcSerializeObject/PcSerializeString/PcRootNameSpace/PcTermModule,
     ZLZCreateInflator/Deflator/CloseFilter, ZtlTaskMem*Imp ×3,
     repack layer ×3, CWzSound::AddRef/Release, CWzZlzStream dtor/init, …)

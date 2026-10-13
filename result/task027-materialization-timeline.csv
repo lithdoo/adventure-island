@@ -1,0 +1,16 @@
+step,phase,producer_or_site,rva_span,evidence_tag,observation,source
+1,PE entry,jtrppsow stub @0x9D8000,0x9D8000-0x9D9000,confirmed-static,"call/pop address math -> 0xD12000; T1 flag",Tasks 004/006 + T027 replay
+2,T1 in-place stub decode,producer 0x9D8046,0x912000-0x913000,confirmed-static,"0x1000 bytes decoded in place",Tasks 004/006 + T027 replay
+3,T2 aPLib depack (inline depacker 0x912116),stub call at 0x9120xx,src 0x912259-0x9D634A -> dst 0x819014-0x911B25,confirmed-static,"output SHA 5529577e… reproduced; T027 captured PRE-T3 state (delta 28,801 bytes = T3 dec-byte 0x7000 + 129 later edits)",Tasks 006/008 + T027 depack-replay self-test
+4,T3 dec-byte,inside T2 output,0x81CB21 len 0x7000,confirmed-static,"accounts for 28,672 of the 28,801-byte delta between T027 pre-T3 capture and the reference state",T027
+5,MZ/PE scan for kernel32,0x81C6C5 area,scan window 0x761C0000..0x75F40000 stride 0x10000,confirmed-static+runtime,"guest base 0x76180000 found; T027 replay uses guest GetLocalTime RVA 0x4A90E (differs from host SysWOW64 0x1D430)",Task 007/008 + T027
+6,rounds 1/2 (walker + slot fill),0x81CE47 / 0x81D5D8,0x81CEB5-0x824093,confirmed-static,resolver infrastructure,Task 008
+7,round 3,producer 0x8593E3,0x85941A-0x85FA3D,confirmed-static,"6537 dwords add/add/xor",Task 012
+8,SoftICE/SIWVID/NTICE probes,CreateFileA resolver 0x8595E7,device paths,confirmed-static+runtime,"all absent on real guest; T027 replay passes them with truthful failures at n=13.71M",Task 009 + T027
+9,decoder A/B + switch table,0x85A464 / 0x85AA35,0x85A530-0x860762,confirmed-static,"command-line switches absent -> flags stay zero",Task 010/012
+10,GetCommandLineA/GetVersionExA/RegOpenKeyA phase,resolver walk 0x84B-0x857 zones,--,confirmed-static,"n=14.2M/17.3M/18.0M in T027 replay",T027 (new)
+11,SEH frame + deliberate #UD trap,0x862E76 (0F 3F),0x862D92-0x863280 executed,confirmed-static+static-runtime-correlation,"ntdll dispatches STATUS_ILLEGAL_INSTRUCTION; handler 0x862F19 (decoded-region code) resumes at 0x862E7A via ZwContinue; matches Task 003 runtime exception RVA exactly",T027 (new)
+12,winmm load + timeGetTime timing phase,import-rebuild step,4th LoadLibraryA,confirmed-static+runtime-correlation,"winmm = last module in the guest module-first-seen timeline; timing loop with many timeGetTime samples + Sleep",T027 (new)
+13,Themida error-reporter decision,0x85941F-0x8594DC,probe-cluster zone,confirmed-static,"'Themida - http://www.oreans.com' title; icon-char parser; reached only in the DIVERGED replay (emulation detection); the real guest never shows this box",T027 (new)
+14,ijl15.dll load (import reconstruction),--,-,projected,"real guest: repack stub DllMain -> iloveaki modal; replay not yet faithful enough to reach it",T025/T026 statics + T027 projection
+15,Tail A materialization,--,-,unknown,"0 writes in every offline state; ZtlTaskMem slots zero",all tasks
