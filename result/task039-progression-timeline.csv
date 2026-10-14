@@ -1,0 +1,5 @@
+seq,stage,what_happened,artifact,evidence
+1,H1,cascade tail traced: bands 0x11C-0x11F/0x145/0x146-0x147/0x14B-0x14C/0x148-0x149/0x16A-0x16E/0x16F-0x171/0x81-0x83/0x84-0x86/0x119-0x11B/0x182-0x185 mapped; <0x81 -> drop,h1-tail.txt,proven
+2,H1,dispatcher VA-ref census: 10+ refs at 0x7015xx-0x702xxx = a vtable family sharing OnPacket=0x14112E (per-class unique methods) — scene/channel handler classes,h1c_ctx.py,proven
+3,H2/H3,"band map consolidated (20 bands); protocol anchors landed: 0x81 CHARINFO@0x77E6F3, 0xA2 INVENTORY@0x97F64C, 0x16F SKILLS@0x5B9F14",milestones CSV,protocol+image
+4,H4/H5,not reached (budget); entries pinned,blockers,honest

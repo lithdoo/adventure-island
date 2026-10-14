@@ -1,0 +1,7 @@
+milestone,status,evidence,primary_artifact,notes
+H1 login-band dispatcher,partial (verdict),"field dispatcher fully traced: bands down to 0x81, <0x81 dropped at epilogue -> login band confirmed in ANOTHER phase object; the 0x7015xx-0x702xxx region = a vtable FAMILY (10+) sharing OnPacket=0x14112E with per-class unique methods (scene/channel handler classes); router hunt = trace the pump's virtual-dispatch upstream",h1-*.txt,login dispatcher = next session entry
+H2 sub-dispatcher bands,reached (map),"band map completed: 0x81-0x83@0x77E6F3 / 0x84-0x86@0x670AF5 / 0x87-0x9F jump-table(25) / 0xA2-0xED@0x97F64C / 0xEE-0x103@0x6A6AB0 / 0x104-0x10C@0x6CB061 / 0x10D-0x10F@0x51B3A3 / 0x110-0x111@0x50E6CF / 0x112-0x114@0x688CBA / 0x115-0x116@0x431648 / 0x117-0x118@0x431648+/0xBDEB3C / 0x119-0x11B@0x5CDF60 / 0x11C-0x11F@0x741C0B / 0x145@0x753092 / 0x146-0x147@0x76400C / 0x148-0x149@0x425053 / 0x14B-0x14C@0x7A1424 / 0x16A-0x16E@0x662B01 / 0x16F-0x171@0x5B9F14 / 0x182-0x185@0x548034",h1-tail.txt + g3 artifacts,per-band internal opcode tables = next depth pass
+H3 protocol-aligned naming,reached (anchors),"0x81=CHARINFO band @0x77E6F3; 0xA2=INVENTORY band @0x97F64C; 0x16F=SKILLS band @0x5B9F14 — three 033-burst opcodes landed on named bands (evidence: protocol-live + in-image dispatch)",this CSV set,handler-level naming within bands = next
+H4 packet builders,not-reached,entry pinned (0x95CC2),,next
+H5 CSecurity,not-reached,method pinned,,next
+H6 census+ledger,partial,band map + vtable family recorded,,consolidate next
