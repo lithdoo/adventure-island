@@ -1,0 +1,7 @@
+milestone,status,evidence,primary_artifact,notes
+G1 cipher decode,reached,"funny_shit@0x6590BD (6 table xrefs) / crypt@0x659082 (default seed 0xC65053F2) / custom_encrypt@0x65911A / custom_decrypt@0x659182 — form-matched against maple079_packet.py; AES resolved as runtime-computed compact-AES with two heap instances (0x74F12C00/0x756D2000)",result/task038-cipher-decode.md,the campaign head delivered; compact-AES block functions = next pass
+G2 receive path,not-reached,entry pinned (recv owners 0x94994/0x95A72 from 037),,next session
+G3 s2c dispatch,not-reached,strategy pinned (distinctive immediates 0x41/0x81/0xA2/0x16F + jump tables),,next session
+G4 packet builders,not-reached,entry pinned (handshake version-write 0x95CC2-0x95D13 → COutPacket encode family),,next session
+G5 CSecurity,not-reached,method pinned (13 RTTI TDs, inline-compare xrefs per the 034 dialect),,next session
+G6 naming ledger,partial,G1 names recorded in the decode record + 037 naming rows,,consolidate after G2-G5

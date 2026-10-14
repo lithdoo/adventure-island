@@ -1,0 +1,8 @@
+seq,stage,what_happened,artifact,evidence
+1,G1,IV-seed host function found: crypt@0x659082 with default 0xC65053F2 + per-byte funny_shit,g1-ivseed.txt,proven-in-image
+2,G1,funny_shit@0x6590BD fully decoded (T@VA 0xBD4130; rol32(block,3)),g1-funnyshit.txt,proven
+3,G1,custom_encrypt@0x65911A + custom_decrypt@0x659182 decoded (nibble+bit-pair rotations + T[IV[0]]),g1-funnyshit.txt,proven
+4,G1,AES probe: sbox/Te0/inv-sbox/rcon ALL absent from the module image; no CryptoAPI strings/imports,aes_probe.py,proven (negative)
+5,G1,"heap scan: two compact-AES instances (Sbox2 form) at VA 0x74F12C00 / 0x756D2000; IV-seed page 0xA59000 = the static default",g1c_heap.py,proven
+6,G1,table xref census: all 6 refs of T(0xBD4130) are inside the codec functions; T-copy 0x7A0630 unreferenced by absolute VA,g1e_xref.py,proven
+7,G2-G6,not reached (budget); entry points pinned in the report,milestones/blockers,honest
