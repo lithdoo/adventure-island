@@ -1,0 +1,6 @@
+milestone,status,evidence,primary_artifact,notes
+S1-cont address fixes,reached,"VA/RVA confusion + caller-search base bug (off by 0x400000) found and fixed; codec callers then appeared instantly",s1k_fixed.py,recorded as a hazard for all future scans
+S1-cont codec wrappers,reached,"0x6591EA encrypt_full / 0x65922E decrypt_full (two-stage: header+body, default seed at each stage); crypt call sites 0x95CE7/0x95D1D (handshake) + 0x95F0D (pump rx-decrypt)",s1l-wrapper-rx.txt,
+S1-cont LOGIN DISPATCHER,reached,"0x95F83: called by the pump at 0x95F1D post-decrypt; reads 16-bit opcode; low-band switch (0x10/0x13-0x16 cascade visible; handler 0x4961C7 etc.) — B39-1 RESOLVED",s1m-handoff.txt,full case table = S2 opener
+S1-cont zero pages,reached,"~13 zero data-pages located (0x7D6/0x7D9-0x7DC near the codec table etc.) — absent at capture; no code impact observed",s1j_gap.py,
+S2 band tables,not-reached,,,next session
