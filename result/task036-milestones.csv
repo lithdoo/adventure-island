@@ -1,0 +1,8 @@
+milestone,status,evidence,primary_artifact,notes
+M0 VM gate verified,reached,"QEMU up + win7x86-clean loadvm + desktop screenshot OCR",.work/task-036/logs/T036-booted*,the 026-era regression is gone
+M1 natural run to modal,reached,"A2 launch; iloveaki modal seen 01:58:37 (aki.txt hwnd/title)",.work/task-036/out/aki.txt,F: layout reproduced
+M2 post-modal continuation,reached,"authorized OK click 01:58:38; 300s sampling: WS 7.9->16.4MB then steady 100% core burn; process never exits",.work/task-036/out/proc.csv,the historical spin is real work — M2 of Task 026 finally executed
+M3 materialization capture,reached,"monitor stop + dump-guest-memory: 2.0GiB ELF pulled and preserved",.work/task-036/captures/t036-mem.elf,host-side only; zero guest-visible surface
+M4 marker scan + verdict,reached,"IV seed x5 / FUNNY_BYTES x2 / ZtlTaskMemAllocImp x2 / WS2_32 sanity => MATERIALIZED",result/task036-materialization-record.md,grep offsets are file offsets (pitfall recorded)
+M5 game-body recovery,reached,"strict DTB 0x3F6EC000 (marker+84 MZ); 84 images census; game at va 0x400000; carved 10,330,112B (1 page missing); verified: FUNNY 256/256 x2, IV seed x5, renumbered opcode push sites (login cluster 0x45EC75/0x45EDDB/0x7B3713), WS2_32 import, 13 RTTI (CSecurity* family)",game-image-unpacked.bin (.work),the campaign-defining milestone
+M6 reconstruction framing,reached,"capture/reconstruction method recorded; next-campaign anchors listed (login send cluster, codec region, CSecurity module)",result/task036-materialization-record.md + 36-…md §5,

@@ -1,0 +1,11 @@
+seq,stage,what_happened,artifact,evidence
+1,infra check,container task024-qemu UP again (026-era regression gone); QEMU assets intact (win7x86.qcow2 client.img xfer2.img snapshot),docker ps + /vm listing,confirmed
+2,M0,qemu-start + loadvm win7x86-clean; desktop OCR,T036-booted*,confirmed-live
+3,staging+launch,T036GO/T036OBS + 026 postmodal observer pushed via mcopy; win+r/cmd typed; A2 launch,.work/task-036/out/observer-log.txt,confirmed-live
+4,M1/M2,"PCA click; iloveaki modal 01:58:37; authorized OK 01:58:38; 300s sampling: WS 7.9->16.4MB, steady 100% core, never exits",out/proc.csv out/aki.txt,confirmed-live
+5,M3,monitor stop + dump-guest-memory -> 2.0GiB ELF; pulled + preserved,captures/t036-mem.elf,confirmed
+6,M4,grep -P marker scan: IV seed x5 FUNNY x2 ZtlTaskMem x2 WS2_32 sanity => MATERIALIZED; pitfall: grep offsets are file offsets,scan2.py output,confirmed
+7,M5 v1-v3,"EPROCESS hunt failed (offset mismatch); non-PAE self-map: 3 candidates, none mapped marker; PAE PDPT enumeration: 107703 candidates",m5b/m5c runs,falsified approaches recorded
+8,M5 v4-v5,"marker-PA fix (PT_LOAD conversion); first DTB 0x3F6EC000 found but marker-only validation admitted a false positive (0 MZ); 64K-alignment image walk also wrong",m5d/m5e runs,pitfalls recorded
+9,M5 final,"strict validation (marker + >=5 MZ + >=3000 pages) -> DTB 0x3F6EC000 (6896 pages, 84 images); game module at va 0x400000; carved 10,330,112B (1 page missing); slice-length bug fixed en route",game-image-unpacked.bin + proc-vamap.csv + image-list.txt,confirmed
+10,verification,FUNNY_BYTES 256/256 x2; IV seed x5; renumbered-opcode push sites incl. login cluster (0x45EC75/0x45EDDB/0x7B3713); WS2_32 import; 13 RTTI (CSecurity* family),verify.py output,protocol-verified
