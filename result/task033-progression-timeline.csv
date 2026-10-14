@@ -1,0 +1,11 @@
+seq,stage,what_happened,artifact,evidence
+1,standup,stack restarted (MySQL path-corrected + server headless); all 6 ports up,.work/task-033/logs/server.out,confirmed-live
+2,C0 first attempt,CHARLIST(0x06) no reply — server dispatch debug shows value 6 = UNKNOWN,.work/task-033/logs/c0-login.txt,confirmed-live
+3,opcode truth,live enumeration 0x00-0x12 + server debug gives the authoritative RENUMBERED c2s table (CHARLIST=0x09 CHAR_SELECT=0x0A PLAYER_LOGGEDIN=0x0B),opcode-probe2.json + server-dbg2.out,confirmed-live
+4,C0 complete,CHARLIST body drained (161B char 25); CHAR_SELECT -> SERVER_IP redirect {127.0.0.1 7575 25} live,c0-complete.txt + c1-bridge.txt,confirmed-live
+5,C1 first attempt,PLAYER_LOGGEDIN processed but rejected: 检测账号下已有角色登陆游戏,c1-channel2.txt + server-dbg2.out,confirmed-live
+6,C1 root cause, Loggedin bytecode decoded: pass requires state∈{0,1,6}; login socket held open keeps state=2 → guaranteed rejection; DB snapshots prove state transitions 0->2->(close)->0,loggedin-raw.txt + c1_states.py run,confirmed-static+live
+7,C1 breakthrough,close login socket after redirect -> channel PLAYER_LOGGEDIN accepted -> 18-packet in-channel burst (CHARINFO 658B / INVENTORY / SKILLS 453B / notices),c1-channel3.txt,confirmed-live
+8,C3,cash-shop 8600: same server-first hello; PLAYER_LOGGEDIN processed without rejection; deeper flow gated on ENTER_CASH_SHOP (boundary),c3-cashshop.txt,confirmed-live
+9,syn client v2,full-chain rewrite (authoritative opcodes + close-then-migrate step); chain reproduces end-to-end (25-entry transcript),scripts/maple079_syn_client.py,confirmed-live
+10,C4,v95 reference structural correlation (20 rows: CClientSocket/CLogin/CWvsContext/CWvsApp/WorldItem/ChannelItem ↔ every proven flow),result/task033-client-dispatch-map.csv,reference-derived

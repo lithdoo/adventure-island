@@ -1,11 +1,27 @@
-"""Task 032 P2: synthetic client for the local CMS079 login server (loopback only).
+"""CMS079 synthetic client (loopback-only) — full protocol chain.
 
-Protocol sources: the server JAR's handler/op-code tables (Task 032 P1) and the
-Task 002-validated packet codec (scripts/maple079_packet.py). Not derived from
-any protected client code.
+Task 033 edition. Derives ONLY from the local server implementation (JAR
+bytecode + live loopback exchanges). Never from protected client code.
 
-Usage: python maple079_syn_client.py [--host 127.0.0.1] [--port 9555]
-          [--user test1] [--pass test1] [--steps handshake,login,serverlist]
+Proven chain (see result/task033-protocol-chain.md):
+  login 9555: hello(server-first) -> LOGIN_PASSWORD(0x01) ->
+    SERVERLIST(0x02) -> CHARLIST(0x09, bb+int) -> CHAR_SELECT(0x0A, int)
+    -> SERVER_IP redirect {ip, port, charid} -> CLOSE the login socket
+  channel 7575: hello(same format) -> PLAYER_LOGGEDIN(0x0B, int+8B)
+    -> 18-packet in-channel burst (charinfo/inventory/skills/...)
+
+Authoritative c2s opcode values (server dispatch, Task 033 live probe):
+  0x00 PONG, 0x01 LOGIN_PASSWORD, 0x02 SERVERLIST_REQUEST,
+  0x03 LICENSE_REQUEST, 0x04 SET_GENDER, 0x05 SERVERSTATUS_REQUEST,
+  0x09 CHARLIST_REQUEST, 0x0A CHAR_SELECT, 0x0B PLAYER_LOGGEDIN,
+  0x0C CHECK_CHAR_NAME, 0x11 CREATE_CHAR, 0x12 DELETE_CHAR
+(NOTE: this build RENUMBERS the odinms-standard values — anti-bot measure.)
+
+Wire format (Task 032 live matrix):
+  server-first 15B hello: 0D 00 4F 00 00 00 <iv1:4> <iv2:4> 04
+  client encrypts c2s with word 0x4F00 + iv=hello[6:10]
+  client decrypts s2c with word 0xB0FF + iv=hello[10:14]
+  body = MapleCustomEncryption.shuffle(AES-OFB(plain)); IVs roll per packet.
 """
 from __future__ import annotations
 
@@ -17,14 +33,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import maple079_packet as _mp
-from maple079_packet import (HANDSHAKE_PREFIX, encrypt_packet, decrypt_packet,
-                             parse_handshake)
+from maple079_packet import encrypt_packet, decrypt_packet, get_packet_length
 
-# Header version words: EMPIRICALLY CONFIRMED against the live local server
-# (loopback): the client encrypts c2s packets with word 0x4F00 and the IV at
-# hello[6:10]; decrypts s2c with 0xB0FF and the IV at hello[10:14]. The
-# 15-byte hello is SERVER-FIRST (odinms sessionOpened) — the client must NOT
-# send any handshake; sending one poisons the decoder and the session dies.
+# keep the module codec untouched; pin the empirically proven words here
 VERSION_WORD_C2S = 0x4F00
 VERSION_WORD_S2C = 0xB0FF
 _orig_version_word = _mp.version_word
@@ -33,48 +44,17 @@ _mp.version_word = lambda direction: (
     VERSION_WORD_S2C if direction == "s2c" else
     _orig_version_word(direction))
 
-# Handshake bytes: the CMS079 client's fixed 15-byte opener (Task 002 evidence;
-# [2B len=13][2B version=79 LE][2B 0000][4B sendIV][4B recvIV][1B locale=4]).
-DEFAULT_HANDSHAKE = bytes.fromhex("0D004F00000046727A115230787A04")
-
-# opcodes (extracted from the server JAR, result/task032-opcodes.csv)
-C2S = {
-    "LOGIN_PASSWORD": 0x0001,
-    "LICENSE_REQUEST": 0x0004,
-    "SERVERLIST_REQUEST": 0x0005,
-    "CHARLIST_REQUEST": 0x0006,
-    "SERVERSTATUS_REQUEST": 0x0007,
-    "PONG": 0x0000,
-}
-S2C_NAMES = {
-    0x0000: "LOGIN_ACCOUNT_INFO", 0x0001: "LOGIN_STATUS",
-    0x0004: "SERVERLIST?", 0x0005: "SERVERSTATUS", 0x0006: "SERVERSTATUS2",
-    0x0007: "CHARLIST", 0x0009: "SERVERLIST", 0x000D: "ALL_CHARLIST",
-    0x000E: "CHOOSE_GENDER", 0x000F: "GENDER_SET",
-}
-
-
-def recv_packet(sock: socket.socket, iv: bytes, deadline: float = None) -> tuple:
-    """Read one length-prefixed encrypted packet; returns (result_dict, next_iv)."""
-    if deadline is None:
-        deadline = time.time() + 6.0
-    buf = b""
-    while time.time() < deadline:
-        try:
-            chunk = sock.recv(4096)
-        except OSError:
-            break
-        if not chunk:
-            break
-        buf += chunk
-        if len(buf) >= 4:
-            from maple079_packet import get_packet_length
-            need = 4 + get_packet_length(buf[:4])
-            if len(buf) >= need:
-                res = decrypt_packet(buf[:need], iv, "s2c")
-                return res, res["next_iv"], buf[need:]
-        time.sleep(0.02)
-    return None, iv, buf
+C2S = {"PONG": 0x0000, "LOGIN_PASSWORD": 0x0001, "SERVERLIST_REQUEST": 0x0002,
+       "LICENSE_REQUEST": 0x0003, "SET_GENDER": 0x0004,
+       "SERVERSTATUS_REQUEST": 0x0005, "CHARLIST_REQUEST": 0x0009,
+       "CHAR_SELECT": 0x000A, "PLAYER_LOGGEDIN": 0x000B,
+       "CHECK_CHAR_NAME": 0x000C, "CREATE_CHAR": 0x0011,
+       "DELETE_CHAR": 0x0012}
+# s2c values observed live (this build renumbers s2c too)
+S2C = {0x0000: "LOGIN_ACCOUNT_INFO", 0x0001: "LOGIN_STATUS",
+       0x0005: "SERVERSTATUS", 0x0009: "SERVERLIST", 0x000A: "CHARLIST",
+       0x000B: "SERVER_IP_REDIRECT", 0x0041: "SERVERMESSAGE",
+       0x0081: "CHARINFO", 0x00A2: "INVENTORY", 0x016F: "SKILLS"}
 
 
 def maple_str(text: str) -> bytes:
@@ -82,118 +62,154 @@ def maple_str(text: str) -> bytes:
     return len(raw).to_bytes(2, "little") + raw
 
 
-def build_login(user: str, password: str) -> bytes:
-    # CharLoginHandler.login read sequence (confirmed from JAR bytecode):
-    #   readMapleAsciiString (account)
-    #   readMapleAsciiString (password)
-    #   6x readByteAsInt (mac/hwid bytes, formatted to hex "XX-XX-XX-XX-XX-XX")
-    opcode = C2S["LOGIN_PASSWORD"].to_bytes(2, "little")
-    return (opcode + maple_str(user) + maple_str(password) + bytes(6))
+class Session:
+    """One encrypted CMS079 socket session (server-first hello)."""
+
+    def __init__(self, port: int, host: str = "127.0.0.1"):
+        self.sock = socket.create_connection((host, port), timeout=6)
+        self.sock.settimeout(6.0)
+        hello = b""
+        while len(hello) < 15:
+            chunk = self.sock.recv(64)
+            if not chunk:
+                raise ConnectionError("no server hello")
+            hello += chunk
+        self.hello = hello
+        self.version = int.from_bytes(hello[2:4], "little")
+        self.c2s_iv = hello[6:10]     # client encrypts with this (proven)
+        self.s2c_iv = hello[10:14]    # client decrypts with this (proven)
+
+    def send(self, plain: bytes):
+        pkt, self.c2s_iv = encrypt_packet(plain, self.c2s_iv, "c2s")
+        self.sock.sendall(pkt)
+
+    def drain(self, seconds: float = 3.0):
+        replies, buf = [], b""
+        deadline = time.time() + seconds
+        while time.time() < deadline:
+            try:
+                chunk = self.sock.recv(4096)
+            except OSError:
+                break
+            if not chunk:
+                break
+            buf += chunk
+            while len(buf) >= 4:
+                try:
+                    need = 4 + get_packet_length(buf[:4])
+                except Exception:
+                    break
+                if len(buf) < need:
+                    break
+                try:
+                    res = decrypt_packet(buf[:need], self.s2c_iv, "s2c")
+                    replies.append(res)
+                    self.s2c_iv = bytes.fromhex(res["next_iv"])
+                except Exception:
+                    pass
+                buf = buf[need:]
+            time.sleep(0.05)
+        return replies
+
+    def close(self):
+        try:
+            self.sock.close()
+        except OSError:
+            pass
 
 
-def build_serverlist(world: int = 0) -> bytes:
-    return C2S["SERVERLIST_REQUEST"].to_bytes(2, "little") + bytes([world])
+def parse_redirect(plaintext_hex: str):
+    """SERVER_IP redirect body: ..(2) ip(4) port(2) charid(4) flag(1) key(4)."""
+    b = bytes.fromhex(plaintext_hex)
+    ip = ".".join(str(x) for x in b[4:8])
+    port = int.from_bytes(b[8:10], "little")
+    charid = int.from_bytes(b[10:14], "little")
+    return ip, port, charid
 
 
-def build_charlist(world: int = 0, channel: int = 0) -> bytes:
-    # odinms: opcode + byte world + byte channel (some builds: only channel)
-    return C2S["CHARLIST_REQUEST"].to_bytes(2, "little") + bytes([channel, world])
+def run_chain(user: str, password: str, charid: int, log=print):
+    """The full proven chain: login leg -> redirect -> channel entry."""
+    transcript = []
 
+    ls = Session(9555)
+    log(f"[login] hello {ls.hello.hex()} (version {ls.version})")
+    ls.send(C2S["LOGIN_PASSWORD"].to_bytes(2, "little")
+            + maple_str(user) + maple_str(password) + bytes(6))
+    for r in ls.drain(3.0):
+        nm = S2C.get(r.get("opcode_dec"), r.get("opcode_hex"))
+        transcript.append(("login/s2c", nm, r.get("plaintext_hex", "")[:120]))
+        log(f"[login] <- {nm} len={r.get('body_length')}")
+    ls.send(C2S["SERVERLIST_REQUEST"].to_bytes(2, "little"))
+    for r in ls.drain(2.0):
+        nm = S2C.get(r.get("opcode_dec"), r.get("opcode_hex"))
+        transcript.append(("login/s2c", nm, r.get("plaintext_hex", "")[:120]))
+    ls.send(C2S["CHARLIST_REQUEST"].to_bytes(2, "little")
+            + bytes([0, 0]) + (0).to_bytes(4, "little"))
+    for r in ls.drain(2.5):
+        nm = S2C.get(r.get("opcode_dec"), r.get("opcode_hex"))
+        transcript.append(("login/s2c", nm, r.get("plaintext_hex", "")[:120]))
+        log(f"[login] <- {nm} len={r.get('body_length')}")
+    ls.send(C2S["CHAR_SELECT"].to_bytes(2, "little")
+            + charid.to_bytes(4, "little"))
+    redirect = None
+    for r in ls.drain(3.5):
+        if r.get("opcode_dec") == 0x000B:
+            redirect = r
+    if redirect is None:
+        log("[login] no redirect — aborting channel leg")
+        ls.close()
+        return transcript, None
+    ip, port, rid = parse_redirect(redirect["plaintext_hex"])
+    log(f"[login] redirect: ip={ip} port={port} charid={rid}")
+    transcript.append(("redirect", ip, port, rid))
 
-def run(args) -> int:
-    print(f"[syn] connecting {args.host}:{args.port}")
-    sock = socket.create_connection((args.host, args.port), timeout=6)
-    sock.settimeout(6.0)
+    # CRITICAL (proven Task 033): the real client closes the login socket
+    # after the redirect; the login server's session-close resets the
+    # account state, which the channel's Loggedin check REQUIRES.
+    ls.close()
+    time.sleep(1.5)
 
-    # -- step 1: SERVER-FIRST hello (do not send anything before it) --
-    hello = b""
-    while len(hello) < 15:
-        chunk = sock.recv(64)
-        if not chunk:
-            break
-        hello += chunk
-    print(f"[syn] server hello ({len(hello)}B): {hello.hex()}")
-    if len(hello) < 15:
-        print("[syn] no server hello — abort")
-        return 1
-    version = int.from_bytes(hello[2:4], "little")
-    c2s_iv = hello[6:10]      # IV the client encrypts with (empirical)
-    s2c_iv = hello[10:14]     # IV the client decrypts with (empirical)
-    locale = hello[14]
-    print(f"[syn] hello: version={version} locale={locale} "
-          f"c2s_iv={c2s_iv.hex()} s2c_iv={s2c_iv.hex()}")
-
-    transcript = [{"dir": "s->c", "kind": "hello", "hex": hello.hex(),
-                   "version": version, "s2c_iv": s2c_iv.hex(),
-                   "c2s_iv": c2s_iv.hex()}]
-
-    # -- step 3: login --
-    if "login" in args.steps:
-        pkt, c2s_iv = encrypt_packet(
-            build_login(args.user, args.password), c2s_iv, "c2s")
-        sock.sendall(pkt)
-        print(f"[syn] LOGIN_PASSWORD({args.user}) sent: {pkt.hex()}")
-        transcript.append({"dir": "c->s", "kind": "LOGIN_PASSWORD", "hex": pkt.hex()})
-        res, s2c_iv, pending = recv_packet(sock, s2c_iv)
-        if res is None:
-            print("[syn] no reply to login (pending:", pending.hex() if pending else "", ")")
-        else:
-            name = S2C_NAMES.get(res["opcode_dec"], "?")
-            print(f"[syn] reply {name} (0x{res['opcode_dec']:04X}): {res['plaintext_hex']}")
-            transcript.append({"dir": "s->c", "kind": name,
-                               "opcode": res["opcode_hex"],
-                               "plaintext": res["plaintext_hex"]})
-            # drain anything else (e.g. PING) briefly
-            extra, s2c_iv, _ = recv_packet(sock, s2c_iv, deadline=time.time() + 2)
-            if extra:
-                name2 = S2C_NAMES.get(extra["opcode_dec"], "?")
-                print(f"[syn] extra {name2} (0x{extra['opcode_dec']:04X}): "
-                      f"{extra['plaintext_hex'][:80]}")
-                transcript.append({"dir": "s->c", "kind": name2,
-                                   "opcode": extra["opcode_hex"],
-                                   "plaintext": extra["plaintext_hex"]})
-
-    # -- step 4: server list --
-    if "serverlist" in args.steps:
-        pkt, c2s_iv = encrypt_packet(build_serverlist(0), c2s_iv, "c2s")
-        sock.sendall(pkt)
-        print(f"[syn] SERVERLIST_REQUEST sent")
-        res, s2c_iv, _ = recv_packet(sock, s2c_iv)
-        if res:
-            name = S2C_NAMES.get(res["opcode_dec"], "?")
-            print(f"[syn] reply {name} (0x{res['opcode_dec']:04X}): "
-                  f"{res['plaintext_hex'][:160]}")
-            transcript.append({"dir": "c->s/s->c", "kind": name,
-                               "opcode": res["opcode_hex"],
-                               "plaintext": res["plaintext_hex"]})
-            # server often sends world list end packet too
-            extra, s2c_iv, _ = recv_packet(sock, s2c_iv, deadline=time.time() + 2)
-            if extra:
-                name2 = S2C_NAMES.get(extra["opcode_dec"], "?")
-                print(f"[syn] extra {name2} (0x{extra['opcode_dec']:04X}): "
-                      f"{extra['plaintext_hex'][:160]}")
-                transcript.append({"dir": "s->c", "kind": name2,
-                                   "opcode": extra["opcode_hex"],
-                                   "plaintext": extra["plaintext_hex"]})
-
-    sock.close()
-    Path(args.transcript).write_text(
-        "\n".join(str(t) for t in transcript), encoding="utf-8")
-    print(f"[syn] transcript -> {args.transcript}")
-    return 0
+    cs = Session(port, ip)
+    log(f"[channel] hello {cs.hello.hex()}")
+    cs.send(C2S["PLAYER_LOGGEDIN"].to_bytes(2, "little")
+            + rid.to_bytes(4, "little") + bytes(8))
+    burst = cs.drain(10.0)
+    log(f"[channel] in-channel burst: {len(burst)} packets")
+    for r in burst:
+        nm = S2C.get(r.get("opcode_dec"), r.get("opcode_hex"))
+        transcript.append(("channel/s2c", nm, r.get("plaintext_hex", "")[:120]))
+    cs.close()
+    return transcript, burst
 
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(description="CMS079 synthetic client (loopback only)")
     p.add_argument("--host", default="127.0.0.1")
-    p.add_argument("--port", type=int, default=9555)
     p.add_argument("--user", default="fl1234")
     p.add_argument("--pass", dest="password", default="123456")
-    p.add_argument("--steps", default="handshake,login,serverlist")
+    p.add_argument("--charid", type=int, default=25)
     p.add_argument("--transcript", default="syn-transcript.txt")
+    p.add_argument("--login-only", action="store_true",
+                   help="stop after the login leg (no channel entry)")
     args = p.parse_args(argv)
-    args.steps = [s.strip() for s in args.steps.split(",") if s.strip()]
-    return run(args)
+
+    if args.login_only:
+        ls = Session(9555, args.host)
+        print(f"[login] hello {ls.hello.hex()}")
+        ls.send(C2S["LOGIN_PASSWORD"].to_bytes(2, "little")
+                + maple_str(args.user) + maple_str(args.password) + bytes(6))
+        for r in ls.drain(4.0):
+            nm = S2C.get(r.get("opcode_dec"), r.get("opcode_hex"))
+            print(f"[login] <- {nm} len={r.get('body_length')} "
+                  f"{r.get('plaintext_hex', '')[:80]}")
+        ls.close()
+        return 0
+
+    transcript, burst = run_chain(args.user, args.password, args.charid)
+    Path(args.transcript).write_text(
+        "\n".join(str(t) for t in transcript), encoding="utf-8")
+    print(f"[syn] transcript ({len(transcript)} entries) -> {args.transcript}")
+    return 0
 
 
 if __name__ == "__main__":

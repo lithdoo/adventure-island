@@ -1,0 +1,7 @@
+milestone,status,evidence,primary_artifact,notes
+C0 login leg completed,reached,"CHARLIST body drained live (161B with char 25 江浩浩); CHAR_SELECT proven; SERVER_IP redirect parsed {127.0.0.1 7575 25}",result/task033-protocol-chain.md §2,correct CHARLIST body = byte+byte+int; authoritative opcodes from the server dispatch debug
+C1 channel-port wire format,reached,"channel 7575 hello identical in format; PLAYER_LOGGEDIN accepted after the login-socket close; 18-packet in-channel burst incl. CHARINFO(658B)/INVENTORY/SKILLS",result/task033-protocol-chain.md §2-3, Loggedin state check decoded from bytecode: requires state∈{0,1,6}
+C2 channel flow boundary,reached,"burst = the CUser/CField init packet set; interactive gameplay intentionally not exercised",result/task033-protocol-chain.md §5,honest boundary recorded
+C3 cash-shop handshake,reached,"8600 sends the same server-first hello; PLAYER_LOGGEDIN processed without rejection; deeper flow needs the in-channel ENTER_CASH_SHOP path",.work/task-033/logs/c3-cashshop.txt,boundary recorded (blocker B33-2)
+C4 v95 client dispatch correlation,reached,"20-row structural map: CClientSocket/CLogin/CWvsContext/CWvsApp + WorldItem/ChannelItem ↔ every proven server flow; all rows labeled reference-derived",result/task033-client-dispatch-map.csv,names/structure only — no addresses copied into CMS079 conclusions
+C5 unified protocol document,reached,"complete proven chain with boundaries marked",result/task033-protocol-chain.md,
