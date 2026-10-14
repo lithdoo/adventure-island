@@ -1,0 +1,9 @@
+producer,source,transform,storage_location,vm_consumer,evidence
+timeGetTime wrapper (RVA 0x84B4CC),winmm!timeGetTime via IAT-free manual resolve (Task 028),pushal saves old/new pair; lock cmpxchg guard cell 0x84B210,VM stack slots (old at stack+0x10 new at stack+0x1C of wrapper frame),steady-state Z/X blocks consume the pair,n=19507006 window confirmed-replay
+comparison flags,cmp old_new (RVA 0xC5782C),cmp ecx e (old-new); pushfd -> flags dword 0x83 on VM stack,VM stack,byte-keyed decode chain into the fold,n=19526670-71 confirmed-replay
+prev_delta<<16,previous cycle's (new-old),shifted to edx high word,edx register,per-cycle fold input (e.g. 0x00090000 = 9ms),n=19526605+ confirmed-replay
+expected constants 0x193155AD/0x193162AE/0x193159AD/0x193163AD,bytecode 0x88 immediates,imm32 = raw - 0x12833B5C - ebx (verified),VM stack immediates,per-cycle comparison constant,result/task029-check-items.csv
+result cell [0x84B200],0x7B chain (pop [edi+0x20] xor 0x6A745268),edx ^ const stored,[edi+0x20] = RVA 0x84B200,0xA6 check (cmp cell 0; je offset),n=19488826 (w=2) n=19530473 (w=0) confirmed-replay
+accumulator byte family,per-cycle fold,walk-head `and ecx edi` masks bit0,ecx walk-head state,post-walk tail continuation selection,result/task028 walk-head table + this task
+VM parameter cells 0x84B364/0x84B3B4/0x84B404/0x84B478/0x84B480,staging items 0-3 (export walk + APIT CRC outputs),staged during items 0-3,VM cells (RVA 0x84B3xx-0x84B4xx),read once per steady item (read-identical),Task 028 item read-set diff
+kernel32/advapi32 export data,export-dir walks (0x81D106 engine),APIT CRC-32 (poly 0x54495041) per-name hashes,staged tables (item 2/3),name resolution (Sleep) verified,Task 028 + this task item 2 decode

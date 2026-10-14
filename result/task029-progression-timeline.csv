@@ -1,0 +1,8 @@
+seq,n_start,n_end,stage,what_happened,artifact,evidence
+1,18865228,19295509,corridor entry + first VM programs,VM confirmed live from n=19295510 (first clean dispatch); staging prologue begins,result/task029-vm-architecture.md,confirmed-replay
+2,19295510,19334341,staging items 0-2,constant staging; item 2 = name-hash pass (APIT CRC over kernel32 exports via the 0x81D14C engine),result/task029-check-items.csv,confirmed-replay
+3,19334341,19487865,staging item 3 + first Z entry,parameter cells staged (0x84B364/0x84B3B4/0x84B404/0x84B478/0x84B480); Z steady-state begins,result/task029-check-programs.md,confirmed-replay
+4,19487865,20171705,steady walk (13 Z + 13 X cycles),per-cycle timeGetTime sample pair; cmp old,new -> pushfd; prev_delta<<16 carry; result 2=loop / 0=exit; expected constants 0x193155AD/0x193162AE,result/task029-check-programs.md,confirmed-replay
+5,20171705,20184352,final phase entry (acc 0x46),boundary program (59 ops) exits +5 into the tail,result/task029-check-items.csv,confirmed-replay
+6,20184352,20211743,post-walk tail (132 ops),0x2E3D5322 constant chain -> 0xC5941F installed as continuation (Task 028 D1),result/task029-check-programs.md,confirmed-replay
+7,20211744,20211773,reporter + box + wild jump,unchanged from Task 028,result/28-protector-decision-tail-a-materialization.md,confirmed-replay

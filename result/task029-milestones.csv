@@ -1,0 +1,10 @@
+milestone,status,evidence,primary_artifact,notes
+V0 VM inventory completed,reached,dispatch signature + 4489 clean dispatches; register conventions; 256-entry table mapped (171 in-image 28 executed); VM stack window identified,result/task029-vm-architecture.md,
+V1 opcode handler table recovered,reached,all executed handlers disassembled; fetch arithmetic for 0x88 dynamically verified (imm = raw-0x12833B5C-ebx); classes for all 28; widths from esi-deltas,result/task029-vm-handlers.csv + task029-opcode-semantics.csv,0x92/0x8e const-chains decoded positionally not symbolically (noted)
+V2 bytecode disassembler working,reached,scripts/maple079_vm_disasm.py; full corridor listing (4489 insns); --validate reproduces 25/26 walk constants + locates 0x2E3D5322,scripts/maple079_vm_disasm.py,trace-driven mode (dispatch log from corridor trace); pure-static mode future work
+V3 verification program reconstructed,reached-structure,loop structure decoded (Z 208-op self-loop -488 / X 127-op exit +5); staging items 0-3 incl. name-hash pass; post-walk tail cataloged; per-item listing artifacts,result/task029-check-programs.md,full symbolic dataflow of the last X-block pending
+V4 staged parameter table identified,partial,expected constants table extracted (0x193155AD/0x193162AE/0x193159AD/0x193163AD); actual side proven: sample pair + cmp-flags + prev_delta<<16 + acc; parameter cells identified,result/task029-staged-parameters.csv,expected-vs-actual symbolic equation not yet closed
+V5 normal continuation path recovered,not-reached,the fold's terminal predicate (post-walk tail comparison) not symbolically evaluated; timing-behavior semantics named as the consumed input but the exact acceptable behavior window unknown,result/task029-blockers.csv B29-1,key finding: walk = timeGetTime behavior state machine
+V6 import reconstruction observed,not-reached,walk never selects the non-error continuation in replay,result/task029-check-programs.md,
+V7 Tail-A materialization observed,not-reached,Tail A writes = 0 in all runs,result/task029-replay-baseline.md,
+V8 game-side anchors recovered,not-reached,no game code exposed,,
