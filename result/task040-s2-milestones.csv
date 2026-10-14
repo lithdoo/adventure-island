@@ -1,6 +1,5 @@
 milestone,status,evidence,primary_artifact,notes
-S1-cont address fixes,reached,"VA/RVA confusion + caller-search base bug (off by 0x400000) found and fixed; codec callers then appeared instantly",s1k_fixed.py,recorded as a hazard for all future scans
-S1-cont codec wrappers,reached,"0x6591EA encrypt_full / 0x65922E decrypt_full (two-stage: header+body, default seed at each stage); crypt call sites 0x95CE7/0x95D1D (handshake) + 0x95F0D (pump rx-decrypt)",s1l-wrapper-rx.txt,
-S1-cont LOGIN DISPATCHER,reached,"0x95F83: called by the pump at 0x95F1D post-decrypt; reads 16-bit opcode; low-band switch (0x10/0x13-0x16 cascade visible; handler 0x4961C7 etc.) — B39-1 RESOLVED",s1m-handoff.txt,full case table = S2 opener
-S1-cont zero pages,reached,"~13 zero data-pages located (0x7D6/0x7D9-0x7DC near the codec table etc.) — absent at capture; no code impact observed",s1j_gap.py,
-S2 band tables,not-reached,,,next session
+S2-1 VA/RVA global fix,reached,"all band-handler addresses from 038/039 were capstone VAs; correction table issued (e.g. INVENTORY 0x97F64C->RVA 0x57F64C, CHARINFO ->0x37E6F3, SKILLS ->0x1B9F14)",task040-s2-checkpoint.md,0x95F83/0x14112E were already RVA-correct
+S2-2 phase dispatcher full table,reached,"0x95F83 complete: 7 inline cases + range bands 0x20-0x80/0x177-0x181 -> [0xBD9028]@0x610CE0 + default delegate [0xBDF54C] virtual chain (the phase-injection point)",s1m-handoff.txt,
+S2-3 inventory band table,reached,"0x57F64C: 0xA2->0x57F6C0 (reads then compares CWvsContext+0x2084) / 0xA3->0x57F8B9 / three sub-bands 0xA4-0xBA/0xBB-0xCE/0xCF-0xEC -> 0x57F9C1/0x57FAC9/0x57FCBA; [0xBD9028] confirmed as the CWvsContext-family singleton",s2-inventory-real.txt,
+S2-4 remaining bands,not-reached,CHARINFO 0x37E6F3 / SKILLS 0x1B9F14 + the 0x610CE0 range dispatcher = S3,,budget

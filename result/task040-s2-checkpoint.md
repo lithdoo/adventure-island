@@ -1,52 +1,58 @@
-# Task 040 — Session 2 checkpoint (login-band dispatcher found)
+# Task 040 — Session 2 full checkpoint (dispatch三层全图 + 修正)
 
 RUN DATE 2026-10-15 · corpus: the Task-036 capture; static only.
 
-## Delivered (S1 continuation — B39-1 RESOLVED)
+## ⚠ 全局修正：条带处理器地址 VA→RVA
 
-1. **Address-confusion fix recorded** (hazard): capstone prints VAs;
-   the pump's `call 0x496587` = VA → RVA 0x96587 (a small buffer
-   wrapper), not RVA 0x496587. A caller-search base bug (offset vs VA,
-   off by 0x400000) was also found and fixed — codec callers then
-   appeared immediately.
+Session 038/039 的条带图里处理器地址是 capstone 打印的 **VA**。
+正确 RVA = VA − 0x400000。修正表（关键项）：
 
-2. **The codec integration points** (fixed search):
-   - crypt called at **0x95CE7 / 0x95D1D** (inside the handshake fn
-     0x95C5C) and **0x95F0D** (inside the pump 0x9583A — the rx
-     decrypt).
-   - **0x6591EA = encrypt_full / 0x65922E = decrypt_full**: two-stage
-     wrappers (header/IV part + body) around custom_encrypt/decrypt —
-     the client's encrypt_packet/decrypt_packet equivalents, with the
-     0xC65053F2 default seed appearing at each stage.
+| band (opcode) | VA (旧记录) | **RVA (正确)** |
+| --- | --- | --- |
+| 0x81-0x83 CHARINFO | 0x77E6F3 | **0x37E6F3** |
+| 0xA2-0xED INVENTORY | 0x97F64C | **0x57F64C** |
+| 0xEE-0x103 | 0x6A6AB0 | 0x2A6AB0 |
+| 0x104-0x10C | 0x6CB061 | 0x2CB061 |
+| 0x16F-0x171 SKILLS | 0x5B9F14 | **0x1B9F14** |
+| 0x16A-0x16E | 0x662B01 | 0x262B01 |
+| phase OnPacket | 0x95F83 / 0x14112E | 本就是 RVA（无变化） |
+| phase handlers 0x496xxx | 0x4964E0 等 | 0x964E0 等 |
+| range sub-dispatcher | 0xA10CE0 | 0x610CE0 |
 
-3. **THE LOGIN-BAND DISPATCHER @ 0x95F83** (B39-1 resolved): called
-   directly by the pump at 0x95F1D after decrypt; reads the 16-bit
-   opcode (via 0x4259A2) and switches the LOW band (0x10/0x13/0x14/
-   0x15/0x16… visible in the cascade; handlers at 0x4961C7 etc.).
-   The full dispatch architecture is now linked end-to-end:
+## 派发三层全图（本 session 闭合）
 
 ```text
-CClientSocket::Process (the pump 0x9583A):
-    recv(1460-chunks) → append → header/decrypt (crypt @0x95F0D)
-    → OnPacket @0x95F83 (the phase dispatcher, low band)
-        → in-game phase → the field dispatcher 0x14112E (20 bands)
+层1 泵 0x9583A:  recv(1460) → crypt解密(0x95F0D) →
+层2 相位 OnPacket @0x95F83 (读16位opcode):
+      0x10→0x964E0  0x13→0x960E6  0x14→0x960A5  0x15→0x961C7
+      0x16→0x96347  0x17→[0xBDD8A8]@0x65AA3D(版本对象)
+      0x18→0x9639D  0x1C→0x96477
+      0x20-0x80 与 0x177-0x181 → [0xBD9028] 子派发器@0x610CE0
+      default → 委托对象[0xBDF54C] 虚调用链 —— 相位注入点
+层3 场派发器 0x14112E (20条带) —— 条带处理器RVA已修正
 ```
 
-## Honest notes
+## INVENTORY 带内部表（S2 目标达成）
 
-- The 0x95F83 switch head is decoded; its FULL case table (all
-  low-band opcodes) and the phase-routing to 0x14112E are the next
-  mechanical step (S2 opener).
-- The zero pages at RVA 0x7D6/0x7D9-0x7DC (near the codec table) are
-  data pages absent at capture — no code impact observed.
+```
+InventoryBand @ RVA 0x57F64C:
+  0xA2  → 0x57F6C0   (读包后比对 CWvsContext+0x2084 — 单例[0xBD9028]确认!)
+  0xA3  → 0x57F8B9
+  0xA4-0xBA → 0x57F9C1 (子带)
+  0xBB-0xCE → 0x57FAC9 (子带)
+  0xCF-0xEC → 0x57FCBA (子带)
+```
 
-## Next (S2)
+**[0xBD9028] = CWvsContext 家族单例**（字段 0x2084 与 0x6F5F93 初始化簇的
+0x2FC8-0x333C 范围同对象量级，两处互证）。
 
-(a) full case table of 0x95F83 (the complete login-band map);
-(b) the phase-routing call into 0x14112E's receiver;
-(c) band-internal tables (inventory 0x97F64C first).
+## Next (S3)
+
+(a) 修正后的其余条带内部表（CHARINFO 0x37E6F3 / SKILLS 0x1B9F14 先行）；
+(b) 0x610CE0 范围子派发器（0x20-0x80 带的全图）；
+(c) Phase 1 服务器侧频道 opcode 枚举。
 
 ## Artifacts
 
-`result/task040-s2-milestones.csv`, this checkpoint; logs in
-`.work/task-040/logs/s1f-s1m`.
+`result/task040-s2-milestones.csv`(更新), 本检查点; 日志
+`.work/task-040/logs/s2-*`。
