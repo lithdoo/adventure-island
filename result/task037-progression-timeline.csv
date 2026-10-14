@@ -1,0 +1,9 @@
+seq,stage,what_happened,artifact,evidence
+1,F0,carved-image PE parsed (7 sections; import dir runtime-corrupted) — runtime-IAT reconstruction chosen,f0_imports.py,proven-in-image
+2,F0,census image-list regenerated (was empty from the 036 broken enumeration); 19/84 modules named by ts+soi; main IAT cluster 0x7E1520-0x7E18D0 = 228 named slots,f0b/f0d,proven
+3,F0,ws2_32 identified at 0x77830000 (216KB module; version string; in-memory export dir paged out); file extracted from the Win7 ISO install.wim; 33/33 socket imports named incl. WSAEventSelect-family,f0e/f0f/f0g/f0h + result/task037-imports.csv,proven
+4,F2,socket call sites: socket@0x94806 connect@0x94858 send@0x95DBB recv@0x94994/0x95A72 WSAStartup@0x39DCED,f2_sites.py,proven
+5,F2,"Connect @0x947EA decoded (non-blocking, WSAEWOULDBLOCK tolerated, 5000ms deadline, this+8 socket)",f2-disasm.txt,proven
+6,F2,"handshake fn @0x95C5C: push 0x4F version immediate + [this+0x88] version word; Send/Flush @0x95D5C: critical-section-guarded queue +0x60, full-send -> 0x49682C(queue, cipher@+0x54)",f2-disasm + 0x95C00-0x95E20 windows,proven
+7,F3,"CLogin state machine @~0x45EB00: [this+0x64] state switch 0/1/2, [this+0x68] sub-state=9 (charlist), per-state UI objects; CORRECTION: the 0x09 push sites are state constants not opcodes",f3-login.txt,proven+corrected
+8,F4/F5,not reached (budget),milestones CSV,honest
