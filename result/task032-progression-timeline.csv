@@ -1,0 +1,9 @@
+seq,stage,what_happened,artifact,evidence
+1,inventory,079V5 tree re-validated; bundled MySQL/JRE7/configs inventoried; headless entry (server.Start) found by JAR main-scan,result/task032-server-inventory.md,confirmed-static
+2,standup attempt 1,--no-defaults MySQL lost InnoDB; server crashed on first start,task032-server-inventory.md,confirmed-live
+3,standup fix,path-corrected defaults-file MySQL; pristine-restore + byte-exact debug edit of the GBK ini,result/task032-server-inventory.md,confirmed-live
+4,standup success,login 9555 / channels 7575-7578 / cashshop 8600 all listening on 127.0.0.1,result/task032-server-inventory.md,confirmed-live
+5,opcode extraction,116 recv + 117 send constants + handler switch + crypto construction decoded from JAR bytecode (custom Python class-file reader; no decompiler committed),result/task032-opcodes.csv,confirmed-static
+6,wire-format matrix,8 live combinations (word-pair x IV-pairing): exactly (0x4F00 c2s iv=hello[6:10]) replies; plus the server-first-hello discovery (client-first handshake poisons the decoder),result/task032-protocol-login.md,confirmed-live
+7,full login flow,LOGIN_PASSWORD -> LOGIN_ACCOUNT_INFO + SERVERLIST + end marker; PONG; SERVERLIST_REQUEST -> SERVERSTATUS; CHARLIST flow entered,logs/full-transcript.txt + syn-clean run,confirmed-live
+8,credentials,seeded accounts use plain sha1(password) (sha1(123456) matches both rows),task032-protocol-login.md,confirmed-static+live

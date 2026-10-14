@@ -1,0 +1,10 @@
+step,packet,plaintext_hex_start,meaning,evidence
+1,s2c HELLO,0D004F000000…,server-first hello with iv1 (46727a..) iv2 (523078..),confirmed-live
+2,c2s 0x0001 LOGIN_PASSWORD,0100 0600 666c31323334 0600 313233343536 000000000000,account+password+MAC[6],confirmed-live transcript
+3,s2c 0x0000 LOGIN_ACCOUNT_INFO,0000 0013 0000 0001 0000 0006 666c31323334 …,account name fl1234 gender/admin/chars,confirmed-live
+4,s2c 0x0009 SERVERLIST,0900 0000 0003 0000 6400 6400 04f40100 0002 002d31 …,world entry: id? name flag expr/drop/meso channel…,confirmed-live
+5,s2c 0x0009 FF,0900ff,end-of-serverlist marker,confirmed-live
+6,c2s 0x0000 PONG,0000,keepalive,confirmed-live
+7,c2s 0x0005 SERVERLIST_REQUEST,0500,request world list,confirmed-live
+8,s2c 0x0006 SERVERSTATUS,06000000,status body,confirmed-live
+9,c2s 0x0006 CHARLIST_REQUEST,0600 00,request char list (channel byte),confirmed-live flow entry

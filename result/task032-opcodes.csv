@@ -1,0 +1,20 @@
+opcode_hex,opcode_dec,direction,name,handler_evidence,notes
+0x0000,0,c2s,PONG,MapleServerHandler ordinal-1 case -> MapleClient.pongReceived,keepalive reply to s2c PING
+0x0001,1,c2s,LOGIN_PASSWORD,CharLoginHandler.login (reads 2x readMapleAsciiString + 6x readByteAsInt MAC),confirmed live: full transcript
+0x0002,2,c2s,HELLO_LOGIN,CharLoginHandler.Welcome (empty 1-byte body),sent by the real client at connect; handler is a no-op stub
+0x0003,3,c2s,HELLO_CHANNEL,Welcome stub,channel variant
+0x0004,4,c2s,LICENSE_REQUEST,CharLoginHandler.LicenseRequest (reads a string),+
+0x0005,5,c2s,SERVERLIST_REQUEST,CharLoginHandler.ServerListRequest,confirmed live: world list reply
+0x0006,6,c2s,CHARLIST_REQUEST,CharLoginHandler.CharlistRequest (reads bytes),confirmed live: char list flow entered
+0x0007,7,c2s,SERVERSTATUS_REQUEST,CharLoginHandler.ServerStatusRequest,+
+0x0008,8,c2s,CHECK_CHAR_NAME,CheckCharName(string),+
+0x0009,9,c2s,CREATE_CHAR,CreateChar,+
+0x000A,10,c2s,DELETE_CHAR,DeleteChar,+
+0x000C,12,c2s,CHAR_SELECT,Character_Without/WithSecondPassword,+
+0x000E,14,c2s,SET_GENDER,SetGenderRequest,+
+0x0010,16,c2s,PLAYER_LOGGEDIN,channel InterServerHandler,channel-phase
+0x0000,0,s2c,LOGIN_ACCOUNT_INFO,transcript-confirmed reply to LOGIN_PASSWORD,body: account name/gender/admin/chars fields
+0x0001,1,s2c,LOGIN_STATUS,SendPacketOpcode table,error/status code
+0x0006,6,s2c,SERVERSTATUS,transcript-confirmed reply to SERVERLIST_REQUEST,body 06000000
+0x0009,9,s2c,SERVERLIST,transcript-confirmed world entries + 0x09FF end marker,world/channel/name/flag/balloon data
+0x0007,7,s2c,CHARLIST,char list (not drained in final transcript window),odinms standard

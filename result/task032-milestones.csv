@@ -1,0 +1,7 @@
+milestone,status,evidence,primary_artifact,notes
+P0 server inventory + local standup,reached,"MySQL 5.5.53 + 江浩 JAR stack UP on loopback: login 9555 / channels 7575-7578 / cashshop 8600; DB pre-initialized (accounts/characters/wz tables); headless entry via server.Start found",result/task032-server-inventory.md,path-corrected my.ini + pristine-restore of the ini before the debug edit
+P1 protocol extraction,reached,"116 recv + 117 send opcodes from JAR <clinit>; login handler read-sequence from bytecode; AES/OFB + custom shuffle cross-checked vs maple079_packet.py; crypto construction asymmetry (short -80/79 -> 0xB0FF/0x4F00) decoded",result/task032-protocol-login.md + task032-opcodes.csv,
+P2 synthetic client,reached,"full login exchange completed live: hello -> LOGIN_PASSWORD -> LOGIN_ACCOUNT_INFO + SERVERLIST(+end marker) -> PONG/SERVERLIST/SERVERSTATUS/CHARLIST flow; 8-combination matrix pinned the wire format (server-first hello; c2s 0x4F00 with hello[6:10] IV)",scripts/maple079_syn_client.py + task032-protocol-login.md,P2 definitionally complete (login exchange)
+P3 protocol tables,reached,login-zone opcode/structure tables cross-validated between JAR bytecode and the live transcript,result/task032-opcodes.csv + task032-packet-structures.csv,channel/cashshop deeper flows not drained (see blockers)
+P4 v95 client-side correlation,not-reached,time budget exhausted at P3; reference bundle available,reference/maplestory-symbols,next task
+P5 support-DLL correlation,not-reached,not started,,
