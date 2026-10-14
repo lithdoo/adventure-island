@@ -400,6 +400,8 @@ class Replay:
         # guest clock at snapshot restore, as observed in every run
         st = (2026, 10, 2, 13, 1, 51, 30, 0)
         self.uc.mem_write(dest, b"".join(x.to_bytes(2, "little") for x in st))
+        self.state.setdefault("api_watch", []).append(
+            ("GetLocalTime", dest, 16, self.state["count"]))
         self.stdcall(1, 0)
 
     def stub_GetVersion(self):
@@ -442,6 +444,8 @@ class Replay:
             blob[154] = 1        # wProductType = VER_NT_WORKSTATION
             blob[155] = 0        # wReserved
         self.uc.mem_write(info, bytes(blob))
+        self.state.setdefault("api_watch", []).append(
+            ("GetVersionExA", info, min(size, 148), self.state["count"]))
         self.stdcall(1, 1)
 
     def stub_GetVersionEx_W(self):
@@ -463,6 +467,8 @@ class Replay:
                 self.uc.mem_write(out, h.to_bytes(4, "little"))
             except Exception:
                 pass
+            self.state.setdefault("api_watch", []).append(
+                ("RegOpenKeyA", out, 4, self.state["count"]))
             self.state["reg"].append({"op": "open-root", "n": self.state["count"]})
             self.note("RegOpenKey", key="(root)", exists=True)
             self.stdcall(nargs, 0)
@@ -552,6 +558,9 @@ class Replay:
             self.uc.mem_write(self._cmdline_buf, path.encode("ascii") + b"\x00")
             self.uc.mem_write(self._cmdline_buf + 0x1000,
                               path.encode("utf-16le") + b"\x00\x00")
+        self.state.setdefault("api_watch", []).append(
+            ("GetCommandLineA", self._cmdline_buf, len(path) + 1,
+             self.state["count"]))
         self.note("GetCommandLine", line=path)
         self.stdcall(0, self._cmdline_buf + (0x1000 if wide else 0))
 
@@ -978,7 +987,8 @@ class Replay:
         self.seh_head = [meta["seh_head"]]
         self.state["seh_dispatches"] = meta["seh_dispatches"]
         self.corridor_n = meta["corridor_n"]
-        self.clock_scale = meta["clock_scale"]
+        # explicit CLI override wins over the checkpoint-saved scale
+        self.clock_scale = getattr(self, "force_clock_scale", None) or meta["clock_scale"]
         for b, label, path in meta["modules"]:
             self.remember_module(b, Path(path), label)
             self.register_apis(b)
@@ -1508,6 +1518,10 @@ class Replay:
         def on_write(_uc, _a, address, s, value, _u):
             if self.tracer is not None:
                 self.tracer.writes.append((address, s, value))
+            cws = getattr(self, "cell_watch_set", None)
+            if cws and address in cws and len(self.state.get("cell_writes", [])) < 400000:
+                self.state.setdefault("cell_writes", []).append(
+                    (self.state["count"], address, s, value))
             rva = address - IMAGE
             if TAIL_A[0] <= rva < TAIL_A[1]:
                 if self.state["tail_a_first"] is None:
@@ -1574,6 +1588,14 @@ class Replay:
             rd[(address >> 12) << 12] = rd.get((address >> 12) << 12, 0) + 1
             if self.tracer is not None:
                 self.tracer.reads.append((address, s, value))
+            # Task 030: watch-list provenance for pre-corridor API outputs
+            watch = self.state.get("api_watch")
+            if watch and len(self.state.get("watch_hits", [])) < 60000:
+                for wname, waddr, wsize, wn in watch:
+                    if waddr <= address < waddr + wsize and self.state["count"] > wn:
+                        self.state.setdefault("watch_hits", []).append(
+                            (self.state["count"], wname, address, s))
+                        break
             # targeted external-read log (kernel32 range) for slice analysis
             if GUEST_BASES["kernel32.dll"] <= address < GUEST_BASES["kernel32.dll"] + 0x200000:
                 self.state.setdefault("k32_reads", []).append(
@@ -1637,6 +1659,11 @@ class Replay:
         st["read_pages_count"] = len(rp)
         st["read_pages_detail"] = {hex(k): v for k, v in
                                    sorted(rp.items(), key=lambda x: -x[1])[:64]}
+        st["api_watch"] = self.state.get("api_watch", [])
+        wh = self.state.get("watch_hits", [])
+        st["watch_hits_count"] = len(wh)
+        st["watch_hits_head"] = wh[:40]
+        st["watch_hits_tail"] = wh[-40:]
         ta = bytes(self.uc.mem_read(IMAGE + TAIL_A[0], min(0x10000, TAIL_A[1] - TAIL_A[0])))
         st["tail_a_first_page_nonzero"] = any(ta)
         ztl = {hex(z): bytes(self.uc.mem_read(IMAGE + z, 16)).hex() for z in ZTL}
@@ -1705,10 +1732,15 @@ def main(argv=None) -> int:
     p.add_argument("--vclock-base", type=int, default=1_200_000,
                    help="virtual uptime (ms) at emulation start; override "
                         "with measured boot->launch deltas for fidelity tests")
+    p.add_argument("--write-log", type=Path, default=None,
+                   help="file of hex addresses (one per line); all writes to "
+                        "these addresses are logged and dumped to "
+                        "<trace-dir or cwd>/cell-writes.json")
     args = p.parse_args(argv)
 
     rp = Replay(args.exe, args.guest_dir, args.client_dir)
     rp.clock_scale = args.clock_scale
+    rp.force_clock_scale = args.clock_scale
     rp.cmdline_variants = [args.cmdline]
     rp.state.setdefault("vclock_base", args.vclock_base)
     if args.tgt_15ms:
@@ -1729,6 +1761,13 @@ def main(argv=None) -> int:
         rp.trace_from = tf if tf == "corridor" else int(tf)
         rp.trace_max = args.trace_max
         rp.trace_log_reads = args.trace_log_reads
+    if args.write_log:
+        rp.cell_watch_set = set()
+        for line in args.write_log.read_text().split():
+            line = line.strip()
+            if line:
+                rp.cell_watch_set.add(int(line, 16))
+        rp.state["cell_writes"] = []
     rp.setup()
     if args.resume_ck:
         # memory already restored by load_checkpoint_v2 during run(); setup()
@@ -1743,6 +1782,11 @@ def main(argv=None) -> int:
     if args.trace_dir and rp.state.get("k32_reads"):
         (args.trace_dir / "k32_reads.json").write_text(json.dumps(
             rp.state["k32_reads"]))
+    if args.write_log and rp.state.get("cell_writes"):
+        outp = (args.trace_dir / "cell-writes.json") if args.trace_dir \
+            else Path("cell-writes.json")
+        outp.write_text(json.dumps(rp.state["cell_writes"]))
+        print(f"cell-writes ({len(rp.state['cell_writes'])}) -> {outp}")
     if args.dump_image:
         data = bytes(rp.uc.mem_read(IMAGE, rp.image_size))
         args.dump_image.write_bytes(data)

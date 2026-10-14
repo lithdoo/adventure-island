@@ -1,0 +1,6 @@
+seq,n_start,n_end,stage,what_happened,artifact,evidence
+1,13260340,13350340,VM2 GetLocalTime window (traced),wSecond/wMilliseconds consumed by the SECOND VM instance (table RVA 0x81464); values stay in VM2 context — no corridor flow,result/task030-symbolic-eval.md R1/R3,confirmed-replay
+2,12670000,13770000,pre-corridor resolution pass (traced),APIT-CRC name hashing: 5 hash matches incl. the later-called RegOpenKeyA — staging resolution faithful,result/task030-symbolic-eval.md R1,confirmed-replay
+3,0,18865228,write-history census (full run),1295 corridor-read cells last-written pre-corridor; 1268 are bytecode-stream/decode-era (static); 27 real cells catalogued; zero API-seed flow,result/task030-symbolic-eval.md R1,confirmed-replay
+4,18865228,20211773,diagnostic clock sweep (6 scales x checkpoint),identical corridor control flow at delta chains 1-78ms — walk timing-invariant; continuation selection image-determined,result/task030-terminal-predicate.md,confirmed-replay
+5,-,-,boundary assessment,only remaining channel = runtime-decoded image ground truth (prohibited live extraction) — Stop C form,result/task030-blockers.csv B30-1,proven-by-elimination

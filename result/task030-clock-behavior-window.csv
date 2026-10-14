@@ -1,0 +1,10 @@
+clock_scale,walk_delta_chain_ms,walk_heads,checks_taken,final_outcome,evidence_run,notes
+22.7,1-2,26,13/26,error continuation -> Themida box,checkpoint sweep,.work/task-030/replay-runs/sweep227
+57,2-4,26,13/26,error continuation -> Themida box,checkpoint sweep,sweep570
+113,4-8,26,13/26,error continuation -> Themida box,checkpoint sweep,sweep1130
+227 (default),15-16,26,13/26,error continuation -> Themida box,checkpoint sweep+baseline,TCG-calibrated
+454,29-31,26,13/26,error continuation -> Themida box,checkpoint sweep,sweep4540
+1135,71-78,26,13/26,error continuation -> Themida box,checkpoint sweep,sweep11350
+15.625ms-quantized (Task 028),15-16 quantized,26,13/26 (028 trace),error continuation -> Themida box,task028 tgt-15ms run,flow changed (+573K insns) outcome identical
+base 60K-300K (Task 028),15-16,26,13/26,error continuation -> Themida box,task028 vclock-base sweep,absolute uptime invariant
+conclusion: the acceptable behavior window is EMPTY — no clock behavior changes any corridor branch; the predicate does not consume timing

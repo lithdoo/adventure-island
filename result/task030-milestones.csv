@@ -1,0 +1,10 @@
+milestone,status,evidence,primary_artifact,notes
+T0 symbolic evaluator working,reached (provenance+differential form),"watch-list + write-history census validated against known facts (GLT consumer relocation, SEH-window pointer store, 028 result cells); sweep default run signature-identical to baseline",result/task030-symbolic-eval.md,stronger-than-symbolic: whole-run value provenance + differential timing
+T1 terminal predicate named,reached (negative form),"the continuation selection is a pure function of the runtime-decoded program state; no environment input varies it (R1 zero-flow + R2 5000x invariance)",result/task030-terminal-predicate.md,refines 029's timing-state-machine reading
+T2 acceptable behavior window enumerated,reached (empty window),"6-scale sweep + 028 quantization/base falsifications: identical control flow at every delta chain 1-78ms",result/task030-clock-behavior-window.csv,the predicate admits/rejects no clock behavior
+T3 faithful tick-timer model,not-needed (proven immaterial),"the 028 --tgt-15ms model exists; the T2 sweep proves the model choice cannot change the outcome",result/task030-terminal-predicate.md,retained as a fidelity option only
+T4 V5 outcome,boundary proven (Stop C form),"all input channels except the runtime-decoded image are proven faithful or inert; image ground-truth requires prohibited live extraction; no branch forcing performed",result/task030-terminal-predicate.md,
+V5 normal continuation recovered,not-reached (boundary),per T4,result/task030-blockers.csv B30-1,
+V6 import reconstruction,not-reached,,,
+V7 Tail-A materialization,not-reached,Tail A writes = 0 in every run,,
+V8 game-side anchors,not-reached,,,

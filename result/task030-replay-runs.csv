@@ -1,0 +1,8 @@
+run_id,config,instruction_count,walk_heads,checks_taken,final_outcome,notes
+baseline,checkpoint resume default,20211773,26,13/26,Themida box,pre-change reference
+watchrun,full run + api watch-list,20211773,26,13/26,Themida box,api_watch + watch_hits instrumentation
+glt-trace,trace-from 13260340 (90K),-, -, -, -,GetLocalTime consumer window (VM2)
+adv-trace,trace-from 12670000 (1.1M),-,-,-,-,pre-corridor resolution pass: 5 hash matches
+cellw,full run + --write-log (13796 addrs),20211773,26,13/26,Themida box,write-history census
+sweep227..11350,checkpoint + --clock-scale {22.7 57 113 227 454 1135},20177417..20555396,26,13/26,Themida box every,identical corridor control flow at every scale
+regress,post-tooling-change default,20211773,26,13/26,Themida box,signature == baseline (regression clean)
