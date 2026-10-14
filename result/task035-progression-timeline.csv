@@ -1,0 +1,7 @@
+seq,stage,what_happened,artifact,evidence
+1,tooling,capstone disassembler with PE/IAT/export/string/vtable annotation; INT-vs-IAT pitfall found and fixed (B35-1),disasm_helper.py + e3c-e3e logs,disassembly-proven
+2,E1 PCOM,Pc* exports decoded: registry singleton/module records/CO_E_NOTINITIALIZED gate/IID_IClassFactory at 0x14860/FreeLibrary unload polling,t e1-pcom.txt + task035-pcom-framework-logic.md,disassembly-proven
+3,E2 binding,BindPCOM @ NameSpace 0x9A8D: GetProcAddress 5-slot table (PcCreateObject/FreeUnusedLibraries/SerializeObject/SerializeString/RootNameSpace),e2f-9a80.txt,disassembly-proven
+4,E2 mount,all-dynamic imports; CreateFileMappingA/MapViewOfFile mount; _lrotl/_lrotr; 2002 header string = dead code (zero xrefs anywhere),e2b/e2g/e2h logs,disassembly-proven
+5,E3 stream,Canvas ZLZ IAT (0x270C4-CC) 3 call sites; filtered-stream wrapper vtable 0x286D4: ctor 0x22980/init 0x22A00/dtor 0x22910 (ZLZCloseFilter [this+4])/rw-forward 0x22A50,e3e/e3f/e3g logs,disassembly-proven
+6,B1 spec,client per-packet behavior spec written from live+srv+v95 with explicit evidence classes and unknowns marked,result/task035-client-behavior-spec.md,evidence-classed synthesis
