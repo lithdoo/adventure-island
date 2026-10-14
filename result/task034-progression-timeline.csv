@@ -1,0 +1,9 @@
+seq,stage,what_happened,artifact,evidence
+1,module census,61 PE modules parsed: machine/sections/imports/exports/RTTI/packer each; MapleStory.exe = kernel32-only + 3 ZtlTaskMem* exports + packed,result/task034-module-census.csv,proven-in-module
+2,anchor sweep,protocol constants searched across 23 modules + replay image: FUNNY_BYTES 256/256 in Canvas/PCOM/ZLZ; packet AES key + IV seed absent everywhere; EXE static image anchor-free,result/task034-anchor-search.csv,proven
+3,codec context,"pre-table dwords = obfuscated WZ-key array (…33,55,01,09,52,de,c7,1e); ZLZ exports inflate/deflate filters; Canvas→ZLZ static import",g2b/g2c logs,proven-in-module
+4,RTTI dialect,VC6-style inline-TD RTTI identified (TD refs as .text immediates; no COLs) — vtable linkage stays with 026 heuristics,g1_dbg runs,proven-in-module
+5,class census,"64 real class names with TD RVAs across 10 modules (CWzProperty/CWzUOL/CWzNameSpace/CWzArchive/Canvas/Sound families)",result/task034-class-census.csv,proven-in-module
+6,module graph,launcher chain (bat = MapleStory.exe 127.0.0.1 9555); COM-plugin engine (DllGetClassObject ×9); PCOM activator API; dependency edges mapped,result/task034-module-graph.md,proven-in-module
+7,naming ledger,"anchor verdicts + census + reference status combined; game-body rows explicitly reference-derived/unreachable",result/task034-naming.csv,evidence-classed
+8,architecture doc,layered client map with evidence classes; codec pinned to EXE interior (strongest static statement); honest boundary restated,result/task034-client-architecture.md,

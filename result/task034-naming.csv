@@ -1,0 +1,12 @@
+item,evidence_class,verdict,notes
+IV shuffle table (FUNNY_BYTES 256B),proven-in-module,"present byte-identical in Canvas.dll@0x2c130 PCOM.dll@0x17130 ZLZ.dll@0x100e0 (all 256/256)","Task-002 seed 'IV table prefix' now MATCHED in three reachable modules — WZ/stream codec context (adjacent WZ-key dword array, obfuscated form 13/08/06/B4/…/52/DE/C7/1E)"
+packet AES key (raw 32B),proven-absent,"not present in ANY reachable module or the static EXE image","architecture fact: the packet AES cipher key lives inside the protected EXE (CClientSocket domain); WZ-key arrays in Canvas/PCOM/ZLZ are the obfuscated WZ form, not the raw packet key"
+IV seed F25350C6,proven-absent,"no occurrence in any module","constructed/derived at runtime (EXE interior)"
+hello prefix / server strings,proven-absent (client side),"no readable hello/GBK server strings in any client module","server-first hello is produced by the SERVER; the client's parsing code is in the EXE"
+MapleStory.exe static anchors,proven-absent,"static image contains no readable protocol anchor (only coincidental bytes in packed data)","consistent with 027-031: everything below the loader is encrypted"
+MapleStory.exe imports,proven-in-module,"kernel32.dll only (3 exports: ZtlTaskMemAlloc/Free/ReallocImp)","all other DLLs resolved dynamically post-unpack (import staging of 027-031); Ztl allocator exported for engine DLLs"
+server address source,proven-in-module,"单机登陆器.bat = 'MapleStory.exe 127.0.0.1 9555'","the client's target comes from command-line arguments (repack modification)"
+CWz* engine classes (64 names),proven-in-module,"full RTTI census: Canvas 8 / Gr2D 4 / NameSpace 11 / PCOM 8 / ResMan 3 / Shape2D 8 / Sound_DX8 15 / WzMss 4 / WzFlash 1 / ZLZ 2","real symbols (not reference-derived); see task034-class-census.csv with TD RVAs + 026 vtable candidates"
+PCOM framework API,proven-in-module,"exports PcCreateObject/PcInitModule/PcRootNameSpace/PcSerialize/…","the COM plugin activator the EXE drives"
+Canvas→ZLZ edge,proven-in-module,"static import; ZLZ exports ZLZCreateInflator/Deflator/CloseFilter","the stream codec path: image decode → decrypt+inflate via ZLZ"
+CWvsApp/CClientSocket/CLogin/CField/CUser game body,reference-derived,"unreachable(EXE-VM) — structure documented from reference/maplestory-symbols (Addresses/Offsets) + the 033 protocol chain","the seeds CSV rows remain 'unmatched' by design: no CMS079 code is statically reachable for them"

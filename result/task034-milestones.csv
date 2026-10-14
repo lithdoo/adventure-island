@@ -1,0 +1,7 @@
+milestone,status,evidence,primary_artifact,notes
+G0 module census,reached,"61 PE modules parsed + classified (engine/framework/codec/anti-cheat/launcher); protection + RTTI status each",result/task034-module-census.csv,MapleStory.exe: kernel32-only imports + 3 Ztl exports + packed
+G1 full class census,reached,"64 RTTI class names with TD RVAs across 10 game modules; merged with 026 vtable candidates; RTTI dialect identified as inline-TD-comparison (VC6-style) explaining COL absence",result/task034-class-census.csv,real symbols incl. CWzProperty/CWzUOL/CWzNameSpace family
+G2 protocol-anchor search,reached,"FUNNY_BYTES 256/256 in Canvas/PCOM/ZLZ (+obfuscated WZ key array); packet AES key + IV seed + hello/server strings proven ABSENT from every reachable module; EXE static image anchor-free",result/task034-anchor-search.csv,codec pinned to EXE interior — the architecture verdict
+G3 cross-module architecture,reached,"launcher chain (bat = MapleStory.exe 127.0.0.1 9555); COM-plugin engine (DllGetClassObject everywhere); PCOM activator API; Canvas→ZLZ static edge; Ztl allocator exports",result/task034-module-graph.md,
+G4 two-evidence naming,reached,"anchor verdicts + class inventory + v95 correlation status in one ledger",result/task034-naming.csv,game-body rows stay reference-derived by evidence
+G5 architecture document,reached,"layered map with evidence classes; honest boundary restated from 027-031 proofs",result/task034-client-architecture.md,
