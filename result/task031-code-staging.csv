@@ -1,0 +1,10 @@
+phase,name,n_window,targets,write_kind,classification,evidence
+A,stage-2 decode,<100000,241 executed addrs,byte,deterministic-decode (pre-API: first API at n=12671622),census addr_first bins
+B,mid decode,<2500000,479 executed addrs (incl. VM1 context 0x84B4CC at n=2436801),byte,deterministic-decode (pre-API),census
+C,late decode,2500000-3800000,3792 executed addrs (the corridor gadget zone 0x856-0x86A + tail 0x86A4xx),byte,deterministic-decode (pre-API),census; e.g. 0x8574D6 (dispatch) written n=3071717
+D,pre-VM2,3800000-12556322,0 addrs,-,no code writes,census (empty bin)
+E,VM2 window,12556322-13481757,0 addrs,-,no code writes (VM2 writes only its context cells),census
+F,post-VM2 pre-decrypt,13481757-13598000,0 addrs,-,no code writes,census
+G,reporter self-decrypt,13598792-13599530,6 executed addrs in reporter (0x859432/462/476/4A6/4CA/4D6),dword,DETERMINISTIC CONSTANT TRANSFORM: new = ((orig + 0x5A192D3D) ^ 0x61799419) — self-decrypt loop RVA 0x593A1-0x59411, 49 dwords descending, writer window trace n=13598750-13598800
+H,native env phase,13610000-18865228,0 addrs,-,no code writes,census (empty bin)
+entry,VM1 entry state,19294654-19295376,esi seed 0x0748C71E = (0x6B451A88<<5)+0x9EA5761E (pure constants); esi=seed+ebp; ebx=seed; edi=0x46BFD783 literal mov; edx=0xB3E9 constant chain (0xD465+0xDF84); esi(C5FBFF)=popal-restored decoded-image pointer,register,DETERMINISTIC (all constants/decode-derived),producer windows n=19294654-661 and n=18865209-8223

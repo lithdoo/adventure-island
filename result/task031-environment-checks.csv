@@ -1,0 +1,10 @@
+consumer,value_or_field,when_n,phase,expected,replay_actual,status,flows_into_corridor,notes
+GetLocalTime,wSecond (+12),13285873/13304345,VM2,real wall clock,30 (fixed stub),incomplete-but-inert,NO (proven: zero intersection with corridor read set),VM2 consumes into its own context cells (RVA 0x821464+)
+GetLocalTime,wMilliseconds (+14),13285873,VM2,real wall clock,0 (fixed stub),incomplete-but-inert,NO,same
+kernel32 exports,name bytes (APIT-CRC),12883000-12930000,VM2,export tables of the guest kernel32,ISO-extracted kernel32 (same build),faithful,NO (resolution only),"Sleep resolved; 5 hash matches in the pre-corridor pass incl. RegOpenKeyA"
+advapi32 exports,name bytes,18023731-window,native,export tables,ISO-extracted advapi32,faithful,NO,"resolution engine 0x81D1xx ran natively at 18.02M era (esi=0x75DA469E = advapi32+0x15000 name zone)"
+probes SICE/SIWVID/NTICE,CreateFileA results,13714241-13714495,native,absent devices,INVALID_HANDLE_VALUE,faithful,NO,Task 027 audit re-confirmed
+GetCommandLineA,path bytes,14185064,native,quoted ""F:\MapleStory.exe"" (WMI capture),quoted form,faithful,NO,consumed by native phase only
+GetVersionExA,OSVERSIONINFOA 148B,17251685,native,strict-layout 6.1.7601 SP1,strict layout (Task 028 fix),faithful,NO,16-byte OOB write removed in Task 028
+RegOpenKeyA,root duplicate handle,18023737,native,ordinary small handle,0xAC ordinary,faithful,NO,handle value inert (Task 028)
+timeGetTime,sample values,corridor,VM1,inert per Task 030 R2 sweep,vclock,inert,consumed-but-branch-neutral,5000x rate sweep: identical control flow

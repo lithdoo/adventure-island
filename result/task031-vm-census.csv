@@ -1,0 +1,5 @@
+instance,table_rva,context_rva,dispatch_site_rva,first_dispatch_n,last_dispatch_n,dispatches,distinct_opcodes,lifetime_role
+VM2,0x821464,0x821464-0x821494,0x82208B,12556322,13481757,2248,32,module resolution + GetLocalTime consumption (wSecond/wMilliseconds) + APIT-CRC name hashing; dies before the probes
+VM1,0x84B1E0,0x84B1E0-0x84B5FF,0x8574D6,19295508,20211638,4489,28,the Task 028/029 corridor (staging + verification walk + tail)
+(none),0x84A89A,-,0x84A89A,never,never,0,-,static dispatch-pattern bytes never executed (dead/data)
+native-phase,-,-,-,13481757,19295508,0,0,NO VM dispatches: probes (13.71M) GetCommandLine (14.19M) GetVersionEx (17.25M) RegOpenKey (18.02M) #UD/SEH (18.86M) winmm resolve (18.87M) run as native code

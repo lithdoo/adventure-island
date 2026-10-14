@@ -1,0 +1,8 @@
+seq,n_start,n_end,stage,what_happened,artifact,evidence
+1,0,3800000,decode phases A/B/C,4512 of 4515 corridor-executed addresses materialized (pre-API deterministic decode),result/task031-code-staging.csv,confirmed-replay
+2,12556322,13481757,VM2 (table RVA 0x821464),module resolution + GLT wSecond/wMs consumption + APIT-CRC hashing; outputs terminate in VM2 context,result/task031-vm-census.csv,confirmed-replay
+3,13598792,13599530,reporter self-decrypt,constant transform ((orig+0x5A192D3D)^0x61799419) over 49 dwords rewrites 6 executed reporter instructions,result/task031-code-staging.csv,confirmed-replay (writer window traced)
+4,13714241,18865228,native env phase,probes/cmdline/versionex/registry/#UD/winmm — no VM; all APIs faithful (027/028),result/task031-environment-checks.csv,confirmed-replay
+5,18865209,19295376,VM1 entry assembly,edi/edx constants; esi seed 0x0748C71E = (0x6B451A88<<5)+0x9EA5761E; ebx=seed; esi=seed+ebp,result/task031-code-staging.csv,confirmed-replay (producer windows traced)
+6,19295508,20211638,VM1 corridor (unchanged),staging + walk + tail -> error continuation; deterministic per 030 R2,result/30-vm-check-predicate-clock-model-game-gate.md,inherited
+7,-,-,M5 verdict,boundary confirmed from both sides (dynamic 030 + static 031); Stop C complete,result/task031-verdict.md,proven-by-elimination

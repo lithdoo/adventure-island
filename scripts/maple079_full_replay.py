@@ -1453,6 +1453,18 @@ class Replay:
                 self.tracer_maybe_start(address)
             if self.tracer is not None:
                 self.tracer.step(address)
+            # ---- Task 031 all-VM dispatch logging ----
+            vds = getattr(self, "vm_dispatch_sites", None)
+            if vds and address in vds:
+                dl = self.state.setdefault("vm_dispatches", [])
+                if len(dl) < 600000:
+                    eax, ebx, ecx, edx, esi, edi, ebp, esp = \
+                        _uc.reg_read(UC_X86_REG_EAX), _uc.reg_read(UC_X86_REG_EBX), \
+                        _uc.reg_read(UC_X86_REG_ECX), _uc.reg_read(UC_X86_REG_EDX), \
+                        _uc.reg_read(UC_X86_REG_ESI), _uc.reg_read(UC_X86_REG_EDI), \
+                        _uc.reg_read(UC_X86_REG_EBP), _uc.reg_read(UC_X86_REG_ESP)
+                    dl.append((self.state["count"], address - IMAGE,
+                               edi, eax & 0xFF, esi, ebx & 0xFF))
             raw0 = bytes(_uc.mem_read(address, 1))
             if raw0[0] == 0x64:
                 if self.emulate_fs_insn(address):
@@ -1736,6 +1748,10 @@ def main(argv=None) -> int:
                    help="file of hex addresses (one per line); all writes to "
                         "these addresses are logged and dumped to "
                         "<trace-dir or cwd>/cell-writes.json")
+    p.add_argument("--vm-dispatch-log", action="store_true",
+                   help="log every VM dispatch at the known dispatch sites "
+                        "(movzx sites RVA 0x82208B/0x84A89A/0x8574D6) to "
+                        "vm-dispatches.json with n, site, edi, index, esi, bl")
     args = p.parse_args(argv)
 
     rp = Replay(args.exe, args.guest_dir, args.client_dir)
@@ -1761,6 +1777,10 @@ def main(argv=None) -> int:
         rp.trace_from = tf if tf == "corridor" else int(tf)
         rp.trace_max = args.trace_max
         rp.trace_log_reads = args.trace_log_reads
+    if args.vm_dispatch_log:
+        rp.vm_dispatch_sites = {0x400000 + 0x82208B, 0x400000 + 0x84A89A,
+                                0x400000 + 0x8574D6}
+        rp.state["vm_dispatches"] = []
     if args.write_log:
         rp.cell_watch_set = set()
         for line in args.write_log.read_text().split():
@@ -1787,6 +1807,11 @@ def main(argv=None) -> int:
             else Path("cell-writes.json")
         outp.write_text(json.dumps(rp.state["cell_writes"]))
         print(f"cell-writes ({len(rp.state['cell_writes'])}) -> {outp}")
+    if args.vm_dispatch_log and rp.state.get("vm_dispatches"):
+        outp = (args.trace_dir / "vm-dispatches.json") if args.trace_dir \
+            else Path("vm-dispatches.json")
+        outp.write_text(json.dumps(rp.state["vm_dispatches"]))
+        print(f"vm-dispatches ({len(rp.state['vm_dispatches'])}) -> {outp}")
     if args.dump_image:
         data = bytes(rp.uc.mem_read(IMAGE, rp.image_size))
         args.dump_image.write_bytes(data)

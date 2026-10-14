@@ -1,0 +1,8 @@
+milestone,status,evidence,primary_artifact,notes
+M0 all-VM census,reached,"dispatch-site scan (3 sites) + full-run dispatch logger: exactly 2 VMs; dead site 0x84A89A; native env phase has zero VM dispatches",result/task031-vm-census.csv,--vm-dispatch-log tooling added
+M1 VM2 opcode reference,partial,"VM2 census complete (2248 dispatches 32 opcodes); full handler decode not performed — provably unnecessary for the verdict (VM2 outputs terminate in its own context)",result/task031-vm-census.csv,full decode would be mechanical (same method as Task 029)
+M2 VM2 programs around API consumptions,partial,"GetLocalTime wSecond/wMilliseconds consumption windows decoded; advapi32 resolution engine confirmed native at 18.02M era",result/task031-environment-checks.csv,
+M3 environment checks named,reached,"every environment consumer classified (VM2: GLT only; native phase: probes/cmdline/versionex/registry — all faithful per 027/028); zero flow into corridor",result/task031-environment-checks.csv,
+M4 code-staging channel resolved,reached,"all pre-corridor writes to executed code: decode phases (n<3.8M pre-API) + constant self-decrypt at 13.59M; zero writes in VM2/native windows; entry state constants",result/task031-code-staging.csv,THE decisive phase
+M5 verdict,reached (boundary confirmed statically),"corridor = deterministic function of sample + faithful answers; Stop-C from both sides (dynamic 030 + static 031)",result/task031-verdict.md,
+V5/V6/V7/V8,not-reached,consequence of M5,,Tail A 0 writes; no import rebuild; no game anchors; no network
