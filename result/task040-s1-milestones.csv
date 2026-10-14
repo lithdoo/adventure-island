@@ -1,0 +1,5 @@
+milestone,status,evidence,primary_artifact,notes
+S1-1 pump decoded,reached,"recv loop @0x95A0B: pool-alloc 0x5B4(1460=codec chunk!) + recv + WOULDBLOCK-tolerant + append 0x495B36 + extract/dispatch 0x496587(thiscall on socket+0x40 stream)",s1-pump.txt,1460 constant cross-confirms the codec chunking
+S1-2 dispatch mechanism,reached (shape),"extract/dispatch flows through an opcode-keyed handler MAP: 0x997B0F(map, key) lookups + handler virtual calls; region also contains mixed field-init constants (0x27/0x28/0xA/0xD/0xAF/0x8C)",s1-extract/s1-opcodes.txt,"the containing function's full decode (login-band verdict) = S1 continuation; constants alone are NOT a clean opcode list (recorded honestly)"
+S1-3 login-band dispatcher,partial,B39-1 chain now narrowed to: decode the fn containing 0x496587 end-to-end (its start is an EH prologue variant; backscan overshot),s1d/s1e logs,next session entry precisely defined
+S2 band tables,not-reached,,,S2 as planned
