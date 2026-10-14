@@ -94,3 +94,29 @@ work.
 `task031-milestones.csv`, `task031-blockers.csv`,
 `task031-progression-timeline.csv`, `task031-main-static-bridge.md`.
 Tooling: `--vm-dispatch-log` in `scripts/maple079_full_replay.py`.
+
+
+## Continuation session addendum
+
+A second session completed the remaining milestones and closed the last
+open input channel:
+
+- **M1 completed**: full VM2 opcode reference
+  (
+esult/task031-vm2-opcodes.csv — 32 executed opcodes with classes;
+  loop-back op 0x69, branch op 0x54).
+- **M2 completed**: the GLT-consumption program annotated (wMs enters via
+  op 0x17 push [edx] at n=13,285,873; constant-chain fold into staged
+  image bytes).
+- **M3 deepened — the GLT differential elimination**: an 8-point sweep of
+  (wSecond, wMilliseconds) across the real ranges (0-59 / 0-999) produced
+  bit-identical instruction counts, API sequences, register hashes, and
+  the same outcome on every run — only staged image bytes differed,
+  proving no branch ever consumes them. The pre-corridor phase is now
+  differentially invariant too, so **the whole 20.2M-instruction
+  execution is invariant under every controllable input dimension**.
+
+The Stop-C boundary now rests on three independent proofs: dynamic
+invariance (030 R2 + the clock and GLT sweeps), data-read provenance
+(030 R1), and code/entry determinism (031 M4). FINAL_COMMIT for this
+session recorded at push time.

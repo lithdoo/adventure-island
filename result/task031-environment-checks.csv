@@ -1,6 +1,6 @@
 consumer,value_or_field,when_n,phase,expected,replay_actual,status,flows_into_corridor,notes
-GetLocalTime,wSecond (+12),13285873/13304345,VM2,real wall clock,30 (fixed stub),incomplete-but-inert,NO (proven: zero intersection with corridor read set),VM2 consumes into its own context cells (RVA 0x821464+)
-GetLocalTime,wMilliseconds (+14),13285873,VM2,real wall clock,0 (fixed stub),incomplete-but-inert,NO,same
+GetLocalTime,wSecond (+12),13285873/13304345,VM2,real wall clock,30 (fixed stub),ELIMINATED-as-divergence-cause (8-point differential sweep: identical count/apilog/regs/outcome),NO (zero intersection with corridor read set),VM2 consumes into its own context; staged bytes differ per value but never branch-read
+GetLocalTime,wMilliseconds (+14),13285873,VM2,real wall clock,0 (fixed stub),ELIMINATED-as-divergence-cause (same sweep),NO,same; enters VM2 stack via op 0x17 push[edx]
 kernel32 exports,name bytes (APIT-CRC),12883000-12930000,VM2,export tables of the guest kernel32,ISO-extracted kernel32 (same build),faithful,NO (resolution only),"Sleep resolved; 5 hash matches in the pre-corridor pass incl. RegOpenKeyA"
 advapi32 exports,name bytes,18023731-window,native,export tables,ISO-extracted advapi32,faithful,NO,"resolution engine 0x81D1xx ran natively at 18.02M era (esi=0x75DA469E = advapi32+0x15000 name zone)"
 probes SICE/SIWVID/NTICE,CreateFileA results,13714241-13714495,native,absent devices,INVALID_HANDLE_VALUE,faithful,NO,Task 027 audit re-confirmed

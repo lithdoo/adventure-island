@@ -398,7 +398,9 @@ class Replay:
         esp = self.uc.reg_read(UC_X86_REG_ESP)
         dest = self.dword(esp + 4)
         # guest clock at snapshot restore, as observed in every run
-        st = (2026, 10, 2, 13, 1, 51, 30, 0)
+        # (wYear, wMonth, wDayOfWeek, wDay, wHour, wMinute, wSecond, wMs)
+        st = (2026, 10, 2, 13, 1, 51,
+              self.state.get("glt_sec", 30), self.state.get("glt_ms", 0))
         self.uc.mem_write(dest, b"".join(x.to_bytes(2, "little") for x in st))
         self.state.setdefault("api_watch", []).append(
             ("GetLocalTime", dest, 16, self.state["count"]))
@@ -1752,6 +1754,10 @@ def main(argv=None) -> int:
                    help="log every VM dispatch at the known dispatch sites "
                         "(movzx sites RVA 0x82208B/0x84A89A/0x8574D6) to "
                         "vm-dispatches.json with n, site, edi, index, esi, bl")
+    p.add_argument("--glt-sec", type=int, default=30,
+                   help="GetLocalTime wSecond override (diagnostic sweep)")
+    p.add_argument("--glt-ms", type=int, default=0,
+                   help="GetLocalTime wMilliseconds override (diagnostic sweep)")
     args = p.parse_args(argv)
 
     rp = Replay(args.exe, args.guest_dir, args.client_dir)
@@ -1759,6 +1765,8 @@ def main(argv=None) -> int:
     rp.force_clock_scale = args.clock_scale
     rp.cmdline_variants = [args.cmdline]
     rp.state.setdefault("vclock_base", args.vclock_base)
+    rp.state["glt_sec"] = args.glt_sec
+    rp.state["glt_ms"] = args.glt_ms
     if args.tgt_15ms:
         rp.state["tgt_faithful_resolution"] = True
     if args.resume:

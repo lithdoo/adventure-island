@@ -1,0 +1,33 @@
+op,handler_rva,exec_count,operand_width,class,first_instructions,evidence
+0x81,0x82B0B6,643,0,dup (push [esp]),push dword ptr [esp],disasm+census
+0x45,0x82E938,358,1,imm8 fetch,lodsb al byte ptr [esi],disasm+census
+0x98,0x824D90,265,0,ALU/stack (const-chain),push 0x2401; (keyed const tail),disasm+census
+0x17,0x82210C,198,0,cell push (push [edx]),push dword ptr [edx] — the GLT wMs entry op (n=13285873),disasm+census+glt window
+0x19,0x82BDF4,164,2,imm16 fetch,lodsw ax word ptr [esi],disasm+census
+0x32,0x825965,145,0,regmove (edx<=[esp]),mov edx dword ptr [esp],disasm+census
+0x4F,0x8231A9,121,4,imm32 fetch,lodsd eax dword ptr [esi],disasm+census
+0x5F,0x8261DB,112,0,dup,push dword ptr [esp],disasm+census
+0x35,0x834871,98,0,cell store (pop [edx]),pop dword ptr [edx],disasm+census
+0x41,0x830DDF,22,1,imm8 fetch,lodsb al byte ptr [esi],disasm+census
+0x4E,0x82F47E,18,1,imm8 fetch,lodsb al byte ptr [esi],disasm+census
+0x3B,0x831922,12,0,const push (keyed),push 0x71CB,disasm+census
+0x1C,0x830B1A,8,1,imm8 fetch,lodsb al byte ptr [esi],disasm+census
+0xB5,0x82739D,8,0,const push (keyed),push 0x39E2,disasm+census
+0x80,0x82B4B4,8,0,stack pivot (esp<=[esp]),mov esp dword ptr [esp],disasm+census
+0x54,0x8219EE,8,4,BRANCH (imm32 target; esi jumps +37..+4044),lodsd eax dword ptr [esi],census esi-deltas
+0x69,0x82CDEA,8,0,LOOP-BACK (push [edi+0x38]; esi jumps -2886..-4878),push dword ptr [edi + 0x38],census esi-deltas
+0xB9,0x829DEE,7,4,imm32 fetch,lodsd eax dword ptr [esi],disasm+census
+0x42,0x822FC8,7,0,const push (keyed),push 0x7809,disasm+census
+0x8C,0x82C897,5,1,imm8 fetch,lodsb al byte ptr [esi],disasm+census
+0x33,0x821E8F,5,4,imm32 fetch,lodsd eax dword ptr [esi],disasm+census
+0x3E,0x82D0F6,5,4,imm32 fetch/branch (jumps +244/+1511),lodsd eax dword ptr [esi],census esi-deltas
+0x3C,0x82BB24,4,0,stack read (eax<=[esp]),mov eax dword ptr [esp],disasm+census
+0x55,0x824DC7,3,0,stack read 16 (ax<=[esp]),mov ax word ptr [esp],disasm+census
+0x44,0x821F27,3,0,stack read (eax<=[esp]),mov eax dword ptr [esp],disasm+census
+0xBA,0x82ADEC,3,0,dup,push dword ptr [esp],disasm+census
+0x16,0x823A4C,2,0,dup,push dword ptr [esp],disasm+census
+0x2C,0x82D5FF,2,0,dup,push dword ptr [esp],disasm+census
+0x57,0x8260DF,2,0,stack read 16 (cx<=[esp]),mov cx word ptr [esp],disasm+census
+0x84,0x82A1AB,2,0,dup,push dword ptr [esp],disasm+census
+0x95,0x832040,1,0,stack read (eax<=[esp]),mov eax dword ptr [esp],disasm+census
+0x37,0x82DF18,1,0,dup,push dword ptr [esp],disasm+census

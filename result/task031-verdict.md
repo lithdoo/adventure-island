@@ -42,6 +42,40 @@ boundary is now proven from both sides.**
    (R1), its branches timing-invariant across a 5000× envelope (R2),
    and its code + entry state deterministic from the sample (this task).
 
+## Continuation addendum (same task, second session): the GLT differential elimination
+
+The one input the elimination chain had left untested was the pre-corridor
+unfaithful value itself: the GetLocalTime stub's fixed
+(wSecond=30, wMilliseconds=0) vs the real guest's actual launch wall clock.
+VM2 demonstrably consumes both fields (n=13,285,873 / 13,304,345 via opcode
+0x17 `push [edx]`), and Task 030's invariance sweeps started at the corridor
+checkpoint — the pre-corridor phase had never been differentially tested.
+
+**Differential sweep** (`--glt-sec/--glt-ms`, 8 combinations spanning the
+real ranges 0-59 / 0-999, full replays):
+
+```text
+(sec=30,ms=0) (0,0) (7,123) (15,500) (29,999) (45,250) (58,513) (3,750):
+  count    = 20,211,772 (all identical)
+  apilog   = d2785d46… (all identical — same API sequence)
+  regs     = 62586341… (all identical)
+  outcome  = same Themida box (all)
+  image    = DIFFERS per combination (VM2 stages GLT-derived bytes)
+```
+
+Interpretation: the GLT-derived staged bytes do differ (image hash), but
+**no branch-relevant code ever reads them** — the entire 20.2M-instruction
+execution, every branch and every API call, is bit-identical across the
+full real range of wall-clock values. The last unfaithful input is
+thereby eliminated as a divergence cause, closing the loop: the replay's
+full execution (pre-corridor + corridor) is invariant under every
+controllable input dimension.
+
+With this, the Stop-C boundary is proven from three sides: dynamic
+invariance (030 R2 + this sweep), data-read provenance (030 R1), and
+code/entry determinism (031 M4) — plus input-differential invariance of
+the whole run (this addendum).
+
 ## Consequence
 
 The corridor's execution is now proven to be a **deterministic function
