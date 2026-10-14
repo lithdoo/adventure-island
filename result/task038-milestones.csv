@@ -1,7 +1,7 @@
 milestone,status,evidence,primary_artifact,notes
-G1 cipher decode,reached,"funny_shit@0x6590BD (6 table xrefs) / crypt@0x659082 (default seed 0xC65053F2) / custom_encrypt@0x65911A / custom_decrypt@0x659182 — form-matched against maple079_packet.py; AES resolved as runtime-computed compact-AES with two heap instances (0x74F12C00/0x756D2000)",result/task038-cipher-decode.md,the campaign head delivered; compact-AES block functions = next pass
-G2 receive path,not-reached,entry pinned (recv owners 0x94994/0x95A72 from 037),,next session
-G3 s2c dispatch,not-reached,strategy pinned (distinctive immediates 0x41/0x81/0xA2/0x16F + jump tables),,next session
-G4 packet builders,not-reached,entry pinned (handshake version-write 0x95CC2-0x95D13 → COutPacket encode family),,next session
-G5 CSecurity,not-reached,method pinned (13 RTTI TDs, inline-compare xrefs per the 034 dialect),,next session
-G6 naming ledger,partial,G1 names recorded in the decode record + 037 naming rows,,consolidate after G2-G5
+G1 cipher decode,reached (s1),"four codec functions + table anchoring + heap AES instances (see s1 report)",result/task038-cipher-decode.md,compact-AES block functions remain
+G2 receive path,reached (entry),recv@0x94994 owner = Connect(0x947EA) non-blocking probe; recv@0x95A72 owner = 0x9583A = the send/recv PUMP (combined Process/Flush) — the socket layer polls both directions in one pump,g2_owners.py,decode-depth of the pump = next pass
+G3 s2c dispatch,reached (master map),OnPacket @0x14112E: opcode<0x144 cascade; low band 0x87-0x9F jump-table @0x141585 (25 slots -> thunks -> handlers 0x5415FB/0x542ABA/…/0x547C88 incl. one virtual [eax+0x24]); range sub-dispatchers with singletons: 0xA2-0xED->[0xBDD4A0]@0x97F64C (0xA2=inventory band), 0xEE-0x103->[0xBDD49C]@0x6A6AB0, 0x104-0x10C->[0xBDEB44]@0x6CB061, 0x10D-0x10F/0x110-0x111/0x112-0x114/0x115-0x116/0x117-0x118…; inline: 0x144/0x14A/0x14D-0x14F/0x15F,g3-*.txt + g3-jumptable.csv,this OnPacket covers the IN-GAME band (0x87+); the login band (0x00-0x0B) is a separate dispatcher — hunting it is the immediate follow-up
+G4 packet builders,not-reached,entry pinned (0x95CC2 handshake write -> COutPacket encode family),,next
+G5 CSecurity,not-reached,method pinned,,next
+G6 naming ledger,partial,"master dispatch + pump + codec named; ledger consolidation after G4/G5",,
