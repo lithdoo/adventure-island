@@ -1,0 +1,2 @@
+blocker_id,stage,symptom,evidence,attempted_methods,why_unresolved,next_safe_option
+B48-1,handler map,39/97 range-table handlers unnamed,"the unnamed handlers correspond to s2c opcodes in higher bands (0xA2+, 0x16F+) handled by the field dispatcher bands, not the 0x20-0x80 range dispatcher","cross-referenced the 217 wire values with the 97 range-table opcodes","the 0x20-0x80 range only covers 0x20-0x80; many s2c opcodes are outside this range",map the field dispatcher's 20 bands to wire values (already partially done for WARP/SPAWN/KEYMAP)

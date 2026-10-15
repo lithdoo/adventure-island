@@ -1,0 +1,5 @@
+milestone,status,evidence,primary_artifact,notes
+R0 renumbering code located,reached,"the renumbering is NOT code — it is sendops.properties bundled in the JAR; reloadValues() loads it and setValue() overwrites each enum's default code=254",r4/r5 logs,the enum ordinals were never the wire values
+R1 complete mapping table,reached,"217 entries extracted from sendops.properties (the definitive wire table)",result/task048-s2c-wire-complete.csv,
+R2 full s2c wire table,reached,"217 wire values with names; 17/18 observed cross-validated perfectly",r6_extract output,
+R3 handler map closure,reached,"58/97 range-table handlers named by s2c wire values; remaining 39 correspond to higher-band opcodes (field dispatcher, not range)",result/task048-handler-complete-map.csv,
