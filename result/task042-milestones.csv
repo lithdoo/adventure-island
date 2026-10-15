@@ -1,0 +1,7 @@
+milestone,status,evidence,primary_artifact,notes
+R0 environment,reached,"server UP + QEMU(SLIRP e1000) + snapshot + drives (after the FAT-cache fix: stage-before-attach)",42 report §2,
+R1 client launched,reached,"observer (036 pattern, args 10.0.2.2 9555) ran elevated; PCA clicked; game pid 2560 launched and sampled 420s",out/observer-log.txt,
+R2 later phase,NOT REACHED (fork),"the modal NEVER appeared (aki=False); client spun pre-materialization; server never contacted",out/proc.csv aki.txt,environment fork discovered
+R3 capture,reached (differential),"stop + dump; marker scan: FUNNY ABSENT / iloveaki+Ztl present -> the NIC variant does NOT materialize",42 report §1,the differential proof
+R4 carve,not-applicable,"no materialization -> no game objects to carve; instead the fork itself is the finding",,hot-add design defined
+R5 atlas,not-reached,requires the hot-add continuation (§3),,

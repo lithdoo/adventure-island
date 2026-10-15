@@ -1,0 +1,7 @@
+seq,stage,what_happened,artifact,evidence
+1,R0,"docker restart + QEMU(SLIRP e1000) + snapshot restore; server stack verified UP",r0_qemu.py,confirmed
+2,R1,"manual launch attempts failed (autoplay focus + FAT cache); diagnosis: stage-before-attach + observer path",r1b/r1c/r1d/r1e logs,hazard chain
+3,R1,"observer (036 pattern, args 10.0.2.2) staged AFTER usb re-attach -> ran: PCA clicked; game launched; 420s sampling",out/observer-log.txt,confirmed-live
+4,R2,"modal NEVER appeared; client spun at WS 4.8MB; no server contact in 420s+780s of watching",out/proc.csv + r2d log,confirmed-live
+5,R3,"authorized differential capture; marker scan: FUNNY ABSENT vs 036's present — the NIC variant does not materialize",42 report §1,proven
+6,close,"the environment fork live-proven (F:/G:-family); the hot-add-after-click continuation precisely defined",42 report §3,
