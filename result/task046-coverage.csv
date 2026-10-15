@@ -1,0 +1,15 @@
+metric,baseline,final,confirmed,high,medium,low,unresolved,notes
+main-EXE function candidates,0,51200,,,,,,prologue+call-target census; true count likely 8-15K
+subsystem-classified functions,332,504,0,~30,~200,~274,,seed+handler+sender classification
+semantically named main-EXE functions,24,~35,15,20,,,,confirmed+high only
+class/object candidates,0,65,0,13,,,,52 vtable classes + 13 RTTI
+vtable candidates,0,52,0,0,52,,,,data-section code-pointer sequences
+known fields,5,10,5,5,,,,CWvsContext field map
+dispatch handlers (range table),97,97,95,2,,,,handler map from 044
+handlers with semantic summaries,0,94,0,~30,~64,,,94/107 non-trivial
+sender sites (total),486,486,,,,,,denominator fixed
+sender sites with opcode provenance,178,207,0,178,29,,,after round-2 depth expansion
+sender functions with WH opcodes,0,376,,,,,,376 unique functions containing WriteHeader calls
+packet builders (functions),0,376,0,~200,,,,c2s-named subset
+pseudocode flows,0,27,0,~15,~12,,,across all subsystems
+reference correlations,0,~8,0,~5,~3,,,v95 structural matches

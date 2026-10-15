@@ -1,0 +1,18 @@
+caller_rva,callee_rva,subsystem,evidence,packet_relationship,confidence
+0x9583A,0x95F83,network,pump→phase dispatch,recv→OnPacket,confirmed
+0x95F83,0x610CE0,network,phase→range dispatch,opcode routing,confirmed
+0x95F83,0x14112E,network,phase→field dispatch (via delegate),opcode routing,confirmed
+0x610CE0,range_table_handlers,various,range→97 handlers,opcode dispatch,confirmed
+0x37E72F,CWvsContext_write,character,WARP handler→context update,0x81 inbound,confirmed
+0x57F6C0,CWvsContext_read,character,SPAWN handler→is-it-me check,0xA2 inbound,confirmed
+0x1B9E4F,0x1B9F47,ui,KEYMAP handler→table walker,0x16F inbound,confirmed
+senders,0x95C5C,network,sender→send wrapper,c2s outbound,confirmed
+senders,0x661F,network,sender→WriteHeader,c2s opcode write,confirmed
+handlers,0x66FF,network,handler→ReadInt32,s2c field read,confirmed
+handlers,0x66C9,network,handler→ReadByte,s2c field read,confirmed
+handlers,0x259A2,network,handler→ReadInt16,s2c field read,confirmed
+handlers,0x71D7A,network,handler→ReadString,s2c field read,confirmed
+0x6591EA,0x65911A,network,encrypt_full→custom_encrypt,cipher,confirmed
+0x65922E,0x659182,network,decrypt_full→custom_decrypt,cipher,confirmed
+0x65911A,0x6590BD,network,custom_encrypt→funny_shit,cipher,confirmed
+0x95D5C,0x49682C,network,Send_Flush→QueueCipherRoll,cipher+buffer,confirmed

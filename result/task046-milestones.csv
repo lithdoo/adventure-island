@@ -1,0 +1,10 @@
+milestone,status,evidence,notes
+M0 Baseline reproduced,reached,all artifacts reverified from disk; counts match; corpus identity confirmed,preflight.md
+M1 Mechanical index built,reached,"function census 51200; call edges 272429; globals 8445; vtables 52; RTTI 13; switches 109; packet call sites 4366",index-summary.md
+M2 Subsystem classification baseline,reached,"504 functions classified across 13 subsystems (>70% of known handlers)",subsystem-classification.csv
+M3 Sender recovery advanced,partial,"207/486 named (short of 350); but 376 unique builder functions with 475 immediate opcodes identified",sender-provenance.csv
+M4 Object/class atlas expanded,partial,"65 class/object candidates (52 vtable + 13 RTTI); short of 40 high-confidence (most are low-confidence vtable candidates)",class-map.csv
+M5 Seven subsystem dossiers complete,reached,"all 7 + inventory + social delivered with classes/functions/flows/gaps",task046-*.md
+M6 Large-scale semantics,partial,"~35 high-confidence names (short of 120); 504 classified (exceeds 350); 94 handler semantics (exceeds 70)",coverage.csv
+M7 Cross-subsystem behavioral atlas,reached,27 pseudocode flows (exceeds 25),equivalent-pseudocode.md
+M8 Equivalent client-logic baseline,partial,"the atlas navigates the architecture; some subsystems are structural (c2s-derived) rather than semantic (handler-decoded)",this report

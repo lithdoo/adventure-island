@@ -1,0 +1,13 @@
+cms079_function_or_object,reference_version,reference_symbol_class,match_features,conflicts,accepted,confidence,notes
+WARP handler 0x37E72F,GMS v95,CWvsContext::OnWarpToMap,packet_read_sequence+characterId_write,offset_differences(+0x205C vs +0x20B4),accepted,confirmed,live protocol + code semantics
+SPAWN handler 0x57F6C0,GMS v95,CUserPool/OnSpawnPlayer,is-it-me identity check pattern,structural,accepted,confirmed,live protocol + code semantics
+KEYMAP handler 0x1B9E4F,GMS v95, CWvsContext::OnKeymap,89x5B_table_walker,v95_uses_different_encoding,accepted,confirmed,89 entries matches keyboard layout
+CClientSocket::Connect 0x947EA,GMS v95,CClientSocket::Connect,non_blocking+timeout_pattern,structural,accepted,confirmed,behavior+packet+code
+Phase dispatcher 0x95F83,GMS v95,CWsApp/CWs::OnPacket,low_band_switch+delegate_pattern,structural,accepted,high,vtable+dispatch structure
+Field dispatcher 0x14112E,GMS v95,CField::OnPacket,band_dispatch+range_sub_dispatchers,structural,accepted,high,20 bands confirmed
+CWvsContext singleton,GMS v95,CWvsContext,singleton+character_fields,field_offsets_differ,accepted,high,structural+field semantics
+funny_shit 0x6590BD,GMS v95,N/A (server-side),byte_transform+table_lookups,exact_match,accepted,confirmed,protocol+code
+WriteHeader 0x661F,GMS v95,COutPacket::EncodeHeader,967_call_sites+opcode_immediates,structural,accepted,confirmed,builder+protocol
+ReadInt32 0x66FF,GMS v95,CInPacket::Decode4,packet_read_sequence,structural,accepted,high,reader family
+CLogin state machine ~0x45EB00,GMS v95,CLogin,state_switch+UI_objects,different_state_values,accepted,medium,structural
+CSecurity throw cluster 0x7934xx,GMS v95,N/A (v95 lacks this),exception_class_family,no_v95_counterpart,accepted,high,CMS079-specific
