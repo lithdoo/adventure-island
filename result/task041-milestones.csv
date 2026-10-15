@@ -1,0 +1,6 @@
+milestone,status,evidence,primary_artifact,notes
+O0 singleton carving,partial (structure only; temporal boundary),"CWvsContext static object @0x7E2E90 carved (vtable 0x70D3C8, 24 methods); all other singletons NULL at capture; identity fields all zero",o0 logs,"capture predates game logic (protector-era spin)"
+O1 field atlas,reached (code-side),+0x205C/+0x2080/+0x2084/+0x2F60/+0x2FE8 annotated from handler semantics; live values pending later-phase capture,41 report §2,
+O2 identity model,not-reachable-this-capture,CharacterId=0 at capture; needs post-warp re-capture,,feeds Task 042
+O3 vtables,partial,CWvsContext 24-method vtable mapped; more via 0x701xxx family cross-ref,,the family shares short-stub slots
+O4 integration,reached,atlas joined the game-logic map,task040-game-logic-map.csv,

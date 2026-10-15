@@ -1,0 +1,5 @@
+seq,stage,what_happened,artifact,evidence
+1,O0,"globals read (after the 4th VA/RVA fix): most singletons NULL; CWvsContext ptr -> STATIC in-image object @RVA 0x7E2E90",o0_carve.py,proven
+2,O0/O3,"CWvsContext carved: vtable @0x70D3C8 (24 methods, short-stub family shared); identity fields ALL ZERO",o0b_ctx.py,proven
+3,verdict,"temporal boundary established: capture = protector-era spin (unpacked code; game logic not yet run) — singletons null, codec live",41 report §1,proven
+4,O1/O4,"field atlas (code-side) documented and integrated",task040-game-logic-map.csv,proven
