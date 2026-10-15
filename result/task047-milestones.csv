@@ -1,0 +1,6 @@
+milestone,status,evidence,primary_artifact,notes
+S0 s2c logical table,reached,"116 SendPacketOpcode names+values extracted from JAR <clinit>",result/task047-s2c-opcodes.csv,logical values differ from wire values (renumbering)
+S0b wire observation,reached,"18 wire values captured from live server debug + full-probe session; +1 new (PARTY_OPERATION=0x3B)",result/task047-s2c-wire-full.csv,limited by passive observation
+S1 full handler map,not-reached,"requires the renumbering decode (the logical→wire mapping is a custom irregular lookup)",,the dominant gap
+S2 subsystem re-classification,not-reached,,depends on S1
+S3 coverage update,partial,18 wire-confirmed names mapped to handlers,,incremental
