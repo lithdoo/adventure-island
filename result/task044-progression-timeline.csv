@@ -1,0 +1,7 @@
+seq,stage,what_happened,artifact,evidence
+1,A,"patient orchestration: observer ran (alive verified new); session degraded — 044 capture shows game module absent; Phase A closed honestly",a1_patient + 044 capture scan,confirmed
+2,C,"decrypt_full caller decoded = WZ path-normalizer wrapper (not the packet layer); the c2s/c2s_full family is the WZ file codec",c2-body.txt,proven
+3,C,"AES key absent from ALL heap pages (3 forms × 6896 pages) — the key exists only expanded inside the cipher objects",c3/c4,proven (negative finding)
+4,D,"97 range-table handlers mapped: 95 named via the live c2s table × the same opcode numbers",result/task044-handler-map.csv,live+img
+5,E,"CSecurity: 10 RTTI confirmed; throw-site + ctor clusters mapped; message-free region (exception-based reporting)",e1-csec.txt,proven
+6,F,campaign consolidated; the naming ledger + handler map = the terminal atlas,44 report,,

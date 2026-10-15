@@ -1,0 +1,7 @@
+milestone,status,evidence,primary_artifact,notes
+A live captures,not-reached (infra),"observer ran (alive marker verified) but the session degraded — the 044 capture has the game module entirely absent; 3 distinct failure modes across 042-044",44 report §1,orchestration rebuild precisely defined
+B object atlas,not-reachable-this-line,,depends on A
+C codec closure,partial (honest finding),"decrypt_full = WZ path layer (not packet); AES key absent from ALL heap pages (dword/BE/interleaved forms) — the key exists only in the expanded schedule inside the cipher objects",c1-c4 logs,this absence is itself the finding
+D handler factory,reached,"97 range-table handlers mapped, 95 named (live c2s × same numbers)",result/task044-handler-map.csv,
+E CSecurity,mapped,"10 RTTI classes in-image; throw-site + ctor clusters; no long ASCII strings (constructed/encrypted messages = anti-tamper reporting via exceptions)",e1-csec.txt,
+F atlas,consolidated,the naming ledger + the new handler map,44 report §6,
