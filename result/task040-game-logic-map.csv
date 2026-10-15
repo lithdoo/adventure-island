@@ -1,25 +1,27 @@
 item,kind,rva_or_va,evidence,names_labels,notes
-CClientSocket::Connect,fn,0x947EA,[img]protocol-live,"NAME","non-blocking; WSAEWOULDBLOCK-tolerant; 5000ms deadline"
-CClientSocket::Handshake/OnHello,fn,0x95C5C,[img]protocol-live,"NAME","push 0x4F version; [this+0x88] version word"
-CClientSocket::Send/Flush,fn,0x95D5C,[img],"NAME","queue at +0x60; full-send -> 0x49682C(queue cipher@+0x54)"
-CClientSocket::ProcessRecv (the pump),fn,0x9583A,[img],"NAME","recv loop 1460-chunks; append 0x495B36; extract 0x96587"
-CClientSocket::OnPacket (phase dispatcher),fn,0x95F83,[img]srv,"NAME","16-bit opcode; low-band cases + range bands + delegate [0xBDF54C]"
-Field dispatcher (OnPacket),fn,0x14112E,[img]srv,"NAME","20 bands; jump table @0x141585; <0x81 dropped"
-Range dispatcher 0x20-0x80,fn,0x610CE0,[img],"NAME","97-slot jump table @0x6111A1; 92 handlers extracted"
-funny_shit,fn,0x6590BD,[img]protocol,"NAME","T@0xBD4130; rol32(block;3)"
-crypt (IV-roll form),fn,0x659082,[img]protocol,"NAME","default seed 0xC65053F2; per-byte funny_shit"
-custom_encrypt / custom_decrypt,fn,0x65911A/0x659182,[img]protocol,"NAME","nibble+bit-pair rotations + T[IV[0]]"
-encrypt_full / decrypt_full,fn,0x6591EA/0x65922E,[img],"NAME","two-stage wrappers (header+body)"
-IV-roll call site,site,0x95F0D,[img],"NAME","crypt(p;4;NULL) rolls the 4-byte header IV"
-WARP band handler (0x81),fn,0x37E72F,[img]srv-live,"NAME","reads CharacterId -> CWvsContext+0x205C; +0x2F60 change flag"
-SPAWN_PLAYER band handler (0xA2),fn,0x57F6C0,[img]srv-live,"NAME","compares +0x2084 (is-it-me)"
-KEYMAP band (0x16F),fn,0x1B9E4F,[img]srv-live,"NAME","89x5B walker @0x1B9F47"
-ReadInt32/ReadByte/ReadInt16/ReadString,fns,0x4066FF/0x4066C9/0x4259A2/0x471D7A,[img]protocol,"NAME","CInPacket reader family"
-CWvsContext singleton,obj,[0xBD9028],[img]v95,"NAME","fields +0x205C CharacterId +0x2080 +0x2084 +0x2F60 flag; init cluster 0x6F5F93"
-cipher objects (heap),obj,VA 0x74F12C00/0x756D2000,[img],"NAME","compact-AES Sbox2 state; send/recv pair"
-obfuscated key repository,data,0x7A0630-0x60,[img],"LABEL(provisional)","same array as ZLZ/Canvas/PCOM; runtime expansion"
-WS2_32 module,mod,base 0x77830000,[img],"NAME","33/33 imports named"
-c2s opcode table (channel zone),table,--,[srv-live],"NAME","137 opcodes (task040-channel-opcodes.csv)"
-s2c observed table,table,--,[srv-live],"LABEL","18 values (task040-s2c-observed.csv) incl. corrections 0x81=WARP 0xA2=SPAWN 0x16F=KEYMAP"
-CLogin state machine,fn,0x45EB00,[img]v95,"LABEL","[+0x64] state; [+0x68] substate; UI objects +0xB0..BC"
-CSecurity family,cls,--,[img],"LABEL","13 RTTI classes; code region pending"
+CClientSocket::Connect,fn,0x947EA,[img]protocol-live,NAME,non-blocking; 5000ms deadline
+CClientSocket::Handshake/OnHello,fn,0x95C5C,[img]protocol-live,NAME,push 0x4F; [this+0x88]
+CClientSocket::Send/Flush,fn,0x95D5C,[img],NAME,queue +0x60; 0x49682C rolls cipher@+0x54
+CClientSocket::ProcessRecv (pump),fn,0x9583A,[img],NAME,recv 1460-chunks; append 0x495B36; extract 0x96587
+CClientSocket::OnPacket (phase),fn,0x95F83,[img]srv,NAME,low-band + range bands + delegate [0xBDF54C]
+Field dispatcher,fn,0x14112E,[img]srv,NAME,20 bands; jumptable @0x141585
+Range dispatcher 0x20-0x80,fn,0x610CE0,[img],NAME,97 slots @0x6111A1; 92 handlers
+funny_shit / crypt / custom_encrypt / custom_decrypt,fns,0x6590BD/0x659082/0x65911A/0x659182,[img]protocol,NAME,form-matched
+encrypt_full / decrypt_full,fns,0x6591EA/0x65922E,[img],NAME,two-stage wrappers
+IV-roll site,site,0x95F0D,[img],NAME,crypt(p;4;NULL) = header-IV roll
+WriteHeader (opcode write),fn,0x661F,[img],NAME,967 call sites = the builder census
+COutPacket ctor,fn,0x2F5E40,[img],NAME,ctor(size) (VA 0x6F5E40)
+WARP band handler (0x81 WARP_TO_MAP),fn,0x37E72F,[img]srv-live,NAME,CharacterId -> +0x205C
+SPAWN_PLAYER handler (0xA2),fn,0x57F6C0,[img]srv-live,NAME,compares +0x2084
+KEYMAP handler (0x16F),fn,0x1B9E4F,[img]srv-live,NAME,89x5B walker 0x1B9F47
+ReadInt32/ReadByte/ReadInt16/ReadString,fns,0x66FF/0x66C9/0x259A2/0x71D7A,[img]protocol,NAME,reader family (corrected RVAs)
+CWvsContext singleton,obj,[0xBD9028],[img]v95,NAME,+0x205C CharacterId; +0x2084; +0x2F60 flag
+cipher objects (heap),obj,VA 0x74F12C00/0x756D2800,[img],NAME,STANDARD AES S-box confirmed; runtime-computed tables
+obfuscated key repository,data,0x7A05D0,[img],LABEL,unreferenced by static code (runtime-derived)
+CSecurity module,mod,refs 0x793494-0x793524 + 0x79C1BC-0x79C35C; data 0x7D38F8-0x7D4230,[img],NAME-REGION,throw-site table + ctor cluster; data co-located with cipher material
+Patch/Disconnect sibling module,mod,refs 0x711E-0x720A,[img],LABEL,CMSException/CPatchException/CDisconnect
+WS2_32,module,base 0x77830000,[img],NAME,33/33 imports
+c2s opcode table (137 live),table,--,[srv-live],NAME,result/task040-channel-opcodes.csv
+s2c observed (18),table,--,[srv-live],LABEL,0x81=WARP 0xA2=SPAWN 0x16F=KEYMAP corrections
+sender census,table,486 sites,[img][srv-live],LABEL,178 named + 967-site builder map (result/task040-s5-sender-census.csv)
+CLogin state machine,fn,0x45EB00,[img]v95,LABEL,[+0x64]/[+0x68]

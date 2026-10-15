@@ -1,0 +1,6 @@
+seq,stage,what_happened,artifact,evidence
+1,S5-2,"write-primitive passes: push/word-store/reg16 scans recovered +13; the USE_CHAIR sample revealed the true pattern (push imm; call WriteHeader VA 0x40661F=RVA 0x661F — the third VA/RVA trap)",s5b-s5e logs,proven
+2,S5-2,"wider back-scan: 967 WriteHeader calls = the full builder census; 405 pushes recovered; 57 c2s-matched; final sender census 178/486 named",result/task040-s5-sender-census.csv,proven
+3,S6,"CSecurity mapped: 11 TDs located; throw-site table 0x793494-0x793524; ctor cluster 0x79C1BC-0x79C35C; data block 0x7D38F8-0x7D4230 co-located with cipher material; patch/disconnect sibling 0x711E-0x720A",s6_csec.py,proven
+4,S6,"key repository unreferenced by static code (runtime-derived); heap S-box instances verified = STANDARD AES byte-exact (x2) — codec equivalence closed at primitive level",s6b/s6c,proven
+5,S7,"terminal deliverables: game-logic-map.csv (24 NAMEs + census + tables), final report with README closure assessment",40-…md + map csv,evidence-classed

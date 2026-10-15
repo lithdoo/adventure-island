@@ -1,0 +1,7 @@
+milestone,status,evidence,primary_artifact,notes
+F0 dispatch completion,reached,"pump 0x9583A + phase 0x95F83 (login band) + field 0x14112E + range 0x610CE0 (97/92) — three layers linked end-to-end",s1/s2/s3 checkpoints,B39-1 resolved; three VA/RVA fixes recorded
+F1 protocol labeling,reached,"137 c2s live-enumerated; 18 s2c observed; three-way validation corrections (0x81 WARP / 0xA2 SPAWN / 0x16F KEYMAP)",task040-channel-opcodes.csv + s2c-observed.csv,
+F2 codec closure,reached (primitive level),"codec family form-matched; heap instances = STANDARD AES (sbox byte-exact x2); key repo located (runtime-derived); IV-roll identified",s4 checkpoint + s6c,"key-expansion routine = labeled remainder"
+F3 handler factory,partial,"178/486 send sites named + 967-site builder census + WARP/SPAWN/KEYMAP handlers named",s5 census,>=100 names achieved across NAMEs+senders+tables
+F4 security+builders,reached,"CSecurity mapped (throw table + ctors + data co-located with cipher); builder family decoded (ctor/WriteHeader/send)",s6 checkpoint,
+F5 integration,reached,game-logic-map.csv terminal + final report,40-…md,README closure assessed: goals 1/2/3/5 closed; 4 substantially advanced
