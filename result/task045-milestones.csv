@@ -1,0 +1,6 @@
+milestone,status,evidence,primary_artifact,notes
+A key recovery,not-reached (definitive negative),"AES-256 key schedule absent from ALL heap pages: 3 raw forms + zero-plaintext ciphertext + full recurrence check = zero matches",45 report §1,the standard key is provably not in this capture
+B sender completion,partial,178/486 named; parameter provenance pass not completed,040/044 censuses,needs deeper builder cross-reference
+C body-crypt,labeled,the extract chain's chunked processing at [socket+0x40] not fully decoded,044 report,needs the stream-processing internals
+D handler map,reached (044),97 handlers, 95 live-named,task044-handler-map.csv,
+E atlas,consolidated,the naming ledger + handler map + campaign totals,45 report,

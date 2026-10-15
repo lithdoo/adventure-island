@@ -1,0 +1,5 @@
+seq,stage,what_happened,artifact,evidence
+1,A,"T-table analysis: the cipher object start = Te0 (byte-swapped LE dwords); S-box at +0xC00; the object contains BOTH tables AND self-contained code (+0xD00)",a2/a3/a4 logs,proven
+2,A,"the cipher code calls through a heap IAT (0x74F110xx → msvcrt/kernel32); the cipher is a heap-resident self-contained blob",a5/a6,proven
+3,A,"AES-256 key schedule recurrence check on ALL heap pages: ZERO matches — the standard key schedule does not exist in this capture",a7,proven (definitive negative)
+4,D/E,"handler map + atlas consolidated from 044; campaign totals documented",45 report,,

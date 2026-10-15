@@ -1,0 +1,4 @@
+blocker_id,stage,symptom,exact evidence,attempted_safe_methods,what_was_falsified,why_unresolved,requires_prohibited_technique,next_safe_option
+B45-1,AES key form,"the standard AES-256 key schedule absent from all 6896 pages (recurrence check)","3 raw forms + ciphertext probe + full recurrence = zero","exhaustive schedule scan","the key existing in standard expanded form anywhere in this capture",the client's cipher uses the AES tables in a non-standard construction (no standard key schedule),no,a richer capture (post-login) or the cipher code's full decode
+B45-2,sender parameters,300+ send sites carry opcodes via parameters,4 pattern passes recovered 178,builder-census cross-reference pass (not run),budget,no,deep parameter trace using the 967-site census
+B45-3,body-crypt site,the extract chain internals at [socket+0x40] not decoded,044 partial,stream-object decode,needs the chunked-processing loop isolation,no,decode the stream object's read path
