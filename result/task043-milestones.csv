@@ -1,0 +1,5 @@
+milestone,status,evidence,primary_artifact,notes
+H1 no-NIC launch,not-reached (orchestration),observer files staged correctly pre-attach; the external keyboard launch failed (3rd autoplay-focus defeat); no client ran,h1/h1b logs,fix = in-guest autorun orchestrator
+H2 NIC hot-add,reached (mechanism),netdev_add+device_add executed; info network confirms e1000+n0,h2_hotadd.py,proven command pair for the design
+H3 client connects,not-reached,no client was running to connect,,H1 dependent
+H4/H5 login+capture,not-reached,,,design refined (§2)

@@ -1,0 +1,6 @@
+seq,stage,what_happened,artifact,evidence
+1,H1,"QEMU (no-NIC) + snapshot + observer staged PRE-attach (042 lesson applied — files visible)",h1_setup/h1b,confirmed
+2,H1,"typed observer launch defeated by autoplay focus (3rd failure); no client ran",alive-marker check,confirmed
+3,H2,"hot-add executed per design: netdev_add user + device_add e1000 — NIC confirmed present (info network)",h2_hotadd.py,confirmed
+4,H3,"no client to connect; hello static at 11; the +2 hellos recorded as an honest unknown (B43-2)",h3_count,confirmed
+5,close,"design refined to the in-guest autorun orchestrator (zero external typing)",43 report §2,
