@@ -1,0 +1,12 @@
+metric,value
+function_candidates,51200
+subsystem_classified,1061
+semantic_named,21
+high_confidence,18
+medium_confidence,979
+field_facts,10922
+handler_body_summaries,1
+inbound_schemas,4
+outbound_schemas,207
+sender_classified,207
+sender_total,486

@@ -1,0 +1,13 @@
+subsystem,functions,high_conf,medium_conf
+unknown,50139,1,2
+character,695,0,695
+network,281,0,281
+packet-handler,59,0,0
+packet-builder,8,0,0
+field,5,5,0
+quest,4,3,1
+inventory,3,3,0
+cashshop,3,3,0
+ui,1,1,0
+combat,1,1,0
+skill,1,1,0
