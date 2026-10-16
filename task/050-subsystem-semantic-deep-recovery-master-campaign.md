@@ -1,83 +1,96 @@
-# Task 050 — Subsystem Semantic Deep-Recovery Master Campaign
+# Task 050 — Unified Subsystem Semantic Deep-Recovery Master Campaign
 
 ## 0. Mission
 
-Task 050 is the next long-running client reverse-engineering campaign after Tasks 036–049.
+Task 050 is the single canonical long-running semantic-recovery campaign for the CMS079 `MapleStory.exe` gameplay body.
 
-The project has already crossed the difficult architectural boundaries:
+This document supersedes every earlier Task-050 subtask specification, including the former handler-decode mini-campaign. There must be exactly one Task 050 specification in `task/` after this merge.
 
-- the CMS079 `MapleStory.exe` game body is available as an offline recovered analysis corpus;
-- the socket/connect/handshake/send/receive core has been identified;
-- packet codec primitives and the three-layer inbound dispatch architecture are mapped;
+The project has already crossed the architectural boundaries that used to dominate the work:
+
+- the main game body is available as an offline recovered analysis corpus;
+- socket/connect/handshake/send/receive logic is identified;
+- packet codec primitives are identified;
+- the three-layer inbound dispatch architecture is mapped;
 - c2s naming is mature;
-- the complete server-side s2c wire-name table has been recovered;
-- the range and field dispatch bands are mapped to named packet families;
-- a broad first-pass subsystem atlas exists.
+- the complete server-side s2c wire-name table is recovered;
+- range and field dispatch bands are mapped;
+- Task 046 built a first mechanical subsystem atlas;
+- Tasks 047–049 closed most opcode/dispatcher naming gaps;
+- an initial Task-050 pass built a useful static database and handler-decode checkpoint, but did **not** satisfy the original deep-semantic completion criteria.
 
-The remaining work is no longer primarily “find the code.”
+The remaining job is not primarily to find more addresses.
 
-The remaining work is to convert a broad architectural map into a **deep semantic reconstruction of the client**:
+The remaining job is to convert existing routing/name knowledge into an evidence-backed semantic reconstruction:
 
 ```text
-named packet / known handler / known sender
+known packet / handler / sender
     ↓
-exact containing function
+true leaf function
     ↓
-function body semantics
+function-body behavior
     ↓
-object owner
+object/class owner
     ↓
-field offsets and field meaning
+semantic fields and layouts
     ↓
-class / vtable / ctor / dtor relationships
+ctor/dtor/vtable relationships
     ↓
-state-machine transitions
+packet schema
     ↓
-resource / WZ dependencies
+state transition
     ↓
-packet schema and side effects
+resource/WZ dependency
     ↓
-call-chain context
+cross-subsystem calls
     ↓
 equivalent pseudocode
     ↓
 coherent subsystem model
 ```
 
-This is a **single giant campaign**.
+This is one giant campaign. Do not split Character, Field, Mob, Skill, Quest, NPC, Inventory, UI, Social, Login, Cash Shop, sender provenance, handler decode, state-machine recovery, or class recovery into new task numbers.
 
-Do not split Character, Field, Mob, Skill, Quest, NPC, Inventory, UI, Cash Shop, Social, or Login into separate tasks.
-
-Do not stop after one subsystem becomes productive.
-
-Continue across subsystems until the time budget is exhausted or the completion criteria in this document are met.
-
-Recommended autonomous run budget:
+Target autonomous run budget:
 
 ```text
-30–60 hours
+30–60 actual hours
 ```
 
-The preferred outcome is not a list of addresses.
-
-The preferred outcome is a durable client-semantic atlas that lets a researcher navigate CMS079 gameplay logic at the level of:
-
-- classes and objects;
-- fields;
-- methods;
-- packet schemas;
-- state transitions;
-- resource usage;
-- equivalent C/C++-style pseudocode;
-- subsystem interactions.
+The campaign may use checkpoint commits, but it remains Task 050 until a valid stop condition is met.
 
 ---
 
-# 1. Scope
+# 1. Single-task rule — non-negotiable
 
-Task 050 covers the **main `MapleStory.exe` game logic** and uses already-recovered support information only as context.
+During Task 050 execution you MUST NOT create, rename, or number any new task specification.
 
-Primary required subsystems:
+Forbidden during this campaign:
+
+```text
+task/050-*.md          # any additional Task 050 spec
+task/051-*.md          # or later task spec
+task/<new-number>-*.md
+```
+
+If a subproblem would normally deserve a new task, record it in:
+
+```text
+result/task050-blockers.csv
+result/task050-hotspots.csv
+```
+
+or a Task-050 checkpoint result, then continue this campaign.
+
+Creating a new `task/*.md` file during Task 050 is an execution-protocol violation.
+
+The former handler-decode mini-campaign is absorbed into §16–§18 below and must not exist as a second Task 050 specification.
+
+---
+
+# 2. Scope
+
+Primary main-EXE gameplay subsystems:
 
 1. Character / User / `CWvsContext`;
 2. Field / Map / Stage / Portal;
@@ -85,67 +98,70 @@ Primary required subsystems:
 4. Skill / Buff / Debuff / Cooldown;
 5. Quest / NPC / Dialog / Shop / Storage;
 6. Inventory / Item / Equipment / Meso;
-7. UI / Gameplay windows / controls;
+7. UI / gameplay windows / controls;
 8. Social / Party / Guild / Buddy / Chat / Messenger;
-9. Login / World / Channel / Character-select / migration;
+9. Login / World / Channel / Character Select / migration;
 10. Cash Shop / MTS / transfer phases.
 
 Cross-cutting concerns:
 
-- packet readers and writers;
+- packet readers/writers;
 - handler ownership;
 - sender/builder provenance;
+- globals/singletons;
 - object lifecycle;
 - vtables;
-- globals/singletons;
-- field inference;
-- WZ/resource access;
-- timers and update loops;
-- rendering/audio calls when they expose gameplay semantics;
-- exception/security code only when it directly affects game subsystem behavior.
+- constructor/destructor families;
+- semantic field inference;
+- state machines;
+- WZ/resource usage;
+- update/tick loops;
+- input/event routing;
+- reference-version structural correlation.
 
-Out of primary scope:
+Not a primary goal:
 
-- further protector/VM investigation;
-- compatibility-environment experiments;
-- expanding support-DLL symbol inventories for their own sake;
-- generic protocol work that does not help recover client semantics.
+- protector/VM work;
+- compatibility-environment experimentation;
+- support-DLL symbol expansion for its own sake;
+- broad opcode enumeration already solved by Tasks 047–049;
+- another shallow 50k-function census.
 
 ---
 
-# 2. Safety and analysis boundary
+# 3. Safety and analysis boundary
 
-This task is an offline/static semantic-recovery campaign over the project’s own analysis corpus and committed normalized artifacts.
+This campaign is an offline/static semantic-recovery effort over the already authorized local analysis corpus and committed normalized artifacts.
 
 Allowed:
 
 - static disassembly/decompilation;
-- offline xref analysis;
 - control/data-flow analysis;
-- comparison with repository-provided reference material;
-- server-source/protocol cross-correlation;
+- xref/callgraph analysis;
+- static packet-reader/writer analysis;
+- class/vtable/ctor/dtor inference;
 - WZ/resource-model correlation;
-- building project-owned analysis scripts;
-- generation of summaries, graphs, CSVs, schemas, and pseudocode;
-- reading already-authorized local analysis corpus under `.work/` when present.
+- server-source/protocol correlation;
+- repository reference-version correlation;
+- project-owned analysis scripts;
+- normalized CSV/Markdown/pseudocode outputs.
 
-Do not add new protector bypass work.
+Do not:
 
-Do not modify the client to force code paths.
+- add protector bypass work;
+- patch client conditionals or checks;
+- force client code paths;
+- inject hooks/code;
+- fake runtime state;
+- commit proprietary executable images, raw captures, recovered binary code, or large third-party binary corpora.
 
-Do not patch conditionals, APIs, security checks, or environment checks.
-
-Do not inject code or hooks.
-
-Do not commit proprietary executable images, raw memory captures, or reconstructed binary code blobs.
-
-If a requested semantic conclusion would require a technique outside this task’s static evidence model, record the evidence gap instead of fabricating certainty.
+When evidence is insufficient, record the gap rather than inventing certainty.
 
 ---
 
-# 3. Repository synchronization gate
+# 4. Repository synchronization gate
 
-Before any analysis:
+Run first:
 
 ```text
 git status --short
@@ -154,13 +170,13 @@ git remote -v
 git rev-parse HEAD
 ```
 
-If tracked or uncommitted user work exists:
+If tracked/uncommitted user work exists:
 
 - stop;
 - report the paths;
 - do not overwrite them.
 
-Do not automatically:
+Do not automatically use:
 
 ```text
 git stash
@@ -174,96 +190,64 @@ If clean:
 
 ```text
 git fetch origin
-```
-
-If needed:
-
-```text
-git switch main
-```
-
-Then:
-
-```text
+git switch main      # if needed
 git pull --ff-only origin main
 git rev-parse HEAD
 ```
 
-Record this as:
+Record synchronized SHA as `STARTING_HEAD`.
 
-```text
-STARTING_HEAD
-```
-
-Re-read this task file from disk after synchronization.
+Re-read this exact file from disk after synchronization.
 
 ---
 
-# 4. Canonical corpus gate
+# 5. Canonical corpus gate
 
-When the original client file is available, verify:
+When the original client is locally available, verify:
 
 ```text
 MapleStory.exe SHA-256
 5d280cf1c5663e925104736e73e5715a5a529d25420babf410cc411b37940f4d
 ```
 
-Use the already-recovered Task-036 game-body analysis corpus when locally available.
+Use the already recovered Task-036 game-body analysis corpus where locally available.
 
-Do not regenerate or commit proprietary binary artifacts merely to satisfy this task.
+Do not regenerate or commit proprietary binaries just to satisfy this task.
 
-If the local recovered image is unavailable:
+If full static bytes are missing:
 
-- use committed normalized artifacts;
-- perform only analyses genuinely possible from those artifacts;
+- continue only from committed normalized evidence where valid;
 - mark binary-dependent phases blocked;
 - do not infer function bodies from addresses alone.
 
-Create:
+Maintain:
 
 ```text
 result/task050-preflight.md
 ```
 
-Record:
-
-- STARTING_HEAD;
-- client hash if checked;
-- analysis corpus paths used locally;
-- corpus hashes if convenient;
-- Python version;
-- Capstone/Ghidra/IDA/radare2/etc. versions actually used;
-- repository scripts used;
-- reference bundles used;
-- whether full static bytes are locally available.
+with corpus identity, local tool versions, relevant corpus paths, reference bundles, and `STARTING_HEAD`.
 
 ---
 
-# 5. Mandatory prior results to read
+# 6. Mandatory prior artifacts
 
-Read the latest committed versions of at least:
+At minimum read the latest committed versions of:
 
 ```text
 README.md
 
 result/36-game-body-materialization-campaign.md
 result/task036-materialization-record.md
-
 result/37-game-body-function-recovery.md
 result/task037-imports.csv
-
 result/38-game-body-cipher-dispatch-security.md
-
 result/40-game-logic-full-decode-master-campaign.md
 result/task040-game-logic-map.csv
 result/task040-channel-opcodes.csv
-result/task040-s2c-observed.csv
-
 result/41-object-model-deep-dive.md
-
 result/44-live-session-full-atlas.md
 result/task044-handler-map.csv
-
 result/45-grand-static-campaign.md
 
 result/46-game-subsystem-mechanical-recovery.md
@@ -279,18 +263,28 @@ result/task046-call-edges.csv
 result/task046-behavior-flows.md
 
 result/47-s2c-enumeration.md
-result/task047-s2c-opcodes.csv
-result/task047-s2c-wire-full.csv
-
 result/48-s2c-renumbering-decode.md
 result/task048-s2c-wire-complete.csv
 result/task048-handler-complete-map.csv
-
 result/49-field-band-closure-atlas.md
 result/task049-complete-s2c-dispatch-map.csv
+
+result/50-handler-decode-naming.md
+result/task050-handler-deep-decode.csv
+result/task050-sub-dispatcher-analysis.csv
+result/50-subsystem-semantic-deep-recovery.md
+result/task050-function-map.csv
+result/task050-field-facts.csv
+result/task050-inbound-handler-semantics.csv
+result/task050-packet-schemas.csv
+result/task050-behavior-flows.md
+result/task050-coverage.csv
+result/task050-subsystem-coverage.csv
 ```
 
-Also read resource/context results where useful:
+The existing Task-050 outputs are a **checkpoint**, not authoritative proof that later milestones were reached. Audit their metric definitions before reusing counts.
+
+Useful context where needed:
 
 ```text
 result/19-wizet-dlls.md
@@ -300,117 +294,56 @@ result/01-server-baseline.md
 result/02-runtime-network-bootstrap.md
 ```
 
-Read repository-provided v95/reference material.
-
-Reference policy:
+Repository v95/reference material is a hypothesis generator only.
 
 ```text
-reference symbols = hypothesis generators
-reference addresses = NEVER authoritative for CMS079
+reference symbol/structure = useful evidence
+reference absolute address = never authoritative for CMS079
 ```
-
-A reference match must be supported structurally.
 
 ---
 
-# 6. Starting baseline to independently verify
+# 7. Current checkpoint — facts to audit, not completion claims
 
-Do not blindly copy these numbers into the final report.
-
-Regenerate them from current artifacts.
-
-Expected approximate baseline after Task 049:
+The first Task-050 pass produced a useful database and handler checkpoint. Expect approximately:
 
 ```text
-main-image function candidates        ~51,200
-subsystem-classified functions        ~504
-high/confirmed semantic names         ~35
-class/object candidates               ~65, mostly low confidence
-sender sites                           486 total
-named/classified sender sites         ~207
-packet-builder functions              ~376
-known c2s wire names                  ~137
-known s2c wire values                 ~217
-range dispatcher named entries        58
-field-band named entries              111
-phase/login/other s2c entries         ~38 at phase level
-named inbound handler sites           ~169 across range+field
-Task046 pseudocode flows              27
+51,200   function candidates
+146,375  direct call edges
+10,922   raw field-access observations
+1,061    functions assigned some subsystem label
+699      functions touching the CWvsContext singleton
+207/486  sender sites classified/named at previous depth
+207      mapped s2c entries
+85       s2c entries with some packet-reader semantics in handler-decode checkpoint
+38       high-confidence handler-decode labels in that checkpoint
+126      sub-dispatcher call targets across 11 decoded sub-dispatchers
+28       behavior/pseudocode flows in the first final report
 ```
 
-Create a fresh baseline ledger:
+These numbers MUST be audited under the strict definitions below.
+
+In particular:
+
+- `10,922 raw field-access observations` are **not** 10,922 semantic fields;
+- touching `CWvsContext` does **not** automatically make a function Character-owned;
+- a `WriteHeader` observation alone is **not** an outbound packet schema;
+- a sub-dispatcher RVA is **not** a leaf-handler body summary;
+- an opcode name alone is **not** semantic function recovery.
+
+Create or refresh:
 
 ```text
 result/task050-baseline.csv
 ```
 
-Suggested fields:
-
-```text
-metric
-value
-source_artifact
-how_recomputed
-confidence
-notes
-```
-
-Never report a percentage without a meaningful denominator.
-
----
-
-# 7. Core philosophy
-
-Task 046 answered:
-
-```text
-Where are the subsystems?
-Which packet names belong to which area?
-What broad objects/functions exist?
-```
-
-Tasks 047–049 answered much of:
-
-```text
-What is each inbound wire packet called?
-Which dispatcher/band receives it?
-```
-
-Task 050 must answer:
-
-```text
-What exactly does the code do?
-Which object owns it?
-Which fields does it read/write?
-What are those fields?
-What packet schema does it parse/build?
-What state transition occurs?
-What resources does it load?
-Which other subsystem methods are called?
-What C++-like behavior can we reconstruct?
-```
-
-Prefer depth over another shallow census.
-
-Do not spend the campaign merely producing more address/name pairs.
-
-Every major result should move at least one row from:
-
-```text
-named-but-shallow
-```
-
-into:
-
-```text
-semantically-understood
-```
+with current metric, source, recomputation method, and confidence.
 
 ---
 
 # 8. Evidence model
 
-Every important semantic statement should carry confidence:
+Every semantic claim uses:
 
 ```text
 confirmed
@@ -420,360 +353,612 @@ low
 unknown
 ```
 
-Evidence families include:
+Evidence-family tags:
 
 ```text
-IMG       direct main-image code evidence
-PKT       packet schema / read-write sequence
+IMG       direct CMS079 main-image code
+PKT       packet read/write sequence
 S2C       server→client wire-name correlation
 C2S       client→server wire-name correlation
 SRV       server implementation semantics
-WZ        WZ path/resource-model evidence
-RTTI      RTTI/type evidence
-VTBL      vtable evidence
-CTOR      constructor/vtable-write evidence
-DTOR      destructor/delete evidence
-FIELD     repeated field-offset evidence
-GLOBAL    singleton/global evidence
-CALL      callgraph/caller-callee evidence
-STR       unique string evidence
-REF       v95/reference structural correlation
-IMPORT    imported API semantics
-FLOW      cross-function behavioral-flow agreement
+WZ        WZ/resource evidence
+RTTI      runtime type information
+VTBL      vtable structure
+CTOR      constructor evidence
+DTOR      destructor evidence
+FIELD     semantic field evidence
+GLOBAL    global/singleton evidence
+CALL      caller/callee topology
+STR       strings
+REF       reference-version structural correlation
+IMPORT    import/API semantics
+FLOW      agreement with broader behavioral flow
 ```
 
-High-confidence naming should usually have at least two independent evidence families.
+High-confidence semantic naming normally requires at least two independent evidence families.
 
-Confirmed should be reserved for especially strong cases such as:
-
-```text
-wire packet name + exact packet parse + matching field side effects
-```
-
-or:
-
-```text
-RTTI + vtable + ctor + unique behavior
-```
-
-Do not upgrade confidence merely because many weak clues repeat the same assumption.
+Repeated weak evidence from the same family does not become independent proof.
 
 ---
 
-# 9. Naming rules
+# 9. Naming policy
 
-If an original source symbol is well-supported:
+Use original-like names only when evidence supports them.
 
-```text
-CUser::OnMove
-CMob::OnDamaged
-CField::OnPacket
-```
-
-may be used.
-
-If class identity is strong but exact method name is not:
+Examples:
 
 ```text
-CUser::HandleMovePacket
-CMob::ApplyStatusPacket
+CUser::OnMove                  # only with strong structural evidence
+CUser::HandleMovePacket        # semantic name when class is strong, exact source name not proven
+PlayerLike_HandleMove_A3xxxx   # provisional when owner is uncertain
 ```
 
-If even class identity is uncertain:
-
-```text
-PlayerLike_HandleMove_A3xxxx
-MobLike_UpdateStatus_FExxxx
-```
-
-Avoid pretending provisional names are original Wizet source names.
-
-Every map must include:
+Every semantic map should include:
 
 ```text
 name_kind = original-like / semantic / provisional / unknown
 ```
 
+Do not copy v95 addresses into CMS079.
+
 ---
 
-# 10. Milestones
+# 10. Immutable metric definitions
+
+These definitions are mandatory and MUST NOT be reinterpreted in the final report.
+
+## 10.1 Raw field-access observation
+
+A static access such as:
+
+```text
+[ecx+0x20]
+[esi+0x58]
+```
+
+with no proven object/meaning.
+
+It may be indexed, but it does **not** count as a semantic field fact.
+
+Metric:
+
+```text
+raw_field_access_observations
+```
+
+## 10.2 Semantic field fact
+
+Counts toward object-model/field milestones only when all are present:
+
+```text
+owner object/class identified at medium+ confidence
+offset known
+access size known or bounded
+at least one semantic evidence source
+provenance/evidence recorded
+```
+
+Strong example:
+
+```text
+CWvsContext +0x205C
+u32 CharacterId
+written by WARP_TO_MAP
+read by local-player identity logic
+```
+
+Metric:
+
+```text
+semantic_field_facts
+high_semantic_field_facts
+```
+
+## 10.3 Packet-header observation
+
+Evidence only that a builder writes an opcode/header.
+
+Example:
+
+```text
+WriteHeader(PARTY_OPERATION)
+```
+
+This is **not** a packet schema.
+
+Metric:
+
+```text
+packet_header_observations
+```
+
+## 10.4 Minimal packet schema
+
+Must contain:
+
+```text
+opcode/name
++ at least one payload read/write field
++ wire order/type
+```
+
+## 10.5 Structured packet schema
+
+Must contain either:
+
+```text
+opcode/name + >=2 payload fields
+```
+
+or at least one proven:
+
+```text
+conditional field
+loop/list
+nested structure
+mask-driven schema
+```
+
+Only minimal or structured schemas count toward S5.
+
+## 10.6 Handler body summary
+
+Must identify a **leaf handler or proven inline leaf path** and contain at least one body-level semantic fact beyond the packet name, such as:
+
+```text
+ordered packet reads
+object/global field mutation
+state change
+allocation/lifecycle call
+resource/UI side effect
+outgoing response
+```
+
+A dispatcher label alone does not count.
+
+## 10.7 Subsystem classification
+
+A central singleton touch alone is insufficient.
+
+In particular:
+
+```text
+accesses CWvsContext
+```
+
+is a clustering signal, not proof of `character` ownership.
+
+To classify a CWvsContext-touching function into Character, require at least one additional character-specific family:
+
+```text
+packet semantics
+character-specific field
+class/vtable ownership
+resource/string evidence
+known character caller/callee
+reference structural match
+```
+
+Otherwise prefer:
+
+```text
+shared-context
+cross-subsystem
+unknown
+```
+
+## 10.8 High-confidence semantic function
+
+Requires:
+
+- a reliable function/leaf boundary;
+- a non-trivial behavior statement;
+- at least two independent evidence families;
+- no unresolved contradiction that changes the claimed role.
+
+A packet name copied onto a dispatcher target is not enough.
+
+---
+
+# 11. Immutable milestones S0–S10
+
+The milestone IDs, names, and meanings below are immutable.
+
+The agent MUST NOT rename, repurpose, or reinterpret them.
+
+If a milestone is not reached, report `partial`, `blocked`, or `not-reached`.
 
 ## S0 — Baseline reproduced
 
-All Task 046–049 key counts and maps are loaded and normalized.
+Tasks 046–049 plus existing Task-050 checkpoint counts are loaded, audited, and normalized under §10 definitions.
 
 ## S1 — Deep-analysis database built
 
-A reusable static database exists containing:
-
-- function boundaries/candidates;
-- basic-block graph;
-- direct call graph;
-- import-call graph;
-- global references;
-- string references;
-- field-offset accesses;
-- RTTI/vtable relations;
-- packet reader/writer sequences;
-- inbound-handler ownership;
-- outbound-sender provenance;
-- known packet names;
-- WZ/resource strings;
-- subsystem labels.
+Reusable database/index covers function candidates/boundaries, callgraph, imports, globals, strings, raw field accesses, packet readers/writers, handler routes, sender sites, vtable/ctor evidence, resource strings, and subsystem features.
 
 ## S2 — Inbound semantic closure materially advanced
 
-Preferred target:
+Reached only if:
 
 ```text
->=140 inbound handler sites with body-level semantic summaries
+>=140 distinct inbound leaf handler sites
 ```
 
-where a summary contains more than the packet name.
+have body-level semantic summaries under §10.6.
 
 ## S3 — Sender provenance materially advanced
 
-Preferred target:
+Reached only if both:
 
 ```text
 >=400 / 486 sender sites classified
->=325 / 486 with packet name or strong symbolic role
+>=325 / 486 packet-named or strongly role-named
 ```
 
 Stretch:
 
 ```text
->=450 classified
+>=450 / 486 classified
 ```
 
 ## S4 — Object-model confidence materially advanced
 
-Preferred target:
+Reached only if the campaign establishes approximately:
 
 ```text
 >=80 class/object families at medium+
->=50 at high/confirmed
+>=50 class/object families at high/confirmed
 >=60 vtables assigned to semantic owners
->=250 field facts with evidence
+>=250 semantic field facts
 ```
+
+Raw field-access observations do not count.
 
 ## S5 — Packet schemas reconstructed
 
-Preferred target:
+Reached only if:
 
 ```text
->=120 inbound packet schemas
->=120 outbound packet schemas
+>=120 inbound minimal/structured packet schemas
+>=120 outbound minimal/structured packet schemas
 ```
 
-A schema should capture ordered reads/writes and semantic fields where possible.
+Header-only rows do not count.
 
 ## S6 — State machines recovered
 
-Preferred target:
+Reached only if:
 
 ```text
->=20 subsystem state machines
+>=20 evidence-backed state machines
 ```
 
-including at least:
-
-- login/character selection;
-- map transition;
-- user spawn/update;
-- mob lifecycle;
-- buff lifecycle;
-- quest/NPC dialog;
-- inventory mutation;
-- cash-shop transition;
-- party/guild flow;
-- UI window lifecycle examples.
+with owner/state field or state source, values/branches, transition conditions, and side effects.
 
 ## S7 — Equivalent pseudocode baseline
 
-Preferred target:
+Reached only if:
 
 ```text
->=80 non-trivial pseudocode functions/flows
+>=80 non-trivial evidence-backed functions/flows
 ```
 
-with at least 8 from each major gameplay domain where evidence allows.
+Trivial wrappers do not count.
 
 ## S8 — High-confidence semantic naming baseline
 
-Preferred target:
+Reached only if both:
 
 ```text
->=180 high/confirmed main-EXE semantic function names
->=700 main-EXE functions classified to a subsystem/role
+>=180 high/confirmed main-EXE semantic functions
+>=700 main-EXE functions validly classified under §10.7
 ```
-
-Do not fabricate names merely to hit the target.
 
 ## S9 — Cross-subsystem semantic atlas
 
-The major gameplay architecture can be navigated through classes/functions/fields/packets/resources without repeatedly returning to raw disassembly.
+Reached only when the major gameplay architecture can be navigated through packet→leaf function→object/class→field/state/resource links without repeatedly returning to raw address-only census data.
 
 ## S10 — Practical source-reconstruction baseline
 
-At least five major subsystems have enough information to sketch equivalent class interfaces and core behaviors in C++-like form.
+Reached only when at least five major subsystems have sufficiently deep object/field/method/state/schema models to sketch useful equivalent class interfaces and core behavior in C++-like form.
 
 ---
 
-# 11. Run strategy
+# 12. Non-negotiable completion gate
 
-Recommended time allocation:
+A final status claiming strong completion is valid only if ALL of the following are true:
 
-```text
-5%      preflight, artifact normalization, baseline
-10–15%  reusable analysis database/tooling
-15–20%  inbound handler deep semantics
-15–20%  sender/builder interprocedural provenance
-20–30%  object/class/field recovery
-20–30%  subsystem deep dives + pseudocode/state machines
-5–10%   integration, conflict resolution, final atlas
-```
+1. S0–S10 are reported using the exact immutable meanings from §11.
+2. `result/task050-artifact-manifest.csv` exists and audits every required artifact.
+3. Every unconditional required artifact is present and materially populated, or explicitly blocked with evidence.
+4. `result/task050-coverage.csv` uses the metric definitions in §10.
+5. Raw field accesses are not counted as semantic fields.
+6. Header-only observations are not counted as packet schemas.
+7. CWvsContext access alone is not counted as Character subsystem proof.
+8. Any Stop B claim satisfies §13 and §43.
+9. No new `task/*.md` specification was created during the campaign.
+10. The final report distinguishes campaign termination from milestone completion.
 
-Once a tool works, use it across all subsystems.
-
-Avoid spending hours manually repeating a pattern that can be scripted.
-
-Conversely, do not write a huge generic framework before proving it solves at least one real function family.
-
-Use a loop:
+If these gates are not satisfied, final verdict must be one of:
 
 ```text
-manual seed
-→ understand one pattern
-→ automate pattern
-→ validate automation
-→ batch apply
-→ manually audit samples
-→ promote high-confidence results
+PARTIAL
+TIME-BUDGET EXHAUSTED
+CORPUS-BOUNDARY BLOCKED
+MISSING-CORPUS BLOCKED
 ```
+
+Do not call the semantic campaign strongly complete merely because a final commit exists.
 
 ---
 
-# 12. Phase A — Normalize all known packet and handler information
+# 13. Runtime budget / early-stop hardening
 
-Build one canonical packet table joining:
-
-```text
-c2s wire name/value
-s2c wire name/value
-dispatcher
-band
-handler RVA
-sender sites
-builder functions
-subsystem
-prior confidence
-```
-
-Create:
+Target budget:
 
 ```text
-result/task050-packet-master.csv
+30–60 actual hours
 ```
 
-Suggested fields:
+Do not claim Stop D before 30 actual hours of high-value work.
+
+Do not claim Stop B merely because automation finished quickly.
+
+Before either Stop B or Stop D, the mandatory analytical passes in §14 must have been attempted.
+
+If execution ends before 30 hours for another reason, the report must say `PARTIAL` or the relevant blocked state.
+
+Checkpoint commits do not end the task.
+
+---
+
+# 14. Mandatory analytical passes before completion/boundary claims
+
+All of these must be materially attempted:
+
+1. baseline/metric audit;
+2. leaf-handler recovery across every major dispatcher family;
+3. interprocedural sender provenance;
+4. packet-builder payload recovery;
+5. ctor/vtable/class-owner correlation;
+6. semantic field promotion;
+7. state-machine extraction;
+8. WZ/resource correlation;
+9. all ten major subsystem dossiers;
+10. static-solvable vs populated-state-required blocker classification.
+
+A report that skips one of these may still be a useful checkpoint, but is not a full Task-050 completion.
+
+---
+
+# 15. Recommended work loop
+
+Repeat autonomously:
+
+```text
+1. choose the highest-value unresolved semantic anchor
+2. inspect direct code
+3. establish true leaf/function boundary
+4. collect packet/call/global/field/string/resource evidence
+5. compare server/reference behavior
+6. build provisional semantic model
+7. validate with an independent evidence family
+8. update normalized maps
+9. identify reusable pattern
+10. automate if useful
+11. batch-apply
+12. manually audit samples
+13. promote confidence only when justified
+14. move to next subsystem/hotspot
+```
+
+Do not ask the user which function to analyze next.
+
+---
+
+# 16. Mandatory handler-closure phase — absorbed former mini-campaign
+
+The former handler-decode Task-050 mini-campaign is now an internal mandatory phase.
+
+Starting evidence includes:
+
+```text
+207 mapped s2c entries
+85 entries with some reader semantics in the previous checkpoint
+38 high-confidence checkpoint labels
+11 decoded sub-dispatchers
+126 sub-dispatcher call targets
+```
+
+These are starting points, not closure.
+
+For every important inbound packet:
+
+```text
+wire opcode
+→ dispatcher
+→ band
+→ sub-dispatcher
+→ leaf target
+→ ordered reader sequence
+→ object/global reads/writes
+→ calls
+→ branches
+→ state/resource/UI effects
+```
+
+Do not count a common sub-dispatcher as dozens of leaf handlers.
+
+Priority groups:
+
+```text
+0x20–0x80      inventory/stats/buff/social/UI
+0x87–0x9F      chat/map effects/clock/boat/UI
+0xA2–0xED      player/pet/summon/combat/quest
+0xEE–0x103     monster lifecycle/status
+0x104–0x10C    NPC lifecycle
+0x10D–0x10F    hired merchant
+0x110–0x111    map item/drop
+0x115–0x116    mist
+0x11C–0x11F    reactor
+0x145          NPC dialog
+0x146–0x147    NPC shop
+0x16F–0x171    keymap/auto-pot
+phase/login    login/world/character selection
+```
+
+Refresh:
+
+```text
+result/task050-inbound-handler-semantics.csv
+```
+
+and preserve true leaf provenance.
+
+---
+
+# 17. Packet-reader semantic extraction
+
+For each leaf handler capture where feasible:
+
+```text
+packet read order
+reader type
+conditional fields
+loop/list counts
+mask-driven reads
+object/global destination
+semantic field candidate
+callee effects
+error/ignore conditions
+response packets
+```
+
+Use server packet construction only as a cross-check.
+
+Client reads remain primary evidence for what the client actually consumes.
+
+---
+
+# 18. Inbound packet schemas
+
+Create/refresh:
+
+```text
+result/task050-packet-schemas.csv
+result/task050-packet-schemas.md
+```
+
+Required fields should distinguish:
+
+```text
+header-observation
+minimal-schema
+structured-schema
+```
+
+Suggested schema columns:
 
 ```text
 direction
-opcode_hex
-name
-dispatch_layer
-band
-handler_rva
-handler_owner_candidate
-sender_sites
-builder_functions
-subsystem
-source_artifacts
+opcode
+packet_name
+schema_level
+field_index
+wire_order
+wire_type
+semantic_name
+condition
+consumer_or_producer
 confidence
+evidence
 notes
 ```
 
-Resolve conflicting labels explicitly.
+Unknown semantic fields remain `unknown_N`.
 
-Never silently choose one name where Task 046/048/049 disagree.
+Do not promote server-only fields without confirming the client read/write path.
+
+---
+
+# 19. Sender provenance — interprocedural, not immediate-only
+
+Baseline is approximately:
+
+```text
+207 / 486 sender sites classified
+```
+
+The remaining sites require backward value provenance through:
+
+```text
+push/pop
+mov/lea
+stack arguments
+thiscall ECX
+fastcall ECX/EDX
+register copies
+locals
+wrapper parameters
+simple arithmetic
+branch merges
+small lookup tables
+object fields
+```
+
+Track symbolic expressions where a numeric opcode cannot be proven:
+
+```text
+opcode = arg1
+opcode = caller.arg2
+opcode = table[state]
+opcode = this->mode ? A : B
+```
+
+Create/refresh:
+
+```text
+result/task050-sender-provenance.csv
+result/task050-sender-coverage.md
+```
+
+Do not guess numeric opcodes.
+
+---
+
+# 20. Packet-builder semantics
+
+Task 046 identified hundreds of builder-like functions.
+
+Upgrade `contains WriteHeader` into:
+
+```text
+packet name/opcode
+builder arguments
+ordered payload writes
+conditional writes
+strings
+object fields serialized
+loops/lists
+nested structures
+builder-only vs builder+send vs builder+state
+```
 
 Create:
 
 ```text
-result/task050-conflicts.csv
+result/task050-builder-semantics.csv
 ```
 
-for semantic conflicts.
+A header-only builder does not satisfy schema recovery.
 
 ---
 
-# 13. Phase B — Reusable function-analysis database
+# 21. Function boundary refinement
 
-Create or extend scripts that build a local database under:
+The ~51,200 candidate count is an index, not 51,200 proven business methods.
 
-```text
-.work/task-050/db/
-```
-
-The database should index as much as feasible:
-
-```text
-function_id
-start_rva
-end_rva
-confidence_of_boundary
-basic_blocks
-callers
-callees
-import_calls
-string_xrefs
-global_reads
-global_writes
-field_offsets
-vtables_referenced
-packet_readers
-packet_writers
-switch_tables
-known_handler_packets
-known_sender_packets
-WZ/resource strings
-subsystem label
-semantic confidence
-```
-
-Reusable committed tooling may live under `scripts/`.
-
-Possible scripts:
-
-```text
-scripts/maple079_semantic_db.py
-scripts/maple079_function_features.py
-scripts/maple079_field_inference.py
-scripts/maple079_interproc_provenance.py
-scripts/maple079_packet_schema.py
-scripts/maple079_ctor_vtable.py
-scripts/maple079_state_machine.py
-scripts/maple079_semantic_report.py
-```
-
-Do not duplicate an existing equivalent script.
-
-Create:
-
-```text
-result/task050-analysis-db-summary.md
-```
-
-Describe coverage and limitations.
-
----
-
-# 14. Phase C — Function boundary and ownership refinement
-
-The 51k function-candidate count is useful as an index but not all boundaries are equally reliable.
-
-Classify function boundaries:
+Assign boundary confidence:
 
 ```text
 high
@@ -781,40 +966,7 @@ medium
 low
 ```
 
-Useful evidence:
-
-- direct call targets;
-- prologue patterns;
-- exception metadata where available;
-- vtable entries;
-- switch-table targets;
-- packet-handler targets;
-- known reference functions;
-- code-gap structure;
-- tail-call patterns.
-
-Identify wrappers/thunks separately from real semantic functions.
-
-Create:
-
-```text
-result/task050-function-boundaries.csv
-```
-
-Fields:
-
-```text
-function_id
-start_rva
-end_rva
-boundary_confidence
-kind
-owner_candidate
-subsystem
-reason
-```
-
-Kinds may include:
+Classify kinds:
 
 ```text
 real-function
@@ -825,338 +977,71 @@ packet-handler
 packet-builder
 constructor
 destructor
-allocator-helper
 state-transition
+allocator/helper
 unknown
 ```
 
----
-
-# 15. Phase D — Inbound handler body semantics
-
-Task 049 provides named inbound routing.
-
-For each mapped inbound packet, analyze beyond the name.
-
-At minimum capture:
-
-```text
-opcode
-packet name
-handler function or sub-dispatch path
-packet reads in exact order
-conditional reads
-loops
-object/global reads
-object/global writes
-field offsets
-calls
-allocations
-UI effects
-resource lookups
-outgoing packet side effects
-state transition
-error/ignore conditions
-owner object/class candidate
-```
+Use direct call targets, vtables, jump targets, code gaps, tail calls, known handlers, and reference structure.
 
 Create:
 
 ```text
-result/task050-inbound-handler-semantics.csv
-```
-
-Suggested fields:
-
-```text
-opcode
-packet_name
-handler_rva
-owner
-subsystem
-read_schema
-writes
-calls
-state_effect
-resource_effect
-confidence
-notes
-```
-
-Do not treat a sub-dispatcher RVA as the final per-packet handler unless it truly handles the packet inline.
-
-Where a common sub-dispatcher performs a secondary jump/switch, recover the leaf target.
-
-Important priority bands:
-
-```text
-0x20–0x80        stats/inventory/buff/social/UI
-0xA2–0xED        player/pet/summon/quest/combat
-0xEE–0x103       monster lifecycle/status
-0x104–0x10C      NPC lifecycle
-0x110–0x111      map items
-0x145            NPC dialog
-0x146–0x147      NPC shop
-0x16F–0x171      keymap/auto-pot
+result/task050-function-boundaries.csv
 ```
 
 ---
 
-# 16. Packet schema recovery
+# 22. Global/singleton map
 
-For every sufficiently understood handler/sender, reconstruct packet schemas.
-
-Inbound schema example format:
-
-```text
-SPAWN_MONSTER
-u32 object_id
-u8 controller_mode
-u32 template_id
-...
-```
-
-Outbound schema example format:
-
-```text
-NPC_TALK
-u32 npc_object_id
-u8 action
-...
-```
-
-When field meaning is unknown, use:
-
-```text
-u32 unknown_0x0c
-```
-
-rather than inventing semantics.
-
-Represent conditional schemas explicitly.
-
-Create:
-
-```text
-result/task050-packet-schemas.csv
-result/task050-packet-schemas.md
-```
-
-CSV fields:
-
-```text
-direction
-opcode
-packet_name
-field_index
-offset_or_order
-wire_type
-semantic_name
-condition
-consumer_or_producer
-confidence
-notes
-```
-
-Use server implementation as a cross-check, not as proof that the client consumes every server field identically.
-
----
-
-# 17. Phase E — Sender provenance, interprocedural pass
-
-Task 046 reached approximately 207/486 sender sites.
-
-The remaining sites are likely dominated by:
-
-- opcode values passed as parameters;
-- wrappers around packet builders;
-- object methods that choose opcodes by state;
-- small tables;
-- branch merges;
-- register-carried constants.
-
-Implement interprocedural backward slicing from:
-
-```text
-WriteHeader / packet header writer
-```
-
-and from known send/flush sites.
-
-Track values through:
-
-```text
-mov
-lea
-push/pop
-stack args
-fastcall/thiscall registers
-local variables
-wrapper params
-simple arithmetic
-select/branch joins
-small switch tables
-object fields
-```
-
-Bound recursion/depth to keep analysis tractable.
-
-Store symbolic expressions when exact constants cannot be determined.
-
-Examples:
-
-```text
-opcode = arg1
-opcode = this->mode ? 0x42 : 0x43
-opcode = table[state]
-opcode = caller.arg2
-```
-
-Create:
-
-```text
-result/task050-sender-provenance.csv
-```
-
-Fields:
-
-```text
-sender_site
-containing_function
-builder_function
-opcode_numeric
-opcode_symbolic
-packet_name
-provenance_path
-caller_context
-subsystem
-confidence
-notes
-```
-
-Create:
-
-```text
-result/task050-sender-coverage.md
-```
-
-with exact baseline/final counts.
-
-Priority:
-
-- high fan-in builder wrappers;
-- functions with many sender sites;
-- senders adjacent to already-known handlers/classes;
-- gameplay domains currently shallow.
-
----
-
-# 18. Packet-builder family recovery
-
-Task 046 identified approximately 376 builder functions.
-
-For each builder function where feasible, recover:
-
-```text
-packet name/opcode
-arguments
-ordered writes
-conditional writes
-string writes
-object fields serialized
-list/vector loops
-nested structure writers
-```
-
-Classify:
-
-```text
-pure-builder
-builder+state-change
-builder+send
-wrapper
-unknown
-```
-
-Create:
-
-```text
-result/task050-builder-semantics.csv
-```
-
-Aim to transform the builder census from “contains WriteHeader” into actual packet-format knowledge.
-
----
-
-# 19. Phase F — Global and singleton inference
-
-Build a global-reference database.
-
-For each global address used by gameplay code, track:
-
-```text
-readers
-writers
-initializers
-cleanup functions
-packet handlers touching it
-subsystem distribution
-reference-version analogs
-```
-
-Cluster globals by shared access neighborhoods.
-
-Likely roles include:
-
-```text
-singleton pointers
-static objects
-stage/field pointer
-socket pointer
-context pointer
-UI manager
-resource manager
-skill/quest tables
-clock/timer state
-packet dispatcher delegates
-```
-
-Create:
+Build/refine:
 
 ```text
 result/task050-global-map.csv
 ```
 
-Do not force names where only “singleton-like” is proven.
+For each important global track:
+
+```text
+readers
+writers
+initializers
+cleanup
+packet handlers
+subsystem neighborhoods
+reference analogs
+semantic confidence
+```
+
+Do not force a name when only singleton-like behavior is proven.
+
+Central shared globals must not contaminate subsystem classification.
 
 ---
 
-# 20. Phase G — Constructor / destructor / vtable recovery
+# 23. Ctor / dtor / vtable recovery
 
-Use multiple patterns:
+Use:
 
 ```text
 mov [this], vtable
-base-ctor call
-field zeroing/init sequence
 allocator → ctor
+base ctor
+field initialization
 ctor → global store
-release/destructor → delete
-vtable slot call patterns
+release/dtor/delete
+vtable slot call topology
 ```
 
-Recover vtable families and inheritance hints.
-
-For each vtable:
+For each candidate:
 
 ```text
 vtable RVA
 slot count
 method RVAs
-shared slots
-unique slots
-constructor candidates
-destructor candidates
+shared/unique slots
+ctor candidates
+dtor candidates
 owner candidates
 subsystem
 RTTI/reference evidence
@@ -1170,141 +1055,74 @@ result/task050-vtable-map.csv
 result/task050-ctor-dtor-map.csv
 ```
 
-Task 046 produced many low-confidence candidates.
-
-Task 050 should attempt to **promote confidence**, not merely add more anonymous vtables.
+The goal is confidence promotion, not a larger anonymous-vtable census.
 
 ---
 
-# 21. Phase H — Field inference engine
+# 24. Semantic field promotion
 
-For each likely object family, gather memory accesses of the form:
+Keep raw access observations separately from semantic field facts.
 
-```text
-[this + offset]
-[reg + offset]
-```
-
-where the base register can be tied to an object instance.
-
-For each field offset collect:
+Recommended files:
 
 ```text
-read count
-write count
-access sizes
-signed/unsigned operations
-comparison constants
-packet sources
-packet sinks
-UI/resource consumers
-reference-version candidate
-neighboring offsets
-```
-
-Infer field roles conservatively.
-
-Examples of strong field evidence:
-
-```text
-packet ReadInt32 → [this+0x205C]
-then compared against local-player ID
-```
-
-is much stronger than:
-
-```text
-[this+0x205C] read often
-```
-
-Create:
-
-```text
+.work/task-050/db/raw-field-accesses.csv
 result/task050-field-facts.csv
 ```
 
-Suggested fields:
+`result/task050-field-facts.csv` contains **semantic facts only** under §10.2.
+
+Recommended columns:
 
 ```text
 owner_candidate
-offset
+offset_hex
 size
-readers
-writers
-packet_sources
-packet_sinks
 semantic_name
 confidence
+read_functions
+write_functions
+packet_sources
+packet_sinks
+comparison_constants
+resource_consumers
+reference_field
 evidence
-reference_candidate
 notes
 ```
 
+Promote fields using packet writes/reads, repeated owner aliases, comparison semantics, UI/resource consumers, and reference structure.
+
 ---
 
-# 22. Object layout reconstruction
+# 25. Object layouts and class map
 
-For important classes, produce layout drafts.
-
-Example:
+Create/refresh:
 
 ```text
-class CSomeObject {
-    /* +0x000 */ void* vtable;
-    /* +0x004 */ ...;
-    /* +0x038 */ int state;
-    /* +0x03C */ ...;
-};
-```
-
-Unknown regions should remain unknown.
-
-Never fabricate contiguous layouts from isolated offsets.
-
-Create:
-
-```text
-result/task050-object-layouts.md
 result/task050-class-map.csv
+result/task050-object-layouts.md
 ```
 
-Each layout should state:
+Each important object layout states:
 
 ```text
+identity confidence
 minimum size
 known offsets
 unknown gaps
+vtable
+ctor/dtor anchors
 method anchors
-construction evidence
-confidence
+packet handlers/senders
+reference correlation
 ```
+
+Never fabricate contiguous layouts from isolated offsets.
 
 ---
 
-# 23. State-machine extraction
-
-Identify state variables by patterns such as:
-
-```text
-switch([this+offset])
-cmp [this+offset], constant
-write new constant to same field
-multiple UI/packet branches keyed by field
-```
-
-For each state machine recover:
-
-```text
-owner
-state field
-state values
-entry functions
-transition conditions
-side effects
-packets in/out
-UI/resource effects
-terminal states
-```
+# 26. State-machine extraction
 
 Create:
 
@@ -1313,35 +1131,47 @@ result/task050-state-machines.csv
 result/task050-state-machines.md
 ```
 
-Required candidates include:
+Find state variables through:
+
+```text
+switch([obj+offset])
+cmp [obj+offset], const
+write const to same field
+branch families keyed by same field
+packet/UI methods sharing state field
+```
+
+For each state machine require:
+
+```text
+owner/state source
+state field or equivalent
+known values
+entry functions
+transition conditions
+side effects
+packets in/out
+UI/resource effects
+confidence
+```
+
+Priority candidates:
 
 - CLogin state/substate;
 - field/map transition;
-- character presence/lifecycle;
+- user lifecycle;
 - mob lifecycle;
 - buff lifecycle;
 - NPC dialog;
-- NPC shop/storage interaction;
-- quest state presentation;
-- cash-shop/MTS phase transition;
-- UI window show/hide lifecycle;
-- party/guild invitation/result flows.
+- shop/storage;
+- quest presentation;
+- cash-shop/MTS transition;
+- party/guild flows;
+- UI window lifecycle.
 
 ---
 
-# 24. WZ/resource correlation
-
-Use the mature WZ inventory and Wizet DLL knowledge to connect gameplay functions to resources.
-
-Search for:
-
-- string paths;
-- property names;
-- animation names;
-- UI path fragments;
-- map/mob/npc/skill/item IDs converted to paths;
-- Canvas/NameSpace/ResMan call sequences;
-- localized text lookups.
+# 27. WZ/resource correlation
 
 Create:
 
@@ -1349,59 +1179,29 @@ Create:
 result/task050-resource-links.csv
 ```
 
-Fields:
+Correlate functions/classes with:
 
 ```text
-function_rva
-subsystem
-resource_kind
-resource_path_or_pattern
-source_of_path
-consumer
-confidence
-notes
+Map
+Mob
+Npc
+Skill
+Item
+Effect
+String
+UI
+Canvas
+NameSpace
+ResMan
 ```
 
-Goal:
+using path strings, ID→path construction, property names, animation names, localized text, and support-DLL call sequences.
 
-turn functions from:
-
-```text
-“unknown UI helper”
-```
-
-into evidence such as:
-
-```text
-“skill-window icon loader”
-```
-
-when resource usage supports it.
+The goal is semantic naming, not more WZ-format research.
 
 ---
 
-# 25. Reference-version structural correlation
-
-Use v95/reference material aggressively but carefully.
-
-For a candidate function/class compare:
-
-```text
-unique strings
-call topology
-callee family
-packet behavior
-field-offset pattern
-vtable shape
-switch shape
-resource path
-constants
-object lifecycle
-```
-
-Do not require byte identity.
-
-Do not copy absolute addresses.
+# 28. Reference-version correlation
 
 Create:
 
@@ -1409,24 +1209,27 @@ Create:
 result/task050-reference-correlation.csv
 ```
 
-Fields:
+Compare CMS079 candidates with reference symbols using:
 
 ```text
-cms079_rva
-cms079_semantic_name
-reference_symbol
-reference_version
-match_features
-conflicts
-confidence
-notes
+unique strings
+call topology
+packet semantics
+field patterns
+vtable shape
+switch shape
+resource path
+constants
+object lifecycle
 ```
 
-Record rejected matches when they prevent future false naming.
+Record both accepted and rejected correlations.
+
+Never copy reference absolute addresses.
 
 ---
 
-# 26. Character/User deep dive
+# 29. Character / User / CWvsContext deep dive
 
 Create:
 
@@ -1434,89 +1237,42 @@ Create:
 result/task050-character-user.md
 ```
 
-Required questions:
-
-### Identity / context
-
-Recover relationships among:
-
-- `CWvsContext`;
-- local character/user object;
-- remote user objects;
-- CharacterId;
-- account/world/channel/character state where present;
-- char-changed/migration flags.
-
-### Stats
-
-Deep-analyze handlers/builders for:
+Priorities:
 
 ```text
 UPDATE_STATS
 LEVEL_UPDATE
 JOB_UPDATE
-FAME_RESPONSE
 UPDATE_SKILLS
 TEMP_STATS
 TEMP_STATS_RESET
-```
-
-Recover:
-
-- packet fields;
-- state fields;
-- masks/bitfields;
-- local cache updates;
-- UI notification calls;
-- derived recalculation calls.
-
-### Spawn / look
-
-Analyze:
-
-```text
+WARP_TO_MAP
 SPAWN_PLAYER
 REMOVE_PLAYER_FROM_MAP
 UPDATE_CHAR_LOOK
 CHAR_INFO
 FACIAL_EXPRESSION
-SHOW_FOREIGN_EFFECT
+attack/damage actions
 ```
 
 Recover:
 
-- local-vs-remote branching;
-- object creation/removal;
-- appearance serialization;
-- field object registration;
-- display/animation calls.
+- CWvsContext vs local-user vs remote-user responsibilities;
+- identity fields;
+- stat masks and destinations;
+- appearance state;
+- migration/change flags;
+- local-vs-remote branches;
+- derived recalculation/UI refresh calls;
+- sender links.
 
-### Actions
+Do not classify every CWvsContext user as Character automatically.
 
-Connect outgoing:
-
-```text
-CLOSE_RANGE_ATTACK
-RANGED_ATTACK
-MAGIC_ATTACK
-TAKE_DAMAGE
-FACE_EXPRESSION
-CHAR_INFO_REQUEST
-```
-
-with local object/state methods.
-
-Deliver:
-
-- class/object candidates;
-- field layout facts;
-- packet schemas;
-- state transitions;
-- at least 10 non-trivial pseudocode snippets/flows if evidence permits.
+Target multiple deep flows, not just packet-name summaries.
 
 ---
 
-# 27. Field/Map/Stage deep dive
+# 30. Field / Map / Stage deep dive
 
 Create:
 
@@ -1524,7 +1280,7 @@ Create:
 result/task050-field-map.md
 ```
 
-Analyze:
+Priorities:
 
 ```text
 WARP_TO_MAP
@@ -1544,45 +1300,19 @@ MOVE_PLATFORM
 
 Recover:
 
-### Field lifecycle
-
-```text
-old field cleanup
-resource acquisition
-new field construction
-object population
-camera/background/UI setup
-player placement
-post-load events
-```
-
-### Map identity
-
-Find map-id fields/globals and functions that consume them.
-
-### Portal logic
-
-Recover:
-
-- portal IDs/names;
-- target maps;
-- client portal state;
-- portal requests;
-- special-map transitions.
-
-### Stage architecture
-
-Determine whether CMS079 has a clear `CStage`-like abstraction and how field/login/cash-shop stages relate.
-
-### WZ bridge
-
-Trace map ID → WZ path → resource object graph as far as static evidence permits.
-
-Deliver at least 8 representative field/map pseudocode flows.
+- old-field teardown;
+- new-field construction;
+- map identity;
+- WZ map-resource bridge;
+- portal state;
+- field object registration;
+- player placement;
+- Stage/Field relationships;
+- transition state machine.
 
 ---
 
-# 28. Mob / Combat deep dive
+# 31. Mob / Combat deep dive
 
 Create:
 
@@ -1590,7 +1320,7 @@ Create:
 result/task050-mob-combat.md
 ```
 
-Prioritize inbound:
+Inbound priorities:
 
 ```text
 SPAWN_MONSTER
@@ -1604,53 +1334,22 @@ CANCEL_MONSTER_STATUS
 SHOW_MONSTER_HP
 ```
 
-Prioritize outbound:
+Outbound priorities:
 
 ```text
 CLOSE_RANGE_ATTACK
 RANGED_ATTACK
 MAGIC_ATTACK
-PASSIVE_ENERGY
 TAKE_DAMAGE
 SPECIAL_MOVE
+PASSIVE_ENERGY
 ```
 
-Recover:
-
-### CMob-like object
-
-- object ID;
-- template ID;
-- position/movement;
-- HP/display state;
-- controller ownership;
-- status/buff fields;
-- spawn/remove registration.
-
-### Movement
-
-Trace movement-fragment parsing/building if present.
-
-### Damage
-
-Recover:
-
-- damage list representation;
-- hit counts;
-- mob IDs;
-- critical/miss flags where identifiable;
-- UI damage-number calls;
-- server-confirmed vs predicted state.
-
-### Status
-
-Recover buff/debuff/status mask representation where feasible.
-
-Deliver at least 10 combat/mob pseudocode functions/flows.
+Recover CMob-like object fields, object/template IDs, movement, controller state, HP/display state, status masks, damage representation, registration/removal, and effects/UI calls.
 
 ---
 
-# 29. Skill / Buff / Debuff deep dive
+# 32. Skill / Buff / Debuff deep dive
 
 Create:
 
@@ -1675,42 +1374,11 @@ DISTRIBUTE_SP
 SPECIAL_MOVE
 ```
 
-Recover:
-
-### Skill data
-
-Find:
-
-- skill ID handling;
-- level/master-level fields;
-- local skill lookup;
-- WZ path construction;
-- skill metadata/resource loading.
-
-### Buff model
-
-Recover:
-
-- buff mask/bitset representation;
-- value/duration/source skill fields;
-- application path;
-- cancellation path;
-- timer/update integration;
-- UI icon updates.
-
-### Cooldowns
-
-Locate timer/state structures if possible.
-
-### Macros
-
-Recover macro data layout and packet schemas.
-
-Deliver a draft skill/buff state model plus at least 8 pseudocode flows.
+Recover skill IDs/levels, WZ skill lookup, buff masks, values, duration, source skill, timer integration, icon/UI updates, cooldowns, and macro layout.
 
 ---
 
-# 30. Quest / NPC / Dialog deep dive
+# 33. Quest / NPC / Dialog / Shop / Storage deep dive
 
 Create:
 
@@ -1718,59 +1386,20 @@ Create:
 result/task050-quest-npc.md
 ```
 
-Analyze inbound:
-
-```text
-SPAWN_NPC
-REMOVE_NPC
-SPAWN_NPC_REQUEST_CONTROLLER
-NPC_TALK
-NPC_ACTION
-UPDATE_QUEST_INFO
-SHOW_QUEST_COMPLETION
-OPEN_NPC_SHOP
-CONFIRM_SHOP_TRANSACTION
-OPEN_STORAGE
-```
-
-Analyze outbound:
-
-```text
-NPC_TALK
-NPC_TALK_MORE
-NPC_SHOP
-STORAGE
-QUEST_ACTION
-```
+Analyze inbound/outbound NPC, dialog, quest, shop, and storage packets.
 
 Recover:
 
-### NPC objects
-
-- object ID;
-- template ID;
-- position;
-- control state;
-- animation/resource paths;
-- field registration.
-
-### Dialog protocol
-
-Recover dialog message types, response encoding, selection/input fields, and dialog state.
-
-### Quest state
-
-Trace quest IDs, status, progress fields, completion notifications, and any local condition checks.
-
-### Shop/storage
-
-Recover item-entry parsing and UI model where feasible.
-
-Deliver at least 10 pseudocode flows across NPC/quest/shop/storage.
+- NPC object identity/template/position/control;
+- dialog message types and responses;
+- quest IDs/status/progress;
+- shop entry parsing;
+- storage flows;
+- UI/state relationships.
 
 ---
 
-# 31. Inventory / Item / Equipment deep dive
+# 34. Inventory / Item / Equipment deep dive
 
 Create:
 
@@ -1778,127 +1407,49 @@ Create:
 result/task050-inventory-item.md
 ```
 
-Analyze inbound:
-
-```text
-MODIFY_INVENTORY_ITEM
-UPDATE_INVENTORY_SLOT
-FINISH_SORT
-FINISH_GATHER
-USE_SKILL_BOOK
-SET_TAMING_MOB_INFO
-UPDATE_MOUNT
-CHAR_CASH
-```
-
-Analyze outbound:
-
-```text
-ITEM_SORT
-ITEM_GATHER
-ITEM_MOVE
-USE_ITEM
-USE_CASH_ITEM
-USE_SUMMON_BAG
-PET_FOOD
-USE_MOUNT_FOOD
-USE_CATCH_ITEM
-USE_SKILL_BOOK
-USE_RETURN_SCROLL
-USE_UPGRADE_SCROLL
-MESO_DROP
-```
+Analyze item modification, slot update, sort/gather, mount, skill-book, cash item, item move/use, scroll, meso, pet food, and equipment-related flows.
 
 Recover:
 
-### Inventory containers
-
-- inventory type/index;
+- inventory type/container;
 - slot representation;
-- item identity;
-- quantity;
-- equip vs stackable distinction;
-- add/remove/update operations.
-
-### Equipment
-
-Trace equipment-stat structures and display calculations where feasible.
-
-### Item serialization
-
-Use packet schemas + server structures to recover common item encoding.
-
-### Item use
-
-Connect UI action → packet builder → local optimistic state → server result.
-
-Deliver at least 10 pseudocode functions/flows.
+- item identity/quantity;
+- equip vs stackable structures;
+- add/remove/update/move operations;
+- serialization;
+- UI refresh paths;
+- local action → sender → result flow.
 
 ---
 
-# 32. UI deep dive
+# 35. UI deep dive
 
 Create:
 
 ```text
 result/task050-ui.md
-```
-
-Task 046 identified many low-confidence UI vtable candidates.
-
-Task 050 should promote them by correlating:
-
-```text
-ctor patterns
-vtable writes
-resource strings
-WZ paths
-packet handlers
-button/event callbacks
-window show/hide calls
-parent/child object creation
-reference-version structures
-```
-
-Prioritize UI families for:
-
-- login;
-- character select;
-- status/character info;
-- inventory/equipment;
-- skill;
-- quest;
-- keymap;
-- chat/messenger;
-- party/guild/buddy;
-- NPC dialog/shop/storage;
-- cash shop/MTS;
-- system message/notification.
-
-Recover:
-
-```text
-window object
-open/show method
-close/hide method
-button/event callbacks
-packet senders
-packet-driven refresh methods
-resource paths
-important fields
-```
-
-Create a UI class table:
-
-```text
 result/task050-ui-classes.csv
 ```
 
-Deliver at least 12 UI flows where evidence permits.
+Promote existing anonymous/low-confidence UI candidates through:
+
+```text
+ctor/vtable writes
+resource paths
+packet handlers
+button callbacks
+show/hide calls
+parent-child creation
+reference structure
+```
+
+Prioritize login, character select, status, inventory/equipment, skills, quests, keymap, chat, social windows, NPC dialog/shop/storage, cash shop, and system messages.
+
+For each useful UI family recover open/show, close/hide, event callbacks, packet sender, packet-driven refresh, resources, important fields, and confidence.
 
 ---
 
-# 33. Social deep dive
+# 36. Social deep dive
 
 Create:
 
@@ -1906,47 +1457,13 @@ Create:
 result/task050-social.md
 ```
 
-Analyze:
+Analyze Party, Guild, Alliance, Buddy, Multichat, Whisper, BBS, Messenger, Family, General Chat, and Party Chat.
 
-```text
-PARTY_OPERATION
-GUILD_OPERATION
-ALLIANCE_OPERATION
-BUDDYLIST
-MULTICHAT
-WHISPER
-BBS_OPERATION
-MESSENGER
-FAMILY*
-GENERAL_CHAT
-PARTYCHAT
-```
-
-Recover:
-
-- party member structures;
-- guild member structures;
-- buddy list entries;
-- chat routing;
-- invite/accept/deny state;
-- UI refresh paths;
-- packet schemas.
-
-Distinguish:
-
-```text
-local social model
-UI model
-wire packet DTO-like structures
-```
-
-when possible.
-
-Deliver at least 8 pseudocode flows.
+Recover member-entry models, invite/result state, chat routing, UI refresh, packet schemas, and separation between wire DTO-like data and persistent client models.
 
 ---
 
-# 34. Login / World / Channel deep dive
+# 37. Login / World / Channel deep dive
 
 Create:
 
@@ -1954,7 +1471,7 @@ Create:
 result/task050-login-world-channel.md
 ```
 
-Existing seed:
+Seed:
 
 ```text
 CLogin ~0x45EB00
@@ -1962,42 +1479,15 @@ CLogin ~0x45EB00
 [this+0x68] substate
 ```
 
-Deepen this into:
+Recover state values/transitions, server list, world/channel selection, character list/create/delete/select, server-IP/migration, field transition, and error UI paths.
 
-- state enum candidates;
-- state-transition methods;
-- server-list population;
-- world/channel selection;
-- character-list handling;
-- character creation/deletion/select;
-- migration/channel transfer;
-- transition into field stage;
-- error UI paths.
+Connect phase s2c packets to c2s login builders.
 
-Analyze s2c phase packets:
-
-```text
-LOGIN_STATUS
-LICENSE_RESULT
-CHOOSE_GENDER
-GENDER_SET
-SERVERSTATUS
-SERVERLIST
-CHARLIST
-SERVER_IP
-CHAR_NAME_RESPONSE
-ADD_NEW_CHAR_ENTRY
-CHANGE_CHANNEL
-CHANNEL_SELECTED
-```
-
-Connect them to c2s login requests and builders.
-
-Recover at least one coherent login→character-select→field transition state graph.
+Produce a coherent login→character-select→field state graph where evidence permits.
 
 ---
 
-# 35. Cash Shop / MTS deep dive
+# 38. Cash Shop / MTS deep dive
 
 Create:
 
@@ -2005,57 +1495,13 @@ Create:
 result/task050-cashshop-mts.md
 ```
 
-Analyze:
+Analyze CS/MTS open, CHAR_CASH, cash effects, enter/return transitions, cash-item representation, UI creation, packet schemas, and relationship to inventory/state.
 
-```text
-CS_OPEN
-MTS_OPEN
-CHAR_CASH
-CASH_SONG
-ENTER_CASH_SHOP
-ENTER_MTS
-USE_CASH_ITEM
-```
-
-Recover:
-
-- stage/context transition;
-- object ownership;
-- UI creation;
-- inventory/cash-item representation;
-- packet schemas;
-- return-to-game flow where statically visible.
-
-Separate evidence-backed findings from expected MapleStory architecture.
-
-Deliver at least 5 pseudocode flows.
+Separate proven CMS079 behavior from expected MapleStory architecture.
 
 ---
 
-# 36. Pet / Summon / Reactor / Map Object families
-
-These cross several subsystems and should not remain unnamed just because they are not one of the primary dossiers.
-
-Analyze:
-
-```text
-SPAWN_PET
-MOVE_PET
-PET_CHAT
-PET_NAMECHANGE
-PET_COMMAND
-SPAWN_SUMMON
-REMOVE_SUMMON
-MOVE_SUMMON
-SUMMON_ATTACK
-DAMAGE_SUMMON
-SUMMON_SKILL
-REACTOR_SPAWN
-REACTOR_HIT
-REACTOR_DESTROY
-DROP_ITEM_FROM_MAPOBJECT
-REMOVE_ITEM_FROM_MAP
-```
+# 39. Pet / Summon / Reactor / Drop / map-object families
 
 Create:
 
@@ -2063,413 +1509,127 @@ Create:
 result/task050-map-object-families.md
 ```
 
-Recover common field-object interfaces when possible.
+Analyze Pet, Summon, Reactor, Drop/MapItem, Mist, Door, and related lifecycle handlers.
 
-Look for shared base classes/vtable slots among:
+Look for shared field-object interfaces and common vtable slot topology across:
 
 ```text
-CUser-like
-CMob-like
-CNpc-like
-CPet-like
-CSummoned-like
-CReactor-like
-CDrop-like
+User-like
+Mob-like
+Npc-like
+Pet-like
+Summoned-like
+Reactor-like
+Drop-like
 ```
+
+Treat exact source names as hypotheses unless structurally supported.
 
 ---
 
-# 37. Common object-family / inheritance analysis
+# 40. Update loops and input/action routing
 
-Identify repeated virtual-method shapes across field objects.
-
-Potential common operations:
-
-```text
-GetObjectId
-GetType
-Update
-Draw
-OnPacket
-GetPos
-SetPos
-GetRect
-IsKindOf
-```
-
-Names above are hypotheses, not assumptions.
-
-Use shared vtable slot topology and repeated call sites.
-
-Create:
-
-```text
-result/task050-inheritance-hypotheses.csv
-```
-
-Fields:
-
-```text
-family
-class_a
-class_b
-shared_slots
-shared_methods
-base_candidate
-confidence
-notes
-```
-
----
-
-# 38. Update/tick loop recovery
-
-Find major periodic update methods.
-
-Evidence:
-
-```text
-time/tick APIs
-field object iteration
-timer comparisons
-animation updates
-UI updates
-mob/user updates
-```
-
-Recover likely:
-
-- global app update loop;
-- field update loop;
-- UI update loop;
-- object update methods;
-- timer/cooldown processing.
-
-Create:
+Create where evidence warrants:
 
 ```text
 result/task050-update-loops.md
-```
-
-Do not confuse protector-era timing code with game update logic.
-
----
-
-# 39. Event / input routing
-
-Where useful, connect:
-
-```text
-Windows input / UI event
-→ control/window callback
-→ gameplay method
-→ packet builder
-```
-
-Examples:
-
-```text
-inventory double-click → use item
-skill hotkey → special move
-NPC click → NPC_TALK
-portal input → change map
-chat submit → chat packet
-```
-
-Create:
-
-```text
 result/task050-input-action-flows.csv
 ```
 
-This can significantly improve UI method naming.
+Find periodic update families through timers, field-object iteration, UI updates, animation/tick logic, skill cooldowns, and state polling.
+
+Connect UI/input events to gameplay actions and packet builders where possible:
+
+```text
+inventory action → item sender
+skill hotkey → skill sender
+NPC click → NPC_TALK
+portal action → CHANGE_MAP
+chat submit → chat sender
+```
 
 ---
 
-# 40. Semantic clustering
-
-Use function features to cluster unnamed code around known seeds.
-
-Features may include:
-
-```text
-callees
-callers
-globals
-field offsets
-strings
-WZ paths
-packet APIs
-vtable membership
-imports
-neighbor functions
-reference matches
-```
-
-Do not automatically convert clustering into high-confidence names.
-
-Use it to prioritize manual review.
+# 41. Semantic call graph and clustering
 
 Create:
-
-```text
-result/task050-clusters.csv
-```
-
-Include cluster explanation and representative anchors.
-
----
-
-# 41. Interprocedural field propagation
-
-When a field-bearing object passes through wrappers/helpers, track its identity across calls.
-
-Support common calling conventions:
-
-```text
-thiscall ecx
-fastcall ecx/edx
-stack this pointer
-wrapper-local alias
-```
-
-This is important for:
-
-- `CUser`/`CMob` helpers;
-- UI helpers;
-- packet serializers;
-- field-object lifecycle functions.
-
-Record alias-confidence to avoid false ownership.
-
----
-
-# 42. Semantic call graph
-
-Create a normalized gameplay call graph:
 
 ```text
 result/task050-call-edges.csv
+result/task050-clusters.csv
 ```
 
-Fields:
+Use callgraph/global/field/string/resource/vtable/packet features to cluster unknown code around trusted seeds.
 
-```text
-caller
-callee
-caller_name
-callee_name
-caller_subsystem
-callee_subsystem
-edge_kind
-packet_context
-state_context
-confidence
-notes
-```
+Clustering prioritizes manual review; it must not automatically create high-confidence names.
 
-Edge kinds:
-
-```text
-direct
-virtual
-wrapper
-projected-reference
-packet-triggered
-resource-call
-unknown
-```
-
-Do not mix projected reference edges with observed CMS079 calls.
+Track direct vs virtual vs wrapper vs reference-projected edges separately.
 
 ---
 
-# 43. Behavioral flow reconstruction
+# 42. Equivalent pseudocode and class interfaces
 
-Task 046 produced 27 flows.
-
-Task 050 should expand and deepen them.
-
-Each flow should include:
-
-```text
-trigger
-packet/input/resource event
-entry function
-important calls
-objects touched
-fields read/written
-state transition
-outgoing packets
-UI/resource effects
-termination/result
-confidence
-```
-
-Create:
+Create/refresh:
 
 ```text
 result/task050-behavior-flows.md
-```
-
-Preferred target:
-
-```text
->=60 total flows
-```
-
-Stretch:
-
-```text
->=80
-```
-
-Do not count trivial one-call wrappers as flows.
-
----
-
-# 44. Equivalent pseudocode standard
-
-Pseudocode should be evidence-backed and should not pretend to be the original source.
-
-Good:
-
-```cpp
-// semantic reconstruction, not original source
-void CharacterContext::ApplyStatUpdate(Packet& p) {
-    uint32_t mask = p.ReadInt32();
-    if (mask & kLevelBit) {
-        level = p.ReadByte();
-    }
-    if (mask & kJobBit) {
-        job = p.ReadInt16();
-    }
-    RefreshStatusUI(mask);
-}
-```
-
-Bad:
-
-```cpp
-void CWvsContext::OnStatChanged(...) // exact original name asserted without evidence
-```
-
-unless the original-style name is strongly supported.
-
-For every pseudocode block record source RVAs/functions nearby.
-
----
-
-# 45. Pseudocode deliverables
-
-Create subsystem pseudocode files when depth warrants:
-
-```text
-result/task050-pseudocode-character.md
-result/task050-pseudocode-field.md
-result/task050-pseudocode-mob.md
-result/task050-pseudocode-skill.md
-result/task050-pseudocode-quest-npc.md
-result/task050-pseudocode-inventory.md
-result/task050-pseudocode-ui.md
-result/task050-pseudocode-social.md
-result/task050-pseudocode-login.md
-result/task050-pseudocode-cashshop.md
-```
-
-Do not create empty placeholders.
-
----
-
-# 46. Class interface sketches
-
-For sufficiently understood classes, produce semantic interface sketches.
-
-Example format:
-
-```cpp
-class MobLike {
-public:
-    void ApplyMovePacket(Packet&);
-    void ApplyDamagePacket(Packet&);
-    void ApplyStatusPacket(Packet&);
-    int  GetObjectId() const;
-
-private:
-    // +0x?? confirmed/probable fields only
-};
-```
-
-Create:
-
-```text
 result/task050-class-interfaces.md
 ```
 
-Each class should state:
+Conditional subsystem pseudocode files may be created when materially populated.
 
-```text
-identity confidence
-method confidence
-field confidence
-reference correlation
-known unknowns
-```
+Every pseudocode block must be labeled as semantic reconstruction, not original source, and should cite relevant RVAs/functions and confidence.
+
+Strong pseudocode includes object/field/state/packet/resource semantics, not just renamed assembly.
 
 ---
 
-# 47. Confidence promotion campaign
+# 43. Stop conditions
 
-Task 046 left many low-confidence class candidates.
+Do not stop because:
 
-Create a dedicated ledger:
+- one function is hard;
+- one class lacks RTTI;
+- one sender slice fails;
+- one subsystem plateaus;
+- a reference match is rejected;
+- a checkpoint commit exists.
+
+Valid stops:
+
+## Stop A — Strong completion
+
+S8/S9 reached and most major subsystems have useful deep models, while the Completion Gate passes.
+
+## Stop B — Verified practical static-corpus boundary
+
+May be claimed only after **all mandatory passes in §14** were materially attempted.
+
+Additionally, for each major subsystem, classify unresolved high-value questions into:
 
 ```text
-result/task050-confidence-promotions.csv
+static-solvable
+populated-state-required
+genuinely-unknown
 ```
 
-Fields:
+For every `populated-state-required` category provide at least one concrete example showing why static code and current normalized artifacts cannot answer it.
 
-```text
-entity
-old_confidence
-new_confidence
-new_evidence
-conflicts_resolved
-notes
-```
+The statement “the capture is pre-login” alone is insufficient for Stop B.
 
-A major success of Task 050 is not just finding new things but converting:
+If leaf-handler recovery, sender provenance, class/field promotion, state-machine extraction, or resource correlation still has obvious static work, do not claim Stop B.
 
-```text
-low → medium
-medium → high
-```
+## Stop C — Missing corpus
 
-for important classes/functions/fields.
+Required recovered-image bytes are unavailable and normalized artifacts are insufficient for the remaining deep analyses.
+
+## Stop D — Time budget
+
+At least 30 actual hours of high-value work elapsed and the campaign leaves durable maps/scripts plus precise continuation.
 
 ---
 
-# 48. Contradiction handling
-
-When server semantics, reference semantics, and client code disagree:
-
-1. keep the CMS079 client code as primary for client behavior;
-2. keep wire observations as primary for actual protocol values;
-3. treat server code as implementation context;
-4. treat v95 as reference only.
-
-Record contradictions:
-
-```text
-result/task050-contradictions.md
-```
-
-Do not silently force all sources to agree.
-
----
-
-# 49. Coverage metrics
+# 44. Coverage metrics
 
 Maintain:
 
@@ -2477,34 +1637,39 @@ Maintain:
 result/task050-coverage.csv
 ```
 
-Track at least:
+Required metrics include at least:
 
 ```text
-function candidates
-reliable function boundaries
-subsystem-classified functions
-medium+ semantic functions
-high+ semantic functions
-class/object candidates
-medium+ classes
-high+ classes
-assigned vtables
-field facts
-high+ field facts
-inbound packet names
-inbound leaf handlers located
-inbound handlers with body summaries
-inbound packet schemas
-sender sites total
-sender sites classified
-sender sites packet-named
-builder functions total
-builder functions semantically summarized
-outbound packet schemas
-state machines
-WZ/resource links
-reference correlations
-pseudocode functions/flows
+function_candidates
+reliable_function_boundaries
+subsystem_classified_functions
+medium_semantic_functions
+high_semantic_functions
+class_object_candidates
+medium_classes
+high_classes
+assigned_vtables
+raw_field_access_observations
+semantic_field_facts
+high_semantic_field_facts
+inbound_packet_names
+inbound_leaf_handlers_located
+inbound_handler_body_summaries
+packet_header_observations_inbound
+inbound_minimal_schemas
+inbound_structured_schemas
+sender_sites_total
+sender_sites_classified
+sender_sites_packet_named
+packet_header_observations_outbound
+builder_functions_total
+builder_functions_semantically_summarized
+outbound_minimal_schemas
+outbound_structured_schemas
+state_machines
+resource_links
+reference_correlations
+pseudocode_functions_flows
 ```
 
 For every metric preserve:
@@ -2512,12 +1677,15 @@ For every metric preserve:
 ```text
 baseline
 current
-preferred target
+preferred_target
+how_counted
 ```
+
+No percentage without a meaningful denominator.
 
 ---
 
-# 50. Per-subsystem coverage table
+# 45. Per-subsystem coverage
 
 Maintain:
 
@@ -2525,17 +1693,19 @@ Maintain:
 result/task050-subsystem-coverage.csv
 ```
 
-One row per subsystem with fields:
+Suggested columns:
 
 ```text
 subsystem
-function_count_classified
+classified_functions
 high_semantic_functions
-classes_medium_plus
-fields_known
-inbound_handlers
+medium_classes
+high_classes
+semantic_fields
+inbound_leaf_handlers
 outbound_senders
-packet_schemas
+minimal_schemas
+structured_schemas
 state_machines
 pseudocode_flows
 resource_links
@@ -2543,95 +1713,49 @@ largest_gap
 confidence
 ```
 
-This becomes the best future answer to “how much of the client is reversed?”
+This file should become the best future basis for answering “how much of the client is reversed?”.
 
 ---
 
-# 51. Work prioritization score
-
-Use a simple prioritization score for unknown functions.
-
-Possible factors:
-
-```text
-+ known packet association
-+ known subsystem callers
-+ vtable membership
-+ high fan-in/fan-out
-+ unique string
-+ WZ/resource path
-+ server/reference correlation
-+ touches known object fields
-+ bridges two known components
-```
-
-Low-value isolated helpers should not consume the campaign early.
+# 46. Artifact manifest — mandatory
 
 Create:
 
 ```text
-result/task050-hotspots.csv
+result/task050-artifact-manifest.csv
 ```
 
-with top unresolved functions/objects.
+Columns:
+
+```text
+artifact
+requirement
+exists
+nonempty
+row_count_or_size
+quality_gate
+quality_gate_passed
+blocked_reason
+notes
+```
+
+Before final reporting, compute:
+
+```text
+required_artifacts
+present_artifacts
+missing_artifacts
+quality_passed_artifacts
+blocked_artifacts
+```
+
+If an unconditional required artifact is missing without a documented blocker, the final verdict cannot be strong completion.
 
 ---
 
-# 52. Tool validation
+# 47. Required durable artifacts
 
-Any new automatic naming/inference script must be validated against known anchors.
-
-At minimum test on:
-
-```text
-CClientSocket::Connect
-CClientSocket::ProcessRecv
-WARP_TO_MAP handler
-SPAWN_PLAYER handler
-KEYMAP handler
-WriteHeader
-CLogin state machine region
-CWvsContext known fields
-```
-
-Measure false-positive behavior.
-
-Do not apply automatic high-confidence naming if validation is poor.
-
----
-
-# 53. Checkpoint policy
-
-This is one Task 050 campaign, but long runs may make checkpoint commits useful.
-
-Permitted checkpoint commits:
-
-```text
-Task 050 checkpoint semantic database
-Task 050 checkpoint sender provenance
-Task 050 checkpoint object model
-Task 050 checkpoint subsystem dossiers
-```
-
-Do not stop merely because a checkpoint was committed.
-
-Continue the same task unless a real stop condition is reached.
-
-Before each commit:
-
-```text
-git status --short
-git diff
-git diff --cached
-```
-
-Never force push.
-
----
-
-# 54. Durable result artifacts
-
-Core required artifacts:
+Unconditional core artifacts:
 
 ```text
 result/50-subsystem-semantic-deep-recovery.md
@@ -2641,14 +1765,17 @@ result/task050-milestones.csv
 result/task050-blockers.csv
 result/task050-coverage.csv
 result/task050-subsystem-coverage.csv
+result/task050-artifact-manifest.csv
 result/task050-packet-master.csv
 result/task050-conflicts.csv
 result/task050-function-map.csv
+result/task050-function-boundaries.csv
 result/task050-call-edges.csv
 result/task050-inbound-handler-semantics.csv
 result/task050-packet-schemas.csv
 result/task050-packet-schemas.md
 result/task050-sender-provenance.csv
+result/task050-sender-coverage.md
 result/task050-builder-semantics.csv
 result/task050-global-map.csv
 result/task050-vtable-map.csv
@@ -2682,99 +1809,13 @@ result/task050-cashshop-mts.md
 result/task050-map-object-families.md
 ```
 
-Conditional pseudocode files only when populated:
+Conditional artifacts should be created only when materially populated.
 
-```text
-result/task050-pseudocode-*.md
-```
-
-Do not create empty files just to satisfy the list.
+Do not make empty files to satisfy the manifest.
 
 ---
 
-# 55. Function map schema
-
-`result/task050-function-map.csv` should preferably include:
-
-```text
-function_id
-rva
-end_rva
-boundary_confidence
-semantic_name
-name_kind
-semantic_confidence
-subsystem
-owner_class
-vtable_slot
-packet_in
-packet_out
-fields_read
-fields_written
-important_callees
-important_callers
-strings
-resource_links
-reference_symbol
-reference_confidence
-pseudocode_artifact
-notes
-```
-
----
-
-# 56. Class map schema
-
-`result/task050-class-map.csv` should preferably include:
-
-```text
-class_id
-semantic_name
-name_kind
-confidence
-subsystem
-rtti
-vtable_rva
-vtable_slots
-ctor_rvas
-dtor_rvas
-singleton_global
-static_object
-minimum_size
-field_count_known
-method_count_known
-packet_handlers
-packet_senders
-reference_class
-reference_basis
-notes
-```
-
----
-
-# 57. Field-fact schema
-
-`result/task050-field-facts.csv`:
-
-```text
-class_or_object
-offset_hex
-size
-semantic_name
-confidence
-read_functions
-write_functions
-packet_sources
-packet_sinks
-comparison_constants
-resource_consumers
-reference_field
-notes
-```
-
----
-
-# 58. Milestone ledger
+# 48. Milestone ledger
 
 Maintain:
 
@@ -2782,34 +1823,34 @@ Maintain:
 result/task050-milestones.csv
 ```
 
-Fields:
+Columns:
 
 ```text
 milestone
+immutable_definition
 status
-time_or_checkpoint
 evidence
 artifact
 confidence
 notes
 ```
 
-Statuses:
+Allowed statuses:
 
 ```text
 not-started
 in-progress
-reached
 partial
+reached
 blocked
 not-applicable
 ```
 
-Do not mark S4/S8 reached based purely on low-confidence candidate counts.
+The milestone names and meanings come directly from §11 and may not be redefined.
 
 ---
 
-# 59. Blocker ledger
+# 49. Blocker ledger
 
 Maintain:
 
@@ -2817,7 +1858,7 @@ Maintain:
 result/task050-blockers.csv
 ```
 
-Fields:
+Columns:
 
 ```text
 blocker_id
@@ -2827,7 +1868,7 @@ symptom
 evidence
 attempted_methods
 why_unresolved
-needs_richer_corpus
+static_or_runtime_dependency
 next_safe_option
 ```
 
@@ -2835,83 +1876,144 @@ Record a blocker once, then move to another productive branch unless it blocks t
 
 ---
 
-# 60. Stop conditions
+# 50. Confidence promotion ledger
 
-Do not stop because:
-
-- one function is hard;
-- one class lacks RTTI;
-- one sender provenance fails;
-- a reference match is rejected;
-- one subsystem reaches a local plateau.
-
-Switch branches and continue.
-
-Valid stop conditions:
-
-### Stop A — Strong completion
-
-S8/S9 reached and most major subsystems have useful deep models.
-
-### Stop B — Practical corpus boundary
-
-Static semantics remaining are dominated by facts impossible to infer without later-phase populated state, and this is demonstrated subsystem by subsystem.
-
-### Stop C — Missing corpus
-
-Required recovered-image bytes are unavailable and committed normalized artifacts are insufficient for deep analysis.
-
-### Stop D — Time budget
-
-30–60 hours of high-value work completed, with durable maps/scripts and a precise continuation.
-
----
-
-# 61. What counts as strong completion
-
-A strong completion should look approximately like:
+Maintain:
 
 ```text
->=180 high/confirmed semantic functions
->=700 subsystem-classified functions
->=400/486 senders classified
->=325 senders packet-named or strongly role-named
->=80 medium+ classes/objects
->=50 high+ classes/objects
->=250 field facts
->=140 inbound handler body summaries
->=120 inbound packet schemas
->=120 outbound packet schemas
->=20 state machines
->=60 deep pseudocode flows
-all 10 major subsystem dossiers materially populated
+result/task050-confidence-promotions.csv
 ```
 
-These are preferred targets, not quotas that justify weak naming.
-
-Quality beats artificial count completion.
-
----
-
-# 62. What counts as weak completion
-
-The following is not enough:
+Track important promotions:
 
 ```text
-“read all handlers”
-“generated 50k functions”
-“classified many by address range”
-“copied v95 names”
-“mapped all opcodes”
+entity
+old_confidence
+new_confidence
+new_evidence
+conflicts_resolved
+notes
 ```
 
-without deeper body semantics.
-
-A weak completion that only adds names should explicitly say so.
+A major success is converting important low/medium candidates into high-confidence entities, not just adding more anonymous rows.
 
 ---
 
-# 63. Final report requirements
+# 51. Suggested first continuation block
+
+Do not restart from zero. Audit the current Task-050 checkpoint and continue.
+
+A productive opening sequence:
+
+```text
+Hour 0–2
+- sync and reread this unified spec
+- audit existing Task050 artifacts against §10 definitions
+- rebuild baseline and artifact manifest
+- separate raw field accesses from semantic field facts
+- separate header observations from real schemas
+- correct CWvsContext over-classification
+
+Hour 2–6
+- finish true leaf-handler extraction for range/field/sub-dispatch families
+- promote 85 checkpoint reader-semantic entries into real body summaries
+- recover phase/login leaf routing
+
+Hour 6–12
+- interprocedural sender-provenance proof + batch pass
+- payload-builder schemas
+- first semantic field promotion pass
+- ctor/vtable/object-owner correlation
+```
+
+Continue after 12 hours; this is not an endpoint.
+
+---
+
+# 52. Suggested second continuation block
+
+Prioritize:
+
+```text
+sender provenance batch closure
+class/vtable promotion
+semantic field facts
+state-machine extraction
+Character / Field / Mob / Skill dossiers
+resource/WZ links
+UI class ownership
+```
+
+Checkpoint if useful, then continue.
+
+---
+
+# 53. Suggested later hours
+
+Shift from census to closure:
+
+```text
+raw field access → semantic owned field
+common dispatcher → true leaf handler
+header observation → payload schema
+anonymous vtable → owner class
+state writes → explicit state machine
+cluster label → high-confidence semantic function
+packet flow → class method/interface
+```
+
+Favor entities that unlock many neighbors.
+
+---
+
+# 54. Tooling policy
+
+Reusable project-owned scripts may live in `scripts/`.
+
+Validate automated inference against trusted anchors such as:
+
+```text
+CClientSocket::Connect
+CClientSocket::ProcessRecv
+WARP_TO_MAP handler
+SPAWN_PLAYER handler
+KEYMAP handler
+WriteHeader
+CLogin state region
+known CWvsContext fields
+```
+
+Measure false positives before batch promotion.
+
+Do not auto-promote high-confidence names from an unvalidated heuristic.
+
+Large indexes/databases stay under:
+
+```text
+.work/task-050/
+```
+
+---
+
+# 55. Checkpoint policy
+
+Permitted checkpoint commit themes:
+
+```text
+Task 050 checkpoint metric audit
+Task 050 checkpoint handler closure
+Task 050 checkpoint sender provenance
+Task 050 checkpoint object model
+Task 050 checkpoint subsystem dossiers
+```
+
+After a checkpoint, continue Task 050.
+
+Do not create another task spec.
+
+---
+
+# 56. Final-report requirements
 
 Final report:
 
@@ -2919,152 +2021,78 @@ Final report:
 result/50-subsystem-semantic-deep-recovery.md
 ```
 
-Must contain:
-
-## Repository state
+Must include:
 
 ```text
 STARTING_HEAD
 FINAL_COMMIT
 push status
 checkpoint commits
+actual elapsed work time
+final verdict
+S0–S10 exact statuses
 ```
 
-## Corpus
+Include baseline→final metrics using §10/§44 definitions.
 
-```text
-client hash
-recovered image availability
-analysis tools
-reference sources
-```
+For each major subsystem report:
 
-## Highest milestone
-
-State S0–S10 honestly.
-
-## Baseline → final table
-
-Include all coverage metrics.
-
-## Major semantic achievements
-
-At least the top 30 newly understood functions/classes/fields/state machines.
-
-## Per-subsystem summary
-
-For each:
-
-```text
-Character/User
-Field/Map
-Mob/Combat
-Skill/Buff
-Quest/NPC
-Inventory/Item
-UI
-Social
-Login/World/Channel
-CashShop/MTS
-```
-
-report:
-
-- class/object families;
-- high-confidence functions;
-- fields/layout;
-- inbound packet handlers;
+- important classes/objects;
+- high-confidence methods;
+- semantic fields/layout;
+- inbound leaf handlers;
 - outbound senders;
 - packet schemas;
 - state machines;
 - WZ/resource links;
-- representative pseudocode flows;
+- representative pseudocode;
 - largest unresolved gap.
 
-## Sender recovery
-
-```text
-baseline named
-final classified
-final packet-named
-remaining
-major provenance patterns
-```
-
-## Inbound recovery
-
-```text
-handler sites total
-leaf handlers located
-body summaries
-packet schemas
-```
-
-## Object model
-
-```text
-class candidates
-medium+
-high+
-vtables assigned
-fields recovered
-```
-
-## Pseudocode
-
-Count and list the strongest examples.
-
-## Static corpus boundary
-
-Answer precisely:
-
-```text
-What can still be recovered statically?
-What now genuinely needs populated runtime state?
-```
-
-## Next direction
-
-Recommend one broad next campaign, not ten microtasks.
-
----
-
-# 64. Final top lists
-
-Final report must include:
+Also include:
 
 ```text
 Top 30 newly recovered semantic functions/methods
 Top 20 newly recovered classes/objects
-Top 30 strongest field facts
+Top 30 strongest semantic field facts
 Top 20 state-machine discoveries
 Top 30 unresolved semantic hotspots
 ```
 
-Each item should include confidence and evidence basis.
+Answer precisely:
+
+```text
+What remains statically solvable?
+What genuinely requires populated later-phase state?
+What is genuinely unknown?
+```
 
 ---
 
-# 65. Commit hygiene
+# 57. Final commit wording
 
-Never commit:
+Use commit wording that matches the actual verdict.
+
+Only if the Completion Gate passes and strong completion is justified:
 
 ```text
-.raw/
-.work/
-original EXE/DLL/DAT/WZ files
-recovered executable image
-raw memory capture
-large disassembler databases
-bulk binary blobs
-raw third-party source trees
+Complete Task 050 subsystem semantic deep recovery master campaign
 ```
 
-Reusable project-owned scripts are allowed.
+If the run is useful but partial:
 
-Normalized CSV/Markdown results are allowed.
+```text
+Advance Task 050 subsystem semantic deep recovery campaign
+```
 
-Check before final commit:
+If a verified corpus boundary is reached:
+
+```text
+Conclude Task 050 at verified static corpus boundary
+```
+
+Do not use `Complete Task 050` merely because the current run ended.
+
+Before every commit:
 
 ```text
 git status --short
@@ -3072,33 +2100,9 @@ git diff
 git diff --cached
 ```
 
-Preferred final commit message:
+Never force push.
 
-```text
-Complete Task 050 subsystem semantic deep recovery master campaign
-```
-
-Then:
-
-```text
-git rev-parse HEAD
-```
-
-Record:
-
-```text
-FINAL_COMMIT
-```
-
-Push:
-
-```text
-git push origin main
-```
-
-No force push.
-
-If the remote advanced:
+If remote advanced:
 
 - fetch;
 - report divergence;
@@ -3106,114 +2110,61 @@ If the remote advanced:
 
 ---
 
-# 66. Recommended autonomous work loop
+# 58. Commit hygiene
 
-The local agent should repeatedly execute:
+Never commit:
 
 ```text
-1. choose highest-value unresolved semantic anchor
-2. inspect direct code
-3. collect caller/callee/field/string/resource/packet evidence
-4. compare server/reference behavior
-5. produce provisional semantic model
-6. validate against at least one independent evidence family
-7. update maps
-8. identify repeatable pattern
-9. automate if worthwhile
-10. batch apply
-11. manually audit samples
-12. promote confidence where justified
-13. move to next subsystem/hotspot
+.raw/
+.work/
+original EXE/DLL/DAT/WZ
+recovered executable image
+raw memory captures
+large disassembler databases
+bulk binary blobs
+third-party binary/source corpora
 ```
 
-Do not repeatedly ask the user which function to analyze next.
-
-Use the task priorities and evidence score autonomously.
-
----
-
-# 67. Suggested first 12 hours
-
-A productive opening sequence is:
-
-### Hour 0–2
-
-- sync;
-- normalize 046–049 artifacts;
-- rebuild baseline;
-- create packet master table;
-- build or refresh function-analysis database.
-
-### Hour 2–5
-
-- deepen 0x20–0x80 inbound handlers;
-- recover packet reader schemas;
-- extract field writes;
-- prioritize UPDATE_STATS / inventory / buff / social handlers.
-
-### Hour 5–8
-
-- deepen player lifecycle 0xA2–0xED;
-- separate leaf handlers;
-- identify CUser/Pet/Summon families;
-- begin field-offset clusters.
-
-### Hour 8–12
-
-- monster/NPC bands;
-- ctor/vtable correlation;
-- interprocedural sender-provenance tool proof;
-- first object layouts.
-
-This is guidance, not a rigid schedule.
-
----
-
-# 68. Suggested second 12 hours
-
-Prioritize:
-
-- sender provenance batch pass;
-- packet builder schemas;
-- field inference;
-- UI ctor/vtable promotion;
-- Character/Field/Mob/Skill dossiers;
-- state-machine extraction.
-
-Checkpoint if useful, but continue.
-
----
-
-# 69. Suggested later hours
-
-Shift from breadth to semantic closure:
+Allowed:
 
 ```text
-unknown packet field → semantic field
-anonymous vtable → class family
-class family → field layout
-field layout → pseudocode
-pseudocode → cross-subsystem flow
+project-owned reusable scripts
+normalized CSV
+Markdown reports
+semantic maps
+state graphs
+pseudocode reconstructions
 ```
 
-Focus on entities that unlock many neighbors.
-
 ---
 
-# 70. Final campaign principle
+# 59. Acceptance principle
 
-Task 050 should move the project from:
+Task 050 is successful when the project moves from:
 
 ```text
-“We know where most major client logic lives and what packets route to it.”
+“We know the packet names and where major code lives.”
 ```
 
 into:
 
 ```text
-“We can explain how the major CMS079 client subsystems represent state,
-process packets, update objects, interact with resources, and emit actions,
-with evidence-backed class/field/method models and equivalent pseudocode.”
+“We can explain how the major CMS079 client subsystems parse data,
+represent state, mutate objects, transition states, use resources,
+emit actions, and interact through evidence-backed classes, fields,
+methods, packet schemas, and equivalent pseudocode.”
 ```
 
-That is the acceptance standard.
+Database size is not semantic recovery.
+
+Opcode naming is not semantic recovery.
+
+A central singleton cluster is not class ownership.
+
+A raw offset is not a semantic field.
+
+A `WriteHeader` row is not a packet schema.
+
+A sub-dispatcher address is not a leaf-handler explanation.
+
+Those distinctions are the acceptance standard for the remainder of Task 050.
