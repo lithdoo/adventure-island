@@ -1,0 +1,208 @@
+opcode,s2c_name,dispatcher,handler_rva,subsystem,confidence,reads,read_count,sends,globals_touched,other_globals,key_calls,branches
+0x0000,LOGIN_STATUS,phase,,unknown,medium,,0,0,,,,0
+0x0002,LICENSE_RESULT,phase,,unknown,medium,,0,0,,,,0
+0x0004,CHOOSE_GENDER,phase,,unknown,medium,,0,0,,,,0
+0x0005,GENDER_SET,phase,,unknown,medium,,0,0,,,,0
+0x0006,SERVERSTATUS,phase,,unknown,medium,,0,0,,,,0
+0x0009,SERVERLIST,phase,,unknown,medium,,0,0,,,,0
+0x000A,CHARLIST,phase,,unknown,medium,,0,0,,,,0
+0x000B,SERVER_IP,phase,,unknown,medium,,0,0,,,,0
+0x000C,CHAR_NAME_RESPONSE,phase,,unknown,medium,,0,0,,,,0
+0x0011,ADD_NEW_CHAR_ENTRY,phase,,unknown,medium,,0,0,,,,0
+0x0013,CHANGE_CHANNEL,phase,,unknown,medium,,0,0,,,,0
+0x0014,PING,phase,,unknown,medium,,0,0,,,,0
+0x0018,CHANNEL_SELECTED,phase,,unknown,medium,,0,0,,,,0
+0x0020,MODIFY_INVENTORY_ITEM,range,range_dispatcher,inventory,medium,,0,0,,,,0
+0x0021,UPDATE_INVENTORY_SLOT,range,range_dispatcher,inventory,medium,,0,0,,,,0
+0x0022,UPDATE_STATS,range,range_dispatcher,character,medium,,0,0,,,,0
+0x0023,GIVE_BUFF,range,range_dispatcher,skill,medium,,0,0,,,,0
+0x0024,CANCEL_BUFF,range,range_dispatcher,skill,medium,,0,0,,,,0
+0x0025,TEMP_STATS,range,range_dispatcher,character,medium,,0,0,,,,0
+0x0026,TEMP_STATS_RESET,range,range_dispatcher,character,medium,,0,0,,,,0
+0x0027,UPDATE_SKILLS,range,range_dispatcher,skill,medium,,0,0,,,,0
+0x0028,SKILL_USE_RESULT,range,range_dispatcher,skill,medium,,0,0,,,,0
+0x0029,FAME_RESPONSE,range,range_dispatcher,social,medium,,0,0,,,,0
+0x002A,SHOW_STATUS_INFO,range,range_dispatcher,ui,medium,,0,0,,,,0
+0x002B,SHOW_NOTES,range,range_dispatcher,ui,medium,,0,0,,,,0
+0x002C,TROCK_LOCATIONS,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x002D,ANTI_MACRO_RESULT,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x002F,CLAIM_RESULT,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0030,CLAIM_STATUS_CHANGED,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0031,SET_TAMING_MOB_INFO,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0032,UPDATE_MOUNT,range,range_dispatcher,character,medium,,0,0,,,,0
+0x0033,SHOW_QUEST_COMPLETION,range,range_dispatcher,quest,medium,,0,0,,,,0
+0x0034,SEND_TITLE_BOX,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0035,USE_SKILL_BOOK,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0036,FINISH_SORT,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0037,FINISH_GATHER,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x003A,CHAR_INFO,range,range_dispatcher,character,medium,,0,0,,,,0
+0x003B,PARTY_OPERATION,range,range_dispatcher,social,medium,,0,0,,,,0
+0x003C,BUDDYLIST,range,range_dispatcher,social,medium,,0,0,,,,0
+0x003E,GUILD_OPERATION,range,range_dispatcher,social,medium,,0,0,,,,0
+0x003F,ALLIANCE_OPERATION,range,range_dispatcher,social,medium,,0,0,,,,0
+0x0040,SPAWN_PORTAL,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0041,SERVERMESSAGE,range,range_dispatcher,ui,medium,,0,0,,,,0
+0x0045,ENGAGE_REQUEST,range,range_dispatcher,quest,medium,,0,0,,,,0
+0x0046,SHOW_PREDICT_CARD,range,range_dispatcher,ui,medium,,0,0,,,,0
+0x004E,YELLOW_CHAT,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0056,AVATAR_MEGA,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x005A,PLAYER_NPC,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x005B,MONSTERBOOK_ADD,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x005C,MONSTERBOOK_CHANGE_COVER,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0060,FAIRY_PEND_MSG,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0064,SEND_PEDIGREE,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0065,OPEN_FAMILY,range,range_dispatcher,social,medium,,0,0,,,,0
+0x0066,FAMILY_MESSAGE,range,range_dispatcher,social,medium,,0,0,,,,0
+0x0067,FAMILY_INVITE,range,range_dispatcher,social,medium,,0,0,,,,0
+0x0068,FAMILY_JUNIOR,range,range_dispatcher,social,medium,,0,0,,,,0
+0x0069,SENIOR_MESSAGE,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x006A,FAMILY,range,range_dispatcher,social,medium,,0,0,,,,0
+0x006B,REP_INCREASE,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x006C,FAMILY_LOGGEDIN,range,range_dispatcher,social,medium,,0,0,,,,0
+0x006D,FAMILY_BUFF,range,range_dispatcher,social,medium,,0,0,,,,0
+0x006E,FAMILY_USE_REQUEST,range,range_dispatcher,quest,medium,,0,0,,,,0
+0x006F,LEVEL_UPDATE,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0070,MARRIAGE_UPDATE,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0071,JOB_UPDATE,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0072,DATA_CRC_CHECK_FAILED,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0073,TOP_MSG,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0074,BBS_OPERATION,range,range_dispatcher,social,medium,,0,0,,,,0
+0x0075,FISHING_BOARD_UPDATE,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x007D,CHAR_CASH,range,range_dispatcher,cashshop,medium,,0,0,,,,0
+0x0080,SKILL_MACRO,range,range_dispatcher,unknown,medium,,0,0,,,,0
+0x0081,WARP_TO_MAP (confirmed),field,0x37E72F,field,high,ReadInt32 > ReadByte > ReadByte > ReadByte > ReadInt16 > ReadString > ReadString > ReadInt32 > ReadInt32 > ReadInt32,10,0,,,0x66fc7c;0x14aea;0x18f94;0x29f5a;0x7bcf2,9
+0x0082,MTS_OPEN,field,0x37FC9E,cashshop,medium,,0,0,,,0x66fc7c;0x3245a1;0xf50ca;0x29be1;0x29825,7
+0x0083,CS_OPEN,field,0x37F209,cashshop,medium,,0,0,,,0x66fc7c;0x3245a1;0xf50ca;0x29be1;0x29825,8
+0x0087,BLOCK_MSG,field,JUMP_TABLE_0x141585,unknown,medium,,0,0,,,,0
+0x008A,MULTICHAT,field,JUMP_TABLE_0x141585,social,medium,,0,0,,,,0
+0x008B,WHISPER,field,JUMP_TABLE_0x141585,social,medium,,0,0,,,,0
+0x008C,SPOUSE_CHAT,field,JUMP_TABLE_0x141585,unknown,medium,,0,0,,,,0
+0x008D,BOSS_ENV,field,JUMP_TABLE_0x141585,field,medium,,0,0,,,,0
+0x008F,FORCED_MAP_EQUIP,field,JUMP_TABLE_0x141585,unknown,medium,,0,0,,,,0
+0x0091,MAP_EFFECT,field,JUMP_TABLE_0x141585,field,medium,,0,0,,,,0
+0x0092,CASH_SONG,field,JUMP_TABLE_0x141585,unknown,medium,,0,0,,,,0
+0x0093,GM_EFFECT,field,JUMP_TABLE_0x141585,ui,medium,,0,0,,,,0
+0x0094,OX_QUIZ,field,JUMP_TABLE_0x141585,quest,medium,,0,0,,,,0
+0x0095,GMEVENT_INSTRUCTIONS,field,JUMP_TABLE_0x141585,unknown,medium,,0,0,,,,0
+0x0096,CLOCK,field,JUMP_TABLE_0x141585,ui,medium,,0,0,,,,0
+0x0098,BOAT_EFFECT,field,JUMP_TABLE_0x141585,field,medium,,0,0,,,,0
+0x0099,BOAT_HIDE,field,JUMP_TABLE_0x141585,field,medium,,0,0,,,,0
+0x009A,ARIANT_SCOREBOARD,field,JUMP_TABLE_0x141585,unknown,medium,,0,0,,,,0
+0x009C,STOP_CLOCK,field,JUMP_TABLE_0x141585,ui,medium,,0,0,,,,0
+0x009F,MOVE_PLATFORM,field,JUMP_TABLE_0x141585,unknown,medium,,0,0,,,,0
+0x00A2,SPAWN_PLAYER (confirmed),field,0x57F6C0,field,medium,ReadInt32,1,0,,,0x66fc7c;0x580e40;0x2d66;0x57f845;0x4699b7,7
+0x00A3,REMOVE_PLAYER_FROM_MAP,field,0x57F64C,field,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00A4,CHATTEXT,field,0x57F64C,social,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00A6,CHALKBOARD,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00A7,UPDATE_CHAR_BOX,field,0x57F64C,character,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00A9,SHOW_SCROLL_EFFECT,field,0x57F64C,ui,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00AB,FISHING_CAUGHT,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00AD,SPAWN_PET,field,0x57F64C,character,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00AF,MOVE_PET,field,0x57F64C,character,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00B0,PET_CHAT,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00B1,PET_NAMECHANGE,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00B3,PET_COMMAND,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00B4,SPAWN_SUMMON,field,0x57F64C,combat,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00B5,REMOVE_SUMMON,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00B6,MOVE_SUMMON,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00B7,SUMMON_ATTACK,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00B9,DAMAGE_SUMMON,field,0x57F64C,combat,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00BA,SUMMON_SKILL,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00BB,MOVE_PLAYER,field,0x57F64C,field,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00BC,CLOSE_RANGE_ATTACK,field,0x57F64C,combat,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00BD,RANGED_ATTACK,field,0x57F64C,combat,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00BE,MAGIC_ATTACK,field,0x57F64C,combat,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C0,SKILL_EFFECT,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C1,CANCEL_SKILL_EFFECT,field,0x57F64C,skill,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C2,DAMAGE_PLAYER,field,0x57F64C,combat,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C3,FACIAL_EXPRESSION,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C5,SHOW_ITEM_EFFECT,field,0x57F64C,ui,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C6,SHOW_CHAIR,field,0x57F64C,ui,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C7,UPDATE_CHAR_LOOK,field,0x57F64C,character,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C8,SHOW_FOREIGN_EFFECT,field,0x57F64C,ui,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00C9,GIVE_FOREIGN_BUFF,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00CA,CANCEL_FOREIGN_BUFF,field,0x57F64C,skill,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00CB,UPDATE_PARTYMEMBER_HP,field,0x57F64C,character,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00CE,Animation_EFFECT,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00CF,CANCEL_CHAIR,field,0x57F64C,skill,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00D0,SHOW_ITEM_GAIN_INCHAT,field,0x57F64C,ui,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00D6,UPDATE_QUEST_INFO,field,0x57F64C,quest,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00D8,PET_FLAG_CHANGE,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00D9,PLAYER_HINT,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00E3,CYGNUS_INTRO_DISABLE_UI,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00E4,CYGNUS_INTRO_LOCK,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00E5,SUMMON_HINT,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00E6,TUTORIAL_GUIDE,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00E7,ARAN_COMBO,field,0x57F64C,unknown,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00EC,COOLDOWN,field,0x57F64C,skill,medium,ReadInt32,1,0,,,0x57f9c1;0x57fac9;0x57fcba;0x57f8b9;0x57f6c0,13
+0x00EE,SPAWN_MONSTER,field,0x2A6AB0,combat,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00EF,KILL_MONSTER,field,0x2A6AB0,combat,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00F0,SPAWN_MONSTER_CONTROL,field,0x2A6AB0,combat,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00F1,MOVE_MONSTER,field,0x2A6AB0,combat,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00F2,MOVE_MONSTER_RESPONSE,field,0x2A6AB0,combat,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00F4,APPLY_MONSTER_STATUS,field,0x2A6AB0,unknown,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00F5,CANCEL_MONSTER_STATUS,field,0x2A6AB0,skill,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00F7,MOB_TO_MOB_DAMAGE,field,0x2A6AB0,combat,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00F8,DAMAGE_MONSTER,field,0x2A6AB0,combat,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00FB,ARIANT_THING,field,0x2A6AB0,unknown,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00FC,SHOW_MONSTER_HP,field,0x2A6AB0,combat,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00FD,SHOW_MAGNET,field,0x2A6AB0,ui,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x00FF,CYGNUS_CHAR_CREATED,field,0x2A6AB0,unknown,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x0100,CATCH_ARIANT,field,0x2A6AB0,unknown,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x0103,CATCH_MONSTER,field,0x2A6AB0,unknown,high,ReadInt32 > ReadInt32 > ReadByte > ReadInt32,4,0,,,0x2a6b0f;0x2a6f58;0x2a6f11;0x2a6dcb;0x2a6c08,8
+0x0104,SPAWN_NPC,field,0x2CB061,quest,high,ReadByte > ReadInt32 > ReadString > ReadByte,4,0,,,0x2cb20b;0x2cb2b4;0x2cb3bb;0x2cb35d;0x2cb2cb,15
+0x0105,REMOVE_NPC,field,0x2CB061,unknown,high,ReadByte > ReadInt32 > ReadString > ReadByte,4,0,,,0x2cb20b;0x2cb2b4;0x2cb3bb;0x2cb35d;0x2cb2cb,15
+0x0106,SPAWN_NPC_REQUEST_CONTROLLER,field,0x2CB061,quest,high,ReadByte > ReadInt32 > ReadString > ReadByte,4,0,,,0x2cb20b;0x2cb2b4;0x2cb3bb;0x2cb35d;0x2cb2cb,15
+0x0107,NPC_ACTION,field,0x2CB061,quest,high,ReadByte > ReadInt32 > ReadString > ReadByte,4,0,,,0x2cb20b;0x2cb2b4;0x2cb3bb;0x2cb35d;0x2cb2cb,15
+0x010D,SPAWN_HIRED_MERCHANT,field,0x11B3A3,cashshop,high,ReadInt32 > ReadInt32 > ReadInt32 > ReadInt32,4,0,,,0x11b4d1;0x11b473;0x11b3d6;0x47841;0x11b818,12
+0x010E,DESTROY_HIRED_MERCHANT,field,0x11B3A3,cashshop,high,ReadInt32 > ReadInt32 > ReadInt32 > ReadInt32,4,0,,,0x11b4d1;0x11b473;0x11b3d6;0x47841;0x11b818,12
+0x010F,UPDATE_HIRED_MERCHANT,field,0x11B3A3,character,high,ReadInt32 > ReadInt32 > ReadInt32 > ReadInt32,4,0,,,0x11b4d1;0x11b473;0x11b3d6;0x47841;0x11b818,12
+0x0110,DROP_ITEM_FROM_MAPOBJECT,field,0x10E6CF,inventory,high,ReadByte > ReadInt32 > ReadByte > ReadInt32 > ReadInt32 > ReadByte > ReadInt16 > ReadInt16 > ReadInt32,9,0,,,0x10f385;0x10e6f4;0x66fc7c;0x594c7a;0x1117ff,9
+0x0111,REMOVE_ITEM_FROM_MAP,field,0x10E6CF,inventory,high,ReadByte > ReadInt32 > ReadByte > ReadInt32 > ReadInt32 > ReadByte > ReadInt16 > ReadInt16 > ReadInt32,9,0,,,0x10f385;0x10e6f4;0x66fc7c;0x594c7a;0x1117ff,9
+0x0113,SPAWN_LOVE,field,0x288CBA,unknown,high,ReadInt32 > ReadInt32 > ReadString > ReadString > ReadInt16 > ReadInt16,6,0,,,0x289303;0x288d18;0x288ced;0x3a48d0;0x652b,6
+0x0114,REMOVE_LOVE,field,0x288CBA,unknown,high,ReadInt32 > ReadInt32 > ReadString > ReadString > ReadInt16 > ReadInt16,6,0,,,0x289303;0x288d18;0x288ced;0x3a48d0;0x652b,6
+0x0115,SPAWN_MIST,field,0x31648,unknown,high,ReadInt32 > ReadInt32 > ReadInt32 > ReadInt32 > ReadByte > ReadInt16 > ReadInt32,7,0,,,0x31fab;0x3166d;0x66fc7c;0x594c7a;0x31e77,4
+0x0116,REMOVE_MIST,field,0x31648,unknown,high,ReadInt32 > ReadInt32 > ReadInt32 > ReadInt32 > ReadByte > ReadInt16 > ReadInt32,7,0,,,0x31fab;0x3166d;0x66fc7c;0x594c7a;0x31e77,4
+0x0117,SPAWN_DOOR,field,(inline),unknown,medium,,0,0,,,,0
+0x0118,REMOVE_DOOR,field,(inline),unknown,medium,,0,0,,,,0
+0x011C,REACTOR_HIT,field,0x341C0B,field,high,ReadInt32 > ReadByte > ReadInt16 > ReadInt16 > ReadInt16 > ReadByte > ReadByte > ReadInt32 > ReadInt32 > ReadByte,10,0,,,0x3420ec;0x341d39;0x341c3f;0x66fc7c;0x594c7a,7
+0x011E,REACTOR_SPAWN,field,0x341C0B,field,high,ReadInt32 > ReadByte > ReadInt16 > ReadInt16 > ReadInt16 > ReadByte > ReadByte > ReadInt32 > ReadInt32 > ReadByte,10,0,,,0x3420ec;0x341d39;0x341c3f;0x66fc7c;0x594c7a,7
+0x011F,REACTOR_DESTROY,field,0x341C0B,field,high,ReadInt32 > ReadByte > ReadInt16 > ReadInt16 > ReadInt16 > ReadByte > ReadByte > ReadInt32 > ReadInt32 > ReadByte,10,0,,,0x3420ec;0x341d39;0x341c3f;0x66fc7c;0x594c7a,7
+0x0120,ROLL_SNOWBALL,phase,,unknown,medium,,0,0,,,,0
+0x0121,HIT_SNOWBALL,phase,,unknown,medium,,0,0,,,,0
+0x0122,SNOWBALL_MESSAGE,phase,,unknown,medium,,0,0,,,,0
+0x0123,LEFT_KNOCK_BACK,phase,,unknown,medium,,0,0,,,,0
+0x0124,HIT_COCONUT,phase,,unknown,medium,,0,0,,,,0
+0x0125,COCONUT_SCORE,phase,,unknown,medium,,0,0,,,,0
+0x0129,MONSTER_CARNIVAL_START,phase,,unknown,medium,,0,0,,,,0
+0x012A,MONSTER_CARNIVAL_OBTAINED_CP,phase,,unknown,medium,,0,0,,,,0
+0x012B,MONSTER_CARNIVAL_PARTY_CP,phase,,unknown,medium,,0,0,,,,0
+0x012C,MONSTER_CARNIVAL_SUMMON,phase,,unknown,medium,,0,0,,,,0
+0x012E,MONSTER_CARNIVAL_DIED,phase,,unknown,medium,,0,0,,,,0
+0x0130,ENGLISH_QUIZ,phase,,unknown,medium,,0,0,,,,0
+0x0132,ARIANT_SCORE_UPDATE,phase,,unknown,medium,,0,0,,,,0
+0x0144,ZAKUM_SHRINE,phase,,unknown,medium,,0,0,,,,0
+0x0145,NPC_TALK,field,0x353092,quest,high,ReadByte > ReadInt32 > ReadByte > ReadByte,4,0,,,0x3530a8;0x66fc7c;0x66fc9b;0x353250;0x3533d1,4
+0x0146,OPEN_NPC_SHOP,field,0x36400C,quest,medium,ReadByte,1,0,,,0x66fc7c;0x66fc9b;0xec555;0x364637;0xe5bb0,21
+0x0147,CONFIRM_SHOP_TRANSACTION,field,0x36400C,quest,medium,ReadByte,1,0,,,0x66fc7c;0x66fc9b;0xec555;0x364637;0xe5bb0,21
+0x014A,OPEN_STORAGE,field,(inline),inventory,medium,,0,0,,,,0
+0x014B,MERCH_ITEM_MSG,field,0x3A1424,cashshop,high,ReadByte > ReadInt32 > ReadInt32 > ReadByte,4,0,,,0x66fc7c;0x3a48d0;0x652b;0x59fcc2;0x142a5e,12
+0x014C,MERCH_ITEM_STORE,field,0x3A1424,cashshop,high,ReadByte > ReadInt32 > ReadInt32 > ReadByte,4,0,,,0x66fc7c;0x3a48d0;0x652b;0x59fcc2;0x142a5e,12
+0x014E,MESSENGER,field,INLINE,social,medium,,0,0,,,,0
+0x014F,PLAYER_INTERACTION,field,INLINE,unknown,medium,,0,0,,,,0
+0x015C,BEANS_GAME1,phase,,unknown,medium,,0,0,,,,0
+0x015D,BEANS_GAME2,phase,,unknown,medium,,0,0,,,,0
+0x015E,UPDATE_BEANS,phase,,character,medium,,0,0,,,,0
+0x015F,DUEY,field,INLINE,inventory,medium,,0,0,,,,0
+0x0161,CS_UPDATE,phase,,cashshop,medium,,0,0,,,,0
+0x0162,CS_OPERATION,phase,,cashshop,medium,,0,0,,,,0
+0x016F,KEYMAP (confirmed),field,0x1B9E4F,ui,high,ReadByte > ReadInt32 > ReadInt32,3,0,,,0x9ee30;0x1ba1af;0x1b9fca;0xf3bb2;0x1b9f47,18
+0x0170,AUTO_HP_POT,field,0x1B9F14,unknown,high,,0,1,,,0x1b9eee;0x1b9ec8;0x1b9e4f;0x4e560e;0x66fc7c,21
+0x0171,AUTO_MP_POT,field,0x1B9F14,unknown,high,,0,1,,,0x1b9eee;0x1b9ec8;0x1b9e4f;0x4e560e;0x66fc7c,21
+0x0175,SEND_TV,phase,,unknown,medium,,0,0,,,,0
+0x0176,REMOVE_TV,phase,,unknown,medium,,0,0,,,,0
+0x0177,ENABLE_TV,phase,,unknown,medium,,0,0,,,,0
+0x017B,MTS_OPERATION2,phase,,cashshop,medium,,0,0,,,,0
+0x017C,MTS_OPERATION,phase,,cashshop,medium,,0,0,,,,0
+0x0182,VICIOUS_HAMMER,field,0x148034,unknown,medium,,0,0,,,0x66ef01;0x670a20;0xaded8;0xadf8d;0x2d66,10
+0x7FFE,DELETE_CHAR_RESPONSE,phase,,unknown,medium,,0,0,,,,0
