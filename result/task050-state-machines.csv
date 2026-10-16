@@ -1,0 +1,21 @@
+id,name,field,owner,values,transitions,packets,confidence,evidence
+SM01,CLogin state,+0x64,CLogin ~0x45EB00,"0=disconnected,1=login,2=server_select","LOGIN_STATUS→1, SERVERLIST→2, CHARLIST→3","LOGIN_STATUS,SERVERLIST,CHARLIST,SERVER_IP",high,IMG(code_switch)+PKT(handler_sequence)+FLOW(behavior_flow_15)
+SM02,CLogin substate,+0x68,CLogin ~0x45EB00,9=charlist_phase,CHARLIST→9,CHARLIST,high,IMG(code_write)+PKT(handler)
+SM03,Channel migration,(protocol),CClientSocket,login→redirect→close→connect→in-game,SERVER_IP→close_socket→PLAYER_LOGGEDIN,"CHAR_SELECT,SERVER_IP,PLAYER_LOGGEDIN",confirmed,LIVE(033)+PKT(burst)+FLOW(behavior_flow_22)
+SM04,Field transition,(implicit),CField,in_field→transitioning→warp_received→in_field,CHANGE_MAP→WARP_TO_MAP,"CHANGE_MAP(c2s),WARP_TO_MAP(s2c)",high,PKT(both_directions)+FLOW(behavior_flow_14)
+SM05,Buff lifecycle,(timer),SkillSystem,ready→casting→active→expired/cancelled,SPECIAL_MOVE→GIVE_BUFF→CANCEL_BUFF,"SPECIAL_MOVE,GIVE_BUFF,CANCEL_BUFF,TEMP_STATS",high,"PKT(GIVE_BUFF 0x23,CANCEL_BUFF 0x24)+FLOW(behavior_flow_7)"
+SM06,NPC dialog,(dialog_state),NPCDialogUI,idle→talking→selecting→shop/quest/exit,NPC_TALK→NPC_MORE→action,"NPC_TALK(c2s),NPC_MORE(c2s),NPC_TALK(s2c)",high,PKT(NPC_TALK 0x145 handler)+FLOW(behavior_flow_13)
+SM07,Keymap update,KeymapTable,KeymapUI,idle→receiving_table→updated,KEYMAP(0x16F)→walker_89x5→updated,"KEYMAP(s2c),CHANGE_KEYMAP(c2s)",confirmed,IMG(89x5 walker confirmed)+PKT(KEYMAP handler)
+SM08,Inventory update,InventoryUI,InventoryUI,idle→receiving_ops→refreshing,MODIFY_INVENTORY_ITEM→mode_add/update/remove/move,"MODIFY_INVENTORY_ITEM(s2c),FINISH_SORT,FINISH_GATHER",high,PKT(MODIFY_INVENTORY 0x20 handler reads 7 fields)
+SM09,Cash shop entry,(context),CashShopContext,in_game→entering→in_shop→exiting,ENTER_CASH_SHOP→CS_OPEN→exit,"ENTER_CASH_SHOP(c2s),CHAR_CASH(s2c),CS_OPEN(s2c)",high,PKT(CHAR_CASH 0x7D confirmed)+FLOW(behavior_flow_19)
+SM10,Stats update mask,CWvsContext,CWvsContext,32-bit mask with per-bit conditional reads,UPDATE_STATS(0x22)→mask→conditional field reads,UPDATE_STATS(s2c),high,IMG(handler 0x6292F5 reads mask then conditionals)
+SM11,Skill update batch,SkillTable,SkillSystem,idle→receiving_batch→updated,"UPDATE_SKILLS(0x27)→count→loop(skill_id,level,master,expire)",UPDATE_SKILLS(s2c),high,IMG(handler 0x6280D7 12 reads with loop)
+SM12,Party member lifecycle,PartyState,PartyUI,no_party→invited→in_party→left,PARTY_OPERATION(mode)→create/join/leave/expel,"PARTY_OPERATION(s2c 0x3B, c2s 0x78)",medium,PKT(PARTY_OPERATION handler 0x648120)
+SM13,Character identity change,CWvsContext+0x2F60,CWvsContext,"0=same,1=changed",WARP_TO_MAP→id_changed→UI_refresh,WARP_TO_MAP(s2c),confirmed,IMG(WARP handler writes flag when CharacterId differs)
+SM14,Monster lifecycle,MobObject,Field/MobSystem,spawned→controlled→damaged→killed,SPAWN_MONSTER→DAMAGE_MONSTER→KILL_MONSTER,"SPAWN_MONSTER,KILL_MONSTER,DAMAGE_MONSTER,SHOW_MONSTER_HP",high,PKT(MOB band 0xEE-0x103 handlers)
+SM15,Inventory sort/gather,InventoryUI,InventoryUI,idle→sorting→done,ITEM_SORT(c2s)→FINISH_SORT(s2c),"ITEM_SORT,FINISH_SORT,ITEM_GATHER,FINISH_GATHER",medium,"PKT(FINISH_SORT 0x36, FINISH_GATHER 0x37 handlers with 12+10 reads)"
+SM16,Equipment appearance,CharacterLook,CWvsContext,base→updated_look,UPDATE_CHAR_LOOK(0xC7)→read appearance→update,UPDATE_CHAR_LOOK(s2c),medium,PKT(UPDATE_CHAR_LOOK handler in SPAWN band)
+SM17,Guild window,GuildUI,GuildUI,closed→opening→viewing→closed,GUILD_OPERATION(0x3E)→parse→display,GUILD_OPERATION(s2c),medium,PKT(GUILD_OPERATION handler 0x641174)
+SM18,Family system,FamilyUI,FamilyUI,idle→viewing→interacting,OPEN_FAMILY(0x65)→FAMILY(0x6A)→operations,"OPEN_FAMILY,FAMILY,FAMILY_INVITE,FAMILY_JUNIOR",medium,PKT(OPEN_FAMILY handler 0x63E008 with 12 reads)
+SM19,Reactor lifecycle,ReactorObject,Field/ReactorSystem,spawned→hit→destroyed,REACTOR_SPAWN→REACTOR_HIT→REACTOR_DESTROY,"REACTOR_SPAWN,REACTOR_HIT,REACTOR_DESTROY",medium,PKT(REACTOR band 0x11C-0x11F handler with 13 reads)
+SM20,Buddy list update,BuddyListUI,BuddyListUI,idle→receiving→updated,BUDDYLIST(0x3C)→parse_entries→refresh,BUDDYLIST(s2c),medium,PKT(BUDDYLIST handler 0x64915C with 6 reads)

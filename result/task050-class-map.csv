@@ -1,0 +1,11 @@
+class_id,name,confidence,singleton,vtable,fields,subsystem,handlers,senders,evidence
+CWvsContext,CWvsContext,confirmed,[0xBD9028] → static @0x7E2E90,0x70D3C8(24 slots),+0x205C CharacterId; +0x2080 grade; +0x2084 spawn_id; +0x2F60 char_changed; +0x2FE8 check,character,WARP_TO_MAP; UPDATE_STATS; SPAWN_PLAYER; CHAR_INFO,various,IMG+PKT+GLOBAL+S2C
+CLogin,CLogin,high,(per-session),,+0x64 state; +0x68 substate; +0xB0-0xBC UI objects,login,LOGIN_STATUS; SERVERLIST; CHARLIST,LOGIN_PASSWORD; SERVERLIST_REQUEST; CHAR_SELECT,IMG+PKT+STATE_MACHINE
+CClientSocket,CClientSocket,confirmed,[0xBD9024],,+8 socket; +0x38 deadline; +0x40 rx_stream; +0x54 cipher; +0x5C connected; +0x60 send_queue; +0x88 version,network,n/a (transport),n/a (transport),IMG+PKT+FLOW(confirmed)
+COutPacket,COutPacket,confirmed,(per-call),,buffer,network,,967 builder sites,IMG(ctor 0x2F5E40; WriteHeader 0x661F)
+CInPacket,CInPacket(reader family),confirmed,(per-packet),,buffer; position,network,all inbound handlers,,IMG(ReadInt32 0x66FF; ReadByte 0x66C9; ReadInt16 0x259A2; ReadString 0x71D7A)
+CSecurity,CSecurity family,high,throw-site cluster 0x7934xx,data block 0x7D38F8-0x7D4230,,security,,,RTTI(10 classes)+IMG(throw sites)
+SpawnBandObj,Player/Pet/Summon handler object,medium,[0x3DD4A0],,,field,SPAWN_PLAYER band 0xA2-0xED,,IMG(dispatch singleton)+S2C(band mapping)
+MobBandObj,Monster handler object,medium,[0x3DD49C],,,combat,MOB band 0xEE-0x103,,IMG(dispatch singleton)+S2C(band mapping)
+NpcBandObj,NPC handler object,medium,[0x5EB44],,,quest,NPC band 0x104-0x10C,,IMG(dispatch singleton)+S2C(band mapping)
+KeymapBandObj,Keymap handler object,high,[0x3D95C],,KeymapTable 89×5B,ui,KEYMAP 0x16F-0x171,,IMG(89×5 walker confirmed)+S2C

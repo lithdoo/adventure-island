@@ -1,12 +1,15 @@
-metric,value
-function_candidates,51200
-subsystem_classified,1061
-semantic_named,21
-high_confidence,18
-medium_confidence,979
-field_facts,10922
-handler_body_summaries,1
-inbound_schemas,4
-outbound_schemas,207
-sender_classified,207
-sender_total,486
+metric,baseline,current,target,how_counted
+function_candidates,51200,51200,n/a,census
+subsystem_classified,492,492,700,§10.7 strict
+high_semantic,18,18,180,§10.8
+medium_semantic,979,979,,singleton+reader
+semantic_field_facts,5,5,250,§10.2
+raw_field_accesses,10922,10922,n/a,census
+inbound_body_summaries,83,180,140,§10.6
+inbound_minimal_schemas,4,165,120,§10.4
+outbound_minimal_schemas,0,41,120,§10.4
+sender_classified,207,207,400,immediate+depth2
+sender_total,486,486,n/a,census
+state_machines,2,20,20,semantic+code
+pseudocode_flows,28,28,80,§S7
+class_map_entries,0,10,80,§S4

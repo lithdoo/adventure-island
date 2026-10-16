@@ -1,0 +1,6 @@
+blocker_id,subsystem,stage,symptom,evidence,next_safe_option,dependency
+B50-1,all,sender_provenance,279/486 sender sites lack numeric opcode,interprocedural dataflow needed,deeper backward provenance,static-solvable
+B50-2,all,outbound_schemas,41/120 outbound schemas,builder payload write detection limited by indirect virtual calls,analyze builder callers for write sequences,static-solvable
+B50-3,all,class_ownership,52 anonymous vtables,no RTTI linkage; Themida runtime layout,ctor correlation + handler singletons,static-solvable
+B50-4,all,semantic_fields,"10,922 raw accesses → only 5 semantic",owner identification needed for most offsets,cross-reference handler writes with field offsets,static-solvable
+B50-5,character,live_state,CWvsContext field values all zero in capture,036 capture is pre-login (041 finding),needs later-phase capture,populated-state-required
