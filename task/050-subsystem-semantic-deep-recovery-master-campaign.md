@@ -258,9 +258,8 @@ result/task046-packet-builders.csv
 result/task046-class-map.csv
 result/task046-vtable-map.csv
 result/task046-field-map.csv
-result/task046-function-map.csv
 result/task046-call-edges.csv
-result/task046-behavior-flows.md
+result/task046-equivalent-pseudocode.md
 
 result/47-s2c-enumeration.md
 result/48-s2c-renumbering-decode.md
