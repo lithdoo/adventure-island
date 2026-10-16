@@ -1,0 +1,515 @@
+function_rva,opcode,packet_name,has_ctor,has_send,write_calls,write_sequence,push_count,schema_level
+0x654e,,unknown,False,False,0,,12,none
+0x24f64,,unknown,True,False,1,dword ptr [edx + 0x4c],8,minimal
+0x25053,0x02,opcode_0x02,True,False,2,dword ptr [edx + 0x4c];dword ptr [edx + 0x4c],8,minimal
+0x25e3e,0x02,opcode_0x02,True,False,1,dword ptr [eax + 0x20],11,minimal
+0x28d4f,0x01,opcode_0x01,False,False,0,,0,none
+0x30b06,,unknown,False,False,0,,2,none
+0x34fb0,,unknown,False,False,0,,14,none
+0x4fdb1,,unknown,False,False,0,,6,none
+0x59dee,,unknown,False,False,0,,10,none
+0x5dfcc,,unknown,False,False,0,,8,none
+0x61004,,unknown,False,False,0,,18,none
+0x67878,,unknown,False,False,0,,16,none
+0x6b15a,0x26,USE_CHAIR,False,False,0,,3,none
+0x6b4a2,0x2C,TAKE_DAMAGE,True,False,1,dword ptr [0xbe1654],7,minimal
+0x6b6e5,0x1A,UNKNOWN,True,False,0,,9,none
+0x6b822,0x06,opcode_0x06,False,False,0,,18,none
+0x6bd0b,0x07,opcode_0x07,True,False,0,,10,none
+0x6be73,0x08,opcode_0x08,True,False,0,,7,none
+0x6c02c,0x09,opcode_0x09,True,False,0,,7,none
+0x6cdbd,0x26,USE_CHAIR,False,False,0,,4,none
+0x6d941,0x1F,UNKNOWN,False,False,0,,4,none
+0x6dd46,0x21,CHANGE_MAP,True,False,0,,7,none
+0x6e3aa,0x04,opcode_0x04,True,False,0,,7,none
+0x6e761,0x20,UNKNOWN,False,False,0,,5,none
+0x6eab7,0x1D,UNKNOWN,True,False,0,,7,none
+0x6ed88,,unknown,False,False,0,,4,none
+0x6f142,0x24,opcode_0x24,True,False,0,,7,none
+0x6f426,0x05,opcode_0x05,True,False,0,,11,none
+0x6f56c,0x05,opcode_0x05,True,False,0,,7,none
+0x6f751,0xEB,opcode_0xEB,True,False,0,,4,none
+0x6fe34,0xEB,opcode_0xEB,True,False,1,dword ptr [eax + 0x34],6,minimal
+0x71f34,0x0D,opcode_0x0D,True,False,0,,6,none
+0x72142,0x0E,opcode_0x0E,True,False,0,,8,none
+0x726b1,0x20,UNKNOWN,True,False,0,,10,none
+0x729f0,0x22,CHANGE_CHANNEL,True,False,0,,7,none
+0x77a22,,unknown,False,False,0,,16,none
+0x782e5,0x01,opcode_0x01,False,False,0,,8,none
+0x7866b,0x7F,NOTE_ACTION,True,False,0,,9,none
+0x8081e,,unknown,False,False,0,,0,none
+0x80983,,unknown,False,False,0,,2,none
+0x82435,,unknown,False,False,0,,8,none
+0x8278a,0x0A,opcode_0x0A,True,False,0,,6,none
+0x82ac1,0x13,opcode_0x13,True,False,1,dword ptr [eax + 0x34],8,minimal
+0x84fad,0x0E,opcode_0x0E,True,False,1,dword ptr [eax + 0x20],9,minimal
+0x85180,0x0F,opcode_0x0F,True,False,3,dword ptr [eax + 0x14];dword ptr [eax + 0x18];dword ptr [0xafe05c],11,minimal
+0x8530e,0x10,opcode_0x10,False,False,0,,7,none
+0x8fe85,,unknown,False,False,0,,12,none
+0x91f03,,unknown,False,False,0,,15,none
+0x941b7,,unknown,False,False,0,,11,none
+0x9cef0,,unknown,False,False,0,,6,none
+0xa37e3,,unknown,False,False,0,,13,none
+0xaf302,,unknown,False,False,0,,18,none
+0xba23d,,unknown,False,False,0,,16,none
+0xc55b7,,unknown,False,False,0,,28,none
+0xd530a,,unknown,False,False,0,,9,none
+0xef919,,unknown,False,False,0,,11,none
+0xf1fa6,0x0D,opcode_0x0D,False,False,0,,4,none
+0xf2406,,unknown,False,False,0,,1,none
+0xf242c,,unknown,False,False,0,,1,none
+0xf2a26,,unknown,False,False,0,,7,none
+0xf2ced,0x01,opcode_0x01,False,False,0,,5,none
+0xf3043,,unknown,False,False,0,,1,none
+0xf38eb,,unknown,False,False,0,,8,none
+0xf3aa5,,unknown,False,False,0,,14,none
+0xf3bfd,,unknown,False,False,0,,1,none
+0xf3e53,,unknown,False,False,0,,8,none
+0xf4023,,unknown,False,False,0,,12,none
+0xf41c7,,unknown,False,False,0,,10,none
+0xf42ad,0x14,UNKNOWN,False,False,0,,7,none
+0xf4766,,unknown,False,False,0,,12,none
+0xf68ca,,unknown,False,False,0,,12,none
+0xf6bda,,unknown,False,False,0,,12,none
+0xf6c7e,0x05,opcode_0x05,False,False,0,,13,none
+0xfe993,,unknown,False,False,0,,7,none
+0x108207,,unknown,False,False,0,,7,none
+0x109998,,unknown,False,False,0,,8,none
+0x10ce51,,unknown,False,False,0,,17,none
+0x1176cd,,unknown,False,False,0,,14,none
+0x12061d,0x01,opcode_0x01,False,False,0,,8,none
+0x1226ed,,unknown,False,False,0,,4,none
+0x122895,0x27,UNKNOWN,True,False,1,dword ptr [eax + 0x64],5,minimal
+0x122c4b,0x25,CANCEL_CHAIR,False,False,0,,14,none
+0x123b9d,0x25,CANCEL_CHAIR,True,False,2,dword ptr [eax + 0x34];dword ptr [eax + 0x1c],13,minimal
+0x123bf6,0x26,USE_CHAIR,True,False,1,dword ptr [eax + 0x1c],12,minimal
+0x123c71,0x29,RANGED_ATTACK,True,False,1,dword ptr [eax + 0x1c],9,minimal
+0x123ce4,0x2D,GENERAL_CHAT,True,False,2,dword ptr [eax + 0x1c];dword ptr [eax + 0x1c],6,minimal
+0x123e11,0x2C,TAKE_DAMAGE,True,False,1,dword ptr [eax + 0x1c],7,minimal
+0x123f73,0x2E,CLOSE_CHALKBOARD,True,False,2,dword ptr [eax + 0x1c];dword ptr [eax + 0x1c],9,minimal
+0x123ff7,0x2F,FACE_EXPRESSION,True,False,3,dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [0xbe16bc],15,minimal
+0x1240e3,0x30,USE_ITEMEFFECT,True,False,1,dword ptr [0xbe16bc],11,minimal
+0x12a163,,unknown,False,False,0,,2,none
+0x12a99b,0x37,UNKNOWN,True,False,0,,12,none
+0x12cf8a,0x03,opcode_0x03,True,False,0,,12,none
+0x132313,,unknown,False,False,0,,17,none
+0x136f33,,unknown,True,False,0,,8,none
+0x137027,0x24,opcode_0x24,False,False,0,,7,none
+0x13eb1d,0x86,UNKNOWN,False,False,0,,16,none
+0x13f358,,unknown,True,False,1,dword ptr [0xbe18d4],13,minimal
+0x13f463,0x0D,opcode_0x0D,True,False,0,,14,none
+0x13f69e,0x0D,opcode_0x0D,True,False,0,,15,none
+0x13f89c,0x01,opcode_0x01,True,False,0,,15,none
+0x13fa03,0x02,opcode_0x02,True,False,0,,15,none
+0x13fa9c,0x04,opcode_0x04,True,False,0,,12,none
+0x13fccd,0x05,opcode_0x05,True,False,0,,12,none
+0x13fe32,0x06,opcode_0x06,True,False,0,,12,none
+0x13ff69,,unknown,True,False,2,dword ptr [eax + 0x10];dword ptr [eax + 0x10],10,minimal
+0x1401ef,0x22,CHANGE_CHANNEL,True,False,0,,10,none
+0x140347,0x02,opcode_0x02,True,False,0,,13,none
+0x1403ff,0x1E,UNKNOWN,True,False,0,,12,none
+0x14046e,0x05,opcode_0x05,True,False,0,,12,none
+0x140679,0x07,opcode_0x07,True,False,0,,13,none
+0x1407a6,0x08,opcode_0x08,False,False,0,,10,none
+0x140bcf,0x0E,opcode_0x0E,True,False,0,,8,none
+0x140c33,0x0D,opcode_0x0D,True,False,0,,9,none
+0x140d44,0x0F,opcode_0x0F,True,False,1,dword ptr [0xafe070],10,minimal
+0x140dbe,0x10,opcode_0x10,True,False,1,dword ptr [0xafe070],10,minimal
+0x140e36,0x7E,BUDDYLIST_MODIFY,True,False,0,,12,none
+0x140fd0,0x03,opcode_0x03,True,False,0,,10,none
+0x14107c,0x02,opcode_0x02,True,False,1,dword ptr [eax + 0x24],5,minimal
+0x141df4,0x22,CHANGE_CHANNEL,False,False,0,,16,none
+0x144cc8,0x01,opcode_0x01,False,False,0,,8,none
+0x14744e,,unknown,True,False,2,dword ptr [0xbe16bc];dword ptr [0xbe1734],4,minimal
+0x14778f,0x1D,UNKNOWN,True,False,0,,7,none
+0x147807,0x1E,UNKNOWN,True,False,0,,8,none
+0x147b4a,,unknown,True,False,2,dword ptr [0xafe1bc];dword ptr [eax + 4],2,minimal
+0x14da63,,unknown,False,False,0,,4,none
+0x152600,,unknown,False,False,0,,7,none
+0x154f47,,unknown,False,False,0,,13,none
+0x1583d7,,unknown,False,False,0,,14,none
+0x15da03,,unknown,False,False,0,,5,none
+0x1602bb,,unknown,False,False,0,,6,none
+0x1648e3,,unknown,False,False,0,,5,none
+0x165630,,unknown,True,False,0,,14,none
+0x1684ff,,unknown,False,False,0,,11,none
+0x16bb0d,,unknown,False,False,0,,11,none
+0x17015c,,unknown,False,False,0,,10,none
+0x175be3,,unknown,False,False,0,,11,none
+0x17975f,,unknown,False,False,0,,8,none
+0x17f05d,,unknown,False,False,0,,4,none
+0x185fdc,,unknown,False,False,0,,3,none
+0x1895f6,,unknown,False,False,0,,2,none
+0x18cb4b,,unknown,False,False,0,,3,none
+0x1901e7,,unknown,False,False,0,,3,none
+0x193a81,,unknown,False,False,0,,3,none
+0x19830a,,unknown,False,False,0,,8,none
+0x1999a6,0xCF,opcode_0xCF,True,False,0,,14,none
+0x19f804,,unknown,False,False,0,,7,none
+0x1a27d8,,unknown,False,False,0,,9,none
+0x1a5433,,unknown,False,False,0,,4,none
+0x1a894b,,unknown,False,False,0,,5,none
+0x1ae667,,unknown,False,False,0,,3,none
+0x1b2d6e,,unknown,False,False,0,,5,none
+0x1b9ce6,,unknown,False,False,0,,4,none
+0x1bfdad,,unknown,False,False,0,,9,none
+0x1c2e8a,,unknown,False,False,0,,8,none
+0x1cdb39,,unknown,False,False,0,,6,none
+0x1cde3f,,unknown,True,False,0,,5,none
+0x1d3204,,unknown,False,False,0,,13,none
+0x1d434e,0x11,opcode_0x11,True,False,0,,8,none
+0x1d4556,0x02,opcode_0x02,True,False,0,,12,none
+0x1d494d,0x04,opcode_0x04,True,False,0,,12,none
+0x1d4a2c,0x04,opcode_0x04,True,False,0,,10,none
+0x1d4b1b,0x04,opcode_0x04,True,False,0,,7,none
+0x1d4bf8,0x03,opcode_0x03,True,False,0,,9,none
+0x1d4d4d,0x0F,opcode_0x0F,True,False,0,,9,none
+0x1d4dc0,0x13,opcode_0x13,True,False,0,,10,none
+0x1d4f53,0x08,opcode_0x08,True,False,0,,12,none
+0x1d4fc6,0x10,opcode_0x10,True,False,0,,12,none
+0x1d5064,0x09,opcode_0x09,True,False,0,,12,none
+0x1d50d7,0x0A,opcode_0x0A,True,False,0,,12,none
+0x1d514a,0x0B,opcode_0x0B,True,False,0,,10,none
+0x1d51e8,0x0C,opcode_0x0C,True,False,0,,7,none
+0x1d525b,0x06,opcode_0x06,True,False,2,dword ptr [0xbe1650];dword ptr [0xafe064],6,minimal
+0x1d5304,0x07,opcode_0x07,True,False,4,dword ptr [0xbe1650];dword ptr [0xafe064];dword ptr [0xafe06c];dword ptr [0xafe1bc],7,minimal
+0x1d9221,,unknown,False,False,0,,16,none
+0x1dd270,,unknown,False,False,0,,13,none
+0x1e53b8,,unknown,False,False,0,,13,none
+0x1eb2b1,,unknown,False,False,0,,16,none
+0x1eb9fe,0x05,opcode_0x05,True,False,0,,11,none
+0x1ebb5f,0x05,opcode_0x05,True,False,1,dword ptr [0xafe264],7,minimal
+0x1efa1a,,unknown,False,False,0,,23,none
+0x1f4c9e,,unknown,False,False,0,,16,none
+0x1f63f8,0x12,opcode_0x12,False,False,0,,8,none
+0x1fce4d,,unknown,False,False,0,,10,none
+0x21f8e0,,unknown,False,False,0,,7,none
+0x220ac4,,unknown,True,False,0,,12,none
+0x22482d,,unknown,False,False,0,,15,none
+0x22816a,,unknown,False,False,0,,14,none
+0x22ac8a,0x09,opcode_0x09,True,False,1,dword ptr [0xafe344],4,minimal
+0x22aeb2,0x08,opcode_0x08,True,False,1,dword ptr [0xafe344],2,minimal
+0x22b14e,0x1A,UNKNOWN,True,False,0,,7,none
+0x22cf63,0x04,opcode_0x04,False,False,0,,0,none
+0x22f729,0x01,opcode_0x01,True,False,0,,12,none
+0x22f7f6,0x1A,UNKNOWN,True,False,0,,10,none
+0x22fc5e,0x01,opcode_0x01,True,False,3,dword ptr [0xbe16cc];dword ptr [eax];dword ptr [eax + 0x34],15,minimal
+0x22fcc1,0x03,opcode_0x03,True,False,4,dword ptr [0xbe16cc];dword ptr [eax];dword ptr [eax + 0x34];dword ptr [eax + 0x1c],14,minimal
+0x233c86,,unknown,False,False,0,,18,none
+0x23aa9a,,unknown,False,False,0,,7,none
+0x243e99,,unknown,False,False,0,,8,none
+0x25d3b6,,unknown,False,False,0,,4,none
+0x2659ab,,unknown,False,False,0,,7,none
+0x277bff,,unknown,False,False,0,,4,none
+0x278994,0x01,opcode_0x01,True,False,0,,11,none
+0x27b04e,,unknown,False,False,0,,5,none
+0x27b9b5,0x0B,opcode_0x0B,True,False,4,dword ptr [eax + 0xc];dword ptr [eax + 0xc];dword ptr [eax + 0x24];dword ptr [eax + 0x24],3,minimal
+0x27c1e8,0x32,UNKNOWN,True,False,0,,19,none
+0x27cc1e,0x43,ITEM_GATHER,True,False,1,dword ptr [eax + 0x34],4,minimal
+0x28143c,0x33,UNKNOWN,True,False,0,,17,none
+0x2814cd,0x31,WHEEL_OF_FORTUNE,True,False,0,,18,none
+0x28156b,0x3C,USE_HIRED_MERCHANT,True,False,0,,20,none
+0x2815c0,0x39,UNKNOWN,True,False,0,,20,none
+0x28167a,0x3B,STORAGE,True,False,3,dword ptr [eax + 0x34];dword ptr [0xbe16bc];dword ptr [0xbe1734],17,minimal
+0x2816f5,0x37,UNKNOWN,True,False,3,dword ptr [eax + 0x34];dword ptr [0xbe16bc];dword ptr [0xbe1734],14,minimal
+0x2888b2,,unknown,False,False,0,,2,none
+0x28bca3,,unknown,False,False,0,,19,none
+0x28c885,0x04,opcode_0x04,True,False,0,,14,none
+0x28c93d,0x0D,opcode_0x0D,True,False,0,,12,none
+0x28cbbb,0x0D,opcode_0x0D,True,False,0,,16,none
+0x28cded,0x0D,opcode_0x0D,True,False,4,dword ptr [eax + 0x5c];dword ptr [eax + 0x60];dword ptr [eax + 0x4c];dword ptr [eax + 0x48],7,minimal
+0x28d73b,0x06,opcode_0x06,True,False,0,,7,none
+0x290667,,unknown,False,False,0,,12,none
+0x299ea2,,unknown,False,False,0,,2,none
+0x29f7d8,,unknown,True,False,0,,5,none
+0x2a5972,,unknown,False,False,0,,2,none
+0x2b7e64,,unknown,False,False,0,,4,none
+0x2b81b5,,unknown,False,False,0,,0,none
+0x2be483,,unknown,False,False,0,,15,none
+0x2c128e,,unknown,False,False,0,,3,none
+0x2c4671,,unknown,True,False,2,dword ptr [eax + 0x10];dword ptr [eax + 0x10],5,minimal
+0x2cdfa1,,unknown,False,False,0,,4,none
+0x2d4163,,unknown,False,False,0,,6,none
+0x2d48f0,0x0B,opcode_0x0B,True,False,4,dword ptr [eax + 0xc];dword ptr [eax + 0xc];dword ptr [eax + 0x24];dword ptr [eax + 0x24],4,minimal
+0x2d51b0,0x32,UNKNOWN,True,False,0,,12,none
+0x2d5270,0x36,NPC_TALK,True,False,2,dword ptr [ecx + 0x110];dword ptr [ecx + 8],8,minimal
+0x2d5d38,0x3E,DUEY_ACTION,False,False,0,,6,none
+0x2d9a8b,0x3F,UNKNOWN,True,False,0,,15,none
+0x2d9afc,0x33,UNKNOWN,True,False,0,,15,none
+0x2d9b96,0x31,WHEEL_OF_FORTUNE,True,False,0,,16,none
+0x2d9c34,0x35,MONSTER_BOOK_COVER,True,False,0,,19,none
+0x2d9d11,0x3C,USE_HIRED_MERCHANT,True,False,0,,20,none
+0x2d9d66,0x39,UNKNOWN,True,False,0,,20,none
+0x2d9d91,0x3A,NPC_SHOP,True,False,1,dword ptr [eax + 0x34],20,minimal
+0x2d9e20,0x3B,STORAGE,True,False,3,dword ptr [eax + 0x34];dword ptr [0xbe16bc];dword ptr [0xbe1734],19,minimal
+0x2d9e9b,0x37,UNKNOWN,True,False,4,dword ptr [eax + 0x34];dword ptr [0xbe16bc];dword ptr [0xbe1734];dword ptr [eax + 0x1c],14,minimal
+0x2de85e,,unknown,False,False,0,,17,none
+0x2e474e,0x0B,opcode_0x0B,True,False,0,,6,none
+0x2e5da6,0x05,opcode_0x05,True,False,2,dword ptr [ecx + 8];dword ptr [ecx + 8],12,minimal
+0x2e71ab,0x04,opcode_0x04,True,False,1,dword ptr [ecx + 0x2c],11,minimal
+0x2eab0f,0x03,opcode_0x03,True,False,0,,6,none
+0x2eb317,0x07,opcode_0x07,True,False,0,,10,none
+0x2ebc7d,0x06,opcode_0x06,True,False,0,,8,none
+0x2ede8c,0xE2,opcode_0xE2,True,False,4,dword ptr [eax + 0x1c];dword ptr [0xbe18d4];dword ptr [eax + 0x30];dword ptr [eax + 0x2c],12,minimal
+0x2edf3f,0x01,opcode_0x01,True,False,3,dword ptr [eax + 0x30];dword ptr [eax + 0x2c];dword ptr [0xbe18d4],10,minimal
+0x2edfb8,0x02,opcode_0x02,True,False,3,dword ptr [eax + 0x30];dword ptr [eax + 0x2c];dword ptr [0xbe18d4],10,minimal
+0x2ee12d,0x02,opcode_0x02,True,False,0,,12,none
+0x2f192d,,unknown,False,False,0,,5,none
+0x2f5f3d,,unknown,False,False,0,,0,none
+0x2f8324,,unknown,False,False,0,,8,none
+0x2fa2a8,0x05,opcode_0x05,True,False,0,,11,none
+0x2fa3e9,0x06,opcode_0x06,True,False,1,dword ptr [ecx + 0x2c],11,minimal
+0x2fb454,0x03,opcode_0x03,True,False,0,,14,none
+0x2fccb6,0x03,opcode_0x03,True,False,0,,7,none
+0x2febec,0x08,opcode_0x08,True,False,3,dword ptr [eax + 0x34];dword ptr [eax + 0x4c];dword ptr [eax + 0x4c],14,minimal
+0x2fec45,0x01,opcode_0x01,False,False,0,,12,none
+0x303641,,unknown,False,False,0,,6,none
+0x304fe1,0x0A,opcode_0x0A,True,False,1,dword ptr [eax + 0x74],12,minimal
+0x3061b5,0x0D,opcode_0x0D,True,False,3,dword ptr [eax + 0x78];dword ptr [eax + 0x1c];dword ptr [eax + 0x68],11,minimal
+0x306c0a,0x0B,opcode_0x0B,False,False,0,,15,none
+0x306f87,,unknown,False,False,0,,7,none
+0x3072fa,,unknown,True,False,2,dword ptr [eax + 0x5c];dword ptr [0xbe1734],9,minimal
+0x30752e,0x1C,UNKNOWN,True,False,1,dword ptr [0xbe18d4],8,minimal
+0x3075e2,0x1A,UNKNOWN,True,False,1,dword ptr [0xbe18d4],8,minimal
+0x30c78e,,unknown,False,False,0,,17,none
+0x30e6b4,,unknown,True,False,0,,5,none
+0x30ee77,,unknown,True,False,0,,8,none
+0x30f4c0,,unknown,True,False,1,dword ptr [0xafe1bc],8,minimal
+0x30f7f5,,unknown,True,False,2,dword ptr [ecx + 0xd8];dword ptr [ecx + 8],8,minimal
+0x313dd7,,unknown,False,False,0,,16,none
+0x31f8fc,,unknown,False,False,0,,16,none
+0x31fd3b,0x0B,opcode_0x0B,False,False,0,,8,none
+0x323779,0x3C,USE_HIRED_MERCHANT,True,False,0,,20,none
+0x3237e8,0x39,UNKNOWN,True,False,0,,20,none
+0x323888,0x3B,STORAGE,True,False,2,dword ptr [eax + 0x34];dword ptr [eax + 0x1c],19,minimal
+0x323903,0x37,UNKNOWN,True,False,2,dword ptr [eax + 0x34];dword ptr [eax + 0x1c],13,minimal
+0x3278f1,,unknown,False,False,0,,2,none
+0x3285c1,0x04,opcode_0x04,True,False,0,,6,none
+0x32a437,0x68,QUEST_ACTION,False,False,0,,2,none
+0x32e42d,,unknown,False,False,0,,3,none
+0x33c5cc,,unknown,False,False,0,,1,none
+0x34120f,,unknown,False,False,0,,2,none
+0x342910,,unknown,True,False,0,,10,none
+0x349a75,,unknown,False,False,0,,14,none
+0x34b661,0x02,opcode_0x02,False,False,0,,2,none
+0x34ce88,0x84,RPS_GAME,True,False,9,dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c],20,minimal
+0x34cefc,0x03,opcode_0x03,True,False,7,dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c],19,minimal
+0x34cf70,0x05,opcode_0x05,True,False,5,dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c],15,minimal
+0x34cfe4,0x04,opcode_0x04,True,False,3,dword ptr [eax + 0x1c];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c],11,minimal
+0x34d058,0x01,opcode_0x01,True,False,1,dword ptr [eax + 0x1c],8,minimal
+0x352ef1,,unknown,False,False,0,,8,none
+0x353250,0x38,NPC_TALK_MORE,True,False,0,,7,none
+0x3533d1,,unknown,True,False,0,,8,none
+0x353530,0x02,opcode_0x02,True,False,0,,6,none
+0x3536eb,0x0C,opcode_0x0C,True,False,0,,6,none
+0x3538a4,0x03,opcode_0x03,True,False,0,,8,none
+0x353a52,0x04,opcode_0x04,True,False,0,,9,none
+0x353be2,0x07,opcode_0x07,False,False,0,,6,none
+0x353f2f,0x08,opcode_0x08,True,False,1,dword ptr [0xafe1bc],11,minimal
+0x3541f2,0x09,opcode_0x09,True,False,1,dword ptr [0xafe1bc],10,minimal
+0x3544f4,0x0E,opcode_0x0E,True,False,4,dword ptr [0xafe1bc];dword ptr [0xafe1bc];dword ptr [0xafe230];dword ptr [0xafe1bc],9,minimal
+0x3581c9,,unknown,False,False,0,,2,none
+0x360180,,unknown,False,False,0,,4,none
+0x360af2,0x03,opcode_0x03,True,False,0,,6,none
+0x36395b,0x3A,NPC_SHOP,True,False,0,,7,none
+0x363d86,0x01,opcode_0x01,True,False,1,dword ptr [0xafe1bc],5,minimal
+0x363e93,0x02,opcode_0x02,True,False,1,dword ptr [eax + 0x4c],6,minimal
+0x36490b,0x04,opcode_0x04,True,False,0,,9,none
+0x3677d6,,unknown,False,False,0,,12,none
+0x369274,,unknown,False,False,0,,7,none
+0x37e464,,unknown,False,False,0,,17,none
+0x3844db,,unknown,False,False,0,,1,none
+0x3847b7,,unknown,False,False,0,,0,none
+0x390f9c,,unknown,False,False,0,,0,none
+0x39fd69,,unknown,False,False,0,,12,none
+0x3a00db,0x1B,UNKNOWN,True,False,1,dword ptr [eax + 0x20],10,minimal
+0x3a12bc,0x19,UNKNOWN,True,False,0,,9,none
+0x3a131f,0x1A,UNKNOWN,True,False,0,,9,none
+0x3a1424,0x14,UNKNOWN,False,False,0,,6,none
+0x3a8b36,,unknown,False,False,0,,4,none
+0x3ac18b,,unknown,False,False,0,,3,none
+0x3ac460,,unknown,True,False,0,,11,none
+0x3ac645,,unknown,False,False,0,,5,none
+0x3ac9ec,0xFE,opcode_0xFE,True,False,0,,4,none
+0x3b3606,,unknown,False,False,0,,5,none
+0x3b818c,,unknown,False,False,0,,4,none
+0x3b9220,,unknown,False,False,0,,4,none
+0x3c3dd4,,unknown,False,False,0,,5,none
+0x3c41e5,,unknown,True,False,0,,4,none
+0x3c86a1,,unknown,False,False,0,,12,none
+0x3c88ff,0x0A,opcode_0x0A,True,False,1,dword ptr [eax + 0x20],6,minimal
+0x3c8beb,0x13,opcode_0x13,True,False,1,dword ptr [eax + 0x34],10,minimal
+0x3cab40,0x0E,opcode_0x0E,True,False,0,,9,none
+0x3cad6b,0x0F,opcode_0x0F,True,False,3,dword ptr [eax + 0x14];dword ptr [eax + 0x1c];dword ptr [eax + 0x1c],9,minimal
+0x3caef9,0x10,opcode_0x10,True,False,4,dword ptr [0xbe16bc];dword ptr [0xbe1734];dword ptr [0xbe16bc];dword ptr [0xbe1734],6,minimal
+0x3cd474,,unknown,False,False,0,,11,none
+0x3cd861,0x08,opcode_0x08,True,False,0,,6,none
+0x3cf958,0x04,opcode_0x04,True,False,0,,5,none
+0x3cfc02,0x05,opcode_0x05,True,False,0,,8,none
+0x3cfdcd,0x06,opcode_0x06,True,False,0,,10,none
+0x3cfe30,0x07,opcode_0x07,True,False,1,dword ptr [eax + 0x4c],10,minimal
+0x3cfee7,0x07,opcode_0x07,True,False,1,dword ptr [eax + 0x4c],11,minimal
+0x3cfff5,0x08,opcode_0x08,True,False,0,,11,none
+0x3d3449,,unknown,False,False,0,,18,none
+0x3d774a,0x03,opcode_0x03,True,False,1,dword ptr [eax],7,minimal
+0x3d8f8e,,unknown,False,False,0,,8,none
+0x3d9c16,,unknown,True,False,2,dword ptr [0xafe1bc];dword ptr [0xafe1bc],7,minimal
+0x3da52d,0x108,opcode_0x108,True,False,0,,8,none
+0x3da597,0x01,opcode_0x01,True,False,0,,7,none
+0x3de0a8,,unknown,False,False,0,,15,none
+0x3e3f73,,unknown,False,False,0,,18,none
+0x3ebffb,,unknown,False,False,0,,12,none
+0x3efe6d,,unknown,False,False,0,,6,none
+0x404cee,0x05,opcode_0x05,True,False,1,dword ptr [ecx + 8],6,minimal
+0x406392,0x06,opcode_0x06,True,False,0,,16,none
+0x408c11,0x0D,opcode_0x0D,True,False,0,,8,none
+0x40de82,,unknown,False,False,0,,11,none
+0x411c96,,unknown,False,False,0,,11,none
+0x415637,,unknown,False,False,0,,17,none
+0x41f5d5,,unknown,False,False,0,,2,none
+0x42651e,,unknown,False,False,0,,11,none
+0x42883e,,unknown,False,False,0,,5,none
+0x42b6a9,,unknown,False,False,0,,5,none
+0x42d287,,unknown,False,False,0,,11,none
+0x43290d,,unknown,False,False,0,,16,none
+0x437a59,,unknown,True,False,0,,9,none
+0x43a97f,,unknown,False,False,0,,5,none
+0x43edf7,,unknown,False,False,0,,5,none
+0x44096a,,unknown,False,False,0,,12,none
+0x447053,,unknown,False,False,0,,4,none
+0x44b0d1,,unknown,False,False,0,,16,none
+0x457fe9,,unknown,False,False,0,,11,none
+0x45bd3c,,unknown,False,False,0,,10,none
+0x45c1a8,0x76,MESSENGER,False,False,0,,11,none
+0x45c9f0,0x06,opcode_0x06,False,False,0,,7,none
+0x45f6ab,0x05,opcode_0x05,True,False,0,,7,none
+0x45fe5d,0x03,opcode_0x03,True,False,0,,8,none
+0x45ff6a,0x06,opcode_0x06,True,False,1,dword ptr [eax + 0x1c],7,minimal
+0x462d8f,,unknown,False,False,0,,8,none
+0x46d274,,unknown,False,False,0,,16,none
+0x47a8b6,,unknown,False,False,0,,6,none
+0x47e668,,unknown,True,False,0,,9,none
+0x48188f,,unknown,False,False,0,,10,none
+0x485f84,,unknown,False,False,0,,16,none
+0x488330,,unknown,False,False,0,,24,none
+0x48be6b,,unknown,False,False,0,,16,none
+0x48c858,0x01,opcode_0x01,True,False,0,,9,none
+0x4a1fb9,,unknown,False,False,0,,9,none
+0x4a20b0,0x01,opcode_0x01,True,False,0,,13,none
+0x4a2333,,unknown,True,False,3,dword ptr [ecx + 8];dword ptr [ecx + 8];dword ptr [ecx + 0x64],11,minimal
+0x4a3b03,0xF7,opcode_0xF7,True,False,3,dword ptr [ecx + 8];dword ptr [ecx + 8];dword ptr [ecx + 8],8,minimal
+0x4a6bd4,,unknown,False,False,0,,16,none
+0x4a8e70,,unknown,False,False,0,,9,none
+0x4abfb2,,unknown,False,False,0,,10,none
+0x4ae16a,,unknown,False,False,0,,16,none
+0x4b1f40,0x05,opcode_0x05,True,False,0,,11,none
+0x4b34a9,,unknown,False,False,0,,10,none
+0x4b9648,,unknown,False,False,0,,22,none
+0x4c2238,,unknown,False,False,0,,20,none
+0x4c7df7,,unknown,False,False,0,,11,none
+0x4d070f,,unknown,False,False,0,,17,none
+0x4d4810,,unknown,False,False,0,,14,none
+0x4e3cd5,0x74,PARTYCHAT,True,False,1,dword ptr [0xafe33c],9,minimal
+0x4e8df9,,unknown,False,False,0,,19,none
+0x4ea933,,unknown,False,False,0,,13,none
+0x4ec1ae,,unknown,False,False,0,,13,none
+0x501f24,,unknown,False,False,0,,18,none
+0x50fe5c,,unknown,False,False,0,,7,none
+0x51b8f9,0x03,opcode_0x03,True,False,0,,14,none
+0x51ba34,0x02,opcode_0x02,True,False,0,,9,none
+0x51baaf,0x06,opcode_0x06,True,False,0,,7,none
+0x51bc56,0x09,opcode_0x09,True,False,0,,8,none
+0x51be0f,0x0A,opcode_0x0A,True,False,0,,10,none
+0x51c57f,0x07,opcode_0x07,True,False,0,,13,none
+0x51f064,0x08,opcode_0x08,True,False,2,dword ptr [0xbe16bc];dword ptr [0xbe1734],8,minimal
+0x5303fc,,unknown,False,False,0,,13,none
+0x530d0a,0x103,opcode_0x103,True,False,1,dword ptr [0xbe18d4],8,minimal
+0x532608,,unknown,False,False,0,,3,none
+0x5340f5,,unknown,False,False,0,,25,none
+0x54fb49,,unknown,False,False,0,,21,none
+0x55199a,0xFE,opcode_0xFE,False,False,0,,11,none
+0x5546dc,,unknown,True,False,5,dword ptr [eax + 0x10];dword ptr [eax + 0x10];dword ptr [edx + 0x1c];dword ptr [eax + 0x10];dword ptr [eax + 0x10],5,minimal
+0x554b58,,unknown,False,False,0,,9,none
+0x5564ee,0x04,opcode_0x04,False,False,0,,8,none
+0x5568cc,0x04,opcode_0x04,True,False,3,dword ptr [0xbe1734];dword ptr [0xbe1734];dword ptr [0xbe1734],10,minimal
+0x556ac3,0x2B,PASSIVE_ENERGY,True,False,0,,6,none
+0x55af5d,,unknown,False,False,0,,1,none
+0x55f740,,unknown,False,False,0,,0,none
+0x55f8ef,,unknown,False,False,0,,0,none
+0x561511,,unknown,False,False,0,,0,none
+0x5626fb,,unknown,False,False,0,,0,none
+0x563c7d,,unknown,True,False,2,dword ptr [eax + 0x10];dword ptr [eax + 0x10],12,minimal
+0x5647c8,0xFE,opcode_0xFE,False,False,0,,5,none
+0x56b6ea,,unknown,False,False,0,,3,none
+0x5741f9,,unknown,False,False,0,,8,none
+0x576ae9,,unknown,True,False,2,dword ptr [eax + 0x10];dword ptr [eax + 0x10],13,minimal
+0x57707b,,unknown,False,False,0,,10,none
+0x5773de,,unknown,True,False,1,dword ptr [eax + 0x10],13,minimal
+0x5775af,,unknown,False,False,0,,3,none
+0x577e0c,,unknown,True,False,0,,8,none
+0x578c7d,,unknown,False,False,0,,13,none
+0x579e18,,unknown,True,False,0,,13,none
+0x57a00a,,unknown,True,False,4,dword ptr [eax + 0x10];dword ptr [eax + 0x10];dword ptr [eax + 0x10];dword ptr [eax + 0x10],12,minimal
+0x57a9dc,,unknown,True,False,2,dword ptr [eax + 0x10];dword ptr [eax + 0x10],11,minimal
+0x57e7e4,,unknown,False,False,0,,19,none
+0x585cd5,,unknown,False,False,0,,14,none
+0x58ca42,,unknown,False,False,0,,19,none
+0x594a95,,unknown,False,False,0,,19,none
+0x59e870,,unknown,False,False,0,,14,none
+0x5a9da9,,unknown,False,False,0,,15,none
+0x5c3aa4,,unknown,False,False,0,,2,none
+0x5cbbf0,,unknown,False,False,0,,15,none
+0x5cfac1,,unknown,False,False,0,,5,none
+0x5d341b,,unknown,False,False,0,,7,none
+0x5d7723,,unknown,False,False,0,,15,none
+0x5df669,,unknown,False,False,0,,10,none
+0x5e109d,0x08,opcode_0x08,True,False,0,,4,none
+0x5e2271,0x06,opcode_0x06,True,False,0,,5,none
+0x5e2bf1,0x08,opcode_0x08,False,False,0,,12,none
+0x5e3d0e,0x07,opcode_0x07,True,False,3,dword ptr [eax + 0x4c];dword ptr [eax + 0x4c];dword ptr [eax + 0x4c],9,minimal
+0x5ec1e2,,unknown,False,False,0,,5,none
+0x5f3384,,unknown,False,False,0,,2,none
+0x5fb35d,,unknown,False,False,0,,12,none
+0x5fdf08,,unknown,False,False,0,,13,none
+0x607afe,,unknown,False,False,0,,12,none
+0x60ad36,,unknown,False,False,0,,19,none
+0x612493,,unknown,True,False,0,,13,none
+0x612525,,unknown,True,False,0,,14,none
+0x6125b7,,unknown,True,False,0,,11,none
+0x6126c5,,unknown,True,False,1,dword ptr [eax + 0x4c],10,minimal
+0x61280b,,unknown,True,False,1,dword ptr [eax + 0x4c],9,minimal
+0x612c05,0x08,opcode_0x08,True,False,0,,10,none
+0x613b08,0x01,opcode_0x01,True,False,0,,9,none
+0x613cee,,unknown,True,False,0,,9,none
+0x615119,,unknown,False,False,0,,6,none
+0x61a7e5,,unknown,True,False,2,dword ptr [eax];dword ptr [eax + 8],8,minimal
+0x61cd89,,unknown,True,False,2,dword ptr [0xafe1bc];dword ptr [0xafe1bc],11,minimal
+0x626a79,,unknown,False,False,0,,22,none
+0x6270ef,0x77,PLAYER_INTERACTION,True,False,0,,14,none
+0x627ceb,0x77,PLAYER_INTERACTION,True,False,0,,9,none
+0x6285d3,,unknown,True,False,2,dword ptr [0xbe18d4];dword ptr [eax + 0x64],4,minimal
+0x62d5fb,,unknown,True,False,1,dword ptr [edx + 0x1c],8,minimal
+0x62d780,,unknown,True,False,1,dword ptr [eax + 0x18],10,minimal
+0x62daf3,,unknown,True,False,2,dword ptr [0xbe18d4];dword ptr [0xbe18d4],5,minimal
+0x62e9c3,0x02,opcode_0x02,True,False,0,,8,none
+0x62fb71,0x63,TROCK_ADD_MAP,True,False,0,,9,none
+0x63098a,0x03,opcode_0x03,True,False,0,,16,none
+0x630c7f,0x67,UNKNOWN,False,False,0,,4,none
+0x63165f,0x3C,USE_HIRED_MERCHANT,True,False,0,,9,none
+0x631881,0x0D,opcode_0x0D,False,False,0,,9,none
+0x63adca,,unknown,False,False,0,,4,none
+0x63c280,,unknown,True,False,0,,6,none
+0x63da3a,,unknown,True,False,0,,5,none
+0x63db19,,unknown,True,False,0,,6,none
+0x63ebd0,,unknown,True,False,1,dword ptr [0xafe1bc],8,minimal
+0x6410c3,,unknown,True,False,0,,6,none
+0x641174,0x01,opcode_0x01,True,False,0,,5,none
+0x643bba,0x01,opcode_0x01,True,False,0,,11,none
+0x647fb3,,unknown,True,False,0,,8,none
+0x648120,0x03,opcode_0x03,True,False,0,,9,none
+0x649c00,0x7E,BUDDYLIST_MODIFY,True,False,0,,10,none
+0x65aa89,0x01,opcode_0x01,True,False,0,,17,none
+0x65ab5f,0x02,opcode_0x02,True,False,0,,11,none
+0x65ed3b,,unknown,False,False,0,,10,none
+0x65fe8c,0xA1,opcode_0xA1,True,False,1,dword ptr [eax + 0x24],7,minimal
+0x66163c,,unknown,False,False,0,,11,none

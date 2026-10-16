@@ -1,0 +1,21 @@
+metric,value,source,notes
+function_candidates,51200,task050-function-map.csv row count,prologue + call-target scan; NOT 51K proven business methods
+subsystem_classified_functions,492,"§10.7: CWvsContext alone is shared-context, not character",569 CWvsContext-only demoted from character to shared-context
+raw_field_access_observations,10922,task050-field-facts.csv (MISNAMED — contains raw [reg+offset] patterns),NOT semantic field facts; no owner/meaning proven
+semantic_field_facts,5,CWvsContext fields proven by handler write + read + semantics,only fields meeting all §10.2 criteria count
+inbound_handler_body_summaries,83,§10.6: entries with reader calls in handler-decode checkpoint,"of 207 total; 119 are sub-dispatcher/inline, NOT leaf"
+inbound_minimal_schemas,4,schemas with at least one payload read field,§10.4: must have opcode + payload field + wire order
+outbound_minimal_schemas,0,outbound schemas currently are header-only observations,§10.3: WriteHeader alone is NOT a schema; need payload write sequence
+packet_header_observations_outbound,207,WriteHeader call sites with known opcodes,"§10.3: header observation, not schema"
+sender_sites_total,486,send wrapper call sites,
+sender_sites_classified,207,sites with packet name or strong role,§S3 target: ≥400/486
+high_semantic_functions,18,§10.8: two independent evidence families + non-trivial behavior,of 51200; most are handler-name mappings
+medium_semantic_functions,979,one strong clue + contextual support,
+valid_classified_functions,492,§10.7: properly classified (not CWvsContext-only),
+class_object_candidates,65,task046-class-map.csv,
+medium_classes,13,medium+ confidence,
+high_classes,0,high/confirmed,mostly RTTI security family
+pseudocode_functions_flows,28,task050-behavior-flows.md,§S7 target: ≥80
+state_machines,2,CLogin state + channel migration,§S6 target: ≥20
+resource_links,0,not yet built,
+reference_correlations,12,task046-reference-correlation.csv,
