@@ -1,0 +1,385 @@
+function_rva,role,semantic_name,subsystem,grade,evidence_families,evidence,body_summary
+0x6286ec,inbound-handler,OnMODIFY_INVENTORY_ITEM,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(7 reads) + IMG:field-writes(5),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadInt16>ReadInt32>ReadInt16]; fields[0x2088,0x208c,0x2944,0x294c,0x2e98]; virtual_calls(3)"
+0x629024,inbound-handler,OnUPDATE_INVENTORY_SLOT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads) + IMG:field-writes(4),"reads[ReadByte>ReadByte>ReadByte]; fields[0x2088,0x208c,0x2110,0x3568]; loops(1)"
+0x6292f5,inbound-handler,OnUPDATE_STATS,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(2 reads) + IMG:field-writes(9),"reads[ReadByte>ReadByte]; objects[CWvsContext]; fields[0x13,0x1c,0x33,0x35,0x39]; virtual_calls(1); loops(2)"
+0x6299ff,inbound-handler,OnGIVE_BUFF,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(2 reads) + IMG:field-writes(2),"reads[ReadInt16>ReadByte]; fields[0x20,0x2110]; virtual_calls(1); loops(2)"
+0x629e60,inbound-handler,OnCANCEL_BUFF,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads) + IMG:field-writes(8),"reads[ReadByte>ReadByte>ReadByte]; objects[SocketSingleton]; builds_outbound; fields[0xbfc,0xc0c,0x2088,0x208c,0x2110]; virtual_calls(3)"
+0x62a040,inbound-handler,OnTEMP_STATS,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(5),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadInt32>ReadInt16]; objects[SocketSingleton]; builds_outbound; fields[0x2088,0x208c,0x2110,0x2d30,0x32f4]; virtual_calls(1)"
+0x62a05d,inbound-handler,OnTEMP_STATS_RESET,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(5),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadInt32>ReadInt16]; objects[SocketSingleton]; builds_outbound; fields[0x2088,0x208c,0x2110,0x2d30,0x32f4]; virtual_calls(1)"
+0x6280d7,inbound-handler,OnUPDATE_SKILLS,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(12 reads) + IMG:field-writes(4),"reads[ReadByte>ReadInt16>ReadInt32>ReadInt32>ReadInt32>ReadByte>ReadInt32>ReadByte]; fields[0x2e7,0x317,0x2088,0x208c]; virtual_calls(1); loops(1)"
+0x62a0f3,inbound-handler,OnSKILL_USE_RESULT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(8 reads) + IMG:field-writes(2),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadInt32>ReadInt16>ReadInt32>ReadInt32]; fields[0x2088,0x208c]"
+0x62bb3c,inbound-handler,OnFAME_RESPONSE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(8 reads) + IMG:field-writes(2),"reads[ReadByte>ReadByte>ReadByte>ReadInt32>ReadInt32>ReadInt32>ReadInt16>ReadInt16]; fields[0x2094,0x2de4]; loops(1)"
+0x62a115,inbound-handler,OnSHOW_STATUS_INFO,structured,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(7 reads),reads[ReadByte>ReadByte>ReadByte>ReadInt32>ReadInt16>ReadInt32>ReadInt32]
+0x62e85f,inbound-handler,OnSHOW_NOTES,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(8),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadInt32]; objects[CWvsContext,SocketSingleton]; builds_outbound; fields[0x3ef,0x403,0x2088,0x208c,0x2094]; loops(4)"
+0x62ea39,inbound-handler,OnTROCK_LOCATIONS,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads) + IMG:field-writes(9),"reads[ReadByte>ReadByte>ReadInt32]; fields[0x3ef,0x403,0x2094,0x34a4,0x34a8]; loops(6)"
+0x62ff74,inbound-handler,OnANTI_MACRO_RESULT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads) + IMG:field-writes(2),"reads[ReadByte>ReadByte>ReadByte]; fields[0x3000,0x34c4]; virtual_calls(2); loops(1)"
+0x631374,inbound-handler,OnCLAIM_RESULT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(4),"reads[ReadByte>ReadByte>ReadInt32>ReadByte>ReadByte>ReadByte]; fields[0x2ff0,0x2ff1,0x2ff4,0x35b0]"
+0x63161a,inbound-handler,OnCLAIM_STATUS_CHANGED,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(8),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadInt32>ReadByte]; objects[SocketSingleton]; builds_outbound; fields[0x8,0x110,0x2ff0,0x2ff1,0x2ff4]; virtual_calls(3)"
+0x631643,inbound-handler,OnSET_TAMING_MOB_INFO,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(4 reads) + IMG:field-writes(6),"reads[ReadByte>ReadByte>ReadInt32>ReadByte]; objects[SocketSingleton]; builds_outbound; fields[0x8,0x110,0x2ff4,0x34cc,0x34d0]; virtual_calls(3)"
+0x632d3b,inbound-handler,OnUPDATE_MOUNT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(5 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt32>ReadInt32>ReadInt32>ReadByte]; objects[SocketSingleton]; builds_outbound; fields[0x39,0x3d,0x61,0x65,0x88]"
+0x630827,inbound-handler,OnSHOW_QUEST_COMPLETION,minimal,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(1 reads) + IMG:field-writes(5),"reads[ReadInt16]; objects[SocketSingleton]; builds_outbound; fields[0x578,0x33b0,0x33b8,0x3448,0x344c]; loops(1)"
+0x631881,inbound-handler,OnSEND_TITLE_BOX,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(7 reads) + IMG:field-writes(2),"reads[ReadByte>ReadInt32>ReadByte>ReadInt32>ReadByte>ReadInt32>ReadInt16]; builds_outbound; fields[0x34cc,0x34d0]"
+0x6281eb,inbound-handler,OnUSE_SKILL_BOOK,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(2),"reads[ReadInt32>ReadByte>ReadInt32>ReadInt32>ReadByte>ReadByte]; fields[0x2088,0x208c]; virtual_calls(1); loops(1)"
+0x62857f,inbound-handler,OnFINISH_SORT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(12 reads) + IMG:field-writes(8),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte]; objects[SocketSingleton]; builds_outbound; fields[0x2088,0x208c,0x2944,0x294c,0x2e98]; virtual_calls(2)"
+0x6285a9,inbound-handler,OnFINISH_GATHER,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(10 reads) + IMG:field-writes(8),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte]; objects[SocketSingleton]; builds_outbound; fields[0x2088,0x208c,0x2944,0x294c,0x2e98]; virtual_calls(2)"
+0x62cde5,inbound-handler,OnCHAR_INFO,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(13 reads) + IMG:field-writes(5),"reads[ReadInt32>ReadByte>ReadInt16>ReadInt16>ReadByte>ReadByte>ReadByte>ReadInt32]; fields[0x4,0x2088,0x208c,0x33bc,0x33c0]"
+0x648120,inbound-handler,OnPARTY_OPERATION,structured,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads),reads[ReadByte>ReadInt32>ReadByte]; objects[SocketSingleton]; builds_outbound; loops(1)
+0x64915c,inbound-handler,OnBUDDYLIST,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(6),"reads[ReadByte>ReadInt32>ReadByte>ReadInt32>ReadInt32>ReadByte]; fields[0x12,0x205c,0x2094,0x2f34,0x2f38]"
+0x641174,inbound-handler,OnGUILD_OPERATION,structured,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads),reads[ReadByte>ReadByte>ReadInt32]; objects[SocketSingleton]; builds_outbound; loops(1)
+0x643bba,inbound-handler,OnALLIANCE_OPERATION,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(4 reads) + IMG:field-writes(6),"reads[ReadByte>ReadInt32>ReadInt32>ReadByte]; objects[SocketSingleton]; builds_outbound; fields[0x2f7c,0x2fc8,0x2fcc,0x2fd4,0x2fe0]; loops(1)"
+0x62be06,inbound-handler,OnSPAWN_PORTAL,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(16 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt32>ReadInt16>ReadInt16>ReadByte>ReadByte>ReadByte>ReadByte]; fields[0x4,0x8,0xc,0x2094,0x2098]"
+0x62bede,inbound-handler,OnSERVERMESSAGE,structured,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(12 reads),reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte]
+0x632c6f,inbound-handler,OnENGAGE_REQUEST,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(7 reads) + IMG:field-writes(10),"reads[ReadByte>ReadByte>ReadInt32>ReadInt32>ReadInt32>ReadInt32>ReadByte]; fields[0x39,0x3d,0x61,0x65,0x88]"
+0x611325,inbound-handler,OnSHOW_PREDICT_CARD,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt32>ReadInt32>ReadByte>ReadInt32>ReadInt32]; fields[0x4,0x8,0x6c,0x70,0x74]; virtual_calls(1)"
+0x628654,inbound-handler,OnYELLOW_CHAT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(9 reads) + IMG:field-writes(8),"reads[ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadByte>ReadInt16>ReadInt32]; fields[0x2088,0x208c,0x2944,0x294c,0x2e98]; virtual_calls(1)"
+0x63345c,inbound-handler,OnAVATAR_MEGA,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt32>ReadByte]; objects[CWvsContext]; fields[0xc,0x10,0x347,0x48b,0x2638]; virtual_calls(1); loops(1)"
+0x611948,inbound-handler,OnPLAYER_NPC,none,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:field-writes(10),"fields[0x1b,0x24c,0x254,0x270,0x278]; virtual_calls(1); loops(2)"
+0x61179e,inbound-handler,OnMONSTERBOOK_ADD,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(9 reads) + IMG:field-writes(6),"reads[ReadByte>ReadInt32>ReadInt32>ReadInt32>ReadInt16>ReadInt16>ReadInt32>ReadInt32]; fields[0x1b,0x2088,0x2090,0x2094,0x2f3c]; loops(1)"
+0x6118bb,inbound-handler,OnMONSTERBOOK_CHANGE_COVER,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt16>ReadInt16>ReadInt32>ReadInt32>ReadByte]; fields[0x1b,0x24c,0x254,0x270,0x278]; loops(2)"
+0x61b999,inbound-handler,OnFAIRY_PEND_MSG,minimal,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(1 reads) + IMG:field-writes(6),"reads[ReadByte]; fields[0x2fb8,0x2fbc,0x35c4,0x3668,0x366c]; virtual_calls(8)"
+0x63dff2,inbound-handler,OnSEND_PEDIGREE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(12 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt32>ReadInt32>ReadInt16>ReadInt16>ReadInt16>ReadInt32>ReadInt32]; fields[0x4,0x8,0xc,0xe,0x10]; loops(1)"
+0x63e008,inbound-handler,OnOPEN_FAMILY,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(12 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt32>ReadInt32>ReadInt16>ReadInt16>ReadInt16>ReadInt32>ReadInt32]; fields[0x4,0x8,0xc,0xe,0x10]; loops(1)"
+0x63e164,inbound-handler,OnFAMILY_MESSAGE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(2 reads) + IMG:field-writes(1),reads[ReadInt32>ReadInt32]; fields[0x361c]; loops(2)
+0x63e4b3,inbound-handler,OnFAMILY_INVITE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(4),"reads[ReadInt32>ReadByte>ReadInt32>ReadByte>ReadInt32>ReadInt32]; fields[0xc,0x10,0x14,0x35c8]; virtual_calls(1)"
+0x63e59f,inbound-handler,OnFAMILY_JUNIOR,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(5 reads) + IMG:field-writes(7),"reads[ReadByte>ReadInt32>ReadByte>ReadInt32>ReadInt32]; fields[0x4,0xc,0x10,0x14,0x18]; virtual_calls(1); loops(1)"
+0x63e695,inbound-handler,OnSENIOR_MESSAGE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(5 reads) + IMG:field-writes(7),"reads[ReadInt32>ReadByte>ReadInt32>ReadInt32>ReadInt32]; fields[0x4,0xc,0x10,0x14,0x18]; virtual_calls(1); loops(1)"
+0x63e723,inbound-handler,OnFAMILY,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(7),"reads[ReadInt32>ReadByte>ReadInt32>ReadInt32>ReadInt32>ReadByte]; fields[0x4,0xc,0x10,0x14,0x18]; virtual_calls(1); loops(1)"
+0x63e8df,inbound-handler,OnREP_INCREASE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(8),"reads[ReadInt32>ReadByte>ReadByte>ReadInt32>ReadInt32>ReadInt32]; fields[0x4,0x8,0xc,0x10,0x2dcc]; virtual_calls(1)"
+0x63e9e3,inbound-handler,OnFAMILY_LOGGEDIN,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(5 reads) + IMG:field-writes(8),"reads[ReadByte>ReadByte>ReadInt32>ReadInt32>ReadInt32]; objects[SocketSingleton]; builds_outbound; fields[0x4,0x8,0xc,0x10,0x2dcc]; virtual_calls(1)"
+0x63eaac,inbound-handler,OnFAMILY_BUFF,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(4 reads) + IMG:field-writes(8),"reads[ReadByte>ReadInt32>ReadInt32>ReadInt32]; objects[SocketSingleton]; builds_outbound; fields[0x4,0x8,0xc,0x10,0x2dcc]; virtual_calls(2); loops(2)"
+0x63ebd0,inbound-handler,OnFAMILY_USE_REQUEST,none,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:field-writes(1),objects[SocketSingleton]; builds_outbound; fields[0x4]; virtual_calls(1); loops(2)
+0x61c3f7,inbound-handler,OnLEVEL_UPDATE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(5 reads) + IMG:field-writes(1),reads[ReadByte>ReadInt32>ReadByte>ReadByte>ReadInt32]; fields[0x20ac]
+0x61c584,inbound-handler,OnMARRIAGE_UPDATE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(4 reads) + IMG:field-writes(3),"reads[ReadByte>ReadByte>ReadInt32>ReadByte]; fields[0xc,0x20,0x3640]; virtual_calls(1)"
+0x61c6af,inbound-handler,OnJOB_UPDATE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads) + IMG:field-writes(3),"reads[ReadByte>ReadInt32>ReadByte]; fields[0xc,0x20,0x3640]; virtual_calls(2); loops(1)"
+0x61c7fb,inbound-handler,OnDATA_CRC_CHECK_FAILED,minimal,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(1 reads) + IMG:field-writes(4),"reads[ReadByte]; fields[0xc,0x20,0x3448,0x3640]; virtual_calls(2); loops(4)"
+0x61ca98,inbound-handler,OnTOP_MSG,none,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:field-writes(5),"fields[0x4,0x8,0xc,0x10,0x3448]"
+0x61cb05,inbound-handler,OnBBS_OPERATION,none,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:field-writes(6),"objects[SocketSingleton]; builds_outbound; fields[0x4,0x8,0xc,0x10,0x2088]"
+0x634844,inbound-handler,OnCHAR_CASH,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(2 reads) + IMG:field-writes(8),"reads[ReadInt32>ReadInt32]; objects[SocketSingleton]; builds_outbound; fields[0x18,0x20,0x3db,0x3df,0x2088]; loops(2)"
+0x632d1e,inbound-handler,OnSKILL_MACRO,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(5 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt32>ReadInt32>ReadInt32>ReadByte]; fields[0x39,0x3d,0x61,0x65,0x88]"
+0x37e72f,inbound-handler,OnWARP_TO_MAP (confirmed),structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(11 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadByte>ReadByte>ReadByte>ReadInt16>ReadInt32>ReadInt32>ReadInt32]; objects[CWvsContext,Delegate]; fields[0x4,0x8,0x61,0x65,0xc5]"
+0x37fc9e,inbound-handler,OnMTS_OPEN,none,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:field-writes(2),"objects[Delegate]; fields[0x4,0xc]"
+0x37f209,inbound-handler,OnCS_OPEN,none,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:field-writes(2),"objects[CWvsContext,Delegate]; fields[0x4,0x2f60]"
+0x57f6c0,inbound-handler,OnSPAWN_PLAYER (confirmed),structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads) + IMG:field-writes(4),"reads[ReadInt32>ReadInt32>ReadInt32]; objects[CWvsContext]; fields[0xc,0x10,0x24,0x54]"
+0x57f64c,inbound-handler,OnREMOVE_PLAYER_FROM_MAP,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(2 reads) + IMG:field-writes(4),"reads[ReadInt32>ReadInt32]; objects[CWvsContext]; fields[0xc,0x10,0x24,0x54]"
+0x2a6ab0,inbound-handler,OnSPAWN_MONSTER,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(4 reads) + IMG:field-writes(10),"reads[ReadInt32>ReadInt32>ReadByte>ReadInt32]; fields[0x4,0x8,0x1c,0x28,0x58]"
+0x2cb061,inbound-handler,OnSPAWN_NPC,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(8 reads) + IMG:field-writes(8),"reads[ReadByte>ReadInt32>ReadByte>ReadInt32>ReadInt32>ReadInt32>ReadInt32>ReadInt32]; fields[0x4,0xc,0x10,0x14,0x18]"
+0x11b3a3,inbound-handler,OnSPAWN_HIRED_MERCHANT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(4 reads) + IMG:field-writes(9),"reads[ReadInt32>ReadInt32>ReadInt32>ReadInt32]; fields[0x4,0x8,0xc,0x10,0x14]"
+0x10e6cf,inbound-handler,OnDROP_ITEM_FROM_MAPOBJECT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(12 reads) + IMG:field-writes(10),"reads[ReadByte>ReadInt32>ReadByte>ReadInt32>ReadInt32>ReadByte>ReadInt16>ReadInt16]; fields[0x1,0x8,0xc,0x1c,0x1d]"
+0x288cba,inbound-handler,OnSPAWN_LOVE,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(4 reads) + IMG:field-writes(6),"reads[ReadInt32>ReadInt32>ReadInt16>ReadInt16]; fields[0x4,0x1c,0x20,0x24,0x28]"
+0x31648,inbound-handler,OnSPAWN_MIST,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(7 reads) + IMG:field-writes(2),"reads[ReadInt32>ReadInt32>ReadInt32>ReadInt32>ReadByte>ReadInt16>ReadInt32]; fields[0x8,0x14]"
+0x341c0b,inbound-handler,OnREACTOR_HIT,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(13 reads) + IMG:field-writes(9),"reads[ReadInt32>ReadByte>ReadInt16>ReadInt16>ReadInt16>ReadByte>ReadByte>ReadInt32]; fields[0x4,0xc,0x10,0x14,0x18]"
+0x353092,inbound-handler,OnNPC_TALK,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(4 reads) + IMG:field-writes(1),reads[ReadByte>ReadInt32>ReadByte>ReadByte]; fields[0x4]
+0x36400c,inbound-handler,OnOPEN_NPC_SHOP,minimal,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(1 reads) + IMG:field-writes(10),"reads[ReadByte]; fields[0x4,0x8,0x3c,0x7c,0x84]"
+0x3a1424,inbound-handler,OnMERCH_ITEM_MSG,structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(6 reads) + IMG:field-writes(1),reads[ReadByte>ReadInt32>ReadInt32>ReadByte>ReadInt32>ReadInt32]; objects[CWvsContext]; fields[0xb4]
+0x1b9e4f,inbound-handler,OnKEYMAP (confirmed),structured,high,4,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:reader-sequence(3 reads) + IMG:field-writes(5),"reads[ReadByte>ReadInt32>ReadInt32]; objects[SocketSingleton]; fields[0x4,0x5,0x1c1,0x380,0x384]"
+0x1b9f14,inbound-handler,OnAUTO_HP_POT,none,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:field-writes(10),"objects[SocketSingleton]; fields[0x4,0x5,0x95,0xd6,0x167]"
+0x148034,inbound-handler,OnVICIOUS_HAMMER,none,high,3,DISPATCH:range-table/band position + PKT:sendops.properties name + IMG:field-writes(3),"fields[0x4,0x8,0x1e0]"
+0x25053,outbound-builder,Sendopcode_0x41,minimal,medium,3,SEM:opcode 0x41 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x41 > send > u8 > u32 > send
+0x6b15a,outbound-builder,Sendopcode_0xE9,structured,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u32 > send > u8 > u8 > u32 > u8 > send
+0x6b4a2,outbound-builder,Sendopcode_0xE9,minimal,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u32 > send
+0x6b822,outbound-builder,Sendopcode_0xE9,structured,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u8 > u8 > u8 > send
+0x6bd0b,outbound-builder,Sendopcode_0xE9,minimal,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u8 > u8 > send
+0x6be73,outbound-builder,Sendopcode_0xE9,structured,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u8 > u32 > send
+0x6c02c,outbound-builder,Sendopcode_0xE9,minimal,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u8 > u32 > send
+0x6cdbd,outbound-builder,SendUSE_CHAIR,structured,high,3,SEM:opcode 0x26 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x26 > u32 > send > u8 > u8 > u32 > u8 > send
+0x6d941,outbound-builder,Sendopcode_0xE9,structured,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u8 > u32 > send
+0x6dd46,outbound-builder,Sendopcode_0xE9,minimal,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u32 > send
+0x6e3aa,outbound-builder,Sendopcode_0x04,structured,medium,3,SEM:opcode 0x04 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x04 > u32 > u8 > send
+0x6e761,outbound-builder,Sendopcode_0xE9,minimal,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u32 > send
+0x6eab7,outbound-builder,Sendopcode_0xE9,minimal,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u32 > send
+0x6f142,outbound-builder,Sendopcode_0xE9,minimal,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u32 > send
+0x6f426,outbound-builder,Sendopcode_0xE9,structured,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u32 > send
+0x6f751,outbound-builder,Sendopcode_0xEB,minimal,medium,3,SEM:opcode 0xEB + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xEB > u8 > send
+0x6fe34,outbound-builder,Sendopcode_0xEB,minimal,medium,3,SEM:opcode 0xEB + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xEB > u8 > send
+0x71f34,outbound-builder,Sendopcode_0xE9,structured,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u8 > u16 > send
+0x72142,outbound-builder,Sendopcode_0xE9,minimal,medium,3,SEM:opcode 0xE9 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE9 > u8 > send
+0x726b1,outbound-builder,Sendopcode_0x20,minimal,medium,3,SEM:opcode 0x20 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x20 > u32 > send
+0x7866b,outbound-builder,SendNOTE_ACTION,minimal,high,3,SEM:opcode 0x7F + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7F > u8 > u32 > send
+0x82ac1,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u32 > u32 > send
+0x84fad,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u16 > u16 > u8 > send
+0x85180,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u32 > send
+0x8530e,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u32 > u32 > send
+0x122c4b,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > send > u8 > u8 > send
+0x1240e3,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u32 > send
+0x12a99b,outbound-builder,SendDENY_GUILD_REQUEST,structured,high,3,SEM:opcode 0x7B + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7B > send > u8 > send > u8 > send > u8 > u8 > send
+0x12cf8a,outbound-builder,SendPARTY_OPERATION,structured,high,3,SEM:opcode 0x78 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x78 > u32 > u8 > send > u8 > u32 > u32 > send > u8 > u32 > send > u8 > u32 > u32 > send > u8
+0x13f463,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u32 > u32 > send > u8 > u8 > u8 > send > u8 > u32 > send
+0x13f69e,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u32 > u32 > send > u8 > u8 > u8 > send > u8 > u32 > send
+0x13fa03,outbound-builder,SendPARTY_OPERATION,minimal,high,3,SEM:opcode 0x78 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x78 > u8 > send
+0x13fccd,outbound-builder,SendPARTY_OPERATION,minimal,high,3,SEM:opcode 0x78 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x78 > u32 > send
+0x13fe32,outbound-builder,SendPARTY_OPERATION,minimal,high,3,SEM:opcode 0x78 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x78 > u32 > send
+0x1401ef,outbound-builder,SendCHANGE_CHANNEL,minimal,high,3,SEM:opcode 0x22 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x22 > u32 > send
+0x1403ff,outbound-builder,SendGUILD_OPERATION,minimal,high,3,SEM:opcode 0x7A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7A > u32 > u8 > send
+0x140679,outbound-builder,SendGUILD_OPERATION,minimal,high,3,SEM:opcode 0x7A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7A > u32 > send
+0x1407a6,outbound-builder,SendGUILD_OPERATION,structured,high,3,SEM:opcode 0x7A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7A > u32 > send > u8 > u32 > u32 > send
+0x140bcf,outbound-builder,SendGUILD_OPERATION,minimal,high,3,SEM:opcode 0x7A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7A > u32 > u8 > send
+0x140d44,outbound-builder,SendGUILD_OPERATION,structured,high,3,SEM:opcode 0x7A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7A > u16 > u8 > u16 > u8 > send
+0x140fd0,outbound-builder,SendBUDDYLIST_MODIFY,minimal,high,3,SEM:opcode 0x7E + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7E > u32 > send
+0x14107c,outbound-builder,SendBUDDYLIST_MODIFY,minimal,high,3,SEM:opcode 0x7E + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7E > u32 > send
+0x1999a6,outbound-builder,Sendopcode_0xCF,minimal,medium,3,SEM:opcode 0xCF + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xCF > u16 > u16 > send
+0x1d434e,outbound-builder,Sendopcode_0x11,structured,medium,3,SEM:opcode 0x11 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x11 > u32 > u32 > u32 > u32 > u8 > u8 > u32 > u8 > u32 > u32 > u32 > u8 > u8 > send
+0x1d4556,outbound-builder,SendQUEST_ACTION,structured,high,3,SEM:opcode 0x68 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x68 > u8 > u32 > u32 > send > send
+0x1d494d,outbound-builder,Sendopcode_0xFE,structured,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > u32 > u32 > u8 > u8 > u32 > send
+0x1d4a2c,outbound-builder,Sendopcode_0xFE,structured,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > u32 > u32 > u8 > u8 > u32 > u32 > send
+0x1d4b1b,outbound-builder,Sendopcode_0xFE,structured,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > u32 > u32 > u8 > u8 > u32 > send
+0x1d4bf8,outbound-builder,Sendopcode_0xFE,structured,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > u32 > u32 > u8 > u8 > send
+0x1d4d4d,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d4dc0,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d4f53,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d4fc6,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d5064,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d50d7,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d514a,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d51e8,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d525b,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1d5304,outbound-builder,Sendopcode_0xFE,minimal,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xFE > u32 > send
+0x1ebb5f,outbound-builder,Sendopcode_0xFE,structured,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,u32 > u32 > u32 > u32 > send > op=0xFE > u32 > u32 > u32 > u32 > send
+0x22ac8a,outbound-builder,Sendopcode_0x09,structured,medium,3,SEM:opcode 0x09 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x09 > u8 > u32 > send
+0x22aeb2,outbound-builder,Sendopcode_0x08,structured,medium,3,SEM:opcode 0x08 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x08 > u8 > u32 > u32 > send
+0x22b14e,outbound-builder,Sendopcode_0x1A,structured,medium,3,SEM:opcode 0x1A + IMG:writer-primitive sequence + IMG:send-site in same body,u32 > send > u32 > send > op=0x1A > u32 > send
+0x22f729,outbound-builder,Sendopcode_0x1A,minimal,medium,3,SEM:opcode 0x1A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x1A > u32 > send
+0x22f7f6,outbound-builder,Sendopcode_0x1A,minimal,medium,3,SEM:opcode 0x1A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x1A > u32 > send
+0x278994,outbound-builder,SendNOTE_ACTION,structured,high,3,SEM:opcode 0x7F + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x7F > u8 > u8 > u8 > u32 > send
+0x27b9b5,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > send
+0x27c1e8,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > send
+0x27cc1e,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > send > u8 > send
+0x2815c0,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > send > u8 > send
+0x2816f5,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > send > u8 > send > u8 > send
+0x28c885,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u32 > u8 > u8 > send > u8 > u32 > u8 > send
+0x28c93d,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u32 > u32 > u8 > send > u8 > u32 > u8 > send
+0x28cbbb,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u32 > u32 > u8 > u16 > u32 > send > u8 > u32 > u8 > u8 > u16 > send > u8
+0x28cded,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u32 > u32 > u8 > u16 > u32 > send
+0x2d48f0,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > send
+0x2d51b0,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > send
+0x2d5270,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > send
+0x2d9a8b,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > send
+0x2d9e9b,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > send > u8 > send > u8 > send
+0x2e474e,outbound-builder,Sendopcode_0xE2,structured,medium,3,SEM:opcode 0xE2 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE2 > u16 > u32 > send > u8 > u16 > u32 > send
+0x2eab0f,outbound-builder,Sendopcode_0xE2,minimal,medium,3,SEM:opcode 0xE2 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE2 > u32 > send
+0x2ebc7d,outbound-builder,Sendopcode_0xE2,structured,medium,3,SEM:opcode 0xE2 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE2 > u8 > u8 > send
+0x2ede8c,outbound-builder,Sendopcode_0xE2,minimal,medium,3,SEM:opcode 0xE2 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE2 > u16 > u32 > send
+0x2edf3f,outbound-builder,Sendopcode_0x01,minimal,medium,3,SEM:opcode 0x01 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x01 > u16 > send
+0x2edfb8,outbound-builder,Sendopcode_0xE2,minimal,medium,3,SEM:opcode 0xE2 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE2 > u32 > send
+0x2ee12d,outbound-builder,Sendopcode_0xE2,structured,medium,3,SEM:opcode 0xE2 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xE2 > u32 > send > send > u8 > send > u8 > send > u8 > send
+0x2fa2a8,outbound-builder,SendDUEY_ACTION,minimal,high,3,SEM:opcode 0x3E + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3E > u32 > send
+0x2fa3e9,outbound-builder,SendDUEY_ACTION,minimal,high,3,SEM:opcode 0x3E + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3E > u32 > send
+0x2fb454,outbound-builder,SendDUEY_ACTION,structured,high,3,SEM:opcode 0x3E + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3E > u8 > u16 > u16 > u32 > u8 > u32 > send
+0x2fccb6,outbound-builder,SendDUEY_ACTION,structured,high,3,SEM:opcode 0x3E + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3E > u8 > u16 > u16 > u32 > u8 > send
+0x2fec45,outbound-builder,SendDUEY_ACTION,minimal,high,3,SEM:opcode 0x3E + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3E > u32 > u32 > send
+0x3061b5,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u32 > send > u8 > u8 > send
+0x306c0a,outbound-builder,Sendopcode_0x0B,structured,medium,3,SEM:opcode 0x0B + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x0B > u8 > u16 > u32 > send
+0x30752e,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u16 > send
+0x3075e2,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > send > u8 > u8 > send
+0x31fd3b,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > send
+0x323903,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > send > u8 > send > u8 > send
+0x3285c1,outbound-builder,SendQUEST_ACTION,structured,high,3,SEM:opcode 0x68 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x68 > u16 > u32 > u16 > u16 > send > u8 > u16 > u32 > u16 > u16 > send > u8 > u16 > u32 > u16
+0x34d058,outbound-builder,SendRPS_GAME,minimal,high,3,SEM:opcode 0x84 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x84 > u8 > send
+0x353250,outbound-builder,SendNPC_TALK_MORE,minimal,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > send
+0x3533d1,outbound-builder,Sendopcode_0x01,minimal,medium,3,SEM:opcode 0x01 + IMG:writer-primitive sequence + IMG:send-site in same body,u8 > op=0x01 > send
+0x353530,outbound-builder,SendNPC_TALK_MORE,minimal,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > u8 > send
+0x3536eb,outbound-builder,SendNPC_TALK_MORE,minimal,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > u8 > send
+0x3538a4,outbound-builder,SendNPC_TALK_MORE,structured,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > u32 > u8 > send
+0x353a52,outbound-builder,SendNPC_TALK_MORE,structured,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > u8 > u32 > send
+0x353be2,outbound-builder,SendNPC_TALK_MORE,structured,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > u8 > u8 > send
+0x353f2f,outbound-builder,SendNPC_TALK_MORE,structured,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > u8 > u8 > u8 > send
+0x3541f2,outbound-builder,SendNPC_TALK_MORE,structured,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > u8 > u8 > u8 > send
+0x3544f4,outbound-builder,SendNPC_TALK_MORE,structured,high,3,SEM:opcode 0x38 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x38 > u8 > u8 > send
+0x36395b,outbound-builder,SendNPC_SHOP,structured,high,3,SEM:opcode 0x3A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3A > u16 > u32 > u16 > u32 > send
+0x363d86,outbound-builder,SendNPC_SHOP,structured,high,3,SEM:opcode 0x3A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3A > u16 > u32 > u16 > send
+0x363e93,outbound-builder,SendNPC_SHOP,minimal,high,3,SEM:opcode 0x3A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3A > u16 > send
+0x36490b,outbound-builder,SendNPC_SHOP,minimal,high,3,SEM:opcode 0x3A + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3A > u32 > send
+0x3a1424,outbound-builder,SendMERCH_ITEM_STORE,minimal,high,3,SEM:opcode 0x3D + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3D > u32 > send
+0x3ac9ec,outbound-builder,Sendopcode_0xFE,structured,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,u32 > op=0xFE > u32 > u8 > u32 > u32 > u8 > send
+0x3c8beb,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u32 > u32 > send
+0x3cab40,outbound-builder,Sendopcode_0xEF,structured,medium,3,SEM:opcode 0xEF + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xEF > u8 > u16 > u16 > u8 > send
+0x3cad6b,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u32 > send
+0x3caef9,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u32 > u32 > send
+0x3cf958,outbound-builder,SendSTORAGE,minimal,high,3,SEM:opcode 0x3B + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3B > u8 > u8 > send
+0x3cfc02,outbound-builder,SendSTORAGE,structured,high,3,SEM:opcode 0x3B + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3B > u16 > u32 > u16 > send
+0x3cfe30,outbound-builder,SendSTORAGE,minimal,high,3,SEM:opcode 0x3B + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3B > u32 > send
+0x3cfee7,outbound-builder,SendSTORAGE,minimal,high,3,SEM:opcode 0x3B + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3B > u32 > send
+0x3cfff5,outbound-builder,SendSTORAGE,minimal,high,3,SEM:opcode 0x3B + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x3B > send > u8 > u32 > send
+0x3d774a,outbound-builder,Sendopcode_0x41,minimal,medium,3,SEM:opcode 0x41 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x41 > u32 > send
+0x45c1a8,outbound-builder,SendMESSENGER,minimal,high,3,SEM:opcode 0x76 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x76 > u32 > send > u8 > send
+0x45c9f0,outbound-builder,SendMESSENGER,structured,high,3,SEM:opcode 0x76 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x76 > send > u8 > send
+0x45f6ab,outbound-builder,SendMESSENGER,minimal,high,3,SEM:opcode 0x76 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x76 > u8 > send
+0x48c858,outbound-builder,Sendquest_KJ,structured,high,3,SEM:opcode 0x6A + IMG:writer-primitive sequence + IMG:send-site in same body,u16 > u32 > u16 > u32 > u32 > send > op=0x6A > u16 > u32 > send
+0x4a20b0,outbound-builder,Sendopcode_0x01,minimal,medium,3,SEM:opcode 0x01 + IMG:writer-primitive sequence + IMG:send-site in same body,u32 > op=0x01 > send
+0x4a3b03,outbound-builder,Sendopcode_0xF7,structured,medium,3,SEM:opcode 0xF7 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xF7 > u16 > u32 > send
+0x4e3cd5,outbound-builder,SendPARTYCHAT,structured,high,3,SEM:opcode 0x74 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x74 > u8 > u32 > send
+0x51baaf,outbound-builder,Sendopcode_0x93,structured,medium,3,SEM:opcode 0x93 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x93 > u32 > u32 > send
+0x51bc56,outbound-builder,Sendopcode_0x93,minimal,medium,3,SEM:opcode 0x93 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x93 > u32 > u8 > send
+0x51c57f,outbound-builder,Sendopcode_0x93,minimal,medium,3,SEM:opcode 0x93 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x93 > u32 > send
+0x55199a,outbound-builder,Sendopcode_0xFE,structured,medium,3,SEM:opcode 0xFE + IMG:writer-primitive sequence + IMG:send-site in same body,u32 > op=0xFE > u8 > u32 > u16 > send > u32 > u8 > u8 > u32 > u16 > send
+0x5564ee,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u32 > u8 > u8 > send
+0x5568cc,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,send > op=0x77 > u32 > u8 > u8 > send > send
+0x556ac3,outbound-builder,SendPLAYER_INTERACTION,minimal,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u32 > send
+0x5e2271,outbound-builder,Sendopcode_0x89,structured,medium,3,SEM:opcode 0x89 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x89 > u16 > u32 > u16 > send
+0x5e3d0e,outbound-builder,Sendopcode_0x89,minimal,medium,3,SEM:opcode 0x89 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x89 > u8 > u8 > send
+0x612c05,outbound-builder,Sendopcode_0x08,structured,medium,3,SEM:opcode 0x08 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x08 > u32 > u16 > u32 > send
+0x6270ef,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u8 > u8 > send
+0x627ceb,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u16 > u32 > send
+0x62fb71,outbound-builder,SendTROCK_ADD_MAP,minimal,high,3,SEM:opcode 0x63 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x63 > u8 > u32 > send
+0x63098a,outbound-builder,SendQUEST_ACTION,structured,high,3,SEM:opcode 0x68 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x68 > u16 > send
+0x630c7f,outbound-builder,Sendopcode_0x67,structured,medium,3,SEM:opcode 0x67 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x67 > u8 > send
+0x631881,outbound-builder,SendPLAYER_INTERACTION,structured,high,3,SEM:opcode 0x77 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x77 > u8 > u8 > u32 > u32 > u8 > u16 > send
+0x641174,outbound-builder,Sendopcode_0x93,structured,medium,3,SEM:opcode 0x93 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x93 > send > u8 > send
+0x643bba,outbound-builder,Sendopcode_0x93,structured,medium,3,SEM:opcode 0x93 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x93 > send > u8
+0x648120,outbound-builder,SendPARTY_OPERATION,structured,high,3,SEM:opcode 0x78 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x78 > u32 > u8 > send > u8 > send
+0x65ab5f,outbound-builder,Sendopcode_0x15,minimal,medium,3,SEM:opcode 0x15 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0x15 > u16 > send
+0x65fe8c,outbound-builder,Sendopcode_0xA1,minimal,medium,3,SEM:opcode 0xA1 + IMG:writer-primitive sequence + IMG:send-site in same body,op=0xA1 > u16 > u32 > send
+0x25e3e,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x02
+0x28d4f,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x01
+0x6b6e5,sender-host,SendUSE_CHAIR,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_CHAIR
+0x6f56c,sender-host,SendCLOSE_RANGE_ATTACK,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CLOSE_RANGE_ATTACK
+0x72266,sender-host,SendMERCH_ITEM_STORE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MERCH_ITEM_STORE
+0x729f0,sender-host,SendCHANGE_CHANNEL,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_CHANNEL
+0x72bfe,sender-host,SendCHANGE_CHANNEL,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_CHANNEL
+0x782e5,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x01
+0x7ad9e,sender-host,SendCHANGE_MAP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_MAP
+0x8278a,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x12061d,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x01
+0x122895,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x123b9d,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x123bf6,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x123c71,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x123ce4,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x123e11,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x123f73,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x123ff7,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x136f33,sender-host,SendGENERAL_CHAT,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends GENERAL_CHAT
+0x13e94d,sender-host,SendCLOSE_CHALKBOARD,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CLOSE_CHALKBOARD
+0x13eb1d,sender-host,SendCHANGE_CHANNEL,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_CHANNEL
+0x13e95d,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0xFE
+0x13f89c,sender-host,SendPARTY_OPERATION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PARTY_OPERATION
+0x13fa9c,sender-host,SendPARTY_OPERATION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PARTY_OPERATION
+0x13ff69,sender-host,SendCHANGE_CHANNEL,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_CHANNEL
+0x140347,sender-host,SendGUILD_OPERATION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends GUILD_OPERATION
+0x14046e,sender-host,SendGUILD_OPERATION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends GUILD_OPERATION
+0x140c33,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x0D
+0x140dbe,sender-host,SendGUILD_OPERATION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends GUILD_OPERATION
+0x140e36,sender-host,SendBUDDYLIST_MODIFY,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends BUDDYLIST_MODIFY
+0x141df4,sender-host,SendWHISPER,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends WHISPER
+0x144cc8,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x01
+0x14744e,sender-host,SendUSE_DOOR,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_DOOR
+0x14778f,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x147807,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x147b4a,sender-host,SendCHANGE_CHANNEL,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_CHANNEL
+0x1ba0d7,sender-host,SendCHANGE_KEYMAP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_KEYMAP
+0x1ba143,sender-host,SendCHANGE_KEYMAP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_KEYMAP
+0x1d4642,sender-host,SendCHANGE_MAP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHANGE_MAP
+0x1f63f8,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x12
+0x2299b0,sender-host,SendMAGIC_ATTACK,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MAGIC_ATTACK
+0x22a5c3,sender-host,SendUSE_CHAIR,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_CHAIR
+0x22a76f,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x1A
+0x22cf63,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x04
+0x22fc5e,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x01
+0x22fcc1,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x03
+0x25d618,sender-host,SendSKILL_MACRO,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends SKILL_MACRO
+0x28143c,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x2814cd,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x28156b,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x28167a,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x28d73b,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x295dc9,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0xFE
+0x29cbb8,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0xFE
+0x29d07b,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0xFE
+0x29d355,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0xFE
+0x2c4867,sender-host,SendAUTO_ASSIGN_AP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends AUTO_ASSIGN_AP
+0x2d5d38,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x2d9afc,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x2d9b96,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x2d9c34,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x2d9d11,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x2d9d91,sender-host,Sendmulti[2],,low,2,IMG:send-site + PROV:opcode via resolution ladder,"sends NPC_SHOP, PLAYER_INTERACTION"
+0x2d9e20,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x2e5da6,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x05
+0x2e71ab,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x04
+0x2eb317,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x07
+0x2febec,sender-host,SendDUEY_ACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends DUEY_ACTION
+0x304fe1,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x3072fa,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x30df65,sender-host,SendGIVE_FAME,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends GIVE_FAME
+0x323779,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x3237e8,sender-host,Sendmulti[2],,low,2,IMG:send-site + PROV:opcode via resolution ladder,"sends NPC_SHOP, PLAYER_INTERACTION"
+0x323888,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x32a437,sender-host,SendQUEST_ACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends QUEST_ACTION
+0x34b661,sender-host,SendRPS_GAME,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends RPS_GAME
+0x34ce88,sender-host,SendRPS_GAME,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends RPS_GAME
+0x34cefc,sender-host,SendRPS_GAME,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends RPS_GAME
+0x34cf70,sender-host,SendRPS_GAME,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends RPS_GAME
+0x34cfe4,sender-host,SendRPS_GAME,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends RPS_GAME
+0x360af2,sender-host,SendNPC_SHOP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends NPC_SHOP
+0x3a00db,sender-host,SendMERCH_ITEM_STORE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MERCH_ITEM_STORE
+0x3a12bc,sender-host,SendMERCH_ITEM_STORE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MERCH_ITEM_STORE
+0x3a131f,sender-host,SendMERCH_ITEM_STORE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MERCH_ITEM_STORE
+0x3c41e5,sender-host,SendUSE_DOOR,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_DOOR
+0x3c88ff,sender-host,SendPLAYER_INTERACTION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PLAYER_INTERACTION
+0x3cd861,sender-host,SendSTORAGE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends STORAGE
+0x3cfdcd,sender-host,SendSTORAGE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends STORAGE
+0x3da52d,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x108
+0x3da597,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x01
+0x404cee,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x05
+0x406392,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x06
+0x408c11,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x0D
+0x45fe5d,sender-host,SendMESSENGER,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MESSENGER
+0x45ff6a,sender-host,SendMESSENGER,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MESSENGER
+0x4697b4,sender-host,SendPASSIVE_ENERGY,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PASSIVE_ENERGY
+0x474bed,sender-host,SendMONSTER_BOOK_COVER,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MONSTER_BOOK_COVER
+0x4a2333,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x01
+0x4b1f40,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x05
+0x51b8f9,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x03
+0x51ba34,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x02
+0x51be0f,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x0A
+0x51f064,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x08
+0x530d0a,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x103
+0x55516a,sender-host,SendCANCEL_CHAIR,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CANCEL_CHAIR
+0x556411,sender-host,SendCLOSE_CHALKBOARD,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CLOSE_CHALKBOARD
+0x563b28,sender-host,SendWHEEL_OF_FORTUNE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends WHEEL_OF_FORTUNE
+0x5647c8,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0xFE
+0x56714c,sender-host,SendWHEEL_OF_FORTUNE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends WHEEL_OF_FORTUNE
+0x5693f7,sender-host,SendITEM_MOVE,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ITEM_MOVE
+0x56d3ae,sender-host,SendARAN_COMBO,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ARAN_COMBO
+0x577e0c,sender-host,SendUSE_ITEMEFFECT,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_ITEMEFFECT
+0x57a71d,sender-host,SendACCEPT_FAMILY,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ACCEPT_FAMILY
+0x57ae26,sender-host,SendCANCEL_BUFF,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CANCEL_BUFF
+0x5e109d,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x08
+0x5e2bf1,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x08
+0x60e05b,sender-host,SendENTER_CASH_SHOP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ENTER_CASH_SHOP
+0x612493,sender-host,SendITEM_SORT,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ITEM_SORT
+0x612525,sender-host,SendITEM_GATHER,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ITEM_GATHER
+0x6125b7,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x1F
+0x612a1a,sender-host,SendUSE_ITEM,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_ITEM
+0x612d02,sender-host,SendCANCEL_ITEM_EFFECT,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CANCEL_ITEM_EFFECT
+0x612dce,sender-host,SendUSE_SUMMON_BAG,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_SUMMON_BAG
+0x612f57,sender-host,SendPET_FOOD,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends PET_FOOD
+0x6130b6,sender-host,SendUSE_MOUNT_FOOD,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_MOUNT_FOOD
+0x6137e2,sender-host,SendUSE_SKILL_BOOK,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_SKILL_BOOK
+0x618753,sender-host,SendCANCEL_CHAIR,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CANCEL_CHAIR
+0x61aaa6,sender-host,SendENTER_MTS,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ENTER_MTS
+0x61b249,sender-host,SendITEM_SUNZI,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ITEM_SUNZI
+0x61b5b0,sender-host,SendITEM_BAOWU,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends ITEM_BAOWU
+0x627e1b,sender-host,SendUSE_RETURN_SCROLL,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_RETURN_SCROLL
+0x629c95,sender-host,SendEFFECT_ON_OFF,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends EFFECT_ON_OFF
+0x629e60,sender-host,SendEFFECT_ON_OFF,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends EFFECT_ON_OFF
+0x62a086,sender-host,SendCANCEL_DEBUFF,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CANCEL_DEBUFF
+0x62d12f,sender-host,SendDISTRIBUTE_AP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends DISTRIBUTE_AP
+0x62d46b,sender-host,SendDISTRIBUTE_SP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends DISTRIBUTE_SP
+0x62d4f1,sender-host,SendMESO_DROP,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends MESO_DROP
+0x62d5fb,sender-host,SendGIVE_FAME,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends GIVE_FAME
+0x62d780,sender-host,SendCHAR_INFO_REQUEST,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends CHAR_INFO_REQUEST
+0x62daf3,sender-host,SendSPAWN_PET,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends SPAWN_PET
+0x62dc36,sender-host,SendFACE_EXPRESSION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends FACE_EXPRESSION
+0x62dce1,sender-host,SendUSE_ITEMEFFECT,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_ITEMEFFECT
+0x62e9c3,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x02
+0x62fc8e,sender-host,SendFAMILY_SUMMON,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends FAMILY_SUMMON
+0x63165f,sender-host,SendUSE_HIRED_MERCHANT,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends USE_HIRED_MERCHANT
+0x63c35f,sender-host,SendDENY_ALLIANCE_REQUEST,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends DENY_ALLIANCE_REQUEST
+0x63dba9,sender-host,SendREQUEST_FAMILY,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends REQUEST_FAMILY
+0x63dc1a,sender-host,SendOPEN_FAMILY,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends OPEN_FAMILY
+0x63dc5f,sender-host,SendFAMILY_OPERATION,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends FAMILY_OPERATION
+0x63dd3a,sender-host,SendDELETE_JUNIOR,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends DELETE_JUNIOR
+0x63dd95,sender-host,SendDELETE_SENIOR,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends DELETE_SENIOR
+0x63df78,sender-host,SendFAMILY_PRECEPT,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends FAMILY_PRECEPT
+0x6480db,sender-host,Sendmulti[1],,low,2,IMG:send-site + PROV:opcode via resolution ladder,sends opcode_0x03
+0x649c00,sender-host,SendBUDDYLIST_MODIFY,,medium,2,IMG:send-site + PROV:opcode via resolution ladder,sends BUDDYLIST_MODIFY

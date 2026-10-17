@@ -1,0 +1,138 @@
+direction,opcode,packet_name,schema_level,leaf_rva,decode_source,reader_sequence,read_count,confidence
+inbound,0x64,SEND_PEDIGREE,none,0x63dba9,cmp-chain,,0,low
+inbound,0x65,OPEN_FAMILY,none,0x63dba9,cmp-chain,,0,low
+inbound,0x66,FAMILY_MESSAGE,none,0x63dba9,cmp-chain,,0,low
+inbound,0x67,FAMILY_INVITE,none,0x63dba9,cmp-chain,,0,low
+inbound,0x68,FAMILY_JUNIOR,none,0x63dba9,cmp-chain,,0,low
+inbound,0x69,SENIOR_MESSAGE,none,0x63dba9,cmp-chain,,0,low
+inbound,0x6A,FAMILY,none,0x63dba9,cmp-chain,,0,low
+inbound,0x6B,REP_INCREASE,none,0x63dba9,cmp-chain,,0,low
+inbound,0x6C,FAMILY_LOGGEDIN,none,0x63dba9,cmp-chain,,0,low
+inbound,0x6D,FAMILY_BUFF,none,0x63dba9,cmp-chain,,0,low
+inbound,0x6E,FAMILY_USE_REQUEST,none,0x63dba9,cmp-chain,,0,low
+inbound,0x6F,LEVEL_UPDATE,none,0x63dba9,cmp-chain,,0,low
+inbound,0x70,MARRIAGE_UPDATE,none,0x63dba9,cmp-chain,,0,low
+inbound,0x71,JOB_UPDATE,none,0x63dba9,cmp-chain,,0,low
+inbound,0x72,DATA_CRC_CHECK_FAILED,none,0x63dba9,cmp-chain,,0,low
+inbound,0xA2,SPAWN_PLAYER (confirmed),minimal,0x57f6c0,cmp-chain,i32 > i32,2,high
+inbound,0xA4,CHATTEXT,structured,0x57fa1c,jump-table,i32 > i32 > i32,3,high
+inbound,0xA5,,structured,0x53d546,jump-table,u8 > str > u8 > str,4,medium
+inbound,0xA6,CHALKBOARD,structured,0x53da6b,jump-table,u8 > str > u8 > i32 > u8 > u8,6,high
+inbound,0xA7,UPDATE_CHAR_BOX,structured,0x53f13d,jump-table,u8 > i32 > str > u8 > u8 > u8 > u8 > u8 > u8 > i32,10,high
+inbound,0xA8,,minimal,0x541202,jump-table,i32,1,medium
+inbound,0xA9,SHOW_SCROLL_EFFECT,structured,0x539c4a,jump-table,u8 > u8 > u8 > u8,4,high
+inbound,0xAA,,structured,0x53f125,jump-table,i32 > u8 > i32 > str > u8 > u8 > u8 > u8 > u8 > u8 > i32,11,medium
+inbound,0xAB,FISHING_CAUGHT,none,0x539fa7,jump-table,,0,low
+inbound,0xAC,,minimal,0x549d70,jump-table,i32 > i32,2,medium
+inbound,0xAD,SPAWN_PET,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xAE,,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xAF,MOVE_PET,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB0,PET_CHAT,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB1,PET_NAMECHANGE,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB2,,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB3,PET_COMMAND,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB4,SPAWN_SUMMON,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB5,REMOVE_SUMMON,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB6,MOVE_SUMMON,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB7,SUMMON_ATTACK,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB8,,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xB9,DAMAGE_SUMMON,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xBA,SUMMON_SKILL,none,0x57ec7a,cmp-chain,,0,low
+inbound,0xBB,MOVE_PLAYER,minimal,0x57fc72,jump-table,i32,1,high
+inbound,0xBC,CLOSE_RANGE_ATTACK,minimal,0x57fc97,jump-table,i32,1,high
+inbound,0xBD,RANGED_ATTACK,structured,0x590ec9,jump-table,u8 > u8 > u8 > u8 > i32 > i32 > u8 > i32 > i32 > u8 > i32 > i32 > i16,13,high
+inbound,0xBE,MAGIC_ATTACK,structured,0x5910c6,jump-table,i16 > i32 > i32 > str > i16 > u8 > i16 > u8 > u8 > u8 > u8,11,high
+inbound,0xBF,,structured,0x59118a,jump-table,i32 > i32 > str > i16 > u8 > i16 > u8 > u8 > u8 > u8 > i32 > i32 > i32 > i32,14,medium
+inbound,0xC0,SKILL_EFFECT,structured,0x591253,jump-table,i32 > i32 > str > i16 > u8 > i16 > u8 > u8 > u8 > u8 > i32 > i32 > i32 > i32,14,high
+inbound,0xC1,CANCEL_SKILL_EFFECT,structured,0x5912d3,jump-table,str > i16 > u8 > i16 > u8 > u8 > u8 > u8 > i32 > i32 > i32 > i32,12,high
+inbound,0xC2,DAMAGE_PLAYER,structured,0x59131e,jump-table,i16 > u8 > i16 > u8 > u8 > u8 > u8 > i32 > i32 > i32 > i32,11,high
+inbound,0xC3,FACIAL_EXPRESSION,minimal,0x57fbea,jump-table,i32,1,high
+inbound,0xC4,,structured,0x5916a9,jump-table,i32 > i32 > i32 > str > str > i16 > i16 > i32,8,medium
+inbound,0xC5,SHOW_ITEM_EFFECT,structured,0x5916fd,jump-table,str > str > i16 > i16 > i32,5,high
+inbound,0xC6,SHOW_CHAIR,minimal,0x57fc72,jump-table,i32,1,high
+inbound,0xC7,UPDATE_CHAR_LOOK,minimal,0x57fc72,jump-table,i32,1,high
+inbound,0xC8,SHOW_FOREIGN_EFFECT,structured,0x53dc3e,jump-table,u8 > i32 > u8 > u8 > u8,5,high
+inbound,0xC9,GIVE_FOREIGN_BUFF,minimal,0x57fc72,jump-table,i32,1,high
+inbound,0xCA,CANCEL_FOREIGN_BUFF,minimal,0x57fc72,jump-table,i32,1,high
+inbound,0xCB,UPDATE_PARTYMEMBER_HP,minimal,0x57fc72,jump-table,i32,1,high
+inbound,0xCC,,minimal,0x57fc72,jump-table,i32,1,medium
+inbound,0xCD,,minimal,0x57fc72,jump-table,i32,1,medium
+inbound,0xCE,Animation_EFFECT,structured,0x59142a,jump-table,i32 > i32 > i32 > i32 > i32 > i32 > i32 > str,8,high
+inbound,0xCF,CANCEL_CHAIR,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD0,SHOW_ITEM_GAIN_INCHAT,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD1,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD2,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD3,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD4,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD5,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD6,UPDATE_QUEST_INFO,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD7,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD8,PET_FLAG_CHANGE,none,0x5571bf,cmp-chain,,0,low
+inbound,0xD9,PLAYER_HINT,none,0x5571bf,cmp-chain,,0,low
+inbound,0xDA,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xDB,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xDC,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xDD,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xDE,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xDF,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE0,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE1,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE2,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE3,CYGNUS_INTRO_DISABLE_UI,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE4,CYGNUS_INTRO_LOCK,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE5,SUMMON_HINT,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE6,TUTORIAL_GUIDE,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE7,ARAN_COMBO,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE8,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xE9,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xEA,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xEB,,none,0x5571bf,cmp-chain,,0,low
+inbound,0xEC,COOLDOWN,none,0x5571bf,cmp-chain,,0,low
+inbound,0xEE,SPAWN_MONSTER,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xEF,KILL_MONSTER,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xF0,SPAWN_MONSTER_CONTROL,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xF1,MOVE_MONSTER,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xF2,MOVE_MONSTER_RESPONSE,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xF3,,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,medium
+inbound,0xF4,APPLY_MONSTER_STATUS,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xF5,CANCEL_MONSTER_STATUS,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xF6,,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,medium
+inbound,0xF7,MOB_TO_MOB_DAMAGE,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xF8,DAMAGE_MONSTER,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xF9,,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,medium
+inbound,0xFA,,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,medium
+inbound,0xFB,ARIANT_THING,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xFC,SHOW_MONSTER_HP,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xFD,SHOW_MAGNET,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0xFE,,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,medium
+inbound,0xFF,CYGNUS_CHAR_CREATED,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0x100,CATCH_ARIANT,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0x101,,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,medium
+inbound,0x102,,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,medium
+inbound,0x103,CATCH_MONSTER,structured,0x2a6b0f,cmp-chain,i32 > i32 > u8 > i32 > i32 > u8,6,high
+inbound,0x104,SPAWN_NPC,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,high
+inbound,0x105,REMOVE_NPC,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,high
+inbound,0x106,SPAWN_NPC_REQUEST_CONTROLLER,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,high
+inbound,0x107,NPC_ACTION,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,high
+inbound,0x108,,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,medium
+inbound,0x109,,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,medium
+inbound,0x10A,,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,medium
+inbound,0x10B,,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,medium
+inbound,0x10C,,structured,0x2cb2b4,cmp-chain,i32 > i32 > i32 > u8 > i32,5,medium
+inbound,0x10D,SPAWN_HIRED_MERCHANT,minimal,0x11b4d1,cmp-chain,i32,1,high
+inbound,0x10E,DESTROY_HIRED_MERCHANT,minimal,0x11b4d1,cmp-chain,i32,1,high
+inbound,0x10F,UPDATE_HIRED_MERCHANT,minimal,0x11b4d1,cmp-chain,i32,1,high
+inbound,0x110,DROP_ITEM_FROM_MAPOBJECT,structured,0x10f385,cmp-chain,u8 > i32 > i16 > i32 > u8,5,high
+inbound,0x111,REMOVE_ITEM_FROM_MAP,structured,0x10f385,cmp-chain,u8 > i32 > i16 > i32 > u8,5,high
+inbound,0x113,SPAWN_LOVE,minimal,0x289303,cmp-chain,u8 > i32,2,high
+inbound,0x114,REMOVE_LOVE,minimal,0x289303,cmp-chain,u8 > i32,2,high
+inbound,0x115,SPAWN_MIST,minimal,0x31fab,cmp-chain,i32,1,high
+inbound,0x116,REMOVE_MIST,minimal,0x31fab,cmp-chain,i32,1,high
+inbound,0x11C,REACTOR_HIT,structured,0x3420ec,cmp-chain,i32 > u8 > i16 > i16,4,high
+inbound,0x11D,,structured,0x3420ec,cmp-chain,i32 > u8 > i16 > i16,4,medium
+inbound,0x11E,REACTOR_SPAWN,structured,0x3420ec,cmp-chain,i32 > u8 > i16 > i16,4,high
+inbound,0x11F,REACTOR_DESTROY,structured,0x3420ec,cmp-chain,i32 > u8 > i16 > i16,4,high
+inbound,0x146,OPEN_NPC_SHOP,none,0x59fcc2,cmp-chain,,0,low
+inbound,0x147,CONFIRM_SHOP_TRANSACTION,none,0x59fcc2,cmp-chain,,0,low
+inbound,0x14B,MERCH_ITEM_MSG,none,0x59fcc2,cmp-chain,,0,low
+inbound,0x14C,MERCH_ITEM_STORE,none,0x59fcc2,cmp-chain,,0,low
