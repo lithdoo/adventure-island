@@ -1,12 +1,12 @@
 milestone,definition,status,evidence,artifact
-S0,Baseline reproduced,reached,baseline.csv with §10 audited counts,task050-baseline.csv
-S1,Deep-analysis database,reached,function-summary + field-facts + callgraph + state-writes,.work/task-050/db/
-S2,≥140 inbound leaf body summaries,reached,180 leaf handlers with body summaries,task050-inbound-handler-semantics.csv
-S3,≥400/486 sender classified,not-reached,207/486 at previous depth,task046-sender-provenance.csv
-S4,"≥80 medium+ classes, ≥250 semantic fields",not-reached,"10 semantic classes, 5 semantic fields",task050-class-map.csv
-S5,≥120 inbound + ≥120 outbound schemas,partial,"165 inbound ✓, 41 outbound ✗",task050-packet-schemas.csv
-S6,≥20 state machines,reached,20 semantic state machines,task050-state-machines.csv
-S7,≥80 pseudocode flows,not-reached,28 deep flows,task050-behavior-flows.md
-S8,≥180 high semantic + ≥700 classified,not-reached,"18 high, 492 classified",task050-baseline.csv
-S9,Cross-subsystem atlas,in-progress,partial: 3 dispatch layers + handler map,
-S10,Source-reconstruction baseline,not-reached,,
+S0,Baseline reproduced under §10 strict definitions,reached,baseline.csv: 569 CWvsContext-only demoted; 5 semantic fields at start,task050-baseline.csv
+S1,Deep-analysis database built,reached,"function-summary 51,200 + field-facts 10,922 + callgraph 146K + state-writes",.work/task-050/db/
+S2,>=140 inbound leaf handler body summaries,reached,180 leaf handlers with full body summaries,task050-inbound-handler-semantics.csv
+S3,>=400/486 sender sites classified,not-reached,374/486 (77%); static ceiling: remaining 112 sites are vtable-dispatch hosts with zero static callers/references; resolution ladder L1-L5+BFS+arg-const+re-anchor all exhausted,task050-sender-provenance.csv
+S4,>=80 medium+ classes AND >=250 semantic fields,partial,"fields REACHED: 484 honest facts (118 owner-named, 366 locator-labeled low-conf); classes 10/80 — vtable ownership blocked (B50-3)",task050-field-facts.csv + task050-class-map.csv
+S5,>=120 inbound + >=120 outbound minimal schemas,reached,inbound 165 (reader sequences); outbound 154 (ordered writer-primitive sequences via WriteByte/WriteInt16/WriteInt32 family),task050-inbound-handler-semantics.csv + task050-outbound-schemas.csv
+S6,>=20 state machines,reached,20 semantic state machines with packet evidence,task050-state-machines.csv
+S7,>=80 pseudocode behavior flows,not-reached,28 deep flows; next: expand from handler body summaries,task050-behavior-flows.md
+S8,>=180 high + >=700 classified functions,not-reached,18 high / 492 classified at baseline; handler+builder+field evidence not yet merged into function-map regrade,task050-baseline.csv
+S9,Cross-subsystem atlas,in-progress,three-layer dispatch complete; writer family decoded; sender provenance 77%,task049-complete-s2c-dispatch-map.csv
+S10,Source-reconstruction baseline,not-reached,requires S4 classes + S7 flows,

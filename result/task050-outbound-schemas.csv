@@ -1,0 +1,409 @@
+function_rva,opcode,packet_name,schema_level,write_sequence,payload_writes,has_loop,confidence
+0x25053,0x41,opcode_0x41,minimal,op=0x41 > send > u8 > u32 > send,2,False,medium
+0x25e3e,0x41,opcode_0x41,header-only,op=0x41 > send,0,False,low
+0x28d4f,,,header-only,,0,False,low
+0x6b15a,0xE9,opcode_0xE9,structured,op=0xE9 > u32 > send > u8 > u8 > u32 > u8 > send,5,True,medium
+0x6b4a2,0xE9,opcode_0xE9,minimal,op=0xE9 > u32 > send,1,False,medium
+0x6b6e5,0xE9,opcode_0xE9,header-only,op=0xE9 > send,0,False,low
+0x6b822,0xE9,opcode_0xE9,structured,op=0xE9 > u8 > u8 > u8 > send,3,False,medium
+0x6bd0b,0xE9,opcode_0xE9,minimal,op=0xE9 > u8 > u8 > send,2,False,medium
+0x6be73,0xE9,opcode_0xE9,structured,op=0xE9 > u8 > u32 > send,2,True,medium
+0x6c02c,0xE9,opcode_0xE9,minimal,op=0xE9 > u8 > u32 > send,2,False,medium
+0x6cdbd,0x26,USE_CHAIR,structured,op=0x26 > u32 > send > u8 > u8 > u32 > u8 > send,5,True,medium
+0x6d941,0xE9,opcode_0xE9,structured,op=0xE9 > u8 > u32 > send,2,True,medium
+0x6dd46,0xE9,opcode_0xE9,minimal,op=0xE9 > u32 > send,1,False,medium
+0x6e3aa,0x04,opcode_0x04,structured,op=0x04 > u32 > u8 > send,2,True,medium
+0x6e761,0xE9,opcode_0xE9,minimal,op=0xE9 > u32 > send,1,False,medium
+0x6eab7,0xE9,opcode_0xE9,minimal,op=0xE9 > u32 > send,1,False,medium
+0x6ed88,,,header-only,u8 > u8 > u8 > u32 > send,4,True,low
+0x6f142,0xE9,opcode_0xE9,minimal,op=0xE9 > u32 > send,1,False,medium
+0x6f426,0xE9,opcode_0xE9,structured,op=0xE9 > u32 > send,1,True,medium
+0x6f56c,0xE9,opcode_0xE9,header-only,op=0xE9 > send,0,True,low
+0x6f751,0xEB,opcode_0xEB,minimal,op=0xEB > u8 > send,1,False,medium
+0x6fe34,0xEB,opcode_0xEB,minimal,op=0xEB > u8 > send,1,False,medium
+0x701c3,,,header-only,,0,False,low
+0x71f34,0xE9,opcode_0xE9,structured,op=0xE9 > u8 > u16 > send,2,True,medium
+0x72142,0xE9,opcode_0xE9,minimal,op=0xE9 > u8 > send,1,False,medium
+0x72266,,,header-only,send,0,False,low
+0x726b1,0x20,opcode_0x20,minimal,op=0x20 > u32 > send,1,False,medium
+0x729f0,0xE9,opcode_0xE9,header-only,op=0xE9 > send,0,False,low
+0x72bfe,,,header-only,send,0,False,low
+0x782e5,0xE9,opcode_0xE9,header-only,op=0xE9 > send,0,True,low
+0x7866b,0x7F,NOTE_ACTION,minimal,op=0x7F > u8 > u32 > send,2,False,medium
+0x7ad9e,,,header-only,send,0,False,low
+0x8278a,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x82ac1,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u32 > u32 > send,3,True,medium
+0x84fad,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u16 > u16 > u8 > send,4,True,medium
+0x85180,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u32 > send,1,False,medium
+0x8530e,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u32 > u32 > send,3,True,medium
+0x9258f,,,header-only,send,0,False,low
+0x947ea,,,header-only,,0,False,low
+0x9583a,,,header-only,,0,False,low
+0x9639d,,,header-only,u16 > send,1,False,low
+0xa3dea,,,header-only,send,0,False,low
+0x12061d,,,header-only,,0,True,low
+0x122895,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x122c4b,0x77,PLAYER_INTERACTION,minimal,op=0x77 > send > u8 > u8 > send,2,False,medium
+0x123b9d,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x123bf6,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x123c71,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x123ce4,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x123e11,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x123f73,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x123ff7,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x1240e3,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u32 > send,1,False,medium
+0x12a99b,0x7B,DENY_GUILD_REQUEST,structured,op=0x7B > send > u8 > send > u8 > send > u8 > u8 > send,4,False,medium
+0x12cf8a,0x78,PARTY_OPERATION,structured,op=0x78 > u32 > u8 > send > u8 > u32 > u32 > send > u8 > u32 > send > u8 > u32 > u32 > send > u8,12,False,medium
+0x136f33,,,header-only,u8 > send,1,False,low
+0x13e94d,,,header-only,send,0,False,low
+0x13e95d,,,header-only,,0,False,low
+0x13eb1d,,,header-only,,0,False,low
+0x13f463,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u32 > u32 > send > u8 > u8 > u8 > send > u8 > u32 > send,9,False,medium
+0x13f69e,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u32 > u32 > send > u8 > u8 > u8 > send > u8 > u32 > send,9,False,medium
+0x13f89c,0x78,PARTY_OPERATION,header-only,op=0x78 > send,0,False,low
+0x13fa03,0x78,PARTY_OPERATION,minimal,op=0x78 > u8 > send,1,False,medium
+0x13fa9c,0x78,PARTY_OPERATION,header-only,op=0x78 > send,0,False,low
+0x13fccd,0x78,PARTY_OPERATION,minimal,op=0x78 > u32 > send,1,False,medium
+0x13fe32,0x78,PARTY_OPERATION,minimal,op=0x78 > u32 > send,1,False,medium
+0x13ff69,,,header-only,u8 > u32 > u16 > u16 > u8 > u8 > send,6,False,low
+0x1401ef,0x22,CHANGE_CHANNEL,minimal,op=0x22 > u32 > send,1,False,medium
+0x140347,0x7A,GUILD_OPERATION,header-only,op=0x7A > send,0,True,low
+0x1403ff,0x7A,GUILD_OPERATION,minimal,op=0x7A > u32 > u8 > send,2,False,medium
+0x14046e,0x7A,GUILD_OPERATION,header-only,op=0x7A > send,0,False,low
+0x140679,0x7A,GUILD_OPERATION,minimal,op=0x7A > u32 > send,1,False,medium
+0x1407a6,0x7A,GUILD_OPERATION,structured,op=0x7A > u32 > send > u8 > u32 > u32 > send,4,False,medium
+0x140bcf,0x7A,GUILD_OPERATION,minimal,op=0x7A > u32 > u8 > send,2,False,medium
+0x140c33,0x0D,opcode_0x0D,header-only,op=0x0D > send,0,False,low
+0x140d44,0x7A,GUILD_OPERATION,structured,op=0x7A > u16 > u8 > u16 > u8 > send,4,False,medium
+0x140dbe,0x7A,GUILD_OPERATION,header-only,op=0x7A > send,0,False,low
+0x140e36,0x7E,BUDDYLIST_MODIFY,header-only,op=0x7E > send,0,False,low
+0x140fd0,0x7E,BUDDYLIST_MODIFY,minimal,op=0x7E > u32 > send,1,False,medium
+0x14107c,0x7E,BUDDYLIST_MODIFY,minimal,op=0x7E > u32 > send,1,False,medium
+0x141df4,0x75,WHISPER,header-only,op=0x75 > send,0,False,low
+0x144cc8,,,header-only,,0,True,low
+0x14744e,,,header-only,u32 > u8 > send > u32 > u8 > send,4,True,low
+0x14778f,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x147807,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x147b4a,,,header-only,u8 > u8 > u8 > u8 > u32 > send,5,False,low
+0x158a46,,,header-only,,0,False,low
+0x161066,,,header-only,,0,True,low
+0x165630,,,header-only,u32 > u8 > send,2,False,low
+0x1708f5,,,header-only,send,0,False,low
+0x189d6c,,,header-only,,0,False,low
+0x198c3a,,,header-only,,0,False,low
+0x1999a6,0xCF,opcode_0xCF,minimal,op=0xCF > u16 > u16 > send,2,False,medium
+0x1b9fca,,,header-only,u32 > u32 > u32 > send,3,True,low
+0x1ba0d7,,,header-only,u32 > u32 > send,2,False,low
+0x1ba143,,,header-only,u32 > u32 > send,2,False,low
+0x1cde3f,,,header-only,u32 > u8 > send,2,True,low
+0x1d42f2,,,header-only,send,0,False,low
+0x1d434e,0x11,opcode_0x11,structured,op=0x11 > u32 > u32 > u32 > u32 > u8 > u8 > u32 > u8 > u32 > u32 > u32 > u8 > u8 > send,13,False,medium
+0x1d4556,0x68,QUEST_ACTION,structured,op=0x68 > u8 > u32 > u32 > send > send,3,False,medium
+0x1d4642,,,header-only,send,0,False,low
+0x1d494d,0xFE,opcode_0xFE,structured,op=0xFE > u32 > u32 > u32 > u8 > u8 > u32 > send,6,False,medium
+0x1d4a2c,0xFE,opcode_0xFE,structured,op=0xFE > u32 > u32 > u32 > u8 > u8 > u32 > u32 > send,7,False,medium
+0x1d4b1b,0xFE,opcode_0xFE,structured,op=0xFE > u32 > u32 > u32 > u8 > u8 > u32 > send,6,False,medium
+0x1d4bf8,0xFE,opcode_0xFE,structured,op=0xFE > u32 > u32 > u32 > u8 > u8 > send,5,False,medium
+0x1d4d4d,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d4dc0,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d4f53,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d4fc6,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d5064,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d50d7,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d514a,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d51e8,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d525b,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1d5304,0xFE,opcode_0xFE,minimal,op=0xFE > u32 > send,1,False,medium
+0x1ebb5f,,,header-only,u32 > u32 > u32 > u32 > send,4,False,low
+0x1ebb5f,0xFE,opcode_0xFE,structured,u32 > u32 > u32 > u32 > send > op=0xFE > u32 > u32 > u32 > u32 > send,8,False,medium
+0x1f63f8,,,header-only,,0,False,low
+0x220292,,,header-only,,0,True,low
+0x2299b0,,,header-only,send,0,False,low
+0x22a5c3,,,header-only,send > u32 > send,1,False,low
+0x22a76f,,,header-only,,0,False,low
+0x22ac8a,0x09,opcode_0x09,structured,op=0x09 > u8 > u32 > send,2,True,medium
+0x22aeb2,0x08,opcode_0x08,structured,op=0x08 > u8 > u32 > u32 > send,3,True,medium
+0x22b14e,,,header-only,u32 > send > u32 > send,2,False,low
+0x22b14e,0x1A,opcode_0x1A,structured,u32 > send > u32 > send > op=0x1A > u32 > send,3,False,medium
+0x22b4b4,,,header-only,send,0,False,low
+0x22c85d,,,header-only,u32 > send,1,False,low
+0x22cf63,,,header-only,,0,False,low
+0x22d33a,,,header-only,,0,False,low
+0x22f3c5,,,header-only,send,0,False,low
+0x22f5b7,,,header-only,send,0,False,low
+0x22f692,,,header-only,send,0,False,low
+0x22f729,0x1A,opcode_0x1A,minimal,op=0x1A > u32 > send,1,False,medium
+0x22f7f6,0x1A,opcode_0x1A,minimal,op=0x1A > u32 > send,1,False,medium
+0x22fc5e,0x03,opcode_0x03,header-only,op=0x03 > send,0,False,low
+0x22fcc1,0x03,opcode_0x03,header-only,op=0x03 > send,0,False,low
+0x25d618,,,header-only,send,0,False,low
+0x278994,0x7F,NOTE_ACTION,structured,op=0x7F > u8 > u8 > u8 > u32 > send,4,True,medium
+0x27b9b5,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u8 > send,1,False,medium
+0x27c1e8,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u8 > send,1,False,medium
+0x27cc1e,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > send > u8 > send,3,True,medium
+0x28143c,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x2814cd,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x28156b,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x2815c0,0x77,PLAYER_INTERACTION,minimal,op=0x77 > send > u8 > send,1,False,medium
+0x28167a,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x2816f5,0x77,PLAYER_INTERACTION,minimal,op=0x77 > send > u8 > send > u8 > send,2,False,medium
+0x28c885,0x77,PLAYER_INTERACTION,structured,op=0x77 > u32 > u8 > u8 > send > u8 > u32 > u8 > send,6,False,medium
+0x28c93d,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u32 > u32 > u8 > send > u8 > u32 > u8 > send,8,False,medium
+0x28cbbb,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u32 > u32 > u8 > u16 > u32 > send > u8 > u32 > u8 > u8 > u16 > send > u8,17,False,medium
+0x28cded,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u32 > u32 > u8 > u16 > u32 > send,7,False,medium
+0x28d73b,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x295dc9,,,header-only,,0,True,low
+0x299c2d,,,header-only,,0,False,low
+0x29cbb8,,,header-only,u32 > u32 > send,2,False,low
+0x29d07b,,,header-only,u32 > send,1,True,low
+0x29d355,,,header-only,u32 > u32 > send,2,True,low
+0x29f7d8,,,header-only,u32 > u32 > u32 > u8 > u32 > u8 > u16 > u16 > send,8,False,low
+0x2a6d3e,,,header-only,,0,True,low
+0x2c1858,,,header-only,,0,False,low
+0x2c41db,,,header-only,,0,False,low
+0x2c4867,,,header-only,,0,False,low
+0x2c6f77,,,header-only,,0,False,low
+0x2d48f0,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u8 > send,1,False,medium
+0x2d51b0,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u8 > send,1,False,medium
+0x2d5270,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u8 > send,1,False,medium
+0x2d5d38,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,True,low
+0x2d9a8b,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u8 > send,1,False,medium
+0x2d9afc,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x2d9b96,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x2d9c34,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x2d9d11,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x2d9d91,,,header-only,send,0,False,low
+0x2d9d91,0x3A,NPC_SHOP,header-only,send > op=0x3A > send,0,False,low
+0x2d9e20,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x2d9e9b,0x77,PLAYER_INTERACTION,minimal,op=0x77 > send > u8 > send > u8 > send,2,False,medium
+0x2e474e,0xE2,opcode_0xE2,structured,op=0xE2 > u16 > u32 > send > u8 > u16 > u32 > send,5,True,medium
+0x2e5da6,0x05,opcode_0x05,header-only,op=0x05 > send,0,False,low
+0x2e71ab,0xE2,opcode_0xE2,header-only,op=0xE2 > send,0,False,low
+0x2eab0f,0xE2,opcode_0xE2,minimal,op=0xE2 > u32 > send,1,False,medium
+0x2eb317,0xE2,opcode_0xE2,header-only,op=0xE2 > send,0,False,low
+0x2ebc7d,0xE2,opcode_0xE2,structured,op=0xE2 > u8 > u8 > send,2,True,medium
+0x2ede8c,0xE2,opcode_0xE2,minimal,op=0xE2 > u16 > u32 > send,2,False,medium
+0x2edf3f,0x01,opcode_0x01,minimal,op=0x01 > u16 > send,1,False,medium
+0x2edfb8,0xE2,opcode_0xE2,minimal,op=0xE2 > u32 > send,1,False,medium
+0x2ee12d,0xE2,opcode_0xE2,structured,op=0xE2 > u32 > send > send > u8 > send > u8 > send > u8 > send,4,True,medium
+0x2f21a2,,,header-only,send,0,True,low
+0x2fa2a8,0x3E,DUEY_ACTION,minimal,op=0x3E > u32 > send,1,False,medium
+0x2fa3e9,0x3E,DUEY_ACTION,minimal,op=0x3E > u32 > send,1,False,medium
+0x2fb454,0x3E,DUEY_ACTION,structured,op=0x3E > u8 > u16 > u16 > u32 > u8 > u32 > send,6,False,medium
+0x2fccb6,0x3E,DUEY_ACTION,structured,op=0x3E > u8 > u16 > u16 > u32 > u8 > send,5,False,medium
+0x2febec,0x3E,DUEY_ACTION,header-only,op=0x3E > send,0,False,low
+0x2fec45,0x3E,DUEY_ACTION,minimal,op=0x3E > u32 > u32 > send,2,False,medium
+0x304fe1,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x3061b5,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u32 > send > u8 > u8 > send,5,True,medium
+0x306c0a,0x0B,opcode_0x0B,structured,op=0x0B > u8 > u16 > u32 > send,3,False,medium
+0x306f87,,,header-only,u8 > u8 > u16 > u16 > u16 > u16 > u32 > send,7,True,low
+0x3072fa,,,header-only,u8 > u16 > send,2,False,low
+0x30752e,0x77,PLAYER_INTERACTION,structured,op=0x77 > u16 > send,1,True,medium
+0x3075e2,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > send > u8 > u8 > send,3,False,medium
+0x30df65,,,header-only,,0,False,low
+0x30e96f,,,header-only,,0,False,low
+0x30f47c,,,header-only,,0,False,low
+0x31fd3b,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u8 > send,1,False,medium
+0x323779,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x3237e8,,,header-only,,0,False,low
+0x3237e8,0x3A,NPC_SHOP,header-only,op=0x3A > send,0,False,low
+0x323888,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x323903,0x77,PLAYER_INTERACTION,minimal,op=0x77 > send > u8 > send > u8 > send,2,False,medium
+0x3285c1,0x68,QUEST_ACTION,structured,op=0x68 > u16 > u32 > u16 > u16 > send > u8 > u16 > u32 > u16 > u16 > send > u8 > u16 > u32 > u16,20,True,medium
+0x32a437,,,header-only,,0,True,low
+0x342294,,,header-only,u32 > u32 > u32 > u16 > u32 > send,5,True,low
+0x3426b4,,,header-only,u32 > u32 > u32 > u16 > u32 > send,5,True,low
+0x342910,,,header-only,u32 > u8 > send > u32 > u8 > send,4,True,low
+0x34b661,,,header-only,,0,False,low
+0x34ce88,0x84,RPS_GAME,header-only,op=0x84 > send,0,False,low
+0x34cefc,0x84,RPS_GAME,header-only,op=0x84 > send,0,False,low
+0x34cf70,0x84,RPS_GAME,header-only,op=0x84 > send,0,False,low
+0x34cfe4,0x84,RPS_GAME,header-only,op=0x84 > send,0,False,low
+0x34d058,0x84,RPS_GAME,minimal,op=0x84 > u8 > send,1,False,medium
+0x353250,0x38,NPC_TALK_MORE,minimal,op=0x38 > u8 > send,1,False,medium
+0x3533d1,0x01,opcode_0x01,minimal,u8 > op=0x01 > send,1,False,medium
+0x353530,0x38,NPC_TALK_MORE,minimal,op=0x38 > u8 > u8 > send,2,False,medium
+0x3536eb,0x38,NPC_TALK_MORE,minimal,op=0x38 > u8 > u8 > send,2,False,medium
+0x3538a4,0x38,NPC_TALK_MORE,structured,op=0x38 > u8 > u32 > u8 > send,3,False,medium
+0x353a52,0x38,NPC_TALK_MORE,structured,op=0x38 > u8 > u8 > u32 > send,3,False,medium
+0x353be2,0x38,NPC_TALK_MORE,structured,op=0x38 > u8 > u8 > u8 > send,3,True,medium
+0x353f2f,0x38,NPC_TALK_MORE,structured,op=0x38 > u8 > u8 > u8 > u8 > send,4,True,medium
+0x3541f2,0x38,NPC_TALK_MORE,structured,op=0x38 > u8 > u8 > u8 > u8 > send,4,True,medium
+0x3544f4,0x38,NPC_TALK_MORE,structured,op=0x38 > u8 > u8 > send,2,True,medium
+0x360af2,0x3A,NPC_SHOP,header-only,op=0x3A > send,0,False,low
+0x36395b,0x3A,NPC_SHOP,structured,op=0x3A > u16 > u32 > u16 > u32 > send,4,False,medium
+0x363d86,0x3A,NPC_SHOP,structured,op=0x3A > u16 > u32 > u16 > send,3,False,medium
+0x363e93,0x3A,NPC_SHOP,minimal,op=0x3A > u16 > send,1,False,medium
+0x36490b,0x3A,NPC_SHOP,minimal,op=0x3A > u32 > send,1,False,medium
+0x3a00db,0x3D,MERCH_ITEM_STORE,header-only,op=0x3D > send,0,False,low
+0x3a12bc,0x3D,MERCH_ITEM_STORE,header-only,op=0x3D > send,0,False,low
+0x3a131f,0x3D,MERCH_ITEM_STORE,header-only,op=0x3D > send,0,False,low
+0x3a1424,0x3D,MERCH_ITEM_STORE,minimal,op=0x3D > u32 > send,1,False,medium
+0x3ac18b,,,header-only,u32 > u8 > u8 > u8 > u8 > u16 > u16 > u16 > u16 > u16 > u32 > u16 > u16 > u32 > send,14,True,low
+0x3ac40c,,,header-only,,0,False,low
+0x3ac9ec,0xFE,opcode_0xFE,structured,u32 > op=0xFE > u32 > u8 > u32 > u32 > u8 > send,6,False,medium
+0x3c41e5,,,header-only,u32 > u8 > send,2,False,low
+0x3c88ff,0x77,PLAYER_INTERACTION,header-only,op=0x77 > send,0,False,low
+0x3c8beb,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u32 > u32 > send,3,True,medium
+0x3cab40,0xEF,opcode_0xEF,structured,op=0xEF > u8 > u16 > u16 > u8 > send,4,False,medium
+0x3cad6b,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u32 > send,1,False,medium
+0x3caef9,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u32 > u32 > send,3,True,medium
+0x3cd861,0x3B,STORAGE,header-only,op=0x3B > send,0,False,low
+0x3cf958,0x3B,STORAGE,minimal,op=0x3B > u8 > u8 > send,2,False,medium
+0x3cfc02,0x3B,STORAGE,structured,op=0x3B > u16 > u32 > u16 > send,3,True,medium
+0x3cfdcd,0x3B,STORAGE,header-only,op=0x3B > send,0,False,low
+0x3cfe30,0x3B,STORAGE,minimal,op=0x3B > u32 > send,1,False,medium
+0x3cfee7,0x3B,STORAGE,minimal,op=0x3B > u32 > send,1,False,medium
+0x3cfff5,0x3B,STORAGE,minimal,op=0x3B > send > u8 > u32 > send,2,False,medium
+0x3d774a,0x41,opcode_0x41,minimal,op=0x41 > u32 > send,1,False,medium
+0x3d9a05,,,header-only,,0,False,low
+0x3da50c,,,header-only,,0,False,low
+0x3da52d,0x108,opcode_0x108,header-only,op=0x108 > send,0,False,low
+0x3da597,0x108,opcode_0x108,header-only,op=0x108 > send,0,False,low
+0x3e483d,,,header-only,,0,False,low
+0x3fe2a5,,,header-only,,0,False,low
+0x3fecee,,,header-only,,0,False,low
+0x404cee,0x38,NPC_TALK_MORE,header-only,op=0x38 > send,0,False,low
+0x406392,0x38,NPC_TALK_MORE,header-only,op=0x38 > send,0,False,low
+0x408c11,0x38,NPC_TALK_MORE,header-only,op=0x38 > send,0,False,low
+0x42b8da,,,header-only,u32 > u32 > u32 > send,3,False,low
+0x437976,,,header-only,,0,False,low
+0x43abba,,,header-only,u32 > u32 > u32 > send,3,False,low
+0x43b223,,,header-only,,0,False,low
+0x43f304,,,header-only,,0,False,low
+0x45c1a8,0x76,MESSENGER,minimal,op=0x76 > u32 > send > u8 > send,2,False,medium
+0x45c9f0,0x76,MESSENGER,structured,op=0x76 > send > u8 > send,1,True,medium
+0x45f6ab,0x76,MESSENGER,minimal,op=0x76 > u8 > send,1,False,medium
+0x45fe5d,0x76,MESSENGER,header-only,op=0x76 > send,0,False,low
+0x45ff6a,0x76,MESSENGER,header-only,op=0x76 > send,0,False,low
+0x4697b4,,,header-only,send,0,False,low
+0x474bed,,,header-only,u32 > send,1,False,low
+0x47de04,,,header-only,,0,False,low
+0x48c858,,,header-only,u16 > u32 > u16 > u32 > u32 > send,5,True,low
+0x48c858,0x6A,quest_KJ,structured,u16 > u32 > u16 > u32 > u32 > send > op=0x6A > u16 > u32 > send,7,True,medium
+0x4a20b0,0x01,opcode_0x01,minimal,u32 > op=0x01 > send,1,False,medium
+0x4a2333,,,header-only,u32 > u8 > send > u16 > send,3,False,low
+0x4a3b03,0xF7,opcode_0xF7,structured,op=0xF7 > u16 > u32 > send,2,True,medium
+0x4b1f40,0x3F,opcode_0x3F,header-only,op=0x3F > send,0,False,low
+0x4b34a9,,,header-only,u32 > u8 > u32 > send,3,False,low
+0x4b546a,,,header-only,u32 > u32 > send,2,True,low
+0x4e3cd5,0x74,PARTYCHAT,structured,op=0x74 > u8 > u32 > send,2,True,medium
+0x51b8f9,0x03,opcode_0x03,header-only,op=0x03 > send,0,False,low
+0x51ba34,0x93,opcode_0x93,header-only,op=0x93 > send,0,False,low
+0x51baaf,0x93,opcode_0x93,structured,op=0x93 > u32 > u32 > send,2,True,medium
+0x51bc56,0x93,opcode_0x93,minimal,op=0x93 > u32 > u8 > send,2,False,medium
+0x51be0f,0x93,opcode_0x93,header-only,op=0x93 > send,0,False,low
+0x51c57f,0x93,opcode_0x93,minimal,op=0x93 > u32 > send,1,False,medium
+0x51f064,0x93,opcode_0x93,header-only,op=0x93 > send,0,True,low
+0x52782e,,,header-only,send,0,False,low
+0x530d0a,0x103,opcode_0x103,header-only,op=0x103 > send,0,False,low
+0x55199a,0xFE,opcode_0xFE,structured,u32 > op=0xFE > u8 > u32 > u16 > send > u32 > u8 > u8 > u32 > u16 > send,9,True,medium
+0x553d85,,,header-only,,0,True,low
+0x554b58,,,header-only,u8 > u16 > u16 > send,3,False,low
+0x55516a,,,header-only,u16 > send,1,False,low
+0x556411,,,header-only,send,0,False,low
+0x5564ee,0x77,PLAYER_INTERACTION,structured,op=0x77 > u32 > u8 > u8 > send,3,False,medium
+0x5568cc,,,header-only,send,0,False,low
+0x5568cc,0x77,PLAYER_INTERACTION,structured,send > op=0x77 > u32 > u8 > u8 > send > send,3,True,medium
+0x556ac3,0x77,PLAYER_INTERACTION,minimal,op=0x77 > u32 > send,1,False,medium
+0x5626fb,,,header-only,u8 > u16 > u16 > u16 > u16 > u16 > u32 > u32 > u16 > u16 > send,10,True,low
+0x562c87,,,header-only,,0,False,low
+0x563b28,,,header-only,,0,False,low
+0x5647c8,,,header-only,,0,False,low
+0x56714c,,,header-only,u32 > u32 > u32 > send,3,False,low
+0x5693f7,,,header-only,,0,False,low
+0x56a767,,,header-only,,0,True,low
+0x56b6ea,,,header-only,,0,True,low
+0x56cdfd,,,header-only,,0,False,low
+0x56d3ae,,,header-only,send,0,False,low
+0x56e29c,,,header-only,send,0,False,low
+0x576ae9,,,header-only,u32 > u32 > u8 > u16 > u16 > send,5,True,low
+0x57707b,,,header-only,u32 > u32 > u8 > u8 > u32 > u16 > send,6,True,low
+0x5773de,,,header-only,u32 > u32 > u8 > u8 > u16 > send,5,False,low
+0x5775af,,,header-only,,0,True,low
+0x577e0c,,,header-only,u32 > u32 > u8 > u16 > u16 > u8 > send,6,True,low
+0x578c7d,,,header-only,,0,True,low
+0x579e18,,,header-only,u32 > u32 > u8 > u32 > u32 > u8 > u8 > send,7,True,low
+0x57a00a,,,header-only,u32 > u32 > u8 > u16 > u16 > send,5,False,low
+0x57a569,,,header-only,,0,False,low
+0x57a71d,,,header-only,send,0,True,low
+0x57ae26,,,header-only,u32 > send,1,False,low
+0x5a5d7f,,,header-only,,0,False,low
+0x5cc912,,,header-only,send,0,False,low
+0x5cfcb4,,,header-only,,0,False,low
+0x5e109d,0x89,opcode_0x89,header-only,op=0x89 > send,0,False,low
+0x5e2271,0x89,opcode_0x89,structured,op=0x89 > u16 > u32 > u16 > send,3,False,medium
+0x5e2bf1,0x89,opcode_0x89,header-only,op=0x89 > send,0,True,low
+0x5e3d0e,0x89,opcode_0x89,minimal,op=0x89 > u8 > u8 > send,2,False,medium
+0x60c4bb,,,header-only,send,0,True,low
+0x60e05b,,,header-only,u32 > send,1,False,low
+0x612399,,,header-only,,0,True,low
+0x612493,,,header-only,u32 > u8 > send,2,False,low
+0x612525,,,header-only,u32 > u8 > send,2,False,low
+0x6125b7,,,header-only,u32 > u8 > u16 > u16 > u16 > send,5,False,low
+0x612a1a,,,header-only,u32 > u16 > u32 > send,3,False,low
+0x612c05,0x08,opcode_0x08,structured,op=0x08 > u32 > u16 > u32 > send,3,False,medium
+0x612d02,,,header-only,u32 > send,1,False,low
+0x612dce,,,header-only,u32 > u16 > u32 > send,3,False,low
+0x612f57,,,header-only,u32 > u16 > u32 > send,3,False,low
+0x6130b6,,,header-only,u32 > u16 > u32 > send,3,False,low
+0x613178,,,header-only,u32 > u16 > u32 > send,3,False,low
+0x61321d,,,header-only,u32 > u16 > u32 > u32 > send,4,True,low
+0x6137e2,,,header-only,u32 > u16 > u32 > send,3,False,low
+0x6139e8,,,header-only,u16 > u32 > u32 > send,3,False,low
+0x618447,,,header-only,u32 > send,1,False,low
+0x618753,,,header-only,u16 > send,1,False,low
+0x6187cb,,,header-only,,0,False,low
+0x61a7e5,,,header-only,u16 > u32 > u8 > send,3,False,low
+0x61aaa6,,,header-only,send,0,False,low
+0x61ad04,,,header-only,,0,False,low
+0x61b249,,,header-only,u32 > u16 > u32 > send,3,False,low
+0x61b5b0,,,header-only,u16 > u32 > send,2,False,low
+0x61cbec,,,header-only,,0,False,low
+0x6270ef,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u8 > u8 > send,4,False,medium
+0x627ceb,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u16 > u32 > send,4,False,medium
+0x627e1b,,,header-only,u32 > u16 > u32 > send,3,True,low
+0x6280d7,,,header-only,,0,True,low
+0x629c95,,,header-only,,0,False,low
+0x629e60,,,header-only,send,0,False,low
+0x62a086,,,header-only,send,0,False,low
+0x62d12f,,,header-only,u32 > u32 > send,2,False,low
+0x62d2b5,,,header-only,u32 > u32 > u32 > u32 > send,4,True,low
+0x62d46b,,,header-only,u32 > u32 > send,2,False,low
+0x62d4f1,,,header-only,u32 > u32 > send,2,False,low
+0x62d5fb,,,header-only,u32 > u8 > send,2,False,low
+0x62d780,,,header-only,u32 > u32 > u8 > send,3,False,low
+0x62d868,,,header-only,u32 > send,1,False,low
+0x62daf3,,,header-only,u32 > u16 > u8 > send,3,True,low
+0x62dc36,,,header-only,u32 > send,1,False,low
+0x62dce1,,,header-only,u32 > send,1,False,low
+0x62ddb7,,,header-only,u16 > send,1,False,low
+0x62e9c3,0x7F,NOTE_ACTION,header-only,op=0x7F > send,0,False,low
+0x62fb71,0x63,TROCK_ADD_MAP,minimal,op=0x63 > u8 > u32 > send,2,False,medium
+0x62fc8e,,,header-only,u16 > u32 > send,2,False,low
+0x63098a,0x68,QUEST_ACTION,structured,op=0x68 > u16 > send,1,True,medium
+0x630c7f,0x67,opcode_0x67,structured,op=0x67 > u8 > send,1,True,medium
+0x63165f,0x3C,USE_HIRED_MERCHANT,header-only,op=0x3C > send,0,False,low
+0x631881,0x77,PLAYER_INTERACTION,structured,op=0x77 > u8 > u8 > u32 > u32 > u8 > u16 > send,6,False,medium
+0x632837,,,header-only,,0,False,low
+0x6341e0,,,header-only,u32 > u16 > u16 > send > u32 > u16 > u16 > send,6,False,low
+0x634993,,,header-only,u32 > send,1,False,low
+0x63c35f,,,header-only,u32 > send,1,False,low
+0x63db19,,,header-only,u32 > u8 > send,2,False,low
+0x63dba9,,,header-only,send,0,False,low
+0x63dc1a,,,header-only,send,0,False,low
+0x63dc5f,,,header-only,send,0,False,low
+0x63dd3a,,,header-only,u32 > send,1,False,low
+0x63dd95,,,header-only,send,0,False,low
+0x63dde3,,,header-only,u32 > send,1,False,low
+0x63df78,,,header-only,send,0,False,low
+0x63ebd0,,,header-only,u8 > send,1,False,low
+0x641174,0x93,opcode_0x93,structured,op=0x93 > send > u8 > send,1,True,medium
+0x643bba,0x93,opcode_0x93,structured,op=0x93 > send > u8,1,True,medium
+0x648068,,,header-only,u32 > u32 > u32 > u32 > send,4,False,low
+0x6480db,,,header-only,send,0,False,low
+0x648120,0x78,PARTY_OPERATION,structured,op=0x78 > u32 > u8 > send > u8 > send,3,False,medium
+0x649c00,0x7E,BUDDYLIST_MODIFY,header-only,op=0x7E > send,0,False,low
+0x65ab5f,0x15,opcode_0x15,minimal,op=0x15 > u16 > send,1,False,medium
+0x65fe8c,0xA1,opcode_0xA1,minimal,op=0xA1 > u16 > u32 > send,2,False,medium
+0x661adb,,,header-only,,0,False,low
