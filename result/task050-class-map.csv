@@ -9,3 +9,12 @@ SpawnBandObj,Player/Pet/Summon handler object,medium,[0x3DD4A0],,,field,SPAWN_PL
 MobBandObj,Monster handler object,medium,[0x3DD49C],,,combat,MOB band 0xEE-0x103,,IMG(dispatch singleton)+S2C(band mapping)
 NpcBandObj,NPC handler object,medium,[0x5EB44],,,quest,NPC band 0x104-0x10C,,IMG(dispatch singleton)+S2C(band mapping)
 KeymapBandObj,Keymap handler object,high,[0x3D95C],,KeymapTable 89×5B,ui,KEYMAP 0x16F-0x171,,IMG(89×5 walker confirmed)+S2C
+CUserRemote,CUserRemote,medium,(per-object),,,field,,,"BAND:field-player band 0xA2-0xED: object resolved by id (0x57EC7A), per-opcode virtual leaf calls; is-it-me via CWvsContext+0x2084"
+CMob,CMob,medium,(per-object),,,field,,,BAND:field-combat band 0xEE-0x103: dedicated sub-dispatcher 0x2A6AB0 + 16 leaf handlers
+CNpc,CNpc,medium,(per-object),,,field,,,BAND:field-objects band 0x104-0x10C: sub-dispatcher 0x2CB061 + leaves
+CDrop,CDrop,medium,(per-object),,,field,,,BAND:field-objects band 0x110-0x111: spawn/remove pair on one object family
+CReactor,CReactor,medium,(per-object),,,field,,,BAND:field-objects band 0x11C-0x11F: spawn/hit/destroy lifecycle leaves
+CMist,CMist,medium,(per-object),,,field,,,BAND:field-objects band 0x115-0x116: spawn/remove pair
+CLove,CLove,low,(per-object),,,field,,,BAND:field-objects band 0x113-0x114: spawn/remove pair (event object)
+CHiredMerchant,CHiredMerchant,medium,(per-object),,,field,,,BAND:field-objects band 0x10D-0x10F: spawn/destroy/update triple
+COutOfGameMessage,COutOfGameMessage,low,(per-object),,,field,,,BAND:family band 0x64-0x72 jump-table dispatcher (0x63E008) with 15 cases

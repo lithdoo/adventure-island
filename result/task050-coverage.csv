@@ -1,13 +1,16 @@
 metric,baseline,current,target,how_counted
-unique_leaf_handler_functions,0,132,140,honest de-dup count (99 range + 34 band)
+unique_leaf_handler_functions,0,132,140,honest de-dup (99 range + 34 band)
 opcode_mapped_body_summaries,83,282,140,per-opcode entries with body summary
 band_jt_decoded_opcodes,0,29,,jump-table extraction
-inbound_minimal_schemas,4,238,120,range+band leaf reader sequences
-outbound_minimal_schemas,0,154,120,writer sequences
-sender_classified,207,374,400,L1-L5+BFS8+arg+anchor
-sender_total,486,486,n/a,census
+band_chain_decoded_opcodes,0,108,,cmp-chain DFS
+inbound_minimal_schemas,4,238,120,165 range + 73 band-leaf
+outbound_minimal_schemas,0,154,120,writer-primitive sequences
+sender_classified,207,374,400,static ceiling
+sender_boundary_errors_fixed,0,55,,prologue re-anchor
 semantic_field_facts,5,484,250,118 owner-named
 state_machines,2,20,20,semantic
-pseudocode_flows,28,28,80,§S7
-class_map_entries,0,10,80,§S4
-high_semantic_functions,18,162,180,role-graded
+pseudocode_flows,28,372,80,generated
+class_map_entries,0,19,80,17 medium+
+high_semantic_functions,18,185,180,role-graded
+writer_primitives_identified,4,7,,WriteInt16 new
+rtti_names_in_body,0,13,,proves class-RTTI absence

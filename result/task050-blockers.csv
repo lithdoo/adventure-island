@@ -1,6 +1,7 @@
 blocker_id,subsystem,stage,symptom,evidence,next_safe_option,dependency
-B50-1,all,sender_provenance,279/486 sender sites lack numeric opcode,interprocedural dataflow needed,deeper backward provenance,static-solvable
-B50-2,all,outbound_schemas,41/120 outbound schemas,builder payload write detection limited by indirect virtual calls,analyze builder callers for write sequences,static-solvable
-B50-3,all,class_ownership,52 anonymous vtables,no RTTI linkage; Themida runtime layout,ctor correlation + handler singletons,static-solvable
-B50-4,all,semantic_fields,"10,922 raw accesses → only 5 semantic",owner identification needed for most offsets,cross-reference handler writes with field offsets,static-solvable
-B50-5,character,live_state,CWvsContext field values all zero in capture,036 capture is pre-login (041 finding),needs later-phase capture,populated-state-required
+B50-1,all,sender_provenance,112/486 sites unresolved; hosts have zero static callers AND zero image dword refs,vtable/computed dispatch,dynamic capture or decompiler-level dataflow,populated-state-required
+B50-2,all,outbound_payload_semantics,writer sequences known but per-field meaning (which int32 is itemId vs slot) unproven,register dataflow needed,backward slice from each write arg,static-solvable-deep
+B50-3,all,class_ownership,"63 classes short; game body RTTI absent (13 names, security only)",Themida + RTTI-off build,ctor/singleton correlation,static-solvable-deep
+B50-4,all,semantic_field_meaning,366 fields owner-unknown (locator labels only),singleton correlation partial,extend field_promote with call-site object tracking,static-solvable
+B50-5,character,live_state,CWvsContext fields all zero in capture,036 capture is pre-login,post-login capture,populated-state-required
+B50-6,all,sub_band_completeness,0xA4-0xBA sub-band decode incomplete (mixed chain/JT),decoder heuristics,per-sub-band manual disasm pass,static-solvable
