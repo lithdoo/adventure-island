@@ -62,7 +62,9 @@ void CUserRemote::OnChatText(CInPacket& pkt, int is_self) {   // 0x53D546
 
 | fact | evidence | confidence |
 |---|---|---|
-| CUserRemote +0xF30 = balloon display time override | 0x53D5C5 vs default 0xBE7B74 | high |
+| fact | evidence | confidence |
+|---|---|---|
+| **CORRECTED** +0xF30 = display-name string (NOT balloon time) | decodeAvatar 0x58CE38 assigns std::string; see sample #2 | confirmed |
 | CUserRemote +0x28B0 = miniroom membership (2→0 normalization; -1 = none) | 0x53D638-0x53D666 two-sided compare | high |
 | singleton 0xBDD4A0 → [+8] = local avatar object | 0x53D645 chain, parallel +0x28B0 read | medium |
 | 0xA70A20 = chat filter (name/text, mute/profanity) | gates log append only | medium |

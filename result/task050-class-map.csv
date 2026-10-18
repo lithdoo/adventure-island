@@ -5,11 +5,11 @@ CClientSocket,CClientSocket,confirmed,[0xBD9024],,+8 socket; +0x38 deadline; +0x
 COutPacket,COutPacket,confirmed,(per-call),,buffer,network,,967 builder sites,IMG(ctor 0x2F5E40; WriteHeader 0x661F)
 CInPacket,CInPacket(reader family),confirmed,(per-packet),,buffer; position,network,all inbound handlers,,IMG(ReadInt32 0x66FF; ReadByte 0x66C9; ReadInt16 0x259A2; ReadString 0x71D7A)
 CSecurity,CSecurity family,high,throw-site cluster 0x7934xx,data block 0x7D38F8-0x7D4230,,security,,,RTTI(10 classes)+IMG(throw sites)
-SpawnBandObj,Player/Pet/Summon handler object,medium,[0x3DD4A0],,,field,SPAWN_PLAYER band 0xA2-0xED,,IMG(dispatch singleton)+S2C(band mapping)
+SpawnBandObj,FieldDispatcher,medium,[0x3DD4A0],,+0x8 local_player; +0xC object_map; +0x24 avatar_layer; +0x54 field_object_list,field,SPAWN_PLAYER band 0xA2-0xED,,IMG: SPAWN_PLAYER hand-decode; singleton [0x3DD4A0]
 MobBandObj,Monster handler object,medium,[0x3DD49C],,,combat,MOB band 0xEE-0x103,,IMG(dispatch singleton)+S2C(band mapping)
 NpcBandObj,NPC handler object,medium,[0x5EB44],,,quest,NPC band 0x104-0x10C,,IMG(dispatch singleton)+S2C(band mapping)
 KeymapBandObj,Keymap handler object,high,[0x3D95C],,KeymapTable 89×5B,ui,KEYMAP 0x16F-0x171,,IMG(89×5 walker confirmed)+S2C
-CUserRemote,CUserRemote,high,(per-object),,+0x1BB4 pet_array; +0x1BBC effect_map; vtable+0x24/28/2C OnPacket vmethods,field,"band 0xA2-0xB9 (27 opcodes, hand-verified)",,BAND:0x57F64C->0x57F9C1 hand-decoded; singleton 0x3DD4A0 dispatch; FindObject 0x57EC5E
+CUserRemote,CUserRemote,high,"ctor 0x98CC52, size 0x3500, pool 0xBE1DE0",,+0x3B8 display_tag; +0xF30 display_name(str); +0x28B8 level; +0x28BC buff_container; +0x28B0 miniroom; +0x34FC job_hint; +0x3C0 stance; +0x1BB4 pet_array; +0x1BBC effect_map,field,"band 0xA2-0xB9 (27 opcodes, hand-verified)",,BAND+IMG: spawn 0x57F6C0 hand-decoded; decodeAvatar 0x58CDF6 field-write sequence; CHATTEXT 0x53D546 cross-validated
 CMob,CMob,medium,(per-object),,,field,,,BAND:field-combat band 0xEE-0x103: dedicated sub-dispatcher 0x2A6AB0 + 16 leaf handlers
 CNpc,CNpc,medium,(per-object),,,field,,,BAND:field-objects band 0x104-0x10C: sub-dispatcher 0x2CB061 + leaves
 CDrop,CDrop,medium,(per-object),,,field,,,BAND:field-objects band 0x110-0x111: spawn/remove pair on one object family
