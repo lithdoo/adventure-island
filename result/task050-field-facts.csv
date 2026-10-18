@@ -502,3 +502,8 @@ CUserRemote,handler-proven,0x34fc,i16,job_hint,read after buffs in spawn decode,
 CUserRemote,handler-proven,0x34dc,i32,transformed_id,read then transformed by 0x965A8F into +0xF04,low,SPAWN_PLAYER@0x57F6C0/0x58CDF6,1,IMG(hand-verified disasm SPAWN decode)
 CUserRemote,handler-proven,0x3c0,u8,stance,read after position pair,medium,SPAWN_PLAYER@0x57F6C0/0x58CDF6,1,IMG(hand-verified disasm SPAWN decode)
 CUserRemote,handler-proven,0x3b8,object,display_tag,"set from 0xA4984C(CWvsContext,id,1) lookup result",medium,SPAWN_PLAYER@0x57F6C0/0x58CDF6,1,IMG(hand-verified disasm SPAWN decode)
+CWvsContext,handler-proven,0x31f4,container,warp_tail_container_A,"Add(v1,v2,v3) from 3-int32 tail section (0x7940F0)",high,WARP_TO_MAP@0x37E72F,1,IMG(hand-verified disasm)
+CWvsContext,handler-proven,0x32f8,container,warp_tail_container_B,parallel Add with same 3 int32s (0x74120F),high,WARP_TO_MAP@0x37E72F,1,IMG(hand-verified disasm)
+CWvsContext,handler-proven,0x2f44,string,reset_string,assigned default (res 0xBDD7E4) at end of WARP_TO_MAP,high,WARP_TO_MAP@0x37E72F,1,IMG(hand-verified disasm)
+unknown-singleton-0xBDEB28,handler-proven,+0,i32,state,==2 dispatches 0x7DAE4C during warp tail,medium,WARP_TO_MAP@0x37E72F,1,IMG(hand-verified disasm)
+unknown-singleton-0xBDEB28,handler-proven,+8,object,ptr_gate,nonzero dispatches 0x7DADB8,medium,WARP_TO_MAP@0x37E72F,1,IMG(hand-verified disasm)
