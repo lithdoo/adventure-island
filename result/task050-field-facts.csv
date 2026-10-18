@@ -527,3 +527,4 @@ CKeymapUI,handler-proven,+0x0,u8,mode_flag,"0=full table payload, nonzero=refres
 CPet,handler-proven,+0x94,object,owner_avatar_link,points to CUserRemote; +0x3B8 tag gates name/visual paths,high,pet band 0xAF-0xB3 (0x30E006 family),1,IMG(hand-verified pet handlers)
 CPet,handler-proven,+0x98,string,message_string,assigned from packet string in 0xB1 handler,high,pet band 0xAF-0xB3 (0x30E006 family),1,IMG(hand-verified pet handlers)
 CPet,handler-proven,+0x90,string,string_buffer,0xAF thunk resolves owner via buffer header; method 0x2B8FB7,medium,pet band 0xAF-0xB3 (0x30E006 family),1,IMG(hand-verified pet handlers)
+CWvsContext,handler-proven,0x2f38,container,buddy_container,"entries base @+0 (stride 0x27, id @entry+0x12); channel array @+4",confirmed,BUDDYLIST@0x64915C,1,IMG(hand-verified JT + stride)
