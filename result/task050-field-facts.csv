@@ -524,3 +524,6 @@ CKeymapUI,handler-proven,+0x4,89x5 bytes,live_keymap_table,"89 entries, each raw
 CKeymapUI,handler-proven,+0x1c1,445 bytes,committed_shadow_copy,memcpy from +4 (len 0x1BD) after decode,confirmed,KEYMAP@0x1B9E4F,1,IMG(hand-verified loop+memcpy)
 CKeymapUI,handler-proven,+0x380,i32,auto_potion_itemid,written by AUTO_HP_POT/AUTO_MP_POT 0x1B9EC8,high,KEYMAP@0x1B9E4F,1,IMG(hand-verified loop+memcpy)
 CKeymapUI,handler-proven,+0x0,u8,mode_flag,"0=full table payload, nonzero=refresh-from-config",confirmed,KEYMAP@0x1B9E4F,1,IMG(hand-verified loop+memcpy)
+CPet,handler-proven,+0x94,object,owner_avatar_link,points to CUserRemote; +0x3B8 tag gates name/visual paths,high,pet band 0xAF-0xB3 (0x30E006 family),1,IMG(hand-verified pet handlers)
+CPet,handler-proven,+0x98,string,message_string,assigned from packet string in 0xB1 handler,high,pet band 0xAF-0xB3 (0x30E006 family),1,IMG(hand-verified pet handlers)
+CPet,handler-proven,+0x90,string,string_buffer,0xAF thunk resolves owner via buffer header; method 0x2B8FB7,medium,pet band 0xAF-0xB3 (0x30E006 family),1,IMG(hand-verified pet handlers)

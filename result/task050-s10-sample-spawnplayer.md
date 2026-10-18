@@ -103,3 +103,15 @@ In sample #1, `+0xF30` was labeled "balloon display time override". decodeAvatar
 `mov eax,[esi+0xF30]; test` therefore tests the string's buffer pointer (non-empty),
 and `0xBE7B74` holds a default string — the call 0xA70A20(a, b) takes TWO STRINGS
 (display-name override vs message), not (time, msg). Field facts updated accordingly.
+
+## Addendum: pet handler family (band 0xAF-0xB3, hand-verified)
+
+| opcode | leaf | wire shape | action |
+|---|---|---|---|
+| 0xAF | 0x30E006 | (none) | thunk -> method 0x2B8FB7 (pos sync) |
+| 0xB0 | 0x30E027 | u8, u8, str | SetPetName via 0x30EE77; gated by pet+0x94 avatar +0x3B8 |
+| 0xB1 | 0x30E0AC | str | assign pet+0x98 message; state via 0x30CAE6 |
+| 0xB2 | 0x30E179 | u8... | pre-state 0x30D436 + byte(s) |
+| 0xB3 | 0x30F607 | u8... | (same family) |
+
+Pet selection in sub-band: ReadByte index -> CUserRemote+0x1BB4 array -> [+idx*8+4].
