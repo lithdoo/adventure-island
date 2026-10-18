@@ -532,3 +532,5 @@ CWvsContext,handler-proven,0x2e04,object,party_object,party container ptr; embed
 CWvsContext,handler-proven,0x2e08,298 bytes,party_struct_embedded,0x4A dwords + word copied to stack at handler entry,confirmed,PARTY_OPERATION@0x648120,1,IMG(hand-verified)
 unknown-singleton-0xBDD494,handler-proven,+0x34,object,party_cfg_A,read in PARTY case 4,medium,PARTY_OPERATION@0x648120,1,IMG(hand-verified)
 unknown-singleton-0xBDD494,handler-proven,+0x38,object,party_cfg_B,read in PARTY case 4,medium,PARTY_OPERATION@0x648120,1,IMG(hand-verified)
+CWvsContext,handler-proven,0x2f7c,container,guild_container,embedded; reset 0xA0B777; deserialized by 0x4F3CFC,high,GUILD_OPERATION@0x641174,1,IMG(hand-verified)
+CWvsContext,handler-proven,0x2fa2,i32,guild_ui_gate,nonzero = guild UI live (sound played on update),medium,GUILD_OPERATION@0x641174,1,IMG(hand-verified)
