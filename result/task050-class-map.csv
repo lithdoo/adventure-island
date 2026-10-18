@@ -193,3 +193,4 @@ CItemEquip,CItemEquip,high,,"type 1, size 0xF9, vtable 0x7008C8-data",+0xED extr
 CItemUse,CItemUse,high,,"type 2, size 0x4D, vtable 0x700958",consumable,inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
 CItemSetup,CItemSetup,high,,,setup family,inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
 CItemType100,CItemType100,medium,,"type 100, size 0x72, vtable 0x700A50",client type 100 (etc/cash merged?),inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
+CKeymapUI,CKeymapUI,high,[0x3D95C],,+4 live table(89x5); +0x1C1 shadow; +0x380 auto-potion id,ui,KEYMAP 0x16F; AUTO_HP/MP_POT 0x170/0x171,CHANGE_KEYMAP,IMG: 89-loop + shadow memcpy hand-verified
