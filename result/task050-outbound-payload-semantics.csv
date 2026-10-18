@@ -1,0 +1,88 @@
+function_rva,packet_name,opcode,payload_fields,sources
+0x6cdbd,USE_CHAIR,0x26,5,u32<-field:ebp+8 | u8<-unknown: | u8<-call-result:0x6d24b | u32<-field:ebp+8 | u8<-call-result:0x6d267
+0x7866b,NOTE_ACTION,0x7F,2,u8<-call-result:0x78798 | u32<-call-result:0x787ec
+0x82ac1,PLAYER_INTERACTION,0x77,3,u8<-unknown: | u32<-string-len(std::string) | u32<-string-len(std::string)
+0x84fad,PLAYER_INTERACTION,0x77,4,u8<-constant:0xe | u16<-constant:0xe | u16<-call-result:0x850c0 | u8<-call-result:0x850c7
+0x85180,PLAYER_INTERACTION,0x77,1,u32<-constant:0xf
+0x8530e,PLAYER_INTERACTION,0x77,3,u8<-string-len(std::string) | u32<-string-len(std::string) | u32<-string-len(std::string)
+0x122c4b,PLAYER_INTERACTION,0x77,2,u8<-constant:0xb | u8<-constant:1
+0x1240e3,PLAYER_INTERACTION,0x77,1,u32<-constant:0x30
+0x12a99b,DENY_GUILD_REQUEST,0x7B,4,u8<-constant:0x16 | u8<-constant:0x17 | u8<-constant:5 | u8<-unknown:
+0x12cf8a,PARTY_OPERATION,0x78,12,u32<-constant:3 | u8<-call-result:0x12d101 | u8<-constant:6 | u32<-constant:6 | u32<-constant:6 | u8<-call-result:0x12d1a6 | u32<-call-result:0x12d1a6 | u8<-call-result:0x12d210 | u32<-memory-direct:-1 | u32<-constant:2 | u8<-constant:1 | u32<-unknown:
+0x13f463,PLAYER_INTERACTION,0x77,9,u8<-call-result:0x13f595 | u8<-constant:6 | u32<-call-result:0x13f5a8 | u32<-call-result:0x13f5a8 | u8<-call-result:0x13f5e7 | u8<-constant:0x8d53001b | u8<-call-result:0x13f601 | u8<-constant:2 | u32<-constant:2
+0x13f69e,PLAYER_INTERACTION,0x77,9,u8<-call-result:0x13f797 | u8<-constant:6 | u32<-call-result:0x13f7aa | u32<-call-result:0x13f7aa | u8<-call-result:0x13f7e8 | u8<-constant:3 | u8<-call-result:0x13f802 | u8<-constant:2 | u32<-constant:2
+0x13fa03,PARTY_OPERATION,0x78,1,u8<-constant:0
+0x13fccd,PARTY_OPERATION,0x78,1,u32<-call-result:0x13fdc8
+0x13fe32,PARTY_OPERATION,0x78,1,u32<-unknown:
+0x1401ef,CHANGE_CHANNEL,0x22,2,u8<-call-result:0x140252 | u32<-unknown:
+0x1403ff,GUILD_OPERATION,0x7A,2,u32<-constant:0x1e | u8<-constant:0x1e
+0x140679,GUILD_OPERATION,0x7A,1,u32<-constant:7
+0x1407a6,GUILD_OPERATION,0x7A,4,u32<-constant:8 | u8<-constant:9 | u32<-constant:9 | u32<-constant:9
+0x140bcf,GUILD_OPERATION,0x7A,2,u32<-constant:0xe | u8<-constant:0xe
+0x140d44,GUILD_OPERATION,0x7A,4,u16<-constant:0xf | u8<-constant:0xf | u16<-constant:0xf | u8<-constant:0xf
+0x140fd0,BUDDYLIST_MODIFY,0x7E,1,u32<-constant:3
+0x14107c,BUDDYLIST_MODIFY,0x7E,1,u32<-constant:2
+0x1d4556,QUEST_ACTION,0x68,3,u8<-constant:2 | u32<-constant:2 | u32<-call-result:0x1d4598
+0x278994,NOTE_ACTION,0x7F,5,u8<-unknown: | u8<-string-len(std::string) | u8<-string-len(std::string) | u8<-call-result:0x278c0d | u32<-unknown:
+0x27b9b5,PLAYER_INTERACTION,0x77,1,u8<-constant:1
+0x27c1e8,PLAYER_INTERACTION,0x77,1,u8<-call-result:0x27c231
+0x27cc1e,PLAYER_INTERACTION,0x77,3,u8<-constant:0x43 | u8<-constant:0x43 | u8<-constant:0x3e
+0x2815c0,PLAYER_INTERACTION,0x77,1,u8<-constant:0x3a
+0x2816f5,PLAYER_INTERACTION,0x77,2,u8<-constant:0x38 | u8<-constant:0xa
+0x28c885,PLAYER_INTERACTION,0x77,6,u32<-constant:4 | u8<-constant:0 | u8<-constant:0 | u8<-constant:3 | u32<-constant:3 | u8<-constant:3
+0x28c93d,PLAYER_INTERACTION,0x77,8,u8<-constant:4 | u8<-constant:6 | u32<-constant:0 | u32<-constant:0 | u8<-constant:0 | u8<-constant:3 | u32<-constant:3 | u8<-constant:3
+0x28cbbb,PLAYER_INTERACTION,0x77,17,u8<-call-result:0x28cc08 | u8<-call-result:0x28cc11 | u32<-constant:0 | u32<-call-result:0x28cc3d | u8<-call-result:0x28cc49 | u16<-call-result:0x28cc6f | u32<-call-result:0x28cc8f | u8<-constant:4 | u32<-call-result:0x28ccf2 | u8<-constant:0 | u8<-unknown: | u16<-call-result:0x28cd2b | u8<-constant:0 | u8<-constant:6 | u8<-memory-direct:es | u8<-constant:2 | u32<-call-result:0x28cdb5
+0x28cded,PLAYER_INTERACTION,0x77,7,u8<-call-result:0x28ce47 | u8<-call-result:0x28ce50 | u32<-unknown: | u32<-call-result:0x28ce7c | u8<-call-result:0x28ce88 | u16<-call-result:0x28ceae | u32<-call-result:0x28cece
+0x2d48f0,PLAYER_INTERACTION,0x77,1,u8<-constant:1
+0x2d51b0,PLAYER_INTERACTION,0x77,1,u8<-call-result:0x2d51f9
+0x2d5270,PLAYER_INTERACTION,0x77,1,u8<-call-result:0x2d52b9
+0x2d9a8b,PLAYER_INTERACTION,0x77,1,u8<-call-result:0x2d9abc
+0x2d9e9b,PLAYER_INTERACTION,0x77,2,u8<-constant:0x38 | u8<-constant:0xa
+0x2fa2a8,DUEY_ACTION,0x3E,1,u32<-constant:5
+0x2fa3e9,DUEY_ACTION,0x3E,1,u32<-constant:6
+0x2fb454,DUEY_ACTION,0x3E,6,u8<-call-result:0x2fb625 | u16<-call-result:0x2fb633 | u16<-call-result:0x2fb642 | u32<-call-result:0x2fb642 | u8<-constant:1 | u32<-call-result:0x2fb67f
+0x2fccb6,DUEY_ACTION,0x3E,5,u8<-call-result:0x2fcdf9 | u16<-call-result:0x2fce07 | u16<-call-result:0x2fce16 | u32<-call-result:0x2fce16 | u8<-call-result:0x2fce49
+0x2fec45,DUEY_ACTION,0x3E,3,u8<-call-result:0x2ff130 | u32<-call-result:0x2ff13f | u32<-call-result:0x2ff14e
+0x3061b5,PLAYER_INTERACTION,0x77,5,u8<-unknown: | u8<-call-result:0x30622f | u32<-call-result:0x306236 | u8<-constant:0xb | u8<-call-result:0x30629d
+0x30752e,PLAYER_INTERACTION,0x77,1,u16<-string-len(std::string)
+0x3075e2,PLAYER_INTERACTION,0x77,3,u8<-constant:0x1a | u8<-constant:0x1b | u8<-call-result:0x30774a
+0x31fd3b,PLAYER_INTERACTION,0x77,1,u8<-constant:1
+0x323903,PLAYER_INTERACTION,0x77,2,u8<-constant:0x38 | u8<-constant:0xa
+0x3285c1,QUEST_ACTION,0x68,20,u16<-call-result:0x328674 | u32<-call-result:0x328674 | u16<-call-result:0x328674 | u16<-call-result:0x328674 | u8<-constant:5 | u16<-call-result:0x3286f1 | u32<-call-result:0x3286f1 | u16<-call-result:0x3286f1 | u16<-call-result:0x3286f1 | u8<-unknown: | u16<-unknown: | u32<-call-result:0x328a4a | u16<-call-result:0x328a64 | u16<-call-result:0x328a64 | u32<-call-result:0x328a90 | u8<-unknown: | u16<-call-result:0x328ac9 | u32<-call-result:0x328ac9 | u16<-call-result:0x328ae3 | u16<-call-result:0x328ae3
+0x34d058,RPS_GAME,0x84,1,u8<-field:ebp+8
+0x353250,NPC_TALK_MORE,0x38,2,u8<-call-result:0x353353 | u8<-call-result:0x353360
+0x353530,NPC_TALK_MORE,0x38,2,u8<-call-result:0x353647 | u8<-call-result:0x353673
+0x3536eb,NPC_TALK_MORE,0x38,2,u8<-call-result:0x353800 | u8<-call-result:0x35382c
+0x3538a4,NPC_TALK_MORE,0x38,3,u8<-unknown: | u32<-call-result:0x3539d9 | u8<-call-result:0x3539f8
+0x353a52,NPC_TALK_MORE,0x38,3,u8<-call-result:0x353b47 | u8<-constant:1 | u32<-constant:1
+0x353be2,NPC_TALK_MORE,0x38,3,u8<-constant:1 | u8<-constant:1 | u8<-call-result:0x353ec1
+0x353f2f,NPC_TALK_MORE,0x38,4,u8<-constant:1 | u8<-call-result:0x354163 | u8<-constant:1 | u8<-unknown:
+0x3541f2,NPC_TALK_MORE,0x38,4,u8<-constant:1 | u8<-call-result:0x35442e | u8<-constant:1 | u8<-constant:2
+0x3544f4,NPC_TALK_MORE,0x38,2,u8<-call-result:0x3545a2 | u8<-call-result:0x3545b0
+0x36395b,NPC_SHOP,0x3A,5,u8<-call-result:0x363b88 | u16<-computed:dword ptr [ecx + eax*4] | u32<-call-result:0x363bbc | u16<-call-result:0x363bbc | u32<-call-result:0x363bbc
+0x363d86,NPC_SHOP,0x3A,4,u8<-call-result:0x363e1c | u16<-call-result:0x363e1c | u32<-call-result:0x363e1c | u16<-call-result:0x363e1c
+0x363e93,NPC_SHOP,0x3A,1,u16<-call-result:0x363fb6
+0x36490b,NPC_SHOP,0x3A,1,u32<-call-result:0x364a19
+0x3a1424,MERCH_ITEM_STORE,0x3D,2,u8<-unknown: | u32<-call-result:0x3a1791
+0x3c8beb,PLAYER_INTERACTION,0x77,4,u8<-unknown: | u8<-string-len(std::string) | u32<-string-len(std::string) | u32<-unknown:
+0x3cad6b,PLAYER_INTERACTION,0x77,1,u32<-constant:0xf
+0x3caef9,PLAYER_INTERACTION,0x77,4,u8<-unknown: | u8<-string-len(std::string) | u32<-string-len(std::string) | u32<-unknown:
+0x3cf958,STORAGE,0x3B,2,u8<-constant:4 | u8<-call-result:0x3cfab9
+0x3cfc02,STORAGE,0x3B,3,u16<-unknown: | u32<-constant:5 | u16<-unknown:
+0x3cfe30,STORAGE,0x3B,1,u32<-call-result:0x3cfea9
+0x3cfee7,STORAGE,0x3B,1,u32<-call-result:0x3cffb2
+0x3cfff5,STORAGE,0x3B,2,u8<-call-result:0x3d00ec | u32<-call-result:0x3d00fb
+0x45c1a8,MESSENGER,0x76,2,u8<-call-result:0x45c6e7 | u32<-call-result:0x45c6e7
+0x45c9f0,MESSENGER,0x76,1,u8<-unknown:
+0x45f6ab,MESSENGER,0x76,1,u8<-constant:1
+0x48c858,quest_KJ,0x6A,8,u16<-constant:0x4c | u32<-call-result:0x48cac5 | u16<-field:eax+4 | u32<-call-result:0x48caed | u32<-unknown: | u8<-call-result:0x48cb60 | u16<-field:eax+4 | u32<-unknown:
+0x4e3cd5,PARTYCHAT,0x74,2,u8<-call-result:0x4e3ddd | u32<-call-result:0x4e3ddd
+0x5564ee,PLAYER_INTERACTION,0x77,9,u8<-unknown: | u32<-constant:4 | u8<-call-result:0x5567a0 | u8<-call-result:0x5567c6 | u8<-unknown: | u8<-constant:4 | u32<-call-result:0x5568a4 | u32<-call-result:0x5568a4 | u8<-call-result:0x5568bb
+0x5568cc,PLAYER_INTERACTION,0x77,3,u32<-constant:4 | u8<-call-result:0x556908 | u8<-call-result:0x556911
+0x556ac3,PLAYER_INTERACTION,0x77,1,u32<-constant:0x2b
+0x6270ef,PLAYER_INTERACTION,0x77,5,u8<-unknown: | u8<-unknown: | u8<-unknown: | u8<-call-result:0x62719d | u8<-call-result:0x62719d
+0x627ceb,PLAYER_INTERACTION,0x77,5,u8<-call-result:0x627d12 | u8<-call-result:0x627d1f | u8<-call-result:0x627d4a | u16<-call-result:0x627d4a | u32<-call-result:0x627d4a
+0x62fb71,TROCK_ADD_MAP,0x63,2,u8<-constant:0x63 | u32<-constant:0x63
+0x63098a,QUEST_ACTION,0x68,1,u16<-call-result:0x630a53
+0x631881,PLAYER_INTERACTION,0x77,6,u8<-unknown: | u8<-constant:5 | u32<-call-result:0x631b9b | u32<-call-result:0x631ba4 | u8<-constant:1 | u16<-constant:1
+0x648120,PARTY_OPERATION,0x78,3,u32<-unknown: | u8<-constant:3 | u8<-call-result:0x6482d8

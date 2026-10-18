@@ -1,6 +1,6 @@
 blocker_id,subsystem,stage,symptom,evidence,next_safe_option,dependency
 B50-1,all,sender_provenance,112/486 sites unresolved; hosts have zero static callers AND zero image dword refs,vtable/computed dispatch,dynamic capture or decompiler-level dataflow,populated-state-required
-B50-2,all,outbound_payload_semantics,writer sequences known but per-field meaning (which int32 is itemId vs slot) unproven,register dataflow needed,backward slice from each write arg,static-solvable-deep
+B50-2,all,outbound_payload_semantics,first pass done: 87 named builders annotated (field/global/constant/string-len/call-result); deep dataflow (which int32 is itemId) still open,register dataflow needed,pair backward slice with CWvsContext field facts for named fields,static-solvable-deep
 B50-3,all,class_ownership,"63 classes short; game body RTTI absent (13 names, security only)",Themida + RTTI-off build,ctor/singleton correlation,static-solvable-deep
 B50-4,all,semantic_field_meaning,366 fields owner-unknown (locator labels only),singleton correlation partial,extend field_promote with call-site object tracking,static-solvable
 B50-5,character,live_state,CWvsContext fields all zero in capture,036 capture is pre-login,post-login capture,populated-state-required
