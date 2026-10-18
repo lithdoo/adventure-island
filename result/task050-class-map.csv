@@ -1,5 +1,5 @@
 class_id,name,confidence,singleton,vtable,fields,subsystem,handlers,senders,evidence
-CWvsContext,CWvsContext,confirmed,[0xBD9028] → static @0x7E2E90,0x70D3C8(24 slots),+0x205C CharacterId; +0x2080 grade; +0x2084 spawn_id; +0x2F60 char_changed; +0x2FE8 check; +0x31F4/+0x32F8 warp tail containers; +0x2F44 reset string,character,WARP_TO_MAP; UPDATE_STATS; SPAWN_PLAYER; CHAR_INFO,various,IMG+PKT+GLOBAL+S2C
+CWvsContext,CWvsContext,confirmed,[0xBD9028] → static @0x7E2E90,0x70D3C8(24 slots),+0x205C CharacterId; +0x2080 grade; +0x2084 spawn_id; +0x2F60 char_changed; +0x2FE8 check; +0x31F4/+0x32F8 warp tail containers; +0x2F44 reset string; +0x208C stats_timestamp,character,WARP_TO_MAP; UPDATE_STATS; SPAWN_PLAYER; CHAR_INFO,various,IMG+PKT+GLOBAL+S2C
 CLogin,CLogin,high,(per-session),,+0x64 state; +0x68 substate; +0xB0-0xBC UI objects,login,LOGIN_STATUS; SERVERLIST; CHARLIST,LOGIN_PASSWORD; SERVERLIST_REQUEST; CHAR_SELECT,IMG+PKT+STATE_MACHINE
 CClientSocket,CClientSocket,confirmed,[0xBD9024],,+8 socket; +0x38 deadline; +0x40 rx_stream; +0x54 cipher; +0x5C connected; +0x60 send_queue; +0x88 version,network,n/a (transport),n/a (transport),IMG+PKT+FLOW(confirmed)
 COutPacket,COutPacket,confirmed,(per-call),,buffer,network,,967 builder sites,IMG(ctor 0x2F5E40; WriteHeader 0x661F)
@@ -187,3 +187,4 @@ VClass_705A28,VClass_705A28,medium,,0x705a28 (5 slots),,unknown,,,STRUCT:ctor wr
 VClass_707720,VClass_707720,medium,,0x707720 (5 slots),,unknown,,,STRUCT:ctor writes vtable START (7 ctor fns); semantic name pending
 VClass_6FEF18,VClass_6FEF18,medium,,0x6fef18 (4 slots),,unknown,,,STRUCT:ctor writes vtable START (30 ctor fns); semantic name pending
 VClass_707A98,VClass_707A98,medium,,0x707a98 (4 slots),,unknown,,,STRUCT:ctor writes vtable START (6 ctor fns); semantic name pending
+CCharacterStats,CCharacterStats (locator),high,via CWvsContext GetStats 0x26F51,,+0x12 skin; +0x13 level; +0x17 stat4; +0x1B/23/2B i64 trio; +0x33.. short series,character,UPDATE_STATS 0x22,,IMG: mask chain 0xF2674 field-write map
