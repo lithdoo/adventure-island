@@ -9,4 +9,4 @@ S6,>=20 state machines,reached,20,task050-state-machines.csv
 S7,>=80 pseudocode behavior flows,reached,372,task050-pseudocode-flows.md
 S8,>=180 high + >=700 classified functions,reached,high 185/180 (role-graded: handlers/builders/senders); classified 13557/700 = 185 high + 754 role-medium + 12579 structural-medium (vtable methods of ctor-validated classes),task050-function-semantic-grades.csv
 S9,Cross-subsystem atlas,reached-core,12 subsystems; B50-6 hand-verified player band,task050-subsystem-atlas.md
-S10,Source-reconstruction baseline,not-reached,blocked on class semantic names,
+S10,Source-reconstruction baseline,sample-complete,CHATTEXT full-flow reconstruction delivered as methodology sample (wire schema + C++-like source + 8 new proven facts); full reconstruction pending class semantic names,task050-s10-sample-chattext.md
