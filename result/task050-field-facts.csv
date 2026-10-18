@@ -516,3 +516,7 @@ CCharacterStats,handler-proven,0x2b,i64,val64_C,mask 0x020,high,UPDATE_STATS@0x6
 CCharacterStats,handler-proven,0x33/0x35,u8,byte_stat_pair,mask 0x040 via 0x4F774D,medium,UPDATE_STATS@0x6292F5/0xF2674,1,IMG(hand-verified mask chain)
 CCharacterStats,handler-proven,0x39..0x5d,i16 x5,short_stat_series,mask 0x080-0x800 via 0x4F7780,high,UPDATE_STATS@0x6292F5/0xF2674,1,IMG(hand-verified mask chain)
 unknown-singleton-0xBDD490,handler-proven,+0,object,local_avatar,HP-bar update 0x56795F + level-up fx gate,high,UPDATE_STATS@0x6292F5/0xF2674,1,IMG(hand-verified mask chain)
+CItemBase,factory-proven,vtable+0x70,vmethod,decode_from_packet,per-type item decode (equip/use/setup/100 each override),confirmed,item factory 0xF2B2F/0xF2ACD,1,IMG(hand-verified factory)
+CItemBase,factory-proven,vtable+0x18,vmethod,type_check_returns_1,equality path treats result==1 specially (cash?),high,item factory 0xF2B2F/0xF2ACD,1,IMG(hand-verified factory)
+CItemBase,factory-proven,+0x18/+0x1c/+0x20/+0x24,i32 x4,identity_fields,compared in item equality 0xF2ACD,medium,item factory 0xF2B2F/0xF2ACD,1,IMG(hand-verified factory)
+CItemEquip,factory-proven,+0xed,i32,equip_extra_init,initialized from data table after ctor,low,item factory 0xF2B2F/0xF2ACD,1,IMG(hand-verified factory)

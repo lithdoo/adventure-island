@@ -188,3 +188,8 @@ VClass_707720,VClass_707720,medium,,0x707720 (5 slots),,unknown,,,STRUCT:ctor wr
 VClass_6FEF18,VClass_6FEF18,medium,,0x6fef18 (4 slots),,unknown,,,STRUCT:ctor writes vtable START (30 ctor fns); semantic name pending
 VClass_707A98,VClass_707A98,medium,,0x707a98 (4 slots),,unknown,,,STRUCT:ctor writes vtable START (6 ctor fns); semantic name pending
 CCharacterStats,CCharacterStats (locator),high,via CWvsContext GetStats 0x26F51,,+0x12 skin; +0x13 level; +0x17 stat4; +0x1B/23/2B i64 trio; +0x33.. short series,character,UPDATE_STATS 0x22,,IMG: mask chain 0xF2674 field-write map
+CItemBase,CItemBase,confirmed,,,"size varies; vtable+0x70 = decode, vtable+0x18 = type-check",inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
+CItemEquip,CItemEquip,high,,"type 1, size 0xF9, vtable 0x7008C8-data",+0xED extra init; equality fields +0x18/1C/20/24,inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
+CItemUse,CItemUse,high,,"type 2, size 0x4D, vtable 0x700958",consumable,inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
+CItemSetup,CItemSetup,high,,,setup family,inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
+CItemType100,CItemType100,medium,,"type 100, size 0x72, vtable 0x700A50",client type 100 (etc/cash merged?),inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
