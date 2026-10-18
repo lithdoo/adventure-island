@@ -14,25 +14,26 @@ opcode,leaf_rva,decode_source,reader_sequence,read_count
 0x70,0x63dba9,cmp-chain,,0
 0x71,0x63dba9,cmp-chain,,0
 0x72,0x63dba9,cmp-chain,,0
-0xA2,0x57f6c0,cmp-chain,i32 > i32,2
-0xA4,0x57fa1c,jump-table,i32 > i32 > i32,3
-0xA5,0x53d546,jump-table,u8 > str > u8 > str,4
-0xA6,0x53da6b,jump-table,u8 > str > u8 > i32 > u8 > u8,6
-0xA7,0x53f13d,jump-table,u8 > i32 > str > u8 > u8 > u8 > u8 > u8 > u8 > i32,10
-0xA8,0x541202,jump-table,i32,1
-0xA9,0x539c4a,jump-table,u8 > u8 > u8 > u8,4
-0xAA,0x53f125,jump-table,i32 > u8 > i32 > str > u8 > u8 > u8 > u8 > u8 > u8 > i32,11
-0xAB,0x539fa7,jump-table,,0
-0xAC,0x549d70,jump-table,i32 > i32,2
-0xAD,0x57ec7a,cmp-chain,,0
-0xAE,0x57ec7a,cmp-chain,,0
-0xAF,0x57ec7a,cmp-chain,,0
-0xB0,0x57ec7a,cmp-chain,,0
-0xB1,0x57ec7a,cmp-chain,,0
-0xB2,0x57ec7a,cmp-chain,,0
-0xB3,0x57ec7a,cmp-chain,,0
-0xB4,0x57ec7a,cmp-chain,,0
-0xB5,0x57ec7a,cmp-chain,,0
+0xA2,0x57F6C0,manual-verify,i32 > i32,2
+0xA3,0x57F8B9,manual-verify,i32 > i32 > i32 > i32,4
+0xA4,0x53D546,manual-verify,u8 > str > u8 > str,4
+0xA5,0x53D546,manual-verify,u8 > str > u8 > str,4
+0xA6,0x53DA6B,manual-verify,u8 > str > u8 > i32 > u8 > u8,6
+0xA7,0x53F13D,manual-verify,u8 > i32 > str > u8 > u8 > u8 > u8 > u8 > u8 > i32,10
+0xA8,0x541202,manual-verify,i32,1
+0xA9,0x539C4A,manual-verify,u8 > u8 > u8 > u8,4
+0xAA,0x53F125,manual-verify,i32 > u8 > i32 > str > u8 > u8 > u8 > u8 > u8 > u8 > i32,11
+0xAB,0x539FA7,manual-verify,,0
+0xAC,0x549D70,manual-verify,i32 > i32,2
+0xAD,0x53F864,manual-verify,,0
+0xAE,0x53F2E3,manual-verify,u8 > i32 > i32 > i32 > u8 > u8,6
+0xAF,0x30E006,manual-verify,u8 > u8 > str > str > u8 > u8 > u8 > u8,8
+0xB0,0x30E027,manual-verify,u8 > u8 > str > str > u8 > u8 > u8 > u8,8
+0xB1,0x30E0AC,manual-verify,str > u8 > u8 > u8 > u8,5
+0xB2,0x30E179,manual-verify,u8 > u8 > u8 > u8,4
+0xB3,0x30F607,manual-verify,u8 > i32,2
+0xB4,0x53F376,manual-verify,i32 > i32 > i32 > u8 > u8 > u8 > u8,7
+0xB5,0x53F376,manual-verify,i32 > i32 > i32 > u8 > u8 > u8 > u8,7
 0xB6,0x57ec7a,cmp-chain,,0
 0xB7,0x57ec7a,cmp-chain,,0
 0xB8,0x57ec7a,cmp-chain,,0

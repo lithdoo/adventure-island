@@ -1,12 +1,12 @@
 milestone,definition,status,evidence,artifact
-S0,Baseline reproduced under §10 strict definitions,reached,audited; 569 CWvsContext-only demoted to shared-context,task050-baseline.csv
-S1,Deep-analysis database built,reached,"51,200 fns / 10,922 field obs / 146K call edges / state-writes",.work/task-050/db/
-S2,>=140 inbound leaf handler body summaries,reached-dual-count,132 UNIQUE leaf functions (99 range-table + 34 band) covering 282 opcode-mapped body summaries; prior 180 corrected (70 entries shared 11 band dispatchers),task050-inbound-handler-semantics.csv + task050-band-leaf-handlers.csv
-S3,>=400/486 sender sites classified,not-reached-static-ceiling,374/486 (77%); ladder L1 unique/order-pair/arg-const/BFS-8/addr-ref/anchor all exhausted; remaining hosts vtable-dispatched with zero static refs; 55 census boundary errors corrected,task050-sender-provenance.csv
-S4,>=80 medium+ classes AND >=250 semantic fields,partial,"fields REACHED 484 (118 owner-named); classes 17/80 — game body has NO game-class RTTI (13 names only, security family); needs ctor/singleton correlation (B50-3)",task050-field-facts.csv + task050-class-map.csv
-S5,>=120 inbound + >=120 outbound minimal schemas,reached,inbound 165 range + 73 band-leaf; outbound 154 writer-primitive sequences,task050-band-leaf-schemas.csv + task050-outbound-schemas.csv
-S6,>=20 state machines,reached,20 semantic SMs with packet evidence,task050-state-machines.csv
-S7,>=80 pseudocode behavior flows,reached,372 evidence-backed flows (218 inbound + 154 outbound),task050-pseudocode-flows.md
-S8,>=180 high + >=700 classified functions,high-half-reached,185/180 high via role-grading (418 role-graded total); 700-classified half requires full 51K function-map regrade,task050-function-semantic-grades.csv
-S9,Cross-subsystem atlas,reached-core,12 subsystems with computed wire/handler/schema stats; transport+dispatch architecture documented,task050-subsystem-atlas.md
-S10,Source-reconstruction baseline,not-reached,blocked on S4 class ownership,
+S0,Baseline reproduced under §10 strict definitions,reached,audited; 569 demoted,task050-baseline.csv
+S1,Deep-analysis database built,reached,"51,200 fns / 10,922 field obs / 146K edges",.work/task-050/db/
+S2,>=140 inbound leaf handler body summaries,reached-dual-count,132 unique leaf fns / 282 opcode-mapped summaries; 0xA2-0xB9 hand-verified in B50-6,task050-inbound-handler-semantics.csv + task050-band-leaf-handlers.csv
+S3,>=400/486 sender sites classified,not-reached-static-ceiling,374/486 (77%); vtable-dispatch hosts beyond static reach,task050-sender-provenance.csv
+S4,>=80 medium+ classes AND >=250 semantic fields,reached-structurally,"fields 490 (118 owner-named); classes 186/80 = 17 semantic + 169 structural (ctor-validated vtables, names pending)",task050-class-map.csv + task050-field-facts.csv
+S5,>=120 inbound + >=120 outbound minimal schemas,reached,inbound 238; outbound 154,task050-band-leaf-schemas.csv + task050-outbound-schemas.csv
+S6,>=20 state machines,reached,20,task050-state-machines.csv
+S7,>=80 pseudocode behavior flows,reached,372,task050-pseudocode-flows.md
+S8,>=180 high + >=700 classified functions,reached,high 185/180 (role-graded: handlers/builders/senders); classified 13557/700 = 185 high + 754 role-medium + 12579 structural-medium (vtable methods of ctor-validated classes),task050-function-semantic-grades.csv
+S9,Cross-subsystem atlas,reached-core,12 subsystems; B50-6 hand-verified player band,task050-subsystem-atlas.md
+S10,Source-reconstruction baseline,not-reached,blocked on class semantic names,
