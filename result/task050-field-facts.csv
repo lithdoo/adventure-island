@@ -518,3 +518,6 @@ CUserRemote,handler-proven,0x2868,i32,macro_skill_3,SKILL_MACRO,high,SKILL_MACRO
 LocalAvatarHolder-0xBDD4A0,handler-proven,usage-count,idiom,4 sightings,"CHATTEXT room check, UPDATE_MOUNT, SPAWN band, CHAR_CASH resolve — the canonical resolve-avatar-or-local idiom: [0xBDD4A0]->0x57EC5E(id)->[+8]->hdr-math",confirmed,SKILL_MACRO@0x632D1E / CHAR_CASH@0x634844,1,IMG(hand-verified)
 RandomEventProvider-0xBD8FE8,handler-proven,+0x1c,i32,rotation_count,time() % this for slot randomization,high,0xEB@0x53F0BE,1,IMG(hand-verified modulo+scan)
 RandomEventProvider-0xBD8FE8,handler-proven,+0x20,i32 x26,slot_array_26,26-slot linear scan; selected slot -> CWvsContext 0x62DC36,high,0xEB@0x53F0BE,1,IMG(hand-verified modulo+scan)
+UIWindowHolder-0xBDD8B8,handler-proven,+0x0,object,window_634,"0xE0 lazily allocates 0x634-byte window, init 0x4A384B",medium,0xE0@0x56D125 / 0xE1@0x56D168,1,IMG(hand-verified lazy alloc)
+UIWindowHolder-0xBDD870,handler-proven,+0x0,object,window_614,0xE1 lazily allocates 0x614-byte window,medium,0xE0@0x56D125 / 0xE1@0x56D168,1,IMG(hand-verified lazy alloc)
+CBBSBrowser,handler-proven,size,object,0x69c_window,"BBS_OPERATION 0x74 reads string (board/url), lazily creates 0x69C browser (ctor 0x9AF38B)",medium,BBS_OPERATION@0x61CB05,1,IMG(hand-verified)

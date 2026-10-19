@@ -4,10 +4,11 @@ vtable_classes_validated,0,179,,ctor-writes-START normalized
 unique_leaf_handler_functions,0,132,140,honest de-dup
 opcode_mapped_body_summaries,83,282,140,range + band + manual
 manual_verified_band_opcodes,0,20,,B50-6 0xA2-0xB9
-semantic_field_facts,5,490,250,CUserRemote +0x1BB4/+0x1BBC new
+semantic_field_facts,5,522,250,146 owned + 376 locator (audit re-attr done)
 inbound_minimal_schemas,4,238,120,
 outbound_minimal_schemas,0,154,120,
 sender_classified,207,374,400,static ceiling
 pseudocode_flows,28,372,80,
 high_semantic_functions,18,185,180,
 classified_functions,492,13557,700,185 high + 754 role + 12579 vtable-method
+semantic_field_facts_owned,5,146,250,audit-corrected; CWvsContext 53
