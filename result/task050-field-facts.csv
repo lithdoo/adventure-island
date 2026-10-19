@@ -545,3 +545,7 @@ CField,handler-proven,+0x130,object,shop_npc_check,"0x4F746F query, result vs ma
 CMerchantStore,handler-proven,mode-family,u8 switch,0x22-0x26,"MERCH_ITEM_STORE 0x14C: 0x22-0x25 transaction ops, 0x26 complete(sound 0xC9E)",high,0x14C@0x3A1424,1,IMG(hand-verified switch)
 CMerchantStore,handler-proven,mode-0x25-payload,sequence,"i32,i32,u8",transaction detail (item/price/qty family) at 0x3A14A5,medium,0x14C@0x3A1424,1,IMG(hand-verified switch)
 CURLLauncher,handler-proven,0xda/0xde,str,open_external_url,"reads string then 0x48F721(str,-1) + 0x997946(str, 0x64) — browser/link launch",confirmed,"0xDA@0x56A04B, 0xDE@0x56A0A9",2,IMG(hand-verified)
+CUserRemote,handler-proven,0x2860,i32,macro_skill_1,SKILL_MACRO 0x80 writes i32x3 to +0x2860/64/68,high,SKILL_MACRO@0x632D1E / CHAR_CASH@0x634844,1,IMG(hand-verified)
+CUserRemote,handler-proven,0x2864,i32,macro_skill_2,SKILL_MACRO,high,SKILL_MACRO@0x632D1E / CHAR_CASH@0x634844,1,IMG(hand-verified)
+CUserRemote,handler-proven,0x2868,i32,macro_skill_3,SKILL_MACRO,high,SKILL_MACRO@0x632D1E / CHAR_CASH@0x634844,1,IMG(hand-verified)
+LocalAvatarHolder-0xBDD4A0,handler-proven,usage-count,idiom,4 sightings,"CHATTEXT room check, UPDATE_MOUNT, SPAWN band, CHAR_CASH resolve — the canonical resolve-avatar-or-local idiom: [0xBDD4A0]->0x57EC5E(id)->[+8]->hdr-math",confirmed,SKILL_MACRO@0x632D1E / CHAR_CASH@0x634844,1,IMG(hand-verified)
