@@ -1,0 +1,19 @@
+opcode,semantic_label,note,leaf_rva,reader_sequence
+0xD1,AVATAR_STATE_1,"u8,u8,u8,i16",0x56585c,u8 > u8 > u8 > i16
+0xD2,AVATAR_STATE_2,"u8,i32,u8,i16",0x567980,u8 > i32 > u8 > i16
+0xD4,AVATAR_STATE_3,"i32,u8,i16,i32",0x565b55,i32 > u8 > i16 > i32
+0xD5,QUEST_RECORD_SET,"u8,i16,i32 — same shape as 0xD6 quest",0x565be1,u8 > i16 > i32
+0xD7,QUEST_RECORD_TIMER,"i32,u8,i16",0x567b85,i32 > u8 > i16
+0xDA,OPEN_URL,str; browser launch 0x997946,0x56a04b,str > str > i32 > i32 > i32 > i32 > i32 > i32 > i32 > i32
+0xDB,SINGLE_INT_DISPLAY,i32,0x56e1d2,i32
+0xDC,NO_PAYLOAD_A,,0x56e25e,
+0xDD,NO_PAYLOAD_B,,0x56e28a,
+0xDE,OPEN_URL_2,same shape as 0xDA,0x56a0a9,str > i32 > i32 > i32 > i32 > i32 > i32 > i32 > i32
+0xDF,SEVEN_INT32_DISPLAY,i32 x7,0x56a107,i32 > i32 > i32 > i32 > i32 > i32 > i32 > i32 > i32
+0xE0,CYGNUS_FAMILY_MSG_1,"u8,u8,u8,i32,i32,str,i32.. (same family)",0x56d125,u8 > u8 > u8 > i32 > i32 > str > i32 > i32 > i32
+0xE1,CYGNUS_FAMILY_MSG_2,identical shape to 0xE0,0x56d168,u8 > u8 > u8 > i32 > i32 > str > i32 > i32 > i32
+0xE2,CYGNUS_FAMILY_MSG_3,identical shape to 0xE0,0x56d1ab,u8 > u8 > u8 > i32 > i32 > str > i32 > i32 > i32
+0xE8,NAMED_ANNOUNCE_A,"str,i32,str,i32",0x56e08b,str > i32 > str > i32
+0xE9,NAMED_ANNOUNCE_B,"str,i32",0x56e0f8,str > i32
+0xEA,NAMED_ANNOUNCE_C,"str,i32",0x56e181,str > i32
+0xEB,RICH_STATUS_MSG,"i32,i32,u8,i32,str,u8,u8..",0x53f0be,i32 > i32 > u8 > i32 > str > u8 > u8 > u8 > u8 > u8 > u8 > i32

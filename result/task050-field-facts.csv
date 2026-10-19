@@ -544,3 +544,4 @@ CShopSession,handler-proven,+0xec,i32,session_state,gate in CONFIRM_SHOP_TRANSAC
 CField,handler-proven,+0x130,object,shop_npc_check,"0x4F746F query, result vs magic 0x3038D170",medium,shop 0x146/0x147,1,IMG(hand-verified)
 CMerchantStore,handler-proven,mode-family,u8 switch,0x22-0x26,"MERCH_ITEM_STORE 0x14C: 0x22-0x25 transaction ops, 0x26 complete(sound 0xC9E)",high,0x14C@0x3A1424,1,IMG(hand-verified switch)
 CMerchantStore,handler-proven,mode-0x25-payload,sequence,"i32,i32,u8",transaction detail (item/price/qty family) at 0x3A14A5,medium,0x14C@0x3A1424,1,IMG(hand-verified switch)
+CURLLauncher,handler-proven,0xda/0xde,str,open_external_url,"reads string then 0x48F721(str,-1) + 0x997946(str, 0x64) — browser/link launch",confirmed,"0xDA@0x56A04B, 0xDE@0x56A0A9",2,IMG(hand-verified)
