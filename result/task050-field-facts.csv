@@ -23,21 +23,12 @@ unknown,unknown,0x2088,u32,field_0x2088@UPDATE_STATS,offset accessed by UPDATE_S
 unknown,unknown,0x208c,u32,field_0x208c@UPDATE_STATS,offset accessed by UPDATE_STATS handler; owner unproven,low,0x6292f5,14,PKT(UPDATE_STATS 0x6292f5)+IMG(0x208c x14)
 unknown,unknown,0x20,u32,field_0x20@GIVE_BUFF,offset accessed by GIVE_BUFF handler; owner unproven,low,0x6299ff,257,PKT(GIVE_BUFF 0x6299ff)+IMG(0x20 x257)
 unknown,unknown,0x2110,u32,field_0x2110@GIVE_BUFF,offset accessed by GIVE_BUFF handler; owner unproven,low,0x6299ff,5,PKT(GIVE_BUFF 0x6299ff)+IMG(0x2110 x5)
-CClientSocket,singleton-referenced,0xbfc,u32,CWvsContext_0xbfc,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,2,PKT(CANCEL_BUFF 0x629e60)+IMG(0xbfc x2)+SINGLETON
-CClientSocket,singleton-referenced,0xc0c,u32,CWvsContext_0xc0c,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,2,PKT(CANCEL_BUFF 0x629e60)+IMG(0xc0c x2)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,14,PKT(CANCEL_BUFF 0x629e60)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,14,PKT(CANCEL_BUFF 0x629e60)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2110,u32,CWvsContext_0x2110,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,5,PKT(CANCEL_BUFF 0x629e60)+IMG(0x2110 x5)+SINGLETON
-CClientSocket,singleton-referenced,0x2d30,u32,CWvsContext_0x2d30,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,2,PKT(CANCEL_BUFF 0x629e60)+IMG(0x2d30 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x2dcc,u32,CWvsContext_0x2dcc,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,2,PKT(CANCEL_BUFF 0x629e60)+IMG(0x2dcc x2)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in TEMP_STATS handler,medium,0x62a040,14,PKT(TEMP_STATS 0x62a040)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in TEMP_STATS handler,medium,0x62a040,14,PKT(TEMP_STATS 0x62a040)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2110,u32,CWvsContext_0x2110,CWvsContext-referenced offset in TEMP_STATS handler,medium,0x62a040,5,PKT(TEMP_STATS 0x62a040)+IMG(0x2110 x5)+SINGLETON
-CClientSocket,singleton-referenced,0x2d30,u32,CWvsContext_0x2d30,CWvsContext-referenced offset in TEMP_STATS handler,medium,0x62a040,2,PKT(TEMP_STATS 0x62a040)+IMG(0x2d30 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in TEMP_STATS_RESET handler,medium,0x62a05d,14,PKT(TEMP_STATS_RESET 0x62a05d)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in TEMP_STATS_RESET handler,medium,0x62a05d,14,PKT(TEMP_STATS_RESET 0x62a05d)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2110,u32,CWvsContext_0x2110,CWvsContext-referenced offset in TEMP_STATS_RESET handler,medium,0x62a05d,5,PKT(TEMP_STATS_RESET 0x62a05d)+IMG(0x2110 x5)+SINGLETON
-CClientSocket,singleton-referenced,0x2d30,u32,CWvsContext_0x2d30,CWvsContext-referenced offset in TEMP_STATS_RESET handler,medium,0x62a05d,2,PKT(TEMP_STATS_RESET 0x62a05d)+IMG(0x2d30 x2)+SINGLETON
+unknown,unknown,0xbfc,u32,field_0xbfc@socket-ref-fn,CWvsContext-referenced offset in CANCEL_BUFF handler,low,0x629e60,2,PKT(CANCEL_BUFF 0x629e60)+IMG(0xbfc x2)+SINGLETON; DEMOTED by audit (owner unprovable)
+unknown,unknown,0xc0c,u32,field_0xc0c@socket-ref-fn,CWvsContext-referenced offset in CANCEL_BUFF handler,low,0x629e60,2,PKT(CANCEL_BUFF 0x629e60)+IMG(0xc0c x2)+SINGLETON; DEMOTED by audit (owner unprovable)
+CWvsContext,singleton-referenced,0x2110,u32,CWvsContext_0x2110,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,5,PKT(CANCEL_BUFF 0x629e60)+IMG(0x2110 x5)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2dcc,u32,CWvsContext_0x2dcc,CWvsContext-referenced offset in CANCEL_BUFF handler,medium,0x629e60,2,PKT(CANCEL_BUFF 0x629e60)+IMG(0x2dcc x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2110,u32,CWvsContext_0x2110,CWvsContext-referenced offset in TEMP_STATS handler,medium,0x62a040,5,PKT(TEMP_STATS 0x62a040)+IMG(0x2110 x5)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2110,u32,CWvsContext_0x2110,CWvsContext-referenced offset in TEMP_STATS_RESET handler,medium,0x62a05d,5,PKT(TEMP_STATS_RESET 0x62a05d)+IMG(0x2110 x5)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 unknown,unknown,0x2e7,u32,field_0x2e7@UPDATE_SKILLS,offset accessed by UPDATE_SKILLS handler; owner unproven,low,0x6280d7,5,PKT(UPDATE_SKILLS 0x6280d7)+IMG(0x2e7 x5)
 unknown,unknown,0x2088,u32,field_0x2088@UPDATE_SKILLS,offset accessed by UPDATE_SKILLS handler; owner unproven,low,0x6280d7,14,PKT(UPDATE_SKILLS 0x6280d7)+IMG(0x2088 x14)
 unknown,unknown,0x208c,u32,field_0x208c@UPDATE_SKILLS,offset accessed by UPDATE_SKILLS handler; owner unproven,low,0x6280d7,14,PKT(UPDATE_SKILLS 0x6280d7)+IMG(0x208c x14)
@@ -59,32 +50,28 @@ unknown,unknown,0x357c,u32,field_0x357c@TROCK_LOCATIONS,offset accessed by TROCK
 unknown,unknown,0x3000,u32,field_0x3000@ANTI_MACRO_RESULT,offset accessed by ANTI_MACRO_RESULT handler; owner unproven,low,0x62ff74,2,PKT(ANTI_MACRO_RESULT 0x62ff74)+IMG(0x3000 x2)
 unknown,unknown,0x34c4,u32,field_0x34c4@ANTI_MACRO_RESULT,offset accessed by ANTI_MACRO_RESULT handler; owner unproven,low,0x62ff74,4,PKT(ANTI_MACRO_RESULT 0x62ff74)+IMG(0x34c4 x4)
 CClientSocket,singleton-referenced,0x8,u32,CWvsContext_0x8,CWvsContext-referenced offset in CLAIM_STATUS_CHANGED handler,medium,0x63161a,4471,PKT(CLAIM_STATUS_CHANGED 0x63161a)+IMG(0x8 x4471)+SINGLETON
-CClientSocket,singleton-referenced,0x110,u32,CWvsContext_0x110,CWvsContext-referenced offset in CLAIM_STATUS_CHANGED handler,medium,0x63161a,101,PKT(CLAIM_STATUS_CHANGED 0x63161a)+IMG(0x110 x101)+SINGLETON
+unknown,unknown,0x110,u32,field_0x110@socket-ref-fn,CWvsContext-referenced offset in CLAIM_STATUS_CHANGED handler,low,0x63161a,101,PKT(CLAIM_STATUS_CHANGED 0x63161a)+IMG(0x110 x101)+SINGLETON; DEMOTED by audit (owner unprovable)
 CClientSocket,singleton-referenced,0x8,u32,CWvsContext_0x8,CWvsContext-referenced offset in SET_TAMING_MOB_INFO handler,medium,0x631643,4471,PKT(SET_TAMING_MOB_INFO 0x631643)+IMG(0x8 x4471)+SINGLETON
-CClientSocket,singleton-referenced,0x110,u32,CWvsContext_0x110,CWvsContext-referenced offset in SET_TAMING_MOB_INFO handler,medium,0x631643,101,PKT(SET_TAMING_MOB_INFO 0x631643)+IMG(0x110 x101)+SINGLETON
+unknown,unknown,0x110,u32,field_0x110@socket-ref-fn,CWvsContext-referenced offset in SET_TAMING_MOB_INFO handler,low,0x631643,101,PKT(SET_TAMING_MOB_INFO 0x631643)+IMG(0x110 x101)+SINGLETON; DEMOTED by audit (owner unprovable)
 CClientSocket,singleton-referenced,0x39,u32,CWvsContext_0x39,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,33,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x39 x33)+SINGLETON
 CClientSocket,singleton-referenced,0x3d,u32,CWvsContext_0x3d,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,87,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x3d x87)+SINGLETON
 CClientSocket,singleton-referenced,0x61,u32,CWvsContext_0x61,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,7,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x61 x7)+SINGLETON
 CClientSocket,singleton-referenced,0x65,u32,CWvsContext_0x65,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,21,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x65 x21)+SINGLETON
 CClientSocket,singleton-referenced,0x88,u32,CWvsContext_0x88,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,198,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x88 x198)+SINGLETON
-CClientSocket,singleton-referenced,0x20f8,u32,CWvsContext_0x20f8,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,2,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x20f8 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x2100,u32,CWvsContext_0x2100,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,2,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x2100 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x2868,u32,CWvsContext_0x2868,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,2,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x2868 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x578,u32,CWvsContext_0x578,CWvsContext-referenced offset in SHOW_QUEST_COMPLETION handler,medium,0x630827,88,PKT(SHOW_QUEST_COMPLETION 0x630827)+IMG(0x578 x88)+SINGLETON
+CWvsContext,singleton-referenced,0x20f8,u32,CWvsContext_0x20f8,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,2,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x20f8 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2100,u32,CWvsContext_0x2100,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,2,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x2100 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2868,u32,CWvsContext_0x2868,CWvsContext-referenced offset in UPDATE_MOUNT handler,medium,0x632d3b,2,PKT(UPDATE_MOUNT 0x632d3b)+IMG(0x2868 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+unknown,unknown,0x578,u32,field_0x578@socket-ref-fn,CWvsContext-referenced offset in SHOW_QUEST_COMPLETION handler,low,0x630827,88,PKT(SHOW_QUEST_COMPLETION 0x630827)+IMG(0x578 x88)+SINGLETON; DEMOTED by audit (owner unprovable)
 unknown,unknown,0x2088,u32,field_0x2088@USE_SKILL_BOOK,offset accessed by USE_SKILL_BOOK handler; owner unproven,low,0x6281eb,14,PKT(USE_SKILL_BOOK 0x6281eb)+IMG(0x2088 x14)
 unknown,unknown,0x208c,u32,field_0x208c@USE_SKILL_BOOK,offset accessed by USE_SKILL_BOOK handler; owner unproven,low,0x6281eb,14,PKT(USE_SKILL_BOOK 0x6281eb)+IMG(0x208c x14)
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,14,PKT(FINISH_SORT 0x62857f)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,14,PKT(FINISH_SORT 0x62857f)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2944,u32,CWvsContext_0x2944,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,2,PKT(FINISH_SORT 0x62857f)+IMG(0x2944 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x294c,u32,CWvsContext_0x294c,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,3,PKT(FINISH_SORT 0x62857f)+IMG(0x294c x3)+SINGLETON
-CClientSocket,singleton-referenced,0x2e98,u32,CWvsContext_0x2e98,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,2,PKT(FINISH_SORT 0x62857f)+IMG(0x2e98 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x331c,u32,CWvsContext_0x331c,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,2,PKT(FINISH_SORT 0x62857f)+IMG(0x331c x2)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,14,PKT(FINISH_GATHER 0x6285a9)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,14,PKT(FINISH_GATHER 0x6285a9)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2944,u32,CWvsContext_0x2944,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,2,PKT(FINISH_GATHER 0x6285a9)+IMG(0x2944 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x294c,u32,CWvsContext_0x294c,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,3,PKT(FINISH_GATHER 0x6285a9)+IMG(0x294c x3)+SINGLETON
-CClientSocket,singleton-referenced,0x2e98,u32,CWvsContext_0x2e98,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,2,PKT(FINISH_GATHER 0x6285a9)+IMG(0x2e98 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x331c,u32,CWvsContext_0x331c,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,2,PKT(FINISH_GATHER 0x6285a9)+IMG(0x331c x2)+SINGLETON
+CWvsContext,singleton-referenced,0x2944,u32,CWvsContext_0x2944,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,2,PKT(FINISH_SORT 0x62857f)+IMG(0x2944 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x294c,u32,CWvsContext_0x294c,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,3,PKT(FINISH_SORT 0x62857f)+IMG(0x294c x3)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2e98,u32,CWvsContext_0x2e98,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,2,PKT(FINISH_SORT 0x62857f)+IMG(0x2e98 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x331c,u32,CWvsContext_0x331c,CWvsContext-referenced offset in FINISH_SORT handler,medium,0x62857f,2,PKT(FINISH_SORT 0x62857f)+IMG(0x331c x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2944,u32,CWvsContext_0x2944,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,2,PKT(FINISH_GATHER 0x6285a9)+IMG(0x2944 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x294c,u32,CWvsContext_0x294c,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,3,PKT(FINISH_GATHER 0x6285a9)+IMG(0x294c x3)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2e98,u32,CWvsContext_0x2e98,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,2,PKT(FINISH_GATHER 0x6285a9)+IMG(0x2e98 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x331c,u32,CWvsContext_0x331c,CWvsContext-referenced offset in FINISH_GATHER handler,medium,0x6285a9,2,PKT(FINISH_GATHER 0x6285a9)+IMG(0x331c x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 unknown,unknown,0x4,u32,field_0x4@CHAR_INFO,offset accessed by CHAR_INFO handler; owner unproven,low,0x62cde5,7188,PKT(CHAR_INFO 0x62cde5)+IMG(0x4 x7188)
 unknown,unknown,0x2088,u32,field_0x2088@CHAR_INFO,offset accessed by CHAR_INFO handler; owner unproven,low,0x62cde5,14,PKT(CHAR_INFO 0x62cde5)+IMG(0x2088 x14)
 unknown,unknown,0x208c,u32,field_0x208c@CHAR_INFO,offset accessed by CHAR_INFO handler; owner unproven,low,0x62cde5,14,PKT(CHAR_INFO 0x62cde5)+IMG(0x208c x14)
@@ -94,10 +81,9 @@ unknown,unknown,0x2094,u32,field_0x2094@BUDDYLIST,offset accessed by BUDDYLIST h
 unknown,unknown,0x2f34,u32,field_0x2f34@BUDDYLIST,offset accessed by BUDDYLIST handler; owner unproven,low,0x64915c,2,PKT(BUDDYLIST 0x64915c)+IMG(0x2f34 x2)
 unknown,unknown,0x2f38,u32,field_0x2f38@BUDDYLIST,offset accessed by BUDDYLIST handler; owner unproven,low,0x64915c,22,PKT(BUDDYLIST 0x64915c)+IMG(0x2f38 x22)
 unknown,unknown,0x33a8,u32,field_0x33a8@BUDDYLIST,offset accessed by BUDDYLIST handler; owner unproven,low,0x64915c,4,PKT(BUDDYLIST 0x64915c)+IMG(0x33a8 x4)
-CClientSocket,singleton-referenced,0x2f7c,u32,CWvsContext_0x2f7c,CWvsContext-referenced offset in ALLIANCE_OPERATION handler,medium,0x643bba,13,PKT(ALLIANCE_OPERATION 0x643bba)+IMG(0x2f7c x13)+SINGLETON
-CClientSocket,singleton-referenced,0x2fc8,u32,CWvsContext_0x2fc8,CWvsContext-referenced offset in ALLIANCE_OPERATION handler,medium,0x643bba,4,PKT(ALLIANCE_OPERATION 0x643bba)+IMG(0x2fc8 x4)+SINGLETON
-CClientSocket,singleton-referenced,0x2fe0,u32,CWvsContext_0x2fe0,CWvsContext-referenced offset in ALLIANCE_OPERATION handler,medium,0x643bba,9,PKT(ALLIANCE_OPERATION 0x643bba)+IMG(0x2fe0 x9)+SINGLETON
-CClientSocket,singleton-referenced,0x33a8,u32,CWvsContext_0x33a8,CWvsContext-referenced offset in ALLIANCE_OPERATION handler,medium,0x643bba,4,PKT(ALLIANCE_OPERATION 0x643bba)+IMG(0x33a8 x4)+SINGLETON
+CWvsContext,singleton-referenced,0x2fc8,u32,CWvsContext_0x2fc8,CWvsContext-referenced offset in ALLIANCE_OPERATION handler,medium,0x643bba,4,PKT(ALLIANCE_OPERATION 0x643bba)+IMG(0x2fc8 x4)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x2fe0,u32,CWvsContext_0x2fe0,CWvsContext-referenced offset in ALLIANCE_OPERATION handler,medium,0x643bba,9,PKT(ALLIANCE_OPERATION 0x643bba)+IMG(0x2fe0 x9)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x33a8,u32,CWvsContext_0x33a8,CWvsContext-referenced offset in ALLIANCE_OPERATION handler,medium,0x643bba,4,PKT(ALLIANCE_OPERATION 0x643bba)+IMG(0x33a8 x4)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 unknown,unknown,0x4,u32,field_0x4@SPAWN_PORTAL,offset accessed by SPAWN_PORTAL handler; owner unproven,low,0x62be06,7188,PKT(SPAWN_PORTAL 0x62be06)+IMG(0x4 x7188)
 unknown,unknown,0x8,u32,field_0x8@SPAWN_PORTAL,offset accessed by SPAWN_PORTAL handler; owner unproven,low,0x62be06,4471,PKT(SPAWN_PORTAL 0x62be06)+IMG(0x8 x4471)
 unknown,unknown,0xc,u32,field_0xc@SPAWN_PORTAL,offset accessed by SPAWN_PORTAL handler; owner unproven,low,0x62be06,2344,PKT(SPAWN_PORTAL 0x62be06)+IMG(0xc x2344)
@@ -137,7 +123,6 @@ unknown,unknown,0x7c,u32,field_0x7c@SHOW_PREDICT_CARD,offset accessed by SHOW_PR
 unknown,unknown,0x80,u32,field_0x80@SHOW_PREDICT_CARD,offset accessed by SHOW_PREDICT_CARD handler; owner unproven,low,0x611325,442,PKT(SHOW_PREDICT_CARD 0x611325)+IMG(0x80 x442)
 unknown,unknown,0x84,u32,field_0x84@SHOW_PREDICT_CARD,offset accessed by SHOW_PREDICT_CARD handler; owner unproven,low,0x611325,174,PKT(SHOW_PREDICT_CARD 0x611325)+IMG(0x84 x174)
 unknown,unknown,0x88,u32,field_0x88@SHOW_PREDICT_CARD,offset accessed by SHOW_PREDICT_CARD handler; owner unproven,low,0x611325,198,PKT(SHOW_PREDICT_CARD 0x611325)+IMG(0x88 x198)
-CClientSocket,singleton-referenced,0x2084,u32,CWvsContext_0x2084,CWvsContext-referenced offset in  handler,medium,0x633080,10,PKT( 0x633080)+IMG(0x2084 x10)+SINGLETON
 unknown,unknown,0x2084,u32,field_0x2084@,offset accessed by  handler; owner unproven,low,0x633188,10,PKT( 0x633188)+IMG(0x2084 x10)
 unknown,unknown,0x2088,u32,field_0x2088@,offset accessed by  handler; owner unproven,low,0x633188,14,PKT( 0x633188)+IMG(0x2088 x14)
 unknown,unknown,0x208c,u32,field_0x208c@,offset accessed by  handler; owner unproven,low,0x633188,14,PKT( 0x633188)+IMG(0x208c x14)
@@ -155,10 +140,8 @@ unknown,unknown,0x2088,u32,field_0x2088@,offset accessed by  handler; owner unpr
 unknown,unknown,0x208c,u32,field_0x208c@,offset accessed by  handler; owner unproven,low,0x61a8b8,14,PKT( 0x61a8b8)+IMG(0x208c x14)
 unknown,unknown,0x2dcc,u32,field_0x2dcc@,offset accessed by  handler; owner unproven,low,0x61a8b8,2,PKT( 0x61a8b8)+IMG(0x2dcc x2)
 unknown,unknown,0x34c4,u32,field_0x34c4@,offset accessed by  handler; owner unproven,low,0x61a8b8,4,PKT( 0x61a8b8)+IMG(0x34c4 x4)
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in  handler,medium,0x61a8bb,14,PKT( 0x61a8bb)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in  handler,medium,0x61a8bb,14,PKT( 0x61a8bb)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2dcc,u32,CWvsContext_0x2dcc,CWvsContext-referenced offset in  handler,medium,0x61a8bb,2,PKT( 0x61a8bb)+IMG(0x2dcc x2)+SINGLETON
-CClientSocket,singleton-referenced,0x34c4,u32,CWvsContext_0x34c4,CWvsContext-referenced offset in  handler,medium,0x61a8bb,4,PKT( 0x61a8bb)+IMG(0x34c4 x4)+SINGLETON
+CWvsContext,singleton-referenced,0x2dcc,u32,CWvsContext_0x2dcc,CWvsContext-referenced offset in  handler,medium,0x61a8bb,2,PKT( 0x61a8bb)+IMG(0x2dcc x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x34c4,u32,CWvsContext_0x34c4,CWvsContext-referenced offset in  handler,medium,0x61a8bb,4,PKT( 0x61a8bb)+IMG(0x34c4 x4)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 unknown,unknown,0xc,u32,field_0xc@,offset accessed by  handler; owner unproven,low,0x63338a,2344,PKT( 0x63338a)+IMG(0xc x2344)
 unknown,unknown,0x10,u32,field_0x10@,offset accessed by  handler; owner unproven,low,0x63338a,1501,PKT( 0x63338a)+IMG(0x10 x1501)
 unknown,unknown,0x347,u32,field_0x347@,offset accessed by  handler; owner unproven,low,0x63338a,2,PKT( 0x63338a)+IMG(0x347 x2)
@@ -243,15 +226,11 @@ unknown,unknown,0x59c,u32,field_0x59c@,offset accessed by  handler; owner unprov
 unknown,unknown,0x2088,u32,field_0x2088@,offset accessed by  handler; owner unproven,low,0x6118dd,14,PKT( 0x6118dd)+IMG(0x2088 x14)
 unknown,unknown,0x2094,u32,field_0x2094@,offset accessed by  handler; owner unproven,low,0x6118dd,10,PKT( 0x6118dd)+IMG(0x2094 x10)
 CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-referenced offset in  handler,medium,0x61b691,7188,PKT( 0x61b691)+IMG(0x4 x7188)+SINGLETON
-CClientSocket,singleton-referenced,0xf28,u32,CWvsContext_0xf28,CWvsContext-referenced offset in  handler,medium,0x61b691,19,PKT( 0x61b691)+IMG(0xf28 x19)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in  handler,medium,0x61b691,14,PKT( 0x61b691)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in  handler,medium,0x61b691,14,PKT( 0x61b691)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2fb4,u32,CWvsContext_0x2fb4,CWvsContext-referenced offset in  handler,medium,0x61b691,4,PKT( 0x61b691)+IMG(0x2fb4 x4)+SINGLETON
+unknown,unknown,0xf28,u32,field_0xf28@socket-ref-fn,CWvsContext-referenced offset in  handler,low,0x61b691,19,PKT( 0x61b691)+IMG(0xf28 x19)+SINGLETON; DEMOTED by audit (owner unprovable)
+CWvsContext,singleton-referenced,0x2fb4,u32,CWvsContext_0x2fb4,CWvsContext-referenced offset in  handler,medium,0x61b691,4,PKT( 0x61b691)+IMG(0x2fb4 x4)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-referenced offset in  handler,medium,0x61b6b5,7188,PKT( 0x61b6b5)+IMG(0x4 x7188)+SINGLETON
-CClientSocket,singleton-referenced,0xf28,u32,CWvsContext_0xf28,CWvsContext-referenced offset in  handler,medium,0x61b6b5,19,PKT( 0x61b6b5)+IMG(0xf28 x19)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in  handler,medium,0x61b6b5,14,PKT( 0x61b6b5)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in  handler,medium,0x61b6b5,14,PKT( 0x61b6b5)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2fb4,u32,CWvsContext_0x2fb4,CWvsContext-referenced offset in  handler,medium,0x61b6b5,4,PKT( 0x61b6b5)+IMG(0x2fb4 x4)+SINGLETON
+unknown,unknown,0xf28,u32,field_0xf28@socket-ref-fn,CWvsContext-referenced offset in  handler,low,0x61b6b5,19,PKT( 0x61b6b5)+IMG(0xf28 x19)+SINGLETON; DEMOTED by audit (owner unprovable)
+CWvsContext,singleton-referenced,0x2fb4,u32,CWvsContext_0x2fb4,CWvsContext-referenced offset in  handler,medium,0x61b6b5,4,PKT( 0x61b6b5)+IMG(0x2fb4 x4)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 unknown,unknown,0x2fbc,u32,field_0x2fbc@FAIRY_PEND_MSG,offset accessed by FAIRY_PEND_MSG handler; owner unproven,low,0x61b999,4,PKT(FAIRY_PEND_MSG 0x61b999)+IMG(0x2fbc x4)
 unknown,unknown,0x3670,u32,field_0x3670@FAIRY_PEND_MSG,offset accessed by FAIRY_PEND_MSG handler; owner unproven,low,0x61b999,2,PKT(FAIRY_PEND_MSG 0x61b999)+IMG(0x3670 x2)
 unknown,unknown,0x3670,u32,field_0x3670@,offset accessed by  handler; owner unproven,low,0x61ba28,2,PKT( 0x61ba28)+IMG(0x3670 x2)
@@ -317,14 +296,14 @@ CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-reference
 CClientSocket,singleton-referenced,0x8,u32,CWvsContext_0x8,CWvsContext-referenced offset in FAMILY_LOGGEDIN handler,medium,0x63e9e3,4471,PKT(FAMILY_LOGGEDIN 0x63e9e3)+IMG(0x8 x4471)+SINGLETON
 CClientSocket,singleton-referenced,0xc,u32,CWvsContext_0xc,CWvsContext-referenced offset in FAMILY_LOGGEDIN handler,medium,0x63e9e3,2344,PKT(FAMILY_LOGGEDIN 0x63e9e3)+IMG(0xc x2344)+SINGLETON
 CClientSocket,singleton-referenced,0x10,u32,CWvsContext_0x10,CWvsContext-referenced offset in FAMILY_LOGGEDIN handler,medium,0x63e9e3,1501,PKT(FAMILY_LOGGEDIN 0x63e9e3)+IMG(0x10 x1501)+SINGLETON
-CClientSocket,singleton-referenced,0x2dcc,u32,CWvsContext_0x2dcc,CWvsContext-referenced offset in FAMILY_LOGGEDIN handler,medium,0x63e9e3,2,PKT(FAMILY_LOGGEDIN 0x63e9e3)+IMG(0x2dcc x2)+SINGLETON
-CClientSocket,singleton-referenced,0x35d0,u32,CWvsContext_0x35d0,CWvsContext-referenced offset in FAMILY_LOGGEDIN handler,medium,0x63e9e3,4,PKT(FAMILY_LOGGEDIN 0x63e9e3)+IMG(0x35d0 x4)+SINGLETON
+CWvsContext,singleton-referenced,0x2dcc,u32,CWvsContext_0x2dcc,CWvsContext-referenced offset in FAMILY_LOGGEDIN handler,medium,0x63e9e3,2,PKT(FAMILY_LOGGEDIN 0x63e9e3)+IMG(0x2dcc x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x35d0,u32,CWvsContext_0x35d0,CWvsContext-referenced offset in FAMILY_LOGGEDIN handler,medium,0x63e9e3,4,PKT(FAMILY_LOGGEDIN 0x63e9e3)+IMG(0x35d0 x4)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-referenced offset in FAMILY_BUFF handler,medium,0x63eaac,7188,PKT(FAMILY_BUFF 0x63eaac)+IMG(0x4 x7188)+SINGLETON
 CClientSocket,singleton-referenced,0x8,u32,CWvsContext_0x8,CWvsContext-referenced offset in FAMILY_BUFF handler,medium,0x63eaac,4471,PKT(FAMILY_BUFF 0x63eaac)+IMG(0x8 x4471)+SINGLETON
 CClientSocket,singleton-referenced,0xc,u32,CWvsContext_0xc,CWvsContext-referenced offset in FAMILY_BUFF handler,medium,0x63eaac,2344,PKT(FAMILY_BUFF 0x63eaac)+IMG(0xc x2344)+SINGLETON
 CClientSocket,singleton-referenced,0x10,u32,CWvsContext_0x10,CWvsContext-referenced offset in FAMILY_BUFF handler,medium,0x63eaac,1501,PKT(FAMILY_BUFF 0x63eaac)+IMG(0x10 x1501)+SINGLETON
-CClientSocket,singleton-referenced,0x2dcc,u32,CWvsContext_0x2dcc,CWvsContext-referenced offset in FAMILY_BUFF handler,medium,0x63eaac,2,PKT(FAMILY_BUFF 0x63eaac)+IMG(0x2dcc x2)+SINGLETON
-CClientSocket,singleton-referenced,0x35d0,u32,CWvsContext_0x35d0,CWvsContext-referenced offset in FAMILY_BUFF handler,medium,0x63eaac,4,PKT(FAMILY_BUFF 0x63eaac)+IMG(0x35d0 x4)+SINGLETON
+CWvsContext,singleton-referenced,0x2dcc,u32,CWvsContext_0x2dcc,CWvsContext-referenced offset in FAMILY_BUFF handler,medium,0x63eaac,2,PKT(FAMILY_BUFF 0x63eaac)+IMG(0x2dcc x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
+CWvsContext,singleton-referenced,0x35d0,u32,CWvsContext_0x35d0,CWvsContext-referenced offset in FAMILY_BUFF handler,medium,0x63eaac,4,PKT(FAMILY_BUFF 0x63eaac)+IMG(0x35d0 x4)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-referenced offset in FAMILY_USE_REQUEST handler,medium,0x63ebd0,7188,PKT(FAMILY_USE_REQUEST 0x63ebd0)+IMG(0x4 x7188)+SINGLETON
 unknown,unknown,0xc,u32,field_0xc@MARRIAGE_UPDATE,offset accessed by MARRIAGE_UPDATE handler; owner unproven,low,0x61c584,2344,PKT(MARRIAGE_UPDATE 0x61c584)+IMG(0xc x2344)
 unknown,unknown,0x20,u32,field_0x20@MARRIAGE_UPDATE,offset accessed by MARRIAGE_UPDATE handler; owner unproven,low,0x61c584,257,PKT(MARRIAGE_UPDATE 0x61c584)+IMG(0x20 x257)
@@ -340,13 +319,9 @@ CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-reference
 CClientSocket,singleton-referenced,0x8,u32,CWvsContext_0x8,CWvsContext-referenced offset in BBS_OPERATION handler,medium,0x61cb05,4471,PKT(BBS_OPERATION 0x61cb05)+IMG(0x8 x4471)+SINGLETON
 CClientSocket,singleton-referenced,0xc,u32,CWvsContext_0xc,CWvsContext-referenced offset in BBS_OPERATION handler,medium,0x61cb05,2344,PKT(BBS_OPERATION 0x61cb05)+IMG(0xc x2344)+SINGLETON
 CClientSocket,singleton-referenced,0x10,u32,CWvsContext_0x10,CWvsContext-referenced offset in BBS_OPERATION handler,medium,0x61cb05,1501,PKT(BBS_OPERATION 0x61cb05)+IMG(0x10 x1501)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in BBS_OPERATION handler,medium,0x61cb05,14,PKT(BBS_OPERATION 0x61cb05)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in BBS_OPERATION handler,medium,0x61cb05,14,PKT(BBS_OPERATION 0x61cb05)+IMG(0x208c x14)+SINGLETON
 CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-referenced offset in  handler,medium,0x61b633,7188,PKT( 0x61b633)+IMG(0x4 x7188)+SINGLETON
-CClientSocket,singleton-referenced,0xf28,u32,CWvsContext_0xf28,CWvsContext-referenced offset in  handler,medium,0x61b633,19,PKT( 0x61b633)+IMG(0xf28 x19)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in  handler,medium,0x61b633,14,PKT( 0x61b633)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in  handler,medium,0x61b633,14,PKT( 0x61b633)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x2fb4,u32,CWvsContext_0x2fb4,CWvsContext-referenced offset in  handler,medium,0x61b633,4,PKT( 0x61b633)+IMG(0x2fb4 x4)+SINGLETON
+unknown,unknown,0xf28,u32,field_0xf28@socket-ref-fn,CWvsContext-referenced offset in  handler,low,0x61b633,19,PKT( 0x61b633)+IMG(0xf28 x19)+SINGLETON; DEMOTED by audit (owner unprovable)
+CWvsContext,singleton-referenced,0x2fb4,u32,CWvsContext_0x2fb4,CWvsContext-referenced offset in  handler,medium,0x61b633,4,PKT( 0x61b633)+IMG(0x2fb4 x4)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 unknown,unknown,0x8,u32,field_0x8@,offset accessed by  handler; owner unproven,low,0x6338e6,4471,PKT( 0x6338e6)+IMG(0x8 x4471)
 unknown,unknown,0x2088,u32,field_0x2088@,offset accessed by  handler; owner unproven,low,0x6338e6,14,PKT( 0x6338e6)+IMG(0x2088 x14)
 unknown,unknown,0x208c,u32,field_0x208c@,offset accessed by  handler; owner unproven,low,0x6338e6,14,PKT( 0x6338e6)+IMG(0x208c x14)
@@ -355,23 +330,15 @@ unknown,unknown,0x2088,u32,field_0x2088@,offset accessed by  handler; owner unpr
 unknown,unknown,0x208c,u32,field_0x208c@,offset accessed by  handler; owner unproven,low,0x6339b9,14,PKT( 0x6339b9)+IMG(0x208c x14)
 unknown,unknown,0x2088,u32,field_0x2088@,offset accessed by  handler; owner unproven,low,0x633fce,14,PKT( 0x633fce)+IMG(0x2088 x14)
 unknown,unknown,0x208c,u32,field_0x208c@,offset accessed by  handler; owner unproven,low,0x633fce,14,PKT( 0x633fce)+IMG(0x208c x14)
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in  handler,medium,0x6340ce,14,PKT( 0x6340ce)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in  handler,medium,0x6340ce,14,PKT( 0x6340ce)+IMG(0x208c x14)+SINGLETON
 CClientSocket,singleton-referenced,0x18,u32,CWvsContext_0x18,CWvsContext-referenced offset in  handler,medium,0x634771,464,PKT( 0x634771)+IMG(0x18 x464)+SINGLETON
 CClientSocket,singleton-referenced,0x20,u32,CWvsContext_0x20,CWvsContext-referenced offset in  handler,medium,0x634771,257,PKT( 0x634771)+IMG(0x20 x257)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in  handler,medium,0x634771,14,PKT( 0x634771)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in  handler,medium,0x634771,14,PKT( 0x634771)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x3678,u32,CWvsContext_0x3678,CWvsContext-referenced offset in  handler,medium,0x634771,2,PKT( 0x634771)+IMG(0x3678 x2)+SINGLETON
+CWvsContext,singleton-referenced,0x3678,u32,CWvsContext_0x3678,CWvsContext-referenced offset in  handler,medium,0x634771,2,PKT( 0x634771)+IMG(0x3678 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 CClientSocket,singleton-referenced,0x18,u32,CWvsContext_0x18,CWvsContext-referenced offset in  handler,medium,0x6347b2,464,PKT( 0x6347b2)+IMG(0x18 x464)+SINGLETON
 CClientSocket,singleton-referenced,0x20,u32,CWvsContext_0x20,CWvsContext-referenced offset in  handler,medium,0x6347b2,257,PKT( 0x6347b2)+IMG(0x20 x257)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in  handler,medium,0x6347b2,14,PKT( 0x6347b2)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in  handler,medium,0x6347b2,14,PKT( 0x6347b2)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x3678,u32,CWvsContext_0x3678,CWvsContext-referenced offset in  handler,medium,0x6347b2,2,PKT( 0x6347b2)+IMG(0x3678 x2)+SINGLETON
+CWvsContext,singleton-referenced,0x3678,u32,CWvsContext_0x3678,CWvsContext-referenced offset in  handler,medium,0x6347b2,2,PKT( 0x6347b2)+IMG(0x3678 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 CClientSocket,singleton-referenced,0x18,u32,CWvsContext_0x18,CWvsContext-referenced offset in CHAR_CASH handler,medium,0x634844,464,PKT(CHAR_CASH 0x634844)+IMG(0x18 x464)+SINGLETON
 CClientSocket,singleton-referenced,0x20,u32,CWvsContext_0x20,CWvsContext-referenced offset in CHAR_CASH handler,medium,0x634844,257,PKT(CHAR_CASH 0x634844)+IMG(0x20 x257)+SINGLETON
-CClientSocket,singleton-referenced,0x2088,u32,CWvsContext_0x2088,CWvsContext-referenced offset in CHAR_CASH handler,medium,0x634844,14,PKT(CHAR_CASH 0x634844)+IMG(0x2088 x14)+SINGLETON
-CClientSocket,singleton-referenced,0x208c,u32,CWvsContext_0x208c,CWvsContext-referenced offset in CHAR_CASH handler,medium,0x634844,14,PKT(CHAR_CASH 0x634844)+IMG(0x208c x14)+SINGLETON
-CClientSocket,singleton-referenced,0x3678,u32,CWvsContext_0x3678,CWvsContext-referenced offset in CHAR_CASH handler,medium,0x634844,2,PKT(CHAR_CASH 0x634844)+IMG(0x3678 x2)+SINGLETON
+CWvsContext,singleton-referenced,0x3678,u32,CWvsContext_0x3678,CWvsContext-referenced offset in CHAR_CASH handler,medium,0x634844,2,PKT(CHAR_CASH 0x634844)+IMG(0x3678 x2)+SINGLETON; RE-ATTRIBUTED by audit (was mis-owned CClientSocket)
 unknown,unknown,0x4,u32,field_0x4@,offset accessed by  handler; owner unproven,low,0x634c3b,7188,PKT( 0x634c3b)+IMG(0x4 x7188)
 unknown,unknown,0x4,u32,field_0x4@,offset accessed by  handler; owner unproven,low,0x634a9b,7188,PKT( 0x634a9b)+IMG(0x4 x7188)
 unknown,unknown,0x8,u32,field_0x8@,offset accessed by  handler; owner unproven,low,0x634a9b,4471,PKT( 0x634a9b)+IMG(0x8 x4471)
@@ -475,8 +442,8 @@ unknown,unknown,0xa8,u32,field_0xa8@OPEN_NPC_SHOP,offset accessed by OPEN_NPC_SH
 unknown,unknown,0xb4,u32,field_0xb4@MERCH_ITEM_MSG,offset accessed by MERCH_ITEM_MSG handler; owner unproven,low,0x3a1424,77,PKT(MERCH_ITEM_MSG 0x3a1424)+IMG(0xb4 x77)
 CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-referenced offset in KEYMAP (confirmed) handler,medium,0x1b9e4f,7188,PKT(KEYMAP (confirmed) 0x1b9e4f)+IMG(0x4 x7188)+SINGLETON
 CClientSocket,singleton-referenced,0x5,u32,CWvsContext_0x5,CWvsContext-referenced offset in KEYMAP (confirmed) handler,medium,0x1b9e4f,8,PKT(KEYMAP (confirmed) 0x1b9e4f)+IMG(0x5 x8)+SINGLETON
-CClientSocket,singleton-referenced,0x380,u32,CWvsContext_0x380,CWvsContext-referenced offset in KEYMAP (confirmed) handler,medium,0x1b9e4f,2,PKT(KEYMAP (confirmed) 0x1b9e4f)+IMG(0x380 x2)+SINGLETON
-CClientSocket,singleton-referenced,0x384,u32,CWvsContext_0x384,CWvsContext-referenced offset in KEYMAP (confirmed) handler,medium,0x1b9e4f,4,PKT(KEYMAP (confirmed) 0x1b9e4f)+IMG(0x384 x4)+SINGLETON
+unknown,unknown,0x380,u32,field_0x380@socket-ref-fn,CWvsContext-referenced offset in KEYMAP (confirmed) handler,low,0x1b9e4f,2,PKT(KEYMAP (confirmed) 0x1b9e4f)+IMG(0x380 x2)+SINGLETON; DEMOTED by audit (owner unprovable)
+unknown,unknown,0x384,u32,field_0x384@socket-ref-fn,CWvsContext-referenced offset in KEYMAP (confirmed) handler,low,0x1b9e4f,4,PKT(KEYMAP (confirmed) 0x1b9e4f)+IMG(0x384 x4)+SINGLETON; DEMOTED by audit (owner unprovable)
 CClientSocket,singleton-referenced,0x4,u32,CWvsContext_0x4,CWvsContext-referenced offset in AUTO_HP_POT handler,medium,0x1b9f14,7188,PKT(AUTO_HP_POT 0x1b9f14)+IMG(0x4 x7188)+SINGLETON
 CClientSocket,singleton-referenced,0x5,u32,CWvsContext_0x5,CWvsContext-referenced offset in AUTO_HP_POT handler,medium,0x1b9f14,8,PKT(AUTO_HP_POT 0x1b9f14)+IMG(0x5 x8)+SINGLETON
 CClientSocket,singleton-referenced,0xd6,u32,CWvsContext_0xd6,CWvsContext-referenced offset in AUTO_HP_POT handler,medium,0x1b9f14,2,PKT(AUTO_HP_POT 0x1b9f14)+IMG(0xd6 x2)+SINGLETON
