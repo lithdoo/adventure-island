@@ -1,0 +1,30 @@
+offset,function_rva,new_owner,method,prior,confidence
+0x3000,0x62ff74,LocalAvatar,direct-singleton-load,field_0x3000@ANTI_MACRO_RESULT,medium
+0x1bb4,0x632c6f,LocalAvatar,direct-singleton-load,field_0x1bb4@ENGAGE_REQUEST,medium
+0x205c,0x37e72f,CWvsContext,direct-singleton-load,field_0x205c@WARP_TO_MAP (confirmed),medium
+0x2f60,0x37e72f,CWvsContext,direct-singleton-load,field_0x2f60@WARP_TO_MAP (confirmed),medium
+0x2088,0x6286ec,CWvsContext,this-param (range-table method),field_0x2088@MODIFY_INVENTORY_ITEM,medium
+0x208c,0x6286ec,CWvsContext,this-param (range-table method),field_0x208c@MODIFY_INVENTORY_ITEM,medium
+0x2088,0x6292f5,CWvsContext,this-param (range-table method),field_0x2088@UPDATE_STATS,medium
+0x208c,0x6292f5,CWvsContext,this-param (range-table method),field_0x208c@UPDATE_STATS,medium
+0x2110,0x6299ff,CWvsContext,this-param (range-table method),field_0x2110@GIVE_BUFF,medium
+0x2088,0x6280d7,CWvsContext,this-param (range-table method),field_0x2088@UPDATE_SKILLS,medium
+0x208c,0x6280d7,CWvsContext,this-param (range-table method),field_0x208c@UPDATE_SKILLS,medium
+0x2088,0x62a0f3,CWvsContext,this-param (range-table method),field_0x2088@SKILL_USE_RESULT,medium
+0x208c,0x62a0f3,CWvsContext,this-param (range-table method),field_0x208c@SKILL_USE_RESULT,medium
+0x2094,0x62ea39,CWvsContext,this-param (range-table method),field_0x2094@TROCK_LOCATIONS,medium
+0x34c4,0x62ff74,CWvsContext,this-param (range-table method),field_0x34c4@ANTI_MACRO_RESULT,medium
+0x2088,0x62cde5,CWvsContext,this-param (range-table method),field_0x2088@CHAR_INFO,medium
+0x208c,0x62cde5,CWvsContext,this-param (range-table method),field_0x208c@CHAR_INFO,medium
+0x2f38,0x64915c,CWvsContext,this-param (range-table method),field_0x2f38@BUDDYLIST,medium
+0x2088,0x63338a,CWvsContext,this-param (range-table method),field_0x2088@,medium
+0x208c,0x63338a,CWvsContext,this-param (range-table method),field_0x208c@,medium
+0x331c,0x628654,CWvsContext,this-param (range-table method),field_0x331c@YELLOW_CHAT,medium
+0x2088,0x6333f3,CWvsContext,this-param (range-table method),field_0x2088@,medium
+0x208c,0x6333f3,CWvsContext,this-param (range-table method),field_0x208c@,medium
+0x2088,0x6339b9,CWvsContext,this-param (range-table method),field_0x2088@,medium
+0x208c,0x6339b9,CWvsContext,this-param (range-table method),field_0x208c@,medium
+0x2088,0x633fce,CWvsContext,this-param (range-table method),field_0x2088@,medium
+0x208c,0x633fce,CWvsContext,this-param (range-table method),field_0x208c@,medium
+0x2088,0x634a9b,CWvsContext,this-param (range-table method),field_0x2088@,medium
+0x208c,0x634a9b,CWvsContext,this-param (range-table method),field_0x208c@,medium
