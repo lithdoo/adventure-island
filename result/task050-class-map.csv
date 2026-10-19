@@ -195,3 +195,4 @@ CItemSetup,CItemSetup,high,,,setup family,inventory,MODIFY_INVENTORY_ITEM 0x20 +
 CItemType100,CItemType100,medium,,"type 100, size 0x72, vtable 0x700A50",client type 100 (etc/cash merged?),inventory,MODIFY_INVENTORY_ITEM 0x20 + all item flows,,IMG: factory 0xF2B2F switch + ctor 0xF8AF6 + vtbl+0x70 decode
 CKeymapUI,CKeymapUI,high,[0x3D95C],,+4 live table(89x5); +0x1C1 shadow; +0x380 auto-potion id,ui,KEYMAP 0x16F; AUTO_HP/MP_POT 0x170/0x171,CHANGE_KEYMAP,IMG: 89-loop + shadow memcpy hand-verified
 CPet,CPet,high,per-pet (CUserRemote+0x1BB4 array),,+0x90 str buf; +0x94 owner_avatar; +0x98 message,field,0xAF-0xB3 (5 leaf handlers 0x30E006 family),SPAWN_PET etc.,IMG: sub-band 0x53F2E3 dispatch + handler shapes
+LocalAvatarHolder-0xBDD4A0,LocalAvatarHolder (locator),high,[0xBDD4A0] -> [+8] = local avatar object,,+8 local avatar (parallel +0x28B0 room field),field,UPDATE_MOUNT 0x32; CHATTEXT 0xA5 fallback family,,IMG: three independent uses (mount/chat/room)

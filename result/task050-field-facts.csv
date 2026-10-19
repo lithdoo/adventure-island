@@ -536,3 +536,6 @@ CWvsContext,handler-proven,0x2f7c,container,guild_container,embedded; reset 0xA0
 CWvsContext,handler-proven,0x2fa2,i32,guild_ui_gate,nonzero = guild UI live (sound played on update),medium,GUILD_OPERATION@0x641174,1,IMG(hand-verified)
 CWvsContext,handler-proven,0x2d30,container,temp_stats_container,"buff entries: stride-0x0C (raw,computed) pairs; mask-driven decode 0x3848B7",confirmed,TEMP_STATS@0x62A040,1,IMG(hand-verified mask chain)
 CWvsContext,handler-proven,0x32f4,u32,last_response_timestamp,auto-sender 0x62A076 threshold 0xC8,medium,TEMP_STATS@0x62A040,1,IMG(hand-verified mask chain)
+CUserRemote,handler-proven,0x1bd4,container,active_effect_list,Add(effect->[0x144]) during 0xB5-0xB9; paired with +0x1BBC id-map,high,effect band 0xB5-0xB9 @0x53F376,1,IMG(hand-verified)
+CWvsContext,handler-proven,0x2ff4,u8,taming_flag,SET_TAMING_MOB_INFO 0x31 writes booleanized byte,confirmed,0x31@0x631643,1,IMG(hand-verified)
+CWvsContext,handler-proven,0x35b0,u8,mount_ui_state,signed-compare gates sound 0x1293 in adjacent flow,medium,0x31@0x631643,1,IMG(hand-verified)
