@@ -539,3 +539,6 @@ CWvsContext,handler-proven,0x32f4,u32,last_response_timestamp,auto-sender 0x62A0
 CUserRemote,handler-proven,0x1bd4,container,active_effect_list,Add(effect->[0x144]) during 0xB5-0xB9; paired with +0x1BBC id-map,high,effect band 0xB5-0xB9 @0x53F376,1,IMG(hand-verified)
 CWvsContext,handler-proven,0x2ff4,u8,taming_flag,SET_TAMING_MOB_INFO 0x31 writes booleanized byte,confirmed,0x31@0x631643,1,IMG(hand-verified)
 CWvsContext,handler-proven,0x35b0,u8,mount_ui_state,signed-compare gates sound 0x1293 in adjacent flow,medium,0x31@0x631643,1,IMG(hand-verified)
+CShopSession,handler-proven,+0xb4,i32,npc_template_id,read first in OPEN_NPC_SHOP decode,confirmed,shop 0x146/0x147,1,IMG(hand-verified)
+CShopSession,handler-proven,+0xec,i32,session_state,gate in CONFIRM_SHOP_TRANSACTION path,medium,shop 0x146/0x147,1,IMG(hand-verified)
+CField,handler-proven,+0x130,object,shop_npc_check,"0x4F746F query, result vs magic 0x3038D170",medium,shop 0x146/0x147,1,IMG(hand-verified)
