@@ -542,3 +542,5 @@ CWvsContext,handler-proven,0x35b0,u8,mount_ui_state,signed-compare gates sound 0
 CShopSession,handler-proven,+0xb4,i32,npc_template_id,read first in OPEN_NPC_SHOP decode,confirmed,shop 0x146/0x147,1,IMG(hand-verified)
 CShopSession,handler-proven,+0xec,i32,session_state,gate in CONFIRM_SHOP_TRANSACTION path,medium,shop 0x146/0x147,1,IMG(hand-verified)
 CField,handler-proven,+0x130,object,shop_npc_check,"0x4F746F query, result vs magic 0x3038D170",medium,shop 0x146/0x147,1,IMG(hand-verified)
+CMerchantStore,handler-proven,mode-family,u8 switch,0x22-0x26,"MERCH_ITEM_STORE 0x14C: 0x22-0x25 transaction ops, 0x26 complete(sound 0xC9E)",high,0x14C@0x3A1424,1,IMG(hand-verified switch)
+CMerchantStore,handler-proven,mode-0x25-payload,sequence,"i32,i32,u8",transaction detail (item/price/qty family) at 0x3A14A5,medium,0x14C@0x3A1424,1,IMG(hand-verified switch)
