@@ -549,3 +549,5 @@ CUserRemote,handler-proven,0x2860,i32,macro_skill_1,SKILL_MACRO 0x80 writes i32x
 CUserRemote,handler-proven,0x2864,i32,macro_skill_2,SKILL_MACRO,high,SKILL_MACRO@0x632D1E / CHAR_CASH@0x634844,1,IMG(hand-verified)
 CUserRemote,handler-proven,0x2868,i32,macro_skill_3,SKILL_MACRO,high,SKILL_MACRO@0x632D1E / CHAR_CASH@0x634844,1,IMG(hand-verified)
 LocalAvatarHolder-0xBDD4A0,handler-proven,usage-count,idiom,4 sightings,"CHATTEXT room check, UPDATE_MOUNT, SPAWN band, CHAR_CASH resolve — the canonical resolve-avatar-or-local idiom: [0xBDD4A0]->0x57EC5E(id)->[+8]->hdr-math",confirmed,SKILL_MACRO@0x632D1E / CHAR_CASH@0x634844,1,IMG(hand-verified)
+RandomEventProvider-0xBD8FE8,handler-proven,+0x1c,i32,rotation_count,time() % this for slot randomization,high,0xEB@0x53F0BE,1,IMG(hand-verified modulo+scan)
+RandomEventProvider-0xBD8FE8,handler-proven,+0x20,i32 x26,slot_array_26,26-slot linear scan; selected slot -> CWvsContext 0x62DC36,high,0xEB@0x53F0BE,1,IMG(hand-verified modulo+scan)
