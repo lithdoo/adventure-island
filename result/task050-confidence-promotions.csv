@@ -1,0 +1,9 @@
+subject,promotion,level,basis
+CWvsContext+0x205C,CharacterId,confirmed,WARP handler + identity logic (2 families)
+CWvsContext+0x2084,spawn_identity,confirmed,SPAWN is-it-me + WARP cross
+CUserRemote+0xF30,display_name_string,confirmed,decodeAvatar assign + CHATTEXT use; CORRECTED from balloon-time
+CUserRemote+0x1BB4,pet_array,high,sub-band 0x53F2E3 index math
+CItem family,4 semantic classes,high,factory switch + ctor + vtable + decode slot
+CShopSession,class identity,high,alloc+singleton+schema
+CUserRemote (class),ctor/size/fields,high->confirmed,0x98CC52 + 0x3500 + 17 facts
+socket attribution,demotion of 10 facts,audit,mid-campaign honesty correction

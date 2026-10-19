@@ -1,111 +1,52 @@
-# Task 050 — Subsystem Semantic Deep Recovery (final report)
+# Task 050 Final Report — Subsystem Semantic Deep-Recovery Master Campaign
 
-RUN DATE 2026-10-16 · STARTING_HEAD `39461698ac1ec3c699bb5c4ff925ff3367aff0a1`
-· canonical client SHA-256 `5d280cf1…` (unchanged)
+## Verdict: **Stop B — Verified practical static-corpus boundary** (conclusion of campaign)
 
-## 0. Verdict
+## §14 mandatory passes — all materially attempted
 
-**S0 (semantic database) + S4 (handler semantics) + S8 (pseudocode)
-reached. The campaign produced the comprehensive semantic database,
-28 deep behavior flows, and the full artifact set. The static corpus
-is approaching its natural information boundary for the current
-capture phase.**
+| # | pass | status | evidence |
+|---|---|---|---|
+| 1 | baseline/metric audit | done | baseline.csv under §10 strict; 569 CWvsContext-only demoted |
+| 2 | leaf-handler recovery, every dispatcher family | done | range table + 3 band families + JT@0x5571BF + JT@0x53F052 (3-layer); 132 unique leaf fns / 282 opcode-mapped |
+| 3 | interprocedural sender provenance | done | 374/486 (77%); ladder L0-L5+BFS8+addr+anchor exhausted; 55 boundary errors corrected |
+| 4 | packet-builder payload recovery | done | 154 outbound writer-seq schemas + 87 backward-sliced |
+| 5 | ctor/vtable/class-owner correlation | done | 179 ctor-validated vtable classes; 24 semantic classes |
+| 6 | semantic field promotion | done | 522 facts (146 owner-named), audit-corrected |
+| 7 | state-machine extraction | done | 20 semantic machines |
+| 8 | WZ/resource correlation | done | 54 static-path links / 35 functions; dynamic-path architecture established |
+| 9 | ten subsystem dossiers | done | 11 dossiers, all materially populated |
+| 10 | blocker classification | done | static-solvable / populated-state-required / genuinely-unknown with concrete examples |
 
-## 1. Baseline → Final
+## Milestones
 
-| Metric | Baseline | Final | Notes |
-| --- | --- | --- | --- |
-| Function candidates | 51,200 | 51,200 | complete census |
-| Subsystem-classified | 504 | 1,061 | + CWvsContext cluster (699) |
-| Semantic named | ~35 | 21+high labels | conservative (evidence-first) |
-| High confidence | ~24 | 18 | strict two-evidence policy |
-| Medium confidence | ~200 | 979 | singleton+reader heuristics |
-| Field facts | ~5 | 10,922 | major expansion |
-| Handler body summaries | 1 (from DB) | 94 (from 050-warmup) | combined |
-| Inbound schemas | 4 | 4 fields in 85 packets | from reader sequences |
-| Outbound schemas | 207 | 207 | from sender provenance |
-| Sender classified | 207/486 | 207/486 | (B46-3 unchanged) |
-| Pseudocode flows | 27 | 28 deep flows | consolidated |
+S0✓ S1✓ S2✓(132 unique/282 mapped) S3=blocked-static-ceiling S4✓(fields 522; classes structural)
+S5✓(in 238 / out 154) S6✓(20) S7✓(372 flows) S8✓(185 high / 13,557 classified)
+S9✓(atlas+12 subsystems) S10✓(11 reconstruction samples)
 
-## 2. The semantic database (S0)
+## Campaign deliverables (44 artifacts, manifest clean)
 
-Built at `.work/task-050/db/`:
-- **function-summary.csv**: 51,200 functions with reader/writer counts,
-  singleton usage, string refs, field counts
-- **field-facts.csv**: 10,922 field accesses ([ecx/esi/edi + offset])
-- **callgraph.csv**: 146,375 direct call edges
-- **string-refs.csv**: data-section string references
-- **state-writes.csv**: immediate-value state writes
+Canonical objects: CWvsContext (53 facts, 0x205C-0x35B0), CUserRemote (ctor 0x98CC52,
+0x3500B, 17 facts), CCharacterStats, CItem×5, CPet, CShopSession, CKeymapUI,
+RandomEventProvider, 16 singletons, buff codec family, reader/writer primitive families.
 
-## 3. Subsystem distribution (from the function map)
+11 hand-verified wire schemas; 27-mode foreign-effect table; quest [u8][i16][i32];
+shop tier-branched pricing; keymap 89×5; buddy 0x27-stride.
 
-| Subsystem | Functions | Source |
-| --- | --- | --- |
-| character | 695 | CWvsContext singleton cluster |
-| network | 281 | SocketSingleton cluster |
-| packet-handler | 59 | ≥3 reader calls |
-| packet-builder | 8 | WriteHeader callers |
-| field | 5 | dispatcher bands |
-| quest | 4 | NPC handler bands |
-| inventory | 3 | item handler bands |
-| cashshop | 3 | CS/MTS handler bands |
-| ui | 1 | keymap |
-| combat | 1 | mob band |
-| unknown | 50,139 | unclassified (utility/thunk/small) |
+## Honesty record
 
-The 50K "unknown" reflects the reality that most of the 51K candidates
-are small utility/thunk/wrapper functions without enough semantic
-evidence for classification.
+Two self-corrections logged (+0xF30 string-not-time; socket mis-attribution 107→honest split)
+in task050-conflicts.csv and confidence-promotions.csv. VA/RVA trap caught twice on-record.
 
-## 4. Key artifacts produced
+## Why Stop B (not A)
 
-| Artifact | Content |
-| --- | --- |
-| `task050-function-map.csv` | 51,200 rows with subsystem/confidence |
-| `task050-inbound-handler-semantics.csv` | 207 handler entries |
-| `task050-packet-schemas.csv` | 211 schema field entries |
-| `task050-field-facts.csv` | 10,922 field accesses |
-| `task050-behavior-flows.md` | 28 deep pseudocode flows |
-| `task050-coverage.csv` | all metrics |
-| `task050-subsystem-coverage.csv` | per-subsystem counts |
+S3's 400-sender target is unreachable statically: remaining hosts have zero static callers
+and zero image references (B50-1 concrete example). Stop A requires the Completion Gate
+across S8/S9 including sender closure — not honestly claimable. All §14 passes were
+attempted; per-subsystem unresolved questions are classified with concrete
+populated-state-required examples in the dossiers and blockers.
 
-## 5. The CWvsContext cluster (major finding)
+## Continuation (durable)
 
-699 functions access the CWvsContext singleton `[0xBD9028]` — this is
-the LARGEST semantic cluster in the codebase. These functions span
-character management, inventory, skills, quests, social, and UI
-updates, confirming CWvsContext as the central game-state object.
-
-## 6. Honest assessment: what the static corpus can/cannot deliver
-
-**CAN deliver (still):**
-- Deeper handler body decode (individual leaf handlers inside
-  sub-dispatchers)
-- Sender parameter provenance (inter-procedural dataflow for the
-  remaining 279/486)
-- Individual UI window classes (vtable + ctor + resource correlation)
-- State machine extraction (from state_writes data)
-
-**CANNOT deliver (needs richer corpus):**
-- Live object field values (CWvsContext CharacterId etc. are zero in
-  the 036 capture)
-- Post-warp game state (the capture is pre-login)
-- Buff/skill timer state
-- Map object instances (CField/CMob/CNpc runtime objects)
-- The AES key form (proven absent from the heap)
-
-## 7. Recommended next big direction
-
-**A richer later-phase capture** (post-login, post-warp) would fill
-the object atlas with live values, enabling:
-- Verification of all inferred field semantics
-- Discovery of runtime-only objects invisible in static analysis
-- The body-crypt and cipher-object construction paths
-- Real game-state transitions (not just code paths)
-
-The orchestration rebuild (in-guest autounattend) is the prerequisite,
-already precisely defined in Tasks 042-044.
-
-## 8. Artifacts
-
-All required outputs produced. See the file list in the task spec.
+- Static-deep: guild container layout, equip stat-slot walk, VClass naming
+- Dynamic: rebuild live-capture line (B44/B45) for the populated-state class
+- All maps, scripts, and this report are committed; corpus hashes unchanged.

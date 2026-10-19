@@ -1,0 +1,6 @@
+reference,subject,correlation_basis,verdict,notes
+sendops.properties (JAR),all 217 s2c wire names,names↔handlers via dispatch map,accepted,task048 lineage: enum code=254 overridden by Properties
+v079 public schema,UPDATE_QUEST_INFO [u8][i16][i32],leaf 0x565C0D read order,accepted,exact match
+v079 public schema,keymap 89 entries,loop 0x1B9E8D,accepted,count and 5-byte stride match
+v079 public schema,item types 1-5,"factory shows {1,2,3,100}",rejected-divergence,client type byte differs; recorded as CItemType100
+v079 public schema,buddy entry 0x27 stride,imul 0x6491E5,accepted,matches block readers 0xF3BC1 family

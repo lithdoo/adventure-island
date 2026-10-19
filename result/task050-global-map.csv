@@ -1,0 +1,19 @@
+address,identity,confidence,evidence
+0xbd9028,CWvsContext,confirmed,v079 ctx singleton; 53 owned fields
+0xbd9024,SocketSingleton/CClientSocket,confirmed,transport
+0xbdd8a8,VersionObj,confirmed,hello/version
+0xbdf54c,Delegate,confirmed,task033 lineage
+0x3dd4a0,FieldDispatcher (spawn band),high,0x57F64C dispatch
+0x3dd49c,MobBandObj,medium,0x2A6AB0
+0x3d95c,CKeymapUI,high,0x16F family
+0xbdd4a0,LocalAvatarHolder,confirmed,[+8] local avatar; 4 sightings
+0xbdd490,LocalAvatar (HP bar/lvlup fx),high,UPDATE_STATS/INVENTORY
+0xbdd494,Config provider,medium,KEYMAP/PARTY/AUTO_POTION
+0xbdeb28,Warp state singleton,medium,WARP tail
+0xbd8fe8,RandomEventProvider,high,26-slot wheel 0xEB
+0xbd9020,CShopSession,high,shop 0x146/0x147
+0xbe2798,Shop UI manager,medium,dialog path
+0xbdd8b8,UIWindowHolder 0x634,medium,0xE0
+0xbdd870,UIWindowHolder 0x614,medium,0xE1
+0xbe18d4,timeGetTime import,confirmed,timer
+0xbe1de0,pool allocator,confirmed,0x402D66 allocs

@@ -1,0 +1,7 @@
+subject,conflict,evidence,resolution,status
+opcode-0xD3,JT slot 0xD3 points to dispatcher default-return,JT@0x55732E case 3 target == function tail,treated as no-op opcode,resolved
+field-CUserRemote-0xF30,initial balloon-time label vs decodeAvatar string-assign,sample1 vs sample2 disasm,relabelled display_name_string (confirmed),resolved
+socket-attribution,107 field facts mis-owned by CClientSocket,audit: labels said CWvsContext_*,"30->CWvsContext, 34 kept, 10 demoted",resolved
+sender-ambiguity,35 multi-opcode builder hosts,L2 order-pairing heuristic,paired per-site; 7 remain order-paired-low,partial
+stats-0x17-meaning,fame vs meso-family candidate meanings,single evidence family,"left medium/low, no name claimed",open
+item-type-100,client type byte 100 outside v079 1-5 family,factory 0xF2B2F switch,recorded empirically as CItemType100,open

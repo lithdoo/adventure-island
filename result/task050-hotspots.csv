@@ -1,0 +1,6 @@
+subject,question,classification,notes
+0x6D941-family,112 unresolved sender hosts (vtable dispatch),populated-state-required,S3 tail
+0x4F3CFC,guild container deserializer layout,static-solvable,walk container ops
+type-1 equip decode,0xF9-object stat-slot walk,static-solvable,vtable+0x70 for equip
+VClass 169 structural,semantic names pending,static-solvable-deep,ctor/singleton correlation
+stats +0x17,fame-vs-meso ambiguity,genuinely-unknown,single evidence family
