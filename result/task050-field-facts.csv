@@ -521,3 +521,8 @@ RandomEventProvider-0xBD8FE8,handler-proven,+0x20,i32 x26,slot_array_26,26-slot 
 UIWindowHolder-0xBDD8B8,handler-proven,+0x0,object,window_634,"0xE0 lazily allocates 0x634-byte window, init 0x4A384B",medium,0xE0@0x56D125 / 0xE1@0x56D168,1,IMG(hand-verified lazy alloc)
 UIWindowHolder-0xBDD870,handler-proven,+0x0,object,window_614,0xE1 lazily allocates 0x614-byte window,medium,0xE0@0x56D125 / 0xE1@0x56D168,1,IMG(hand-verified lazy alloc)
 CBBSBrowser,handler-proven,size,object,0x69c_window,"BBS_OPERATION 0x74 reads string (board/url), lazily creates 0x69C browser (ctor 0x9AF38B)",medium,BBS_OPERATION@0x61CB05,1,IMG(hand-verified)
+CGuildContainer,handler-proven,0x0,i32,guild_id,first field of 0xF3CFC,confirmed,guild-deser 0xF3CFC,1,IMG(hand-verified)
+CGuildContainer,handler-proven,0x4,string,guild_name,ZString assign,confirmed,guild-deser 0xF3CFC,1,IMG(hand-verified)
+CGuildContainer,handler-proven,0x8,str-list,rank_titles_5,5x append loop,confirmed,guild-deser 0xF3CFC,1,IMG(hand-verified)
+CGuildContainer,handler-proven,0xc,container,emblem_container_A,0xF78BD,high,guild-deser 0xF3CFC,1,IMG(hand-verified)
+CGuildContainer,handler-proven,0x10,container,emblem_container_B,0xF78F9,high,guild-deser 0xF3CFC,1,IMG(hand-verified)
