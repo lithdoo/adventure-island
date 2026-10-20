@@ -1,0 +1,1270 @@
+function_rva,string_count,categories,sample_strings
+0x6462,1,character:1,e_levelup
+0x64a9,5,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x652b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x6547,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x6548,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x654e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x661f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x663d,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x667c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x66c9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x66ff,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x6741,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xd52e,1,ui:1,Map/Obj/summerboating.img/boat/boat%02d
+0xd561,1,ui:1,Map/Obj/summerboating.img/boat/boat%02d
+0xd5c9,1,ui:1,Map/Obj/summerboating.img/boat/boat%02d
+0xd5ff,1,ui:1,Map/Obj/summerboating.img/boat/boat%02d
+0xd643,1,ui:1,Map/Obj/summerboating.img/boat/boat%02d
+0xddef,1,ui:1,Map/Obj/summerboating.img/bombEffect
+0xde22,1,ui:1,Map/Obj/summerboating.img/bombEffect
+0xde8a,1,ui:1,Map/Obj/summerboating.img/bombEffect
+0xdec0,1,ui:1,Map/Obj/summerboating.img/bombEffect
+0xdf09,1,ui:1,Map/Obj/summerboating.img/bombEffect
+0x100a1,1,ui:1,Effect/PetEff.img/Basic
+0x100c8,1,ui:1,Effect/PetEff.img/Basic
+0x100ef,1,ui:1,Effect/PetEff.img/Basic
+0x10122,1,ui:1,Effect/PetEff.img/Basic
+0x10186,1,ui:1,Effect/PetEff.img/Basic
+0x101bc,1,ui:1,Effect/PetEff.img/Basic
+0x101f1,1,ui:1,Effect/PetEff.img/Basic
+0x34d91,1,character:1,e_levelup
+0x34e0f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x34e26,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x34e6d,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x34e74,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x34ea9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x34eb9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x34ee0,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x34f55,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x34fb0,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x3507c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x386ce,1,system:1,fail
+0x387e3,1,system:1,fail
+0x3882a,1,system:1,fail
+0x3ac3e,1,ui:1,Effect/BasicEff.img/Buff
+0x3ac94,1,ui:1,Effect/BasicEff.img/Buff
+0x3aeb0,2,ui:2,Effect/BasicEff.img/Buff | Effect/BasicEff.img/EmptyCanvas/0
+0x3b3d3,1,ui:1,Effect/BasicEff.img/EmptyCanvas/0
+0x3b92c,1,ui:1,Effect/BasicEff.img/EmptyCanvas/0
+0x3b953,1,ui:1,Effect/BasicEff.img/EmptyCanvas/0
+0x3bc97,4,ui:4,Effect/BasicEff.img/ItemMake/Success | Effect/BasicEff.img/ItemMake/Failure | UI/UIWindow.img/Viciou
+0x3be78,2,ui:2,UI/UIWindow.img/ViciousHammer/EffectP | UI/UIWindow.img/ViciousHammer/EffectE
+0x3bec2,2,ui:2,UI/UIWindow.img/ViciousHammer/EffectP | UI/UIWindow.img/ViciousHammer/EffectE
+0x3c1b1,2,ui:2,UI/UIWindow.img/CashGachapon/EffectJackpot | UI/UIWindow.img/CashGachapon/EffectNormal
+0x3c350,2,ui:2,UI/UIWindow.img/CashGachapon/EffectJackpot | UI/UIWindow.img/CashGachapon/EffectNormal
+0x4e571,1,system:1,SeDebugPrivilege
+0x4e576,1,system:1,SeDebugPrivilege
+0x4ea73,1,skill:1,nst*.tmp
+0x56de7,1,ui:1,Effect/ItemEff.img/2022269
+0x56e15,1,ui:1,Effect/ItemEff.img/2022269
+0x56eca,1,ui:1,Effect/ItemEff.img/2022269
+0x56f5d,1,ui:1,Effect/ItemEff.img/2022269
+0x59fb6,2,file:1; other_text:1,path | emotion
+0x5a023,2,file:1; other_text:1,path | emotion
+0x60ec9,1,ui:1,UI/UIWindow.img/Book/backgrnd
+0x60f08,1,ui:1,UI/UIWindow.img/Book/backgrnd
+0x60f47,1,ui:1,UI/UIWindow.img/Book/backgrnd
+0x60f86,1,ui:1,UI/UIWindow.img/Book/backgrnd
+0x60fc5,1,ui:1,UI/UIWindow.img/Book/backgrnd
+0x60fd2,1,ui:1,UI/UIWindow.img/Book/backgrnd
+0x61004,1,ui:1,UI/UIWindow.img/Book/backgrnd
+0x610e3,1,ui:1,UI/UIWindow.img/Book/backgrnd
+0x6230d,2,other_text:2,book | text
+0x623f4,2,other_text:2,text | align
+0x676fe,2,character:2,e_levelup | e_prelevelup
+0x6773d,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x6777c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x677bb,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x677fa,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x67839,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x67878,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x679d9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x6f56c,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f649,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f663,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f67d,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f68f,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f6a5,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f6bb,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f6d5,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f6e7,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f6f9,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f70f,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f725,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f73b,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x6f751,1,ui:1,UI/CashShop.img/CSMemberShop/backgrnd1
+0x77852,5,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x778ad,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x779ef,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x77a22,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x77ae6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x7f3b1,1,other_text:1,Bonus
+0x7f3f0,1,other_text:1,Bonus
+0x7f42f,1,other_text:1,Bonus
+0x7f46e,1,other_text:1,Bonus
+0x7f4ad,1,other_text:1,Bonus
+0x7f52b,1,other_text:1,Bonus
+0x7f542,1,other_text:1,Bonus
+0x7f55d,1,other_text:1,Bonus
+0x8482d,1,other_text:1, %d%s
+0x8530e,1,other_text:1,%s(%s)
+0x8a81d,1,social:1,screenChat
+0x8aec3,1,other_text:1,PvPFlag/
+0x8aee8,1,other_text:1,PvPFlag/
+0x9258f,1,map:1,game.maplestory
+0x92701,1,map:1,game.maplestory
+0x92725,1,map:1,game.maplestory
+0x93fde,2,character:2,e_levelup | e_prelevelup
+0x9401d,5,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x9403f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x9405c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x9409b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x940da,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x94119,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x941b7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x942ac,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x9d0f8,1,constant_name:1,LCGI
+0x9d1fd,1,constant_name:1,LCGI
+0x9d72d,1,constant_name:1,LCGI
+0x9df14,1,other_text:1,uiBin%d
+0x9df70,1,other_text:1,uiBin%d
+0x9e4bb,1,ui:1,DialogVisible_%d
+0x9e7c4,1,other_text:1,uiBin%d
+0xab87f,5,other_text:4; combat:1,tired | speedDown | boatStop
+0xab99d,4,other_text:3; combat:1,speedDown | boatStop | attackStop
+0xaf10a,1,character:1,e_levelup
+0xaf149,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0xaf188,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xaf1c7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xaf206,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xaf245,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xaf284,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xaf2c3,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xaf302,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xaf3eb,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba038,2,character:2,e_levelup | e_prelevelup
+0xba077,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0xba0f5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba10c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba141,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba151,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba178,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba1ed,7,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba23d,7,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba314,7,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xba8e7,1,other_text:1,%d ~ %d
+0xc53ab,2,character:2,e_levelup | e_prelevelup
+0xc53ea,5,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc5429,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc54a7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc54c2,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc54f7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc5507,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc552e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc559f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc55b7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xc567b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0xe4989,1,ui:1,UI/UIWindow.img/PvP/Scroll
+0xe49c8,1,ui:1,UI/UIWindow.img/PvP/Scroll
+0xe4a07,1,ui:1,UI/UIWindow.img/PvP/Scroll
+0xe4a46,1,ui:1,UI/UIWindow.img/PvP/Scroll
+0xe4ad4,1,ui:1,UI/UIWindow.img/PvP/Scroll
+0xe4b4e,1,ui:1,UI/UIWindow.img/PvP/Scroll
+0xe4b97,1,ui:1,UI/UIWindow.img/PvP/Scroll
+0xf2869,1,skill:1,Lev:%d Job:%d STR:%d DEX:%d INT:%d LUK:%d MHP:%d MMP:%d AP:%d SP:%d EXP:%d Money:%d
+0xf60bc,1,other_text:1,%d/%d/%d
+0xf6156,1,other_text:1,%d/%d/%d
+0xf61ed,1,other_text:1,%d/%d/%d
+0xf6316,1,other_text:1,%d/%d/%d
+0xf6d0f,2,other_text:2,%s;%s=%s | %s=%s
+0xf6d69,2,other_text:2,%s;%s=%s | %s=%s
+0xf6dae,2,other_text:2,%s;%s=%s | %s=%s
+0xf6f37,2,other_text:2,%s;%s=%s | %s=%s
+0x10cc59,1,character:1,e_levelup
+0x10cc98,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x10ccd7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x10cd16,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x10cd55,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x10cd94,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x10cdd3,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x10ce12,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x10ce51,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x10cf3a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x115c0d,2,file:1; filename:1,DynDllDownloader | mxd.autopatch.sdo.com
+0x115c25,2,file:1; filename:1,DynDllDownloader | mxd.autopatch.sdo.com
+0x115c80,3,filename:2; file:1,DynDllDownloader | mxd.autopatch.sdo.com | *.swf
+0x115c98,3,filename:2; file:1,DynDllDownloader | mxd.autopatch.sdo.com | *.swf
+0x115ce9,3,filename:2; file:1,DynDllDownloader | mxd.autopatch.sdo.com | *.swf
+0x115d3a,3,filename:2; file:1,DynDllDownloader | mxd.autopatch.sdo.com | *.swf
+0x115d8b,4,filename:2; file:1; map:1,DynDllDownloader | mxd.autopatch.sdo.com | *.swf
+0x115e04,4,filename:2; file:1; map:1,DynDllDownloader | mxd.autopatch.sdo.com | *.swf
+0x115ed1,4,filename:2; file:1; map:1,DynDllDownloader | mxd.autopatch.sdo.com | *.swf
+0x115f22,2,filename:1; map:1,*.swf | /maplestory/mxdfile/
+0x11604d,2,map:1; file:1,/maplestory/mxdfile/ | downloadinfo.dat
+0x116249,1,file:1,downloadinfo.dat
+0x1174d5,1,character:1,e_levelup
+0x117514,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x117553,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x117592,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1175d1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x117610,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x11764f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x11768e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1176cd,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1177b6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x132122,3,character:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x132161,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1321a0,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x13221e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x132253,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x132263,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x13228a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1322fb,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x132313,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1323da,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x134b2d,1,other_text:1,forcedReturn
+0x134ba4,1,other_text:1,forcedReturn
+0x134f28,1,inventory:1,allowedItem
+0x135105,2,inventory:1; other_text:1,user | cond
+0x135261,4,other_text:2; inventory:1; character:1,user | cond | look
+0x135279,4,other_text:2; inventory:1; character:1,user | cond | look
+0x135b51,7,other_text:5; pet:1; combat:1,ring6 | pendant | medal
+0x135f4f,2,skill:1; other_text:1,noSkill | swimArea
+0x13602c,1,other_text:1,swimArea
+0x13fccd,1,other_text:1,in00
+0x13fe32,2,other_text:2,in00 | out00
+0x13ff69,2,other_text:2,in00 | out00
+0x144b51,1,other_text:1,] = 
+0x144c03,1,other_text:1,] = 
+0x144cc8,1,other_text:1,] = 
+0x158359,1,other_text:1,BoatRace
+0x158398,2,other_text:2,BoatRace | memberNum
+0x1583d7,2,other_text:2,BoatRace | memberNum
+0x1584b6,2,other_text:2,BoatRace | memberNum
+0x158579,2,other_text:2,BoatRace | memberNum
+0x16027c,1,character:1,avatar
+0x1602bb,1,character:1,avatar
+0x170311,1,other_text:1,healer
+0x1703f8,2,other_text:2,healer | yMin
+0x170497,3,other_text:3,healer | yMin | pulley
+0x17983e,1,combat:1,mobMassacre
+0x179960,4,other_text:2; combat:1; skill:1,mobMassacre | disableSkill | gauge
+0x17abea,1,other_text:1,%02d
+0x17ef61,1,combat:1,monsterCarnival
+0x17efa0,1,combat:1,monsterCarnival
+0x17efdf,1,combat:1,monsterCarnival
+0x17f01e,1,combat:1,monsterCarnival
+0x17f05d,1,combat:1,monsterCarnival
+0x17f13c,1,combat:1,monsterCarnival
+0x17f1fe,1,combat:1,monsterCarnival
+0x17f59d,2,skill:1; other_text:1,skill | guardian
+0x1836d4,1,combat:1,monsterCarnival
+0x183713,1,combat:1,monsterCarnival
+0x183752,2,combat:1; map:1,monsterCarnival | mapType
+0x183791,2,combat:1; map:1,monsterCarnival | mapType
+0x1837d0,2,combat:1; map:1,monsterCarnival | mapType
+0x18380f,3,combat:2; map:1,monsterCarnival | mapType | monsterCarnival
+0x18384e,4,combat:2; map:2,monsterCarnival | mapType | monsterCarnival
+0x18388d,4,combat:2; map:2,monsterCarnival | mapType | monsterCarnival
+0x1838cc,4,combat:2; map:2,monsterCarnival | mapType | monsterCarnival
+0x18390b,4,combat:2; map:2,monsterCarnival | mapType | monsterCarnival
+0x183989,4,combat:2; map:2,monsterCarnival | mapType | monsterCarnival
+0x199662,8,other_text:4; map:4,story | maple | story
+0x199681,8,other_text:4; map:4,story | maple | story
+0x1996d7,8,other_text:4; map:4,story | maple | story
+0x1997c5,8,other_text:4; map:4,story | maple | story
+0x199800,8,other_text:4; map:4,story | maple | story
+0x1ae813,1,other_text:1,class
+0x1ae9be,2,other_text:1; skill:1,class | skill
+0x1ae9c8,2,other_text:1; skill:1,class | skill
+0x1aeacf,2,other_text:1; skill:1,class | skill
+0x1aed42,2,character:1; skill:1,level | compare
+0x1aee59,3,character:2; skill:1,level | compare | jobCategory
+0x1aefd7,2,character:1; map:1,jobCategory | battleFieldTeam
+0x1af124,2,character:1; map:1,jobCategory | battleFieldTeam
+0x1af240,2,map:1; other_text:1,battleFieldTeam | gender
+0x1af353,3,inventory:2; other_text:1,gender | itemId | itemCount
+0x1af44a,3,inventory:2; other_text:1,gender | itemId | itemCount
+0x1af543,2,inventory:2,itemId | itemCount
+0x1b752e,1,ui:1,UI/UIWindow.img/EnSchool/%d
+0x1bba58,1,other_text:1,backgrnd3
+0x1bbb49,1,other_text:1,backgrnd3
+0x1bbfbe,1,other_text:1,backgrnd
+0x1bc0b0,1,other_text:1,backgrnd
+0x1bfe8c,1,ui:1,Skill/520.img/skill/5201002/ball
+0x1c0084,1,ui:1,Skill/520.img/skill/5201002/ball
+0x1cda44,1,ui:1,Effect/ItemEff.img/2420000/1
+0x1cda79,1,ui:1,Effect/ItemEff.img/2420000/1
+0x1cda89,1,ui:1,Effect/ItemEff.img/2420000/1
+0x1cdab0,1,ui:1,Effect/ItemEff.img/2420000/1
+0x1cdb21,1,ui:1,Effect/ItemEff.img/2420000/1
+0x1cdb39,1,ui:1,Effect/ItemEff.img/2420000/1
+0x1cdbf3,1,ui:1,Effect/ItemEff.img/2420000/1
+0x1d300c,1,character:1,e_levelup
+0x1d304b,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x1d308a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d30c9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d3108,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d3147,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d3186,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d31c5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d3204,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d32ed,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d9029,1,character:1,e_levelup
+0x1d9068,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x1d90a7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d90e6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d9125,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d9164,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d91a3,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d91e2,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d9221,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1d930a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1da515,1,other_text:1,%d/%d/%d %d:%d:%d
+0x1da54a,1,other_text:1,%d/%d/%d %d:%d:%d
+0x1da615,1,other_text:1,%d/%d/%d %d:%d:%d
+0x1da73c,1,other_text:1,%d/%d/%d %d:%d:%d
+0x1dd039,3,character:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd078,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd0b7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd0f6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd135,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd174,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd1b3,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd1f2,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd270,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1dd2f2,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1e51c0,1,character:1,e_levelup
+0x1e51ff,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x1e523e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1e527d,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1e52bc,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1e52fb,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1e533a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1e5379,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1e53b8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1e54a1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1eb0b9,1,character:1,e_levelup
+0x1eb0f8,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x1eb137,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1eb176,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1eb1b5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1eb1f4,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1eb233,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1eb272,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1eb2b1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1eb39a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1ef822,1,character:1,e_levelup
+0x1ef861,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x1ef8a0,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1ef8df,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1ef91e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1ef95d,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1ef99c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1ef9db,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1efa1a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1efb03,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f1ed9,1,ui:1,UI/ITC.img/Auction/BtBid
+0x1f1ee4,1,ui:1,UI/ITC.img/Auction/BtBid
+0x1f4a67,3,character:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4aa6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4ae5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4b24,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4b63,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4ba2,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4be1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4c20,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4c9e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1f4d24,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x1fe1cf,2,other_text:2,StartDate | EndDate
+0x1fe542,3,ui:1; other_text:1; inventory:1,Etc/SpecialConditionItem.img | NationalDay | CashEquip
+0x1fe562,3,ui:1; other_text:1; inventory:1,Etc/SpecialConditionItem.img | NationalDay | CashEquip
+0x1fe597,3,ui:1; other_text:1; inventory:1,Etc/SpecialConditionItem.img | NationalDay | CashEquip
+0x1fe6e5,3,other_text:1; inventory:1; cash:1,NationalDay | CashEquip | CashEffect
+0x1fee30,2,other_text:1; inventory:1,replace | itemid
+0x2006ad,2,inventory:1; other_text:1,equipTradeBlock | specialID
+0x204ccf,1,other_text:1,emotion
+0x205bf4,1,quest:1,reward
+0x205e7a,6,other_text:4; quest:1; inventory:1,reward | prob | item
+0x206460,3,other_text:3,addTime | maxDays | protectTime
+0x206d79,1,inventory:1,ItemSkill
+0x206e19,1,inventory:1,ItemSkill
+0x206e78,1,inventory:1,ItemSkill
+0x206ead,1,inventory:1,ItemSkill
+0x206ecc,1,inventory:1,ItemSkill
+0x206ede,1,inventory:1,ItemSkill
+0x206f0b,1,inventory:1,ItemSkill
+0x206f3f,1,inventory:1,ItemSkill
+0x206faf,1,inventory:1,ItemSkill
+0x207043,2,inventory:1; skill:1,ItemSkill | Skill
+0x2072ce,3,skill:2; combat:1,Skill | HPrecovery | MPrecovery
+0x207522,3,combat:1; skill:1; character:1,HPrecovery | MPrecovery | recoveryInterval
+0x209b5d,1,inventory:1,equipTradeBlock
+0x209c86,1,inventory:1,equipTradeBlock
+0x209d1d,1,inventory:1,equipTradeBlock
+0x209d45,1,inventory:1,equipTradeBlock
+0x209dfb,1,inventory:1,equipTradeBlock
+0x20bbf7,1,other_text:1,desc
+0x20bc16,1,other_text:1,desc
+0x20bce6,1,other_text:1,desc
+0x20bcf2,1,other_text:1,desc
+0x20c252,3,inventory:1; other_text:1; ui:1,slotIndex | addDay | Etc/ScanBlock.img
+0x20c39c,1,ui:1,Etc/ScanBlock.img
+0x20caf0,1,other_text:1,name
+0x20cc31,1,other_text:1,name
+0x20cf67,1,cash:1,cash
+0x21b4d5,2,ui:1; other_text:1,Item/Etc/0425.img | info
+0x21b813,4,other_text:3; ui:1,Item/Etc/0426.img | info | lvMin
+0x21bc10,2,ui:1; other_text:1,Item/Etc/0400.img | info
+0x21bf9e,8,inventory:4; other_text:2; character:1,itemNum | hide | reqLevel
+0x21c00c,8,inventory:3; other_text:2; character:1,hide | reqLevel | reqSkillLevel
+0x21cafc,9,other_text:5; skill:2; combat:1,incPAD | incMAD | incACC
+0x22d4a0,1,other_text:1,10000
+0x22d4c6,1,other_text:1,10000
+0x22d5ff,1,other_text:1,10000
+0x22d6ea,1,other_text:1,10000
+0x260b50,3,ui:1; map:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260b8f,3,ui:1; map:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260bce,3,ui:1; map:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260c4c,3,ui:1; map:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260c81,3,ui:1; map:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260c91,3,ui:1; map:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260cb8,3,ui:1; map:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260d29,5,map:2; ui:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260d41,5,map:2; ui:1; other_text:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260d9a,6,map:2; other_text:2; ui:1,C:\WINDOWS\Application Data | Nexon\MapleStory\MapleTV | %s\%s
+0x260e91,6,other_text:3; filename:2; map:1,MapleTVDownloader | 127.0.0.1 | MediaList
+0x260ef4,6,other_text:3; filename:2; map:1,MapleTVDownloader | 127.0.0.1 | MediaList
+0x260fb0,8,other_text:5; filename:2; map:1,MapleTVDownloader | 127.0.0.1 | MediaList
+0x261001,6,other_text:5; filename:1,MediaList | *.swf | %s\%s
+0x26102a,6,other_text:5; filename:1,MediaList | *.swf | %s\%s
+0x26107d,6,other_text:5; filename:1,*.swf | %s\%s | %s\%s
+0x2611d9,9,other_text:4; ui:4; map:1,MediaList | %s\%s | %s\%s
+0x261390,7,ui:4; other_text:2; map:1,%s\%s | th/MapleTV | C:\WINDOWS\Application Data
+0x276092,1,other_text:1,%02X
+0x2760e3,1,other_text:1,%02X
+0x276154,1,other_text:1,%02X
+0x276181,1,other_text:1,%02X
+0x27619f,1,other_text:1,%02X
+0x276276,1,other_text:1,%02X
+0x27629b,1,other_text:1,%02X
+0x276360,1,other_text:1,%02X
+0x28d64e,1,other_text:1,    
+0x28d73b,1,other_text:1,    
+0x28d7c6,1,other_text:1,    
+0x28d82a,1,other_text:1,    
+0x290430,3,character:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x29046f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x2904ae,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x2904ed,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x29052c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x29056b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x2905aa,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x2905e9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x290667,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x2906e9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x29784e,2,other_text:1; system:1,CatchSuccess | CatchFaild
+0x297863,2,other_text:1; system:1,CatchSuccess | CatchFaild
+0x297878,2,other_text:1; system:1,CatchSuccess | CatchFaild
+0x297892,2,other_text:1; system:1,CatchSuccess | CatchFaild
+0x29792d,2,other_text:1; system:1,CatchSuccess | CatchFaild
+0x297987,2,other_text:1; system:1,CatchSuccess | CatchFaild
+0x297a0e,2,other_text:1; system:1,CatchSuccess | CatchFaild
+0x2abe30,1,combat:1,hpTagColor
+0x2ad158,1,other_text:1,prob
+0x2ad240,1,other_text:1,prob
+0x2ad47d,3,quest:2; character:1,quest | questID | state
+0x2b5ce5,1,other_text:1,Morph
+0x2b5d24,1,other_text:1,Morph
+0x2b5d63,1,other_text:1,Morph
+0x2b5da2,1,other_text:1,Morph
+0x2b5de1,1,other_text:1,Morph
+0x2b5e20,1,other_text:1,Morph
+0x2b5e5f,2,other_text:2,Morph | Morph/
+0x2b5e9e,2,other_text:2,Morph | Morph/
+0x2b5f1c,2,other_text:2,Morph | Morph/
+0x2b5f4d,2,other_text:2,Morph | Morph/
+0x2b5fad,2,other_text:2,Morph | Morph/
+0x2bf199,1,other_text:1,%s %d / %d
+0x2c399e,1,other_text:1,/name
+0x2c39dd,1,other_text:1,/name
+0x2c3b19,1,other_text:1,/name
+0x2ce3a9,1,other_text:1,imitate
+0x2dd3a6,1,file:1,OperatorBoardDownloader
+0x2dd3e5,1,file:1,OperatorBoardDownloader
+0x2dd463,1,file:1,OperatorBoardDownloader
+0x2dd498,1,file:1,OperatorBoardDownloader
+0x2dd4a8,2,file:1; character:1,OperatorBoardDownloader | http://mxd.sdo.com/web4/message/interface.asp
+0x2dd4cf,2,file:1; character:1,OperatorBoardDownloader | http://mxd.sdo.com/web4/message/interface.asp
+0x2dd544,2,file:1; character:1,OperatorBoardDownloader | http://mxd.sdo.com/web4/message/interface.asp
+0x2dd594,2,file:1; character:1,OperatorBoardDownloader | http://mxd.sdo.com/web4/message/interface.asp
+0x2dd5ed,2,file:1; character:1,OperatorBoardDownloader | http://mxd.sdo.com/web4/message/interface.asp
+0x2dd639,2,file:1; character:1,OperatorBoardDownloader | http://mxd.sdo.com/web4/message/interface.asp
+0x2dd681,2,file:1; character:1,OperatorBoardDownloader | http://mxd.sdo.com/web4/message/interface.asp
+0x2dd6e4,1,character:1,http://mxd.sdo.com/web4/message/interface.asp
+0x2dd70d,1,character:1,http://mxd.sdo.com/web4/message/interface.asp
+0x2dd759,1,character:1,http://mxd.sdo.com/web4/message/interface.asp
+0x2edfb8,1,other_text:1,/setjackpot
+0x2ee0db,2,other_text:2,/setjackpot | /resetjackpot
+0x2ee12d,2,other_text:2,/setjackpot | /resetjackpot
+0x2ee7a1,1,other_text:1,    
+0x2f1db9,2,ui:2,Etc/pachinko.img/rewardDepository/BtExit | Etc/pachinko.img/rewardDepository/BtGet
+0x2f5c23,3,other_text:2; network:1,%02x  | Invalid Decoding | PacketDump : 
+0x2f5cb1,2,other_text:1; network:1,Invalid Decoding | PacketDump : 
+0x2f5ccf,2,other_text:1; network:1,Invalid Decoding | PacketDump : 
+0x2f8324,1,ui:1,UI/UIWindow.img/Delivery/npc1
+0x2f8403,1,ui:1,UI/UIWindow.img/Delivery/npc1
+0x2f8492,2,ui:2,UI/UIWindow.img/Delivery/npc1 | UI/UIWindow.img/Delivery/icon0
+0x2f8f46,1,ui:1,UI/UIWindow.img/Delivery/say1
+0x2f8fa6,1,ui:1,UI/UIWindow.img/Delivery/say1
+0x2f9021,1,ui:1,UI/UIWindow.img/Delivery/say1
+0x2f9081,1,ui:1,UI/UIWindow.img/Delivery/say1
+0x2fa3e9,1,ui:1,UI/UIWindow.img/Delivery/icon3
+0x2fa4ed,2,ui:2,UI/UIWindow.img/Delivery/icon3 | UI/UIWindow.img/Delivery/npc2
+0x2fa669,2,ui:2,UI/UIWindow.img/Delivery/npc2 | UI/UIWindow.img/Delivery/sendTB
+0x2fa94e,1,ui:1,UI/UIWindow.img/Delivery/tax1
+0x2fbc0e,1,ui:1,UI/UIWindow.img/Delivery/say0
+0x2fbc60,2,ui:2,UI/UIWindow.img/Delivery/say0 | UI/UIWindow.img/Delivery/npc0
+0x2fbc82,2,ui:2,UI/UIWindow.img/Delivery/say0 | UI/UIWindow.img/Delivery/npc0
+0x2fd2b5,1,ui:1,UI/UIWindow.img/Delivery/backgrnd
+0x2fd3f4,1,ui:1,UI/UIWindow.img/Delivery/backgrnd
+0x2fd431,1,ui:1,UI/UIWindow.img/Delivery/backgrnd
+0x2fd453,1,ui:1,UI/UIWindow.img/Delivery/backgrnd
+0x2fd72c,1,ui:1,UI/Basic.img/BtClose
+0x2fd7cd,3,ui:3,UI/Basic.img/BtClose | UI/Basic.img/BtReceive | UI/Basic.img/BtDel
+0x2fd870,5,ui:5,UI/Basic.img/BtClose | UI/Basic.img/BtReceive | UI/Basic.img/BtDel
+0x302182,1,file:1,ProgramFilesDir
+0x3021c1,3,file:2; ui:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x302200,4,file:2; ui:1; other_text:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x30223f,5,file:2; ui:1; other_text:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x30227e,6,file:2; skill:2; ui:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x3022bd,6,file:2; skill:2; ui:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x3022fc,6,file:2; skill:2; ui:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x30237a,6,file:2; skill:2; ui:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x302399,7,skill:3; file:2; ui:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x302409,8,skill:4; file:2; ui:1,ProgramFilesDir | SOFTWARE\Microsoft\Windows\CurrentVersion | c:\Program Files
+0x3024fc,4,skill:4,MPF: | %s\Temp\%s.mp | %s\Temp\*.mp
+0x302658,2,skill:2,%s\Temp\*.mp | %s\Temp\%s
+0x306809,1,other_text:1,%s(%s)
+0x306822,1,other_text:1,%s(%s)
+0x3068e7,1,other_text:1,%s(%s)
+0x30c596,1,character:1,e_levelup
+0x30c5d5,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x30c614,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x30c653,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x30c692,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x30c6d1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x30c710,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x30c74f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x30c78e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x30c877,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x313bdf,1,character:1,e_levelup
+0x313c1e,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x313c5d,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x313c9c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x313cdb,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x313d1a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x313d59,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x313d98,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x313dd7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x313ec0,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x32e868,1,ui:1,Etc/QuestCategory.img
+0x32e927,1,ui:1,Etc/QuestCategory.img
+0x32ea70,1,ui:1,Etc/QuestCategory.img
+0x32eae3,1,ui:1,Etc/QuestCategory.img
+0x32eff0,1,inventory:1,viewMedalItem
+0x32f01a,1,inventory:1,viewMedalItem
+0x32f044,1,inventory:1,viewMedalItem
+0x32f06e,1,inventory:1,viewMedalItem
+0x32f0a5,1,inventory:1,viewMedalItem
+0x32f0e8,1,inventory:1,viewMedalItem
+0x32f109,1,inventory:1,viewMedalItem
+0x32f120,1,inventory:1,viewMedalItem
+0x32f145,1,inventory:1,viewMedalItem
+0x331243,3,other_text:3,mbmin | mbmax | mbcard
+0x333be9,1,skill:1,autoComplete
+0x3340c4,3,other_text:2; ui:1,Quest/PQuest.img | rank | ranks
+0x334660,3,character:2; other_text:1,minLevel | maxLevel | more
+0x3354de,2,other_text:1; ui:1,rank | Quest/Exclusive.img
+0x33555d,1,ui:1,Quest/Exclusive.img
+0x3358ff,1,other_text:1,type
+0x335968,1,other_text:1,type
+0x33c7ba,1,other_text:1,name
+0x33c834,1,other_text:1,name
+0x33c86c,1,other_text:1,name
+0x33cb41,1,other_text:1,./redist
+0x33cc12,1,other_text:1,./redist
+0x33cc9f,1,other_text:1,./redist
+0x33cd19,1,other_text:1,./redist
+0x33cd4c,1,other_text:1,./redist
+0x33d83c,1,ui:1,UI/UIWindow.img/Radio/On/0
+0x33e5f7,1,ui:1,UI/UIWindow.img/Radio/Off/0
+0x346261,1,quest:1,quest
+0x3462cc,1,quest:1,quest
+0x34632c,1,quest:1,quest
+0x346343,1,quest:1,quest
+0x34634d,1,quest:1,quest
+0x35ee59,1,network:1,mxdlogin.poptang.com
+0x35ee69,1,network:1,mxdlogin.poptang.com
+0x35ee90,2,network:2,mxdlogin.poptang.com | mxdlogin2.poptang.com
+0x35eee0,4,network:4,mxdlogin.poptang.com | mxdlogin2.poptang.com | mxdlogin3.poptang.com
+0x35ef76,5,network:5,mxdlogin.poptang.com | mxdlogin2.poptang.com | mxdlogin3.poptang.com
+0x35ef8e,5,network:5,mxdlogin.poptang.com | mxdlogin2.poptang.com | mxdlogin3.poptang.com
+0x35efe9,5,network:5,mxdlogin.poptang.com | mxdlogin2.poptang.com | mxdlogin3.poptang.com
+0x35f03a,5,network:5,mxdlogin.poptang.com | mxdlogin2.poptang.com | mxdlogin3.poptang.com
+0x35f0a5,5,network:5,mxdlogin.poptang.com | mxdlogin2.poptang.com | mxdlogin3.poptang.com
+0x35f13e,5,network:5,mxdlogin.poptang.com | mxdlogin2.poptang.com | mxdlogin3.poptang.com
+0x369b06,1,other_text:1,%03d
+0x369b51,1,other_text:1,%03d
+0x369b9c,1,other_text:1,%03d
+0x369c2f,1,other_text:1,%03d
+0x36a129,1,other_text:1,%07d
+0x36c59a,1,other_text:1,%07d
+0x36c732,1,other_text:1,%07d
+0x36c83b,1,other_text:1,%07d
+0x36f151,1,ui:1,Skill/ItemSkill.img
+0x3705f8,2,ui:1; other_text:1,Skill/MCSkill.img | name
+0x370668,3,other_text:2; ui:1,Skill/MCSkill.img | name | desc
+0x3706b3,4,other_text:3; ui:1,Skill/MCSkill.img | name | desc
+0x370abe,2,ui:1; other_text:1,Skill/MCGuardian.img | name
+0x370b3d,3,other_text:2; ui:1,Skill/MCGuardian.img | name | desc
+0x370b8b,4,other_text:3; ui:1,Skill/MCGuardian.img | name | desc
+0x370f96,3,ui:1; skill:1; character:1,Skill/BFSkill.img | mobSkillID | level
+0x37e26c,1,character:1,e_levelup
+0x37e2ab,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x37e2ea,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x37e329,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x37e368,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x37e3a7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x37e3e6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x37e425,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x37e464,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x37e54d,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x382d24,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382d63,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382da2,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382de1,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382e20,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382e5f,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382e9e,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382edd,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382f1c,1,filename:1,http://mxd.sdo.com/project/startup/banner.html
+0x382f5b,3,filename:1; other_text:1; ui:1,http://mxd.sdo.com/project/startup/banner.html | Play! | button
+0x383405,2,other_text:1; map:1,StartUpDlgClass | MapleStory
+0x398696,1,ui:1,StandardPDD.img
+0x398816,1,ui:1,StandardPDD.img
+0x39c1a6,1,filename:1,PCOM.DLL
+0x39c1e5,1,filename:1,PCOM.DLL
+0x39c263,6,other_text:3; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c27a,7,other_text:3; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c2af,8,other_text:4; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c2bf,8,other_text:4; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c2e6,8,other_text:4; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c30a,8,other_text:4; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c37b,8,other_text:4; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c393,8,other_text:4; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c47c,8,other_text:4; filename:1; inventory:1,PCOM.DLL | PcInitModule | PcCreateObject
+0x39c52f,6,other_text:3; inventory:1; character:1,PcCreateObject | PcFreeUnusedLibraries | PcSerializeObject
+0x39c599,1,other_text:1,PcTermModule
+0x39ce35,1,system:1,%d%02d%02d.LOG
+0x39ce70,1,system:1,%d%02d%02d.LOG
+0x39ceab,1,system:1,%d%02d%02d.LOG
+0x39cee6,1,system:1,%d%02d%02d.LOG
+0x39cf1f,1,system:1,%d%02d%02d.LOG
+0x39cf49,1,system:1,%d%02d%02d.LOG
+0x39cf73,1,system:1,%d%02d%02d.LOG
+0x39cfe6,5,other_text:3; system:2,"%d%02d%02d.LOG | ==== %d/%d/%d %02d:%02d:%02d.%03d ============================== | PID(%X), TID(%X)"
+0x39d05f,6,other_text:4; system:2,"%d%02d%02d.LOG | ==== %d/%d/%d %02d:%02d:%02d.%03d ============================== | PID(%X), TID(%X)"
+0x39d14b,10,other_text:8; system:1; network:1,"==== %d/%d/%d %02d:%02d:%02d.%03d ============================== | PID(%X), TID(%X) | Exception code"
+0x39d23e,32,constant_name:12; other_text:8; character:5,"==== %d/%d/%d %02d:%02d:%02d.%03d ============================== | PID(%X), TID(%X) | Exception code"
+0x39d424,26,constant_name:12; character:5; system:3,ACCESS_VIOLATION | SINGLE_STEP | BREAKPOINT
+0x39d598,4,ui:2; other_text:2,Address   Frame     Logical addr  Module | %08X  %08X  %04X:%08X %s | Address   Frame
+0x39d625,7,other_text:5; ui:2,Address   Frame     Logical addr  Module | %08X  %08X  %04X:%08X %s | Address   Frame
+0x39d73c,11,other_text:8; ui:1; filename:1,Address   Frame | %08X  %08X   | %hs() %hs(%lu) [%s]
+0x39d92a,11,other_text:7; skill:2; filename:1,DBGHELP.DLL | SymInitialize | SymCleanup
+0x39d9bc,11,other_text:7; skill:2; filename:1,DBGHELP.DLL | SymInitialize | SymCleanup
+0x39db47,1,skill:1,%d%02d%02d%02d%02d%02d.dmp
+0x3b6295,1,combat:1,TamingMob
+0x3b62d4,1,combat:1,TamingMob
+0x3b6313,1,combat:1,TamingMob
+0x3b6352,1,combat:1,TamingMob
+0x3b6391,1,combat:1,TamingMob
+0x3b63d0,1,combat:1,TamingMob
+0x3b640f,2,combat:2,TamingMob | TamingMob/
+0x3b644e,2,combat:2,TamingMob | TamingMob/
+0x3b64d6,2,combat:2,TamingMob | TamingMob/
+0x3b6536,2,combat:2,TamingMob | TamingMob/
+0x3ca881,1,other_text:1, %d%s
+0x3da0f0,1,other_text:1,%s : %s
+0x3da142,1,other_text:1,%s : %s
+0x3da159,1,other_text:1,%s : %s
+0x3da170,1,other_text:1,%s : %s
+0x3de366,2,ui:2,UI/CN_Chat.img/roomList/Marker | UI/CN_Chat.img/roomList/Vip
+0x3def8b,1,other_text:1,%04d
+0x3defeb,1,other_text:1,%04d
+0x3df05b,1,other_text:1,%04d
+0x3e677c,1,other_text:1,     %s
+0x3e68bb,1,other_text:1,     %s
+0x3e6948,1,other_text:1,     %s
+0x3ec85a,1,other_text:1,good meeting
+0x3ecc4f,1,other_text:1,Theme
+0x3fcc12,1,other_text:1,%s%d%s
+0x3fcc25,1,other_text:1,%s%d%s
+0x3fcc87,1,other_text:1,%s%d%s
+0x3fcd24,1,other_text:1,%s%d%s
+0x3fd307,1,other_text:1,%s%d%s
+0x3fd325,1,other_text:1,%s%d%s
+0x3fd3cf,1,other_text:1,%s%d%s
+0x402230,1,other_text:1,10000
+0x40237a,1,other_text:1,10000
+0x4026a1,2,other_text:2,/BtOk | /BtCancel
+0x4027b7,2,other_text:2,/BtOk | /BtCancel
+0x405dd9,1,constant_name:1,__GIVEUP__
+0x406599,1,other_text:1,/boat
+0x406795,1,other_text:1,/boat
+0x406b95,2,file:2,path | path
+0x408308,1,other_text:1,/num1/%d
+0x408c11,2,other_text:2,/BtOk | /BtCancel
+0x408c9e,2,other_text:2,/BtOk | /BtCancel
+0x408d5e,2,other_text:2,/BtOk | /BtCancel
+0x40dcae,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40dced,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40dd2c,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40dd6b,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40ddaa,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40dde9,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40de67,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40de82,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40df0e,1,ui:1,UI/UIWindow.img/EnchantSkill/backgrnd
+0x40e009,1,ui:1,UI/UIWindow.img/EnchantSkill/say0
+0x40e793,1,ui:1,UI/UIWindow.img/EnchantSkill/Effect
+0x40e835,1,ui:1,UI/UIWindow.img/EnchantSkill/Effect
+0x40e847,1,ui:1,UI/UIWindow.img/EnchantSkill/Effect
+0x40e875,1,ui:1,UI/UIWindow.img/EnchantSkill/Effect
+0x40e967,2,ui:1; other_text:1,UI/UIWindow.img/EnchantSkill/Effect | Enchant
+0x40e997,2,ui:1; other_text:1,UI/UIWindow.img/EnchantSkill/Effect | Enchant
+0x41543f,1,character:1,e_levelup
+0x41547e,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x4154bd,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4154fc,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x41553b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x41557a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4155b9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4155f8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x415637,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x415720,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x420078,3,other_text:3,%d/%d | %s / %s | %d / %d
+0x432715,1,other_text:1,Maker
+0x432754,1,other_text:1,Maker
+0x432793,1,other_text:1,Maker
+0x4327d2,1,other_text:1,Maker
+0x432811,1,other_text:1,Maker
+0x432850,1,other_text:1,Maker
+0x43288f,1,other_text:1,Maker
+0x4328ce,1,other_text:1,Maker
+0x43290d,1,other_text:1,Maker
+0x4329fc,1,other_text:1,Maker
+0x432e92,3,ui:3,UI/UIWindow.img/Maker/BtStart | UI/UIWindow.img/Maker/BtCancel | UI/UIWindow.img/Maker/notUse
+0x4343a6,1,ui:1,UI/UIWindow.img/Maker/randomMake
+0x43452d,2,ui:2,UI/UIWindow.img/Maker/randomMake | UI/UIWindow.img/Maker/randomMake
+0x434afd,2,ui:2,UI/UIWindow.img/Maker/randomRecipe | UI/UIWindow.img/Maker/randomRecipe
+0x434d77,1,ui:1,UI/UIWindow.img/Maker/randomRecipe
+0x435c10,2,other_text:2,%d/%d | %d/???
+0x43712e,1,ui:1,UI/UIWindow.img/Maker/randomRecipe
+0x4371ce,1,ui:1,UI/UIWindow.img/Maker/randomRecipe
+0x4371fb,1,ui:1,UI/UIWindow.img/Maker/randomRecipe
+0x437782,1,inventory:1,ItemMake
+0x4378e8,1,inventory:1,ItemMake
+0x43b47d,1,ui:1,UI/UIWindow.img/ViciousHammer/GaugeBar/bar
+0x43b6f2,1,ui:1,UI/UIWindow.img/ViciousHammer/GaugeBar/gauge
+0x440772,1,file:1,KeyConfig
+0x4407b1,1,file:1,KeyConfig
+0x4407f0,1,file:1,KeyConfig
+0x44082f,1,file:1,KeyConfig
+0x44086e,1,file:1,KeyConfig
+0x4408ad,1,file:1,KeyConfig
+0x4408ec,1,file:1,KeyConfig
+0x44092b,1,file:1,KeyConfig
+0x44096a,1,file:1,KeyConfig
+0x440a59,1,file:1,KeyConfig
+0x44aed9,1,character:1,e_levelup
+0x44af18,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x44af57,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x44af96,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x44afd5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x44b014,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x44b053,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x44b092,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x44b0d1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x44b1ba,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4501f1,2,quest:1; other_text:1,#Wreward# | #Wsummary#
+0x450381,2,quest:1; other_text:1,#Wreward# | #Wsummary#
+0x4524c2,2,other_text:2,%s (%d) | %s (%d)
+0x452557,2,other_text:2,%s (%d) | %s (%d)
+0x4525e1,2,other_text:2,%s (%d) | %s (%d)
+0x45cf8a,1,other_text:1,    
+0x45cfb2,1,other_text:1,    
+0x45d054,1,other_text:1,    
+0x45d075,1,other_text:1,    
+0x46d353,1,ui:1,UI/UIWindow.img/MonsterBook/ContextMenu/t
+0x46d411,2,ui:2,UI/UIWindow.img/MonsterBook/ContextMenu/t | UI/UIWindow.img/MonsterBook/ContextMenu/c
+0x473266,1,ui:1,UI/UIWindow.img/MonsterBook/cover
+0x47328d,1,ui:1,UI/UIWindow.img/MonsterBook/cover
+0x474382,4,combat:2; skill:2,HP : ??? | MP : ??? | HP : %s
+0x47b63a,1,other_text:1,%-5s
+0x47b6a5,1,other_text:1,%-5s
+0x47d232,1,other_text:1,%d / %d
+0x47d251,1,other_text:1,%d / %d
+0x4821f7,1,ui:1,Icon
+0x4822d3,1,ui:1,Icon
+0x488177,1,social:1,PartySearch
+0x4881b6,1,social:1,PartySearch
+0x4881f5,1,social:1,PartySearch
+0x488234,1,social:1,PartySearch
+0x488273,1,social:1,PartySearch
+0x4882b2,1,social:1,PartySearch
+0x4882f1,1,social:1,PartySearch
+0x488330,1,social:1,PartySearch
+0x48842a,2,social:2,PartySearch | PartySearch
+0x4885a3,2,social:1; ui:1,PartySearch | UI/UIWindow.img/PartySearch/PartyMember
+0x48864e,4,social:3; ui:1,PartySearch | UI/UIWindow.img/PartySearch/PartyMember | party0
+0x48bc73,1,character:1,e_levelup
+0x48bcb2,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x48bcf1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x48bd30,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x48bd6f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x48bdae,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x48bded,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x48be2c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x48be6b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x48bf54,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x492429,1,other_text:1,type
+0x492445,1,other_text:1,type
+0x492933,2,quest:1; other_text:1,#Wreward# | #Wsummary#
+0x492ac3,2,quest:1; other_text:1,#Wreward# | #Wsummary#
+0x49314f,1,other_text:1,type
+0x49338e,1,other_text:1,type
+0x49e5e8,1,other_text:1,default
+0x49e633,1,other_text:1,default
+0x4a274a,1,other_text:1,/left
+0x4a2782,1,other_text:1,/left
+0x4a27d7,1,other_text:1,/left
+0x4a2807,2,other_text:2,/left | /center
+0x4a2813,2,other_text:2,/left | /center
+0x4a2833,2,other_text:2,/left | /center
+0x4a29d2,3,other_text:3,/left | /center | /right
+0x4a7154,2,ui:1; map:1,UI/UIWindow.img/UserList/Guild/GuildBoard/Loading | gamerank.maplestory
+0x4a7435,1,map:1,gamerank.maplestory
+0x4bb3fe,1,ui:1,UI/UIWindow.img/AranSkillGuide/%d
+0x4d4618,1,character:1,e_levelup
+0x4d4657,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x4d4696,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4d46d5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4d4714,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4d4753,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4d4792,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4d47d1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4d4810,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4d48f9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4d4913,4,combat:2; other_text:1; skill:1,e_rest | e_HPAlert | e_NOHPPotion
+0x4dc11b,1,character:1,EXP : %d / %d  GachaponEXP : %d
+0x4dc1e1,1,character:1,EXP : %d / %d  GachaponEXP : %d
+0x4dc2e9,1,character:1,EXP : %d / %d  GachaponEXP : %d
+0x4dfaf5,1,other_text:1,     %s
+0x4dfb14,1,other_text:1,     %s
+0x4dfb68,1,other_text:1,     %s
+0x4e560e,4,other_text:4,PageDown | PageUp | Ctrl
+0x4e8c01,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/BtNext
+0x4e8c40,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/BtNext
+0x4e8c7f,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/BtNext | UI/PredictHarmony.img/predictmaritalharmony/BtC
+0x4e8cbe,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/BtNext | UI/PredictHarmony.img/predictmaritalharmony/BtC
+0x4e8cfd,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/BtNext | UI/PredictHarmony.img/predictmaritalharmony/BtC
+0x4e8d3c,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/BtNext | UI/PredictHarmony.img/predictmaritalharmony/BtC
+0x4e8d7b,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/BtNext | UI/PredictHarmony.img/predictmaritalharmony/BtC
+0x4e8dba,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/BtNext | UI/PredictHarmony.img/predictmaritalharmony/BtC
+0x4e8df9,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/BtNext | UI/PredictHarmony.img/predictmaritalharmony/BtC
+0x4ea130,5,ui:3; other_text:2,UI/PredictHarmony.img/card/%d | Etc/PredictCard.img/%d | name
+0x4ea8d7,1,ui:1,UI/PredictHarmony.img/card/%d
+0x4ea933,1,ui:1,UI/PredictHarmony.img/card/%d
+0x4ebfb6,1,character:1,e_levelup
+0x4ebff5,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x4ec034,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4ec073,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4ec0b2,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4ec0f1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4ec130,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4ec16f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4ec1ae,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4ec297,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x4f288d,1,other_text:1,%s  
+0x4f6426,1,other_text:1,bonus
+0x4fb9fb,1,other_text:1,char
+0x501d2c,1,character:1,e_levelup
+0x501d6b,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x501daa,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x501de9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x501e28,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x501e50,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x501e67,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x501ea6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x501ee5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x501f24,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x50200d,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x510c2c,1,other_text:1,(%d/%d)
+0x510c6f,1,other_text:1,(%d/%d)
+0x510caa,1,other_text:1,(%d/%d)
+0x510cdf,1,other_text:1,(%d/%d)
+0x51de8b,1,ui:1,UI/UIWindow.img/UserList/GuildUnion/backgrnd
+0x51df5d,1,ui:1,UI/UIWindow.img/UserList/GuildUnion/backgrnd
+0x51e076,1,ui:1,UI/UIWindow.img/UserList/GuildUnion/backgrnd
+0x5272d7,3,ui:3,UI/UIWindow.img/UserList/Guild/GuildBoard/backgrnd | UI/UIWindow.img/UserList/Guild/GuildBoard/BtMod
+0x527342,5,ui:5,UI/UIWindow.img/UserList/Guild/GuildBoard/backgrnd | UI/UIWindow.img/UserList/Guild/GuildBoard/BtMod
+0x5273f1,6,ui:6,UI/UIWindow.img/UserList/Guild/GuildBoard/backgrnd | UI/UIWindow.img/UserList/Guild/GuildBoard/BtMod
+0x530a70,1,map:1,guildboard.maplestory
+0x530c42,1,map:1,guildboard.maplestory
+0x530cbf,1,map:1,guildboard.maplestory
+0x533efd,1,character:1,e_levelup
+0x533f3c,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x533f7b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x533fba,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x533ff9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x534038,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x534077,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5340b6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5340f5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5341de,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x539c4a,2,other_text:1; system:1,EnchantSuccess_Delay | EnchantFailure_Delay
+0x53cb27,2,ui:2,Effect/BasicEff.img/Transform | Effect/BasicEff.img/TransformOnLadder
+0x53cd77,3,ui:2; other_text:1,Effect/BasicEff.img/Transform | Effect/BasicEff.img/TransformOnLadder | Transform
+0x53cd99,3,ui:2; other_text:1,Effect/BasicEff.img/Transform | Effect/BasicEff.img/TransformOnLadder | Transform
+0x53ce58,1,ui:1,Skill/510.img/skill/5101007/effect
+0x53d0c2,2,ui:2,Skill/510.img/skill/5101007/effect | Skill/510.img/skill/5101007/affected
+0x541b4a,1,ui:1,Item/Etc/0429.img/%08d/effect
+0x541ce9,1,ui:1,Item/Etc/0429.img/%08d/effect
+0x542511,1,ui:1,Item/Etc/0429.img/%08d/effect/
+0x5426b0,1,ui:1,Item/Etc/0429.img/%08d/effect/
+0x5426d4,1,ui:1,Item/Etc/0429.img/%08d/effect/
+0x5426f8,1,ui:1,Item/Etc/0429.img/%08d/effect/
+0x54272f,1,ui:1,Item/Etc/0429.img/%08d/effect/
+0x542766,1,ui:1,Item/Etc/0429.img/%08d/effect/
+0x542ac5,1,ui:1,Item/Etc/0429.img/%08d/effect/
+0x54a2a0,2,ui:2,Icon | Icon
+0x54a2ae,2,ui:2,Icon | Icon
+0x54f9b8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x54fa03,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x54fa4e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x54fa99,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x54faa7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x54faf8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x54fb49,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x54fc30,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x554b24,2,other_text:2,market00 | out00
+0x554b58,2,other_text:2,market00 | out00
+0x568a17,3,ui:3,UI/Basic.img/KeyDownBar/bar | UI/Basic.img/KeyDownBar/gauge | UI/Basic.img/KeyDownBar/graduation
+0x56d386,1,ui:1,Effect/BasicEff.img/Combo/%d/%d
+0x56d3ae,1,ui:1,Effect/BasicEff.img/Combo/%d/%d
+0x56d3fd,1,ui:1,Effect/BasicEff.img/Combo/%d/%d
+0x56d50e,1,ui:1,Effect/BasicEff.img/Combo/%d/%d
+0x57e5ec,1,character:1,e_levelup
+0x57e62b,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x57e66a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x57e6a9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x57e6e8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x57e727,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x57e766,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x57e7a5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x57e7e4,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x57e8cd,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x585ad7,1,character:1,e_levelup
+0x585aef,2,character:2,e_levelup | e_prelevelup
+0x585b40,5,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x585b91,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x585be2,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x585c33,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x585c84,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x585cd5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x585dc9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x589647,1,ui:1,Map/MapHelper.img/weather/squib/squib%d
+0x58c84a,1,character:1,e_levelup
+0x58c889,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x58c8c8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x58c907,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x58c946,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x58c985,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x58c9c4,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x58ca03,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x58ca42,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x58cb2b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x594c41,2,system:2,IDispatch error #%d | Unknown error 0x%0lX
+0x594c7a,2,system:2,IDispatch error #%d | Unknown error 0x%0lX
+0x594c83,2,system:2,IDispatch error #%d | Unknown error 0x%0lX
+0x594e51,2,system:2,IDispatch error #%d | Unknown error 0x%0lX
+0x594e66,2,system:2,IDispatch error #%d | Unknown error 0x%0lX
+0x594e97,2,system:2,IDispatch error #%d | Unknown error 0x%0lX
+0x594f44,1,character:1,"ver.%d CharacterName(%s), WorldID(%d), ChID(%d), %s"
+0x594fba,1,character:1,"ver.%d CharacterName(%s), WorldID(%d), ChID(%d), %s"
+0x594fbe,1,character:1,"ver.%d CharacterName(%s), WorldID(%d), ChID(%d), %s"
+0x594ff8,1,character:1,"ver.%d CharacterName(%s), WorldID(%d), ChID(%d), %s"
+0x5950f3,1,character:1,"ver.%d CharacterName(%s), WorldID(%d), ChID(%d), %s"
+0x595124,1,character:1,"ver.%d CharacterName(%s), WorldID(%d), ChID(%d), %s"
+0x597820,2,ui:2,Sound/CashEffect.img/05190000/Use | Sound/field.img/summerboating/bomb
+0x597895,2,ui:2,Sound/CashEffect.img/05190000/Use | Sound/field.img/summerboating/bomb
+0x597946,2,ui:2,Sound/CashEffect.img/05190000/Use | Sound/field.img/summerboating/bomb
+0x59797d,2,ui:2,Sound/CashEffect.img/05190000/Use | Sound/field.img/summerboating/bomb
+0x5979bc,2,ui:2,Sound/CashEffect.img/05190000/Use | Sound/field.img/summerboating/bomb
+0x597a32,2,ui:2,Sound/CashEffect.img/05190000/Use | Sound/field.img/summerboating/bomb
+0x597a7e,1,ui:1,Sound/field.img/summerboating/bomb
+0x59e678,1,character:1,e_levelup
+0x59e6b7,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x59e6f6,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x59e735,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x59e774,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x59e7b3,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x59e7f2,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x59e831,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x59e870,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x59e959,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a5d7f,2,ui:2,UI/UIWindow.img/CashGachapon/EffectNormal/0 | UI/UIWindow.img/CashGachapon/EffectNormal/16
+0x5a6a8d,2,cash:2,CashGachaponJackpot | CashGachaponNormal
+0x5a9bb8,3,character:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9bf7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9c36,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9cb4,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9ce9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9cf9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9d20,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9d91,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9da9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5a9e6d,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5cb9f8,1,character:1,e_levelup
+0x5cba37,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x5cba76,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5cbab5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5cbaf4,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5cbb33,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5cbb72,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5cbbb1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5cbbf0,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5cbcd9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5d752b,1,character:1,e_levelup
+0x5d756a,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x5d75a9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5d75e8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5d7627,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5d7666,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5d76a5,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5d76e4,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5d7723,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5d780c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5f3e3a,1,map:1,MapLink
+0x5f4594,1,ui:1,Map/MapHelper.img/worldMap/npcPos
+0x5fb1f8,1,character:1,http://mxd.sdo.com/project/startup/index.html
+0x5fb237,1,character:1,http://mxd.sdo.com/project/startup/index.html
+0x5fb276,1,character:1,http://mxd.sdo.com/project/startup/index.html
+0x5fb2b5,2,character:1; other_text:1,http://mxd.sdo.com/project/startup/index.html | %s\HShield
+0x5fb333,3,character:1; other_text:1; ui:1,http://mxd.sdo.com/project/startup/index.html | %s\HShield | C:\Windows\system32\msexcr.ini
+0x5fb35d,3,character:1; other_text:1; ui:1,http://mxd.sdo.com/project/startup/index.html | %s\HShield | C:\Windows\system32\msexcr.ini
+0x5fb3d9,3,character:1; other_text:1; ui:1,http://mxd.sdo.com/project/startup/index.html | %s\HShield | C:\Windows\system32\msexcr.ini
+0x5fb4b9,3,character:1; other_text:1; ui:1,http://mxd.sdo.com/project/startup/index.html | %s\HShield | C:\Windows\system32\msexcr.ini
+0x5fb50b,2,other_text:1; ui:1,%s\HShield | C:\Windows\system32\msexcr.ini
+0x5fb59d,1,ui:1,C:\Windows\system32\msexcr.ini
+0x5fdd10,1,character:1,e_levelup
+0x5fdd4f,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x5fdd8e,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5fddcd,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5fde0c,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5fde4b,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5fde8a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5fdec9,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5fdf08,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5fdff1,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x5fe02a,3,combat:2; skill:1,e_HPAlert | e_NOHPPotion | e_NOMPPotion
+0x5ff4b3,2,system:2,ZtlLog | ZtlLog%08lx
+0x601f19,2,ui:2,C:\Windows\system32\msexcr.ini | C:\Windows\system32\msexcr.ini
+0x601fb6,4,ui:4,C:\Windows\system32\msexcr.ini | C:\Windows\system32\msexcr.ini | C:\Windows\system32\msexcr.ini
+0x6020e2,5,ui:4; character:1,C:\Windows\system32\msexcr.ini | C:\Windows\system32\msexcr.ini | C:\Windows\system32\msexcr.ini
+0x602197,5,ui:4; character:1,C:\Windows\system32\msexcr.ini | C:\Windows\system32\msexcr.ini | C:\Windows\system32\msexcr.ini
+0x602250,1,character:1,"ver.%d CharacterName(%s), WorldID(%d), ChID(%d)"
+0x6078c7,2,character:2,e_levelup | e_prelevelup
+0x607906,5,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x607945,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x607984,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x6079c3,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x607a02,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x607a41,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x607a80,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x607afe,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x607b94,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x60ab3e,1,character:1,e_levelup
+0x60ab7d,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x60abbc,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x60abfb,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x60ac3a,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x60ac79,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x60acb8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x60acf7,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x60ad36,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x60ae1f,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x611325,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd1
+0x611427,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd1
+0x617ecc,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd
+0x617f36,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd
+0x617f45,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd
+0x617f80,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd
+0x61800c,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd
+0x618063,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/backgrnd | UI/PredictHarmony.img/predictmaritalharmony/b
+0x61807e,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/backgrnd | UI/PredictHarmony.img/predictmaritalharmony/b
+0x618095,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/backgrnd | UI/PredictHarmony.img/predictmaritalharmony/b
+0x618107,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/backgrnd | UI/PredictHarmony.img/predictmaritalharmony/b
+0x61817a,2,ui:2,UI/PredictHarmony.img/predictmaritalharmony/backgrnd | UI/PredictHarmony.img/predictmaritalharmony/b
+0x618247,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd2
+0x6182d9,1,ui:1,UI/PredictHarmony.img/predictmaritalharmony/backgrnd2
+0x6186e4,2,constant_name:1; other_text:1,SYSTEM | Something went wrong !!!!!
+0x618753,2,constant_name:1; other_text:1,SYSTEM | Something went wrong !!!!!
+0x6187cb,2,constant_name:1; other_text:1,SYSTEM | Something went wrong !!!!!
+0x61883c,2,constant_name:1; other_text:1,SYSTEM | Something went wrong !!!!!
+0x618ada,1,ui:1,UI/UIWindow.img/PartySearch/icon0/0
+0x618b60,1,ui:1,UI/UIWindow.img/PartySearch/icon0/0
+0x618bc2,1,ui:1,UI/UIWindow.img/PartySearch/icon0/0
+0x618c30,1,ui:1,UI/UIWindow.img/PartySearch/icon0/0
+0x6192a6,2,ui:2,UI/UIWindow.img/PartySearch/icon0/3 | UI/UIWindow.img/PartySearch/icon0/4
+0x62690e,4,character:2; other_text:1; combat:1,e_levelup | e_prelevelup | e_rest
+0x626966,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x6269f8,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x626a10,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x626a28,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x626a79,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x626bad,6,character:2; combat:2; other_text:1,e_levelup | e_prelevelup | e_rest
+0x62f437,1,other_text:1,%10d/%d/%d
+0x630370,1,filename:1,%s\%s_%04d%02d%02d_%02d%02d%02d.jpg
+0x6303f1,1,filename:1,%s\%s_%04d%02d%02d_%02d%02d%02d.jpg
+0x643bba,2,other_text:2,[%s]  | [%s] 
+0x64d189,1,ui:1,Map/Physics.img
+0x64d1c8,1,ui:1,Map/Physics.img
+0x64d207,1,ui:1,Map/Physics.img
+0x64d246,2,ui:1; other_text:1,Map/Physics.img | walkForce
+0x64d248,2,ui:1; other_text:1,Map/Physics.img | walkForce
+0x64d285,2,ui:1; other_text:1,Map/Physics.img | walkForce
+0x64d303,4,other_text:3; ui:1,Map/Physics.img | walkForce | walkSpeed
+0x64d393,5,other_text:4; ui:1,Map/Physics.img | walkForce | walkSpeed
+0x64d5be,8,other_text:8,walkDrag | slipForce | slipSpeed
+0x6544e0,1,ui:1,Map/Physics.img
+0x65452e,1,ui:1,Map/Physics.img
+0x654589,2,ui:1; other_text:1,Map/Physics.img | walkForce
+0x6545a1,2,ui:1; other_text:1,Map/Physics.img | walkForce
+0x6545f5,3,other_text:2; ui:1,Map/Physics.img | walkForce | walkSpeed
+0x654646,4,other_text:3; ui:1,Map/Physics.img | walkForce | walkSpeed
+0x65a21c,1,other_text:1,\HShield
+0x65a22f,2,other_text:1; filename:1,\HShield | \HShield\EHSvc.dll
+0x65a2d6,3,other_text:2; filename:1,\HShield | \HShield\EHSvc.dll | 7F8C0EE7B8836AE5A8D7D636
+0x65a393,3,other_text:2; filename:1,\HShield | \HShield\EHSvc.dll | 7F8C0EE7B8836AE5A8D7D636
+0x65a464,3,other_text:2; filename:1,\HShield | \HShield\EHSvc.dll | 7F8C0EE7B8836AE5A8D7D636
+0x65d299,2,filename:2,From.  | To. 
+0x65d2d8,2,filename:2,From.  | To. 
+0x65d317,3,filename:2; ui:1,From.  | To.  | UI/UIWindow.img/NewYearsCard/backgrnd3
+0x65d356,3,filename:2; ui:1,From.  | To.  | UI/UIWindow.img/NewYearsCard/backgrnd3
+0x65d395,3,filename:2; ui:1,From.  | To.  | UI/UIWindow.img/NewYearsCard/backgrnd3
+0x65d3d4,3,filename:2; ui:1,From.  | To.  | UI/UIWindow.img/NewYearsCard/backgrnd3
+0x65d413,3,filename:2; ui:1,From.  | To.  | UI/UIWindow.img/NewYearsCard/backgrnd3
+0x65d452,3,filename:2; ui:1,From.  | To.  | UI/UIWindow.img/NewYearsCard/backgrnd3
+0x65d491,3,filename:2; ui:1,From.  | To.  | UI/UIWindow.img/NewYearsCard/backgrnd3
+0x65d51f,3,filename:2; ui:1,From.  | To.  | UI/UIWindow.img/NewYearsCard/backgrnd3
+0x65d7a9,1,ui:1,UI/UIWindow.img/NewYearsCard/BtClose
+0x65d7d4,1,ui:1,UI/UIWindow.img/NewYearsCard/BtClose
+0x65ec7e,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd2
+0x65ecbd,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd2
+0x65ecfc,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd2
+0x65ed3b,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd2
+0x65ee2a,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd2
+0x65f386,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd
+0x65f413,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd
+0x65f443,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd
+0x65f49b,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd
+0x65f4cb,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd
+0x65f4ee,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd
+0x65f547,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd
+0x65f550,1,ui:1,UI/UIWindow.img/NewYearsCard/backgrnd
+0x65f66c,2,ui:2,UI/UIWindow.img/NewYearsCard/BtSearch | UI/UIWindow.img/NewYearsCard/BtOk
+0x65f73d,3,ui:3,UI/UIWindow.img/NewYearsCard/BtSearch | UI/UIWindow.img/NewYearsCard/BtOk | UI/UIWindow.img/NewYears
+0x661483,1,ui:1,UI/UIWindow.img/Transform/backgrnd
+0x6614c2,1,ui:1,UI/UIWindow.img/Transform/backgrnd
+0x661501,1,ui:1,UI/UIWindow.img/Transform/backgrnd
+0x661540,1,ui:1,UI/UIWindow.img/Transform/backgrnd
+0x66157f,1,ui:1,UI/UIWindow.img/Transform/backgrnd
+0x6615be,1,ui:1,UI/UIWindow.img/Transform/backgrnd
+0x6615fd,1,ui:1,UI/UIWindow.img/Transform/backgrnd
+0x66163c,1,ui:1,UI/UIWindow.img/Transform/backgrnd
+0x66172b,3,ui:3,UI/UIWindow.img/Transform/backgrnd | UI/UIWindow.img/Transform/BtOk | UI/UIWindow.img/Transform/BtCa
+0x661826,2,ui:2,UI/UIWindow.img/Transform/BtOk | UI/UIWindow.img/Transform/BtCancel
+0x6633b2,3,network:2; ui:1,SOFTWARE\Microsoft\Windows\CurrentVersion | CxSupportId | CxSupportId
+0x6633be,3,network:2; ui:1,SOFTWARE\Microsoft\Windows\CurrentVersion | CxSupportId | CxSupportId
+0x6633c4,3,network:2; ui:1,SOFTWARE\Microsoft\Windows\CurrentVersion | CxSupportId | CxSupportId
+0x6633ca,3,network:2; ui:1,SOFTWARE\Microsoft\Windows\CurrentVersion | CxSupportId | CxSupportId
+0x6633d0,3,network:2; ui:1,SOFTWARE\Microsoft\Windows\CurrentVersion | CxSupportId | CxSupportId
+0x6633e0,3,network:2; ui:1,SOFTWARE\Microsoft\Windows\CurrentVersion | CxSupportId | CxSupportId
+0x663410,3,network:2; ui:1,SOFTWARE\Microsoft\Windows\CurrentVersion | CxSupportId | CxSupportId
+0x663420,3,network:2; ui:1,SOFTWARE\Microsoft\Windows\CurrentVersion | CxSupportId | CxSupportId
+0x663700,7,other_text:2; filename:2; network:2,agent | bluenetterm.exe | client.exe
+0x663800,11,filename:4; other_text:4; network:2,bluenetterm.exe | client.exe | Cyberria
+0x667075,1,other_text:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+0x6670a6,1,other_text:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+0x6670bd,1,other_text:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+0x667190,1,other_text:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+0x66719f,1,other_text:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+0x6671ae,1,other_text:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+0x6671c0,1,other_text:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+0x6671cf,1,other_text:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE
+0x6671ea,2,other_text:1; filename:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE | l$K~c!Ia?&h8@%..
+0x66724f,3,other_text:2; filename:1,Global\770D6DE9-7645-4cab-B490-28EE40F538CE | l$K~c!Ia?&h8@%.. | %s\%s
+0x667407,5,filename:4; other_text:1,l$K~c!Ia?&h8@%.. | %s\%s | l$K~+_L{blu1+!..
+0x66743f,5,filename:4; other_text:1,l$K~c!Ia?&h8@%.. | %s\%s | l$K~+_L{blu1+!..
+0x66763f,3,filename:2; other_text:1,\dnsapi.DLL | d-LclI?[c*L{b;LclLh[4#~cz2K~@;I. | d-Lcl:Ha4sE~
+0x6676d4,5,other_text:3; filename:2,d-LclI?[c*L{b;LclLh[4#~cz2K~@;I. | d-Lcl:Ha4sE~ | D;E-LS9-?&h8@%..
+0x6676ee,5,other_text:3; filename:2,d-LclI?[c*L{b;LclLh[4#~cz2K~@;I. | d-Lcl:Ha4sE~ | D;E-LS9-?&h8@%..
+0x6680c0,4,other_text:3; filename:1,HSUpdate.exe | %s\%s | Global\C886B01D-2DDD-466e-B6D7-43E0DC18F895
+0x6681a8,5,other_text:4; filename:1,HSUpdate.exe | %s\%s | Global\C886B01D-2DDD-466e-B6D7-43E0DC18F895
+0x66821f,5,other_text:4; filename:1,HSUpdate.exe | %s\%s | Global\C886B01D-2DDD-466e-B6D7-43E0DC18F895
+0x66875b,4,other_text:3; filename:1,HSUpdateResult | HSUpdate.env | %s\%s
+0x66888a,4,other_text:3; filename:1,HSUpdate.env | %s\%s | 0x%x
+0x6688be,5,other_text:3; filename:2,HSUpdate.env | %s\%s | 0x%x
+0x668fc0,1,other_text:1,%d.%d.%d.%s%d(Build %d)
+0x669030,1,other_text:1,%d.%d.%d.%s%d(Build %d)
+0x66903f,1,other_text:1,%d.%d.%d.%s%d(Build %d)
+0x66904e,1,other_text:1,%d.%d.%d.%s%d(Build %d)
+0x669060,1,other_text:1,%d.%d.%d.%s%d(Build %d)
+0x66906f,1,other_text:1,%d.%d.%d.%s%d(Build %d)
+0x66916d,1,other_text:1,%d.%d.%d.%s%d(Build %d)
+0x669220,1,other_text:1,%d.%d.%d.%s%d(Build %d)
+0x66955e,2,filename:2,z`La4~`8D2A64lA[1#HaD$y84(I. | }~6_l(..
+0x669917,1,filename:1,<[H8@_A8@_`+c:L{t:%{z(L8c`:{@lHaA2^vd2D~D_5$D^Lad<E[@<A84[S$1#:.
+0x669b40,4,filename:2; other_text:2,L+/+10L/d-D0L+KsD&h{dL=$?};#dLt~?!6_h_?[dLt~?+o[b~K[d:&vd-D0}l?[c+S/d-I. | %08x | @2H{d:..
+0x669b60,4,filename:2; other_text:2,L+/+10L/d-D0L+KsD&h{dL=$?};#dLt~?!6_h_?[dLt~?+o[b~K[d:&vd-D0}l?[c+S/d-I. | %08x | @2H{d:..
+0x669e40,4,other_text:4,%%%02x | %%%02x | [%d]%d-%d-%d-0x%x %s 
+0x66a000,3,other_text:3,[%d]%d-%d-%d-0x%x %s  | [%d]%d-%d-%d-0x%x %s  | 0x%x %s
+0x66a12a,1,other_text:1,0x%x %s
+0x66a203,1,other_text:1,0x%x %s
+0x66cdd5,5,other_text:3; inventory:2,%08x%s | _FTPUSERID   = | %08x%s
+0x66d093,2,other_text:2,%s%s | %s%d
+0x66d0c5,2,other_text:2,%s%s | %s%d
+0x66d247,1,other_text:1,%s%d
+0x67b38c,1,map:1,F:\MapleStory.exe
+0x67b3e0,1,map:1,F:\MapleStory.exe
+0x67b503,1,map:1,F:\MapleStory.exe
+0x67b55b,1,map:1,F:\MapleStory.exe
+0x67b614,1,map:1,F:\MapleStory.exe
+0x67db13,1,other_text:1,         (((((                  H
+0x67db4a,1,other_text:1,         (((((                  H
+0x67db98,1,other_text:1,         (((((                  H
+0x67e3cd,2,other_text:2,1252 | 040a
+0x67e404,2,other_text:2,1252 | 040a
+0x67e48a,2,other_text:2,1252 | 040a
+0x67e4a4,2,other_text:2,1252 | 040a
+0x67e50a,2,other_text:2,1252 | 040a
+0x67e529,2,other_text:2,1252 | 040a
+0x67e58b,2,other_text:2,1252 | 040a
+0x67e5c1,2,other_text:2,1252 | 040a
+0x7a1e39,2,other_text:2,incSpeedMin | incCraftMin
+0x7a536e,1,ui:1,UI/UIWindow.img/Radio/Off/0
+0x7ba241,1,other_text:1,Z^i]
+0x7bd8bf,1,other_text:1,`[ar
