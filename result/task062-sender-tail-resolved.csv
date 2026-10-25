@@ -1,0 +1,113 @@
+site_rva,function_rva,c2s_name,method,confidence,provenance_depth,resolved_opcode,resolution_method,references,code_len
+0x6f0fd,0x6ed88,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,9194
+0x70549,0x701c3,?,unresolved,,none-exhausted,,exhausted,,
+0x925ba,0x9258f,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,468
+0x94cd4,0x947ea,?,unresolved,,none-exhausted,,exhausted,,
+0x94d5f,0x947ea,?,unresolved,,none-exhausted,,exhausted,,
+0x960c6,0x9583a,?,unresolved,,none-exhausted,,exhausted,,
+0x9643e,0x9639d,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,1363
+0xa3e15,0xa3dea,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,468
+0x158d4a,0x158a46,?,unresolved,,none-exhausted,,exhausted,,
+0x16127a,0x161066,?,unresolved,,none-exhausted,,exhausted,,
+0x16589a,0x165630,?,unresolved,,none-exhausted,,exhausted,,
+0x1709c5,0x1708f5,?,unresolved,,none-exhausted,,vtable_slot,,
+0x189e03,0x189d6c,?,unresolved,,none-exhausted,,vtable_slot,,
+0x189e85,0x189d6c,?,unresolved,,none-exhausted,,vtable_slot,,
+0x189ecc,0x189d6c,?,unresolved,,none-exhausted,,vtable_slot,,
+0x1994b3,0x198c3a,?,unresolved,,none-exhausted,,exhausted,,
+0x1ba08c,0x1b9fca,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,1432
+0x1cdf27,0x1cde3f,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,1925
+0x1d4327,0x1d42f2,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,473
+0x220c47,0x220292,?,unresolved,,none-exhausted,,vtable_slot,,
+0x22a6e2,0x22a5c3,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,1053
+0x22b4fd,0x22b4b4,?,unresolved,,none-exhausted,,exhausted,,
+0x22c8ce,0x22c85d,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,630
+0x22d59e,0x22d33a,?,unresolved,,none-exhausted,,vtable_slot,,
+0x22d89e,0x22d33a,?,unresolved,,none-exhausted,,vtable_slot,,
+0x22dd65,0x22d33a,?,unresolved,,none-exhausted,,vtable_slot,,
+0x22f422,0x22f3c5,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,652
+0x22f5ec,0x22f5b7,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,528
+0x22f6f2,0x22f692,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,923
+0x29a2f7,0x299c2d,?,unresolved,,none-exhausted,,vtable_slot,,
+0x29f90f,0x29f7d8,?,unresolved,,none-exhausted,,no_decompiled,,
+0x2a6fc2,0x2a6d3e,?,unresolved,,none-exhausted,,exhausted,,
+0x2c22d2,0x2c1858,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,49038
+0x2c4764,0x2c41db,?,unresolved,,none-exhausted,,vtable_slot,,
+0x2c702b,0x2c6f77,?,unresolved,,none-exhausted,,exhausted,,
+0x2f222c,0x2f21a2,?,unresolved,,none-exhausted,,vtable_slot,,
+0x30726d,0x306f87,?,unresolved,,none-exhausted,,exhausted,,
+0x30f08b,0x30e96f,?,unresolved,,none-exhausted,,exhausted,,
+0x30f56a,0x30f47c,?,unresolved,,none-exhausted,,exhausted,,
+0x30f862,0x30f47c,?,unresolved,,none-exhausted,,exhausted,,
+0x342670,0x342294,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,7969
+0x3428bc,0x3426b4,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,5308
+0x342b6c,0x342910,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,5143
+0x342bd2,0x342910,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,5143
+0x3ac38d,0x3ac18b,?,unresolved,,none-exhausted,,no_decompiled,,
+0x3ac5e8,0x3ac40c,?,unresolved,,none-exhausted,,exhausted,,
+0x3ac970,0x3ac40c,?,unresolved,,none-exhausted,,exhausted,,
+0x3d9bef,0x3d9a05,?,unresolved,,none-exhausted,,exhausted,,
+0x3d9c7c,0x3d9a05,?,unresolved,,none-exhausted,,exhausted,,
+0x3d9f16,0x3d9a05,?,unresolved,,none-exhausted,,exhausted,,
+0x3da123,0x3d9a05,?,unresolved,,none-exhausted,,exhausted,,
+0x3da650,0x3da50c,?,unresolved,,none-exhausted,,exhausted,,
+0x3e4e77,0x3e483d,?,unresolved,,none-exhausted,,exhausted,,
+0x3feaca,0x3fe2a5,?,unresolved,,none-exhausted,,no_decompiled,,
+0x3ffb54,0x3fecee,?,unresolved,,none-exhausted,,exhausted,,
+0x42bcb6,0x42b8da,?,unresolved,,none-exhausted,,exhausted,,
+0x437c08,0x437976,?,unresolved,,none-exhausted,,exhausted,,
+0x43b0e1,0x43abba,?,unresolved,,none-exhausted,,exhausted,,
+0x43ba2a,0x43b223,?,unresolved,,none-exhausted,,vtable_slot,,
+0x43bc30,0x43b223,?,unresolved,,none-exhausted,,vtable_slot,,
+0x43f47f,0x43f304,?,unresolved,,none-exhausted,,exhausted,,
+0x47e6c8,0x47de04,?,unresolved,,none-exhausted,,vtable_slot,,
+0x4b34f0,0x4b34a9,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,526
+0x4b558d,0x4b546a,?,unresolved,,none-exhausted,,exhausted,,
+0x527859,0x52782e,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,468
+0x5547c6,0x553d85,?,unresolved,,none-exhausted,,exhausted,,
+0x554e62,0x554b58,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader,4989
+0x56298d,0x5626fb,?,unresolved,,none-exhausted,,no_decompiled,,
+0x5638b9,0x562c87,?,unresolved,,none-exhausted,,no_decompiled,,
+0x56b5f9,0x56a767,?,unresolved,,none-exhausted,,exhausted,,
+0x56c8ab,0x56b6ea,?,unresolved,,none-exhausted,,exhausted,,
+0x56cfca,0x56cdfd,?,unresolved,,1-ambiguous,,exhausted,,
+0x56e2c4,0x56e29c,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,345
+0x576c8a,0x576ae9,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,2994
+0x577381,0x57707b,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,5500
+0x577531,0x5773de,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,2772
+0x577de7,0x5775af,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,15010
+0x5796dc,0x578c7d,?,unresolved,,none-exhausted,,no_decompiled,,
+0x579fa2,0x579e18,?,unresolved,,none-exhausted,,no_decompiled,,
+0x57a164,0x57a00a,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,2815
+0x57ac61,0x57a569,?,unresolved,,none-exhausted,,exhausted,,
+0x5a6a61,0x5a5d7f,?,unresolved,,none-exhausted,,exhausted,,
+0x5cca89,0x5cc912,?,unresolved,,none-exhausted,,exhausted,,
+0x5d02cf,0x5cfcb4,?,unresolved,,none-exhausted,,vtable_slot,,
+0x60c64d,0x60c4bb,?,unresolved,,none-exhausted,,no_decompiled,,
+0x6127d2,0x612399,?,unresolved,,none-exhausted,,exhausted,,
+0x612881,0x612399,?,unresolved,,none-exhausted,,exhausted,,
+0x612bc4,0x612399,?,unresolved,,none-exhausted,,exhausted,,
+0x6131e8,0x613178,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,846
+0x613790,0x61321d,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,11685
+0x613aa2,0x6139e8,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,1514
+0x61862e,0x618447,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,6614
+0x618aa8,0x6187cb,?,unresolved,,none-exhausted,,exhausted,,
+0x61a82b,0x61a7e5,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,497
+0x61b0f2,0x61ad04,?,unresolved,,none-exhausted,,exhausted,,
+0x61b57c,0x61ad04,?,unresolved,,none-exhausted,,exhausted,,
+0x61b8d8,0x61ad04,?,unresolved,,none-exhausted,,exhausted,,
+0x61cdf1,0x61cbec,?,unresolved,,none-exhausted,,decompiled_refs,dispatcher,740
+0x628635,0x6280d7,?,unresolved,,none-exhausted,,exhausted,,
+0x62d431,0x62d2b5,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,3931
+0x62d995,0x62d868,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,7964
+0x62ddf0,0x62ddb7,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket,439
+0x63305e,0x632837,?,unresolved,,none-exhausted,,exhausted,,
+0x63315e,0x632837,?,unresolved,,none-exhausted,,exhausted,,
+0x63431e,0x6341e0,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,16597
+0x6346d6,0x6341e0,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,16597
+0x634a11,0x634993,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,1206
+0x63db7e,0x63db19,?,caller_WH_0x93,low,1-ambiguous,,decompiled_refs,SendPacket; WriteHeader; WriteInt32,950
+0x63df56,0x63dde3,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,749
+0x63ec9b,0x63ebd0,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteHeader,2075
+0x6480bc,0x648068,?,unresolved,,none-exhausted,,decompiled_refs,SendPacket; WriteInt32,549
+0x661c63,0x661adb,?,unresolved,,none-exhausted,,vtable_slot,,
