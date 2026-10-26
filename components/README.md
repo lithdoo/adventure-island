@@ -37,7 +37,8 @@ cms-scene-view
 ## 不做成组件的东西
 
 - 立足线、绳梯。碰撞数据。需要看的时候由 `cms-scene-view` 画辅助线。
-- 单个瓦片、单个物件。数量大，而且是像素坐标上的放置列表，不是等宽矩阵。放在所属 `cms-map-layer` 的 `tiles` 和 `objs` 数组里。
+- 单个瓦片、单个物件。瓦片是像素放置数组 `tiles`。物件是放置数组 `objs`，共 165,125 条，字段是画面和遮挡（含 `zM`），不是点击目标。
+- 物件上的交互不由物件组件接收。走进场景用 `portal`，对话用 `life` 里的 NPC，打箱子和开关用 `reactor` 自己的坐标，坐下用 `seat`。约 11,817 个物件的 `reactor` 字段只表示图跟着反应堆变；约 3,697 个 `name` 只给脚本找图。详见 [cms-map-layer](./cms-map-layer/DESIGN.md)。
 - 怪物、NPC、反应堆。字段在 Task 060 和 Task 050 里已经有，第一阶段不放进树。
 - 方向键。沿用 LoomRealm 的 `game-controls-input`，不放在本目录。
 
