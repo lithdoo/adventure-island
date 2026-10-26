@@ -32,7 +32,7 @@ cms-scene-view
 | [cms-back](./cms-back/DESIGN.md) | `cms-back` | 远景和近景 |
 | [cms-map-layer](./cms-map-layer/DESIGN.md) | `cms-map-layer` | 层 0 到 7 |
 | [cms-avatar-layer](./cms-avatar-layer/DESIGN.md) | `cms-avatar-layer` | 人物所在的层 |
-| [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 纸娃娃：肤色、头、脸型、表情、头发、装备。身体帧驱动 `stand1` / `walk1` / `jump` |
+| [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 纸娃娃。走和站循环；技能和普攻只播一遍，然后回到当前移动 |
 | [cms-npc](./cms-npc/DESIGN.md) | `cms-npc` | 不放。`life` 里 `type=n` 的对话 |
 | [cms-reactor](./cms-reactor/DESIGN.md) | `cms-reactor` | 不放。箱子、开关、花的点击和受击 |
 | [cms-seat](./cms-seat/DESIGN.md) | `cms-seat` | 不放。坐下的坐标 |

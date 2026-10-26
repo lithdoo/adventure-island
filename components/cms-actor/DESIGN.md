@@ -12,7 +12,8 @@
 |---|---|---|
 | `x` / `y` | 场景坐标，身体画布的 `origin` 放在这里 | `decodeAvatar` 在 `stance` 前读两个有符号 i16。样本里身体 `origin.y` 等于画布高度，原点在图的底边 |
 | `locomotion` | `stand`、`walk`、`jump` | 第一阶段的移动只产生这三种。武器的 `walk` / `stand` 再决定后缀 |
-| `action` | 可空。有值时覆盖 `locomotion`，直接用身体图里的动作名 | 身体图 `00002000.img` 有 `alert`、`prone`、`sit`、`ladder`、`rope`、`swing*`、`stab*`、`shoot*`、`fly`、`dead`，以及大量只引用别的动作的技能名 |
+| `action` | 可空。这一次挥砍或施法的身体动作名 | `Skill.wz` 的 `action` 节点，以及武器普攻的 `swing*` / `stab*` / `shoot*`。它盖住 `locomotion`，但是只播一遍 |
+| `actionToken` | 每次施放加一 | 动作名可以和上一次相同。token 变了才从第 0 帧重播。播完后名字还留着也不再播 |
 | `facing` | 左或右 | 不从 `stance` 字节里拆 |
 | `skin` | 肤色后缀，u8 | `CCharacterStats+0x12`。`UPDATE_STATS` 的 mask `0x001` 读 u8。`UPDATE_CHAR_LOOK`（`0xC7`）在性别之后读同一个 u8 |
 | `face` | 脸型编号 | `decodeAvatar` 在头发之后读的 int32。`UPDATE_STATS` 的脸也是 int32。`Face/` 下 3037 个 `islot=Fc` |
@@ -88,13 +89,13 @@
 
 `info/attack` 是武器类别，不单独变成动作名。`01302000` 的 `attack=1`，旁边有 `swingO1`。`01422057` 的 `attack=5`，同时有 `swingT1`、`swingT2`、`swingT3`、`swingTF` 和 `stabO1`、`stabO2`、`stabOF`。播哪一组由身体当前的动作名决定，武器跟同一个名字。`afterImage` 和 `sfx` 是挥砍残影和音效的名字，不在这个元素里画。
 
-运行库若直接给了 `action`，所有部件跟这个名字，不再加武器后缀。
+普攻和技能不走上面的后缀。运行库把动作名放进 `action`，并让 `actionToken` 加一。身体按这个名字取帧。这一帧如果引用了别的动作，头、头发、衣服、武器跟**被引用的动作和帧号**，因为武器图里没有 `airstrike`、`brandish1` 这种目录，只有 `swingO1`、`alert`。
 
-某个部件没有这个动作目录时，这一件不画。盾 `01090000` 有 `walk1`，没有 `walk2`。文件里没有指回别的动作的 uol 时，不另做回退。
+某个部件没有解析之后的那个动作目录时，这一件不画。盾 `01090000` 有 `walk1`，没有 `walk2`。文件里没有指回别的动作的 uol 时，不另做回退。
 
 ## 动画怎么走
 
-一个元素里面叠所有部件。身体、头、头发、衣服、武器共用身体的帧号。脸和脸饰用表情自己的帧号。
+一个元素里面叠所有部件。走、站、跳时，身体、头、头发、衣服、武器共用身体的帧号。技能引用帧里，这些部件改跟被引用的那一帧。脸和脸饰用表情自己的帧号。
 
 身体动作是一串数字帧：
 
@@ -108,17 +109,51 @@
 | `sit` | 0 | 无 | 自带 `body` 和 `arm`，同样停住 |
 | `ladder`、`rope` | 0–1 | 250 | `body` 的 `z=backBody`，`face=0` |
 
-`delay` 是毫秒。组件自己累加，动作一变就从第 0 帧重播。运行库不逐帧推画面。`stand` 和 `walk` 播完回到第 0 帧。`jump` 只有一帧，停到落地把 `locomotion` 改掉。
+`delay` 是毫秒。组件自己累加。运行库不逐帧推画面。
+
+持续动作和单次动作分开：
+
+| 种类 | 动作 | 播完以后 |
+|---|---|---|
+| 循环 | `stand1`、`stand2`、`walk1`、`walk2`、`ladder`、`rope`，以及它们的 `ladder2`、`rope2` 引用 | 回到第 0 帧 |
+| 停住 | `jump`、`prone`、`sit`、`dead` | 停在当前这一帧，直到 `locomotion` 改掉。`jump` 落地才换 |
+| 单次 | `action` 里的普攻和技能 | 最后一帧的时间走完就结束，下一帧改画当前 `locomotion`。不回到第 0 帧，也不停在最后一帧 |
 
 身体帧上的 `short name="face"` 决定这一帧画不画脸。`stand1`、`walk1`、`jump` 是 1。`ladder`、`rope` 是 0。`swingOF` 和 `swingTF` 的各帧里 0 和 1 都有，按该帧的值来。值为 0 时，脸和跟着表情名走的脸饰都不画。
 
-有的动作节点没有画布，只有引用。`prone2` 第 0 帧是 `action=proneStab`、`frame=0`、`delay=-700`，第 1 帧引用同一帧且 `delay=300`。`00002000` 里的 `airstrike`、`pyramid` 也是这种节点，并带 `vector name="move"`。画出被引用的那一帧，把 `move` 加到场景坐标上。`delay` 的负号在这些技能帧里出现，客户端怎么解释符号还没有从函数还原。第一阶段的 `stand1`、`walk1`、`jump` 都是自带画布的正数 `delay`，不走引用。
+有的动作节点没有画布，只有引用。`prone2` 第 0 帧是 `action=proneStab`、`frame=0`、`delay=-700`，第 1 帧引用同一帧且 `delay=300`。技能动作几乎都是这种引用，见下一节。
 
 部件帧里的 `uol` 先解开再读画布。头发 `00030000` 的 `walk1` 第 0 帧指回 `default` 的 `hairOverHead`、`hair`、`hairShade`。`ladder` 指回 `backDefault` 的 `backHair`、`backHairBelowCap`。帽子 `01000000` 的 `walk1` 指回 `default`。头 `00012000` 的 `walk1` 指回 `front/head`，`ladder` 指回 `back/head`。
 
 衣服帧通常没有自己的 `delay`，跟身体帧号。帧号超过该部件的帧数时，用它的最后一帧。
 
 头发 `hairShade` 标了 `group=skin`。节点下有画布 `0`。肤色后缀能对上同名子节点时用那张，否则用 `0`。`00030000` 里其余子节点是指回 `0` 的 uol。
+
+## 释放技能
+
+`Skill.wz` 里 75 个职业图、269 个带 `action` 的技能。`action` 下的字符串就是身体图里的动作名。出现最多的是 `alert2`，81 个。`11111004` 有两条：`0=brandish1`、`1=brandish2`。选哪一条的函数还没还原，运行库把选中的名字放进 `action`。
+
+`00002000` 的 148 个动作里，106 个是引用帧，没有自己的画布。`brandish1` 整段如下，停留时间是 `delay` 的绝对值：
+
+| 帧 | 引用 | `delay` | 停留 |
+|---|---|---|---|
+| 0–2 | `swingOF` 的 0、1、2 | -120 | 各 120 毫秒 |
+| 3 | `swingOF` 的 3 | 120 | 120 毫秒 |
+| 4–6 | `stabOF` 的 0、1、2 | 120 | 各 120 毫秒 |
+
+七帧一共 840 毫秒。第 6 帧结束之后，组件把这次 `actionToken` 标成已播完，人物回到当时的 `locomotion`：站着就是 `stand1` 或 `stand2`，走着就是对应的 `walk`，人在空中就是 `jump`。画面不冻在 `stabOF` 的最后一帧上。
+
+`vampire` 三帧全是负的 `delay`（各 -450），引用的是 `alert` 的三帧可见姿势。负号不表示这帧不画，否则这次施法没有身体。停留用绝对值。正数和负数在受击判定、武器残影上有没有差别，函数还没还原。两种 `delay` 的帧都画。残影目录 `Afterimage` 仍不进这个元素。
+
+`swingO1` 是普攻，三帧自己带画布，`delay` 为 300、150、350，一共 800 毫秒。它走同一条单次规则：播完回到 `locomotion`，不循环。`stabO1`、`shoot1` 一样。
+
+引用帧上的 `vector name="move"` 只加在这一帧的场景坐标上。下一帧用自己的 `move`，不把前面的位移累加。`airstrike` 的中间帧就带这种 `move`。10 个动作里有 17 帧写了 `flip=1`（例如 `bamboo`、`fist`）。这一帧在朝向翻转之外再翻转一次。
+
+同一次施放可以带着技能图。`11111004` 的 `effect/0` 配 `brandish1`，`effect/1` 配 `brandish2`。那些画布有自己的 `origin` 和 `delay`，没有纸娃娃的 `map` 锚点，`origin` 对准身体原点。效果从施放的同一刻开始，按自己的 `delay` 播一遍，播完消失。它不跟身体帧号对齐，也不把身体动作拉长。`11111001` 的 `effect` 是 7 张画布，100 到 270 毫秒。`hit` 画在受击者身上，不画在这个元素里。
+
+`actionToken` 在播放中途又变了，旧的身体帧和这次技能图都丢掉，新动作从第 0 帧开始。
+
+武器 `info/attackSpeed` 存在。攻击速度怎么缩放这些 `delay`，Task 061 里没有这条公式。组件先用文件里的毫秒。
 
 ## 表情
 
@@ -172,7 +207,7 @@
 
 ## 第一阶段画出来的人
 
-肤色 `0` 的身体和头、脸 `00020000`、头发 `00030000`、表情 `default`。移动时播 `stand1`、`walk1`、`jump`。运行库若带了装备编号，按上面的槽位、锚点、z 序和遮挡一起画。
+肤色 `0` 的身体和头、脸 `00020000`、头发 `00030000`、表情 `default`。移动时播 `stand1`、`walk1`、`jump`。运行库若带了装备编号，按上面的槽位、锚点、z 序和遮挡一起画。这一阶段的移动不施放技能；技能动作的单次播放规则已经按上面写死，运行库一旦给出 `action` 和 `actionToken` 就按那条播。
 
 `key` 在换场景时不变。只更新 `x`、`y`，落地时把 `locomotion` 设回 `stand`。
 
@@ -180,5 +215,7 @@
 
 - `stance` 这一个字节如何分成动作和朝向。组件认 `locomotion`、`action` 和 `facing`。
 - 装备迭代里每个 int32 的槽位含义。组件认 `equips` 里的物品编号。
-- 技能引用帧上负 `delay` 的分支。第一阶段不播这些动作。
+- 技能 `action` 有 `0` 和 `1` 两条时，选哪一条。组件认运行库给的动作名。
+- 负 `delay` 和正 `delay` 在判定、残影上的差别。画面上都按绝对值停留。
+- `attackSpeed` 对帧间隔的缩放。
 - 性别字节。现有身体和头的 `info` 里没有这个字段。
