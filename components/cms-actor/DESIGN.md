@@ -4,24 +4,32 @@
 
 本地角色和远程角色用同一套画法。`SPAWN_PLAYER` 在编号等于自己时直接返回，本地角色不走那条生成。
 
-## 运行库交给它的数据
+## 运行库交给它的保留状态
 
 组件不读包。`decodeAvatar`（`0x58CDF6`）里的装备迭代 `0xAFEB88` 仍未还原每个 int32 是物品编号还是标志；`stance`（`+0x3C0`）也还没拆成动作和朝向。运行库把已经确定的外观交下来。
 
-| 字段 | 含义 | 依据 |
-|---|---|---|
-| `x` / `y` | 场景坐标，身体画布的 `origin` 放在这里 | `decodeAvatar` 在 `stance` 前读两个有符号 i16。样本里身体 `origin.y` 等于画布高度，原点在图的底边 |
-| `locomotion` | `stand`、`walk`、`jump` | 第一阶段的移动只产生这三种。武器的 `walk` / `stand` 再决定后缀。这是留在人物身上的状态 |
-| `facing` | 左或右 | 不从 `stance` 字节里拆 |
-| `skin` | 肤色后缀，u8 | `CCharacterStats+0x12`。`UPDATE_STATS` 的 mask `0x001` 读 u8。`UPDATE_CHAR_LOOK`（`0xC7`）在性别之后读同一个 u8 |
-| `face` | 脸型编号 | `decodeAvatar` 在头发之后读的 int32。`UPDATE_STATS` 的脸也是 int32。`Face/` 下 3037 个 `islot=Fc` |
-| `hair` | 头发编号 | `decodeAvatar` 里头发 int32。`Hair/` 下 6080 个 `islot=Hr` |
-| `expression` | 表情名，默认 `default` | 脸图里的动作名，和身体动作分开播 |
-| `equips` | 物品编号列表 | 每件用自己的 `info/islot` 决定槽位。迭代器的槽位顺序仍是 Task 050 的未解项 |
+LoomRealm 里 `attrs` 和 `data` 是两条保留通道。`attrs` 是字符串到字符串，投影成宿主属性，放任何实现都能看懂的短事实：对话角色的 `character-id`、`display-name`、`active`，战斗元素的 `slot`。`data` 是这个组件自己的 JSON，经 `receiveRenderData` 整份交付。对话把表情、动画、模型放在 `data`。地图精灵的坐标和朝向也在 `data`。
+
+这个元素现在的 `attrs` 是空的。下面的字段都在 `data` 里，一次交付是同一份姿势和外观。
+
+| 字段 | 放在 | 含义 | 依据 |
+|---|---|---|---|
+| `x` / `y` | `data` | 场景坐标，身体画布的 `origin` 放在这里 | 两个数。`decodeAvatar` 在 `stance` 前读两个有符号 i16。样本里身体 `origin.y` 等于画布高度，原点在图的底边 |
+| `locomotion` | `data` | `stand`、`walk`、`jump` | 身体动画状态。第一阶段的移动只产生这三种。武器的 `walk` / `stand` 再决定后缀 |
+| `facing` | `data` | 左或右 | 和坐标是同一次姿势。不从 `stance` 字节里拆 |
+| `skin` | `data` | 肤色后缀，u8 | `CCharacterStats+0x12`。`UPDATE_STATS` 的 mask `0x001` 读 u8。`UPDATE_CHAR_LOOK`（`0xC7`）在性别之后读同一个 u8 |
+| `face` | `data` | 脸型编号 | `decodeAvatar` 在头发之后读的 int32。`UPDATE_STATS` 的脸也是 int32。`Face/` 下 3037 个 `islot=Fc` |
+| `hair` | `data` | 头发编号 | `decodeAvatar` 里头发 int32。`Hair/` 下 6080 个 `islot=Hr` |
+| `expression` | `data` | 表情名，默认 `default` | 脸图里的动作名。对话组件同样把 `expression` 放在角色 `data` 里 |
+| `equips` | `data` | 物品编号列表 | 列表不是一条 attr 字符串。每件用自己的 `info/islot` 决定槽位。迭代器的槽位顺序仍是 Task 050 的未解项 |
+
+`locomotion`、`facing`、`expression` 虽然是短字符串，仍然放 `data`。它们只有这个纸娃娃才解释，并且要和坐标、装备是同一次画面。`attrs` 不拿来装纸娃娃的内部状态。
+
+名字在 `+0xF30`。第一阶段不画名字，所以也不设 attr。以后若要在宿主上给出可读名字，再按对话组件的 `display-name` 放一条 attr。人物是谁由 `RenderNode.key` 保持，换场景不换 key，不另造一条 id attr。
 
 `UPDATE_CHAR_LOOK` 还有一个性别字节。这些身体图和头图的 `info` 里没有性别字段，组件不按性别分叉。
 
-名字在 `+0xF30`。第一阶段不画名字。宠物在 `+0x1BB4`，增益特效在 `+0x1BBC`，残影在 `Character.wz/Afterimage`，都不进这个元素。
+宠物在 `+0x1BB4`，增益特效在 `+0x1BBC`，残影在 `Character.wz/Afterimage`，都不进这个元素。
 
 第一阶段没有外观包时，用肤色 `0`、脸 `00020000`、头发 `00030000`、表情 `default`、空装备列表。这三张图在本地 079 提取里都有，移动需要的 `stand1` / `walk1` / `jump` 也都在。
 
