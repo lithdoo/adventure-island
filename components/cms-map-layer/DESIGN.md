@@ -23,10 +23,10 @@
 
 能交互的是地图上的另一类节点，不在 `obj` 里：
 
-- 传送门 `portal`：走进去换场景
-- `life` 里的 NPC：对话
-- `reactor`：有自己的 `id`、坐标和 `reactorTime`，箱子、开关、花这一类打或点的是它
-- `seat`：坐下
+- [cms-portal](../cms-portal/DESIGN.md)：走进去换场景
+- [cms-npc](../cms-npc/DESIGN.md)：`life` 里 `type=n` 的对话
+- [cms-reactor](../cms-reactor/DESIGN.md)：箱子、开关、花，打或点的是它自己的坐标
+- [cms-seat](../cms-seat/DESIGN.md)：坐下的坐标。椅子的样子仍是物件
 
 11,817 个物件带了 `reactor` 字段，表示这张图跟着某个反应堆变换，点击落点仍是反应堆自己的坐标。3,697 个物件有 `name`，例如 `gate`，给脚本按名字找图，不是给元素接收点击。
 

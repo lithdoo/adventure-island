@@ -12,16 +12,17 @@
 ```text
 cms-scene-view
 ├── cms-back              back 里 front=0 的远景，每个背景一个
-├── cms-map-layer         地图层 0
-├── cms-map-layer         …
-├── cms-map-layer         地图层 7
+├── cms-map-layer         地图层 0 到 7。瓦片和物件是层上的数组
 ├── cms-avatar-layer
 │   └── cms-actor
+├── cms-npc               life 里 type=n。第一阶段不放
+├── cms-reactor           第一阶段不放
+├── cms-seat              第一阶段不放
 ├── cms-portal            可见出口，彼此并列
 └── cms-back              back 里 front=1 的近景
 ```
 
-换场景时替换远景、地图层和出口。`cms-actor` 的 key 保持不变，还是同一个元素，只更新坐标。
+换场景时替换远景、地图层、NPC、反应堆、座位和出口。`cms-actor` 的 key 保持不变。第一阶段的树只有远景、地图层、人物层和出口。
 
 ## 组件
 
@@ -32,14 +33,17 @@ cms-scene-view
 | [cms-map-layer](./cms-map-layer/DESIGN.md) | `cms-map-layer` | 层 0 到 7 |
 | [cms-avatar-layer](./cms-avatar-layer/DESIGN.md) | `cms-avatar-layer` | 人物所在的层 |
 | [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 一个能走、能跳的占位人物 |
-| [cms-portal](./cms-portal/DESIGN.md) | `cms-portal` | 场景出口 |
+| [cms-npc](./cms-npc/DESIGN.md) | `cms-npc` | 不放。`life` 里 `type=n` 的对话 |
+| [cms-reactor](./cms-reactor/DESIGN.md) | `cms-reactor` | 不放。箱子、开关、花的点击和受击 |
+| [cms-seat](./cms-seat/DESIGN.md) | `cms-seat` | 不放。坐下的坐标 |
+| [cms-portal](./cms-portal/DESIGN.md) | `cms-portal` | 场景出口。第一阶段唯一的地图交互 |
 
 ## 不做成组件的东西
 
 - 立足线、绳梯。碰撞数据。需要看的时候由 `cms-scene-view` 画辅助线。
 - 单个瓦片、单个物件。瓦片是像素放置数组 `tiles`。物件是放置数组 `objs`，共 165,125 条，字段是画面和遮挡（含 `zM`），不是点击目标。
-- 物件上的交互不由物件组件接收。走进场景用 `portal`，对话用 `life` 里的 NPC，打箱子和开关用 `reactor` 自己的坐标，坐下用 `seat`。约 11,817 个物件的 `reactor` 字段只表示图跟着反应堆变；约 3,697 个 `name` 只给脚本找图。详见 [cms-map-layer](./cms-map-layer/DESIGN.md)。
-- 怪物、NPC、反应堆。字段在 Task 060 和 Task 050 里已经有，第一阶段不放进树。
+- 物件上的交互不由物件组件接收。走进场景用 [cms-portal](./cms-portal/DESIGN.md)，对话用 [cms-npc](./cms-npc/DESIGN.md)，打或点箱子、开关、花用 [cms-reactor](./cms-reactor/DESIGN.md)，坐下用 [cms-seat](./cms-seat/DESIGN.md)。约 11,817 个物件的 `reactor` 字段只表示图跟着反应堆变；约 3,697 个 `name` 只给脚本找图。详见 [cms-map-layer](./cms-map-layer/DESIGN.md)。
+- 怪物。同在 `life`，但是 `type=m`。第一阶段不放进树，也还没有单独目录。
 - 方向键。沿用 LoomRealm 的 `game-controls-input`，不放在本目录。
 
 `apps/pwa/` 和 `apps/hostra/` 加载同一套组件。
