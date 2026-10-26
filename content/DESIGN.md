@@ -207,20 +207,25 @@ UOL 在落盘前解析，同一 Canvas 可被多个帧指向；必须对相对�
 }
 ```
 
-三个**独立文件**的一行示例：
+各分组的 JSONL 文件分别保存对象行，下面是三个独立文件的缩样：
+
+`[group]Back/100000000.jsonl`：
 
 ```jsonl
-// [group]Back/100000000.jsonl
 {"bS":"grassySoil","no":0,"x":0,"y":0,"rx":0,"ry":0,"type":3,"cx":0,"cy":0,"a":255,"front":0,"ani":0,"f":0}
-
-// [group]Tile/100000000.jsonl
-{"layer":"0","x":4005,"y":330,"u":"bsc","no":1,"zM":4}
-
-// [group]Portal/100000000.jsonl
-{"pn":"sp","pt":0,"x":112,"y":197,"tm":999999999,"tn":""}
 ```
 
-注：上方 `//` 行仅作文档分隔，**不可写入真实 JSONL 文件**，实际每行必须是 JSON object。
+`[group]Tile/100000000.jsonl`：
+
+```jsonl
+{"layer":"0","x":4005,"y":330,"u":"bsc","no":1,"zM":4}
+```
+
+`[group]Portal/100000000.jsonl`：
+
+```jsonl
+{"pn":"sp","pt":0,"x":112,"y":197,"tm":999999999,"tn":""}
+```
 
 `[struct]Tileset/woodMarble.json`：
 
@@ -265,7 +270,7 @@ UOL 在落盘前解析，同一 Canvas 可被多个帧指向；必须对相对�
 
 `[group]Obj` 同理允许直接字符串字段 `oS → struct.Obj`。**不能**为 `struct.Map.layers[].tileSet`、`struct.Map.info.bgm` 伪造 group-level `.extend.meta`。以上只是元数据样例，其余 struct/group schema 和描述文件同样属于构建必需产物。
 
-## Map.wz
+## 5. Map.wz
 
 ### 地图信息
 
@@ -338,7 +343,7 @@ UOL 在落盘前解析，同一 Canvas 可被多个帧指向；必须对相对�
 只有 JSONL 每行**直接存在且类型为 string 的字段**才可在该 group 的 `.extend.meta` 声明对 struct 的引用，例如 `group.Back.bS → struct.Back` 和 `group.Obj.oS → struct.Obj`。`tileSet` 位于 `struct.Map.layers[]`、`bgm` 位于 `struct.Map.info`，不属于 group 的直接字段；这两类嵌套引用由转换器进行应用级完整性检查，不能误用 `.extend.meta`。
 
 
-## Character.wz
+## 6. Character.wz
 
 根目录的身体 `00002000`–`00002014` 和头 `00012000` 起，以及这些目录里的每张 img，都是 `struct.Look/{八位编号}`：
 
@@ -351,7 +356,7 @@ UOL 在落盘前解析，同一 Canvas 可被多个帧指向；必须对相对�
 `struct.Afterimage/{名字}` 来自 `Afterimage` 目录，帧同样进资源。纸娃娃元素不画残影，数据仍留下。
 
 
-## 7. 其余 15 包与辅助表的映射
+## 7. 其余 WZ 包与辅助表的映射
 
 表中 `struct.T/{key}` 是 namespace 与 key 的写法，物理上是 `[struct]T/{key}.json`。图片总是进入 `[resource]图`，声音总是进入 `[resource]音`；JSON 保存资源逻辑 key 与锚点，不携二进制。
 
