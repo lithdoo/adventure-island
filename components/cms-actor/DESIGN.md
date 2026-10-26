@@ -8,38 +8,53 @@
 
 组件不读包。`decodeAvatar`（`0x58CDF6`）里的装备迭代 `0xAFEB88` 仍未还原每个 int32 是物品编号还是标志；`stance`（`+0x3C0`）也还没拆成动作和朝向。运行库把已经确定的外观交下来。
 
-LoomRealm 里 `attrs` 和 `data` 是两条保留通道。`attrs` 是字符串到字符串，投影成宿主属性，放任何实现都能看懂的短事实：对话角色的 `character-id`、`display-name`、`active`，战斗元素的 `slot`。`data` 是这个组件自己的 JSON，经 `receiveRenderData` 整份交付。对话把表情、动画、模型放在 `data`。地图精灵的坐标和朝向也在 `data`。
+单个值写成 `attrs`，投影成宿主属性。一次更新可以只改其中一项，走路时只改 `x`。`data` 放要整份替换的结构。装备是数组，整份放在 `data` 里，经 `receiveRenderData` 交付当前这份列表。
 
-这个元素现在的 `attrs` 是空的。下面的字段都在 `data` 里，一次交付是同一份姿势和外观。
+| 字段 | 放在 | 值 | 含义 | 依据 |
+|---|---|---|---|---|
+| `x` | `attrs` | 十进制字符串 | 场景横坐标。身体画布的 `origin` 放在这里 | `decodeAvatar` 在 `stance` 前读的第一个有符号 i16 |
+| `y` | `attrs` | 十进制字符串 | 场景纵坐标 | 第二个有符号 i16。样本里身体 `origin.y` 等于画布高度，原点在图的底边 |
+| `locomotion` | `attrs` | `stand`、`walk`、`jump` | 身体动画状态 | 第一阶段的移动只产生这三种。武器的 `walk` / `stand` 再决定后缀 |
+| `facing` | `attrs` | `left`、`right` | 朝向 | 与坐标分开更新。`stance` 字节还没拆成动作和朝向 |
+| `skin` | `attrs` | 十进制字符串，如 `0` | 肤色后缀 | `CCharacterStats+0x12`。`UPDATE_STATS` 的 mask `0x001` 读 u8。`UPDATE_CHAR_LOOK`（`0xC7`）在性别之后读同一个 u8 |
+| `face` | `attrs` | 八位编号，如 `00020000` | 脸型 | `decodeAvatar` 在头发之后读的 int32。`UPDATE_STATS` 的脸也是 int32。`Face/` 下 3037 个 `islot=Fc` |
+| `hair` | `attrs` | 八位编号，如 `00030000` | 头发 | `decodeAvatar` 里头发 int32。`Hair/` 下 6080 个 `islot=Hr` |
+| `expression` | `attrs` | 表情名，默认 `default` | 脸图里的动作名 | 脸的计时和身体分开 |
+| `equips` | `data` | 物品编号字符串的数组 | 当前穿戴，整份替换 | 每件用自己的 `info/islot` 决定槽位。迭代器的槽位顺序仍是 Task 050 的未解项 |
 
-| 字段 | 放在 | 含义 | 依据 |
-|---|---|---|---|
-| `x` / `y` | `data` | 场景坐标，身体画布的 `origin` 放在这里 | 两个数。`decodeAvatar` 在 `stance` 前读两个有符号 i16。样本里身体 `origin.y` 等于画布高度，原点在图的底边 |
-| `locomotion` | `data` | `stand`、`walk`、`jump` | 身体动画状态。第一阶段的移动只产生这三种。武器的 `walk` / `stand` 再决定后缀 |
-| `facing` | `data` | 左或右 | 和坐标是同一次姿势。不从 `stance` 字节里拆 |
-| `skin` | `data` | 肤色后缀，u8 | `CCharacterStats+0x12`。`UPDATE_STATS` 的 mask `0x001` 读 u8。`UPDATE_CHAR_LOOK`（`0xC7`）在性别之后读同一个 u8 |
-| `face` | `data` | 脸型编号 | `decodeAvatar` 在头发之后读的 int32。`UPDATE_STATS` 的脸也是 int32。`Face/` 下 3037 个 `islot=Fc` |
-| `hair` | `data` | 头发编号 | `decodeAvatar` 里头发 int32。`Hair/` 下 6080 个 `islot=Hr` |
-| `expression` | `data` | 表情名，默认 `default` | 脸图里的动作名。对话组件同样把 `expression` 放在角色 `data` 里 |
-| `equips` | `data` | 物品编号列表 | 列表不是一条 attr 字符串。每件用自己的 `info/islot` 决定槽位。迭代器的槽位顺序仍是 Task 050 的未解项 |
+属性值只能是字符串，单条最长 4096 字节。坐标和肤色在写入前转成十进制，脸和头发转成八位编号。
 
-`locomotion`、`facing`、`expression` 虽然是短字符串，仍然放 `data`。它们只有这个纸娃娃才解释，并且要和坐标、装备是同一次画面。`attrs` 不拿来装纸娃娃的内部状态。
+```ts
+attrs: {
+  x: "120",
+  y: "80",
+  locomotion: "walk",
+  facing: "right",
+  skin: "0",
+  face: "00020000",
+  hair: "00030000",
+  expression: "default",
+}
+data: { equips: ["01040000", "01060000"] }
+```
 
-名字在 `+0xF30`。第一阶段不画名字，所以也不设 attr。以后若要在宿主上给出可读名字，再按对话组件的 `display-name` 放一条 attr。人物是谁由 `RenderNode.key` 保持，换场景不换 key，不另造一条 id attr。
+没有装备时 `equips` 是空数组。组件在自己的帧循环里读这些属性。同一次投影先写完有变化的属性；`equips` 的 JSON 变了才调用 `receiveRenderData`，交来的是当前整份 `{ equips }`。
+
+名字在 `+0xF30`。第一阶段不画名字，所以没有 `display-name`。以后若要在宿主上给出可读名字，再加这一条属性。人物是谁由 `RenderNode.key` 保持，换场景不换 key。
 
 `UPDATE_CHAR_LOOK` 还有一个性别字节。这些身体图和头图的 `info` 里没有性别字段，组件不按性别分叉。
 
 宠物在 `+0x1BB4`，增益特效在 `+0x1BBC`，残影在 `Character.wz/Afterimage`，都不进这个元素。
 
-第一阶段没有外观包时，用肤色 `0`、脸 `00020000`、头发 `00030000`、表情 `default`、空装备列表。这三张图在本地 079 提取里都有，移动需要的 `stand1` / `walk1` / `jump` 也都在。
+第一阶段没有外观包时，属性用肤色 `0`、脸 `00020000`、头发 `00030000`、表情 `default`，`equips` 为空数组。这三张图在本地 079 提取里都有，移动需要的 `stand1` / `walk1` / `jump` 也都在。
 
-挥砍和施法不放进这份数据。LoomRealm 里 `RenderNode.data` 是保留状态，`receiveRenderData` 收到的是当前整份数据；元素重建时会再交一次。同一次施放是瞬时冲动，走 `RenderDomain.emit` → `render.event` → `receiveRenderEvent`。事件不进 Renderer Store，不进快照，重建元素时不重放。对话组件里的 `commit`、`choice-next` 就是这条路。把动作名和计数放进 `data`，是用字段变化去模仿一次事件。
+挥砍和施法不写进属性，也不写进 `RenderNode.data`。同一次施放走 `RenderDomain.emit` → `render.event` → `receiveRenderEvent`。事件不进 Renderer Store，不进快照，重建元素时不重放。对话组件里的 `commit`、`choice-next` 就是这条路。
 
 ```ts
 receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 ```
 
-`data.action` 的取值仍是 WZ 里的动作名：`Skill.wz` 的 `action` 节点，以及 `swing*` / `stab*` / `shoot*`。组件把这次播放记在自己的私有状态里。最后一帧走完，私有状态丢掉，画面回到数据里的 `locomotion`。播放中途又来一条 `action` 事件，丢掉上一次，从新动作的第 0 帧开始。
+这里的 `data` 是这一次事件的参数。`action` 的取值仍是 WZ 里的动作名：`Skill.wz` 的 `action` 节点，以及 `swing*` / `stab*` / `shoot*`。组件把这次播放记在自己的私有状态里。最后一帧走完，私有状态丢掉，画面回到属性 `locomotion`。播放中途又来一条 `action` 事件，丢掉上一次，从新动作的第 0 帧开始。
 
 ## 图放在哪
 
@@ -103,7 +118,7 @@ receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 
 `info/attack` 是武器类别，不单独变成动作名。`01302000` 的 `attack=1`，旁边有 `swingO1`。`01422057` 的 `attack=5`，同时有 `swingT1`、`swingT2`、`swingT3`、`swingTF` 和 `stabO1`、`stabO2`、`stabOF`。播哪一组由身体当前的动作名决定，武器跟同一个名字。`afterImage` 和 `sfx` 是挥砍残影和音效的名字，不在这个元素里画。
 
-普攻和技能不走上面的后缀。运行库发 `action` 事件，身体按 `data.action` 取帧。这一帧如果引用了别的动作，头、头发、衣服、武器跟被引用的动作和帧号，因为武器图里没有 `airstrike`、`brandish1` 这种目录，只有 `swingO1`、`alert`。
+普攻和技能不走上面的后缀。运行库发 `action` 事件，身体按事件里的 `action` 取帧。这一帧如果引用了别的动作，头、头发、衣服、武器跟被引用的动作和帧号，因为武器图里没有 `airstrike`、`brandish1` 这种目录，只有 `swingO1`、`alert`。
 
 某个部件没有解析之后的那个动作目录时，这一件不画。盾 `01090000` 有 `walk1`，没有 `walk2`。文件里没有指回别的动作的 uol 时，不另做回退。
 
@@ -131,7 +146,7 @@ receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 |---|---|---|
 | 循环 | `stand1`、`stand2`、`walk1`、`walk2`、`ladder`、`rope`，以及它们的 `ladder2`、`rope2` 引用 | 回到第 0 帧 |
 | 停住 | `jump`、`prone`、`sit`、`dead` | 停在当前这一帧，直到 `locomotion` 改掉。`jump` 落地才换 |
-| 单次 | `receiveRenderEvent` 的 `action` | 最后一帧的时间走完就结束，下一帧改画数据里的 `locomotion`。不回到第 0 帧，也不停在最后一帧 |
+| 单次 | `receiveRenderEvent` 的 `action` | 最后一帧的时间走完就结束，下一帧改画属性 `locomotion`。不回到第 0 帧，也不停在最后一帧 |
 
 身体帧上的 `short name="face"` 决定这一帧画不画脸。`stand1`、`walk1`、`jump` 是 1。`ladder`、`rope` 是 0。`swingOF` 和 `swingTF` 的各帧里 0 和 1 都有，按该帧的值来。值为 0 时，脸和跟着表情名走的脸饰都不画。
 
@@ -145,7 +160,7 @@ receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 
 ## 释放技能
 
-`Skill.wz` 里 75 个职业图、269 个带 `action` 的技能。`action` 下的字符串就是身体图里的动作名。出现最多的是 `alert2`，81 个。`11111004` 有两条：`0=brandish1`、`1=brandish2`。选哪一条的函数还没还原，运行库把选中的名字放进事件的 `data.action`。
+`Skill.wz` 里 75 个职业图、269 个带 `action` 的技能。`action` 下的字符串就是身体图里的动作名。出现最多的是 `alert2`，81 个。`11111004` 有两条：`0=brandish1`、`1=brandish2`。选哪一条的函数还没还原，运行库把选中的名字放进事件的 `action`。
 
 `00002000` 的 148 个动作里，106 个是引用帧，没有自己的画布。`brandish1` 整段如下，停留时间是 `delay` 的绝对值：
 
@@ -155,7 +170,7 @@ receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 | 3 | `swingOF` 的 3 | 120 | 120 毫秒 |
 | 4–6 | `stabOF` 的 0、1、2 | 120 | 各 120 毫秒 |
 
-七帧一共 840 毫秒。第 6 帧结束之后，组件丢掉这次私有播放，人物回到数据里当时的 `locomotion`：站着就是 `stand1` 或 `stand2`，走着就是对应的 `walk`，人在空中就是 `jump`。画面不冻在 `stabOF` 的最后一帧上。
+七帧一共 840 毫秒。第 6 帧结束之后，组件丢掉这次私有播放，人物回到属性里当时的 `locomotion`：站着就是 `stand1` 或 `stand2`，走着就是对应的 `walk`，人在空中就是 `jump`。画面不冻在 `stabOF` 的最后一帧上。
 
 `vampire` 三帧全是负的 `delay`（各 -450），引用的是 `alert` 的三帧可见姿势。负号不表示这帧不画，否则这次施法没有身体。停留用绝对值。正数和负数在受击判定、武器残影上有没有差别，函数还没还原。两种 `delay` 的帧都画。残影目录 `Afterimage` 仍不进这个元素。
 
@@ -227,7 +242,7 @@ receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 
 ## 还不从字节里猜的部分
 
-- `stance` 这一个字节如何分成动作和朝向。保留数据里是 `locomotion` 和 `facing`。挥砍和施法是 `action` 事件，不是保留字段。
+- `stance` 这一个字节如何分成动作和朝向。保留状态里，`locomotion` 和 `facing` 是属性。挥砍和施法是 `action` 事件。
 - 装备迭代里每个 int32 的槽位含义。组件认 `equips` 里的物品编号。
 - 技能 `action` 有 `0` 和 `1` 两条时，选哪一条。组件认运行库给的动作名。
 - 负 `delay` 和正 `delay` 在判定、残影上的差别。画面上都按绝对值停留。
