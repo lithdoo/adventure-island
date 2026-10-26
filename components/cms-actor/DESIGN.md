@@ -1,37 +1,184 @@
 # cms-actor
 
-一个人物，是 `cms-avatar-layer` 的子元素。客户端里它对应 `GetAvatarPart(+0x10)` 上的外观：`decodeAvatar`（`0x58CDF6`）读出头发、脸、装备迭代、两个有符号坐标和一字节 `stance`（`+0x3C0`）。元素只按运行库给的姿态画画，不自己算移动。
+一个人物，是 `cms-avatar-layer` 的子元素。客户端里它对应 `GetAvatarPart(+0x10)` 上的外观。元素把身体、头、脸、头发和装备合成一个人，自己按帧间隔播动画。移动、跳跃和换场景仍由地图运行库决定。
 
-第一阶段只有本地这一个人物。`SPAWN_PLAYER` 在编号等于自己时直接返回，本地角色不走那条生成；外观的画法仍和远程角色相同。
+本地角色和远程角色用同一套画法。`SPAWN_PLAYER` 在编号等于自己时直接返回，本地角色不走那条生成。
 
 ## 运行库交给它的数据
 
-| 字段 | 第一阶段 | 依据 |
+组件不读包。`decodeAvatar`（`0x58CDF6`）里的装备迭代 `0xAFEB88` 仍未还原每个 int32 是物品编号还是标志；`stance`（`+0x3C0`）也还没拆成动作和朝向。运行库把已经确定的外观交下来。
+
+| 字段 | 含义 | 依据 |
 |---|---|---|
-| `x` / `y` | 要。立足线接触点 | `decodeAvatar` 在 `stance` 前读两个有符号 i16 |
-| `action` | 要。`stand1`、`walk1`、`jump` 之一 | 身体图 `00002000.img` 里的动作名。`stance` 字节如何拆成动作还没有还原，所以运行库直接给动作名 |
-| `facing` | 要。左或右 | 同上，不从 `stance` 字节里拆 |
-| `body` | 可省，默认 `00002000` | `Character.wz` 根上的身体图 |
+| `x` / `y` | 场景坐标，身体画布的 `origin` 放在这里 | `decodeAvatar` 在 `stance` 前读两个有符号 i16。样本里身体 `origin.y` 等于画布高度，原点在图的底边 |
+| `locomotion` | `stand`、`walk`、`jump` | 第一阶段的移动只产生这三种。武器的 `walk` / `stand` 再决定后缀 |
+| `action` | 可空。有值时覆盖 `locomotion`，直接用身体图里的动作名 | 身体图 `00002000.img` 有 `alert`、`prone`、`sit`、`ladder`、`rope`、`swing*`、`stab*`、`shoot*`、`fly`、`dead`，以及大量只引用别的动作的技能名 |
+| `facing` | 左或右 | 不从 `stance` 字节里拆 |
+| `skin` | 肤色后缀，u8 | `CCharacterStats+0x12`。`UPDATE_STATS` 的 mask `0x001` 读 u8。`UPDATE_CHAR_LOOK`（`0xC7`）在性别之后读同一个 u8 |
+| `face` | 脸型编号 | `decodeAvatar` 在头发之后读的 int32。`UPDATE_STATS` 的脸也是 int32。`Face/` 下 3037 个 `islot=Fc` |
+| `hair` | 头发编号 | `decodeAvatar` 里头发 int32。`Hair/` 下 6080 个 `islot=Hr` |
+| `expression` | 表情名，默认 `default` | 脸图里的动作名，和身体动作分开播 |
+| `equips` | 物品编号列表 | 每件用自己的 `info/islot` 决定槽位。迭代器的槽位顺序仍是 Task 050 的未解项 |
 
-头发编号、脸编号、装备槽要等装备迭代 `0xAFEB88` 的槽位含义还原之后再加。那一项在 Task 050 里仍是未解问题。名字在 `+0xF30`，第一阶段不画名字。
+`UPDATE_CHAR_LOOK` 还有一个性别字节。这些身体图和头图的 `info` 里没有性别字段，组件不按性别分叉。
 
-## 怎么画
+名字在 `+0xF30`。第一阶段不画名字。宠物在 `+0x1BB4`，增益特效在 `+0x1BBC`，残影在 `Character.wz/Afterimage`，都不进这个元素。
 
-一个元素里面叠多层，不把身体、头、头发拆成子组件。
+第一阶段没有外观包时，用肤色 `0`、脸 `00020000`、头发 `00030000`、表情 `default`、空装备列表。这三张图在本地 079 提取里都有，移动需要的 `stand1` / `walk1` / `jump` 也都在。
 
-身体动作是一串帧。`walk1` 有 4 帧，每帧 `delay` 180。`stand1` 有 3 帧。`jump` 有 1 帧。组件自己按 `delay` 循环，动作一变就从第 0 帧重播。运行库不逐帧推画面。
+## 图放在哪
 
-每一帧里的画布用同名锚点对齐。`walk1` 第 0 帧的身体画布带 `neck`、`navel`，手臂画布带 `navel`、`hand`。先把身体的 `navel` 放到运行库给的坐标上，再让手臂的 `navel` 重合到同一点。
+`Character.wz` 根目录是身体和头，其余按目录归档。槽位以文件里的 `info/islot` 为准，不按文件名猜测。编号前四位和目录大体对应：`0002` 脸、`0003` 头发、`0100` 帽、`0104` 上衣、`0105` 长袍、`0106` 裤、`0107` 鞋、`0108` 手套、`0109` 盾、`0110` 披风、`0121`–`0160` 与 `0170` 武器。武器目录里仍有 362 个 `islot=Si`、23 个 `islot=Cp`，以 `islot` 为准。
 
-第一阶段只画身体图里的 `body` 和 `arm`。头发、脸、衣服以后用同一套锚点叠上去，仍在这个元素内部。朝向用整个人的翻转解决，不为左右各备一套图。
+肤色后缀决定身体和头：
 
-## 换场景
+| 后缀 | 身体 `islot=Bd` | 头 `islot=Hd` |
+|---|---|---|
+| 0、1、2、3、4、6、7、8、9、10、11 | `00002000` + 后缀 | `00012000` + 后缀 |
+| 5 | 没有这张图 | 没有这张图 |
+| 12、13 | 没有身体图 | 根目录的 `00002012`、`00002013`，以及 `00012012`、`00012013` |
+| 14 | 没有身体图 | 根目录的 `00002014` |
 
-`key` 保持不变。进入另一张场景时只更新 `x`、`y`，必要时把动作改回 `stand1`。
+同一后缀的身体，`walk1` 第 0 帧都是 27×32 的 `body` 和 12×17 的 `arm`，锚点同名。这些文件是同一套姿势的不同肤色，不是另一套骨架。`00002000` 有 148 个动作节点。`00002001`–`00002004` 和 `00002011` 有 42 个，`00002006`–`00002010` 约 103–106 个。缺的是技能引用动作。`stand1`、`walk1`、`walk2`、`jump`、`sit`、`prone`、`ladder`、`rope` 在抽查的 `00002001`、`00002006`、`00002011` 里都有。某个肤色没有该动作名时，身体沿用上一个画得出来的动作，不改去画 `00002000` 的肤色。
 
-## 不做什么
+头的 `front/head` 带 `neck`、`brow`，`z=head`，`group=skin`。`back/head` 的 `z=backHead`。`00012000` 只有 `head`。`00012012` 和 `00002012` 的 `front` 里还有 `ear`，有就一起画。
 
-- 不读取键盘。输入来自 `game-controls-input`，由地图运行库变成坐标和动作。
-- 不判断立足线，不触发出口。
-- 不解释 `stance` 字节。字节拆分还原之前，只认 `action` 和 `facing`。
-- 不画宠物、增益特效和名字。宠物在 `+0x1BB4`，特效在 `+0x1BBC`，都不是这一层外观。
+带 `group=skin` 的画布是肤色块：身体、手臂、手、头，以及头发里的 `hairShade`。用对应肤色的那张图，不再套一层颜色公式。
+
+## 装备槽
+
+每件装备读 `info/islot` 和 `info/vslot`。`vslot` 是两个字符一组拼起来的。本地提取里的件数：
+
+| 槽 | 目录和样本 | 件数 |
+|---|---|---|
+| `Cp` 帽 | `Cap/01000000`，`vslot=CpH1H5` | 2099，另有 42 个 `HrCp` |
+| `Ma` 上衣 | `Coat/01040000`，`vslot=Ma` | 569，另有 103 个上衣的 `islot=MaPn` |
+| `MaPn` 长袍 | `Longcoat/01050000` | 1348 |
+| `Pn` 裤 | `Pants/01060000` | 564 |
+| `So` 鞋 | `Shoes/01070000` | 987 |
+| `Gv` 手套 | `Glove/01080000`，`vslot=GlGw` | 543 |
+| `Si` 盾 | `Shield/01090000` | 133 |
+| `Sr` 披风 | `Cape/01100000` | 611 |
+| `Wp` 武器 | `Weapon/01302000` | 3528 |
+| `WpSi` 双手武器 | `Weapon/01422057`，同时占武器和盾 | 922 |
+| `Fc` 脸型 | `Face/` | 3037 |
+| `Hr` 头发 | `Hair/00030000`，`vslot=H1H2H3H4H5H6HfHsHb` | 6080 |
+| `Af` 脸饰 | `Accessory/01010000`，`z=accessoryFace`，锚点 `brow` | 416 |
+| `Ay` 眼饰 | `Accessory/01012509` | 199 |
+| `Ae` 耳饰 | `Accessory/01032000`，`z=accessoryEar`，另有 `backDefault` | 206 |
+
+勋章 `Me`、吊坠 `Pe`、肩膀 `Sh` 的样本只有 `info` 里的图标，没有动作画布，不叠进人物。戒指目录 755 个 `islot=Ri`，同样只有在动作节点下有画布时才画。
+
+`Base.wz/smap.img` 把画布的 `z` 映射到槽位。`cap` 这类层的值是一长串，`hair` 的值是单个 `H2`，`hairOverHead` 和 `backHair` 是 `H1`，`backHairBelowCapNarrow` 是 `H5`，`pants` 是 `PnSo`，`mailArm` 是 `MaGw`。值为空的层不参与遮挡。
+
+遮挡：
+
+1. 另一件已穿物品的 `vslot` 含有这件 `islot` 里的任一槽，则整件不画。长袍 `MaPn` 因此盖住上衣和裤子。双手武器 `WpSi` 因此盖住盾。
+2. 仍要画的那件里，若 `smap` 给这个 `z` 的值只有一个两字符槽，且另一件的 `vslot` 含有它，则这张画布不画。帽子 `CpH1H5` 盖住 `H1` 和 `H5`：`hairOverHead`、`backHair`、`backHairBelowCapNarrow` 不画。主头发 `hair` 映射到 `H2`，这顶帽子盖不住。
+3. `smap` 的值长于两个字符时，不按“沾到其中一个字符就藏”处理。`cap` 那一串里含有 `H1`，若拿头发自己的 `vslot` 去比，头发会把帽子藏掉。袖子和裤管靠下面的 z 序叠在身体上。
+4. 一件物品不隐藏自己的画布。
+
+客户端里真正执行这张表的函数还没有还原。上面四条是按 `smap` 和样本 `vslot` 能对上的读法。
+
+## 动作名怎么定
+
+身体是时间轴的主人。第一阶段运行库给 `locomotion`。没武器时后缀用 `1`：`stand1`、`walk1`。`jump` 不加后缀。
+
+武器 `info` 里的整数改后缀。`01302000` 的 `walk=1`、`stand=1`，目录是 `walk1`、`stand1`。`01422057` 的 `walk=2`、`stand=2`，目录是 `walk2`、`stand2`，没有 `walk1`。同一套后缀用于身体、头、头发、衣服和武器。
+
+`info/attack` 是武器类别，不单独变成动作名。`01302000` 的 `attack=1`，旁边有 `swingO1`。`01422057` 的 `attack=5`，同时有 `swingT1`、`swingT2`、`swingT3`、`swingTF` 和 `stabO1`、`stabO2`、`stabOF`。播哪一组由身体当前的动作名决定，武器跟同一个名字。`afterImage` 和 `sfx` 是挥砍残影和音效的名字，不在这个元素里画。
+
+运行库若直接给了 `action`，所有部件跟这个名字，不再加武器后缀。
+
+某个部件没有这个动作目录时，这一件不画。盾 `01090000` 有 `walk1`，没有 `walk2`。文件里没有指回别的动作的 uol 时，不另做回退。
+
+## 动画怎么走
+
+一个元素里面叠所有部件。身体、头、头发、衣服、武器共用身体的帧号。脸和脸饰用表情自己的帧号。
+
+身体动作是一串数字帧：
+
+| 动作 | 帧 | `delay` | 第 0 帧画布 |
+|---|---|---|---|
+| `stand1` | 0–2 | 500 | `body`（`z=body`，锚点 `neck`/`navel`）、`arm`（`z=arm`，锚点 `navel`/`hand`）。`face=1` |
+| `walk1` | 0–3 | 180 | 同上。`00002000` 的第 0 帧身体 27×32，原点 (19, 32)，`navel=(-6,-20)`，`neck=(-4,-32)` |
+| `walk2` | 0–3 | 180 | 另有 `hand`，`z=handOverHair` |
+| `jump` | 0 | 200 | 另有 `lHand`（`handBelowWeapon`）、`rHand`（`handOverHair`）。`arm` 的 `z=armOverHair` |
+| `prone` | 0 | 无 | uol 到 `proneStab/0` 的 `body` 和 `arm`。没有 `delay`，停在这一帧，直到动作改变 |
+| `sit` | 0 | 无 | 自带 `body` 和 `arm`，同样停住 |
+| `ladder`、`rope` | 0–1 | 250 | `body` 的 `z=backBody`，`face=0` |
+
+`delay` 是毫秒。组件自己累加，动作一变就从第 0 帧重播。运行库不逐帧推画面。`stand` 和 `walk` 播完回到第 0 帧。`jump` 只有一帧，停到落地把 `locomotion` 改掉。
+
+身体帧上的 `short name="face"` 决定这一帧画不画脸。`stand1`、`walk1`、`jump` 是 1。`ladder`、`rope` 是 0。`swingOF` 和 `swingTF` 的各帧里 0 和 1 都有，按该帧的值来。值为 0 时，脸和跟着表情名走的脸饰都不画。
+
+有的动作节点没有画布，只有引用。`prone2` 第 0 帧是 `action=proneStab`、`frame=0`、`delay=-700`，第 1 帧引用同一帧且 `delay=300`。`00002000` 里的 `airstrike`、`pyramid` 也是这种节点，并带 `vector name="move"`。画出被引用的那一帧，把 `move` 加到场景坐标上。`delay` 的负号在这些技能帧里出现，客户端怎么解释符号还没有从函数还原。第一阶段的 `stand1`、`walk1`、`jump` 都是自带画布的正数 `delay`，不走引用。
+
+部件帧里的 `uol` 先解开再读画布。头发 `00030000` 的 `walk1` 第 0 帧指回 `default` 的 `hairOverHead`、`hair`、`hairShade`。`ladder` 指回 `backDefault` 的 `backHair`、`backHairBelowCap`。帽子 `01000000` 的 `walk1` 指回 `default`。头 `00012000` 的 `walk1` 指回 `front/head`，`ladder` 指回 `back/head`。
+
+衣服帧通常没有自己的 `delay`，跟身体帧号。帧号超过该部件的帧数时，用它的最后一帧。
+
+头发 `hairShade` 标了 `group=skin`。节点下有画布 `0`。肤色后缀能对上同名子节点时用那张，否则用 `0`。`00030000` 里其余子节点是指回 `0` 的 uol。
+
+## 表情
+
+表情是脸图里的动作，和身体的走、跳分开计时。脸 `00020000` 的画布都叫 `face`，`z=face`，锚点 `brow`。
+
+`default` 不是数字帧，是一张画布，一直画到表情名改变。其余名字：
+
+| 表情 | 帧和 `delay` |
+|---|---|
+| `blink` | 3 帧，各 60 |
+| `hit`、`smile`、`troubled`、`cry`、`angry`、`bewildered`、`stunned`、`oops`、`cheers`、`chu`、`wink`、`pain`、`shine` | 1 帧，无 `delay`，停住 |
+| `vomit` | 2 帧，各 120 |
+| `glitter`、`despair`、`love` | 2 帧，各 150 |
+| `blaze`、`hum`、`bowing`、`hot` | 2 帧，各 110 |
+| `dam` | 2 帧，各 240 |
+| `bangle`、`setback`、`wickedness` | 8 帧，各 240 |
+
+多帧表情播完回到第 0 帧。表情名一变就从第 0 帧重播，不跟着身体帧重置。
+
+脸饰若有和表情同名的节点，用表情的帧号。`Accessory/01010000` 的 `blink`、`smile` 指回它自己的 `default`。没有这个表情名时用 `default`。
+
+`Face/CommonFaceCN.img` 另有 `nosebleed`，4 帧、各 180，`z=face`。它不是 3037 个脸型编号之一。运行库把表情名指到这里时才画。
+
+`FACE_EXPRESSION` 的包布局在 Task 056 里不可靠。组件只认运行库给的表情名。
+
+## 锚点
+
+先放身体。身体画布的 `origin` 放在运行库的 `(x, y)` 上，技能引用帧再加 `move`。样本里 `origin.y` 等于高度，底边落在场景坐标上。纸娃娃内部的对齐点是 `map` 里的向量，向量相对 `origin`。
+
+身体放下之后，同名锚点已经有了场景位置。后放的画布选出一个自己带有、且已经存在的锚点，重合到那个位置。一张画布带多个点时，按 `navel`、`neck`、`hand`、`brow`、`handMove` 的顺序取第一个已经存在的。
+
+这样串起来的样本：
+
+- 头的 `neck` 对身体的 `neck`，再记下头的 `brow`。
+- 脸、头发、帽子、眼饰、耳饰的 `brow` 对头的 `brow`。
+- 上衣 `mail` / `mailArm`、裤子、鞋、披风、盾的 `navel` 对身体的 `navel`。`Coat/01040000` 的 `walk1` 第 0 帧是 `mail`（`z=mailChest`）和 `mailArm`（`z=mailArm`）。
+- 武器的 `hand` 对当前帧手臂的 `hand`。`01302000` 的 `walk1` 第 0 帧是 `weapon`，`z=weapon`。
+- 手套 `01080000` 的 `walk1` 第 0 帧是 `lGlove`（`z=gloveOverBody`）和 `rGlove`（`z=glove`），锚点都是 `navel`。
+
+朝向向左时，整个合成结果绕身体 `origin` 的 x 翻转，不为左右各备一套图。锚点的 x 一起翻转，部件仍然重合。
+
+## 叠放顺序
+
+每张画布有字符串 `z`。顺序在 `Base.wz/zmap.img`。子节点从前到后：靠前的名字盖住靠后的名字。`characterStart` 是人物层最前，`characterEnd` 是人物层最后。表尾的 `Bd`、`Hd`、`Hr`、`Fc` 等两个字母是槽位代号，不是画布的 `z`。
+
+同一文件里靠前的层包括 `weaponOverGlove`、`handOverHair`、`capOverHair`、`hairOverHead`、`cap`、`hair`、`face`、`head`。靠后的层包括 `body`、`backHair`、`backHead`、`backBody`。同一次绘制里，先画靠近 `characterEnd` 的画布，再画靠近 `characterStart` 的画布。
+
+`zmap_cn.img` 是同目录的另一张表。人物用 `zmap.img`。
+
+本地合成工具 `wzpy/character.py` 读到这张表后会反转，让序号小的画在后面。组件直接按文件顺序理解：文件里越靠前，越盖在上面。爬绳子时工具里另有一套把 `backHair` 抬到身体之前的覆盖表，那是工具自己的修正，不是 `zmap.img` 里的顺序，组件不用。
+
+## 第一阶段画出来的人
+
+肤色 `0` 的身体和头、脸 `00020000`、头发 `00030000`、表情 `default`。移动时播 `stand1`、`walk1`、`jump`。运行库若带了装备编号，按上面的槽位、锚点、z 序和遮挡一起画。
+
+`key` 在换场景时不变。只更新 `x`、`y`，落地时把 `locomotion` 设回 `stand`。
+
+## 还不从字节里猜的部分
+
+- `stance` 这一个字节如何分成动作和朝向。组件认 `locomotion`、`action` 和 `facing`。
+- 装备迭代里每个 int32 的槽位含义。组件认 `equips` 里的物品编号。
+- 技能引用帧上负 `delay` 的分支。第一阶段不播这些动作。
+- 性别字节。现有身体和头的 `info` 里没有这个字段。
