@@ -22,6 +22,125 @@ Content 的名字是 `{种类}.{表名}`，键是文件名去掉后缀。
 
 一个 img 里出现过的标量都留下，缺的键不补默认值。下面列出的是这批 079 提取里实际见过的名字。
 
+## 转换后的样子
+
+一张地图是一条 JSON，加上按地图编号分开的 JSONL。画布是 PNG，声音是单独的字节文件。下面用射手村 `100000000` 缩样，层只列第 0 层，每种分组只留一行。
+
+```text
+[FSDB]cms/
+├── [struct]Map/
+│   └── 100000000.json
+├── [struct]Tileset/
+│   └── woodMarble.json
+├── [struct]Physics/
+│   └── default.json
+├── [struct]Look/
+│   └── 00002000.json
+├── [group]Back/
+│   └── 100000000.jsonl
+├── [group]Tile/
+│   └── 100000000.jsonl
+├── [group]Portal/
+│   └── 100000000.jsonl
+└── [resource]图/
+    ├── Tile/woodMarble/bsc/1.png
+    ├── Back/grassySoil/back/0.png
+    ├── MiniMap/100000000.png
+    └── Look/00002000/walk1/0/body.png
+```
+
+`[struct]Map/100000000.json`。这张图的 `info` 里没有 `VR` 和 `link`：
+
+```json
+{
+  "info": {
+    "version": 10,
+    "cloud": 0,
+    "town": 1,
+    "mobRate": 0.4999999,
+    "bgm": "Bgm00/FloralLife",
+    "returnMap": 100000000,
+    "forcedReturn": 999999999,
+    "hideMinimap": 0,
+    "moveLimit": 0,
+    "mapMark": "Henesys",
+    "swim": 0,
+    "fieldLimit": 0,
+    "fly": 0,
+    "noMapCmd": 0,
+    "onUserEnter": "explorationPoint"
+  },
+  "miniMap": {
+    "width": 7174,
+    "height": 1391,
+    "centerX": 798,
+    "centerY": 661,
+    "mag": 4,
+    "canvas": "MiniMap/100000000"
+  },
+  "layers": [
+    { "layer": "0", "tileSet": "woodMarble" }
+  ]
+}
+```
+
+`[group]Back/100000000.jsonl`、`[group]Tile/100000000.jsonl`、`[group]Portal/100000000.jsonl` 各一行：
+
+```jsonl
+{"bS":"grassySoil","no":0,"x":0,"y":0,"rx":0,"ry":0,"type":3,"cx":0,"cy":0,"a":255,"front":0,"ani":0,"f":0}
+{"layer":"0","x":4005,"y":330,"u":"bsc","no":3,"zM":4}
+{"pn":"sp","pt":0,"x":112,"y":197,"tm":999999999,"tn":""}
+```
+
+`[struct]Tileset/woodMarble.json` 把画布上的 `origin` 和 `z` 留在记录里。瓦片那一行没有 `z`：
+
+```json
+{
+  "bsc": [
+    { "no": 1, "resource": "Tile/woodMarble/bsc/1", "origin": [0, 0], "z": 0, "width": 90, "height": 60 }
+  ]
+}
+```
+
+`[struct]Physics/default.json` 是全游戏一份：
+
+```json
+{
+  "walkForce": 140000,
+  "walkSpeed": 125,
+  "walkDrag": 80000,
+  "slipForce": 60000,
+  "slipSpeed": 120,
+  "floatDrag1": 100000,
+  "floatDrag2": 10000,
+  "floatCoefficient": 0.01,
+  "swimForce": 120000,
+  "swimSpeed": 140,
+  "flyForce": 120000,
+  "flySpeed": 200,
+  "gravityAcc": 2000,
+  "fallSpeed": 670,
+  "jumpSpeed": 555,
+  "maxFriction": 2,
+  "minFriction": 0.05,
+  "swimSpeedDec": 0.9,
+  "flyJumpDec": 0.35
+}
+```
+
+`[struct]Look/00002000.json` 里 `walk1` 第 0 帧的身体画布：
+
+```json
+{
+  "resource": "Look/00002000/walk1/0/body",
+  "origin": [19, 32],
+  "z": "body",
+  "map": { "navel": [-6, -20], "neck": [-4, -32] }
+}
+```
+
+运行库按 Content 的名字来取：`struct.Map/100000000` 是地图记录，`group.Tile/100000000` 是瓦片 JSONL，`resource.图/Tile/woodMarble/bsc/1` 是那张 90×60 的 PNG。装备编号不在这些文件里，它在人物元素的 `equips` 属性上。
+
 ## Map.wz
 
 ### 地图信息
