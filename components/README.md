@@ -37,7 +37,7 @@ cms-scene-view
 ## 不做成组件的东西
 
 - 立足线、绳梯。碰撞数据。需要看的时候由 `cms-scene-view` 画辅助线。
-- 单个瓦片、单个物件。数量大，画在所属的 `cms-map-layer` 里。
+- 单个瓦片、单个物件。数量大，而且是像素坐标上的放置列表，不是等宽矩阵。放在所属 `cms-map-layer` 的 `tiles` 和 `objs` 数组里。
 - 怪物、NPC、反应堆。字段在 Task 060 和 Task 050 里已经有，第一阶段不放进树。
 - 方向键。沿用 LoomRealm 的 `game-controls-input`，不放在本目录。
 
