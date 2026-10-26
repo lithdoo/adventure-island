@@ -12,8 +12,8 @@
 |---|---|---|
 | `x` / `y` | 场景坐标，身体画布的 `origin` 放在这里 | `decodeAvatar` 在 `stance` 前读两个有符号 i16。样本里身体 `origin.y` 等于画布高度，原点在图的底边 |
 | `locomotion` | `stand`、`walk`、`jump` | 第一阶段的移动只产生这三种。武器的 `walk` / `stand` 再决定后缀 |
-| `action` | 可空。这一次挥砍或施法的身体动作名 | `Skill.wz` 的 `action` 节点，以及武器普攻的 `swing*` / `stab*` / `shoot*`。它盖住 `locomotion`，但是只播一遍 |
-| `actionToken` | 每次施放加一 | 动作名可以和上一次相同。token 变了才从第 0 帧重播。播完后名字还留着也不再播 |
+| `action` | 可空。这一次挥砍或施法要播的身体动作名 | 取值是 WZ 里的动作名：`Skill.wz` 的 `action` 节点，以及 `swing*` / `stab*` / `shoot*`。组件上单列这个字段是设计：`stance`（`+0x3C0`）还没拆成动作和朝向 |
+| `actionToken` | 每次施放加一 | 组件合同。客户端包和 WZ 里都没有这个字段。同名动作要能再播一次，播完后名字还留在渲染数据里也不能重播。客户端里的播放进度没有还原成字段，用这个计数代替 |
 | `facing` | 左或右 | 不从 `stance` 字节里拆 |
 | `skin` | 肤色后缀，u8 | `CCharacterStats+0x12`。`UPDATE_STATS` 的 mask `0x001` 读 u8。`UPDATE_CHAR_LOOK`（`0xC7`）在性别之后读同一个 u8 |
 | `face` | 脸型编号 | `decodeAvatar` 在头发之后读的 int32。`UPDATE_STATS` 的脸也是 int32。`Face/` 下 3037 个 `islot=Fc` |
@@ -213,7 +213,7 @@
 
 ## 还不从字节里猜的部分
 
-- `stance` 这一个字节如何分成动作和朝向。组件认 `locomotion`、`action` 和 `facing`。
+- `stance` 这一个字节如何分成动作和朝向。组件认 `locomotion`、`action` 和 `facing`。`actionToken` 是组件自己的施放计数，不是客户端字段。
 - 装备迭代里每个 int32 的槽位含义。组件认 `equips` 里的物品编号。
 - 技能 `action` 有 `0` 和 `1` 两条时，选哪一条。组件认运行库给的动作名。
 - 负 `delay` 和正 `delay` 在判定、残影上的差别。画面上都按绝对值停留。
