@@ -14,15 +14,15 @@ import convert_cms  # noqa: E402
 
 
 class KeyMappingTest(unittest.TestCase):
-    def test_current_duplicate_key_is_detected_and_later_record_dropped(self):
+    def test_duplicate_key_is_disambiguated_and_preserves_both(self):
         with tempfile.TemporaryDirectory() as tmp:
             store = convert_cms.Store(Path(tmp), roundtrip=False)
             self.assertTrue(store.write_struct("Look", "00000001", {"source": "alpha"}))
-            self.assertFalse(store.write_struct("Look", "00000001", {"source": "beta"}))
-            self.assertEqual(store.collisions, [{"table": "Look", "key": "00000001"}])
-            written = json.loads((Path(tmp) / "[struct]Look" / "00000001.json").read_text(encoding="utf-8"))
-            self.assertEqual(written["source"], "alpha")
-            self.assertNotIn("beta", json.dumps(written))
+            self.assertTrue(store.write_struct("Look", "00000001", {"source": "beta"}))
+            self.assertEqual(store.collisions, [])
+            bodies = [json.loads(p.read_text(encoding="utf-8")) for p in (Path(tmp) / "[struct]Look").glob("*.json")]
+            self.assertEqual({v["source"] for v in bodies}, {"alpha", "beta"})
+            self.assertEqual(len(store.record_remaps), 1)
 
     def test_repair_duplicate_key_preserves_both_sources(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -67,6 +67,21 @@ class KeyMappingTest(unittest.TestCase):
             self.assertEqual(row["required_behavior"], "preserve_all_sources")
             self.assertNotIn("record", row)
         self.assertEqual(counts, {"Look": 5, "Item": 2, "MapEffect": 4})
+
+    def test_all_eleven_logged_collisions_preserve_every_source(self):
+        payload = json.loads((ROOT / "result" / "64-wz-fsdb-key-collisions.json").read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as tmp:
+            store = convert_cms.Store(Path(tmp), roundtrip=False)
+            for entry in payload["collisions"]:
+                for item in entry["sources"]:
+                    source = item["wz"] + "/" + item["path"]
+                    self.assertTrue(store.write_struct(entry["table"], entry["key"], {"source": source}, source=source))
+            expected = sum(len(entry["sources"]) for entry in payload["collisions"])
+            got = sum(1 for table in {"Look", "Item", "MapEffect"} for _ in
+                      (Path(tmp) / f"[struct]{table}").glob("*.json"))
+            self.assertEqual(got, expected)
+            self.assertEqual(store.stats["keyCollisions"], 0)
+            self.assertEqual(len(store.record_remaps), expected - len(payload["collisions"]))
 
 
 if __name__ == "__main__":
