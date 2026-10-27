@@ -45,33 +45,40 @@ class ResourceNameTest(unittest.TestCase):
             names = [path.name for path in (Path(tmp) / "[struct]Fixture").iterdir()]
             self.assertEqual(names, [composed + ".json"])
 
-    def test_invalid_resource_is_not_trimmed_into_a_file(self):
+    def test_invalid_resource_is_encoded_without_trim_and_provenance_kept(self):
         with tempfile.TemporaryDirectory() as tmp:
             store = convert_cms.Store(Path(tmp), roundtrip=False)
             image = Image.new("RGBA", (1, 1), (1, 2, 3, 4))
             digest = hashlib.sha256(image.tobytes()).hexdigest()
-            self.assertIsNone(store.write_png(["Fixture", "frame "], image, digest))
-            self.assertEqual(list(Path(tmp).rglob("*.png")), [])
+            key = store.write_png(["Fixture", "frame "], image, digest)
+            self.assertIsNotNone(key)
+            self.assertNotEqual(key, "Fixture/frame")
+            self.assertTrue(all(convert_cms.valid_segment(p) for p in key.split("/")))
+            self.assertEqual(len(list(Path(tmp).rglob("*.png"))), 1)
+            self.assertEqual(store.resource_aliases[0]["originalParts"], ["Fixture", "frame "])
 
-    def test_current_different_extensions_share_a_logical_key(self):
+    def test_image_and_audio_use_separate_namespaces(self):
         with tempfile.TemporaryDirectory() as tmp:
             store = convert_cms.Store(Path(tmp), roundtrip=False)
             image = Image.new("RGBA", (1, 1), (9, 8, 7, 6))
             digest = hashlib.sha256(image.tobytes()).hexdigest()
             self.assertEqual(store.write_png(["Fixture", "mark"], image, digest), "Fixture/mark")
             self.assertEqual(store.write_sound(["Fixture", "mark"], b"synthetic-tone", "wav"), "Fixture/mark")
-            self.assertEqual([row["error"] for row in store.errors], ["hash-collision"])
-            files = list(Path(tmp).rglob("mark.*"))
-            self.assertEqual([path.suffix for path in files], [".png"])
+            self.assertEqual(store.errors, [])
+            self.assertEqual({path.suffix for path in Path(tmp).rglob("mark.*")}, {".png", ".wav"})
+            self.assertTrue((Path(tmp) / "[resource]图").exists())
+            self.assertTrue((Path(tmp) / "[resource]音").exists())
 
     def test_repair_extension_conflict_has_its_own_error(self):
         with tempfile.TemporaryDirectory() as tmp:
             store = convert_cms.Store(Path(tmp), roundtrip=False)
             image = Image.new("RGBA", (1, 1), (9, 8, 7, 6))
             digest = hashlib.sha256(image.tobytes()).hexdigest()
-            store.write_png(["Fixture", "mark"], image, digest)
-            store.write_sound(["Fixture", "mark"], b"synthetic-tone", "wav")
+            self.assertEqual(store.write_sound(["Fixture", "mark"], b"synthetic-tone", "wav"), "Fixture/mark")
+            alternate = store.write_sound(["Fixture", "mark"], b"different-synthetic-tone", "mp3")
+            self.assertNotEqual(alternate, "Fixture/mark")
             self.assertIn("extension-conflict", [row["error"] for row in store.errors])
+            self.assertEqual(len(list((Path(tmp) / "[resource]音").rglob("mark*"))), 2)
 
     def test_logged_invalid_paths_are_sixty_five_unresolved_names(self):
         payload = json.loads((ROOT / "result" / "64-wz-fsdb-invalid-paths.json").read_text(encoding="utf-8"))
@@ -88,6 +95,28 @@ class ResourceNameTest(unittest.TestCase):
                     break
             else:
                 self.fail(row["source_path"])
+
+    def test_invalid_path_manifest_has_lossless_legal_mappings(self):
+        payload = json.loads((ROOT / "result" / "64-wz-fsdb-invalid-paths.json").read_text(encoding="utf-8"))
+        source_to_key = {}
+        for entry in payload["paths"]:
+            original = entry["source_path"]
+            safe = "/".join(convert_cms.fsdb_resource_segment(p) for p in original.split("/"))
+            self.assertTrue(all(convert_cms.valid_segment(p) for p in safe.split("/")))
+            self.assertNotEqual(original, safe)
+            source_to_key[original] = safe
+        self.assertEqual(len(source_to_key), 65)
+        self.assertEqual(len(set(source_to_key.values())), 65)
+
+    def test_casefold_directory_collision_gets_distinct_physical_names(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store = convert_cms.Store(Path(tmp), roundtrip=False)
+            image = Image.new("RGBA", (1, 1), (4, 5, 6, 7))
+            digest = hashlib.sha256(image.tobytes()).hexdigest()
+            first = store.write_png(["Effect", "DragonTiger", "0"], image, digest)
+            second = store.write_png(["Effect", "dragonTiger", "0"], image, digest)
+            self.assertNotEqual(first.casefold(), second.casefold())
+            self.assertEqual(len(list(Path(tmp).rglob("*.png"))), 2)
 
 
 if __name__ == "__main__":
