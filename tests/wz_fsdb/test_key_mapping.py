@@ -35,9 +35,12 @@ class KeyMappingTest(unittest.TestCase):
             self.assertEqual(sources, {"alpha", "beta"})
             self.assertEqual(store.stats["keyCollisions"], 0)
 
-    def test_device_name_string_key_falls_back_to_the_leaf(self):
+    def test_device_name_string_key_preserves_full_path(self):
         key, reason = convert_cms.string_record_key(("Con", "2000000"), set())
-        self.assertEqual((key, reason), ("2000000", "device_fallback"))
+        self.assertEqual(reason, "encoded-path")
+        self.assertTrue(convert_cms.valid_segment(key))
+        self.assertNotEqual(key, "2000000")
+        self.assertEqual(convert_cms.fsdb_resource_segment("Con.2000000"), key)
 
     def test_current_string_key_keeps_a_dotted_trail(self):
         key, reason = convert_cms.string_record_key(("Eqp", "Cap", "1003233"), set())
