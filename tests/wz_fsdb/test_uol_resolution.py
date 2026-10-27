@@ -64,8 +64,8 @@ class UolResolutionTest(unittest.TestCase):
         self.assertFalse(convert_cms.is_uol(target))
 
     def test_repair_unresolved_uol_keeps_the_link_text(self):
-        record = convert_cms.uol_failure_record("dangling")
-        self.assertIn("value", record)
+        record = convert_cms.uol_failure_record("dangling", "../missing/body")
+        self.assertEqual(record["value"], "../missing/body")
         self.assertFalse(record["resolved"])
 
     def test_logged_uol_diagnostics_separate_unknown_from_missing(self):
