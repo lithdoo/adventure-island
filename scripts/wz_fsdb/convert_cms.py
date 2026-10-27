@@ -10,6 +10,7 @@ pixels, or audio.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import math
@@ -22,7 +23,7 @@ from pathlib import Path
 
 REGION = "EMS"
 CANVAS_RESOURCE_TABLE = "图"
-SOUND_RESOURCE_TABLE = "图"
+SOUND_RESOURCE_TABLE = "音"
 DESIGN_SOUND_RESOURCE_TABLE = "音"
 Image = None
 WzCanvasProperty = WzConvexProperty = WzFile = None
@@ -72,8 +73,8 @@ def is_uol(node) -> bool:
 def resolve_uol(node):
     """Follow the converter's UOL rule: the link is relative to ``node.parent``.
 
-    Sixteen hops without a non-UOL target are reported as ``cycle`` even when
-    the node identities do not repeat. A missing parent is ``dangling``.
+    An already repeated UOL is a cycle; depth exhaustion is not a cycle.
+    A missing parent is dangling.
     """
     seen = set()
     cur = node
@@ -86,16 +87,15 @@ def resolve_uol(node):
         cur = cur.parent.get(str(cur.value))
         if cur is None:
             return None, "dangling"
-    return None, "cycle"
+    return (cur, "ok") if not is_uol(cur) else (None, "depth_limit")
 
 
-def uol_failure_record(status: str) -> dict:
+def uol_failure_record(status: str, value: str | None = None) -> dict:
     """Record stored when a UOL does not resolve.
 
-    The current record keeps the status and drops the link text. DESIGN asks
-    for the original WZ path as well.
+    Keep the original link text in the unresolved record.
     """
-    return {"uol": True, "resolved": False, "status": status}
+    return {"uol": True, "resolved": False, "status": status, "value": value}
 
 
 def segment_issue(value: str) -> str | None:
@@ -116,9 +116,9 @@ def segment_issue(value: str) -> str | None:
         return "leading_dollar"
     if value.endswith("."):
         return "trailing_dot"
-    if unicodedata.category(value[0]).startswith("Z"):
+    if value[0].isspace():
         return "leading_whitespace"
-    if unicodedata.category(value[-1]).startswith("Z"):
+    if value[-1].isspace():
         return "trailing_whitespace"
     for char in value:
         if char in '\\/<>:"|?*\0':
@@ -147,7 +147,7 @@ def valid_segment(value: str) -> bool:
     size = len(value.encode("utf-8"))
     if size < 1 or size > 200 or value.startswith(".") or value.startswith("$") or value.endswith("."):
         return False
-    if unicodedata.category(value[0]).startswith("Z") or unicodedata.category(value[-1]).startswith("Z"):
+    if value[0].isspace() or value[-1].isspace():
         return False
     for char in value:
         if char in '\\/<>:"|?*\0' or unicodedata.category(char) in {"Cc", "Cs"}:
@@ -183,6 +183,11 @@ class Store:
         self.pixel_rows = []
         self.unsafe_ints = 0
         self.tables = set()
+        self.record_remaps = []
+        self.resource_aliases = []
+        self._struct_keys = {}
+        self._resource_directory_names = {}
+        self._resource_path_cache = {}
 
     def note_error(self, kind: str, path: str, error: str) -> None:
         self.stats["errors"] += 1
@@ -197,7 +202,7 @@ class Store:
         self.tables.add((kind, name))
         return path
 
-    def write_struct(self, table: str, key: str, value: dict) -> bool:
+    def write_struct(self, table: str, key: str, value: dict, source: str | None = None) -> bool:
         if not valid_segment(key):
             self.note_error("key", f"{table}/{key}", "invalid-name")
             return False
@@ -332,7 +337,7 @@ class Codec:
             target, status = self.resolve_uol(node)
             self.store.stats[f"uol_{status}"] += 1
             if target is None:
-                return uol_failure_record(status)
+                return uol_failure_record(status, str(node.value))
             return self.serialize(target)
         if isinstance(node, WzCanvasProperty):
             record = {child.name: self.serialize(child) for child in node.children()}
@@ -442,7 +447,8 @@ def convert_map(store: Store, img, map_id: str) -> dict:
         store.write_group("Tile", map_id, tile_rows)
     if saw_obj:
         store.write_group("Obj", map_id, obj_rows)
-    record["layers"] = layers
+    if layers:
+        record["layers"] = layers
     back = root.child("back")
     if back is not None:
         rows = [placement_row(codec, item, {}) for item in back.children()]
@@ -516,9 +522,9 @@ def convert_map(store: Store, img, map_id: str) -> dict:
     return refs
 
 
-def convert_tree(store: Store, img, table: str, key: str, prefix: list[str]) -> None:
+def convert_tree(store: Store, img, table: str, key: str, prefix: list[str], source: str | None = None) -> None:
     root = img.parse()
-    store.write_struct(table, key, children_object(Codec(store, prefix), root))
+    store.write_struct(table, key, children_object(Codec(store, prefix), root), source=source)
 
 
 def string_entries(node, trail, out):
@@ -631,7 +637,7 @@ def emit_metadata(store: Store) -> None:
                         "miniMap": {"type": "object"},
                         "layers": {"type": "array", "items": {"type": "object"}},
                     },
-                    "required": ["info", "layers"],
+                    "required": ["info"],
                     "additionalProperties": True,
                 }
             elif name == "Physics":
@@ -904,7 +910,7 @@ def convert_etc(store: Store, wz: WzFile) -> None:
 
 def quest_table(stem: str) -> str:
     """Current destination. DESIGN asks for QuestAct, QuestCheck, and the other four tables."""
-    return "Quest"
+    return "Quest" + stem
 
 
 def quest_key(stem: str) -> str:
@@ -935,9 +941,19 @@ def string_record_key(trail: tuple[str, ...], seen: set[str]) -> tuple[str | Non
 
 
 def convert_quest(store: Store, wz) -> None:
+    """Save Quest IMG children as independently addressable records."""
     for path, img in wz.root.walk_images():
         stem = stem_of(path)
-        convert_tree(store, img, quest_table(stem), quest_key(stem), ["Quest", stem])
+        root = img.parse()
+        codec = Codec(store, ["Quest", stem])
+        children = list(root.children())
+        if not children:
+            store.write_struct(quest_table(stem), quest_key(stem), {})
+        for child in children:
+            value = (children_object(codec, child) if isinstance(child, WzSubProperty)
+                     else {"value": codec.serialize(child)})
+            store.write_struct(quest_table(stem), child.name, value,
+                               source=f"Quest.wz/{path}/{child.name}")
         store.stats["images"] += 1
     print("Quest images", store.stats["images"], flush=True)
 
@@ -1033,6 +1049,8 @@ def main() -> None:
         "stats": dict(store.stats),
         "unsafeInts": store.unsafe_ints,
         "collisions": store.collisions[:40],
+        "recordRemaps": store.record_remaps,
+        "resourceAliases": store.resource_aliases,
         "errors": store.errors,
         "tables": sorted(f"{kind}.{name}" for kind, name in store.tables),
         "resourceCount": len(store.resources),
