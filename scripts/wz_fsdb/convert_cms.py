@@ -205,6 +205,9 @@ class Store:
         self._struct_keys = {}
         self._resource_directory_names = {}
         self._resource_path_cache = {}
+        self._resource_variant_keys = {}
+        self.record_alias_index = {}
+        self._record_source_by_key = {}
 
     def note_error(self, kind: str, path: str, error: str) -> None:
         self.stats["errors"] += 1
@@ -250,6 +253,18 @@ class Store:
         with path.open("x", encoding="utf-8", newline="\n") as handle:
             handle.write(dumps(value) + "\n")
         used[actual.casefold()] = actual
+        self._record_source_by_key[(table, actual)] = source
+        if actual != key:
+            alias_id = (table, key.casefold())
+            candidates = self.record_alias_index.setdefault(alias_id, [])
+            if not candidates:
+                primary_key = used.get(key.casefold())
+                if primary_key is not None:
+                    candidates.append({
+                        "key": primary_key,
+                        "source": self._record_source_by_key.get((table, primary_key)),
+                    })
+            candidates.append({"key": actual, "source": source})
         self.stats["struct"] += 1
         return True
 
@@ -269,6 +284,10 @@ class Store:
         self.stats["groupRows"] += len(rows)
 
     def _safe_parts(self, table: str, source: list[str]) -> list[str]:
+        token = (table, tuple(source))
+        cached = self._resource_path_cache.get(token)
+        if cached is not None:
+            return list(cached)
         output = []
         for raw in source[:-1]:
             parent = (table, tuple(output))
@@ -289,6 +308,7 @@ class Store:
             output.append(piece)
         output.append(fsdb_resource_segment(source[-1]))
         if output != source:
+            self._resource_path_cache[token] = tuple(output)
             self.resource_aliases.append({
                 "table": table, "originalParts": list(source), "storedKey": "/".join(output),
                 "reason": "invalid-or-casefold-segment",
@@ -303,6 +323,11 @@ class Store:
         if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,31}", ext):
             self.note_error("resource", "/".join(parts), "invalid-extension")
             return None
+        variant_id = (table, tuple(parts), ext, digest)
+        previous_variant = self._resource_variant_keys.get(variant_id)
+        if previous_variant is not None:
+            self.stats["resourceReuse"] += 1
+            return list(previous_variant), True
         output = self._safe_parts(table, parts)
         key = "/".join(output)
         prior = self.resources.get((table, key.casefold()))
@@ -325,6 +350,7 @@ class Store:
             "table": table, "originalParts": list(parts), "storedKey": "/".join(output),
             "reason": reason
         })
+        self._resource_variant_keys[variant_id] = tuple(output)
         self.stats["resourceAliases"] += 1
         return output, False
 
@@ -1139,6 +1165,17 @@ def main() -> None:
             func(store, wz, args.scope)
         finally:
             wz.close()
+    # A small FSDB lookup table allows runtime consumers to see every
+    # source competing for the same original ID without guessing suffixes.
+    for (table_name, folded_key), candidates in sorted(store.record_alias_index.items()):
+        if len(candidates) < 2:
+            raise ValueError("incomplete-record-alias-index")
+        original_key = candidates[0]["key"]
+        store.write_struct("WzRecordAlias", table_name + "." + original_key, {
+            "table": table_name,
+            "originalKey": original_key,
+            "candidates": candidates,
+        })
     emit_metadata(store)
     summary = {
         "scope": args.scope,
@@ -1146,6 +1183,7 @@ def main() -> None:
         "unsafeInts": store.unsafe_ints,
         "collisions": store.collisions[:40],
         "recordRemaps": store.record_remaps,
+        "recordAliasCount": len(store.record_alias_index),
         "resourceAliases": store.resource_aliases,
         "errors": store.errors,
         "tables": sorted(f"{kind}.{name}" for kind, name in store.tables),
