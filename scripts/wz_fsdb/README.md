@@ -14,7 +14,7 @@ From the repository root:
 python -m unittest discover -s tests/wz_fsdb -v
 ```
 
-These tests build their own nodes and files. They do not need a WZ archive. Tests named `test_repair_*` describe the repair target and currently fail. The other tests describe the converter as it behaves today.
+These tests build their own nodes and files. They do not need a WZ archive. Tests named `test_repair_*` cover the original repair targets. They now pass in the synthetic-only CI suite. Previous failures are preserved as historical evidence in `result/64-wz-fsdb-repair-input.md`; see `result/65-wz-fsdb-repair-patch.md` for the patch, current verification and outstanding local WZ checks.
 
 ## Conversion
 
@@ -25,3 +25,7 @@ python scripts/wz_fsdb/convert_cms.py --scope phase1 --wz-root <wz-root> --wzpy 
 `--wz-root` is the directory that contains `Base.wz`, `Character.wz`, and the other packages. `--out`, `--report-dir`, and `--pixel-log` must be outside tracked source, or in a gitignored directory. The summary does not record those absolute paths.
 
 `--scope all` walks every package. `--only Map.wz,String.wz` limits the run. This handoff does not ask for another full conversion.
+
+## Repair status
+
+A full local-WZ conversion and FSDB Integrity-valid validation are **still pending**. Do not reuse or incrementally overwrite a prior generated FSDB: construct a new output root. Colliding records are retained with unique FSDB keys and the generated `struct.WzRecordAlias` mapping; resource path aliases are reported as `resourceAliases` in the local JSON summary. Audio now belongs to `resource.音`, independent of PNG `resource.图`. Do not commit these generated outputs.
