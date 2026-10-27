@@ -171,6 +171,23 @@ def rel_parts(node) -> list[str]:
     return parts
 
 
+def fsdb_resource_segment(source: str) -> str:
+    """Encode invalid WZ path segments without trimming or losing provenance."""
+    if valid_segment(source) and not source.startswith("wz~"):
+        return source
+    encoded = "wz~" + base64.urlsafe_b64encode(source.encode("utf-8")).decode("ascii").rstrip("=")
+    return encoded if valid_segment(encoded) else "wz~sha256~" + hashlib.sha256(source.encode("utf-8")).hexdigest()
+
+
+def unique_name(original: str, identity: str) -> str:
+    """A portable, deterministic key disambiguator; original is in the report."""
+    suffix = "~" + hashlib.sha256(identity.encode("utf-8")).hexdigest()[:16]
+    candidate = original + suffix
+    if valid_segment(candidate):
+        return candidate
+    return "wz~sha256~" + hashlib.sha256((original + "\0" + identity).encode("utf-8")).hexdigest()
+
+
 class Store:
     def __init__(self, root: Path, roundtrip: bool, keep_pixels: bool = False):
         self.root = root
@@ -206,12 +223,33 @@ class Store:
         if not valid_segment(key):
             self.note_error("key", f"{table}/{key}", "invalid-name")
             return False
-        path = self.table("struct", table) / f"{key}.json"
-        if path.exists():
-            self.collisions.append({"table": table, "key": key})
-            self.stats["keyCollisions"] += 1
-            return False
-        path.write_text(dumps(value) + "\n", encoding="utf-8", newline="\n")
+        folder = self.table("struct", table)
+        if table not in self._struct_keys:
+            previous = {}
+            for item in folder.glob("*.json"):
+                folded = item.stem.casefold()
+                if folded in previous and previous[folded] != item.stem:
+                    raise ValueError("existing-casefold-collision")
+                previous[folded] = item.stem
+            self._struct_keys[table] = previous
+        used = self._struct_keys[table]
+        actual = key
+        if key.casefold() in used or (folder / f"{key}.json").exists():
+            basis = source if source is not None else dumps(value)
+            actual = unique_name(key, table + "/" + key + "/" + basis)
+            attempt = 0
+            while actual.casefold() in used or (folder / f"{actual}.json").exists():
+                attempt += 1
+                actual = unique_name(key, table + "/" + key + "/" + basis + "/" + str(attempt))
+            self.record_remaps.append({
+                "table": table, "originalKey": key, "storedKey": actual,
+                "source": source, "reason": "duplicate-or-casefold-key"
+            })
+            self.stats["rekeyedRecords"] += 1
+        path = folder / f"{actual}.json"
+        with path.open("x", encoding="utf-8", newline="\n") as handle:
+            handle.write(dumps(value) + "\n")
+        used[actual.casefold()] = actual
         self.stats["struct"] += 1
         return True
 
@@ -225,27 +263,86 @@ class Store:
             self.stats["keyCollisions"] += 1
             return
         text = "".join(dumps(row) + "\n" for row in rows)
-        path.write_text(text, encoding="utf-8", newline="\n")
+        with path.open("x", encoding="utf-8", newline="\n") as handle:
+            handle.write(text)
         self.stats["groupFiles"] += 1
         self.stats["groupRows"] += len(rows)
 
-    def write_png(self, parts: list[str], image: Image.Image, digest: str) -> str | None:
-        if not all(valid_segment(part) for part in parts):
-            self.note_error("resource", "/".join(parts), "invalid-name")
-            return None
-        key = "/".join(parts)
-        previous = self.resources.get(key)
-        if previous is not None:
-            if previous != digest:
-                self.note_error("resource", key, "hash-collision")
+    def _safe_parts(self, table: str, source: list[str]) -> list[str]:
+        output = []
+        for raw in source[:-1]:
+            parent = (table, tuple(output))
+            entries = self._resource_directory_names.setdefault(parent, {})
+            if raw in entries:
+                piece = entries[raw]
             else:
-                self.stats["resourceReuse"] += 1
+                piece = fsdb_resource_segment(raw)
+                used = {name.casefold() for name in entries.values()}
+                if piece.casefold() in used:
+                    base = piece
+                    piece = unique_name(base, raw)
+                    attempt = 0
+                    while piece.casefold() in used:
+                        attempt += 1
+                        piece = unique_name(base, raw + "/" + str(attempt))
+                entries[raw] = piece
+            output.append(piece)
+        output.append(fsdb_resource_segment(source[-1]))
+        if output != source:
+            self.resource_aliases.append({
+                "table": table, "originalParts": list(source), "storedKey": "/".join(output),
+                "reason": "invalid-or-casefold-segment",
+            })
+            self.stats["resourceAliases"] += 1
+        return output
+
+    def _choose_resource(self, table: str, parts: list[str], digest: str, ext: str):
+        if not parts or any(not isinstance(p, str) for p in parts):
+            self.note_error("resource", repr(parts), "invalid-path")
+            return None
+        if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,31}", ext):
+            self.note_error("resource", "/".join(parts), "invalid-extension")
+            return None
+        output = self._safe_parts(table, parts)
+        key = "/".join(output)
+        prior = self.resources.get((table, key.casefold()))
+        if prior is None:
+            return output, False
+        old_key, old_ext, old_digest = prior
+        if old_key == key and old_ext == ext and old_digest == digest:
+            self.stats["resourceReuse"] += 1
+            return output, True
+        reason = "extension-conflict" if old_key == key and old_ext != ext else "resource-key-conflict"
+        self.note_error("resource", "/".join(parts), reason)
+        source_leaf = output[-1]
+        new_leaf = unique_name(source_leaf, table + "/" + key + "/" + ext + "/" + digest)
+        output[-1] = new_leaf
+        attempt = 0
+        while (table, "/".join(output).casefold()) in self.resources:
+            attempt += 1
+            output[-1] = unique_name(source_leaf, table + "/" + key + "/" + ext + "/" + digest + "/" + str(attempt))
+        self.resource_aliases.append({
+            "table": table, "originalParts": list(parts), "storedKey": "/".join(output),
+            "reason": reason
+        })
+        self.stats["resourceAliases"] += 1
+        return output, False
+
+    def write_png(self, parts: list[str], image: Image.Image, digest: str) -> str | None:
+        selected = self._choose_resource(CANVAS_RESOURCE_TABLE, parts, digest, "png")
+        if selected is None:
+            return None
+        actual, reused = selected
+        key = "/".join(actual)
+        if reused:
             return key
         path = self.table("resource", CANVAS_RESOURCE_TABLE)
-        for part in parts[:-1]:
+        for part in actual[:-1]:
             path = path / part
         path.mkdir(parents=True, exist_ok=True)
-        file = path / f"{parts[-1]}.png"
+        file = path / f"{actual[-1]}.png"
+        if file.exists():
+            raise ValueError("resource-overwrite-refused")
         image.save(file, format="PNG", compress_level=1)
         if self.roundtrip:
             opened = Image.open(file).convert("RGBA")
@@ -254,7 +351,7 @@ class Store:
                 self.stats["pngRoundtripFail"] += 1
             else:
                 self.stats["pngRoundtripOk"] += 1
-        self.resources[key] = digest
+        self.resources[(CANVAS_RESOURCE_TABLE, key.casefold())] = (key, "png", digest)
         if self.keep_pixels:
             self.pixel_rows.append({"key": key, "w": image.width, "h": image.height, "sha256": digest})
         self.stats["resources"] += 1
@@ -262,30 +359,28 @@ class Store:
         return key
 
     def write_sound(self, parts: list[str], payload: bytes, ext: str) -> str | None:
-        if not all(valid_segment(part) for part in parts) or not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,31}", ext):
-            self.note_error("sound", "/".join(parts), "invalid-name")
-            return None
-        key = "/".join(parts)
         digest = hashlib.sha256(payload).hexdigest()
-        previous = self.resources.get(key)
-        if previous is not None:
-            if previous != digest:
-                self.note_error("sound", key, "hash-collision")
+        selected = self._choose_resource(SOUND_RESOURCE_TABLE, parts, digest, ext)
+        if selected is None:
+            return None
+        actual, reused = selected
+        key = "/".join(actual)
+        if reused:
             return key
         path = self.table("resource", SOUND_RESOURCE_TABLE)
-        for part in parts[:-1]:
+        for part in actual[:-1]:
             path = path / part
         path.mkdir(parents=True, exist_ok=True)
-        file = path / f"{parts[-1]}.{ext}"
-        file.write_bytes(payload)
+        file = path / f"{actual[-1]}.{ext}"
+        with file.open("xb") as handle:
+            handle.write(payload)
         if hashlib.sha256(file.read_bytes()).hexdigest() != digest:
             self.note_error("sound", key, "reread")
-        self.resources[key] = digest
+        self.resources[(SOUND_RESOURCE_TABLE, key.casefold())] = (key, ext, digest)
         self.stats["resources"] += 1
         self.stats["sounds"] += 1
         self.stats["soundBytes"] += len(payload)
         return key
-
 
 class Codec:
     def __init__(self, store: Store, prefix: list[str], aliases: dict | None = None):
