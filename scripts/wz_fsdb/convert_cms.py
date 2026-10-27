@@ -684,8 +684,10 @@ def convert_string(store: Store, img, stem: str) -> None:
     seen = set()
     for trail, value in leaves:
         key, reason = string_record_key(trail, seen)
-        if reason == "device_fallback":
-            store.stats["deviceKeyFallback"] += 1
+        if reason == "encoded-path":
+            store.stats["encodedStringKeys"] += 1
+        elif reason == "duplicate-trail-disambiguated":
+            store.stats["rekeyedStringTrails"] += 1
         elif reason == "invalid-name":
             store.note_error("string", f"{table}/{'.'.join(trail)}", "invalid-name")
             continue
@@ -726,7 +728,7 @@ def emit_metadata(store: Store) -> None:
         "Seat": {"index": "integer", "x": "integer", "y": "integer"},
     }
     descriptions = {
-        "Back": "地图背景放置。bS 指向 struct.Back。",
+        "Back": "地图背景放置。非空 bS 指向 struct.Back；空字符串为源数据有效值，不作无条件外键。",
         "Tile": "地图瓦片放置。z 在图集画布上，这里是 zM。",
         "Obj": "地图物件放置。oS 指向 struct.Obj。",
         "Portal": "地图出口。tm 为 999999999 时没有目标地图。",
@@ -742,7 +744,6 @@ def emit_metadata(store: Store) -> None:
         "MapUser": "地图 user 节点。",
     }
     extends = {
-        "Back": [("bS", "Back", "背景定义")],
         "Obj": [("oS", "Obj", "物件定义")],
     }
     for kind, name in sorted(store.tables):
@@ -1045,22 +1046,19 @@ def string_table(stem: str) -> str:
 
 
 def string_record_key(trail: tuple[str, ...], seen: set[str]) -> tuple[str | None, str]:
-    """Key currently written for one String.wz leaf.
-
-    A dotted trail is kept when it is a legal NameSegment. ``Con.2000000`` is
-    not legal, because ``CON`` is a reserved device name, so the leaf id is
-    used when that leaf id has not already been written.
-    """
-    key = ".".join(trail)
-    if not valid_segment(key):
-        fallback = trail[-1]
-        if valid_segment(fallback) and fallback not in seen:
-            return fallback, "device_fallback"
-        return None, "invalid-name"
+    """Use a complete legal String.wz leaf path, never a lossy last number."""
+    raw = ".".join(trail)
+    key = raw if valid_segment(raw) else fsdb_resource_segment(raw)
+    reason = "ok" if key == raw else "encoded-path"
     if key in seen:
-        return None, "duplicate-trail"
-    return key, "ok"
-
+        key = unique_name(key, "/".join(trail))
+        reason = "duplicate-trail-disambiguated"
+        count = 0
+        while key in seen:
+            count += 1
+            key = unique_name(raw if valid_segment(raw) else fsdb_resource_segment(raw),
+                              "/".join(trail) + "/" + str(count))
+    return key, reason
 
 def convert_quest(store: Store, wz) -> None:
     """Save Quest IMG children as independently addressable records."""
