@@ -45,8 +45,8 @@ class FsdbLayoutTest(unittest.TestCase):
         self.assertIsNone(convert_cms.WzFile)
         self.assertIsNone(convert_cms.decode_canvas)
 
-    def test_current_sound_table_is_the_image_table(self):
-        self.assertEqual(convert_cms.SOUND_RESOURCE_TABLE, convert_cms.CANVAS_RESOURCE_TABLE)
+    def test_audio_and_image_table_are_distinct(self):
+        self.assertNotEqual(convert_cms.SOUND_RESOURCE_TABLE, convert_cms.CANVAS_RESOURCE_TABLE)
 
     def test_repair_sound_table_follows_design(self):
         self.assertEqual(convert_cms.SOUND_RESOURCE_TABLE, convert_cms.DESIGN_SOUND_RESOURCE_TABLE)
