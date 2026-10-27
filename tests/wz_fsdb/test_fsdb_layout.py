@@ -35,8 +35,8 @@ class FsdbLayoutTest(unittest.TestCase):
             group_text = (root / "[group]Back" / "100000000.jsonl").read_text(encoding="utf-8")
             rows = [json.loads(line) for line in group_text.splitlines()]
             self.assertEqual(rows, [{"bS": "grassySoil", "no": 0, "x": 1, "y": 2}])
-            extend = (root / "[group]Back" / ".extend.meta").read_text(encoding="utf-8").splitlines()
-            self.assertEqual(json.loads(extend[0])["struct"], "Back")
+            # Empty bS is valid source data, not an unconditional foreign key.
+            self.assertFalse((root / "[group]Back" / ".extend.meta").exists())
             self.assertTrue((root / "[group]Back" / ".info.meta").is_file())
             self.assertTrue((root / "[group]Back" / ".desc.meta").is_file())
             self.assertTrue((root / f"[resource]{convert_cms.CANVAS_RESOURCE_TABLE}" / ".desc.meta").is_file())
