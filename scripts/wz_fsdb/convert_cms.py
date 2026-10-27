@@ -613,7 +613,7 @@ def convert_map(store: Store, img, map_id: str) -> dict:
         if child.name in MAP_GROUPS or child.name in LAYER_NAMES or child.name in {"info", "miniMap"}:
             continue
         record[child.name] = codec.serialize(child)
-    store.write_struct("Map", map_id, record)
+    store.write_struct("Map", map_id, record, source=f"Map.wz/Map/{map_id}.img")
     return refs
 
 
@@ -667,7 +667,7 @@ def convert_string(store: Store, img, stem: str) -> None:
             store.note_error("string", f"{table}/{'.'.join(trail)}", "duplicate-trail")
             continue
         seen.add(key)
-        store.write_struct(table, key, value)
+        store.write_struct(table, key, value, source="String.wz/" + stem + ".img/" + "/".join(trail))
 
 
 def emit_metadata(store: Store) -> None:
@@ -763,7 +763,8 @@ def emit_metadata(store: Store) -> None:
                 lines = [dumps({"field": field, "struct": target, "desc": desc}) for field, target, desc in extends[name]]
                 (folder / ".extend.meta").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         elif kind == "resource":
-            (folder / ".desc.meta").write_text("画布为 PNG，声音按文件头保存为 wav、mp3、ogg 或 bin。扩展名不进入资源键。\n", encoding="utf-8", newline="\n")
+            description = ("画布为 PNG；扩展名不属于 ResourceKey。\n" if name == CANVAS_RESOURCE_TABLE else "音频按实际载荷使用 wav、mp3、ogg 或 bin；扩展名不属于 ResourceKey。\n")
+            (folder / ".desc.meta").write_text(description, encoding="utf-8", newline="\n")
 
 
 def open_package(client: Path, name: str):
@@ -830,7 +831,7 @@ def convert_map_package(store: Store, wz: WzFile, scope: str) -> None:
                 root = img.parse()
                 for child in root.children():
                     if isinstance(child, WzSubProperty):
-                        store.write_struct("MapEffect", child.name, children_object(Codec(store, ["MapEffect", child.name]), child))
+                        store.write_struct("MapEffect", child.name, children_object(Codec(store, ["MapEffect", child.name]), child), source=f"Map.wz/Effect.img/{child.name}")
             elif path == "Map/AreaCode.img":
                 convert_tree(store, img, "AreaCode", "AreaCode", ["AreaCode"])
             elif scope == "all":
@@ -852,7 +853,7 @@ def convert_character(store: Store, wz: WzFile, scope: str) -> None:
         stem = stem_of(path)
         table = "Afterimage" if path.startswith("Afterimage/") else "Look"
         try:
-            convert_tree(store, img, table, stem, [table, stem])
+            convert_tree(store, img, table, stem, [table, stem], source=f"Character.wz/{path}")
             count += 1
         except Exception as exc:
             store.note_error("image", path, type(exc).__name__)
@@ -935,7 +936,7 @@ def convert_skill(store: Store, wz: WzFile) -> None:
                 store.note_error("skill", f"{stem}/{skill.name}", "invalid-name")
                 continue
             # rel_parts includes the skill directory and the id.
-            store.write_struct("Skill", skill.name, children_object(Codec(store, ["Skill"]), skill))
+            store.write_struct("Skill", skill.name, children_object(Codec(store, ["Skill"]), skill), source=f"Skill.wz/{path}/{skill.name}")
             records += 1
     store.stats["images"] += images
     print(f"Skill images {images} records {records}", flush=True)
@@ -964,7 +965,7 @@ def convert_item(store: Store, wz: WzFile) -> None:
             count += 1
             continue
         for item in found:
-            store.write_struct("Item", item.name, children_object(Codec(store, ["Item"]), item))
+            store.write_struct("Item", item.name, children_object(Codec(store, ["Item"]), item), source="Item.wz/" + path + "/" + "/".join(rel_parts(item)))
             count += 1
         store.stats["images"] += 1
         if count % 500 == 0:
