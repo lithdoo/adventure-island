@@ -152,6 +152,7 @@ jobs:
       contents: read
     env:
       CMS079_ROOT: 'F:\CMS079'
+      OPENCODE_BIN: 'C:\Users\lithd\.opencode\bin\opencode2.cmd'
 
     steps:
       - name: Reset isolated agent directories
@@ -232,15 +233,25 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
 
-          $command = Get-Command opencode2 -ErrorAction SilentlyContinue
-          if (-not $command) {
-            throw "opencode2 is not available in the self-hosted runner environment."
+          if (-not $env:OPENCODE_BIN) {
+            throw "OPENCODE_BIN is not configured for the self-hosted runner."
           }
 
-          $bin = if ($command.Source) { $command.Source } else { $command.Name }
-          $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+          try {
+            $resolved = Resolve-Path -LiteralPath $env:OPENCODE_BIN -ErrorAction Stop
+            $bin = $resolved.ProviderPath
+          } catch {
+            throw "Configured opencode2 path is not visible to the runner service: $($env:OPENCODE_BIN)"
+          }
+
+          try {
+            $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+          } catch {
+            throw "Configured opencode2 exists but the runner service cannot execute it: $($_.Exception.Message)"
+          }
+
           if ($LASTEXITCODE -ne 0) {
-            throw "Local opencode2 failed its --version check."
+            throw "Configured opencode2 failed its --version check with exit code $LASTEXITCODE."
           }
 
           "OPENCODE_BIN=$bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
