@@ -65,6 +65,23 @@ if (-not $bin) {
 $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
 Write-Host "Using OpenCode: $version"
 
+if (-not $env:CMS079_ROOT) {
+    $env:CMS079_ROOT = "F:\CMS079"
+}
+
+try {
+    $cms079Root = (Resolve-Path -LiteralPath $env:CMS079_ROOT -ErrorAction Stop).ProviderPath
+} catch {
+    throw "CMS079 reference directory is not accessible: $($env:CMS079_ROOT)"
+}
+
+if (-not (Test-Path -LiteralPath $cms079Root -PathType Container)) {
+    throw "CMS079 reference input must be a directory."
+}
+
+$cms079Canonical = (($cms079Root -replace '\\', '/').TrimEnd('/'))
+$cms079Pattern = "$cms079Canonical/*"
+
 # Mirror the existing glm-work/start-opencode.bat credential convention without
 # ever logging the key. Prefer an already-provided environment variable.
 if (-not $env:GLM_API_KEY) {
@@ -86,6 +103,9 @@ $runtimeConfig = @{
     update = "disable"
     permissions = @(
         @{ action = "external_directory"; resource = "*"; effect = "deny" },
+        @{ action = "external_directory"; resource = $cms079Pattern; effect = "allow" },
+        @{ action = "read"; resource = $cms079Pattern; effect = "allow" },
+        @{ action = "edit"; resource = $cms079Pattern; effect = "deny" },
         @{ action = "webfetch"; resource = "*"; effect = "deny" },
         @{ action = "websearch"; resource = "*"; effect = "deny" },
         @{ action = "question"; resource = "*"; effect = "deny" },
@@ -102,7 +122,6 @@ $runtimeConfig = @{
         @{ action = "shell"; resource = "py *"; effect = "allow" }
     )
     policies = @(
-        @{ action = "tool.use"; resource = "external_directory:*"; effect = "deny" },
         @{ action = "tool.use"; resource = "read:*.env*"; effect = "deny" },
         @{ action = "tool.use"; resource = "read:*/.ssh/*"; effect = "deny" },
         @{ action = "tool.use"; resource = "shell:git push *"; effect = "deny" },
@@ -121,6 +140,15 @@ $prompt = @"
 You are implementing an approved design task for the adventure-island repository.
 
 Design PR: #$DesignPr
+
+Local CMS079 reference input:
+- Root directory: $cms079Root
+- This directory contains the locally supplied CMS 079 client/reference files.
+- Use it when the task needs evidence from the real client or WZ/resource inputs.
+- Treat everything under this directory as read-only source material.
+- Never edit, rename, delete, patch, or replace files under this directory.
+- Never copy original client binaries, WZ files, archives, or bulk extracted assets into the repository.
+- Repository output may contain only derived code, metadata, tests, or documentation explicitly allowed by the task.
 
 Repository rules:
 - Treat the current directory as the trusted code baseline.
