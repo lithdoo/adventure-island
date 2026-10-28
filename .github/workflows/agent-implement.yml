@@ -265,33 +265,52 @@ jobs:
               return $null
             }
 
+            $psi = New-Object System.Diagnostics.ProcessStartInfo
+            $psi.FileName = $Candidate.FullName
+            $psi.Arguments = "--version"
+            $psi.UseShellExecute = $false
+            $psi.RedirectStandardOutput = $true
+            $psi.RedirectStandardError = $true
+            $psi.CreateNoWindow = $true
+
             try {
-              $output = @(& $Candidate.FullName --version 2>&1)
-              $exitCode = $LASTEXITCODE
+              $process = New-Object System.Diagnostics.Process
+              $process.StartInfo = $psi
+              $started = $process.Start()
+              if (-not $started) {
+                if ($Diagnostic) { Write-Host "OpenCode diagnostic: Process.Start returned false." }
+                return $null
+              }
+
+              $stdout = $process.StandardOutput.ReadToEnd()
+              $stderr = $process.StandardError.ReadToEnd()
+              $process.WaitForExit()
+              $exitCode = $process.ExitCode
 
               if ($Diagnostic) {
                 Write-Host "OpenCode diagnostic candidate: $($Candidate.Name)"
                 Write-Host "OpenCode diagnostic size: $($Candidate.Length) bytes"
                 Write-Host "OpenCode diagnostic exit code: $exitCode"
-                foreach ($line in ($output | Select-Object -First 10)) {
-                  Write-Host "OpenCode diagnostic output: $line"
-                }
+                if ($stdout) { Write-Host "OpenCode diagnostic stdout: $($stdout.Trim())" }
+                if ($stderr) { Write-Host "OpenCode diagnostic stderr: $($stderr.Trim())" }
               }
 
               if ($exitCode -eq 0) {
-                return (($output | Select-Object -First 1 | Out-String).Trim())
+                return (($stdout -split "\r?\n" | Select-Object -First 1 | Out-String).Trim())
+              }
+              return $null
+            } catch [System.ComponentModel.Win32Exception] {
+              if ($Diagnostic) {
+                Write-Host "OpenCode diagnostic Win32 exception: $($_.Exception.Message)"
+                Write-Host "OpenCode diagnostic native error: $($_.Exception.NativeErrorCode)"
+                Write-Host "OpenCode diagnostic HResult: $($_.Exception.HResult)"
               }
               return $null
             } catch {
               if ($Diagnostic) {
                 Write-Host "OpenCode diagnostic exception type: $($_.Exception.GetType().FullName)"
                 Write-Host "OpenCode diagnostic exception: $($_.Exception.Message)"
-                if ($null -ne $_.Exception.PSObject.Properties["NativeErrorCode"]) {
-                  Write-Host "OpenCode diagnostic native error: $($_.Exception.NativeErrorCode)"
-                }
-                if ($_.Exception.InnerException) {
-                  Write-Host "OpenCode diagnostic inner exception: $($_.Exception.InnerException.Message)"
-                }
+                Write-Host "OpenCode diagnostic HResult: $($_.Exception.HResult)"
               }
               return $null
             }
