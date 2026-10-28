@@ -153,23 +153,16 @@ jobs:
 
     steps:
       - name: Reset isolated agent directories
-        shell: bash
+        shell: pwsh
         run: |
-          python3 - <<'PY'
-          import os
-          import shutil
-          from pathlib import Path
-
-          root = Path(os.environ["RUNNER_TEMP"])
-          for name in ("agent-workspace", "agent-input", "agent-output", "trusted-agent"):
-              path = root / name
-              if path.exists():
-                  if path.is_dir():
-                      shutil.rmtree(path)
-                  else:
-                      path.unlink()
-              path.mkdir(parents=True, exist_ok=True)
-          PY
+          $ErrorActionPreference = "Stop"
+          foreach ($name in @("agent-workspace", "agent-input", "agent-output", "trusted-agent")) {
+            $path = Join-Path $env:RUNNER_TEMP $name
+            if (Test-Path -LiteralPath $path) {
+              Remove-Item -LiteralPath $path -Recurse -Force
+            }
+            New-Item -ItemType Directory -Path $path -Force | Out-Null
+          }
 
       - name: Download trusted source snapshot
         uses: actions/download-artifact@v4
@@ -184,87 +177,78 @@ jobs:
           path: ${{ runner.temp }}/agent-input
 
       - name: Create local baseline and trusted verifier snapshot
-        shell: bash
+        shell: pwsh
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
-          set -euo pipefail
+          $ErrorActionPreference = "Stop"
+
           git init
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           git config user.name "agent-baseline"
           git config user.email "agent-baseline@localhost"
           git add -f -A
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           git commit -m "agent trusted baseline"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-          python3 - <<'PY'
-          import os
-          import shutil
-          from pathlib import Path
+          $trusted = Join-Path $env:RUNNER_TEMP "trusted-agent"
+          Copy-Item -Path (Join-Path (Get-Location) "scripts\agent\*") -Destination $trusted -Recurse -Force
 
-          src = Path.cwd() / "scripts" / "agent"
-          dst = Path(os.environ["RUNNER_TEMP"]) / "trusted-agent"
-          shutil.copytree(src, dst, dirs_exist_ok=True)
-          PY
-
-          test ! -e .raw
+          if (Test-Path -LiteralPath ".raw") {
+            throw ".raw must not exist inside the self-hosted agent workspace."
+          }
 
       - name: Check local OpenCode installation
-        shell: bash
+        shell: pwsh
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
-          set -euo pipefail
-          if command -v opencode2 >/dev/null 2>&1; then
+          $ErrorActionPreference = "Stop"
+          if (Get-Command opencode2 -ErrorAction SilentlyContinue) {
             opencode2 --version
-          elif command -v opencode >/dev/null 2>&1; then
+          } elseif (Get-Command opencode -ErrorAction SilentlyContinue) {
             opencode --version
-          else
-            echo "Neither opencode2 nor opencode is available on the self-hosted runner." >&2
-            exit 127
-          fi
+          } else {
+            throw "Neither opencode2 nor opencode is available on the self-hosted runner."
+          }
 
       - name: Run OpenCode implementation
-        shell: bash
+        shell: pwsh
         working-directory: ${{ runner.temp }}/agent-workspace
         env:
           DESIGN_PR: ${{ needs.preflight.outputs.pr_number }}
         run: |
-          set -euo pipefail
-
-          temp_posix="$RUNNER_TEMP"
-          if command -v cygpath >/dev/null 2>&1; then
-            temp_posix="$(cygpath -u "$RUNNER_TEMP")"
-          fi
-
-          bash "$temp_posix/trusted-agent/run-opencode.sh" \
-            "$temp_posix/agent-input/agent-spec.md" \
-            "$DESIGN_PR"
+          $ErrorActionPreference = "Stop"
+          $runner = Join-Path $env:RUNNER_TEMP "trusted-agent\run-opencode.ps1"
+          $spec = Join-Path $env:RUNNER_TEMP "agent-input\agent-spec.md"
+          & $runner -SpecPath $spec -DesignPr ([int]$env:DESIGN_PR)
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Verify agent output
-        shell: bash
+        shell: pwsh
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
-          set -euo pipefail
-
-          temp_posix="$RUNNER_TEMP"
-          if command -v cygpath >/dev/null 2>&1; then
-            temp_posix="$(cygpath -u "$RUNNER_TEMP")"
-          fi
-
-          bash "$temp_posix/trusted-agent/verify.sh" \
-            "$temp_posix/agent-input/agent-spec.md"
+          $ErrorActionPreference = "Stop"
+          $verifier = Join-Path $env:RUNNER_TEMP "trusted-agent\verify.ps1"
+          $spec = Join-Path $env:RUNNER_TEMP "agent-input\agent-spec.md"
+          & $verifier -SpecPath $spec
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Materialize verified patch
-        shell: bash
+        shell: pwsh
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
-          set -euo pipefail
-
-          temp_posix="$RUNNER_TEMP"
-          if command -v cygpath >/dev/null 2>&1; then
-            temp_posix="$(cygpath -u "$RUNNER_TEMP")"
-          fi
+          $ErrorActionPreference = "Stop"
+          $patch = Join-Path $env:RUNNER_TEMP "agent-output\agent.patch"
 
           git add -N -- .
-          git diff --binary HEAD -- > "$temp_posix/agent-output/agent.patch"
-          test -s "$temp_posix/agent-output/agent.patch"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+          git diff --binary "--output=$patch" HEAD --
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+          if (-not (Test-Path -LiteralPath $patch) -or (Get-Item -LiteralPath $patch).Length -eq 0) {
+            throw "Verified agent patch is empty."
+          }
 
       - name: Upload verified patch
         uses: actions/upload-artifact@v4
