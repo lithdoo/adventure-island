@@ -152,7 +152,6 @@ jobs:
       contents: read
     env:
       CMS079_ROOT: 'F:\CMS079'
-      OPENCODE_DOWNLOAD_URL: 'https://opencode.ai/update/api/latest/cli/opencode/opencode-windows-x64-baseline.zip'
 
     steps:
       - name: Reset isolated agent directories
@@ -227,180 +226,25 @@ jobs:
 
           Write-Host "CMS079 reference input is available to the agent as read-only reference data."
 
-      - name: Prepare cached OpenCode installation
+      - name: Verify local opencode2
         shell: powershell
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           $ErrorActionPreference = "Stop"
-          Write-Host "Windows PowerShell $($PSVersionTable.PSVersion)"
 
-          $cacheBase = $env:RUNNER_TOOL_CACHE
-          if (-not $cacheBase) {
-            $workRoot = Split-Path -Parent $env:RUNNER_TEMP
-            $cacheBase = Join-Path $workRoot "_tool"
+          $command = Get-Command opencode2 -ErrorAction SilentlyContinue
+          if (-not $command) {
+            throw "opencode2 is not available in the self-hosted runner environment."
           }
 
-          $cacheRoot = Join-Path $cacheBase "adventure-island\opencode-v2"
-          $cacheParent = Split-Path -Parent $cacheRoot
-          New-Item -ItemType Directory -Path $cacheParent -Force | Out-Null
-
-          function Find-OpenCodeBinary {
-            param([string]$Root)
-            if (-not (Test-Path -LiteralPath $Root -PathType Container)) {
-              return $null
-            }
-            return Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction SilentlyContinue |
-              Where-Object { $_.Name -in @("opencode.exe", "opencode2.exe") } |
-              Select-Object -First 1
+          $bin = if ($command.Source) { $command.Source } else { $command.Name }
+          $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+          if ($LASTEXITCODE -ne 0) {
+            throw "Local opencode2 failed its --version check."
           }
 
-          function Get-OpenCodeVersion {
-            param(
-              $Candidate,
-              [switch]$Diagnostic
-            )
-
-            if (-not $Candidate) {
-              if ($Diagnostic) { Write-Host "OpenCode diagnostic: no executable candidate was found." }
-              return $null
-            }
-
-            $psi = New-Object System.Diagnostics.ProcessStartInfo
-            $psi.FileName = $Candidate.FullName
-            $psi.Arguments = "--version"
-            $psi.UseShellExecute = $false
-            $psi.RedirectStandardOutput = $true
-            $psi.RedirectStandardError = $true
-            $psi.CreateNoWindow = $true
-
-            try {
-              $process = New-Object System.Diagnostics.Process
-              $process.StartInfo = $psi
-              $started = $process.Start()
-              if (-not $started) {
-                if ($Diagnostic) { Write-Host "OpenCode diagnostic: Process.Start returned false." }
-                return $null
-              }
-
-              $stdout = $process.StandardOutput.ReadToEnd()
-              $stderr = $process.StandardError.ReadToEnd()
-              $process.WaitForExit()
-              $exitCode = $process.ExitCode
-
-              if ($Diagnostic) {
-                Write-Host "OpenCode diagnostic candidate: $($Candidate.Name)"
-                Write-Host "OpenCode diagnostic size: $($Candidate.Length) bytes"
-                Write-Host "OpenCode diagnostic exit code: $exitCode"
-                if ($stdout) { Write-Host "OpenCode diagnostic stdout: $($stdout.Trim())" }
-                if ($stderr) { Write-Host "OpenCode diagnostic stderr: $($stderr.Trim())" }
-              }
-
-              if ($exitCode -eq 0) {
-                return (($stdout -split "\r?\n" | Select-Object -First 1 | Out-String).Trim())
-              }
-              return $null
-            } catch [System.ComponentModel.Win32Exception] {
-              if ($Diagnostic) {
-                Write-Host "OpenCode diagnostic Win32 exception: $($_.Exception.Message)"
-                Write-Host "OpenCode diagnostic native error: $($_.Exception.NativeErrorCode)"
-                Write-Host "OpenCode diagnostic HResult: $($_.Exception.HResult)"
-              }
-              return $null
-            } catch {
-              if ($Diagnostic) {
-                Write-Host "OpenCode diagnostic exception type: $($_.Exception.GetType().FullName)"
-                Write-Host "OpenCode diagnostic exception: $($_.Exception.Message)"
-                Write-Host "OpenCode diagnostic HResult: $($_.Exception.HResult)"
-              }
-              return $null
-            }
-          }
-
-          $bin = Find-OpenCodeBinary $cacheRoot
-          $version = Get-OpenCodeVersion $bin
-          if ($version) {
-            Write-Host "OpenCode cache hit: $version"
-            "OPENCODE_BIN=$($bin.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-            exit 0
-          }
-
-          $staging = "$cacheRoot.staging"
-          $payload = Join-Path $staging "payload"
-          $archive = Join-Path $staging "opencode-windows-x64.zip"
-
-          # A failed compatibility probe leaves the verified download/extraction
-          # in the persistent staging directory. Reuse it on the next diagnostic
-          # run instead of repeatedly downloading ~113 MB.
-          $candidate = Find-OpenCodeBinary $payload
-          if ($candidate) {
-            Write-Host "Reusing previously staged OpenCode payload for execution diagnostics."
-          } else {
-            New-Item -ItemType Directory -Path $staging -Force | Out-Null
-
-            if (-not (Test-Path -LiteralPath $archive -PathType Leaf)) {
-              Write-Host "OpenCode cache miss; downloading the official Windows x64 baseline standalone CLI once."
-
-              $curl = Get-Command curl.exe -ErrorAction SilentlyContinue
-              if ($curl) {
-                $curlArgs = @(
-                  "--fail",
-                  "--location",
-                  "--retry", "3",
-                  "--retry-all-errors",
-                  "--output", $archive,
-                  $env:OPENCODE_DOWNLOAD_URL
-                )
-                & $curl.Source @curlArgs
-                if ($LASTEXITCODE -ne 0) {
-                  throw "Failed to download portable OpenCode with curl.exe."
-                }
-              } else {
-                [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-                Invoke-WebRequest -UseBasicParsing -Uri $env:OPENCODE_DOWNLOAD_URL -OutFile $archive
-              }
-            } else {
-              Write-Host "Reusing previously downloaded OpenCode archive."
-            }
-
-            if (-not (Test-Path -LiteralPath $archive -PathType Leaf)) {
-              throw "Portable OpenCode download did not produce an archive."
-            }
-
-            $digest = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
-            Write-Host "OpenCode archive SHA256: $digest"
-
-            if (Test-Path -LiteralPath $payload) {
-              Remove-Item -LiteralPath $payload -Recurse -Force
-            }
-            New-Item -ItemType Directory -Path $payload -Force | Out-Null
-            Expand-Archive -LiteralPath $archive -DestinationPath $payload -Force
-            $candidate = Find-OpenCodeBinary $payload
-          }
-
-          $version = Get-OpenCodeVersion $candidate -Diagnostic
-          if (-not $version) {
-            throw "Downloaded portable OpenCode could not execute --version; see diagnostic lines above."
-          }
-
-          if (Test-Path -LiteralPath $cacheRoot) {
-            Remove-Item -LiteralPath $cacheRoot -Recurse -Force
-          }
-          Move-Item -LiteralPath $payload -Destination $cacheRoot
-          if (Test-Path -LiteralPath $archive) {
-            Remove-Item -LiteralPath $archive -Force
-          }
-          if (Test-Path -LiteralPath $staging) {
-            Remove-Item -LiteralPath $staging -Recurse -Force
-          }
-
-          $bin = Find-OpenCodeBinary $cacheRoot
-          $version = Get-OpenCodeVersion $bin -Diagnostic
-          if (-not $version) {
-            throw "OpenCode cache installation is not executable."
-          }
-
-          "OPENCODE_BIN=$($bin.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          Write-Host "OpenCode cache populated: $version"
+          "OPENCODE_BIN=$bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          Write-Host "Using locally configured opencode2: $version"
 
       - name: Run OpenCode implementation
         shell: powershell

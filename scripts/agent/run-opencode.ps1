@@ -8,58 +8,18 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-function Read-RegistryEnvironmentValue {
-    param([string]$Name)
-
-    foreach ($path in @(
-        "HKCU:\Environment",
-        "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"
-    )) {
-        try {
-            $value = (Get-ItemProperty -Path $path -Name $Name -ErrorAction Stop).$Name
-            if ($value) { return [string]$value }
-        } catch {
-            # Try the next registry scope.
-        }
-    }
-
-    # The runner service can have a different HKCU than the interactive user
-    # that installed/configured OpenCode. Check already-loaded user hives
-    # without printing SIDs, profile names, or credential values.
-    try {
-        foreach ($hive in (Get-ChildItem "Registry::HKEY_USERS" -ErrorAction Stop)) {
-            $leaf = $hive.PSChildName
-            if (-not $leaf -or $leaf.EndsWith("_Classes")) { continue }
-            try {
-                $path = "Registry::HKEY_USERS\$leaf\Environment"
-                $value = (Get-ItemProperty -Path $path -Name $Name -ErrorAction Stop).$Name
-                if ($value) { return [string]$value }
-            } catch {
-                continue
-            }
-        }
-    } catch {
-        # No loaded user hive with the value.
-    }
-
-    return $null
-}
-
 $bin = $null
-if ($env:OPENCODE_BIN -and (Test-Path -LiteralPath $env:OPENCODE_BIN -PathType Leaf)) {
+if ($env:OPENCODE_BIN) {
     $bin = $env:OPENCODE_BIN
 } else {
     $command = Get-Command opencode2 -ErrorAction SilentlyContinue
-    if (-not $command) {
-        $command = Get-Command opencode -ErrorAction SilentlyContinue
-    }
     if ($command) {
         $bin = if ($command.Source) { $command.Source } else { $command.Name }
     }
 }
 
 if (-not $bin) {
-    throw "OpenCode executable was not supplied or discoverable."
+    throw "opencode2 is not available in the self-hosted runner environment."
 }
 
 $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
@@ -82,24 +42,11 @@ if (-not (Test-Path -LiteralPath $cms079Root -PathType Container)) {
 $cms079Canonical = (($cms079Root -replace '\\', '/').TrimEnd('/'))
 $cms079Pattern = "$cms079Canonical/*"
 
-# Mirror the existing glm-work/start-opencode.bat credential convention without
-# ever logging the key. Prefer an already-provided environment variable.
-if (-not $env:GLM_API_KEY) {
-    $env:GLM_API_KEY = Read-RegistryEnvironmentValue "GLM_API_KEY"
-}
-if ($env:GLM_API_KEY) {
-    if (-not $env:ZAI_API_KEY) { $env:ZAI_API_KEY = $env:GLM_API_KEY }
-    if (-not $env:ZHIPU_API_KEY) { $env:ZHIPU_API_KEY = $env:GLM_API_KEY }
-} elseif (-not $env:ZAI_API_KEY -and -not $env:ZHIPU_API_KEY) {
-    throw "No GLM/Z.AI credential is available to the runner service. Configure GLM_API_KEY at machine scope or for the runner service account."
-}
-
-# OpenCode V2 supports an inline runtime config. Keep the existing local model
-# choice, but do not reuse glm-work/opencode.json because its edit permission is
-# intentionally scoped only to glm-work/.
+# Inline config is a runtime override layer. It intentionally does not set a
+# provider or model: the runner's locally configured opencode2 owns those.
+# This layer only constrains agent capabilities for CI execution.
 $runtimeConfig = @{
     '$schema' = "https://opencode.ai/config.json"
-    model = "zai-coding-plan/glm-5.3"
     update = "disable"
     permissions = @(
         @{ action = "external_directory"; resource = "*"; effect = "deny" },
