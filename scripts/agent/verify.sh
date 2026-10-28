@@ -2,8 +2,9 @@
 set -euo pipefail
 
 spec_path="${1:?usage: verify.sh <spec-path>}"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-python3 scripts/agent/verify_diff.py --spec "$spec_path"
+python3 "$script_dir/verify_diff.py" --spec "$spec_path"
 
 git diff --check HEAD --
 
