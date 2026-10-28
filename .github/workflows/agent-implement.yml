@@ -7,8 +7,8 @@ on:
 
 permissions:
   actions: read
-  contents: write
-  pull-requests: write
+  contents: read
+  pull-requests: read
 
 jobs:
   preflight:
@@ -103,6 +103,10 @@ jobs:
     if: ${{ needs.preflight.outputs.allowed == 'true' }}
     runs-on: [self-hosted]
     timeout-minutes: 120
+    permissions:
+      actions: read
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout trusted main
@@ -120,6 +124,9 @@ jobs:
         run: |
           set -euo pipefail
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          rm -rf "$RUNNER_TEMP/trusted-agent"
+          cp -R scripts/agent "$RUNNER_TEMP/trusted-agent"
+          test ! -e .raw
           git checkout -B "agent/pr-${{ needs.preflight.outputs.pr_number }}"
 
       - name: Fetch approved design document
@@ -153,13 +160,13 @@ jobs:
           DESIGN_PR: ${{ needs.preflight.outputs.pr_number }}
         run: |
           set -euo pipefail
-          bash scripts/agent/run-opencode.sh "$RUNNER_TEMP/agent-spec.md" "$DESIGN_PR"
+          bash "$RUNNER_TEMP/trusted-agent/run-opencode.sh" "$RUNNER_TEMP/agent-spec.md" "$DESIGN_PR"
 
       - name: Verify agent output
         shell: bash
         run: |
           set -euo pipefail
-          bash scripts/agent/verify.sh "$RUNNER_TEMP/agent-spec.md"
+          bash "$RUNNER_TEMP/trusted-agent/verify.sh" "$RUNNER_TEMP/agent-spec.md"
 
       - name: Materialize verified patch
         id: patch
