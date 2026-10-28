@@ -17,7 +17,9 @@ on:
 
 jobs:
   avatar-model:
+    name: Algorithm
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,5 +30,44 @@ jobs:
           node --check components/cms-actor/src/avatar-model.mjs
           node --check components/cms-actor/src/cms-actor.mjs
           node --check components/cms-actor/preview/preview.mjs
+          node --check components/cms-actor/test/png.mjs
+          node --check components/cms-actor/test/synthetic-fsdb.mjs
+          node --check components/cms-actor/test/look-adapter.mjs
       - name: Run synthetic avatar model tests
-        run: node --test components/cms-actor/test/*.test.mjs
+        run: node --test components/cms-actor/test/avatar-model.test.mjs
+
+  browser-integration:
+    name: LoomRealm Chromium closed loop (synthetic FSDB)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build loom-realm renderer dist
+        run: |
+          npm install --no-audit --no-fund
+          npm run build -w @loomrealm/foundation -w @loomrealm/wire -w @loomrealm/shared-state -w @loomrealm/session-events -w @loomrealm/game-package -w @loomrealm/platform-ports -w @loomrealm/runtime-control -w @loomrealm/renderer-control -w @loomrealm/data -w @loomrealm/renderer
+        working-directory: loom-realm
+      - name: Install repository-pinned Chromium
+        shell: bash
+        run: |
+          npx playwright install --with-deps chromium
+          chromium_path="$(node --input-type=module -e 'import { chromium } from "playwright"; process.stdout.write(chromium.executablePath())')"
+          test -x "$chromium_path"
+          printf 'LOOMREALM_CHROMIUM_PATH=%s\n' "$chromium_path" >> "$GITHUB_ENV"
+        working-directory: loom-realm
+      - name: Verify no WZ/client assets exist in test checkout
+        shell: bash
+        run: |
+          if find . -path ./loom-realm -prune -o -type f \( -iname '*.wz' -o -iname '*.exe' -o -iname '*.dll' \) -print -quit | grep -q .; then
+            echo "Blocked: WZ/client binaries must not be committed"
+            exit 1
+          fi
+      - name: Artifact sync + formal presentation config tests
+        run: node --test components/cms-actor/test/browser-artifact.test.mjs
+      - name: Run real-Chromium integration tests
+        run: node --test components/cms-actor/test/integration.chromium.test.mjs

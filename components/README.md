@@ -32,7 +32,7 @@ cms-scene-view
 | [cms-back](./cms-back/DESIGN.md) | `cms-back` | 远景和近景 |
 | [cms-map-layer](./cms-map-layer/DESIGN.md) | `cms-map-layer` | 层 0 到 7 |
 | [cms-avatar-layer](./cms-avatar-layer/DESIGN.md) | `cms-avatar-layer` | 人物所在的层 |
-| [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 已有合成素材 Web Component、锚点/z 顺序算法、基础动画与独立预览；真实 WZ/FSDB 适配仍待接入（见 [实施说明](./cms-actor/IMPLEMENTATION.md)） |
+| [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 纸娃娃。classic script 入口 + 有界 `avatarPlan`；合成算法与 LoomRealm 正式浏览器集成已过，真实 079 素材 BLOCKED（见 [实施说明](./cms-actor/IMPLEMENTATION.md)） |
 | [cms-npc](./cms-npc/DESIGN.md) | `cms-npc` | 不放。`life` 里 `type=n` 的对话 |
 | [cms-reactor](./cms-reactor/DESIGN.md) | `cms-reactor` | 不放。箱子、开关、花的点击和受击 |
 | [cms-seat](./cms-seat/DESIGN.md) | `cms-seat` | 不放。坐下的坐标 |
@@ -42,9 +42,13 @@ cms-scene-view
 
 人物组件以 `RenderNode.attrs` 接收坐标、朝向和移动状态，以 `RenderNode.data.avatarPlan` 接收已解析的帧/画布/锚点/z 顺序与资源版本。Web Component 只通过 LoomRealm 注入的 `PresentationResourceClient` 读取图像，不直接访问 WZ、FSDB 路径或私有 Content Index。
 
-当前实现使用浏览器运行时生成的合成 PNG 验证绘制核心。真实 `struct.Look` 适配、UOL/动作引用解析、`WzRecordAlias`、`zmap/smap` 与 `islot/vslot` 装备遮挡规则仍是后续任务，不能把合成预览通过当作真实 CMS 079 数据验收。
+交付物包含 `browser/cms-actor.browser.js`（classic script，`bootstrapWebPresentation()` 可直接加载）与 `presentation.json` 注册声明；`avatarPlan` 有硬边界（序列化 `RenderNode.data` ≤ 262,144 compact 字节等，见 [实施说明](./cms-actor/IMPLEMENTATION.md)）。部署与注册步骤见 [部署说明](./cms-actor/DEPLOYMENT.md)。
 
-纯算法回归测试：`node --test components/cms-actor/test/*.test.mjs`。浏览器预览步骤见 [cms-actor 实施说明](./cms-actor/IMPLEMENTATION.md)。
+三个验收状态：
+
+1. **合成算法测试通过**：`node --test components/cms-actor/test/avatar-model.test.mjs components/cms-actor/test/browser-artifact.test.mjs`。
+2. **LoomRealm 正式浏览器集成通过（合成素材）**：`node --test components/cms-actor/test/integration.chromium.test.mjs`，真实 Chromium + 正式 bootstrap/Projector/Content HTTP 形状。
+3. **真实 CMS 079 素材验证：BLOCKED**。真实 `struct.Look` 适配、UOL/动作引用解析、`WzRecordAlias`、`zmap/smap` 与 `islot/vslot` 装备遮挡规则待真实 FSDB 闭环，不能把合成结果当作真实数据验收。
 
 ## 不做成组件的东西
 

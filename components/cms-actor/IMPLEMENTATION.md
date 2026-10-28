@@ -1,137 +1,181 @@
 # cms-actor 实施说明
 
-> 状态：第一阶段实现，使用合成资源验证；真实 WZ / FSDB 接入仍待验证。
-> 范围：Web Component、帧布局与锚点算法、逐帧绘制、合成浏览器预览、Node 内置测试。
+> 状态：算法与 LoomRealm 正式浏览器集成已通过合成素材验证；真实 CMS 079 素材验证 **BLOCKED**（见文末三状态表）。
+> 范围：Web Component、有界 `avatarPlan`、帧布局与锚点算法、classic script 构建产物、正式 `bootstrapWebPresentation()` 浏览器闭环、资源生命周期与缓存边界、Node 合成测试与真实 Chromium 集成测试。
 
-## 1. 本次实现的边界
+## 1. 边界
 
-`cms-actor` 是一个只负责呈现的 Web Component。它不读取 WZ、FSDB 文件系统或私有 Content Index，也不决定角色的位置、移动、跳跃和场景切换。运行库通过 `attrs` 提供当前角色状态；游戏侧适配器把已解析的 WZ 外观投影为 `RenderNode.data.avatarPlan`。
+`cms-actor` 是一个只负责呈现的 Web Component。它不读取 WZ、FSDB 文件系统或私有 Content Index，也不决定角色的位置、移动、跳跃和场景切换。运行库通过 `attrs` 提供动态状态；游戏侧适配器把已解析的 WZ 外观投影为 `RenderNode.data.avatarPlan`。
 
 本次实现覆盖：
 
-- `stand1`、`walk1`、`jump` 等动作计划的帧选择；
-- 按 WZ `delay` 的绝对值推进帧，循环动作循环播放，`jump` 等非循环动作停留在末帧；
-- `receiveRenderEvent({ name: "action", data: { action } })` 单次动作播放；完成后恢复当前 `locomotion`；
-- 以 `origin` 和 `map` 锚点合成多张画布；
-- 按 `zOrder` 从后向前绘制；左右朝向绕人物原点镜像；
-- 通过 `PresentationResourceClient.resource(namespace, key, expectedContentVersion)` 读取 PNG，并验证返回的版本和图像尺寸；
-- 资源缓存、异步绘制过期结果隔离、断开组件时取消请求并释放 `ImageBitmap`；
-- 合成素材浏览器预览与纯函数测试。
+- `stand1` / `walk1` / `jump` 等动作计划的帧选择与按 `delay` 绝对值推进；
+- `receiveRenderEvent({ name: "action", data: { action } })` 单次动作播放，完成后恢复**当时的** `locomotion`；
+- 以 `origin` 和 `map` 锚点合成多张画布，按 `zOrder` 从后向前绘制，左右朝向绕身体原点镜像（含帧 `flip` XOR）；
+- 通过 `PresentationResourceClient.resource(namespace, key, expectedContentVersion)` 读取 PNG，校验返回版本、MIME 与像素尺寸；
+- 资源缓存有明确容量边界；异步过期绘制隔离；断开时取消请求并释放 `ImageBitmap`；
+- 可作为 **classic script** 被 LoomRealm `bootstrapWebPresentation()` 正式加载（无 `type="module"` 要求）；
+- 真实 Chromium 集成测试与 Node 纯函数测试。
 
-本次**不声称**已完成 WZ 解码、UOL 解析、`WzRecordAlias` 候选解析、`islot/vslot` 装备冲突算法、真实 `zmap/smap` 表接入或真实 CMS 079 素材验收。这些应由游戏侧适配层与后续集成测试完成。
+不声称完成：WZ 解码、`islot/vslot` 装备冲突算法、真实 `zmap/smap` 数据接入、真实 CMS 079 素材验收。这些属于游戏侧适配层与后续验收。
 
-## 2. RenderNode 契约
+## 2. 平台入口（P0）
 
-动态状态仍使用字符串 `attrs`：
+### 2.1 classic script 产物
+
+LoomRealm Web Presentation Config v1 只以 ordered classic `<script src>` 加载业务脚本，不评估 ES 模块。因此组件交付：
+
+```text
+components/cms-actor/src/*.mjs                  编辑用 ESM 源（Node 测试直接 import）
+components/cms-actor/scripts/build.mjs          确定性打包器（无第三方依赖）
+components/cms-actor/browser/cms-actor.browser.js   生成并入库的 classic script（IIFE）
+```
+
+- 产物无 `import`/`export`，通过 `customElements.define("cms-actor", ...)` 注册；
+- `node scripts/build.mjs --check` 可字节级校验产物与源一致（CI 强制）；
+- 仓库 `.gitignore` 屏蔽 `dist/`、`build/`，因此产物固定放在 `browser/`。
+
+### 2.2 注册声明
+
+`presentation.json` 声明本组件的浏览器入口：
+
+```json
+{
+  "formatVersion": 1,
+  "styles": [],
+  "scripts": [{ "namespace": "resource.Presentation", "key": "cms-actor/cms-actor.browser.js" }]
+}
+```
+
+`namespace + key` 是 Content 逻辑标识；平台 PREPARE 解析后固定 `contentVersion`、MIME（essence 必须是 `text/javascript`）与私有 `browserSource`。组件与业务代码永远拿不到 bearer、物理路径或私有 URL。部署细节见 [DEPLOYMENT.md](./DEPLOYMENT.md)。
+
+## 3. RenderNode 契约
+
+动态状态用字符串 `attrs`（单条 ≤ 4096 字节，符合 Render Update v1）：
 
 | 属性 | 含义 |
 |---|---|
-| `x`, `y` | 人物身体原点在场景中的坐标 |
-| `locomotion` | `stand`、`walk`、`jump` 等运行时状态；`stand` / `walk` 默认映射到 `stand1` / `walk1` |
-| `facing` | `left` 或 `right` |
-| `skin`, `face`, `hair`, `expression`, `equips` | 运行时的外观选择状态，供游戏适配层重建 `avatarPlan`；本组件不直接通过这些编号访问 WZ |
+| `x`, `y` | 身体原点在场景中的坐标（十进制字符串） |
+| `locomotion` | `stand` / `walk` / `jump` |
+| `facing` | `left` / `right` |
+| `skin`, `face`, `hair`, `expression`, `equips` | 运行时外观选择状态，供游戏适配层重建 `avatarPlan`；组件不据此查 WZ |
 
-`RenderNode.data` 现在承载一份**已解析、渲染就绪的外观计划**。它不是原始 WZ 树，也不包含文件系统路径：
+`RenderNode.data` 承载一份**已解析、有界、渲染就绪**的外观计划：
 
 ```js
 {
   avatarPlan: {
     formatVersion: 1,
-    zOrder: ["hair", "face", "head", "body"],
+    zOrder: ["weaponOverGlove", "hair", "face", "head", "body"],   // 前景 → 背景
     locomotionActions: { stand: "stand1", walk: "walk1", jump: "jump" },
     actions: {
-      stand1: {
-        loop: true,
-        frames: [{
-          delay: 500,
-          move: [0, 0],
-          flip: false,
-          layers: [/* 按锚点依赖顺序排列的画布 */]
-        }]
-      }
+      stand1: { loop: true, frames: [{ delay: 500, move: [0, 0], flip: false, layers: [...] }] }
     }
   }
 }
 ```
 
-每个 layer 的规范形状：
+每个 layer：
 
 ```js
 {
   id: "body",
-  z: "body",
+  z: "body",                                  // 必须出现在 zOrder 中
   resource: {
-    namespace: "图",
+    namespace: "resource.图",
     key: "Look/00002000/stand1/0/body",
     contentVersion: "sha256:<64 位小写十六进制>"
   },
-  width: 27,
-  height: 32,
+  width: 27, height: 32,
   origin: [19, 32],
-  anchors: {
-    navel: [-6, -20],
-    neck: [-4, -32]
-  }
+  anchors: { navel: [-6, -20], neck: [-4, -32] }   // WZ map 向量，相对 origin
 }
 ```
 
-- `resource` 只含 Content API 逻辑标识和可信版本，不含物理路径或 URL。
-- `origin`、`anchors` 均以画布左上角为参考；锚点向量相对 WZ `origin`。
-- `frame.layers` 按**锚点依赖顺序**排列：先身体，再头，再脸/头发，再依赖既有锚点的装备。绘制顺序不依赖数组顺序，而由 `zOrder` 决定。
-- `zOrder` 表达从前景到背景的顺序；绘制时反向遍历，使后景先画、前景最后画。
-- `locomotionActions` 可将 `stand` / `walk` 映射到武器 `info` 所决定的 `stand1` / `stand2`、`walk1` / `walk2`。游戏适配层选择具体后缀；`jump` 通常不带后缀。
-- 游戏侧应先解开 UOL、解析动作引用、确定肤色和装备候选，再产生该计划。组件不猜测缺失的 WZ 语义。
+### 3.1 有界性（Render Update v1 硬上限）
 
-## 3. 锚点布局
+计划只承载**当前角色当前需要的动作**，不是全量人物/装备/动作目录。`validateAvatarPlan` 按以下边界 fail-closed（`AVATAR_PLAN_LIMITS`）：
 
-算法先独立计算位置，再按 `zOrder` 排序绘制：
+| 项 | 上界 |
+|---|---|
+| 序列化 `RenderNode.data`（compact JSON UTF-8） | **262,144 字节**（冻结协议上限） |
+| `zOrder` 条目 | 64 |
+| `actions` 条数 | 32 |
+| 每动作帧数 | 128 |
+| 每帧 layer 数 | 32 |
+| 每 layer 锚点数 | 8 |
+| 画布边长 | ≤ 4096 像素 |
+| `delay` 绝对值 | ≤ 600,000 ms |
+| 动作名 / id / 锚点名 / namespace / key | 64 / 64 / 32 / 64 / 256 UTF-8 字节 |
 
-1. 第一张画布（身体）的 `origin` 放在人物原点 `(x, y)`；当前帧的 `move` 只作用于本帧，不累计到下一帧。
-2. 后续画布按 `navel → neck → hand → brow → handMove` 的优先级，寻找同时存在于当前画布和已建立锚点表的名称。
-3. 匹配时将同名锚点重合，并只登记尚不存在的新锚点。例如头通过 `neck` 对齐身体，并提供后续脸/头发使用的 `brow`。
-4. 带锚点但找不到任何既有锚点的画布会被跳过，并通过 `data-skipped-layers` 暴露诊断信息，避免静默绘制在错误位置。
-5. 所有画布定位完成后，按 `zOrder` 从后向前绘制。朝向镜像和帧的 `flip` 组合为 XOR，绕身体原点翻转整套合成结果。
+- 字节数用**有界测量器**（`measureCompactJsonBytes`）在超过预算时立刻中止，不会先拼出无界大字符串；
+- 同一 `(namespace, key, contentVersion)` 在计划内必须声明一致 的 `width/height`，否则拒绝——保证同一 ResourceKey 的尺寸校验结果处处一致；
+- `locomotionActions` 只接受 `stand` / `walk` / `jump`，且必须指向存在的动作。
 
-## 4. 动画与事件
+## 4. 锚点布局
 
-- 身体帧是时间轴；一帧中的所有 layer 一起切换。
-- `delay` 按毫秒解释，负值使用绝对值作为显示时长；缺失或为零的 `delay` 表示停留。
-- `action.loop === true` 且有多个有时长的帧时循环；非循环动作结束后停在最后一帧。
-- `action` Render Event 只触发一次播放，不写入 `attrs` 或 retained `RenderNode.data`。单次动作播完后重新读取当时的 `locomotion`，所以播放期间发生的走/站状态更新不会被旧状态覆盖。
-- 新的 `action` 事件会从第 0 帧开始并替代当前单次动作。
-- 本组件不把 Render Event 重放到新建或重连的元素；事件交付语义由 LoomRealm Web Presentation API v1 管理。
+1. 身体画布 `origin` 放在 `(x, y)`；帧 `move` 只作用于当前帧，不累计。
+2. 后续画布按 `navel → neck → hand → brow → handMove` 优先级取第一个与已建立锚点表同名的锚点重合。
+3. 只登记尚不存在的新锚点（头通过 `neck` 对身体，并提供 `brow` 给脸/头发）。
+4. 带锚点但没有任何可匹配锚点的画布**跳过不画**，并在 `data-skipped-layers` 上给出 `layerId[needs=anchorA+anchorB]` 形式的可定位诊断。
+5. 全部定位后按 `zOrder` 反向（先背景后前景）绘制；`facing=left` 与帧 `flip` 异或后绕身体原点镜像整套合成结果（位置与像素内容同时翻转）。
 
-## 5. 资源生命周期与失败策略
+## 5. 动画与事件
 
-资源按 `(namespace, key, expectedContentVersion)` 缓存。读取结果必须满足：
+- 身体帧是时间轴；一帧中的所有 layer 一起切换。`delay` 取绝对值，缺失/为零表示停留。
+- `loop: true` 的多帧动作循环；`jump` 等非循环动作停在末帧直到 `locomotion` 改变。
+- `action` Render Event 只触发一次私有播放，不写 `attrs`、不进 retained data；播完自动回落到**当下**的 `locomotion`（播放期间的状态更新不会被旧状态覆盖）。播放中再次收到 `action` 事件则丢弃旧播放、从第 0 帧重启。
+- 事件不重放到新建/重连元素（由 Web Presentation API v1 的 transient 语义保证）。
 
-- 返回的 `contentVersion` 与请求的版本完全一致；
-- MIME 属于 `image/*`；
-- 解码后的像素尺寸与计划中声明的 `width/height` 一致。
+## 6. 资源生命周期与失败策略
 
-任何一张当前帧的资源失败时，当前帧不做部分合成；画布清空并写入 `data-render-state="error"` 与 `data-render-error`。异步返回如果属于旧绘制轮次会被丢弃。组件断开时取消资源请求、停止动画循环并释放已创建的 `ImageBitmap`；重新连接后按需要重新加载。
+读取按 `(namespace, key, expectedContentVersion)` 进行，结果必须满足：返回 `contentVersion` 与请求完全一致；MIME essence 属于 `image/*`；解码尺寸与计划声明一致。
 
-## 6. 本地验证
+**位图缓存边界**（`BITMAP_CACHE_LIMITS`）：
 
-无需安装依赖：
+- 硬上限 = 64 条 **或** 12 MiB 解码像素（`width×height×4`），先到先淘汰，按 LRU 逐出；
+- `receiveRenderData` 接受新计划时，先释放旧计划不再引用的条目（计划驱动生命周期）；
+- 逐出尊重正在绘制的条目（pin 计数），绘制完成后补释放；
+- 断开（`disconnectedCallback`）立即中止 in-flight 读取、停表、关闭并清空全部 `ImageBitmap`；重连按需重建。
 
-```bash
-node --test components/cms-actor/test/*.test.mjs
-```
+**过期绘制隔离**：每次绘制轮次有单调 `_paintEpoch`；动作/数据/断开产生的更新使旧轮次的异步结果作废，慢响应永远不会覆盖新动作的画面。
 
-浏览器预览：
+**可定位诊断**（宿主属性）：
 
-```bash
-python -m http.server 8000
-# 浏览器打开 http://localhost:8000/components/cms-actor/preview/
-```
+| 属性 | 值 |
+|---|---|
+| `data-render-state` | `ready` / `error` / `invalid` |
+| `data-render-error` | 失败原因；资源类失败带错误码 + 完整逻辑标识，如 `CONTENT_CONFLICT resource.图/Look/00030000/default/0/hair (expected sha256:…)` |
+| `data-skipped-layers` | 锚点不可解析的画布，如 `detached[needs=foo+bar]` |
+| `data-action` / `data-frame` | 当前动作与帧 |
 
-预览在浏览器运行时生成合成 PNG，使用仅存在于预览内存中的 ResourceClient。它验证组件的资源调用形状、锚点、绘制顺序、左右翻转、移动与动作播放；不代表真实 FSDB 或 CMS 079 素材已经通过验证。
+Canvas 2D 上下文不可用、`createImageBitmap` 缺失等技术错误同样写入 `data-render-error`。单帧任一资源失败时整帧不做部分合成：画布清空并进入 `error`，纠正后的计划可恢复 `ready`。`diagnostics()`（非 ABI）暴露状态、帧号与缓存占用供测试与调优。
 
-## 7. 后续集成顺序
+## 7. 测试与验证
 
-1. 由游戏侧 Look 适配器把 `struct.Look` 中的帧、Canvas、`origin`、`map` 锚点、`z` 与资源版本转换成 `avatarPlan`。
-2. 接入 `struct.ZMap/order` 与 `struct.SMap/smap`，用真实表驱动层顺序和装备遮挡；不得在组件中按文件名推断槽位。
-3. 接入 `WzRecordAlias` 和编码后的资源 key，验证脸、头发、身体及装备候选均可准确查找。
-4. 用本地真实 WZ 生成少量角色样本，与已知帧的 PNG 尺寸、锚点和叠放结果做对照。
-5. 最后再扩展表情、更多装备、动作引用、技能效果和声音；这些不是本次合成测试通过的隐含结论。
+| 套件 | 命令 | 内容 |
+|---|---|---|
+| 算法（Node） | `node --test components/cms-actor/test/avatar-model.test.mjs components/cms-actor/test/browser-artifact.test.mjs` | 计划校验、字节预算、锚点布局、镜像、打包一致性、presentation.json 正式校验（真实 `validateWebPresentationConfigV1` / `prepareWebPresentationV1`） |
+| 浏览器集成（真实 Chromium） | `node --test components/cms-actor/test/integration.chromium.test.mjs` | 正式 `bootstrapWebPresentation()` 加载 classic 入口；`customElements.get("cms-actor")`；Projector 注入 Context/attrs/avatarPlan；`resource()` 收到正确 namespace/key/版本；Canvas 像素（锚点对齐、z 序、透明合成、镜像）；`stand1`/`walk1`/`jump` 帧推进；一次性 `action` 播完恢复当前移动；快速切换动作；慢速资源不覆盖新动作；版本冲突与资源缺失的可定位诊断与恢复；断开取消 in-flight 并释放缓存、重连恢复；缓存容量上界 |
+
+浏览器集成测试使用**运行时生成的合成 PNG 和合成 FSDB**（`.work/cms-actor/[FSDB]cms/`，遵循 `content/DESIGN.md` 布局；身体几何取自逆向的 079 walk1 画布 27×32 / origin (19,32) / navel (-6,-20) / neck (-4,-32)），不包含任何原版游戏素材。测试把 `test/look-adapter.mjs` 当作游戏侧适配器参考实现：解析 UOL、按武器 `info` 决定移动后缀、部件缺动作不画、帧号钳制到身体时间轴。
+
+前置条件：`loom-realm/` 子模块已 `npm install` 并构建 `@loomrealm/renderer`（dist）；Chromium 用 `LOOMREALM_CHROMIUM_PATH` 或系统 Edge/Chrome。
+
+本地快速预览（合成素材，非验收）：`python -m http.server 8000` 后打开 `components/cms-actor/preview/`。
+
+## 8. 三状态
+
+| # | 状态 | 结论 | 证据 |
+|---|---|---|---|
+| 1 | 合成算法测试 | **通过** | `avatar-model.test.mjs` 14 例（校验、边界、字节预算、锚点、镜像、诊断格式） |
+| 2 | LoomRealm 正式浏览器集成 | **通过**（合成素材） | `integration.chromium.test.mjs` 9 例真实 Chromium + 真实 renderer dist + 真实 Content HTTP 形状；验证报告见 `result/65-cms-actor-browser-integration.md` |
+| 3 | 真实 CMS 079 素材验证 | **BLOCKED** | 本仓库不提交 WZ/客户端素材；本地无 WZ 输入。需要使用者本地合法取得的 079 WZ 经转换器产出真实 FSDB 后，按 DEPLOYMENT.md 走同一闭环。未验收前不得宣称 |
+
+## 9. 后续集成顺序
+
+1. 真实 `struct.Look` → `avatarPlan` 适配器（以 `test/look-adapter.mjs` 为参考，替换合成 FSDB 为真实转换产物）。
+2. 接入真实 `struct.ZMap/order` 与 `struct.SMap/smap`，用真实表驱动层顺序与装备遮挡；不在组件里按文件名猜槽位。
+3. `WzRecordAlias` 与编码资源 key 的脸/头发/身体/装备候选查找验证。
+4. 用本地真实 WZ 生成少量角色样本，与已知帧的 PNG 尺寸、锚点和叠放结果对照（解除状态 3 的 BLOCKED）。
+5. 表情独立计时、更多装备、动作引用、技能效果与声音。

@@ -63,6 +63,12 @@ receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 
 当前合成实现用合成 PNG 验证锚点布局、z 顺序、动画和资源版本契约；它不等于真实 CMS 079 素材验收。
 
+## 平台接入
+
+LoomRealm Web Presentation Config v1 只以 ordered classic `<script src>` 加载业务脚本。组件因此交付 `browser/cms-actor.browser.js`（由 `scripts/build.mjs` 从 `src/` 确定性生成的 IIFE，无模块语法），并以 `presentation.json` 声明 Content 逻辑标识 `resource.Presentation/cms-actor/cms-actor.browser.js`（MIME essence `text/javascript`）。平台 PREPARE 固定版本与私有 browserSource；Renderer Window 用正式 `bootstrapWebPresentation()` 评估，`window.onload` 后才开始投影。
+
+`avatarPlan` 有硬边界：序列化后的 `RenderNode.data` 不超过 262,144 compact UTF-8 字节（Render Update v1 冻结上限），动作 ≤ 32、每动作帧 ≤ 128、每帧画布 ≤ 32、锚点 ≤ 8，同一资源在计划内尺寸声明必须一致。计划只承载当前角色需要的动作，不携带全量人物/装备目录。部署步骤见 [DEPLOYMENT.md](./DEPLOYMENT.md)。
+
 ## 图放在哪
 
 `Character.wz` 根目录是身体和头，其余按目录归档。槽位以文件里的 `info/islot` 为准，不按文件名猜测。编号前四位和目录大体对应：`0002` 脸、`0003` 头发、`0100` 帽、`0104` 上衣、`0105` 长袍、`0106` 裤、`0107` 鞋、`0108` 手套、`0109` 盾、`0110` 披风、`0121`–`0160` 与 `0170` 武器。武器目录里仍有 362 个 `islot=Si`、23 个 `islot=Cp`，以 `islot` 为准。

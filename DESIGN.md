@@ -176,3 +176,4 @@ Task 061 写出了伤害公式、伤害上限和 MP 成长，处理器伪代码 
 | 2026-10-26 | WZ 全包转入 | 16 个 WZ 包都进 FSDB。地图补上 info 标量、物理常数、区域和活动节点。物品、字符串、怪物、技能、声音、效果、界面、变身和骑宠一并写入。 |
 | 2026-10-26 | FSDB 缩样 | `content/DESIGN.md` 用射手村记下转换后的目录、地图 JSON、分组 JSONL、图集、物理常数和身体画布。 |
 | 2026-10-28 | 人物组件先行 | `cms-actor` 先用合成资源独立验证纸娃娃绘制、锚点、z 顺序、动作与资源版本；`RenderNode.data.avatarPlan` 只承载已解析的呈现计划。真实 WZ/FSDB 适配、`WzRecordAlias` 与装备槽位冲突仍须单独验收。 |
+| 2026-10-28 | 人物组件接入平台 | `cms-actor` 交付 classic script 入口与 `presentation.json`，`avatarPlan` 有界（≤262,144 compact 字节）；真实 Chromium 用正式 `bootstrapWebPresentation()` 闭环通过合成 FSDB 验证。真实 079 素材仍 BLOCKED。 |

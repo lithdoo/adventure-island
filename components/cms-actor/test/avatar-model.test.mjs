@@ -1,8 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  AVATAR_PLAN_LIMITS,
+  formatSkippedLayers,
   frameDuration,
   layoutFrame,
+  measureAvatarPlanDataBytes,
+  measureCompactJsonBytes,
   mirrorBounds,
   resolveActionName,
   validateAvatarPlan,
@@ -48,6 +52,80 @@ test("rejects a layer whose z is absent from the authoritative order", () => {
   assert.throws(() => validateAvatarPlan(candidate), /z must appear in zOrder/);
 });
 
+test("rejects the same resource declared with two different dimensions", () => {
+  const candidate = plan();
+  const head = candidate.actions.stand1.frames[0].layers[1];
+  const duplicate = layer("hairShade", "hair", [12, 10], { brow: [0, -8] });
+  duplicate.resource = { ...head.resource };
+  duplicate.width = 20;
+  duplicate.height = 20;
+  candidate.actions.stand1.frames[0].layers.push(duplicate);
+  assert.throws(() => validateAvatarPlan(candidate), /declares 20x20 .* but an earlier layer declared 24x32/);
+});
+
+test("enforces bounded actions, frames and layers", () => {
+  const tooManyActions = plan();
+  for (let index = 0; index < AVATAR_PLAN_LIMITS.maxActions + 1; index += 1) {
+    tooManyActions.actions[`fill${index}`] = tooManyActions.actions.jump;
+  }
+  assert.throws(() => validateAvatarPlan(tooManyActions), /at most 32 entries/);
+
+  const tooManyFrames = plan();
+  tooManyFrames.actions.filler = {
+    loop: false,
+    frames: Array.from({ length: AVATAR_PLAN_LIMITS.maxFramesPerAction + 1 }, () => ({
+      delay: 100,
+      layers: [layer("body", "body", [12, 32])],
+    })),
+  };
+  assert.throws(() => validateAvatarPlan(tooManyFrames), /at most 128 entries/);
+
+  const tooManyLayers = plan();
+  const frame = tooManyLayers.actions.stand1.frames[0];
+  for (let index = 0; index < AVATAR_PLAN_LIMITS.maxLayersPerFrame; index += 1) {
+    frame.layers.push(layer(`extra${index}`, "head", [12, 12], { neck: [-4, -10] }));
+  }
+  assert.throws(() => validateAvatarPlan(tooManyLayers), /at most 32 entries/);
+});
+
+test("rejects a plan whose serialized RenderNode.data passes the frozen 262,144-byte cap", () => {
+  const candidate = plan();
+  const wide = {
+    formatVersion: 1,
+    zOrder: ["body"],
+    actions: {
+      bulk: { loop: true, frames: [] },
+    },
+  };
+  for (let index = 0; index < 100; index += 1) {
+    wide.actions.bulk.frames.push({
+      delay: 100,
+      layers: Array.from({ length: 24 }, (_, layerIndex) => ({
+        id: layerIndex === 0 ? "body" : `body${layerIndex}`,
+        z: "body",
+        resource: { namespace: "resource.图", key: `Look/00002000/bulk/${index}/${layerIndex}`, contentVersion: version },
+        width: 24,
+        height: 32,
+        origin: [12, 32],
+        anchors: { navel: [-6, -20] },
+      })),
+    });
+  }
+  assert.throws(() => measureAvatarPlanDataBytes(wide), RangeError, "bounded measurer aborts at the budget");
+  assert.throws(() => validateAvatarPlan(wide), /exceeds the frozen Render Update v1 cap of 262144/);
+});
+
+test("compact measurement counts UTF-8 bytes, not UTF-16 code units", () => {
+  assert.equal(measureCompactJsonBytes("冒险岛"), 11); // 3×3 UTF-8 bytes + 2 quotes
+  assert.equal(measureCompactJsonBytes({ a: [1, 2], b: null, c: true }), 29);
+  assert.equal(measureAvatarPlanDataBytes(plan()), 15 + measureCompactJsonBytes(plan()));
+});
+
+test("compact measurement aborts at the budget without building a giant string", () => {
+  const big = "x".repeat(1024);
+  assert.throws(() => measureCompactJsonBytes({ nested: { deep: [big, big, big] } }, 2048), RangeError);
+});
+
 test("maps body, head, face and hair by shared WZ anchors", () => {
   const candidate = plan();
   const frame = candidate.actions.stand1.frames[0];
@@ -87,12 +165,13 @@ test("uses WZ delay magnitude and resolves adapter-selected locomotion actions",
   assert.equal(resolveActionName(candidate, "stand"), "stand2");
 });
 
-test("skips a layer whose required anchor cannot be resolved", () => {
+test("skips a layer whose required anchor cannot be resolved, with a locatable diagnostic", () => {
   const candidate = plan();
   const frame = candidate.actions.stand1.frames[0];
-  frame.layers.push(layer("detached", "head", [12, 12], { missing: [0, 0] }));
+  frame.layers.push(layer("detached", "head", [12, 12], { missing: [0, 0], gone: [1, 1] }));
   const result = layoutFrame(frame, candidate.zOrder);
-  assert.deepEqual(result.skipped, ["detached"]);
+  assert.deepEqual(result.skipped, [{ id: "detached", anchors: ["missing", "gone"] }]);
+  assert.equal(formatSkippedLayers(result.skipped), "detached[needs=missing+gone]");
 });
 
 test("mirrors a layer around the frame body origin, including frame move", () => {

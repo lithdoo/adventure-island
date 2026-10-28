@@ -1,4 +1,5 @@
 import {
+  formatSkippedLayers,
   frameDuration,
   layoutFrame,
   mirrorBounds,
@@ -8,6 +9,19 @@ import {
 
 const HTMLElementBase = globalThis.HTMLElement ?? class {};
 const OBSERVED_ATTRIBUTES = ["x", "y", "locomotion", "facing", "skin", "face", "hair", "expression", "equips"];
+
+/**
+ * Hard capacity bound for the decoded-bitmap cache. The cache is bounded by
+ * BOTH entry count and decoded pixel bytes; whichever is hit first evicts
+ * least-recently-used entries. Plan-driven pruning (entries not referenced
+ * by the current plan are released on `receiveRenderData`) keeps the cache
+ * tied to the live plan; this LRU cap bounds burst usage while animating
+ * across many frames.
+ */
+export const BITMAP_CACHE_LIMITS = Object.freeze({
+  maxEntries: 64,
+  maxBytes: 12 * 1024 * 1024,
+});
 
 /**
  * CMS 079 paper-doll renderer.
@@ -24,6 +38,7 @@ export class CmsActor extends HTMLElementBase {
     this._context = null;
     this._plan = null;
     this._resourceCache = new Map();
+    this._cacheBytes = 0;
     this._abortController = null;
     this._paintEpoch = 0;
     this._paintPending = false;
@@ -66,8 +81,7 @@ export class CmsActor extends HTMLElementBase {
     this._lastTick = null;
     this._abortController?.abort();
     this._abortController = null;
-    for (const entry of this._resourceCache.values()) entry.bitmap?.close?.();
-    this._resourceCache.clear();
+    this._disposeCache();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -92,7 +106,13 @@ export class CmsActor extends HTMLElementBase {
   /** Receives the full retained RenderNode.data object. */
   receiveRenderData(data) {
     try {
-      const candidate = data?.avatarPlan;
+      if (!data || typeof data !== "object" || Array.isArray(data)) {
+        throw new TypeError("RenderNode.data must be an object carrying avatarPlan");
+      }
+      const candidate = data.avatarPlan;
+      if (candidate === undefined || candidate === null) {
+        throw new TypeError("avatarPlan is required in RenderNode.data");
+      }
       this._plan = validateAvatarPlan(candidate);
       this._pruneResourceCache(this._plan);
       this.removeAttribute("data-render-error");
@@ -123,6 +143,28 @@ export class CmsActor extends HTMLElementBase {
     this._elapsed = 0;
     this._lastTick = null;
     this._requestPaint();
+  }
+
+  /**
+   * Test/diagnostic surface (not part of the LoomRealm ABI). Reports the
+   * current render state, animation position and bitmap-cache occupancy so
+   * capacity and leak assertions do not need to poke private fields.
+   */
+  diagnostics() {
+    return Object.freeze({
+      state: this.getAttribute("data-render-state"),
+      action: this.getAttribute("data-action"),
+      frameIndex: this._frameIndex,
+      paintPending: this._paintPending,
+      oneShotAction: this._oneShotAction,
+      contextInjected: this._context !== null,
+      cache: Object.freeze({
+        entries: this._resourceCache.size,
+        bytes: this._cacheBytes,
+        maxEntries: BITMAP_CACHE_LIMITS.maxEntries,
+        maxBytes: BITMAP_CACHE_LIMITS.maxBytes,
+      }),
+    });
   }
 
   _syncPosition() {
@@ -184,11 +226,21 @@ export class CmsActor extends HTMLElementBase {
     const epoch = ++this._paintEpoch;
     this._paintPending = true;
     const { actionName, frame } = current;
+    const entries = frame.layers.map((layer) => this._getBitmapEntry(layer));
     try {
-      const bitmaps = await Promise.all(frame.layers.map((layer) => this._getBitmap(layer)));
-      if (!this._connected || epoch !== this._paintEpoch) return;
+      const bitmaps = await Promise.all(entries.map((entry) => entry.promise));
+      // A newer paint round, a data update or a disconnect invalidates this
+      // round: stale results must never overwrite the newer action.
+      if (!this._connected || epoch !== this._paintEpoch) {
+        for (const entry of entries) this._unpinEntry(entry);
+        return;
+      }
       const layersWithBitmaps = frame.layers.map((layer, index) => ({ layer, bitmap: bitmaps[index] }));
-      this._drawFrame(frame, layersWithBitmaps);
+      try {
+        this._drawFrame(frame, layersWithBitmaps);
+      } finally {
+        for (const entry of entries) this._unpinEntry(entry);
+      }
       this.setAttribute("data-render-state", "ready");
       this.removeAttribute("data-render-error");
       this.setAttribute("data-action", actionName);
@@ -198,6 +250,7 @@ export class CmsActor extends HTMLElementBase {
       // completion establishes a fresh timestamp before accumulating delay.
       this._ensureAnimationLoop(current.action, frame);
     } catch (error) {
+      for (const entry of entries) this._unpinEntry(entry);
       if (!this._connected || epoch !== this._paintEpoch) return;
       this._paintPending = false;
       this._clearCanvas();
@@ -211,6 +264,7 @@ export class CmsActor extends HTMLElementBase {
     return `${resource.namespace}\u0000${resource.key}\u0000${resource.contentVersion}`;
   }
 
+  /** Release entries the current plan no longer references. */
   _pruneResourceCache(plan) {
     const used = new Set();
     for (const action of Object.values(plan.actions)) {
@@ -218,21 +272,74 @@ export class CmsActor extends HTMLElementBase {
         for (const layer of frame.layers) used.add(this._resourceKey(layer.resource));
       }
     }
-    for (const [key, entry] of this._resourceCache) {
+    for (const [key, entry] of [...this._resourceCache]) {
       if (used.has(key)) continue;
-      entry.bitmap?.close?.();
-      this._resourceCache.delete(key);
+      this._evictEntry(key, entry);
     }
   }
 
-  _getBitmap(layer) {
+  _disposeCache() {
+    for (const [key, entry] of [...this._resourceCache]) this._evictEntry(key, entry);
+  }
+
+  _evictEntry(key, entry) {
+    this._resourceCache.delete(key);
+    entry.evicted = true;
+    if (entry.pins > 0) return; // still painting; close on last unpin
+    this._closeEntry(entry);
+  }
+
+  _closeEntry(entry) {
+    if (entry.closed) return;
+    entry.closed = true;
+    entry.bitmap?.close?.();
+    this._cacheBytes -= entry.byteSize;
+    if (this._cacheBytes < 0) this._cacheBytes = 0;
+  }
+
+  _pinEntry(entry) {
+    entry.pins += 1;
+  }
+
+  _unpinEntry(entry) {
+    if (entry.pins > 0) entry.pins -= 1;
+    if (entry.pins === 0 && entry.evicted && !entry.closed) this._closeEntry(entry);
+  }
+
+  /** Enforce the hard cache capacity after inserting an entry. */
+  _enforceCacheBound(latestKey) {
+    let guard = 0;
+    while (this._resourceCache.size > BITMAP_CACHE_LIMITS.maxEntries || this._cacheBytes > BITMAP_CACHE_LIMITS.maxBytes) {
+      if (guard++ > 10_000) break;
+      let victimKey = null;
+      for (const [key, entry] of this._resourceCache) {
+        if (key === latestKey) continue;
+        // Never evict an entry whose load is still in flight; the next
+        // completed insert re-runs this bound.
+        if (entry.bitmap === null) continue;
+        victimKey = key;
+        break;
+      }
+      if (victimKey === null) break;
+      this._evictEntry(victimKey, this._resourceCache.get(victimKey));
+    }
+  }
+
+  _getBitmapEntry(layer) {
     const resource = layer.resource;
     const cacheKey = this._resourceKey(resource);
     const cached = this._resourceCache.get(cacheKey);
-    if (cached) return cached.promise;
+    if (cached) {
+      // Refresh LRU recency.
+      this._resourceCache.delete(cacheKey);
+      this._resourceCache.set(cacheKey, cached);
+      this._pinEntry(cached);
+      return cached;
+    }
 
     const controller = this._abortController ?? new AbortController();
-    const entry = { bitmap: null, promise: null };
+    const entry = { bitmap: null, promise: null, pins: 0, evicted: false, closed: false, byteSize: 0 };
+    this._pinEntry(entry);
     entry.promise = this._context.resources.resource(
       resource.namespace,
       resource.key,
@@ -240,34 +347,43 @@ export class CmsActor extends HTMLElementBase {
       { signal: controller.signal },
     ).then(async (resolved) => {
       if (resolved.contentVersion !== resource.contentVersion) {
-        throw new Error(`Content version mismatch: ${resource.namespace}/${resource.key}`);
+        throw new Error(`CONTENT_CONFLICT ${resource.namespace}/${resource.key} expected ${resource.contentVersion} but received ${resolved.contentVersion}`);
       }
-      if (typeof resolved.mime !== "string" || !resolved.mime.startsWith("image/")) {
-        throw new Error(`Avatar resource is not an image: ${resource.namespace}/${resource.key}`);
+      if (typeof resolved.mime !== "string" || !resolved.mime.split(";")[0].trim().toLowerCase().startsWith("image/")) {
+        throw new Error(`CONTENT_INVALID ${resource.namespace}/${resource.key} is not an image (mime ${resolved.mime})`);
       }
       if (typeof createImageBitmap !== "function") throw new Error("createImageBitmap is not available in this browser");
       const bitmap = await createImageBitmap(new Blob([resolved.bytes], { type: resolved.mime }));
       if (bitmap.width !== layer.width || bitmap.height !== layer.height) {
         bitmap.close?.();
-        throw new Error(`Image dimensions do not match plan for ${resource.namespace}/${resource.key}`);
+        throw new Error(`CONTENT_INVALID ${resource.namespace}/${resource.key} decoded to ${bitmap.width}x${bitmap.height} but the plan declares ${layer.width}x${layer.height}`);
       }
       if (!this._connected || controller.signal.aborted || this._resourceCache.get(cacheKey) !== entry) {
         bitmap.close?.();
         throw new DOMException("Avatar resource load cancelled or superseded", "AbortError");
       }
       entry.bitmap = bitmap;
+      entry.byteSize = bitmap.width * bitmap.height * 4;
+      this._cacheBytes += entry.byteSize;
+      this._enforceCacheBound(cacheKey);
       return bitmap;
     }).catch((error) => {
       if (this._resourceCache.get(cacheKey) === entry) this._resourceCache.delete(cacheKey);
+      // Surface PresentationResourceClient error codes with the full logical
+      // identity so failures are locatable from the host attributes alone.
+      if (error && typeof error.code === "string") {
+        throw new Error(`${error.code} ${resource.namespace}/${resource.key} (expected ${resource.contentVersion})`, { cause: error });
+      }
       throw error;
     });
     this._resourceCache.set(cacheKey, entry);
-    return entry.promise;
+    return entry;
   }
+
   _drawFrame(frame, layersWithBitmaps) {
     const canvas = this._canvas;
     const context = canvas.getContext("2d");
-    if (!context) throw new Error("2D canvas context is not available");
+    if (!context) throw new Error("Canvas 2D context is unavailable for cms-actor");
     const facingLeft = this.getAttribute("facing") === "left";
     const mirror = Boolean(facingLeft) !== Boolean(frame.flip);
     const mirrorPivotX = frame.move?.[0] ?? 0;
@@ -309,7 +425,7 @@ export class CmsActor extends HTMLElementBase {
     for (const item of drawItems) {
       context.drawImage(item.bitmap, item.left, item.top, item.width, item.height);
     }
-    if (layout.skipped.length > 0) this.setAttribute("data-skipped-layers", layout.skipped.join(","));
+    if (layout.skipped.length > 0) this.setAttribute("data-skipped-layers", formatSkippedLayers(layout.skipped));
     else this.removeAttribute("data-skipped-layers");
   }
 

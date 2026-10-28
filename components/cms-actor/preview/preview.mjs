@@ -1,5 +1,5 @@
-import "../src/cms-actor.mjs";
-
+// The classic entry ../browser/cms-actor.browser.js is loaded by index.html
+// and registers the `cms-actor` element; this harness only drives it.
 const stage = document.querySelector("#stage");
 const status = document.querySelector("#status");
 const assets = new Map();
