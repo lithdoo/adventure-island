@@ -156,7 +156,8 @@ Canvas 2D 上下文不可用、`createImageBitmap` 缺失等技术错误同样�
 | 套件 | 命令 | 内容 |
 |---|---|---|
 | 算法（Node） | `node --test components/cms-actor/test/avatar-model.test.mjs components/cms-actor/test/browser-artifact.test.mjs` | 计划校验、字节预算、锚点布局、镜像、打包一致性、presentation.json 正式校验（真实 `validateWebPresentationConfigV1` / `prepareWebPresentationV1`） |
-| 浏览器集成（真实 Chromium） | `node --test components/cms-actor/test/integration.chromium.test.mjs` | 正式 `bootstrapWebPresentation()` 加载 classic 入口；`customElements.get("cms-actor")`；Projector 注入 Context/attrs/avatarPlan；`resource()` 收到正确 namespace/key/版本；Canvas 像素（锚点对齐、z 序、透明合成、镜像）；`stand1`/`walk1`/`jump` 帧推进；一次性 `action` 播完恢复当前移动；快速切换动作；慢速资源不覆盖新动作；版本冲突与资源缺失的可定位诊断与恢复；断开取消 in-flight 并释放缓存、重连恢复；缓存容量上界 |
+| 浏览器集成（真实 Chromium，合成 FSDB） | `node --test components/cms-actor/test/integration.chromium.test.mjs` | 正式 `bootstrapWebPresentation()` 加载 classic 入口；`customElements.get("cms-actor")`；Projector 注入 Context/attrs/avatarPlan；`resource()` 收到正确 namespace/key/版本；Canvas 像素（锚点对齐、z 序、透明合成、镜像）；`stand1`/`walk1`/`jump` 帧推进；一次性 `action` 播完恢复当前移动；快速切换动作；慢速资源不覆盖新动作；版本冲突与资源缺失的可定位诊断与恢复；断开取消 in-flight 并释放缓存、重连恢复；缓存容量上界 |
+| 真实素材（本地，真实 FSDB） | `node --test components/cms-actor/test/real-assets.local.test.mjs` | 用本地合法取得的 079 WZ 经 `scripts/wz_fsdb` 转出的真实 FSDB（纸娃娃子集）重复同一闭环，并把转换结果与 Task 050/DESIGN 的逆向几何逐项对照。无真实输入（CI/合成 checkout）时整套**显式 skip**，不伪造验收。激活方式见 `result/66-cms-actor-real-assets.md` |
 
 浏览器集成测试使用**运行时生成的合成 PNG 和合成 FSDB**（`.work/cms-actor/[FSDB]cms/`，遵循 `content/DESIGN.md` 布局；身体几何取自逆向的 079 walk1 画布 27×32 / origin (19,32) / navel (-6,-20) / neck (-4,-32)），不包含任何原版游戏素材。测试把 `test/look-adapter.mjs` 当作游戏侧适配器参考实现：解析 UOL、按武器 `info` 决定移动后缀、部件缺动作不画、帧号钳制到身体时间轴。
 
@@ -170,12 +171,12 @@ Canvas 2D 上下文不可用、`createImageBitmap` 缺失等技术错误同样�
 |---|---|---|---|
 | 1 | 合成算法测试 | **通过** | `avatar-model.test.mjs` 14 例（校验、边界、字节预算、锚点、镜像、诊断格式） |
 | 2 | LoomRealm 正式浏览器集成 | **通过**（合成素材） | `integration.chromium.test.mjs` 9 例真实 Chromium + 真实 renderer dist + 真实 Content HTTP 形状；验证报告见 `result/65-cms-actor-browser-integration.md` |
-| 3 | 真实 CMS 079 素材验证 | **BLOCKED** | 本仓库不提交 WZ/客户端素材；本地无 WZ 输入。需要使用者本地合法取得的 079 WZ 经转换器产出真实 FSDB 后，按 DEPLOYMENT.md 走同一闭环。未验收前不得宣称 |
+| 3 | 真实 CMS 079 素材验证 | **通过（本地输入，纸娃娃子集）** | `real-assets.local.test.mjs` 3 例：真实 FSDB（身体/头/脸/头发/武器 + zmap）经正式闭环渲染，转换几何与 Task 050 逆向证据逐项吻合；报告见 `result/66-cms-actor-real-assets.md`。无本地 WZ 的环境显式 skip，不伪造。装备遮挡、表情独立计时、全量 16 包转换仍属后续任务 |
 
 ## 9. 后续集成顺序
 
-1. 真实 `struct.Look` → `avatarPlan` 适配器（以 `test/look-adapter.mjs` 为参考，替换合成 FSDB 为真实转换产物）。
-2. 接入真实 `struct.ZMap/order` 与 `struct.SMap/smap`，用真实表驱动层顺序与装备遮挡；不在组件里按文件名猜槽位。
-3. `WzRecordAlias` 与编码资源 key 的脸/头发/身体/装备候选查找验证。
-4. 用本地真实 WZ 生成少量角色样本，与已知帧的 PNG 尺寸、锚点和叠放结果对照（解除状态 3 的 BLOCKED）。
-5. 表情独立计时、更多装备、动作引用、技能效果与声音。
+1. 装备 `islot/vslot` 遮挡（接入 `struct.SMap/smap`，真实表驱动；不在组件里按文件名猜槽位）。
+2. 表情独立计时（`blink` 等与身体分开的帧钟）与更多肤色后缀、ladder/rope 的 backHead 路径。
+3. 扩大真实白名单动作（更多 `swing*`/`stab*`/技能引用动作）与多件装备组合验证。
+4. 全量 16 包转换与 FSDB Integrity-valid（属 `scripts/wz_fsdb` 分支的未竟事项）。
+5. 技能 `effect` 层、残影与声音（按 DESIGN 不在本组件内）。

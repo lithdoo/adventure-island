@@ -57,6 +57,6 @@
 
 ## 6. 合成验证与真实素材的边界
 
-- 本仓库全部自动化验证使用合成 FSDB 与运行时生成的 PNG；
-- 真实 CMS 079 素材验证处于 **BLOCKED**：需要使用者本地合法取得的 079 WZ 经转换器生成真实 FSDB，再重复第 4–5 步闭环；
+- 合成自动化验证使用合成 FSDB 与运行时生成的 PNG（CI 常态）；
+- 真实 CMS 079 素材验证：用本地合法取得的 079 WZ 经 `scripts/wz_fsdb` 转出真实 FSDB（纸娃娃子集），`test/real-assets.local.test.mjs` 重复第 4–5 步闭环；已本地通过（`result/66-cms-actor-real-assets.md`），无真实输入的环境显式 skip；
 - 仓库不提交 WZ、原版 PNG/音频或生成的真实 FSDB。

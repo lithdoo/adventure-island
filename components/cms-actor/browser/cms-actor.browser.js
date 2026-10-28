@@ -741,7 +741,13 @@ class CmsActor extends HTMLElementBase {
     context.imageSmoothingEnabled = false;
     const translateX = mirror ? (2 * mirrorPivotX - minX) * dpr : -minX * dpr;
     context.setTransform(dpr, 0, 0, dpr, translateX, -minY * dpr);
-    if (mirror) context.scale(-1, 1);
+    if (mirror) {
+      context.scale(-1, 1);
+      // Chromium/Skia rasterizes a negative-scale drawImage one device pixel
+      // below the analytic mirror (destination rect rounds toward lower X).
+      // Compensate so flipped texels land exactly on 2*pivot - x.
+      context.translate(-1, 0);
+    }
 
     for (const item of drawItems) {
       context.drawImage(item.bitmap, item.left, item.top, item.width, item.height);

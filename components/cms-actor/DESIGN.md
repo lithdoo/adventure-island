@@ -61,7 +61,7 @@ receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 
 `cms-actor` 只接收渲染就绪的 `avatarPlan`，通过 LoomRealm 注入的 `PresentationResourceClient` 读取图片。WZ/UOL 解析、`WzRecordAlias` 候选选择、`islot/vslot` 冲突消解和 `zmap/smap` 数据接入由游戏侧适配器负责，不在 Web Component 中读取文件或私有 Content Index。实现契约、资源生命周期、合成预览与测试见 [IMPLEMENTATION.md](./IMPLEMENTATION.md)。
 
-当前合成实现用合成 PNG 验证锚点布局、z 顺序、动画和资源版本契约；它不等于真实 CMS 079 素材验收。
+当前合成实现用合成 PNG 验证锚点布局、z 顺序、动画和资源版本契约。真实素材（纸娃娃子集：肤色 0 身体、头、脸、头发、单手剑与 zmap）已在本地经同一正式闭环验收（`result/66-cms-actor-real-assets.md`）；装备遮挡与表情独立计时仍属后续任务。
 
 ## 平台接入
 

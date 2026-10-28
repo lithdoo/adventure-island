@@ -22,7 +22,7 @@ LoomRealm 冻结接口未被修改：`git -C loom-realm status` 干净，测试�
 |---|---|---|
 | 1 | 合成算法测试 | **通过**（14 例） |
 | 2 | LoomRealm 正式浏览器集成（合成素材） | **通过**（9 例真实 Chromium） |
-| 3 | 真实 CMS 079 素材验证 | **BLOCKED** — 本地无 WZ 输入；仓库禁止提交原版素材。需使用者本地合法取得的 079 WZ 经转换器产出真实 FSDB 后按 `components/cms-actor/DEPLOYMENT.md` 重复同一闭环。在此之前不得宣称真实素材验收。 |
+| 3 | 真实 CMS 079 素材验证 | 后续于 `result/66-cms-actor-real-assets.md` **通过（本地输入，纸娃娃子集）**；无本地 WZ 的环境显式 skip |
 
 ## 3. P0：平台集成阻塞的解决方式
 
