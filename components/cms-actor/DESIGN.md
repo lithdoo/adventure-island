@@ -8,7 +8,7 @@
 
 组件不读包。`decodeAvatar`（`0x58CDF6`）里的装备迭代 `0xAFEB88` 仍未还原每个 int32 是物品编号还是标志；`stance`（`+0x3C0`）也还没拆成动作和朝向。运行库把已经确定的外观交下来。
 
-这些字段都写成 `attrs`，投影成宿主属性。一次更新可以只改其中一项，走路时只改 `x`，换装时只改 `equips`。`data` 是空对象。
+动态状态写在 `attrs`，投影成宿主属性。一次更新可以只改其中一项，走路时只改 `x`，换装时只改 `equips`。静态、已解析的画布/帧描述放在 `RenderNode.data.avatarPlan`，供组件按帧绘制；组件不从这些编号直接查 WZ。`avatarPlan` 不是原始 WZ 树，也不能包含物理路径或 URL。
 
 | 字段 | 放在 | 值 | 含义 | 依据 |
 |---|---|---|---|---|
@@ -36,10 +36,10 @@ attrs: {
   expression: "default",
   equips: "01040000,01060000",
 }
-data: {}
+data: { avatarPlan: { formatVersion: 1, zOrder: [...], actions: { stand1: { loop: true, frames: [...] } } } }
 ```
 
-组件在自己的帧循环里读这些属性。同一次投影先写完有变化的属性。
+组件在自己的帧循环里读取动态属性；`receiveRenderData` 接收完整的 `avatarPlan`。坐标和动作变化不应重建外观计划；外观、动作帧或资源版本变化时，游戏侧投影新的计划。
 
 名字在 `+0xF30`。第一阶段不画名字，所以没有 `display-name`。以后若要在宿主上给出可读名字，再加这一条属性。人物是谁由 `RenderNode.key` 保持，换场景不换 key。
 
@@ -49,13 +49,19 @@ data: {}
 
 第一阶段没有外观包时，属性用肤色 `0`、脸 `00020000`、头发 `00030000`、表情 `default`，`equips` 为空字符串。这三张图在本地 079 提取里都有，移动需要的 `stand1` / `walk1` / `jump` 也都在。
 
-挥砍和施法不写进属性，也不写进 `RenderNode.data`。同一次施放走 `RenderDomain.emit` → `render.event` → `receiveRenderEvent`。事件不进 Renderer Store，不进快照，重建元素时不重放。对话组件里的 `commit`、`choice-next` 就是这条路。
+挥砍和施法的触发不写进属性，也不把触发命令写进 `RenderNode.data`。同一次施放走 `RenderDomain.emit` → `render.event` → `receiveRenderEvent`。事件不进 Renderer Store，不进快照，重建元素时不重放。`avatarPlan` 可以预先包含动作的静态帧定义，但事件只负责触发一次播放。对话组件里的 `commit`、`choice-next` 就是这条路。
 
 ```ts
 receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 ```
 
 这里的 `data` 是这一次事件的参数。`action` 的取值仍是 WZ 里的动作名：`Skill.wz` 的 `action` 节点，以及 `swing*` / `stab*` / `shoot*`。组件把这次播放记在自己的私有状态里。最后一帧走完，私有状态丢掉，画面回到属性 `locomotion`。播放中途又来一条 `action` 事件，丢掉上一次，从新动作的第 0 帧开始。
+
+## 实现边界
+
+`cms-actor` 只接收渲染就绪的 `avatarPlan`，通过 LoomRealm 注入的 `PresentationResourceClient` 读取图片。WZ/UOL 解析、`WzRecordAlias` 候选选择、`islot/vslot` 冲突消解和 `zmap/smap` 数据接入由游戏侧适配器负责，不在 Web Component 中读取文件或私有 Content Index。实现契约、资源生命周期、合成预览与测试见 [IMPLEMENTATION.md](./IMPLEMENTATION.md)。
+
+当前合成实现用合成 PNG 验证锚点布局、z 顺序、动画和资源版本契约；它不等于真实 CMS 079 素材验收。
 
 ## 图放在哪
 
@@ -237,7 +243,7 @@ receiveRenderEvent({ name: "action", data: { action: "brandish1" } })
 
 ## 第一阶段画出来的人
 
-肤色 `0` 的身体和头、脸 `00020000`、头发 `00030000`、表情 `default`。移动时播 `stand1`、`walk1`、`jump`。运行库若带了装备编号，按上面的槽位、锚点、z 序和遮挡一起画。这一阶段的移动不施放技能。运行库要播时，对这个元素的 key 发 `action` 事件。
+肤色 `0` 的身体和头、脸 `00020000`、头发 `00030000`、表情 `default`。移动时播 `stand1`、`walk1`、`jump`。游戏侧把这些动作解析成 `avatarPlan` 后交给组件；装备层也使用相同的画布描述、锚点和 z 顺序。第一阶段的运行库不施放技能。运行库要播一次性动作时，对这个元素的 key 发 `action` 事件。
 
 `key` 在换场景时不变。只更新 `x`、`y`，落地时把 `locomotion` 设回 `stand`。
 

@@ -1,0 +1,32 @@
+name: CMS Actor Tests
+
+on:
+  pull_request:
+    paths:
+      - "components/cms-actor/**"
+      - "components/README.md"
+      - "DESIGN.md"
+      - ".github/workflows/cms-actor-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "components/cms-actor/**"
+      - "components/README.md"
+      - "DESIGN.md"
+      - ".github/workflows/cms-actor-tests.yml"
+
+jobs:
+  avatar-model:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript module syntax
+        run: |
+          node --check components/cms-actor/src/avatar-model.mjs
+          node --check components/cms-actor/src/cms-actor.mjs
+          node --check components/cms-actor/preview/preview.mjs
+      - name: Run synthetic avatar model tests
+        run: node --test components/cms-actor/test/*.test.mjs

@@ -32,11 +32,19 @@ cms-scene-view
 | [cms-back](./cms-back/DESIGN.md) | `cms-back` | 远景和近景 |
 | [cms-map-layer](./cms-map-layer/DESIGN.md) | `cms-map-layer` | 层 0 到 7 |
 | [cms-avatar-layer](./cms-avatar-layer/DESIGN.md) | `cms-avatar-layer` | 人物所在的层 |
-| [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 纸娃娃。走和站循环；技能和普攻只播一遍，然后回到当前移动 |
+| [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 已有合成素材 Web Component、锚点/z 顺序算法、基础动画与独立预览；真实 WZ/FSDB 适配仍待接入（见 [实施说明](./cms-actor/IMPLEMENTATION.md)） |
 | [cms-npc](./cms-npc/DESIGN.md) | `cms-npc` | 不放。`life` 里 `type=n` 的对话 |
 | [cms-reactor](./cms-reactor/DESIGN.md) | `cms-reactor` | 不放。箱子、开关、花的点击和受击 |
 | [cms-seat](./cms-seat/DESIGN.md) | `cms-seat` | 不放。坐下的坐标 |
 | [cms-portal](./cms-portal/DESIGN.md) | `cms-portal` | 场景出口。第一阶段唯一的地图交互 |
+
+## `cms-actor` 实现状态
+
+人物组件以 `RenderNode.attrs` 接收坐标、朝向和移动状态，以 `RenderNode.data.avatarPlan` 接收已解析的帧/画布/锚点/z 顺序与资源版本。Web Component 只通过 LoomRealm 注入的 `PresentationResourceClient` 读取图像，不直接访问 WZ、FSDB 路径或私有 Content Index。
+
+当前实现使用浏览器运行时生成的合成 PNG 验证绘制核心。真实 `struct.Look` 适配、UOL/动作引用解析、`WzRecordAlias`、`zmap/smap` 与 `islot/vslot` 装备遮挡规则仍是后续任务，不能把合成预览通过当作真实 CMS 079 数据验收。
+
+纯算法回归测试：`node --test components/cms-actor/test/*.test.mjs`。浏览器预览步骤见 [cms-actor 实施说明](./cms-actor/IMPLEMENTATION.md)。
 
 ## 不做成组件的东西
 
