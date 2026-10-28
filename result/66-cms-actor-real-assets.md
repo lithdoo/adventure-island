@@ -76,8 +76,32 @@ CMS_ACTOR_REAL_FSDB=<不存在路径> node --test test/real-assets.local.test.mj
 
 | # | 状态 | 结论 |
 |---|---|---|
-| 1 | 合成算法测试 | 通过（19 例） |
-| 2 | LoomRealm 正式浏览器集成（合成素材） | 通过（9 例真实 Chromium） |
-| 3 | 真实 CMS 079 素材验证 | **通过（本地输入，纸娃娃子集，3 例）**；CI/无素材环境显式 skip |
+| 1 | 合成算法测试 | 通过（本轮最终 21 例，CI 可复现） |
+| 2 | LoomRealm 正式浏览器集成（合成素材） | 通过（本轮最终 13 例真实 Chromium，CI 可复现） |
+| 3 | 真实 CMS 079 素材验证 | 通过（Agent 本地输入，纸娃娃子集，3 例；CI 显式 skip，不可在合成 checkout 复现） |
 
 PR #2 的最后一块验收缺口已用真实数据关闭；仓库边界（不提交 WZ/真实 PNG/生成 FSDB）未突破。
+
+## 8. 附录（2026-10-28 第二轮：缓存严格化 / 跨计划一致性 / 高 DPR 镜像）
+
+应 PR 评审要求完成四项修复，全部有 CI 可复现证据：
+
+1. **P0 缓存容量严格保证**：重构为两层预算模型（可缓存 LRU 层 / 解码与绘制工作集层）。计划校验新增单画布与单帧解码字节上限（12,582,912 字节，与缓存预算同源），单张超额与同帧多图超额在进入组件前即拒绝；逐出时即时移出计数（延迟 close 单列 `pendingClose`），并发完成插入前强制执行边界。新增测试：超大单图（1,800×1,800）与超预算帧（900×900×4 层）拒绝且不触发任何资源读取、恢复正常；**32 资源并发突发**（服务端延迟 700ms，轮询采样）期间与结束后可缓存层条目/字节均不超 64/12MiB，`map ≤ cap + 单帧工作集`。预算本身未放宽。
+2. **P1 跨 AvatarPlan 尺寸一致性**：缓存条目记录解码尺寸；同身份新计划声明不同尺寸时在缓存命中处同步拒绝（`CONTENT_INVALID … declares 24x17 but the cached decode … 24x18`，含资源标识），同步异常进入 `_paintFrame` 错误处理（条目获取移入 try，`_requestPaint` 增加兜底 catch），全程 `pageerror` 为空；纠正计划后恢复。
+3. **P1 高 DPR 镜像**：经最小复现测定，Chromium 负缩放 `drawImage` 的偏移为 −1 **布局**像素（dpr=1 → −1 设备像素；dpr=2 → −2），现有 `translate(-1,0)`（布局单位）在 dpr 1/1.5/2 下均解析精确，无需按设备像素修改。harness 采样改为 dpr 感知；新增端到端测试在 **dsf=1 与 dsf=2** 下对 jump 定帧（`move` 轴心 x=3）做场景空间逐点镜像比较（>300 点、含不透明像素、0 不匹配），并断言锚点在两个 DPR 下仍对齐。
+4. **P1 文档一致性**：`IMPLEMENTATION.md` / `DEPLOYMENT.md` / 本报告统一三状态措辞，明确区分「CI 可复现的合成验证」与「Agent 报告的本地真实素材验证」；测试计数更新为最终值。
+
+第二轮最终执行记录（Windows 本机，Node 24.14.1，真实 Chromium）：
+
+```text
+node --test test/avatar-model.test.mjs test/browser-artifact.test.mjs
+  → tests 21  pass 21  fail 0
+node --test test/integration.chromium.test.mjs
+  → tests 13  pass 13  fail 0   （duration ≈ 23s）
+node --test test/real-assets.local.test.mjs
+  → tests 3   pass 3   fail 0
+node scripts/build.mjs --check
+  → browser/cms-actor.browser.js matches sources
+```
+
+第二轮遗留风险：fractional DPR（如 1.25/1.5）下镜像以最近邻采样落在半设备像素边界，最多有 1 设备像素的量化（整数 DPR 已验证精确）；工作集理论峰值 = 帧预算（12 MiB）+ 缓存预算，属文档化设计而非泄漏。

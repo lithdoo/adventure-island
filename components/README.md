@@ -46,9 +46,9 @@ cms-scene-view
 
 三个验收状态：
 
-1. **合成算法测试通过**：`node --test components/cms-actor/test/avatar-model.test.mjs components/cms-actor/test/browser-artifact.test.mjs`。
-2. **LoomRealm 正式浏览器集成通过（合成素材）**：`node --test components/cms-actor/test/integration.chromium.test.mjs`，真实 Chromium + 正式 bootstrap/Projector/Content HTTP 形状。
-3. **真实 CMS 079 素材验证通过（本地输入，纸娃娃子集）**：`node --test components/cms-actor/test/real-assets.local.test.mjs`，用本地合法 WZ 转出的真实 FSDB 重复同一闭环；无真实输入的环境显式 skip。装备 `islot/vslot` 遮挡、表情独立计时与全量 16 包转换仍是后续任务。详见 `result/66-cms-actor-real-assets.md`。
+1. **合成算法测试通过（21 例，CI 可复现）**：`node --test components/cms-actor/test/avatar-model.test.mjs components/cms-actor/test/browser-artifact.test.mjs`。
+2. **LoomRealm 正式浏览器集成通过（合成素材，13 例真实 Chromium，CI 可复现）**：`node --test components/cms-actor/test/integration.chromium.test.mjs`——含 DPR 1/2 镜像、缓存严格预算（超大单图/同帧多图/并发突发）与跨计划尺寸冲突。
+3. **真实 CMS 079 素材验证通过（Agent 本地输入，纸娃娃子集，3 例；CI 不可复现、显式 skip）**：`node --test components/cms-actor/test/real-assets.local.test.mjs`。装备 `islot/vslot` 遮挡、表情独立计时与全量 16 包转换仍是后续任务。详见 `result/66-cms-actor-real-assets.md`。
 
 ## 不做成组件的东西
 

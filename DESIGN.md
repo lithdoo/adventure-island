@@ -178,3 +178,4 @@ Task 061 写出了伤害公式、伤害上限和 MP 成长，处理器伪代码 
 | 2026-10-28 | 人物组件先行 | `cms-actor` 先用合成资源独立验证纸娃娃绘制、锚点、z 顺序、动作与资源版本；`RenderNode.data.avatarPlan` 只承载已解析的呈现计划。真实 WZ/FSDB 适配、`WzRecordAlias` 与装备槽位冲突仍须单独验收。 |
 | 2026-10-28 | 人物组件接入平台 | `cms-actor` 交付 classic script 入口与 `presentation.json`，`avatarPlan` 有界（≤262,144 compact 字节）；真实 Chromium 用正式 `bootstrapWebPresentation()` 闭环通过合成 FSDB 验证。 |
 | 2026-10-28 | 人物组件真实验收 | 用本地 079 WZ 转出的真实 FSDB（身体/头/脸/头发/武器 + zmap）通过同一浏览器闭环；转换几何与 Task 050 逆向证据逐项吻合；顺带修复 Chromium 负缩放 drawImage 的 1px 镜像偏移。见 `result/66`。 |
+| 2026-10-28 | 缓存与镜像严格化 | 缓存改两层预算（可缓存 LRU / 解码绘制工作集），计划校验加单画布与帧解码字节上限，并发突发逐次采样证明 64 条/12 MiB 不被绕过；跨计划尺寸冲突可定位拒绝；DPR 1/2 镜像端到端像素级证明。见 `result/66` 附录。 |

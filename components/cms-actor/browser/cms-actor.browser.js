@@ -26,6 +26,13 @@ const CONTENT_VERSION_PATTERN = /^sha256:[0-9a-f]{64}$/;
 const AVATAR_PLAN_LIMITS = Object.freeze({
   /** Frozen Render Update v1 `RenderNode.data` compact byte cap. */
   maxDataBytes: 262_144,
+  /**
+   * Decoded-byte budget for one frame's canvases (and for any single
+   * canvas). This is the component's working-set policy: the decoded-bitmap
+   * cache hard-caps at the same value, so a frame can always be painted
+   * without the working set bypassing the cache budget.
+   */
+  maxDecodedFrameBytes: 12 * 1024 * 1024,
   maxZOrderEntries: 64,
   maxActions: 32,
   maxActionNameBytes: 64,
@@ -121,6 +128,7 @@ function validateAvatarPlan(plan) {
       assert(frame.layers.length <= AVATAR_PLAN_LIMITS.maxLayersPerFrame, `${frameLabel}.layers must have at most ${AVATAR_PLAN_LIMITS.maxLayersPerFrame} entries`);
       assert(frame.layers[0]?.id === "body", `${frameLabel}.layers[0] must be the body layer`);
       assert(new Set(frame.layers.map((layer) => layer?.id)).size === frame.layers.length, `${frameLabel}.layer ids must be unique`);
+      let frameDecodedBytes = 0;
 
       for (const [layerIndex, layer] of frame.layers.entries()) {
         const label = `${frameLabel}.layers[${layerIndex}]`;
@@ -130,6 +138,7 @@ function validateAvatarPlan(plan) {
         assert(typeof layer.z === "string" && plan.zOrder.includes(layer.z), `${label}.z must appear in zOrder`);
         assert(boundedInteger(layer.width, AVATAR_PLAN_LIMITS.maxDimensionPixels), `${label}.width must be a positive integer up to ${AVATAR_PLAN_LIMITS.maxDimensionPixels}`);
         assert(boundedInteger(layer.height, AVATAR_PLAN_LIMITS.maxDimensionPixels), `${label}.height must be a positive integer up to ${AVATAR_PLAN_LIMITS.maxDimensionPixels}`);
+        assert(layer.width * layer.height * 4 <= AVATAR_PLAN_LIMITS.maxDecodedFrameBytes, `${label} decodes to ${layer.width * layer.height * 4} bytes, exceeding the ${AVATAR_PLAN_LIMITS.maxDecodedFrameBytes}-byte canvas budget`);
         assert(isFinitePair(layer.origin), `${label}.origin must be a finite pair`);
         assert(layer.origin.every((part) => Math.abs(part) <= AVATAR_PLAN_LIMITS.maxCoordinate), `${label}.origin exceeds the coordinate bound`);
         assert(layer.resource && typeof layer.resource === "object", `${label}.resource is required`);
@@ -157,7 +166,9 @@ function validateAvatarPlan(plan) {
           throw new TypeError(`Invalid AvatarPlanV1: ${label} declares ${dimensions} for ${layer.resource.namespace}/${layer.resource.key} but an earlier layer declared ${previous}`);
         }
         declaredDimensions.set(identity, dimensions);
+        frameDecodedBytes += layer.width * layer.height * 4;
       }
+      assert(frameDecodedBytes <= AVATAR_PLAN_LIMITS.maxDecodedFrameBytes, `${frameLabel} decodes to ${frameDecodedBytes} bytes across its layers, exceeding the ${AVATAR_PLAN_LIMITS.maxDecodedFrameBytes}-byte frame budget`);
     }
   }
 
@@ -332,16 +343,24 @@ const HTMLElementBase = globalThis.HTMLElement ?? class {};
 const OBSERVED_ATTRIBUTES = ["x", "y", "locomotion", "facing", "skin", "face", "hair", "expression", "equips"];
 
 /**
- * Hard capacity bound for the decoded-bitmap cache. The cache is bounded by
- * BOTH entry count and decoded pixel bytes; whichever is hit first evicts
- * least-recently-used entries. Plan-driven pruning (entries not referenced
- * by the current plan are released on `receiveRenderData`) keeps the cache
- * tied to the live plan; this LRU cap bounds burst usage while animating
- * across many frames.
+ * Hard capacity bound for the CACHEABLE decoded-bitmap set (LRU).
+ *
+ * Budget model (two tiers, both bounded):
+ *  - cacheable tier: completed decode, currently unused by a paint. Strictly
+ *    LRU-bounded by BOTH entry count and decoded bytes below. A completed
+ *    insert enforces the bound before returning; the bound can therefore
+ *    only be exceeded transiently by the working-set tier below.
+ *  - working-set tier: entries that are decoding or pinned by an in-flight
+ *    paint. Never evicted mid-use. Bounded by plan validation instead:
+ *    <= 32 layers per frame and <= maxDecodedFrameBytes decoded bytes per
+ *    frame (see AVATAR_PLAN_LIMITS), so the working set can never blow the
+ *    budget by an unbounded amount and never bypasses it permanently.
+ * A bitmap larger than maxBytes on its own is rejected at plan validation;
+ * defensively it would be treated as uncacheable working set, never cached.
  */
 const BITMAP_CACHE_LIMITS = Object.freeze({
   maxEntries: 64,
-  maxBytes: 12 * 1024 * 1024,
+  maxBytes: AVATAR_PLAN_LIMITS.maxDecodedFrameBytes,
 });
 
 /**
@@ -359,7 +378,10 @@ class CmsActor extends HTMLElementBase {
     this._context = null;
     this._plan = null;
     this._resourceCache = new Map();
-    this._cacheBytes = 0;
+    this._cacheBytes = 0;        // decoded bytes of cacheable (in-map, counted) entries
+    this._loadingCount = 0;      // entries whose fetch/decode is still in flight
+    this._pendingCloseCount = 0; // evicted entries whose bitmap is still pinned
+    this._pendingCloseBytes = 0;
     this._abortController = null;
     this._paintEpoch = 0;
     this._paintPending = false;
@@ -470,6 +492,8 @@ class CmsActor extends HTMLElementBase {
    * Test/diagnostic surface (not part of the LoomRealm ABI). Reports the
    * current render state, animation position and bitmap-cache occupancy so
    * capacity and leak assertions do not need to poke private fields.
+   * `entries`/`bytes` cover the CACHEABLE tier only; decoding bitmaps and
+   * evicted-but-still-pinned bitmaps are reported separately.
    */
   diagnostics() {
     return Object.freeze({
@@ -480,8 +504,11 @@ class CmsActor extends HTMLElementBase {
       oneShotAction: this._oneShotAction,
       contextInjected: this._context !== null,
       cache: Object.freeze({
-        entries: this._resourceCache.size,
+        entries: Math.max(0, this._resourceCache.size - this._loadingCount),
+        loading: Math.max(0, this._loadingCount),
         bytes: this._cacheBytes,
+        pendingClose: this._pendingCloseCount,
+        pendingCloseBytes: this._pendingCloseBytes,
         maxEntries: BITMAP_CACHE_LIMITS.maxEntries,
         maxBytes: BITMAP_CACHE_LIMITS.maxBytes,
       }),
@@ -540,15 +567,28 @@ class CmsActor extends HTMLElementBase {
     }
     // Pause the animation clock while a new frame is being prepared/painted.
     this._lastTick = null;
-    this._paintFrame(current);
+    // `_paintFrame` owns its error handling (including synchronous throws
+    // from cache lookups); the safety net only fires if that handling itself
+    // fails, so no rejection can ever escape unhandled.
+    this._paintFrame(current).catch((error) => {
+      this._paintPending = false;
+      this._clearCanvas();
+      this.setAttribute("data-render-state", "error");
+      this.setAttribute("data-render-error", error instanceof Error ? error.message : String(error));
+      this._stopAnimation();
+    });
   }
 
   async _paintFrame(current) {
     const epoch = ++this._paintEpoch;
     this._paintPending = true;
     const { actionName, frame } = current;
-    const entries = frame.layers.map((layer) => this._getBitmapEntry(layer));
+    let entries = [];
     try {
+      // Inside the try on purpose: `_getBitmapEntry` can throw synchronously
+      // (e.g. a cross-plan dimension conflict on a cache hit) and that must
+      // land in this error handling, not become an unhandled rejection.
+      entries = frame.layers.map((layer) => this._getBitmapEntry(layer));
       const bitmaps = await Promise.all(entries.map((entry) => entry.promise));
       // A newer paint round, a data update or a disconnect invalidates this
       // round: stale results must never overwrite the newer action.
@@ -606,6 +646,16 @@ class CmsActor extends HTMLElementBase {
   _evictEntry(key, entry) {
     this._resourceCache.delete(key);
     entry.evicted = true;
+    // Accounting moves at eviction time so `_cacheBytes` is always exactly
+    // the cacheable tier, even when the close is deferred by a pin.
+    if (entry.inCacheBytes) {
+      entry.inCacheBytes = false;
+      this._cacheBytes -= entry.byteSize;
+      if (this._cacheBytes < 0) this._cacheBytes = 0;
+      entry.inPendingBytes = true;
+      this._pendingCloseCount += 1;
+      this._pendingCloseBytes += entry.byteSize;
+    }
     if (entry.pins > 0) return; // still painting; close on last unpin
     this._closeEntry(entry);
   }
@@ -614,8 +664,13 @@ class CmsActor extends HTMLElementBase {
     if (entry.closed) return;
     entry.closed = true;
     entry.bitmap?.close?.();
-    this._cacheBytes -= entry.byteSize;
-    if (this._cacheBytes < 0) this._cacheBytes = 0;
+    if (entry.inPendingBytes) {
+      entry.inPendingBytes = false;
+      this._pendingCloseCount -= 1;
+      this._pendingCloseBytes -= entry.byteSize;
+      if (this._pendingCloseCount < 0) this._pendingCloseCount = 0;
+      if (this._pendingCloseBytes < 0) this._pendingCloseBytes = 0;
+    }
   }
 
   _pinEntry(entry) {
@@ -627,20 +682,27 @@ class CmsActor extends HTMLElementBase {
     if (entry.pins === 0 && entry.evicted && !entry.closed) this._closeEntry(entry);
   }
 
-  /** Enforce the hard cache capacity after inserting an entry. */
+  /** Enforce the hard cacheable-tier bound after a completed insert. */
   _enforceCacheBound(latestKey) {
     let guard = 0;
-    while (this._resourceCache.size > BITMAP_CACHE_LIMITS.maxEntries || this._cacheBytes > BITMAP_CACHE_LIMITS.maxBytes) {
+    while (this._resourceCache.size - this._loadingCount > BITMAP_CACHE_LIMITS.maxEntries || this._cacheBytes > BITMAP_CACHE_LIMITS.maxBytes) {
       if (guard++ > 10_000) break;
       let victimKey = null;
+      let pinnedVictimKey = null;
       for (const [key, entry] of this._resourceCache) {
         if (key === latestKey) continue;
-        // Never evict an entry whose load is still in flight; the next
-        // completed insert re-runs this bound.
+        // Decoding entries are working set, never victims.
         if (entry.bitmap === null) continue;
+        if (entry.pins > 0) {
+          // Prefer unpinned victims (immediate byte relief); keep the oldest
+          // pinned one as a fallback so the entry bound still holds.
+          if (pinnedVictimKey === null) pinnedVictimKey = key;
+          continue;
+        }
         victimKey = key;
         break;
       }
+      if (victimKey === null) victimKey = pinnedVictimKey;
       if (victimKey === null) break;
       this._evictEntry(victimKey, this._resourceCache.get(victimKey));
     }
@@ -651,6 +713,13 @@ class CmsActor extends HTMLElementBase {
     const cacheKey = this._resourceKey(resource);
     const cached = this._resourceCache.get(cacheKey);
     if (cached) {
+      // Cross-plan dimension consistency: the same Content identity must
+      // decode to the same pixels it did before. A new plan declaring
+      // different dimensions for a cached identity is rejected with a
+      // locatable error instead of silently painting a stretched bitmap.
+      if (cached.bitmap !== null && (cached.width !== layer.width || cached.height !== layer.height)) {
+        throw new Error(`CONTENT_INVALID ${resource.namespace}/${resource.key} declares ${layer.width}x${layer.height} but the cached decode of the same identity and version is ${cached.width}x${cached.height}`);
+      }
       // Refresh LRU recency.
       this._resourceCache.delete(cacheKey);
       this._resourceCache.set(cacheKey, cached);
@@ -659,8 +728,12 @@ class CmsActor extends HTMLElementBase {
     }
 
     const controller = this._abortController ?? new AbortController();
-    const entry = { bitmap: null, promise: null, pins: 0, evicted: false, closed: false, byteSize: 0 };
+    const entry = {
+      bitmap: null, promise: null, pins: 0, evicted: false, closed: false,
+      byteSize: 0, width: 0, height: 0, inCacheBytes: false, inPendingBytes: false,
+    };
     this._pinEntry(entry);
+    this._loadingCount += 1;
     entry.promise = this._context.resources.resource(
       resource.namespace,
       resource.key,
@@ -684,12 +757,31 @@ class CmsActor extends HTMLElementBase {
         throw new DOMException("Avatar resource load cancelled or superseded", "AbortError");
       }
       entry.bitmap = bitmap;
+      entry.width = bitmap.width;
+      entry.height = bitmap.height;
       entry.byteSize = bitmap.width * bitmap.height * 4;
-      this._cacheBytes += entry.byteSize;
-      this._enforceCacheBound(cacheKey);
+      this._loadingCount -= 1;
+      if (entry.byteSize > BITMAP_CACHE_LIMITS.maxBytes) {
+        // Plan validation rejects oversized canvases; if one still reaches
+        // here it stays working set only — never cached, closed after paint.
+        this._resourceCache.delete(cacheKey);
+        entry.evicted = true;
+        entry.inPendingBytes = true;
+        this._pendingCloseCount += 1;
+        this._pendingCloseBytes += entry.byteSize;
+      } else {
+        entry.inCacheBytes = true;
+        this._cacheBytes += entry.byteSize;
+        this._enforceCacheBound(cacheKey);
+      }
       return bitmap;
     }).catch((error) => {
+      if (!entry.closed && entry.bitmap === null) this._loadingCount -= 1;
       if (this._resourceCache.get(cacheKey) === entry) this._resourceCache.delete(cacheKey);
+      if (entry.inCacheBytes) {
+        entry.inCacheBytes = false;
+        this._cacheBytes -= entry.byteSize;
+      }
       // Surface PresentationResourceClient error codes with the full logical
       // identity so failures are locatable from the host attributes alone.
       if (error && typeof error.code === "string") {

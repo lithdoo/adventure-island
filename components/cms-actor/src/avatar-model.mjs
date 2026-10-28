@@ -20,6 +20,13 @@ const CONTENT_VERSION_PATTERN = /^sha256:[0-9a-f]{64}$/;
 export const AVATAR_PLAN_LIMITS = Object.freeze({
   /** Frozen Render Update v1 `RenderNode.data` compact byte cap. */
   maxDataBytes: 262_144,
+  /**
+   * Decoded-byte budget for one frame's canvases (and for any single
+   * canvas). This is the component's working-set policy: the decoded-bitmap
+   * cache hard-caps at the same value, so a frame can always be painted
+   * without the working set bypassing the cache budget.
+   */
+  maxDecodedFrameBytes: 12 * 1024 * 1024,
   maxZOrderEntries: 64,
   maxActions: 32,
   maxActionNameBytes: 64,
@@ -115,6 +122,7 @@ export function validateAvatarPlan(plan) {
       assert(frame.layers.length <= AVATAR_PLAN_LIMITS.maxLayersPerFrame, `${frameLabel}.layers must have at most ${AVATAR_PLAN_LIMITS.maxLayersPerFrame} entries`);
       assert(frame.layers[0]?.id === "body", `${frameLabel}.layers[0] must be the body layer`);
       assert(new Set(frame.layers.map((layer) => layer?.id)).size === frame.layers.length, `${frameLabel}.layer ids must be unique`);
+      let frameDecodedBytes = 0;
 
       for (const [layerIndex, layer] of frame.layers.entries()) {
         const label = `${frameLabel}.layers[${layerIndex}]`;
@@ -124,6 +132,7 @@ export function validateAvatarPlan(plan) {
         assert(typeof layer.z === "string" && plan.zOrder.includes(layer.z), `${label}.z must appear in zOrder`);
         assert(boundedInteger(layer.width, AVATAR_PLAN_LIMITS.maxDimensionPixels), `${label}.width must be a positive integer up to ${AVATAR_PLAN_LIMITS.maxDimensionPixels}`);
         assert(boundedInteger(layer.height, AVATAR_PLAN_LIMITS.maxDimensionPixels), `${label}.height must be a positive integer up to ${AVATAR_PLAN_LIMITS.maxDimensionPixels}`);
+        assert(layer.width * layer.height * 4 <= AVATAR_PLAN_LIMITS.maxDecodedFrameBytes, `${label} decodes to ${layer.width * layer.height * 4} bytes, exceeding the ${AVATAR_PLAN_LIMITS.maxDecodedFrameBytes}-byte canvas budget`);
         assert(isFinitePair(layer.origin), `${label}.origin must be a finite pair`);
         assert(layer.origin.every((part) => Math.abs(part) <= AVATAR_PLAN_LIMITS.maxCoordinate), `${label}.origin exceeds the coordinate bound`);
         assert(layer.resource && typeof layer.resource === "object", `${label}.resource is required`);
@@ -151,7 +160,9 @@ export function validateAvatarPlan(plan) {
           throw new TypeError(`Invalid AvatarPlanV1: ${label} declares ${dimensions} for ${layer.resource.namespace}/${layer.resource.key} but an earlier layer declared ${previous}`);
         }
         declaredDimensions.set(identity, dimensions);
+        frameDecodedBytes += layer.width * layer.height * 4;
       }
+      assert(frameDecodedBytes <= AVATAR_PLAN_LIMITS.maxDecodedFrameBytes, `${frameLabel} decodes to ${frameDecodedBytes} bytes across its layers, exceeding the ${AVATAR_PLAN_LIMITS.maxDecodedFrameBytes}-byte frame budget`);
     }
   }
 

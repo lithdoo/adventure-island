@@ -134,12 +134,15 @@ export async function preparePresentation({ origin, index, configPath, scriptPat
   });
 }
 
-export async function openBootstrappedPage(t, { chromium, origin, prepared, installationId, bearer }) {
-  const page = await chromium.newPage({ viewport: { width: 480, height: 360 }, deviceScaleFactor: 1 });
+export async function openBootstrappedPage(t, { chromium, origin, prepared, installationId, bearer, deviceScaleFactor = 1 }) {
+  const page = await chromium.newPage({ viewport: { width: 480, height: 360 }, deviceScaleFactor });
+  // Surface unhandled page errors to tests (e.g. promise rejections that
+  // must never escape the component's error handling).
+  page.__pageErrors = [];
+  page.on("pageerror", (error) => page.__pageErrors.push(String(error?.message ?? error)));
   if (process.env.CMS_ACTOR_DEBUG) {
     page.on("console", (message) => console.log(`[page ${message.type()}]`, message.text().slice(0, 400)));
     page.on("response", (response) => { if (response.status() >= 400) console.log(`[page http ${response.status()}]`, response.url().slice(-100)); });
-    page.on("pageerror", (error) => console.log("[page error]", error.message));
   }
   t.after(() => page.close().catch(() => {}));
   await page.goto(origin);
@@ -178,10 +181,11 @@ export async function openBootstrappedPage(t, { chromium, origin, prepared, inst
       window.__sample = (sx, sy) => {
         const canvas = window.__canvas();
         if (!canvas) return null;
+        const dpr = window.devicePixelRatio || 1;
         const left = Number.parseFloat(canvas.style.left) || 0;
         const top = Number.parseFloat(canvas.style.top) || 0;
-        const x = Math.round(sx - left);
-        const y = Math.round(sy - top);
+        const x = Math.round((sx - left) * dpr);
+        const y = Math.round((sy - top) * dpr);
         if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) return null;
         const pixel = canvas.getContext("2d").getImageData(x, y, 1, 1).data;
         return [pixel[0], pixel[1], pixel[2]];
@@ -189,10 +193,11 @@ export async function openBootstrappedPage(t, { chromium, origin, prepared, inst
       window.__pixel = (sx, sy) => {
         const canvas = window.__canvas();
         if (!canvas) return null;
+        const dpr = window.devicePixelRatio || 1;
         const left = Number.parseFloat(canvas.style.left) || 0;
         const top = Number.parseFloat(canvas.style.top) || 0;
-        const x = Math.round(sx - left);
-        const y = Math.round(sy - top);
+        const x = Math.round((sx - left) * dpr);
+        const y = Math.round((sy - top) * dpr);
         if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) return null;
         const pixel = canvas.getContext("2d").getImageData(x, y, 1, 1).data;
         return [pixel[0], pixel[1], pixel[2], pixel[3]];
@@ -200,14 +205,15 @@ export async function openBootstrappedPage(t, { chromium, origin, prepared, inst
       window.__opaqueCount = (x, y, w, h) => {
         const canvas = window.__canvas();
         if (!canvas) return null;
+        const dpr = window.devicePixelRatio || 1;
         const left = Number.parseFloat(canvas.style.left) || 0;
         const top = Number.parseFloat(canvas.style.top) || 0;
-        const sx = Math.round(x - left);
-        const sy = Math.round(y - top);
+        const sx = Math.round((x - left) * dpr);
+        const sy = Math.round((y - top) * dpr);
         const x0 = Math.max(0, sx);
         const y0 = Math.max(0, sy);
-        const x1 = Math.min(canvas.width, sx + w);
-        const y1 = Math.min(canvas.height, sy + h);
+        const x1 = Math.min(canvas.width, Math.round(sx + w * dpr));
+        const y1 = Math.min(canvas.height, Math.round(sy + h * dpr));
         if (x1 <= x0 || y1 <= y0) return null;
         const data = canvas.getContext("2d").getImageData(x0, y0, x1 - x0, y1 - y0).data;
         let opaque = 0;
@@ -217,6 +223,7 @@ export async function openBootstrappedPage(t, { chromium, origin, prepared, inst
       window.__snapshot = () => {
         const canvas = window.__canvas();
         if (!canvas) return null;
+        const dpr = window.devicePixelRatio || 1;
         const left = Number.parseFloat(canvas.style.left) || 0;
         const top = Number.parseFloat(canvas.style.top) || 0;
         const context = canvas.getContext("2d");
@@ -225,7 +232,7 @@ export async function openBootstrappedPage(t, { chromium, origin, prepared, inst
         for (let index = 0; index < data.data.length; index += 4) {
           hash = (Math.imul(31, hash) + data.data[index] + data.data[index + 3]) | 0;
         }
-        return { left, top, width: canvas.width, height: canvas.height, hash };
+        return { left, top, dpr, width: canvas.width, height: canvas.height, cssWidth: canvas.width / dpr, cssHeight: canvas.height / dpr, hash };
       };
       window.__teardown = () => { projector.teardown(); lifetime.abort(); };
     });

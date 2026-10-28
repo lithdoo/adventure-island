@@ -57,6 +57,6 @@
 
 ## 6. 合成验证与真实素材的边界
 
-- 合成自动化验证使用合成 FSDB 与运行时生成的 PNG（CI 常态）；
-- 真实 CMS 079 素材验证：用本地合法取得的 079 WZ 经 `scripts/wz_fsdb` 转出真实 FSDB（纸娃娃子集），`test/real-assets.local.test.mjs` 重复第 4–5 步闭环；已本地通过（`result/66-cms-actor-real-assets.md`），无真实输入的环境显式 skip；
+- **CI 可复现的合成验证**：合成 FSDB 与运行时生成 PNG 的 21 例 Node 测试 + 13 例真实 Chromium 集成测试（GitHub Actions 常态执行）；
+- **Agent 报告的本地真实验证**：用本地合法取得的 079 WZ 经 `scripts/wz_fsdb` 转出真实 FSDB（纸娃娃子集），`test/real-assets.local.test.mjs` 重复第 4–5 步闭环；已在 Agent 本机通过（`result/66-cms-actor-real-assets.md`），CI 与无真实输入的环境**显式 skip**，该结论不可在 CI 复现、只能由持有合法素材的使用者本地复跑；
 - 仓库不提交 WZ、原版 PNG/音频或生成的真实 FSDB。

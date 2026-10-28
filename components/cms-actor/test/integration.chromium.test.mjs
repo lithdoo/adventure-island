@@ -1,5 +1,5 @@
 /**
- * cms-actor × LoomRealm real-Chromium closed loop.
+ * cms-actor 脳 LoomRealm real-Chromium closed loop.
  *
  * Proves, with the FROZEN platform path (no test shortcuts):
  *  - `bootstrapWebPresentation()` loads the classic <script> entry declared
@@ -10,7 +10,8 @@
  *  - `PresentationResourceClient.resource()` receives the exact Content
  *    logical identity + expectedContentVersion for every painted canvas;
  *  - Canvas pixels: body/head/face/hair anchor alignment, front/back
- *    z-order (incl. alpha), left/right mirroring around the body origin;
+ *    z-order (incl. alpha), left/right mirroring around the body origin 鈥? *    pixel-exact at deviceScaleFactor 1 AND 2, including a frame `move`
+ *    mirror pivot;
  *  - stand1 / walk1 / jump frame advancement per WZ delay;
  *  - one-shot `action` events play once and return to the CURRENT
  *    locomotion; rapid re-trigger restarts from frame 0;
@@ -18,24 +19,33 @@
  *    action; version conflicts and missing resources produce locatable
  *    error diagnostics with no partial frame; disconnect cancels in-flight
  *    reads and releases the bitmap cache; reconnect renders again;
- *  - the decoded-bitmap cache stays inside its documented capacity bound.
+ *  - the decoded-bitmap cache keeps its strict capacity guarantee: oversized
+ *    canvases and over-budget frames are rejected at plan validation, the
+ *    cacheable tier never exceeds 64 entries / 12 MiB (polled during a
+ *    32-resource concurrent burst), and cross-plan dimension conflicts for
+ *    a cached identity are rejected locatably without unhandled rejections.
  *
  * All imagery is generated at test time (synthetic FSDB + synthetic PNG);
  * nothing here validates real CMS 079 WZ assets.
  */
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
-import http from "node:http";
 import path from "node:path";
 import test, { after, before } from "node:test";
-import { fileURLToPath, pathToFileURL } from "node:url";
-import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
+import {
+  launchChromium,
+  openBootstrappedPage as openBootstrappedHarnessPage,
+  preparePresentation as prepareHarnessPresentation,
+  startContentServer,
+  waitAction,
+  waitFrame,
+  waitPixel,
+  waitFor,
+} from "./harness.mjs";
 
 const componentRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const repoRoot = path.resolve(componentRoot, "..", "..");
-const loomRoot = path.join(repoRoot, "loom-realm");
-const rendererDistInternal = path.join(loomRoot, "packages", "renderer", "dist", "internal");
 
 const INSTALLATION_ID = "cms-actor-test";
 const BEARER = "Bearer cms-actor-test-token";
@@ -49,24 +59,6 @@ const { generateSyntheticFsdb, COLORS, FRAME_MARKERS } = await import("./synthet
 const { buildAvatarPlan, withResourceVersion } = await import("./look-adapter.mjs");
 const { validateAvatarPlan, measureAvatarPlanDataBytes } = await import("../src/avatar-model.mjs");
 
-async function importRendererInternal(module) {
-  const file = path.join(rendererDistInternal, `${module}.js`);
-  if (!existsSync(file)) {
-    assert.fail(`loom-realm renderer dist is missing ${module}.js — run: npm install && npm run build -w @loomrealm/renderer (inside loom-realm/)`);
-  }
-  return import(pathToFileURL(file).href);
-}
-
-function executablePath() {
-  return [
-    process.env.LOOMREALM_CHROMIUM_PATH,
-    "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
-    "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-    "/usr/bin/google-chrome",
-    "/usr/bin/chromium",
-  ].filter(Boolean).find(existsSync);
-}
-
 // ---------------------------------------------------------------------------
 // Shared fixture state
 // ---------------------------------------------------------------------------
@@ -75,13 +67,7 @@ const fsdb = generateSyntheticFsdb(path.join(repoRoot, ".work", "cms-actor"), { 
 const zOrder = fsdb.readStruct("ZMap", "order").order;
 const avatarPlan = validateAvatarPlan(buildAvatarPlan(fsdb.looks, zOrder, fsdb.index));
 
-const serverState = {
-  delays: new Map(), // `${ns}/${key}` -> ms
-  active: 0,
-};
-
-let server;
-let origin;
+let fixture;
 let chromium;
 
 function actorView({ attrs = {}, plan = avatarPlan, withActor = true } = {}) {
@@ -125,144 +111,26 @@ const RENDER_EVENT = {
   targetKey: TARGET_KEY,
 };
 
-function startServer() {
-  return new Promise((resolve) => {
-    server = http.createServer(async (request, response) => {
-      const url = new URL(request.url ?? "/", "http://localhost");
-      try {
-        if (url.pathname === "/") {
-          response.setHeader("content-type", "text/html");
-          response.end("<!doctype html><html><head></head><body style=\"margin:0\"></body></html>");
-          return;
-        }
-        if (url.pathname.startsWith("/packages/renderer/dist/internal/") && url.pathname.endsWith(".js")) {
-          const leaf = path.basename(url.pathname);
-          try {
-            response.setHeader("content-type", "text/javascript");
-            response.end(await readFile(path.join(rendererDistInternal, leaf)));
-          } catch {
-            response.statusCode = 404;
-            response.end();
-          }
-          return;
-        }
-        if (url.pathname === "/presentation/cms-actor/cms-actor.browser.js") {
-          response.setHeader("content-type", "text/javascript");
-          response.end(scriptBytes);
-          return;
-        }
-        const resourcePrefix = `/_lr/v1/games/${INSTALLATION_ID}/resources/`;
-        if (url.pathname.startsWith(resourcePrefix)) {
-          if (request.headers.authorization !== BEARER) { response.statusCode = 401; response.end(); return; }
-          const segments = url.pathname.slice(resourcePrefix.length).split("/").map((part) => decodeURIComponent(part));
-          const namespace = segments.shift();
-          const key = segments.join("/");
-          const entry = fsdb.index.get(`${namespace}\0${key}`);
-          serverState.active += 1;
-          response.on("close", () => { serverState.active -= 1; });
-          if (!entry) { response.statusCode = 404; response.end(); return; }
-          const delay = serverState.delays.get(`${namespace}/${key}`) ?? 0;
-          if (delay > 0) await new Promise((resolve) => setTimeout(resolve, delay));
-          response.setHeader("content-type", entry.mime);
-          response.setHeader("x-loom-content-version", entry.contentVersion);
-          response.setHeader("etag", `"${entry.contentVersion}"`);
-          response.end(entry.bytes);
-          return;
-        }
-        response.statusCode = 404;
-        response.end();
-      } catch (cause) {
-        response.statusCode = 500;
-        response.end(String(cause));
-      }
-    });
-    server.listen(0, "127.0.0.1", () => {
-      origin = `http://127.0.0.1:${server.address().port}`;
-      resolve();
-    });
-  });
-}
-
 async function preparePresentation() {
-  const { prepareWebPresentationV1 } = await importRendererInternal("web-presentation-config");
-  const config = JSON.parse(await readFile(path.join(componentRoot, "presentation.json"), "utf8"));
-  return prepareWebPresentationV1(config, async (ref) => {
-    const entry = fsdb.index.get(`${ref.namespace}\0${ref.key}`);
-    if (!entry) throw new Error(`missing presentation artifact ${ref.namespace}/${ref.key}`);
-    return { contentVersion: entry.contentVersion, mime: entry.mime, browserSource: `${origin}/presentation/cms-actor/cms-actor.browser.js` };
+  return prepareHarnessPresentation({
+    origin: fixture.origin,
+    index: fsdb.index,
+    configPath: path.join(componentRoot, "presentation.json"),
+    scriptPath: "/presentation/cms-actor/cms-actor.browser.js",
   });
 }
 
-async function openBootstrappedPage(t) {
-  const page = await chromium.newPage({ viewport: { width: 480, height: 360 }, deviceScaleFactor: 1 });
-  t.after(() => page.close().catch(() => {}));
-  await page.goto(origin);
+async function openBootstrappedPage(t, { deviceScaleFactor = 1 } = {}) {
   const prepared = await preparePresentation();
-  await page.evaluate(async ({ origin: pageOrigin, prepared: pagePrepared, installationId }) => {
-    const { bootstrapWebPresentation } = await import(`${pageOrigin}/packages/renderer/dist/internal/web-presentation-bootstrap.js`);
-    const { createRendererResourceClient } = await import(`${pageOrigin}/packages/renderer/dist/internal/resource-client.js`);
-    const { WebProjector } = await import(`${pageOrigin}/packages/renderer/dist/internal/web-projector.js`);
-    const lifetime = new AbortController();
-    const inner = createRendererResourceClient({ origin: pageOrigin, installationId, token: "cms-actor-test-token" }, lifetime.signal);
-    window.__resourceCalls = [];
-    window.__presentationFailures = [];
-    const resourceClient = {
-      async resource(namespace, key, expectedContentVersion, signal) {
-        const record = { namespace, key, expectedContentVersion, aborted: false };
-        window.__resourceCalls.push(record);
-        signal?.addEventListener("abort", () => { record.aborted = true; }, { once: true });
-        return inner.resource(namespace, key, expectedContentVersion, signal);
-      },
-    };
-    await bootstrapWebPresentation(window, pagePrepared, () => {
-      const projector = new WebProjector({
-        document,
-        resourceClient,
-        reportFailure: (cause) => window.__presentationFailures.push(String(cause)),
-      });
-      window.__applyView = (view) => projector.reevaluate({ read: () => view });
-      window.__emitEvent = (event) => projector.deliverRenderEvent(event);
-      window.__actor = () => document.querySelector("cms-actor");
-      window.__sample = (sx, sy) => {
-        const actor = document.querySelector("cms-actor");
-        const canvas = actor?.shadowRoot?.querySelector("canvas");
-        if (!canvas) return null;
-        const left = Number.parseFloat(canvas.style.left) || 0;
-        const top = Number.parseFloat(canvas.style.top) || 0;
-        const x = Math.round(sx - left);
-        const y = Math.round(sy - top);
-        if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) return null;
-        const pixel = canvas.getContext("2d").getImageData(x, y, 1, 1).data;
-        return [pixel[0], pixel[1], pixel[2]];
-      };
-      window.__teardown = () => { projector.teardown(); lifetime.abort(); };
-    });
-  }, { origin, prepared, installationId: INSTALLATION_ID });
-  return page;
+  return openBootstrappedHarnessPage(t, {
+    chromium,
+    origin: fixture.origin,
+    prepared,
+    installationId: INSTALLATION_ID,
+    bearer: BEARER,
+    deviceScaleFactor,
+  });
 }
-
-async function waitFor(page, predicate, label, timeout = 8_000, arg) {
-  const deadline = Date.now() + timeout;
-  let last;
-  while (Date.now() < deadline) {
-    last = await page.evaluate(predicate, arg);
-    if (last) return last;
-    await new Promise((resolve) => setTimeout(resolve, 25));
-  }
-  assert.fail(`Timed out waiting for ${label}; last observation: ${JSON.stringify(last)}`);
-}
-
-const waitPixel = (page, point, color, label, timeout = 8_000) =>
-  waitFor(page, ({ x, y, expected }) => {
-    const actual = window.__sample(x, y);
-    return actual !== null && actual.every((channel, index) => channel === expected[index]);
-  }, label, timeout, { x: point[0], y: point[1], expected: color.slice(0, 3) });
-
-const waitFrame = (page, frame, label, timeout = 8_000) =>
-  waitFor(page, (expected) => window.__actor()?.getAttribute("data-frame") === expected, label, timeout, String(frame));
-
-const waitAction = (page, action, label, timeout = 8_000) =>
-  waitFor(page, (expected) => window.__actor()?.getAttribute("data-action") === expected, label, timeout, action);
 
 // Scene-space sample points (see synthetic-fsdb.mjs geometry):
 //   body spans x[-19,8) y[-32,0); head x[-12,12) y[-34,-10); face x[-6,6)
@@ -280,20 +148,22 @@ const POINTS = {
 };
 
 before(async () => {
-  await startServer();
-  const require = createRequire(path.join(loomRoot, "package.json"));
-  const playwrightUrl = pathToFileURL(require.resolve("playwright")).href;
-  const playwrightModule = await import(playwrightUrl);
-  const chromiumApi = playwrightModule.chromium ?? playwrightModule.default?.chromium;
-  if (!chromiumApi) assert.fail("playwright could not be resolved from loom-realm/node_modules");
-  const executable = executablePath();
-  chromium = await chromiumApi.launch({ headless: true, ...(executable ? { executablePath: executable } : {}) });
+  fixture = await startContentServer({
+    index: fsdb.index,
+    scriptBytes,
+    scriptPath: "/presentation/cms-actor/cms-actor.browser.js",
+    installationId: INSTALLATION_ID,
+    bearer: BEARER,
+  });
+  chromium = await launchChromium();
 });
 
 after(async () => {
   await chromium?.close().catch(() => {});
-  await new Promise((resolve) => server?.close(resolve));
+  if (fixture) await fixture.close();
 });
+
+const serverState = () => fixture.state;
 
 // ---------------------------------------------------------------------------
 
@@ -420,7 +290,7 @@ test("one-shot action events play once and return to the CURRENT locomotion; rap
 test("a slow resource response never lets the stale paint overwrite the newer action", { timeout: 60_000 }, async (t) => {
   const page = await openBootstrappedPage(t);
   const standFrame1Body = avatarPlan.actions.stand1.frames[1].layers[0].resource;
-  serverState.delays.set(`${standFrame1Body.namespace}/${standFrame1Body.key}`, 1_200);
+  serverState().delays.set(`${standFrame1Body.namespace}/${standFrame1Body.key}`, 1_200);
 
   try {
     await page.evaluate((view) => window.__applyView(view), actorView());
@@ -443,7 +313,7 @@ test("a slow resource response never lets the stale paint overwrite the newer ac
     assert.ok(FRAME_MARKERS.walk1.some((color) => color.slice(0, 3).every((channel, index) => channel === observed.marker[index])),
       `marker must stay walk-colored, got ${JSON.stringify(observed.marker)}`);
   } finally {
-    serverState.delays.clear();
+    serverState().delays.clear();
   }
 });
 
@@ -487,7 +357,7 @@ test("disconnect cancels in-flight reads and releases the cache; reconnect rende
   await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "ready", "baseline ready");
 
   const brandishFrame2Body = avatarPlan.actions.brandish1.frames[2].layers[0].resource;
-  serverState.delays.set(`${brandishFrame2Body.namespace}/${brandishFrame2Body.key}`, 1_500);
+  serverState().delays.set(`${brandishFrame2Body.namespace}/${brandishFrame2Body.key}`, 1_500);
   try {
     await page.evaluate((event) => window.__emitEvent(event), { ...RENDER_EVENT, name: "action", data: { action: "brandish1" } });
     await waitFor(page, (key) => window.__resourceCalls.some((call) => call.key === key), "delayed brandish frame 2 requested", 6_000, brandishFrame2Body.key);
@@ -506,16 +376,16 @@ test("disconnect cancels in-flight reads and releases the cache; reconnect rende
     assert.equal(await page.evaluate(() => window.__removedActor.diagnostics().cache.entries), 0, "the disconnected instance must stay released");
     assert.deepEqual(await page.evaluate(() => window.__presentationFailures), [], "no presentation failures across disconnect/reconnect");
   } finally {
-    serverState.delays.clear();
+    serverState().delays.clear();
   }
   await new Promise((resolve) => setTimeout(resolve, 300));
-  assert.equal(serverState.active, 0, "server must not keep aborted requests open");
+  assert.equal(serverState().active, 0, "server must not keep aborted requests open");
 });
 
 test("decoded-bitmap cache keeps its documented capacity bound across many frames", { timeout: 90_000 }, async (t) => {
   const page = await openBootstrappedPage(t);
   // Touch stand, a full walk cycle and a full brandish play, then stressSpin
-  // (48 body frames × 4 layers; the weapon intentionally lacks the action):
+  // (48 body frames 脳 4 layers; the weapon intentionally lacks the action):
   // 73 distinct decoded bitmaps against the 64-entry cap.
   await page.evaluate((view) => window.__applyView(view), actorView({ attrs: { locomotion: "walk" } }));
   await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "ready", "walk ready");
@@ -558,4 +428,253 @@ test("avatarPlan built from the synthetic FSDB respects the frozen RenderNode.da
   // per-action weapon (4; the weapon lacks stressSpin and is not drawn).
   assert.equal(distinctResources.size, 73);
   assert.ok(distinctResources.size > 64, "fixture must exceed the bitmap cache entry cap to exercise eviction");
+});
+
+// ---------------------------------------------------------------------------
+// Plan-mutation helpers for capacity / consistency tests
+
+function clonePlan() {
+  return structuredClone(avatarPlan);
+}
+
+function mutateLayers(plan, predicate, mutate) {
+  for (const action of Object.values(plan.actions)) {
+    for (const frame of action.frames) {
+      for (const layer of frame.layers) {
+        if (predicate(layer)) mutate(layer);
+      }
+    }
+  }
+}
+
+function distinctLayerTemplates(plan, count) {
+  const seen = new Set();
+  const templates = [];
+  for (const action of Object.values(plan.actions)) {
+    for (const frame of action.frames) {
+      for (const layer of frame.layers) {
+        const identity = `${layer.resource.namespace}\u0000${layer.resource.key}\u0000${layer.resource.contentVersion}`;
+        if (seen.has(identity)) continue;
+        seen.add(identity);
+        templates.push(structuredClone(layer));
+        if (templates.length >= count) return templates;
+      }
+    }
+  }
+  throw new Error(`only ${templates.length} distinct layers available, needed ${count}`);
+}
+
+function withBurstActions(plan, perBurst = 32) {
+  const templates = distinctLayerTemplates(plan, 2 * perBurst);
+  const makeFrame = (slice) => ({
+    delay: 10_000,
+    move: [0, 0],
+    flip: false,
+    layers: slice.map((template, index) => ({ ...template, id: index === 0 ? "body" : `pad${index}` })),
+  });
+  plan.actions.burstA = { loop: false, frames: [makeFrame(templates.slice(0, perBurst))] };
+  plan.actions.burstB = { loop: false, frames: [makeFrame(templates.slice(perBurst, 2 * perBurst))] };
+  return plan;
+}
+
+const burstIdentities = (plan, actionName) => {
+  const identities = [];
+  for (const layer of plan.actions[actionName].frames[0].layers) {
+    identities.push(`${layer.resource.namespace}/${layer.resource.key}`);
+  }
+  return identities;
+};
+
+test("oversized single canvases and over-budget frames are rejected at plan validation", { timeout: 60_000 }, async (t) => {
+  const page = await openBootstrappedPage(t);
+  await page.evaluate((view) => window.__applyView(view), actorView());
+  await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "ready", "baseline ready");
+  const before = await page.evaluate(() => window.__resourceCalls.length);
+
+  // One canvas decoding to > maxDecodedFrameBytes on its own.
+  const oversized = clonePlan();
+  mutateLayers(oversized, (layer) => layer.id === "hair", (layer) => {
+    layer.width = 1_800;
+    layer.height = 1_800; // 12,960,000 bytes > 12,582,912
+  });
+  await page.evaluate((view) => window.__applyView(view), actorView({ plan: oversized }));
+  await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "invalid", "oversized canvas rejected");
+  const single = await page.evaluate(() => ({
+    message: window.__actor().getAttribute("data-render-error"),
+    canvasWidth: window.__actor().shadowRoot.querySelector("canvas").width,
+  }));
+  assert.match(single.message, /decodes to 12960000 bytes, exceeding the 12582912-byte canvas budget/);
+  assert.ok(single.message.includes("layers[") || single.message.includes("hair"), `diagnostic must locate the layer (${single.message})`);
+  assert.equal(single.canvasWidth, 1, "invalid plans must leave the canvas cleared");
+
+  // A frame whose combined layers exceed the budget while each canvas fits.
+  const frameHeavy = clonePlan();
+  mutateLayers(frameHeavy, (layer) => layer.id !== "body", (layer) => {
+    layer.width = 900;
+    layer.height = 900; // 3,240,000 bytes each; four such layers + body blow the frame budget
+  });
+  await page.evaluate((view) => window.__applyView(view), actorView({ plan: frameHeavy }));
+  await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "invalid", "over-budget frame rejected");
+  const frameMessage = await page.evaluate(() => window.__actor().getAttribute("data-render-error"));
+  assert.match(frameMessage, /bytes across its layers, exceeding the 12582912-byte frame budget/);
+
+  // Validation gates before any browser-side fetch of the mutated identity.
+  const callsAfter = await page.evaluate(() => window.__resourceCalls.length);
+  assert.equal(callsAfter, before, "invalid plans must not trigger resource reads");
+
+  await page.evaluate((view) => window.__applyView(view), actorView());
+  await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "ready", "recovers after oversized plans");
+  assert.deepEqual(await page.evaluate(() => window.__pageErrors ?? []), [], "no unhandled page errors");
+});
+
+test("cross-plan dimension conflicts on a cached identity are rejected locatably", { timeout: 60_000 }, async (t) => {
+  const page = await openBootstrappedPage(t);
+  await page.evaluate((view) => window.__applyView(view), actorView());
+  await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "ready", "baseline ready");
+  await waitFor(page, () => window.__actor().diagnostics().cache.entries > 0, "hair identity decoded and cached");
+
+  // Same Content identity, same version, DIFFERENT declared dimensions in a
+  // later plan: consistent inside the plan, so only the cache can catch it.
+  const conflicting = clonePlan();
+  mutateLayers(conflicting, (layer) => layer.id === "hair", (layer) => {
+    layer.height = 17; // real decode is 24x18
+  });
+  await page.evaluate((view) => window.__applyView(view), actorView({ plan: conflicting }));
+  await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "error", "dimension conflict rejected");
+  const conflict = await page.evaluate(() => ({
+    message: window.__actor().getAttribute("data-render-error"),
+    canvasWidth: window.__actor().shadowRoot.querySelector("canvas").width,
+  }));
+  assert.match(conflict.message, /CONTENT_INVALID/);
+  assert.match(conflict.message, /declares 24x17 but the cached decode of the same identity and version is 24x18/);
+  assert.ok(conflict.message.includes("hair"), `diagnostic must name the resource (${conflict.message})`);
+  assert.equal(conflict.canvasWidth, 1, "conflict must clear the canvas, not paint a stretched bitmap");
+
+  // The rejection happened synchronously inside the paint round's error
+  // handling 鈥?no unhandled rejection may escape to the page.
+  assert.deepEqual(await page.evaluate(() => window.__pageErrors ?? []), [], "no unhandled page errors");
+
+  await page.evaluate((view) => window.__applyView(view), actorView());
+  await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "ready", "recovers on the corrected plan");
+  await waitPixel(page, POINTS.faceThroughHairHole, COLORS.face, "pixels restored after recovery");
+  assert.deepEqual(await page.evaluate(() => window.__pageErrors ?? []), [], "still no unhandled page errors");
+});
+
+test("a 32-resource concurrent burst never violates the strict cacheable-tier bound", { timeout: 90_000 }, async (t) => {
+  const page = await openBootstrappedPage(t);
+  const plan = withBurstActions(clonePlan());
+  const burstB = burstIdentities(plan, "burstB");
+
+  await page.evaluate((view) => window.__applyView(view), actorView({ plan }));
+  await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "ready", "baseline ready");
+
+  // Fill the cacheable tier with burstA (36 entries), then delay every
+  // burstB resource so its 32 loads are observably concurrent.
+  await page.evaluate((event) => window.__emitEvent(event), { ...RENDER_EVENT, name: "action", data: { action: "burstA" } });
+  await waitFor(page, () => window.__actor()?.getAttribute("data-action") === "burstA", "burstA active");
+  await waitFor(page, () => {
+    const actor = window.__actor();
+    return actor.diagnostics().cache.loading === 0 && actor.getAttribute("data-render-state") === "ready";
+  }, "burstA settled");
+  const afterA = await page.evaluate(() => window.__actor().diagnostics());
+  assert.ok(afterA.cache.entries > 20 && afterA.cache.entries <= 64, `burstA fill out of range (${afterA.cache.entries})`);
+
+  for (const identity of burstB) serverState().delays.set(identity, 700);
+  try {
+    await page.evaluate((event) => window.__emitEvent(event), { ...RENDER_EVENT, name: "action", data: { action: "burstB" } });
+    // Poll the diagnostics throughout the concurrent burst: the cacheable
+    // tier must stay within BOTH bounds at every observation.
+    const samples = [];
+    const deadline = Date.now() + 1_400;
+    while (Date.now() < deadline) {
+      const diagnostics = await page.evaluate(() => window.__actor().diagnostics());
+      samples.push(diagnostics);
+      assert.ok(diagnostics.cache.entries <= diagnostics.cache.maxEntries,
+        `cacheable entries must never exceed the cap (saw ${diagnostics.cache.entries})`);
+      assert.ok(diagnostics.cache.bytes <= diagnostics.cache.maxBytes,
+        `cacheable bytes must never exceed the cap (saw ${diagnostics.cache.bytes})`);
+      assert.ok(diagnostics.cache.entries + diagnostics.cache.loading <= diagnostics.cache.maxEntries + 32,
+        `map must stay within cap + one working frame (saw ${diagnostics.cache.entries}+${diagnostics.cache.loading})`);
+      await new Promise((resolve) => setTimeout(resolve, 60));
+    }
+    assert.ok(samples.some((sample) => sample.cache.loading >= 8),
+      `the burst must actually load concurrently (peak loading ${Math.max(...samples.map((s) => s.cache.loading))})`);
+
+    await waitFor(page, () => {
+      const actor = window.__actor();
+      return actor.diagnostics().cache.loading === 0 && actor.getAttribute("data-render-state") === "ready";
+    }, "burst settled", 15_000);
+    const settled = await page.evaluate(() => window.__actor().diagnostics());
+    assert.ok(settled.cache.entries <= settled.cache.maxEntries, `settled entries within cap (${settled.cache.entries})`);
+    assert.ok(settled.cache.bytes <= settled.cache.maxBytes, `settled bytes within cap (${settled.cache.bytes})`);
+    assert.deepEqual(await page.evaluate(() => window.__pageErrors ?? []), [], "no unhandled page errors");
+  } finally {
+    serverState().delays.clear();
+  }
+});
+
+test("left/right mirroring is pixel-exact at deviceScaleFactor 1 and 2, including a frame move pivot", { timeout: 90_000 }, async (t) => {
+  for (const deviceScaleFactor of [1, 2]) {
+    const page = await openBootstrappedPage(t, { deviceScaleFactor });
+    // Give the still jump frame an x-pivot so the mirror axis is provably
+    // derived from the frame `move`, not hardcoded at zero.
+    const pivot = 3;
+    const pivotPlan = clonePlan();
+    pivotPlan.actions.jump.frames[0].move = [pivot, -5];
+    await page.evaluate((view) => window.__applyView(view), actorView({ attrs: { locomotion: "jump" }, plan: pivotPlan }));
+    await waitAction(page, "jump", `jump active at dsf ${deviceScaleFactor}`);
+    await waitFor(page, () => window.__actor()?.getAttribute("data-render-state") === "ready", `ready at dsf ${deviceScaleFactor}`);
+    await waitFor(page, () => window.__actor().diagnostics().paintPending === false, `paint settled at dsf ${deviceScaleFactor}`);
+
+    const snapshot = await waitFor(page, () => window.__snapshot(), `snapshot at dsf ${deviceScaleFactor}`);
+    assert.equal(snapshot.dpr, deviceScaleFactor, "devicePixelRatio must match the requested scale factor");
+    assert.equal(snapshot.width, Math.round(snapshot.cssWidth * deviceScaleFactor), "canvas backing store must scale with dpr");
+
+    // Anchors stay aligned under the shifted composite at both DPRs.
+    // The mutated frame move [pivot, -5] shifts every rect by (3, -5).
+    await waitPixel(page, [POINTS.headOverBody[0] + pivot, POINTS.headOverBody[1] - 5], COLORS.head, `head anchored at dsf ${deviceScaleFactor}`);
+    await waitPixel(page, [POINTS.faceThroughHairHole[0] + pivot, POINTS.faceThroughHairHole[1] - 5], COLORS.face, `face visible at dsf ${deviceScaleFactor}`);
+
+    const mirrored = await page.evaluate(async ({ pivotX }) => {
+      const capture = async (facing) => {
+        window.__actor().setAttribute("facing", facing);
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        const canvas = window.__canvas();
+        const dpr = window.devicePixelRatio || 1;
+        const left = Number.parseFloat(canvas.style.left) || 0;
+        const top = Number.parseFloat(canvas.style.top) || 0;
+        const data = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height).data;
+        return { left, top, dpr, width: canvas.width, height: canvas.height, data };
+      };
+      const right = await capture("right");
+      const leftView = await capture("left");
+      const at = (snap, x, y) => {
+        const px = Math.round((x - snap.left) * snap.dpr);
+        const py = Math.round((y - snap.top) * snap.dpr);
+        if (px < 0 || py < 0 || px >= snap.width || py >= snap.height) return null;
+        const offset = (py * snap.width + px) * 4;
+        return [snap.data[offset], snap.data[offset + 1], snap.data[offset + 2], snap.data[offset + 3]];
+      };
+      let compared = 0;
+      let mismatches = 0;
+      let opaqueCompared = 0;
+      for (let x = -60 + 2 * pivotX; x <= 60 + 2 * pivotX; x += 2) {
+        for (let y = -70; y <= 5; y += 2) {
+          const r = at(right, x, y);
+          const l = at(leftView, 2 * pivotX - x, y);
+          if (r === null || l === null) continue;
+          compared += 1;
+          const same = r[3] === l[3] && (r[3] === 0 || (r[0] === l[0] && r[1] === l[1] && r[2] === l[2]));
+          if (!same) mismatches += 1;
+          if (r[3] > 0) opaqueCompared += 1;
+        }
+      }
+      return { compared, mismatches, opaqueCompared };
+    }, { pivotX: pivot });
+    assert.ok(mirrored.compared > 300, `mirror comparison must cover the composite at dsf ${deviceScaleFactor} (got ${mirrored.compared})`);
+    assert.ok(mirrored.opaqueCompared > 80, `mirror comparison must include opaque pixels at dsf ${deviceScaleFactor} (got ${mirrored.opaqueCompared})`);
+    assert.equal(mirrored.mismatches, 0,
+      `facing left must mirror facing right around the frame-move pivot at dsf ${deviceScaleFactor} (${mirrored.mismatches}/${mirrored.compared})`);
+    assert.deepEqual(await page.evaluate(() => window.__pageErrors ?? []), [], `no unhandled page errors at dsf ${deviceScaleFactor}`);
+  }
 });

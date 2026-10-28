@@ -99,6 +99,8 @@ components/cms-actor/browser/cms-actor.browser.js   生成并入库的 classic s
 | 项 | 上界 |
 |---|---|
 | 序列化 `RenderNode.data`（compact JSON UTF-8） | **262,144 字节**（冻结协议上限） |
+| 单画布解码字节（`width×height×4`） | **12,582,912 字节**（`maxDecodedFrameBytes`，与缓存字节预算同源） |
+| 单帧全部画布解码字节合计 | **12,582,912 字节**（工作集策略，见 §6） |
 | `zOrder` 条目 | 64 |
 | `actions` 条数 | 32 |
 | 每动作帧数 | 128 |
@@ -131,14 +133,17 @@ components/cms-actor/browser/cms-actor.browser.js   生成并入库的 classic s
 
 读取按 `(namespace, key, expectedContentVersion)` 进行，结果必须满足：返回 `contentVersion` 与请求完全一致；MIME essence 属于 `image/*`；解码尺寸与计划声明一致。
 
-**位图缓存边界**（`BITMAP_CACHE_LIMITS`）：
+**位图缓存（两层预算模型）**：
 
-- 硬上限 = 64 条 **或** 12 MiB 解码像素（`width×height×4`），先到先淘汰，按 LRU 逐出；
-- `receiveRenderData` 接受新计划时，先释放旧计划不再引用的条目（计划驱动生命周期）；
-- 逐出尊重正在绘制的条目（pin 计数），绘制完成后补释放；
-- 断开（`disconnectedCallback`）立即中止 in-flight 读取、停表、关闭并清空全部 `ImageBitmap`；重连按需重建。
+- **可缓存层（LRU）**：已完成解码、当前没有绘制占用的位图。硬上限 = 64 条 **或** 12,582,912 解码字节（`BITMAP_CACHE_LIMITS`），任一先到即逐出最久未用者。每次完成插入都在返回前强制执行边界，因此该层**任何时候**（含并发加载期间）都不超限；条目在逐出时即从计数中移出，即使位图因绘制 pin 而延迟 close。
+- **工作集层**：正在解码或被一次绘制 pin 的位图，绝不中途逐出。由计划校验限界：每帧 ≤ 32 层、每帧解码字节 ≤ `maxDecodedFrameBytes`，因此工作集不会无界绕过预算，也不会永久超限。
+- 单张超过字节预算的画布在计划校验即拒绝（可定位错误）；防御路径下它只作为工作集使用、永不进入缓存。
+- `receiveRenderData` 接受新计划时，先释放旧计划不再引用的条目（计划驱动生命周期）；断开（`disconnectedCallback`）立即中止 in-flight 读取、停表、关闭并清空全部 `ImageBitmap`，重连按需重建。
+- `diagnostics()`（非 ABI）分层报告 `entries/bytes`（可缓存层）、`loading`、`pendingClose/pendingCloseBytes`，供容量与泄漏断言。
 
-**过期绘制隔离**：每次绘制轮次有单调 `_paintEpoch`；动作/数据/断开产生的更新使旧轮次的异步结果作废，慢响应永远不会覆盖新动作的画面。
+**跨计划尺寸一致性**：缓存条目记录解码尺寸；同一 `(namespace, key, contentVersion)` 在后续计划中声明不同尺寸时，命中缓存即同步拒绝（`CONTENT_INVALID … declares WxH but the cached decode … is W'×H'`），错误进入该次绘制的错误处理，不会产生未处理 Promise，也不会把位图拉伸绘制。
+
+**过期绘制隔离**：每次绘制轮次有单调 `_paintEpoch`；动作/数据/断开产生的更新使旧轮次的异步结果作废，慢响应永远不会覆盖新动作的画面。`_paintFrame` 的取条目、等待与绘制全部在自身错误处理之内（含缓存命中的同步异常），`_requestPaint` 另有兜底 catch，任何拒绝都不会逃逸为未处理 Promise。
 
 **可定位诊断**（宿主属性）：
 
@@ -153,11 +158,11 @@ Canvas 2D 上下文不可用、`createImageBitmap` 缺失等技术错误同样�
 
 ## 7. 测试与验证
 
-| 套件 | 命令 | 内容 |
-|---|---|---|
-| 算法（Node） | `node --test components/cms-actor/test/avatar-model.test.mjs components/cms-actor/test/browser-artifact.test.mjs` | 计划校验、字节预算、锚点布局、镜像、打包一致性、presentation.json 正式校验（真实 `validateWebPresentationConfigV1` / `prepareWebPresentationV1`） |
-| 浏览器集成（真实 Chromium，合成 FSDB） | `node --test components/cms-actor/test/integration.chromium.test.mjs` | 正式 `bootstrapWebPresentation()` 加载 classic 入口；`customElements.get("cms-actor")`；Projector 注入 Context/attrs/avatarPlan；`resource()` 收到正确 namespace/key/版本；Canvas 像素（锚点对齐、z 序、透明合成、镜像）；`stand1`/`walk1`/`jump` 帧推进；一次性 `action` 播完恢复当前移动；快速切换动作；慢速资源不覆盖新动作；版本冲突与资源缺失的可定位诊断与恢复；断开取消 in-flight 并释放缓存、重连恢复；缓存容量上界 |
-| 真实素材（本地，真实 FSDB） | `node --test components/cms-actor/test/real-assets.local.test.mjs` | 用本地合法取得的 079 WZ 经 `scripts/wz_fsdb` 转出的真实 FSDB（纸娃娃子集）重复同一闭环，并把转换结果与 Task 050/DESIGN 的逆向几何逐项对照。无真实输入（CI/合成 checkout）时整套**显式 skip**，不伪造验收。激活方式见 `result/66-cms-actor-real-assets.md` |
+| 套件 | 位置 | 可复现性 | 内容 |
+|---|---|---|---|
+| 算法（Node，21 例） | `node --test components/cms-actor/test/avatar-model.test.mjs components/cms-actor/test/browser-artifact.test.mjs` | **CI 可复现** | 计划校验、字节预算（compact 数据 / 单画布 / 帧合计）、锚点布局、镜像、打包一致性、presentation.json 正式校验（真实 `validateWebPresentationConfigV1` / `prepareWebPresentationV1`） |
+| 浏览器集成（真实 Chromium，合成 FSDB，13 例） | `node --test components/cms-actor/test/integration.chromium.test.mjs` | **CI 可复现** | 正式 `bootstrapWebPresentation()` 加载 classic 入口；`customElements.get("cms-actor")`；Projector 注入 Context/attrs/avatarPlan；`resource()` 收到正确 namespace/key/版本；Canvas 像素（锚点对齐、z 序、透明合成、镜像，DPR 1 与 2、含 `move` 轴）；`stand1`/`walk1`/`jump` 帧推进；一次性 `action` 播完恢复当前移动；快速切换动作；慢速资源不覆盖新动作；版本冲突与资源缺失的可定位诊断与恢复；断开取消 in-flight 并释放缓存、重连恢复；缓存容量上界；**超大单图与同帧多图在计划校验拒绝；32 资源并发突发期间可缓存层逐次采样不超限；跨计划尺寸冲突可定位拒绝且无未处理 Promise** |
+| 真实素材（真实 FSDB，3 例） | `node --test components/cms-actor/test/real-assets.local.test.mjs` | **仅本地**（Agent 已在本机执行并报告；CI/合成 checkout 显式 skip） | 用本地合法取得的 079 WZ 经 `scripts/wz_fsdb` 转出的真实 FSDB（纸娃娃子集）重复同一闭环，并把转换结果与 Task 050/DESIGN 的逆向几何逐项对照。激活方式见 `result/66-cms-actor-real-assets.md` |
 
 浏览器集成测试使用**运行时生成的合成 PNG 和合成 FSDB**（`.work/cms-actor/[FSDB]cms/`，遵循 `content/DESIGN.md` 布局；身体几何取自逆向的 079 walk1 画布 27×32 / origin (19,32) / navel (-6,-20) / neck (-4,-32)），不包含任何原版游戏素材。测试把 `test/look-adapter.mjs` 当作游戏侧适配器参考实现：解析 UOL、按武器 `info` 决定移动后缀、部件缺动作不画、帧号钳制到身体时间轴。
 
@@ -167,11 +172,11 @@ Canvas 2D 上下文不可用、`createImageBitmap` 缺失等技术错误同样�
 
 ## 8. 三状态
 
-| # | 状态 | 结论 | 证据 |
+| # | 状态 | 结论 | 证据与可复现性 |
 |---|---|---|---|
-| 1 | 合成算法测试 | **通过** | `avatar-model.test.mjs` 14 例（校验、边界、字节预算、锚点、镜像、诊断格式） |
-| 2 | LoomRealm 正式浏览器集成 | **通过**（合成素材） | `integration.chromium.test.mjs` 9 例真实 Chromium + 真实 renderer dist + 真实 Content HTTP 形状；验证报告见 `result/65-cms-actor-browser-integration.md` |
-| 3 | 真实 CMS 079 素材验证 | **通过（本地输入，纸娃娃子集）** | `real-assets.local.test.mjs` 3 例：真实 FSDB（身体/头/脸/头发/武器 + zmap）经正式闭环渲染，转换几何与 Task 050 逆向证据逐项吻合；报告见 `result/66-cms-actor-real-assets.md`。无本地 WZ 的环境显式 skip，不伪造。装备遮挡、表情独立计时、全量 16 包转换仍属后续任务 |
+| 1 | 合成算法测试 | **通过**（21 例） | `avatar-model.test.mjs` + `browser-artifact.test.mjs`；CI 可复现 |
+| 2 | LoomRealm 正式浏览器集成 | **通过**（13 例真实 Chromium，合成素材） | `integration.chromium.test.mjs`；CI 可复现；报告 `result/65-cms-actor-browser-integration.md` |
+| 3 | 真实 CMS 079 素材验证 | **通过（Agent 本地输入，纸娃娃子集，3 例）** | `real-assets.local.test.mjs`；**CI 不可复现**（需本地合法 WZ），CI 中显式 skip，结论来自 Agent 在本机的执行报告；报告 `result/66-cms-actor-real-assets.md`。装备遮挡、表情独立计时、全量 16 包转换仍属后续任务 |
 
 ## 9. 后续集成顺序
 
