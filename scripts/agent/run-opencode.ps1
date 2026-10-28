@@ -8,17 +8,25 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$command = Get-Command opencode2 -ErrorAction SilentlyContinue
-if (-not $command) {
-    $command = Get-Command opencode -ErrorAction SilentlyContinue
-}
-if (-not $command) {
-    throw "Neither opencode2 nor opencode is available on this runner."
+$bin = $null
+if ($env:OPENCODE_BIN -and (Test-Path -LiteralPath $env:OPENCODE_BIN -PathType Leaf)) {
+    $bin = $env:OPENCODE_BIN
+} else {
+    $command = Get-Command opencode2 -ErrorAction SilentlyContinue
+    if (-not $command) {
+        $command = Get-Command opencode -ErrorAction SilentlyContinue
+    }
+    if ($command) {
+        $bin = if ($command.Source) { $command.Source } else { $command.Name }
+    }
 }
 
-$bin = if ($command.Source) { $command.Source } else { $command.Name }
+if (-not $bin) {
+    throw "OpenCode executable was not supplied or discoverable."
+}
+
 $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
-Write-Host "Using $($command.Name): $version"
+Write-Host "Using OpenCode: $version"
 
 $spec = Get-Content -LiteralPath $SpecPath -Raw -Encoding UTF8
 
