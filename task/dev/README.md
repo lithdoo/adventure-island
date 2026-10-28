@@ -74,8 +74,8 @@ The implementation workflow:
 
 1. revalidates the PR on a GitHub-hosted runner;
 2. GitHub-hosted Actions checks out trusted `main` plus read-only submodule context;
-3. trusted source and the approved design document are transferred to the self-hosted runner through short-lived Actions artifacts;
-4. the self-hosted runner creates a local-only Git baseline and runs `opencode2` (falling back to `opencode`);
+3. trusted source, the approved design document, and the official Windows x64 standalone OpenCode V2 CLI are transferred to the self-hosted runner through short-lived Actions artifacts;
+4. the self-hosted runner creates a local-only Git baseline and runs the transferred portable OpenCode binary;
 5. trusted verifier scripts enforce the allowed-path and repository safety policy and run deterministic checks;
 6. the self-hosted runner uploads only the verified Git patch as a short-lived Actions artifact;
 7. a GitHub-hosted publish job applies that patch to the exact trusted base commit;
@@ -95,8 +95,10 @@ For the simplest setup, enable GitHub Actions to create pull requests for this r
 The self-hosted runner must have:
 
 - `git`;
+- Windows PowerShell 5.1 or later;
 - Python 3;
-- `opencode2` or `opencode`;
 - the project-specific runtimes needed by the task (for example Node.js for JavaScript work).
+
+OpenCode itself does not need to be installed for the runner service account. The GitHub-hosted preflight downloads the official Windows x64 standalone OpenCode V2 archive from `opencode.ai` and transfers it to the self-hosted job as a short-lived artifact. Model-provider credentials remain local to the runner machine and must be readable by the runner service account.
 
 Keep local proprietary inputs outside the runner's agent workspace. The self-hosted job works from a short-lived source artifact under `$RUNNER_TEMP`, rejects a `.raw` directory inside that workspace, and never checks out or pushes the GitHub repository directly.
