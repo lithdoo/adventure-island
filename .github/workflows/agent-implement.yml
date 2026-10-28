@@ -138,8 +138,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 scripts/agent/github_api.py fetch-spec             --repo "$REPOSITORY"             --path "$SPEC_PATH"             --ref "$DESIGN_HEAD"             --output "$RUNNER_TEMP/agent-spec.md"
-          python3 scripts/agent/validate_spec.py "$RUNNER_TEMP/agent-spec.md"
+          python3 "$RUNNER_TEMP/trusted-agent/github_api.py" fetch-spec             --repo "$REPOSITORY"             --path "$SPEC_PATH"             --ref "$DESIGN_HEAD"             --output "$RUNNER_TEMP/agent-spec.md"
+          python3 "$RUNNER_TEMP/trusted-agent/validate_spec.py" "$RUNNER_TEMP/agent-spec.md"
 
       - name: Check local OpenCode installation
         shell: bash
