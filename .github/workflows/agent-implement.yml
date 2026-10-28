@@ -141,6 +141,33 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
+      - name: Download official portable OpenCode V2 for Windows x64
+        if: ${{ steps.validate.outputs.allowed == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://opencode.ai/update/api/latest/cli/opencode/opencode-windows-x64.zip"
+          output="$RUNNER_TEMP/opencode-windows-x64.zip"
+
+          curl --fail --location --retry 3 --retry-all-errors \
+            --output "$output" \
+            "$url"
+
+          python3 -m zipfile -t "$output"
+          sha256sum "$output" | tee "$RUNNER_TEMP/opencode.sha256"
+          printf 'Portable OpenCode archive: `%s`\n' "$(cat "$RUNNER_TEMP/opencode.sha256")" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload portable OpenCode CLI
+        if: ${{ steps.validate.outputs.allowed == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-opencode
+          path: |
+            ${{ runner.temp }}/opencode-windows-x64.zip
+            ${{ runner.temp }}/opencode.sha256
+          if-no-files-found: error
+          retention-days: 1
+
   implement:
     name: Implement with local OpenCode
     needs: preflight
@@ -156,7 +183,7 @@ jobs:
         shell: powershell
         run: |
           $ErrorActionPreference = "Stop"
-          foreach ($name in @("agent-workspace", "agent-input", "agent-output", "trusted-agent")) {
+          foreach ($name in @("agent-workspace", "agent-input", "agent-output", "agent-tool", "trusted-agent")) {
             $path = Join-Path $env:RUNNER_TEMP $name
             if (Test-Path -LiteralPath $path) {
               Remove-Item -LiteralPath $path -Recurse -Force
@@ -175,6 +202,12 @@ jobs:
         with:
           name: agent-spec
           path: ${{ runner.temp }}/agent-input
+
+      - name: Download portable OpenCode CLI
+        uses: actions/download-artifact@v4
+        with:
+          name: agent-opencode
+          path: ${{ runner.temp }}/agent-tool
 
       - name: Create local baseline and trusted verifier snapshot
         shell: powershell
@@ -198,23 +231,42 @@ jobs:
             throw ".raw must not exist inside the self-hosted agent workspace."
           }
 
-      - name: Resolve local OpenCode installation
+      - name: Prepare portable OpenCode installation
         shell: powershell
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           $ErrorActionPreference = "Stop"
           Write-Host "Windows PowerShell $($PSVersionTable.PSVersion)"
 
-          $resolver = Join-Path $env:RUNNER_TEMP "trusted-agent\resolve-opencode.ps1"
-          $bin = (& powershell.exe -NoProfile -ExecutionPolicy Bypass -File $resolver | Select-Object -Last 1)
-          if ($LASTEXITCODE -ne 0 -or -not $bin) {
-            throw "Unable to resolve a usable OpenCode installation."
+          $toolRoot = Join-Path $env:RUNNER_TEMP "agent-tool"
+          $archive = Join-Path $toolRoot "opencode-windows-x64.zip"
+          $extract = Join-Path $toolRoot "opencode"
+
+          if (-not (Test-Path -LiteralPath $archive -PathType Leaf)) {
+            throw "Portable OpenCode archive was not downloaded."
           }
 
-          "OPENCODE_BIN=$bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          if (Test-Path -LiteralPath $extract) {
+            Remove-Item -LiteralPath $extract -Recurse -Force
+          }
+          New-Item -ItemType Directory -Path $extract -Force | Out-Null
+          Expand-Archive -LiteralPath $archive -DestinationPath $extract -Force
 
-          $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
-          Write-Host "OpenCode resolved successfully: $version"
+          $bin = Get-ChildItem -LiteralPath $extract -Recurse -File |
+            Where-Object { $_.Name -in @("opencode.exe", "opencode2.exe") } |
+            Select-Object -First 1
+
+          if (-not $bin) {
+            throw "Portable OpenCode archive does not contain opencode.exe/opencode2.exe."
+          }
+
+          $version = (& $bin.FullName --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+          if ($LASTEXITCODE -ne 0) {
+            throw "Portable OpenCode failed its --version check."
+          }
+
+          "OPENCODE_BIN=$($bin.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          Write-Host "Portable OpenCode ready: $version"
 
       - name: Run OpenCode implementation
         shell: powershell
