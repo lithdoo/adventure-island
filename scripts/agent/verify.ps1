@@ -35,7 +35,11 @@ function Invoke-Python {
         [string[]]$Arguments
     )
 
-    & $python.Exe @($python.Prefix) @Arguments
+    $allArgs = @()
+    $allArgs += @($python.Prefix)
+    $allArgs += @($Arguments)
+
+    & $python.Exe @allArgs
     if ($LASTEXITCODE -ne 0) {
         exit $LASTEXITCODE
     }
