@@ -153,7 +153,7 @@ jobs:
 
     steps:
       - name: Reset isolated agent directories
-        shell: pwsh
+        shell: powershell
         run: |
           $ErrorActionPreference = "Stop"
           foreach ($name in @("agent-workspace", "agent-input", "agent-output", "trusted-agent")) {
@@ -177,7 +177,7 @@ jobs:
           path: ${{ runner.temp }}/agent-input
 
       - name: Create local baseline and trusted verifier snapshot
-        shell: pwsh
+        shell: powershell
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           $ErrorActionPreference = "Stop"
@@ -199,10 +199,11 @@ jobs:
           }
 
       - name: Check local OpenCode installation
-        shell: pwsh
+        shell: powershell
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           $ErrorActionPreference = "Stop"
+          Write-Host "Windows PowerShell $($PSVersionTable.PSVersion)"
           if (Get-Command opencode2 -ErrorAction SilentlyContinue) {
             opencode2 --version
           } elseif (Get-Command opencode -ErrorAction SilentlyContinue) {
@@ -212,7 +213,7 @@ jobs:
           }
 
       - name: Run OpenCode implementation
-        shell: pwsh
+        shell: powershell
         working-directory: ${{ runner.temp }}/agent-workspace
         env:
           DESIGN_PR: ${{ needs.preflight.outputs.pr_number }}
@@ -220,21 +221,23 @@ jobs:
           $ErrorActionPreference = "Stop"
           $runner = Join-Path $env:RUNNER_TEMP "trusted-agent\run-opencode.ps1"
           $spec = Join-Path $env:RUNNER_TEMP "agent-input\agent-spec.md"
-          & $runner -SpecPath $spec -DesignPr ([int]$env:DESIGN_PR)
+
+          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $runner -SpecPath $spec -DesignPr ([int]$env:DESIGN_PR)
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Verify agent output
-        shell: pwsh
+        shell: powershell
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           $ErrorActionPreference = "Stop"
           $verifier = Join-Path $env:RUNNER_TEMP "trusted-agent\verify.ps1"
           $spec = Join-Path $env:RUNNER_TEMP "agent-input\agent-spec.md"
-          & $verifier -SpecPath $spec
+
+          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $verifier -SpecPath $spec
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Materialize verified patch
-        shell: pwsh
+        shell: powershell
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           $ErrorActionPreference = "Stop"
