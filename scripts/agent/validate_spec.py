@@ -22,6 +22,7 @@ ALWAYS_FORBIDDEN_PREFIXES = (
     ".github",
     "loom-realm",
     "task/dev",
+    "scripts/agent",
     ".raw",
     ".work",
 )
