@@ -5,7 +5,8 @@ on:
     types: [opened, reopened, synchronize, ready_for_review]
     branches: [main]
     paths:
-      - "task/dev/**"
+      - "task/dev/*.md"
+      - "!task/dev/README.md"
 
 permissions:
   contents: read
