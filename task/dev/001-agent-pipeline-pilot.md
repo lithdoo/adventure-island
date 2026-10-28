@@ -6,7 +6,7 @@ Verify the complete design-to-implementation automation path with a harmless rep
 
 ## Context
 
-This is the first end-to-end test of the automatic agent pipeline after merging the agent infrastructure. The implementation must not change application code, workflows, submodules, or local proprietary inputs.
+This is the first end-to-end test of the automatic agent pipeline after merging the agent infrastructure. The second attempt uses Actions artifacts so the self-hosted runner does not need direct Git access to GitHub. The implementation must not change application code, workflows, submodules, or local proprietary inputs.
 
 ## Allowed Paths
 
