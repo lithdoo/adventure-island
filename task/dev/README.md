@@ -74,8 +74,8 @@ The implementation workflow:
 
 1. revalidates the PR on a GitHub-hosted runner;
 2. GitHub-hosted Actions checks out trusted `main` plus read-only submodule context;
-3. trusted source, the approved design document, and the official Windows x64 standalone OpenCode V2 CLI are transferred to the self-hosted runner through short-lived Actions artifacts;
-4. the self-hosted runner creates a local-only Git baseline and runs the transferred portable OpenCode binary;
+3. trusted source and the approved design document are transferred to the self-hosted runner through short-lived Actions artifacts;
+4. the self-hosted runner creates a local-only Git baseline and uses a machine-persistent OpenCode V2 cache; on cache miss it downloads the official Windows x64 standalone CLI directly from `opencode.ai` once;
 5. trusted verifier scripts enforce the allowed-path and repository safety policy and run deterministic checks;
 6. the self-hosted runner uploads only the verified Git patch as a short-lived Actions artifact;
 7. a GitHub-hosted publish job applies that patch to the exact trusted base commit;
@@ -99,7 +99,7 @@ The self-hosted runner must have:
 - Python 3;
 - the project-specific runtimes needed by the task (for example Node.js for JavaScript work).
 
-OpenCode itself does not need to be installed for the runner service account. The GitHub-hosted preflight downloads the official Windows x64 standalone OpenCode V2 archive from `opencode.ai` and transfers it to the self-hosted job as a short-lived artifact. Model-provider credentials remain local to the runner machine and must be readable by the runner service account.
+OpenCode itself does not need to be installed for the runner service account. The self-hosted job keeps a machine-persistent cache under the runner tool-cache area. On the first cache miss it downloads the official Windows x64 standalone OpenCode V2 archive directly from `opencode.ai`, verifies that the extracted binary runs, and reuses that cached binary on later jobs. Model-provider credentials remain local to the runner machine and must be readable by the runner service account.
 
 ## Local CMS 079 reference input
 
