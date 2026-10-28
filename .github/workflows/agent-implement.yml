@@ -16,22 +16,29 @@ permissions:
 
 jobs:
   preflight:
-    name: Revalidate approved design task
+    name: Revalidate and package trusted inputs
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     outputs:
       allowed: ${{ steps.validate.outputs.allowed }}
       pr_number: ${{ steps.validate.outputs.pr_number }}
       spec_path: ${{ steps.validate.outputs.spec_path }}
       head_sha: ${{ steps.validate.outputs.head_sha }}
+      base_sha: ${{ steps.base.outputs.sha }}
 
     steps:
-      - name: Checkout trusted default branch
+      - name: Checkout trusted main with read-only submodule context
         uses: actions/checkout@v4
         with:
           ref: main
+          submodules: recursive
           persist-credentials: false
+
+      - name: Record trusted implementation base
+        id: base
+        shell: bash
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Revalidate PR and task
         id: validate
@@ -84,7 +91,8 @@ jobs:
           fi
 
           spec_path="$(
-            gh api "repos/$REPOSITORY/pulls/$pr_number/files?per_page=100"               --jq '.[0].filename'
+            gh api "repos/$REPOSITORY/pulls/$pr_number/files?per_page=100" \
+              --jq '.[0].filename'
           )"
 
           if [[ ! "$spec_path" =~ ^task/dev/[^/]+\.md$ || "$spec_path" == "task/dev/README.md" ]]; then
@@ -92,7 +100,11 @@ jobs:
             exit 0
           fi
 
-          gh api "repos/$REPOSITORY/contents/$spec_path?ref=$head_sha"             --jq '.content'             | tr -d '\n'             | base64 --decode             > "$RUNNER_TEMP/agent-spec.md"
+          gh api "repos/$REPOSITORY/contents/$spec_path?ref=$head_sha" \
+            --jq '.content' \
+            | tr -d '\n' \
+            | base64 --decode \
+            > "$RUNNER_TEMP/agent-spec.md"
 
           python3 scripts/agent/validate_spec.py "$RUNNER_TEMP/agent-spec.md"
 
@@ -100,6 +112,34 @@ jobs:
           echo "pr_number=$pr_number" >> "$GITHUB_OUTPUT"
           echo "spec_path=$spec_path" >> "$GITHUB_OUTPUT"
           echo "head_sha=$head_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Stage trusted source snapshot
+        if: ${{ steps.validate.outputs.allowed == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/agent-source"
+          mkdir -p "$RUNNER_TEMP/agent-source"
+          rsync -a --exclude='.git' ./ "$RUNNER_TEMP/agent-source/"
+
+      - name: Upload trusted source snapshot
+        if: ${{ steps.validate.outputs.allowed == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-source
+          path: ${{ runner.temp }}/agent-source
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+      - name: Upload approved design document
+        if: ${{ steps.validate.outputs.allowed == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-spec
+          path: ${{ runner.temp }}/agent-spec.md
+          if-no-files-found: error
+          retention-days: 1
 
   implement:
     name: Implement with local OpenCode
@@ -109,44 +149,66 @@ jobs:
     timeout-minutes: 120
     permissions:
       actions: read
-      contents: write
-      pull-requests: write
+      contents: read
 
     steps:
-      - name: Checkout trusted main
-        uses: actions/checkout@v4
+      - name: Reset isolated agent directories
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          import shutil
+          from pathlib import Path
+
+          root = Path(os.environ["RUNNER_TEMP"])
+          for name in ("agent-workspace", "agent-input", "agent-output", "trusted-agent"):
+              path = root / name
+              if path.exists():
+                  if path.is_dir():
+                      shutil.rmtree(path)
+                  else:
+                      path.unlink()
+              path.mkdir(parents=True, exist_ok=True)
+          PY
+
+      - name: Download trusted source snapshot
+        uses: actions/download-artifact@v4
         with:
-          ref: main
-          fetch-depth: 0
-          submodules: recursive
-          clean: true
-          persist-credentials: false
+          name: agent-source
+          path: ${{ runner.temp }}/agent-workspace
 
-      - name: Record trusted implementation base
-        id: base
+      - name: Download approved design document
+        uses: actions/download-artifact@v4
+        with:
+          name: agent-spec
+          path: ${{ runner.temp }}/agent-input
+
+      - name: Create local baseline and trusted verifier snapshot
         shell: bash
+        working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           set -euo pipefail
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          rm -rf "$RUNNER_TEMP/trusted-agent"
-          cp -R scripts/agent "$RUNNER_TEMP/trusted-agent"
+          git init
+          git config user.name "agent-baseline"
+          git config user.email "agent-baseline@localhost"
+          git add -f -A
+          git commit -m "agent trusted baseline"
+
+          python3 - <<'PY'
+          import os
+          import shutil
+          from pathlib import Path
+
+          src = Path.cwd() / "scripts" / "agent"
+          dst = Path(os.environ["RUNNER_TEMP"]) / "trusted-agent"
+          shutil.copytree(src, dst, dirs_exist_ok=True)
+          PY
+
           test ! -e .raw
-          git checkout -B "agent/pr-${{ needs.preflight.outputs.pr_number }}"
-
-      - name: Fetch approved design document
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          REPOSITORY: ${{ github.repository }}
-          SPEC_PATH: ${{ needs.preflight.outputs.spec_path }}
-          DESIGN_HEAD: ${{ needs.preflight.outputs.head_sha }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 "$RUNNER_TEMP/trusted-agent/github_api.py" fetch-spec             --repo "$REPOSITORY"             --path "$SPEC_PATH"             --ref "$DESIGN_HEAD"             --output "$RUNNER_TEMP/agent-spec.md"
-          python3 "$RUNNER_TEMP/trusted-agent/validate_spec.py" "$RUNNER_TEMP/agent-spec.md"
 
       - name: Check local OpenCode installation
         shell: bash
+        working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           set -euo pipefail
           if command -v opencode2 >/dev/null 2>&1; then
@@ -160,69 +222,120 @@ jobs:
 
       - name: Run OpenCode implementation
         shell: bash
+        working-directory: ${{ runner.temp }}/agent-workspace
         env:
           DESIGN_PR: ${{ needs.preflight.outputs.pr_number }}
         run: |
           set -euo pipefail
-          bash "$RUNNER_TEMP/trusted-agent/run-opencode.sh" "$RUNNER_TEMP/agent-spec.md" "$DESIGN_PR"
+
+          temp_posix="$RUNNER_TEMP"
+          if command -v cygpath >/dev/null 2>&1; then
+            temp_posix="$(cygpath -u "$RUNNER_TEMP")"
+          fi
+
+          bash "$temp_posix/trusted-agent/run-opencode.sh" \
+            "$temp_posix/agent-input/agent-spec.md" \
+            "$DESIGN_PR"
 
       - name: Verify agent output
         shell: bash
+        working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           set -euo pipefail
-          bash "$RUNNER_TEMP/trusted-agent/verify.sh" "$RUNNER_TEMP/agent-spec.md"
+
+          temp_posix="$RUNNER_TEMP"
+          if command -v cygpath >/dev/null 2>&1; then
+            temp_posix="$(cygpath -u "$RUNNER_TEMP")"
+          fi
+
+          bash "$temp_posix/trusted-agent/verify.sh" \
+            "$temp_posix/agent-input/agent-spec.md"
 
       - name: Materialize verified patch
-        id: patch
         shell: bash
+        working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           set -euo pipefail
-          git add -N -- .
-          git diff --binary HEAD -- > "$RUNNER_TEMP/agent.patch"
-          test -s "$RUNNER_TEMP/agent.patch"
-          echo "path=$RUNNER_TEMP/agent.patch" >> "$GITHUB_OUTPUT"
 
-      - name: Publish implementation branch and PR
+          temp_posix="$RUNNER_TEMP"
+          if command -v cygpath >/dev/null 2>&1; then
+            temp_posix="$(cygpath -u "$RUNNER_TEMP")"
+          fi
+
+          git add -N -- .
+          git diff --binary HEAD -- > "$temp_posix/agent-output/agent.patch"
+          test -s "$temp_posix/agent-output/agent.patch"
+
+      - name: Upload verified patch
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-patch
+          path: ${{ runner.temp }}/agent-output/agent.patch
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    name: Publish implementation PR
+    needs: [preflight, implement]
+    if: ${{ needs.preflight.outputs.allowed == 'true' && needs.implement.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout trusted implementation base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.preflight.outputs.base_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Download verified patch
+        uses: actions/download-artifact@v4
+        with:
+          name: agent-patch
+          path: ${{ runner.temp }}/agent-output
+
+      - name: Apply patch and publish
         env:
           GITHUB_TOKEN: ${{ secrets.AGENT_GITHUB_TOKEN || github.token }}
           REPOSITORY: ${{ github.repository }}
           DESIGN_PR: ${{ needs.preflight.outputs.pr_number }}
           DESIGN_HEAD: ${{ needs.preflight.outputs.head_sha }}
-          BASE_SHA: ${{ steps.base.outputs.sha }}
           BRANCH: agent/pr-${{ needs.preflight.outputs.pr_number }}
         shell: bash
         run: |
           set -euo pipefail
 
-          publish_dir="$RUNNER_TEMP/agent-publish"
-          rm -rf "$publish_dir"
-
-          # Clone a fresh trusted repository after the agent process has exited.
-          # Publication credentials are only introduced in this step.
-          git clone --no-checkout "https://github.com/$REPOSITORY.git" "$publish_dir"
-          cd "$publish_dir"
-          git checkout --detach "$BASE_SHA"
           git checkout -B "$BRANCH"
-          git apply --index "$RUNNER_TEMP/agent.patch"
+          git apply --index "$RUNNER_TEMP/agent-output/agent.patch"
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          empty_hooks="$RUNNER_TEMP/agent-empty-hooks"
-          mkdir -p "$empty_hooks"
-
-          git -c core.hooksPath="$empty_hooks" commit             -m "feat(agent): implement design PR #$DESIGN_PR"
-
-          git remote set-url origin "https://github.com/$REPOSITORY.git"
+          git commit -m "feat(agent): implement design PR #$DESIGN_PR"
 
           auth="$(
-            printf 'x-access-token:%s' "$GITHUB_TOKEN"               | base64               | tr -d '\n'
+            printf 'x-access-token:%s' "$GITHUB_TOKEN" \
+              | base64 \
+              | tr -d '\n'
           )"
 
-          GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1             git               -c core.hooksPath="$empty_hooks"               -c credential.helper=               -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth"               push --force origin "HEAD:refs/heads/$BRANCH"
+          GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 \
+            git \
+              -c credential.helper= \
+              -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" \
+              push --force origin "HEAD:refs/heads/$BRANCH"
 
           result="$(
-            python3 scripts/agent/github_api.py publish               --repo "$REPOSITORY"               --design-pr "$DESIGN_PR"               --design-sha "$DESIGN_HEAD"               --branch "$BRANCH"               --base main
+            python3 scripts/agent/github_api.py publish \
+              --repo "$REPOSITORY" \
+              --design-pr "$DESIGN_PR" \
+              --design-sha "$DESIGN_HEAD" \
+              --branch "$BRANCH" \
+              --base main
           )"
 
           printf '%s\n' "$result"

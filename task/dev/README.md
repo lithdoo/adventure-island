@@ -73,13 +73,15 @@ A successful `Agent Spec Gate` run triggers the default-branch `Agent Implement`
 The implementation workflow:
 
 1. revalidates the PR on a GitHub-hosted runner;
-2. checks out trusted `main` on the self-hosted runner;
-3. fetches only the approved design document from the design PR;
-4. runs local `opencode2` (falling back to `opencode`);
-5. enforces the allowed-path and repository safety policy;
-6. runs deterministic syntax/tests where known;
-7. pushes `agent/pr-<number>`;
-8. creates or updates one draft implementation PR.
+2. GitHub-hosted Actions checks out trusted `main` plus read-only submodule context;
+3. trusted source and the approved design document are transferred to the self-hosted runner through short-lived Actions artifacts;
+4. the self-hosted runner creates a local-only Git baseline and runs `opencode2` (falling back to `opencode`);
+5. trusted verifier scripts enforce the allowed-path and repository safety policy and run deterministic checks;
+6. the self-hosted runner uploads only the verified Git patch as a short-lived Actions artifact;
+7. a GitHub-hosted publish job applies that patch to the exact trusted base commit;
+8. the GitHub-hosted publish job pushes `agent/pr-<number>` and creates or updates one draft implementation PR.
+
+The self-hosted runner does not need direct Git access to `github.com`, and it never receives repository write credentials.
 
 Updating the design PR reruns the process. The dedicated implementation branch is replaced with a fresh implementation based on the latest `main`.
 
@@ -97,4 +99,4 @@ The self-hosted runner must have:
 - `opencode2` or `opencode`;
 - the project-specific runtimes needed by the task (for example Node.js for JavaScript work).
 
-Keep local proprietary inputs outside `$GITHUB_WORKSPACE`. The workflow deliberately uses a clean checkout and rejects a `.raw` directory inside the repository workspace.
+Keep local proprietary inputs outside the runner's agent workspace. The self-hosted job works from a short-lived source artifact under `$RUNNER_TEMP`, rejects a `.raw` directory inside that workspace, and never checks out or pushes the GitHub repository directly.
