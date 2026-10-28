@@ -198,19 +198,23 @@ jobs:
             throw ".raw must not exist inside the self-hosted agent workspace."
           }
 
-      - name: Check local OpenCode installation
+      - name: Resolve local OpenCode installation
         shell: powershell
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           $ErrorActionPreference = "Stop"
           Write-Host "Windows PowerShell $($PSVersionTable.PSVersion)"
-          if (Get-Command opencode2 -ErrorAction SilentlyContinue) {
-            opencode2 --version
-          } elseif (Get-Command opencode -ErrorAction SilentlyContinue) {
-            opencode --version
-          } else {
-            throw "Neither opencode2 nor opencode is available on the self-hosted runner."
+
+          $resolver = Join-Path $env:RUNNER_TEMP "trusted-agent\resolve-opencode.ps1"
+          $bin = (& powershell.exe -NoProfile -ExecutionPolicy Bypass -File $resolver | Select-Object -Last 1)
+          if ($LASTEXITCODE -ne 0 -or -not $bin) {
+            throw "Unable to resolve a usable OpenCode installation."
           }
+
+          "OPENCODE_BIN=$bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+          $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+          Write-Host "OpenCode resolved successfully: $version"
 
       - name: Run OpenCode implementation
         shell: powershell
