@@ -35,6 +35,7 @@ def request(method: str, path: str, payload: dict | None = None):
         method=method,
         headers={
             "Accept": "application/vnd.github+json",
+            "Content-Type": "application/json",
             "Authorization": f"Bearer {token()}",
             "X-GitHub-Api-Version": "2022-11-28",
             "User-Agent": "adventure-island-agent",
