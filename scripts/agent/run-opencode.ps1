@@ -22,7 +22,13 @@ if (-not $bin) {
     throw "opencode2 is not available in the self-hosted runner environment."
 }
 
-$version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+$versionOutput = @(& $bin --version 2>&1)
+$versionExitCode = $LASTEXITCODE
+$version = ($versionOutput | Select-Object -First 1 | Out-String).Trim()
+if ($versionExitCode -ne 0) {
+    $preview = ($versionOutput | Select-Object -First 5 | Out-String).Trim()
+    throw "OpenCode failed its --version check with exit code $versionExitCode. Output: $preview"
+}
 Write-Host "Using OpenCode: $version"
 
 if (-not $env:CMS079_ROOT) {
