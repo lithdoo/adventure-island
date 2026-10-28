@@ -254,80 +254,129 @@ jobs:
               Select-Object -First 1
           }
 
-          function Test-OpenCodeBinary {
-            param($Candidate)
-            if (-not $Candidate) { return $false }
+          function Get-OpenCodeVersion {
+            param(
+              $Candidate,
+              [switch]$Diagnostic
+            )
+
+            if (-not $Candidate) {
+              if ($Diagnostic) { Write-Host "OpenCode diagnostic: no executable candidate was found." }
+              return $null
+            }
+
             try {
-              $null = & $Candidate.FullName --version 2>&1 | Select-Object -First 1
-              return ($LASTEXITCODE -eq 0)
+              $output = @(& $Candidate.FullName --version 2>&1)
+              $exitCode = $LASTEXITCODE
+
+              if ($Diagnostic) {
+                Write-Host "OpenCode diagnostic candidate: $($Candidate.Name)"
+                Write-Host "OpenCode diagnostic size: $($Candidate.Length) bytes"
+                Write-Host "OpenCode diagnostic exit code: $exitCode"
+                foreach ($line in ($output | Select-Object -First 10)) {
+                  Write-Host "OpenCode diagnostic output: $line"
+                }
+              }
+
+              if ($exitCode -eq 0) {
+                return (($output | Select-Object -First 1 | Out-String).Trim())
+              }
+              return $null
             } catch {
-              return $false
+              if ($Diagnostic) {
+                Write-Host "OpenCode diagnostic exception type: $($_.Exception.GetType().FullName)"
+                Write-Host "OpenCode diagnostic exception: $($_.Exception.Message)"
+                if ($null -ne $_.Exception.PSObject.Properties["NativeErrorCode"]) {
+                  Write-Host "OpenCode diagnostic native error: $($_.Exception.NativeErrorCode)"
+                }
+                if ($_.Exception.InnerException) {
+                  Write-Host "OpenCode diagnostic inner exception: $($_.Exception.InnerException.Message)"
+                }
+              }
+              return $null
             }
           }
 
           $bin = Find-OpenCodeBinary $cacheRoot
-          if (Test-OpenCodeBinary $bin) {
-            $version = (& $bin.FullName --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+          $version = Get-OpenCodeVersion $bin
+          if ($version) {
             Write-Host "OpenCode cache hit: $version"
             "OPENCODE_BIN=$($bin.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
             exit 0
           }
 
-          Write-Host "OpenCode cache miss; downloading the official Windows x64 baseline standalone CLI once."
-
           $staging = "$cacheRoot.staging"
-          if (Test-Path -LiteralPath $staging) {
-            Remove-Item -LiteralPath $staging -Recurse -Force
-          }
-          New-Item -ItemType Directory -Path $staging -Force | Out-Null
-
+          $payload = Join-Path $staging "payload"
           $archive = Join-Path $staging "opencode-windows-x64.zip"
 
-          $curl = Get-Command curl.exe -ErrorAction SilentlyContinue
-          if ($curl) {
-            $curlArgs = @(
-              "--fail",
-              "--location",
-              "--retry", "3",
-              "--retry-all-errors",
-              "--output", $archive,
-              $env:OPENCODE_DOWNLOAD_URL
-            )
-            & $curl.Source @curlArgs
-            if ($LASTEXITCODE -ne 0) {
-              throw "Failed to download portable OpenCode with curl.exe."
-            }
-          } else {
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-            Invoke-WebRequest -UseBasicParsing -Uri $env:OPENCODE_DOWNLOAD_URL -OutFile $archive
-          }
-
-          if (-not (Test-Path -LiteralPath $archive -PathType Leaf)) {
-            throw "Portable OpenCode download did not produce an archive."
-          }
-
-          $digest = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
-          Write-Host "Downloaded OpenCode archive SHA256: $digest"
-
-          $payload = Join-Path $staging "payload"
-          New-Item -ItemType Directory -Path $payload -Force | Out-Null
-          Expand-Archive -LiteralPath $archive -DestinationPath $payload -Force
-
+          # A failed compatibility probe leaves the verified download/extraction
+          # in the persistent staging directory. Reuse it on the next diagnostic
+          # run instead of repeatedly downloading ~113 MB.
           $candidate = Find-OpenCodeBinary $payload
-          if (-not (Test-OpenCodeBinary $candidate)) {
-            throw "Downloaded portable OpenCode failed its --version check."
+          if ($candidate) {
+            Write-Host "Reusing previously staged OpenCode payload for execution diagnostics."
+          } else {
+            New-Item -ItemType Directory -Path $staging -Force | Out-Null
+
+            if (-not (Test-Path -LiteralPath $archive -PathType Leaf)) {
+              Write-Host "OpenCode cache miss; downloading the official Windows x64 baseline standalone CLI once."
+
+              $curl = Get-Command curl.exe -ErrorAction SilentlyContinue
+              if ($curl) {
+                $curlArgs = @(
+                  "--fail",
+                  "--location",
+                  "--retry", "3",
+                  "--retry-all-errors",
+                  "--output", $archive,
+                  $env:OPENCODE_DOWNLOAD_URL
+                )
+                & $curl.Source @curlArgs
+                if ($LASTEXITCODE -ne 0) {
+                  throw "Failed to download portable OpenCode with curl.exe."
+                }
+              } else {
+                [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+                Invoke-WebRequest -UseBasicParsing -Uri $env:OPENCODE_DOWNLOAD_URL -OutFile $archive
+              }
+            } else {
+              Write-Host "Reusing previously downloaded OpenCode archive."
+            }
+
+            if (-not (Test-Path -LiteralPath $archive -PathType Leaf)) {
+              throw "Portable OpenCode download did not produce an archive."
+            }
+
+            $digest = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
+            Write-Host "OpenCode archive SHA256: $digest"
+
+            if (Test-Path -LiteralPath $payload) {
+              Remove-Item -LiteralPath $payload -Recurse -Force
+            }
+            New-Item -ItemType Directory -Path $payload -Force | Out-Null
+            Expand-Archive -LiteralPath $archive -DestinationPath $payload -Force
+            $candidate = Find-OpenCodeBinary $payload
           }
 
-          $version = (& $candidate.FullName --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+          $version = Get-OpenCodeVersion $candidate -Diagnostic
+          if (-not $version) {
+            throw "Downloaded portable OpenCode could not execute --version; see diagnostic lines above."
+          }
 
           if (Test-Path -LiteralPath $cacheRoot) {
             Remove-Item -LiteralPath $cacheRoot -Recurse -Force
           }
           Move-Item -LiteralPath $payload -Destination $cacheRoot
-          Remove-Item -LiteralPath $staging -Recurse -Force
+          if (Test-Path -LiteralPath $archive) {
+            Remove-Item -LiteralPath $archive -Force
+          }
+          if (Test-Path -LiteralPath $staging) {
+            Remove-Item -LiteralPath $staging -Recurse -Force
+          }
 
           $bin = Find-OpenCodeBinary $cacheRoot
-          if (-not (Test-OpenCodeBinary $bin)) {
+          $version = Get-OpenCodeVersion $bin -Diagnostic
+          if (-not $version) {
             throw "OpenCode cache installation is not executable."
           }
 
