@@ -11,7 +11,7 @@ The scaffold should prove that this repository can consume the pinned `loom-real
 The repository already includes LoomRealm as the `loom-realm` git submodule. At the time this task is written, the pinned submodule commit is:
 
 ```text
-8cf8e2db1e089f14b28b7989402acf7ec7a23e57
+c5217e47be5a43f974e9e6ce82230077fb639c39
 ```
 
 Use the checked-out submodule as the reference implementation. In particular, inspect:
@@ -23,7 +23,7 @@ Use the checked-out submodule as the reference implementation. In particular, in
 - `loom-realm/examples/PokeMan/package.json`
 - the minimal subsystem and smoke-test wiring used by that example
 
-The PokeMan example demonstrates LoomRealm's Game Package and launch-composition conventions, but this task must not copy its game logic, content, Pokémon-specific configuration, or map data.
+The current PokeMan example on this pinned revision uses a product-private `base + map + dialogue` topology. Treat that as an example of current Game Package and launch-composition conventions, not as the required topology for this empty application. Determine the actual minimum valid topology from the current LoomRealm APIs. Do not copy its game logic, content, Pokémon-specific configuration, map data, dialogue behavior, or control composition unless a generic piece is strictly required by LoomRealm itself.
 
 Follow `DESIGN.md` in this repository:
 
@@ -54,9 +54,9 @@ This task is deliberately independent of the CMS 079 client input. Do not read o
 - Inspect the pinned LoomRealm `examples/PokeMan` implementation and determine the minimum files and runtime topology needed for an external repository to define a LoomRealm Game Package.
 - Create the smallest useful empty application scaffold under `apps/pwa/` and `apps/hostra/`.
 - The PWA and Hostra entries should represent the same empty test application rather than two unrelated applications.
-- Reuse LoomRealm through the existing `loom-realm` submodule. Do not duplicate LoomRealm source code into this repository.
+- Reuse LoomRealm through the existing `loom-realm` submodule, which must resolve to `c5217e47be5a43f974e9e6ce82230077fb639c39` for this task. Do not fetch a moving branch during execution and do not duplicate LoomRealm source code into this repository.
 - If LoomRealm requires at least one subsystem to form a valid Game Package, create a minimal no-op/smoke subsystem under `systems/loomrealm-smoke/`. It must contain no CMS-specific behavior and no persistent product state.
-- Keep the Game Package and launch manifests structurally analogous to the relevant PokeMan files while removing all game-specific data.
+- Keep the Game Package and launch manifests aligned with the current LoomRealm schema demonstrated by the latest pinned PokeMan files, while using the smallest valid generic topology and removing all game-specific data.
 - Prefer a deterministic, headless validation path. Add or expose a smoke command/test that verifies as much of the following as the current LoomRealm APIs permit without requiring manual GUI interaction:
   - Game Package JSON can be parsed and validated;
   - PWA launch composition resolves;
