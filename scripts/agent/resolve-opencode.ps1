@@ -52,10 +52,21 @@ foreach ($pattern in $patterns) {
         ForEach-Object { $candidates.Add($_.FullName) }
 }
 
-$chosen = $candidates |
-    Where-Object { Test-Path -LiteralPath $_ -PathType Leaf } |
-    Sort-Object -Unique |
-    Select-Object -First 1
+$chosen = $null
+foreach ($candidate in ($candidates | Sort-Object -Unique)) {
+    if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) {
+        continue
+    }
+    try {
+        & $candidate --version *> $null
+        if ($LASTEXITCODE -eq 0) {
+            $chosen = $candidate
+            break
+        }
+    } catch {
+        continue
+    }
+}
 
 if (-not $chosen) {
     throw "OpenCode is installed on the machine but was not discoverable by the runner service. Configure OPENCODE_BIN for the runner service or install @opencode/cli in a machine-visible location."
