@@ -89,3 +89,5 @@ Inspect the final diff and confirm only the Allowed Paths changed.
 Run the new scaffold's headless smoke validation. Also run any directly relevant LoomRealm package/config validation exposed by the pinned submodule if it can be invoked without modifying the submodule or requiring interactive UI.
 
 The final validation must not read `F:\CMS079`, must not require a browser, and must not modify the `loom-realm` submodule.
+
+Retry note: execute this task using the runner's confirmed local `opencode2` command path.
