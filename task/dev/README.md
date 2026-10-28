@@ -60,6 +60,7 @@ The following paths are always forbidden to the agent even if a task lists them:
 - `.github/**`
 - `loom-realm` and `loom-realm/**`
 - `task/dev/**`
+- `scripts/agent/**`
 - `.raw/**`
 - `.work/**`
 
@@ -81,3 +82,19 @@ The implementation workflow:
 8. creates or updates one draft implementation PR.
 
 Updating the design PR reruns the process. The dedicated implementation branch is replaced with a fresh implementation based on the latest `main`.
+
+
+## Repository setup required for publication
+
+The workflow requests `contents: write` and `pull-requests: write` only for the final implementation job.
+
+For the simplest setup, enable GitHub Actions to create pull requests for this repository. For generated implementation PRs to trigger normal downstream workflows reliably, configure an `AGENT_GITHUB_TOKEN` repository secret backed by a narrowly scoped GitHub App installation token or another suitable repository token. If the secret is absent, the workflow falls back to the built-in `GITHUB_TOKEN`.
+
+The self-hosted runner must have:
+
+- `git`;
+- Python 3;
+- `opencode2` or `opencode`;
+- the project-specific runtimes needed by the task (for example Node.js for JavaScript work).
+
+Keep local proprietary inputs outside `$GITHUB_WORKSPACE`. The workflow deliberately uses a clean checkout and rejects a `.raw` directory inside the repository workspace.
