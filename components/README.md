@@ -32,11 +32,23 @@ cms-scene-view
 | [cms-back](./cms-back/DESIGN.md) | `cms-back` | 远景和近景 |
 | [cms-map-layer](./cms-map-layer/DESIGN.md) | `cms-map-layer` | 层 0 到 7 |
 | [cms-avatar-layer](./cms-avatar-layer/DESIGN.md) | `cms-avatar-layer` | 人物所在的层 |
-| [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 纸娃娃。走和站循环；技能和普攻只播一遍，然后回到当前移动 |
+| [cms-actor](./cms-actor/DESIGN.md) | `cms-actor` | 纸娃娃。classic script 入口 + 有界 `avatarPlan`；合成算法、LoomRealm 浏览器集成与真实 079 素材（本地、纸娃娃子集）均已过（见 [实施说明](./cms-actor/IMPLEMENTATION.md)） |
 | [cms-npc](./cms-npc/DESIGN.md) | `cms-npc` | 不放。`life` 里 `type=n` 的对话 |
 | [cms-reactor](./cms-reactor/DESIGN.md) | `cms-reactor` | 不放。箱子、开关、花的点击和受击 |
 | [cms-seat](./cms-seat/DESIGN.md) | `cms-seat` | 不放。坐下的坐标 |
 | [cms-portal](./cms-portal/DESIGN.md) | `cms-portal` | 场景出口。第一阶段唯一的地图交互 |
+
+## `cms-actor` 实现状态
+
+人物组件以 `RenderNode.attrs` 接收坐标、朝向和移动状态，以 `RenderNode.data.avatarPlan` 接收已解析的帧/画布/锚点/z 顺序与资源版本。Web Component 只通过 LoomRealm 注入的 `PresentationResourceClient` 读取图像，不直接访问 WZ、FSDB 路径或私有 Content Index。
+
+交付物包含 `browser/cms-actor.browser.js`（classic script，`bootstrapWebPresentation()` 可直接加载）与 `presentation.json` 注册声明；`avatarPlan` 有硬边界（序列化 `RenderNode.data` ≤ 262,144 compact 字节等，见 [实施说明](./cms-actor/IMPLEMENTATION.md)）。部署与注册步骤见 [部署说明](./cms-actor/DEPLOYMENT.md)。
+
+三个验收状态：
+
+1. **合成算法测试通过（21 例，CI 可复现）**：`node --test components/cms-actor/test/avatar-model.test.mjs components/cms-actor/test/browser-artifact.test.mjs`。
+2. **LoomRealm 正式浏览器集成通过（合成素材，13 例真实 Chromium，CI 可复现）**：`node --test components/cms-actor/test/integration.chromium.test.mjs`——含 DPR 1/2 镜像、缓存严格预算（超大单图/同帧多图/并发突发）与跨计划尺寸冲突。
+3. **真实 CMS 079 素材验证通过（Agent 本地输入，纸娃娃子集，3 例；CI 不可复现、显式 skip）**：`node --test components/cms-actor/test/real-assets.local.test.mjs`。装备 `islot/vslot` 遮挡、表情独立计时与全量 16 包转换仍是后续任务。详见 `result/66-cms-actor-real-assets.md`。
 
 ## 不做成组件的东西
 
