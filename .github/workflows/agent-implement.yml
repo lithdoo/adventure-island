@@ -245,13 +245,16 @@ jobs:
           }
 
           try {
-            $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
+            $versionOutput = @(& $bin --version 2>&1)
+            $versionExitCode = $LASTEXITCODE
+            $version = ($versionOutput | Select-Object -First 1 | Out-String).Trim()
           } catch {
             throw "Configured opencode2 exists but the runner service cannot execute it: $($_.Exception.Message)"
           }
 
-          if ($LASTEXITCODE -ne 0) {
-            throw "Configured opencode2 failed its --version check with exit code $LASTEXITCODE."
+          if ($versionExitCode -ne 0) {
+            $preview = ($versionOutput | Select-Object -First 5 | Out-String).Trim()
+            throw "Configured opencode2 failed its --version check with exit code $versionExitCode. Output: $preview"
           }
 
           "OPENCODE_BIN=$bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
