@@ -177,6 +177,8 @@ jobs:
     permissions:
       actions: read
       contents: read
+    env:
+      CMS079_ROOT: 'F:\CMS079'
 
     steps:
       - name: Reset isolated agent directories
@@ -230,6 +232,32 @@ jobs:
           if (Test-Path -LiteralPath ".raw") {
             throw ".raw must not exist inside the self-hosted agent workspace."
           }
+
+      - name: Validate local CMS079 reference input
+        shell: powershell
+        working-directory: ${{ runner.temp }}/agent-workspace
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          if (-not $env:CMS079_ROOT) {
+            throw "CMS079_ROOT is not configured."
+          }
+          if (-not (Test-Path -LiteralPath $env:CMS079_ROOT -PathType Container)) {
+            throw "CMS079 reference directory is not visible to the runner service."
+          }
+
+          try {
+            $sample = Get-ChildItem -LiteralPath $env:CMS079_ROOT -Force -ErrorAction Stop |
+              Select-Object -First 1
+          } catch {
+            throw "CMS079 reference directory exists but is not readable by the runner service."
+          }
+
+          if ($null -eq $sample) {
+            throw "CMS079 reference directory is empty."
+          }
+
+          Write-Host "CMS079 reference input is available to the agent as read-only reference data."
 
       - name: Prepare portable OpenCode installation
         shell: powershell

@@ -101,4 +101,20 @@ The self-hosted runner must have:
 
 OpenCode itself does not need to be installed for the runner service account. The GitHub-hosted preflight downloads the official Windows x64 standalone OpenCode V2 archive from `opencode.ai` and transfers it to the self-hosted job as a short-lived artifact. Model-provider credentials remain local to the runner machine and must be readable by the runner service account.
 
+## Local CMS 079 reference input
+
+The Windows self-hosted runner exposes the locally supplied CMS 079 client at:
+
+```text
+F:\CMS079
+```
+
+The workflow publishes this location to the agent as `CMS079_ROOT`. Before OpenCode starts, the runner verifies that the directory exists, is non-empty, and is readable by the runner service account.
+
+OpenCode V2 is configured to deny external directories by default and then allow this one directory specifically. Reads are allowed and direct OpenCode edits are denied. The task prompt also identifies `CMS079_ROOT` as local read-only reference input and prohibits copying original client binaries, WZ files, archives, or bulk extracted assets into Git.
+
+Because shell commands execute with the Windows runner service account's OS permissions, OpenCode configuration alone is not a filesystem sandbox. For a strong read-only guarantee, grant the runner service account read/execute access to `F:\CMS079` but no modify/write/delete permission.
+
+Tasks do not need to repeat the absolute path. When real-client evidence is required, describe that requirement in the task; the agent is told where the local CMS079 reference root is.
+
 Keep local proprietary inputs outside the runner's agent workspace. The self-hosted job works from a short-lived source artifact under `$RUNNER_TEMP`, rejects a `.raw` directory inside that workspace, and never checks out or pushes the GitHub repository directly.
