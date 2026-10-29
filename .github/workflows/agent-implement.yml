@@ -282,6 +282,7 @@ jobs:
       actions: read
       contents: write
       pull-requests: write
+      issues: write
 
     steps:
       - name: Checkout trusted implementation base
