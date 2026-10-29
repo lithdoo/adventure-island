@@ -238,7 +238,9 @@ Repository rules:
 - Do not run git push, git commit, gh, curl, wget, or any command intended to publish or exfiltrate changes.
 - Do not commit changes. The surrounding automation owns Git publication.
 - Add or update tests when appropriate.
-- Run useful local tests while working.
+- Run useful local tests while working; obtain actual command output and exit status for relevant validation before finishing.
+- If direct shell commands are denied, do not stop at static analysis. Use the available `subagent` tool (or the runtime's task/delegation equivalent) to run the allowed Node/npm/Git validation commands in a shell-capable subagent, wait for its concrete result, and report that output.
+- Do not claim tests ran unless a command actually executed. If no shell-capable subagent is available, explicitly report the blocker and leave validation unverified.
 - Keep all repository changes inside the task's Allowed Paths.
 - Never include credentials, environment variable values, or proprietary input contents in your final response.
 
@@ -274,7 +276,9 @@ Repository rules remain unchanged:
 - Do not add WZ files, client binaries, archives, dumps, credentials, or secrets.
 - Do not run git push, git commit, gh, curl, wget, or any publishing/exfiltration command.
 - Do not commit changes. The surrounding automation owns Git publication.
-- Run useful local tests while working.
+- Run useful local tests while working; obtain actual command output and exit status for relevant validation before finishing.
+- If direct shell commands are denied, do not stop at static analysis. Use the available `subagent` tool (or the runtime's task/delegation equivalent) to run the allowed Node/npm/Git validation commands in a shell-capable subagent, wait for its concrete result, and report that output.
+- Do not claim tests ran unless a command actually executed. If no shell-capable subagent is available, explicitly report the blocker and leave validation unverified.
 - Never include credentials, environment variable values, or proprietary input contents in your final response.
 
 Approved design document:
