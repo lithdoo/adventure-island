@@ -256,8 +256,21 @@ jobs:
           cd "$AGENT_WORKSPACE"
           result="$RUNNER_TEMP/agent-output/run-result.json"
           log="$RUNNER_TEMP/agent-output/verification.log"
-          runtime_status="$(jq -r '.runtimeStatus // "failed"' "$result" 2>/dev/null || echo failed)"
-          runtime_code="$(jq -r '.runtimeExitCode // 1' "$result" 2>/dev/null || echo 1)"
+          mapfile -t runtime_values < <(
+            python3 - "$result" <<'PY'
+import json
+import sys
+
+try:
+    value = json.load(open(sys.argv[1], encoding="utf-8"))
+except (OSError, json.JSONDecodeError):
+    value = {}
+print(value.get("runtimeStatus") or "failed")
+print(value.get("runtimeExitCode") if value.get("runtimeExitCode") is not None else 1)
+PY
+          )
+          runtime_status="${runtime_values[0]:-failed}"
+          runtime_code="${runtime_values[1]:-1}"
           changed_count="$({ git diff --name-only HEAD --; git ls-files --others --exclude-standard; } | awk 'NF' | sort -u | wc -l | tr -d ' ')"
 
           verification=skipped
@@ -290,7 +303,13 @@ jobs:
             --verification-log "$RUNNER_TEMP/agent-output/verification.log" \
             --output "$RUNNER_TEMP/agent-output/agent-result.json"
 
-          status="$(jq -r '.status' "$RUNNER_TEMP/agent-output/agent-result.json")"
+          status="$(
+            python3 - "$RUNNER_TEMP/agent-output/agent-result.json" <<'PY'
+import json
+import sys
+print(json.load(open(sys.argv[1], encoding="utf-8"))["status"])
+PY
+          )"
           echo "status=$status" >> "$GITHUB_OUTPUT"
 
       - name: Materialize verified patch
