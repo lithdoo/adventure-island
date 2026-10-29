@@ -60,7 +60,6 @@ jobs:
           fi
 
           pr_json="$(gh api "repos/$REPOSITORY/pulls/$pr_number")"
-
           state="$(jq -r '.state' <<<"$pr_json")"
           draft="$(jq -r '.draft' <<<"$pr_json")"
           author="$(jq -r '.user.login' <<<"$pr_json")"
@@ -94,7 +93,6 @@ jobs:
             gh api "repos/$REPOSITORY/pulls/$pr_number/files?per_page=100" \
               --jq '.[0].filename'
           )"
-
           if [[ ! "$spec_path" =~ ^task/dev/[^/]+\.md$ || "$spec_path" == "task/dev/README.md" ]]; then
             echo "Unexpected design path: $spec_path"
             exit 0
@@ -142,7 +140,7 @@ jobs:
           retention-days: 1
 
   implement:
-    name: Implement with container OpenCode
+    name: Implement with persistent OpenCode session
     needs: preflight
     if: ${{ needs.preflight.outputs.allowed == 'true' }}
     runs-on: [self-hosted, opencode, adventure-island]
@@ -152,23 +150,27 @@ jobs:
       contents: read
     env:
       OPENCODE_BIN: opencode2
+      XDG_DATA_HOME: /runner/state/adventure-island/opencode-data
+      AGENT_SESSION_ROOT: /runner/state/adventure-island/agent-sessions/design-${{ needs.preflight.outputs.pr_number }}
+      AGENT_WORKSPACE: /runner/state/adventure-island/agent-sessions/design-${{ needs.preflight.outputs.pr_number }}/workspace
 
     steps:
-      - name: Reset isolated agent directories
+      - name: Reset transient agent directories
         shell: bash
         run: |
           set -euo pipefail
-          for name in agent-workspace agent-input agent-output trusted-agent; do
+          for name in agent-source agent-input agent-output trusted-agent; do
             path="$RUNNER_TEMP/$name"
             rm -rf "$path"
             mkdir -p "$path"
           done
+          mkdir -p "$XDG_DATA_HOME" "$AGENT_SESSION_ROOT"
 
       - name: Download trusted source snapshot
         uses: actions/download-artifact@v4
         with:
           name: agent-source
-          path: ${{ runner.temp }}/agent-workspace
+          path: ${{ runner.temp }}/agent-source
 
       - name: Download approved design document
         uses: actions/download-artifact@v4
@@ -176,20 +178,24 @@ jobs:
           name: agent-spec
           path: ${{ runner.temp }}/agent-input
 
-      - name: Create local baseline and trusted verifier snapshot
+      - name: Prepare stable session workspace and trusted verifier snapshot
         shell: bash
-        working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           set -euo pipefail
 
+          rm -rf "$AGENT_WORKSPACE"
+          mkdir -p "$AGENT_WORKSPACE"
+          cp -a "$RUNNER_TEMP/agent-source/." "$AGENT_WORKSPACE/"
+
+          trusted="$RUNNER_TEMP/trusted-agent"
+          cp -a "$AGENT_WORKSPACE/scripts/agent/." "$trusted/"
+
+          cd "$AGENT_WORKSPACE"
           git init
           git config user.name "agent-baseline"
           git config user.email "agent-baseline@localhost"
           git add -f -A
           git commit -m "agent trusted baseline"
-
-          trusted="$RUNNER_TEMP/trusted-agent"
-          cp -a scripts/agent/. "$trusted/"
 
           if [[ -e ".raw" ]]; then
             echo ".raw must not exist inside the self-hosted agent workspace." >&2
@@ -198,73 +204,117 @@ jobs:
 
       - name: Verify container OpenCode
         shell: bash
-        working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           set -euo pipefail
-
           command -v "$OPENCODE_BIN" >/dev/null
 
           set +e
           version_output="$("$OPENCODE_BIN" --version 2>&1)"
           version_status=$?
           set -e
-
           if [[ $version_status -ne 0 ]]; then
             printf '%s\n' "$version_output" | sed -n '1,5p' >&2
             exit "$version_status"
           fi
-
           if [[ -z "${GLM_API_KEY:-}" ]]; then
             echo "GLM_API_KEY is not visible to the container runner." >&2
             exit 1
           fi
-
           if [[ -z "${OPENCODE_CONFIG:-}" || ! -r "$OPENCODE_CONFIG" ]]; then
             echo "Trusted OpenCode config is not readable in the container runner." >&2
             exit 1
           fi
 
+          mkdir -p "$XDG_DATA_HOME"
           echo "Using container OpenCode: $(printf '%s\n' "$version_output" | sed -n '1p')"
+          echo "OpenCode data: $XDG_DATA_HOME"
           echo "GLM_API_KEY visible: True"
 
-      - name: Run OpenCode implementation
+      - name: Run initial OpenCode turn
+        id: opencode
+        continue-on-error: true
         shell: bash
-        working-directory: ${{ runner.temp }}/agent-workspace
-        env:
-          DESIGN_PR: ${{ needs.preflight.outputs.pr_number }}
         run: |
           set -euo pipefail
+          cd "$AGENT_WORKSPACE"
           runner="$RUNNER_TEMP/trusted-agent/run-opencode.sh"
           spec="$RUNNER_TEMP/agent-input/agent-spec.md"
 
-          bash "$runner" "$spec" "$DESIGN_PR"
+          bash "$runner" \
+            --mode initial \
+            --spec "$spec" \
+            --design-pr "${{ needs.preflight.outputs.pr_number }}" \
+            --design-head "${{ needs.preflight.outputs.head_sha }}" \
+            --session-root "$AGENT_SESSION_ROOT" \
+            --output-dir "$RUNNER_TEMP/agent-output"
 
-      - name: Verify agent output
+      - name: Verify candidate changes
+        id: verify
         shell: bash
-        working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           set -euo pipefail
-          verifier="$RUNNER_TEMP/trusted-agent/verify.sh"
-          spec="$RUNNER_TEMP/agent-input/agent-spec.md"
+          cd "$AGENT_WORKSPACE"
+          result="$RUNNER_TEMP/agent-output/run-result.json"
+          log="$RUNNER_TEMP/agent-output/verification.log"
+          runtime_status="$(jq -r '.runtimeStatus // "failed"' "$result" 2>/dev/null || echo failed)"
+          runtime_code="$(jq -r '.runtimeExitCode // 1' "$result" 2>/dev/null || echo 1)"
+          changed_count="$({ git diff --name-only HEAD --; git ls-files --others --exclude-standard; } | awk 'NF' | sort -u | wc -l | tr -d ' ')"
 
-          bash "$verifier" "$spec"
+          verification=skipped
+          if [[ "$runtime_status" == "completed" && "$runtime_code" == "0" && "$changed_count" != "0" ]]; then
+            set +e
+            bash "$RUNNER_TEMP/trusted-agent/verify.sh" "$RUNNER_TEMP/agent-input/agent-spec.md" >"$log" 2>&1
+            verify_status=$?
+            set -e
+            cat "$log"
+            if [[ $verify_status -eq 0 ]]; then
+              verification=passed
+            else
+              verification=failed
+            fi
+          else
+            printf 'verification skipped: runtime=%s exit=%s changed=%s\n' \
+              "$runtime_status" "$runtime_code" "$changed_count" | tee "$log"
+          fi
+          echo "verification=$verification" >> "$GITHUB_OUTPUT"
+
+      - name: Finalize agent result
+        id: result
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$AGENT_WORKSPACE"
+          python3 "$RUNNER_TEMP/trusted-agent/finalize_result.py" \
+            --run-result "$RUNNER_TEMP/agent-output/run-result.json" \
+            --verification "${{ steps.verify.outputs.verification }}" \
+            --verification-log "$RUNNER_TEMP/agent-output/verification.log" \
+            --output "$RUNNER_TEMP/agent-output/agent-result.json"
+
+          status="$(jq -r '.status' "$RUNNER_TEMP/agent-output/agent-result.json")"
+          echo "status=$status" >> "$GITHUB_OUTPUT"
 
       - name: Materialize verified patch
+        if: ${{ steps.result.outputs.status == 'verified' }}
         shell: bash
-        working-directory: ${{ runner.temp }}/agent-workspace
         run: |
           set -euo pipefail
+          cd "$AGENT_WORKSPACE"
           patch="$RUNNER_TEMP/agent-output/agent.patch"
-
           git add -N -- .
           git diff --binary --output="$patch" HEAD --
+          test -s "$patch"
 
-          if [[ ! -s "$patch" ]]; then
-            echo "Verified agent patch is empty." >&2
-            exit 1
-          fi
+      - name: Upload agent result
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-result
+          path: ${{ runner.temp }}/agent-output/agent-result.json
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Upload verified patch
+        if: ${{ steps.result.outputs.status == 'verified' }}
         uses: actions/upload-artifact@v4
         with:
           name: agent-patch
@@ -273,9 +323,9 @@ jobs:
           retention-days: 1
 
   publish:
-    name: Publish implementation PR
+    name: Publish agent result
     needs: [preflight, implement]
-    if: ${{ needs.preflight.outputs.allowed == 'true' && needs.implement.result == 'success' }}
+    if: ${{ always() && needs.preflight.outputs.allowed == 'true' && needs.implement.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -292,13 +342,28 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Download agent result
+        uses: actions/download-artifact@v4
+        with:
+          name: agent-result
+          path: ${{ runner.temp }}/agent-output
+
+      - name: Inspect agent result
+        id: result
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(jq -r '.status' "$RUNNER_TEMP/agent-output/agent-result.json")"
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+
       - name: Download verified patch
+        if: ${{ steps.result.outputs.status == 'verified' }}
         uses: actions/download-artifact@v4
         with:
           name: agent-patch
           path: ${{ runner.temp }}/agent-output
 
-      - name: Apply patch and publish
+      - name: Publish verified implementation or report non-publishable result
         env:
           GITHUB_TOKEN: ${{ secrets.AGENT_GITHUB_TOKEN || github.token }}
           REPOSITORY: ${{ github.repository }}
@@ -308,34 +373,43 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          result="$RUNNER_TEMP/agent-output/agent-result.json"
+          status="$(jq -r '.status' "$result")"
 
+          if [[ "$status" != "verified" ]]; then
+            python3 scripts/agent/github_api.py report-design \
+              --repo "$REPOSITORY" \
+              --design-pr "$DESIGN_PR" \
+              --result "$result"
+            exit 0
+          fi
+
+          patch="$RUNNER_TEMP/agent-output/agent.patch"
+          test -s "$patch"
           git checkout -B "$BRANCH"
-          git apply --index "$RUNNER_TEMP/agent-output/agent.patch"
+          git apply --index "$patch"
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "feat(agent): implement design PR #$DESIGN_PR"
+          commit_sha="$(git rev-parse HEAD)"
 
-          auth="$(
-            printf 'x-access-token:%s' "$GITHUB_TOKEN" \
-              | base64 \
-              | tr -d '\n'
-          )"
-
+          auth="$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 | tr -d '\n')"
           GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 \
             git \
               -c credential.helper= \
               -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" \
               push --force origin "HEAD:refs/heads/$BRANCH"
 
-          result="$(
+          publication="$(
             python3 scripts/agent/github_api.py publish \
               --repo "$REPOSITORY" \
               --design-pr "$DESIGN_PR" \
               --design-sha "$DESIGN_HEAD" \
               --branch "$BRANCH" \
-              --base main
+              --base main \
+              --result "$result" \
+              --commit-sha "$commit_sha"
           )"
-
-          printf '%s\n' "$result"
-          printf 'Implementation publication: `%s`\n' "$result" >> "$GITHUB_STEP_SUMMARY"
+          printf '%s\n' "$publication"
+          printf 'Implementation publication: `%s`\n' "$publication" >> "$GITHUB_STEP_SUMMARY"
