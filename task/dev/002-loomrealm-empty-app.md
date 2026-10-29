@@ -91,3 +91,5 @@ Run the new scaffold's headless smoke validation. Also run any directly relevant
 The final validation must not read `F:\CMS079`, must not require a browser, and must not modify the `loom-realm` submodule.
 
 Retry note: execute this task on the verified container runner labeled `opencode` and `adventure-island`, using container-local `opencode2`.
+
+Publish retry note: repository Actions is now allowed to create pull requests; rerun the full pipeline from the current trusted `main`.
