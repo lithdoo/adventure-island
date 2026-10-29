@@ -343,6 +343,21 @@ if [[ -z "$final_response" ]]; then
   final_response="OpenCode did not produce a recoverable final assistant response for this turn. Review the workflow diagnostics for the runtime failure."
 fi
 
+# The final response is uploaded to GitHub. Redact the provider credential by
+# exact value before it leaves the self-hosted runner, even if the model or a
+# tool accidentally echoed it.
+final_response="$(
+  printf '%s' "$final_response" | python3 -c '
+import os
+import sys
+text = sys.stdin.read()
+value = os.environ.get("GLM_API_KEY", "")
+if value:
+    text = text.replace(value, "[REDACTED:GLM_API_KEY]")
+sys.stdout.write(text)
+'
+)"
+
 runtime_status="completed"
 effective_status=$run_status
 if [[ -z "$session_id" ]]; then
