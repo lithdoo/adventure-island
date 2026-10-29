@@ -142,30 +142,27 @@ jobs:
           retention-days: 1
 
   implement:
-    name: Implement with local OpenCode
+    name: Implement with container OpenCode
     needs: preflight
     if: ${{ needs.preflight.outputs.allowed == 'true' }}
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, opencode, adventure-island]
     timeout-minutes: 120
     permissions:
       actions: read
       contents: read
     env:
-      CMS079_ROOT: 'F:\CMS079'
-      OPENCODE_BIN: 'C:\Users\lithd\.opencode\bin\opencode2.cmd'
+      OPENCODE_BIN: opencode2
 
     steps:
       - name: Reset isolated agent directories
-        shell: powershell
+        shell: bash
         run: |
-          $ErrorActionPreference = "Stop"
-          foreach ($name in @("agent-workspace", "agent-input", "agent-output", "trusted-agent")) {
-            $path = Join-Path $env:RUNNER_TEMP $name
-            if (Test-Path -LiteralPath $path) {
-              Remove-Item -LiteralPath $path -Recurse -Force
-            }
-            New-Item -ItemType Directory -Path $path -Force | Out-Null
-          }
+          set -euo pipefail
+          for name in agent-workspace agent-input agent-output trusted-agent; do
+            path="$RUNNER_TEMP/$name"
+            rm -rf "$path"
+            mkdir -p "$path"
+          done
 
       - name: Download trusted source snapshot
         uses: actions/download-artifact@v4
@@ -180,123 +177,92 @@ jobs:
           path: ${{ runner.temp }}/agent-input
 
       - name: Create local baseline and trusted verifier snapshot
-        shell: powershell
+        shell: bash
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
-          $ErrorActionPreference = "Stop"
+          set -euo pipefail
 
           git init
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           git config user.name "agent-baseline"
           git config user.email "agent-baseline@localhost"
           git add -f -A
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           git commit -m "agent trusted baseline"
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-          $trusted = Join-Path $env:RUNNER_TEMP "trusted-agent"
-          Copy-Item -Path (Join-Path (Get-Location) "scripts\agent\*") -Destination $trusted -Recurse -Force
+          trusted="$RUNNER_TEMP/trusted-agent"
+          cp -a scripts/agent/. "$trusted/"
 
-          if (Test-Path -LiteralPath ".raw") {
-            throw ".raw must not exist inside the self-hosted agent workspace."
-          }
+          if [[ -e ".raw" ]]; then
+            echo ".raw must not exist inside the self-hosted agent workspace." >&2
+            exit 1
+          fi
 
-      - name: Validate local CMS079 reference input
-        shell: powershell
+      - name: Verify container OpenCode
+        shell: bash
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
-          $ErrorActionPreference = "Stop"
+          set -euo pipefail
 
-          if (-not $env:CMS079_ROOT) {
-            throw "CMS079_ROOT is not configured."
-          }
-          if (-not (Test-Path -LiteralPath $env:CMS079_ROOT -PathType Container)) {
-            throw "CMS079 reference directory is not visible to the runner service."
-          }
+          command -v "$OPENCODE_BIN" >/dev/null
 
-          try {
-            $sample = Get-ChildItem -LiteralPath $env:CMS079_ROOT -Force -ErrorAction Stop |
-              Select-Object -First 1
-          } catch {
-            throw "CMS079 reference directory exists but is not readable by the runner service."
-          }
+          set +e
+          version_output="$("$OPENCODE_BIN" --version 2>&1)"
+          version_status=$?
+          set -e
 
-          if ($null -eq $sample) {
-            throw "CMS079 reference directory is empty."
-          }
+          if [[ $version_status -ne 0 ]]; then
+            printf '%s\n' "$version_output" | sed -n '1,5p' >&2
+            exit "$version_status"
+          fi
 
-          Write-Host "CMS079 reference input is available to the agent as read-only reference data."
+          if [[ -z "${GLM_API_KEY:-}" ]]; then
+            echo "GLM_API_KEY is not visible to the container runner." >&2
+            exit 1
+          fi
 
-      - name: Verify local opencode2
-        shell: powershell
-        working-directory: ${{ runner.temp }}/agent-workspace
-        run: |
-          $ErrorActionPreference = "Stop"
+          if [[ -z "${OPENCODE_CONFIG:-}" || ! -r "$OPENCODE_CONFIG" ]]; then
+            echo "Trusted OpenCode config is not readable in the container runner." >&2
+            exit 1
+          fi
 
-          if (-not $env:OPENCODE_BIN) {
-            throw "OPENCODE_BIN is not configured for the self-hosted runner."
-          }
-
-          try {
-            $resolved = Resolve-Path -LiteralPath $env:OPENCODE_BIN -ErrorAction Stop
-            $bin = $resolved.ProviderPath
-          } catch {
-            throw "Configured opencode2 path is not visible to the runner service: $($env:OPENCODE_BIN)"
-          }
-
-          try {
-            $version = (& $bin --version 2>&1 | Select-Object -First 1 | Out-String).Trim()
-          } catch {
-            throw "Configured opencode2 exists but the runner service cannot execute it: $($_.Exception.Message)"
-          }
-
-          if ($LASTEXITCODE -ne 0) {
-            throw "Configured opencode2 failed its --version check with exit code $LASTEXITCODE."
-          }
-
-          "OPENCODE_BIN=$bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          Write-Host "Using locally configured opencode2: $version"
+          echo "Using container OpenCode: $(printf '%s\n' "$version_output" | sed -n '1p')"
+          echo "GLM_API_KEY visible: True"
 
       - name: Run OpenCode implementation
-        shell: powershell
+        shell: bash
         working-directory: ${{ runner.temp }}/agent-workspace
         env:
           DESIGN_PR: ${{ needs.preflight.outputs.pr_number }}
         run: |
-          $ErrorActionPreference = "Stop"
-          $runner = Join-Path $env:RUNNER_TEMP "trusted-agent\run-opencode.ps1"
-          $spec = Join-Path $env:RUNNER_TEMP "agent-input\agent-spec.md"
+          set -euo pipefail
+          runner="$RUNNER_TEMP/trusted-agent/run-opencode.sh"
+          spec="$RUNNER_TEMP/agent-input/agent-spec.md"
 
-          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $runner -SpecPath $spec -DesignPr ([int]$env:DESIGN_PR)
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          bash "$runner" "$spec" "$DESIGN_PR"
 
       - name: Verify agent output
-        shell: powershell
+        shell: bash
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
-          $ErrorActionPreference = "Stop"
-          $verifier = Join-Path $env:RUNNER_TEMP "trusted-agent\verify.ps1"
-          $spec = Join-Path $env:RUNNER_TEMP "agent-input\agent-spec.md"
+          set -euo pipefail
+          verifier="$RUNNER_TEMP/trusted-agent/verify.sh"
+          spec="$RUNNER_TEMP/agent-input/agent-spec.md"
 
-          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $verifier -SpecPath $spec
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          bash "$verifier" "$spec"
 
       - name: Materialize verified patch
-        shell: powershell
+        shell: bash
         working-directory: ${{ runner.temp }}/agent-workspace
         run: |
-          $ErrorActionPreference = "Stop"
-          $patch = Join-Path $env:RUNNER_TEMP "agent-output\agent.patch"
+          set -euo pipefail
+          patch="$RUNNER_TEMP/agent-output/agent.patch"
 
           git add -N -- .
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          git diff --binary --output="$patch" HEAD --
 
-          git diff --binary "--output=$patch" HEAD --
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-          if (-not (Test-Path -LiteralPath $patch) -or (Get-Item -LiteralPath $patch).Length -eq 0) {
-            throw "Verified agent patch is empty."
-          }
+          if [[ ! -s "$patch" ]]; then
+            echo "Verified agent patch is empty." >&2
+            exit 1
+          fi
 
       - name: Upload verified patch
         uses: actions/upload-artifact@v4
