@@ -1,6 +1,6 @@
 # Agent development tasks
 
-This directory contains **design-only PRs** that may trigger the local development agent.
+This directory contains **design-only PRs** that may trigger the repository development agent.
 
 A design PR must:
 
@@ -11,7 +11,7 @@ A design PR must:
 - change exactly one Markdown file under `task/dev/`;
 - not change code, workflows, submodules, tests, or any other file.
 
-The agent always starts from the current trusted `main` branch. The design PR is treated as an instruction document, not as a code checkout.
+The design PR is the durable task specification. The generated Implementation PR is the durable code-review surface. Each Design PR is also bound to a persistent OpenCode conversation on the project-scoped container runner.
 
 ## Required template
 
@@ -61,60 +61,151 @@ The following paths are always forbidden to the agent even if a task lists them:
 - `loom-realm` and `loom-realm/**`
 - `task/dev/**`
 - `scripts/agent/**`
+- `.opencode/**`
+- `.agents/**`
+- root `AGENTS.md`
+- root `opencode.json` / `opencode.jsonc`
 - `.raw/**`
 - `.work/**`
 
 Client/resource binaries and archives such as `*.wz`, `*.exe`, `*.dll`, `*.sys`, `*.zip`, `*.rar`, and `*.7z` are also forbidden.
 
-## Execution model
+Project-level OpenCode config and agent-instruction discovery are disabled during CI turns. This prevents code produced in an earlier Implementation PR turn from becoming privileged instructions in a later revision turn.
 
-A successful `Agent Spec Gate` run triggers the default-branch `Agent Implement` workflow.
+## Initial implementation flow
+
+A successful `Agent Spec Gate` run triggers `Agent Implement` from the trusted default branch.
 
 The implementation workflow:
 
-1. revalidates the PR on a GitHub-hosted runner;
-2. GitHub-hosted Actions checks out trusted `main` plus read-only submodule context;
-3. trusted source and the approved design document are transferred to the self-hosted runner through short-lived Actions artifacts;
-4. the self-hosted runner creates a local-only Git baseline and invokes the machine's existing `opencode2` installation;
-5. trusted verifier scripts enforce the allowed-path and repository safety policy and run deterministic checks;
-6. the self-hosted runner uploads only the verified Git patch as a short-lived Actions artifact;
-7. a GitHub-hosted publish job applies that patch to the exact trusted base commit;
-8. the GitHub-hosted publish job pushes `agent/pr-<number>` and creates or updates one draft implementation PR.
+1. revalidates the owner-authored Design PR on a GitHub-hosted runner;
+2. checks out the exact trusted `main` base plus read-only submodule context;
+3. sends trusted source and the approved design document to the project-scoped Docker runner through short-lived Actions artifacts;
+4. rebuilds a stable per-Design-PR workspace under `/runner/state/adventure-island/agent-sessions/design-<N>/workspace`;
+5. invokes container-local `opencode2` with GLM credentials supplied by the runner environment;
+6. captures OpenCode JSON events locally, recovers the authoritative final assistant response from `opencode session export`, and records the OpenCode session ID;
+7. runs the deterministic repository verifier;
+8. uploads only a structured `agent-result.json` and, when verification passes, the verified Git patch;
+9. a GitHub-hosted publish job applies the patch to the exact trusted base, pushes `agent/pr-<N>`, creates or updates one draft Implementation PR, and posts the OpenCode final response for review.
 
-The self-hosted runner does not need direct Git access to `github.com`, and it never receives repository write credentials.
+Raw OpenCode event/session exports are kept on the self-hosted machine and are never committed or posted to GitHub.
 
-Updating the design PR reruns the process. The dedicated implementation branch is replaced with a fresh implementation based on the latest `main`.
+## Agent result protocol
 
+Every completed turn produces a structured result with one of these statuses:
 
-## Repository setup required for publication
+| Status | Meaning | Code published? |
+| --- | --- | --- |
+| `verified` | OpenCode completed, repository changes exist, deterministic verification passed | Yes |
+| `no_changes` | OpenCode completed but produced no repository changes | No |
+| `verify_failed` | OpenCode produced changes but deterministic verification rejected them | No |
+| `runtime_failed` | OpenCode/session execution did not complete successfully | No |
 
-The workflow requests `contents: write` and `pull-requests: write` only for the final implementation job.
+The final assistant response is posted even when no patch is published. This means blockers, limitations, failed validation, and “no change required” outcomes are visible directly in the PR/Design PR rather than being hidden behind a red Actions run.
 
-For the simplest setup, enable GitHub Actions to create pull requests for this repository. For generated implementation PRs to trigger normal downstream workflows reliably, configure an `AGENT_GITHUB_TOKEN` repository secret backed by a narrowly scoped GitHub App installation token or another suitable repository token. If the secret is absent, the workflow falls back to the built-in `GITHUB_TOKEN`.
+## Persistent OpenCode sessions
 
-The self-hosted runner must have:
-
-- `git`;
-- Windows PowerShell 5.1 or later;
-- Python 3;
-- the project-specific runtimes needed by the task (for example Node.js for JavaScript work).
-
-`opencode2` must already be installed and executable in the self-hosted runner environment. Provider/model credentials and the default GLM model remain in the machine's existing OpenCode configuration; the workflow does not download OpenCode or redefine the provider/model. It adds only a runtime permission overlay for CI execution.
-
-## Local CMS 079 reference input
-
-The Windows self-hosted runner exposes the locally supplied CMS 079 client at:
+The container runner persists OpenCode data and per-task session metadata under the existing runner state bind mount:
 
 ```text
-F:\CMS079
+/runner/state/adventure-island/
+├── opencode-data/
+└── agent-sessions/
+    └── design-<N>/
+        ├── metadata.json
+        ├── workspace/
+        └── turns/
+            ├── 0001/
+            ├── 0002/
+            └── ...
 ```
 
-The workflow publishes this location to the agent as `CMS079_ROOT`. Before OpenCode starts, the runner verifies that the directory exists, is non-empty, and is readable by the runner service account.
+`XDG_DATA_HOME=/runner/state/adventure-island/opencode-data` keeps the OpenCode V2 SQLite session database persistent across workflow jobs and container restarts. `metadata.json` binds the Design PR to the active OpenCode session ID and turn number.
 
-OpenCode V2 is configured to deny external directories by default and then allow this one directory specifically. Reads are allowed and direct OpenCode edits are denied. The task prompt also identifies `CMS079_ROOT` as local read-only reference input and prohibits copying original client binaries, WZ files, archives, or bulk extracted assets into Git.
+The raw `turns/*/events.ndjson`, OpenCode stderr, and session export are local diagnostic/state data. They are intentionally not uploaded as Actions artifacts.
 
-Because shell commands execute with the Windows runner service account's OS permissions, OpenCode configuration alone is not a filesystem sandbox. For a strong read-only guarantee, grant the runner service account read/execute access to `F:\CMS079` but no modify/write/delete permission.
+If the recorded session cannot be resumed (for example after state loss), the revision workflow boots a replacement session from the current Implementation PR checkout, the approved Design spec, and the trusted review feedback. The PR result reports this as `sessionContinuity=bootstrapped`; subsequent revision turns resume that replacement session normally.
 
-Tasks do not need to repeat the absolute path. When real-client evidence is required, describe that requirement in the task; the agent is told where the local CMS079 reference root is.
+## Human review and `/agent revise`
 
-Keep local proprietary inputs outside the runner's agent workspace. The self-hosted job works from a short-lived source artifact under `$RUNNER_TEMP`, rejects a `.raw` directory inside that workspace, and never checks out or pushes the GitHub repository directly.
+After the first verified implementation, review the generated draft Implementation PR normally. Leave ordinary PR review text, review summaries, or inline review comments first. When the feedback is ready, add an issue comment containing exactly:
+
+```text
+/agent revise
+```
+
+`Agent Revise` runs only when:
+
+- the command author is the repository owner;
+- the target is an open same-repository PR targeting `main`;
+- the PR head is exactly `agent/pr-<DesignPR>`;
+- the corresponding Design PR is still open, non-draft, owner-authored, same-repository, and still changes exactly one valid `task/dev/*.md` file;
+- there is new owner-authored review feedback after the previous agent turn.
+
+The revision preflight collects only trusted owner feedback. It does not pass arbitrary third-party comments to OpenCode.
+
+A revision turn:
+
+1. snapshots the **current Implementation PR HEAD**, not `main`;
+2. restores/resumes the Design PR's OpenCode session when available;
+3. supplies the original approved Design spec plus only the new trusted review feedback;
+4. asks OpenCode for an incremental revision rather than a fresh implementation;
+5. runs the same deterministic verifier against the revision diff;
+6. fast-forwards the existing `agent/pr-<N>` branch only when verification passes;
+7. posts the OpenCode final response back to the same Implementation PR.
+
+Revision concurrency is serialized per Implementation PR and uses `cancel-in-progress: false`, so a later `/agent revise` request does not terminate a turn that is already mutating the same persistent session.
+
+## Updating the Design PR
+
+Updating the Design PR still triggers the normal Spec Gate and a fresh initial implementation from the latest trusted `main`.
+
+That path intentionally replaces `agent/pr-<N>` with a newly generated implementation and starts a new primary OpenCode session for the new Design head. Use this when the actual task specification changes.
+
+Use `/agent revise` instead when the Design intent is unchanged and you are asking the agent to address code-review feedback on the current Implementation PR.
+
+## Security model
+
+The trust boundary remains unchanged:
+
+```text
+GitHub-hosted trusted preflight
+        ↓
+short-lived trusted artifacts
+        ↓
+project-scoped self-hosted OpenCode runner
+        ↓  (no GitHub write credential)
+verified patch + sanitized agent result
+        ↓
+GitHub-hosted trusted publisher
+```
+
+The OpenCode process explicitly drops `GITHUB_TOKEN`, `GH_TOKEN`, `AGENT_GITHUB_TOKEN`, and `GITHUB_ACCESS_TOKEN`. It cannot push, create PRs, or publish comments directly.
+
+Only the GitHub-hosted publisher receives repository write permissions. Repository settings must allow GitHub Actions to create pull requests. If `AGENT_GITHUB_TOKEN` is configured, it should remain narrowly scoped to this repository; otherwise publication falls back to the built-in `GITHUB_TOKEN`.
+
+## Runner requirements
+
+The project runner is the Linux Docker runner labeled:
+
+```yaml
+runs-on: [self-hosted, opencode, adventure-island]
+```
+
+It must provide:
+
+- `git`;
+- Python 3;
+- Node.js for JavaScript validation;
+- `opencode2` V2;
+- readable trusted `OPENCODE_CONFIG`;
+- `GLM_API_KEY` in the runner environment;
+- writable `/runner/state/adventure-island` from the persistent host state mount.
+
+OpenCode runs with `--standalone --auto --format json`. Provider/model configuration remains outside Git; the container's trusted OpenCode configuration supplies `zai-coding-plan/glm-5.3` and reads the key from `GLM_API_KEY`.
+
+## Optional local reference input
+
+The agent denies external directories by default. A future task may explicitly provide `AGENT_REFERENCE_ROOT` through trusted runner configuration. When set, OpenCode may read that directory but is denied direct edits there. Proprietary reference inputs must remain outside the repository and outside uploaded artifacts.
+
+The current workflow does **not** require `F:\CMS079` or any Windows host path.
