@@ -199,7 +199,7 @@ PY
     if [[ ${#metadata_values[@]} -ge 2 ]]; then
       candidate="${metadata_values[0]}"
       turn="${metadata_values[1]}"
-      if "$bin" session export "$candidate" >/dev/null 2>&1; then
+      if "$bin" session export --standalone "$candidate" >/dev/null 2>&1; then
         session_id="$candidate"
         continuity="resumed"
       fi
@@ -316,7 +316,7 @@ set -e
 
 if [[ -z "$session_id" ]]; then
   set +e
-  "$bin" session list --max-count 20 --format json >"$sessions_path" 2>>"$stderr_path"
+  "$bin" session list --standalone --max-count 20 --format json >"$sessions_path" 2>>"$stderr_path"
   list_status=$?
   set -e
   if [[ $list_status -eq 0 ]]; then
@@ -329,7 +329,7 @@ fi
 final_response=""
 if [[ -n "$session_id" ]]; then
   set +e
-  "$bin" session export "$session_id" >"$export_path" 2>>"$stderr_path"
+  "$bin" session export --standalone "$session_id" >"$export_path" 2>>"$stderr_path"
   export_status=$?
   set -e
   if [[ $export_status -eq 0 ]]; then
