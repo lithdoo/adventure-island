@@ -98,6 +98,9 @@ npm test --prefix systems/loomrealm-smoke
 `test` 脚本就是后一条命令）：确定性、无网络、无浏览器、无 CMS 数据、不构建也不改动
 submodule。
 
+**审阅门（review gate）**：裸 checkout 上的验收信号是 `fail 0`；三个深层用例的 skip 不阻塞
+审阅。
+
 基础层（始终运行，确定性、无网络、无浏览器、无 CMS 数据、不构建/不改动 submodule）覆盖：
 
 1. 两个平台入口的 `game.json` 解析并按 Game Entry V1 结构校验，且为同一最小文档；
