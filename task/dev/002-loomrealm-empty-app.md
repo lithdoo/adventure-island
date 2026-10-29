@@ -90,4 +90,4 @@ Run the new scaffold's headless smoke validation. Also run any directly relevant
 
 The final validation must not read `F:\CMS079`, must not require a browser, and must not modify the `loom-realm` submodule.
 
-Retry note: execute this task using the runner's confirmed local `opencode2` command path.
+Retry note: execute this task on the verified container runner labeled `opencode` and `adventure-island`, using container-local `opencode2`.
