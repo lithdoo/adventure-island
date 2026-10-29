@@ -88,13 +88,15 @@ default 导出 `(scope) => ({ frame() })` 工厂，`frame` 返回与 `completed(
 
 ## 4. 冒烟验证命令
 
-在仓库根目录：
+审阅本脚手架时首选的单一命令（在仓库根目录执行）：
 
 ```bash
-node --test systems/loomrealm-smoke/test/smoke.test.mjs
-# 或等价地
 npm test --prefix systems/loomrealm-smoke
 ```
+
+它与 `node --test systems/loomrealm-smoke/test/smoke.test.mjs` 完全等价（该 package 的
+`test` 脚本就是后一条命令）：确定性、无网络、无浏览器、无 CMS 数据、不构建也不改动
+submodule。
 
 基础层（始终运行，确定性、无网络、无浏览器、无 CMS 数据、不构建/不改动 submodule）覆盖：
 
@@ -123,6 +125,17 @@ npm test --prefix systems/loomrealm-smoke
 node --test systems/loomrealm-smoke/test/smoke.test.mjs
 # tests 9  pass 6  fail 0  skipped 3（深层增强因 submodule 未构建而按设计跳过）
 ```
+
+**`skipped 3` 是预期结果，不是失败**：套件共 9 个用例，其中 3 个「深层 LoomRealm 验证」用例
+（对应上文深层增强清单的第 6–10 项：真实 parse/prepare/build API 校验、真实
+`@loomrealm/subsystem` SDK ABI 交叉验证、真实 Main + Hostra 托管启动）依赖固定版本 submodule
+的构建产物（`loom-realm/packages/*/dist/` 下的 JS 模块）。在裸 checkout、submodule 尚未构建
+（即未在 `loom-realm/` 内执行 `npm install && npm run build:packages`）的环境里，这 3 个用例
+按设计自动跳过，skip 原因中会注明 `loom-realm packages are not built`。因此裸 checkout 上的
+预期输出就是 `pass 6 / fail 0 / skipped 3`：基础层 6 个用例（对应基础层清单的第 1–5 项，含
+两平台 Game Entry 与 launch composition 校验、子系统构造、PokeMan 参考回验、submodule 文件
+存在性）全部通过即代表脚手架有效；只有出现 `fail` 才需要关注。构建 submodule 后重跑同一命令，
+这 3 个用例会自动启用。
 
 关于 submodule 自带的验证：固定版本的 PokeMan 测试（如
 `node --test examples/PokeMan/test/map-smoke.test.mjs`）需要 workspace 内解析 `@loomrealm/*` 与
