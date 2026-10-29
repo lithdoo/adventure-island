@@ -256,21 +256,14 @@ jobs:
           cd "$AGENT_WORKSPACE"
           result="$RUNNER_TEMP/agent-output/run-result.json"
           log="$RUNNER_TEMP/agent-output/verification.log"
-          mapfile -t runtime_values < <(
-            python3 - "$result" <<'PY'
-import json
-import sys
-
-try:
-    value = json.load(open(sys.argv[1], encoding="utf-8"))
-except (OSError, json.JSONDecodeError):
-    value = {}
-print(value.get("runtimeStatus") or "failed")
-print(value.get("runtimeExitCode") if value.get("runtimeExitCode") is not None else 1)
-PY
-          )
-          runtime_status="${runtime_values[0]:-failed}"
-          runtime_code="${runtime_values[1]:-1}"
+          runtime_status="$(python3 -c 'import json,sys; p=sys.argv[1]; 
+try: v=json.load(open(p, encoding="utf-8"))
+except Exception: v={}
+print(v.get("runtimeStatus") or "failed")' "$result")"
+          runtime_code="$(python3 -c 'import json,sys; p=sys.argv[1]; 
+try: v=json.load(open(p, encoding="utf-8"))
+except Exception: v={}
+print(v.get("runtimeExitCode") if v.get("runtimeExitCode") is not None else 1)' "$result")"
           changed_count="$({ git diff --name-only HEAD --; git ls-files --others --exclude-standard; } | awk 'NF' | sort -u | wc -l | tr -d ' ')"
 
           verification=skipped
@@ -303,13 +296,7 @@ PY
             --verification-log "$RUNNER_TEMP/agent-output/verification.log" \
             --output "$RUNNER_TEMP/agent-output/agent-result.json"
 
-          status="$(
-            python3 - "$RUNNER_TEMP/agent-output/agent-result.json" <<'PY'
-import json
-import sys
-print(json.load(open(sys.argv[1], encoding="utf-8"))["status"])
-PY
-          )"
+          status="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["status"])' "$RUNNER_TEMP/agent-output/agent-result.json")"
           echo "status=$status" >> "$GITHUB_OUTPUT"
 
       - name: Materialize verified patch
