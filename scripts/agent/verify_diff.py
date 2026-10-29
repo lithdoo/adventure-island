@@ -16,8 +16,16 @@ ALWAYS_FORBIDDEN_PREFIXES = (
     "loom-realm",
     "task/dev/",
     "scripts/agent/",
+    ".opencode/",
+    ".agents/",
     ".raw/",
     ".work/",
+)
+
+ALWAYS_FORBIDDEN_FILES = (
+    "AGENTS.md",
+    "opencode.json",
+    "opencode.jsonc",
 )
 
 FORBIDDEN_EXTENSIONS = (
@@ -48,6 +56,9 @@ def changed_paths() -> list[str]:
 
 def forbidden_reason(path: str) -> str | None:
     normalized = path.replace("\\", "/")
+    if normalized in ALWAYS_FORBIDDEN_FILES:
+        return "agent instruction/config files are trusted workflow inputs"
+
     for prefix in ALWAYS_FORBIDDEN_PREFIXES:
         if normalized == prefix.rstrip("/") or normalized.startswith(prefix):
             return f"always-forbidden path: {prefix}"
