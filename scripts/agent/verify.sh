@@ -38,4 +38,12 @@ if printf '%s\n' "${changed[@]}" | grep -Eq '^(scripts/wz_fsdb/|tests/wz_fsdb/)'
   python3 -m unittest discover -s tests/wz_fsdb -v
 fi
 
+
+if printf '%s\n' "${changed[@]}" | grep -Eq '^(apps/pwa/|apps/hostra/|systems/loomrealm-smoke/)'; then
+  node --test \
+    apps/pwa/test/*.test.mjs \
+    apps/hostra/test/*.test.mjs \
+    systems/loomrealm-smoke/test/*.test.mjs
+fi
+
 echo "deterministic verification passed"
