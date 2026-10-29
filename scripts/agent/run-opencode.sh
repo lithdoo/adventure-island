@@ -302,7 +302,7 @@ unset GITHUB_TOKEN GH_TOKEN AGENT_GITHUB_TOKEN GITHUB_ACCESS_TOKEN
 export OPENCODE_DISABLE_PROJECT_CONFIG=1
 export OPENCODE_DISABLE_EXTERNAL_SKILLS=1
 
-args=(run --standalone --auto --format json --dir "$PWD")
+args=(run --standalone --auto --format json)
 if [[ "$continuity" == "resumed" ]]; then
   args+=(--session "$session_id")
 else
